@@ -22,6 +22,10 @@ const DOWN = '40'; // keyCode
 const UP = '38'; // keyCode
 const ARROW_KEY = { [UP]: -1, [DOWN]: 1 };
 
+const WORD_END = '\x00'; // separator character that doesn't occur in normal user input
+const INDEX_END = '\x01'; // ditto
+const AUTOSUGGEST_INACTIVITY_DELAY = 300; // milliseconds
+
 // module globals
 let openDropdownInstance;
 
@@ -155,6 +159,7 @@ class AXADropdown extends NoShadowDOM {
     super();
     // internal properties
     this.state = { isControlled: false, firstTime: true };
+    this._typedSoFar = '';
     // Very important that applyDefaults is *after* state initialization
     // because applyDefaults changes 'value' and needs firstTime: true flag
     // to define controlledness
@@ -251,14 +256,62 @@ class AXADropdown extends NoShadowDOM {
         // case 2: already open, navigate
         this.navigateByKeyboard(arrowKey);
       }
+    } else {
+      // selection of first matching dropdown item by quickly typing a prefix
+      // of the item's 'name' value, e.g. 'afgh' for selecting Afghanistan in a country list
+      this.handleAutosuggest(key);
     }
+  }
+
+  handleAutosuggest(key) {
+    // ready for autosuggestions, by having focus on the non-native UI?
+    if (document.activeElement !== this.button) {
+      // no, bail out
+      return;
+    }
+    // do we have even a chance of matching for the key that was just pressed?
+    const character = key.toLowerCase();
+    if (!this._autosuggestLetters.has(character)) {
+      // no, bail out
+      return;
+    }
+
+    this._typedSoFar += character;
+    // wait for certain period of keyboard inactivitity...
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      // ... before trying to match what was typed sofar against items
+      const { _autosuggestDictionary, _typedSoFar, items } = this;
+      const match = _autosuggestDictionary.indexOf(INDEX_END + _typedSoFar);
+      if (match > -1) {
+        // we have a match, determine the corresponding item ...
+        const matchIndexPos =
+          _autosuggestDictionary.indexOf(WORD_END, match) + 1;
+        const firstSelectedItem = parseInt(
+          _autosuggestDictionary.slice(matchIndexPos),
+          10
+        );
+        // ... and its value
+        const { value } = items[firstSelectedItem];
+        // re-render to visually select matched item
+        this.updateItems(value, 'scrollIntoView');
+      }
+      // next characters start a *new* autosuggestion
+      this._typedSoFar = '';
+    }, AUTOSUGGEST_INACTIVITY_DELAY);
   }
 
   handleDropdownClick(e) {
     e.preventDefault();
     e.stopPropagation();
     // toggle dropdown
-    this.openDropdown(!this.open);
+    const { open } = this;
+    this.openDropdown(!open);
+    if (open) {
+      // note: without setTimeout, scrolling is off by several items, s.t. the selected
+      // element is not visible (at least with maxHeight being set)
+      setTimeout(() => this.scrollIntoView(), 1);
+    }
   }
 
   handleDropdownItemClick(e) {
@@ -328,7 +381,20 @@ class AXADropdown extends NoShadowDOM {
     return [items[itemIndex], itemIndex];
   }
 
-  updateItems(value) {
+  scrollIntoView(index) {
+    const realIndex =
+      typeof index === 'number' ? index : this.select.selectedIndex;
+    const itemNode = this.querySelector(
+      `.js-dropdown__button[data-index="${realIndex}"]`
+    );
+    if (itemNode) {
+      // note: IE does not interpret scrollIntoView options, therefore
+      // that the selected item might not be centered there.
+      itemNode.scrollIntoView({ block: 'center' });
+    }
+  }
+
+  updateItems(value, scrollIntoView) {
     if (typeof value !== 'string') {
       return;
     }
@@ -344,6 +410,10 @@ class AXADropdown extends NoShadowDOM {
       _item.selected = index === itemIndex;
       return _item;
     });
+
+    if (scrollIntoView) {
+      this.scrollIntoView(itemIndex);
+    }
   }
 
   /* last overrideable lifecycle point *before* render:
@@ -467,6 +537,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   firstUpdated() {
+    this.button = this.querySelector('.js-dropdown__toggle');
     this.dropdown = this.querySelector('.js-dropdown__content');
     this.select = this.querySelector('.js-dropdown__select');
     window.addEventListener('resize', this.handleResize);
@@ -474,11 +545,38 @@ class AXADropdown extends NoShadowDOM {
     window.addEventListener('axa-dropdown-close', this.handleWindowClick);
   }
 
-  updated() {
+  // build one long string of words paired with their indices in `items`,
+  // separating the elements in each pair with suitable control characters
+  // that do not occur in typed input
+  buildAutosuggestDictionary() {
+    this._autosuggestLetters = new Set();
+    const { items, _autosuggestLetters: letters } = this;
+
+    this._autosuggestDictionary =
+      items
+        .filter(item => !item.disabled)
+        .map((item, index) => {
+          // normalize word for purposes of matching
+          const word = item.name.toLowerCase();
+          // construct a set of all letters in word
+          // (used for an early filter over keystrokes)
+          word.split('').forEach(letter => {
+            letters.add(letter.toLowerCase());
+          });
+          return `${INDEX_END}${word}${WORD_END}${index}`;
+        })
+        .join('') + INDEX_END;
+  }
+
+  updated(changedProperties) {
     const { select, defaultTitle } = this;
     // adjust native <select>
     select.selectedIndex =
       this.findByValue(null, true) + (defaultTitle ? 1 : 0);
+    if (changedProperties.has('items')) {
+      // rebuild keyboard-autosuggestion data structures
+      this.buildAutosuggestDictionary();
+    }
   }
 
   disconnectedCallback() {
