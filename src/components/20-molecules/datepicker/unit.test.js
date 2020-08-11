@@ -64,20 +64,20 @@ describe('Datepicker unit tests', () => {
     it('should set class variables if output:true', () => {
       // init values
       AXADatepicker.prototype.outputdate = null;
-      AXADatepicker.prototype._userSelectedDate = null;
+      AXADatepicker.prototype._selectedDate = null;
 
       AXADatepicker.prototype.initDate(new Date(), { output: true });
 
       expect(AXADatepicker.prototype.outputdate).not.toBe(null);
-      expect(AXADatepicker.prototype._userSelectedDate).not.toBe(null);
+      expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
     });
     it('should set class variables if tentative:false', () => {
       // init values
-      AXADatepicker.prototype._preselectedDate = null;
+      AXADatepicker.prototype._selectedDate = null;
 
       AXADatepicker.prototype.initDate(new Date(), { tentative: false });
 
-      expect(AXADatepicker.prototype._userSelectedDate).not.toBe(null);
+      expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
     });
   });
 });
