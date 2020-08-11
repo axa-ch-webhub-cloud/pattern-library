@@ -1,5 +1,7 @@
 # AXA Dropdown
 
+This component represents a styled, enhanced replacement for native HTML &lt;select&gt;. The component is responsive, falling back to native look-and-feel under mobile viewports. Keyboard operation is supported.
+
 ## Usage
 
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
@@ -51,9 +53,9 @@ export default AXADropdownReact;
 
 ## Properties
 
-### defaulttitle
+### defaultTitle
 
-The String-valued attribute `defaulttitle` sets the initial title of the closed dropdown (default: first selected item).
+The String-valued attribute `defaultTitle` sets the initial title of the closed dropdown (default: first selected item).
 
 Its intended use is primarily for native-HTML situations where server-generated `items` describe the choices proper,
 and a separate title like `defaulttitle="Please select"` prompts the user to make a choice.
@@ -114,16 +116,16 @@ Is an array of objects to set the options of the dropdown. The objects must have
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
-the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,name,optionLabel,optionIndex}` structure.
+the selected dropdown option changes. Its only parameter is an event-like object with `{target:{value,name,optionLabel,index}` structure.
 
 | target      | Details                                             |
 | ----------- | --------------------------------------------------- |
 | value       | The currently selected value                        |
 | name        | The name of the element you set via property `name` |
 | optionLabel | Visible text corresponding to `value`               |
-| optionIndex | 0-based index of currently selected option          |
+| index       | 0-based index of currently selected option          |
 
-If a defaulttitle is set, the first element has index 1, because the title gets index 0.
+If a defaultTitle is set, the first element has index 1, because the title gets index 0.
 
 _Important_: This attribute can also be used natively. However, in this case the event parameter passed conforms to the **change** event described below.
 

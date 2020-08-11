@@ -17,8 +17,9 @@ import { applyDefaults } from '../../../utils/with-react';
 const ARROW_ICON = svg([ExpandSvg]);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
-const FOCUSENTRY_DIRECTION_DOWN = 'down';
-const FOCUSENTRY_DIRECTION_UP = 'up';
+const DOWN = '40'; // keyCode
+const UP = '38'; // keyCode
+const ARROW_KEY = { [UP]: -1, [DOWN]: 1 };
 
 // module globals
 let openDropdownInstance;
@@ -58,7 +59,7 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
     >
   `;
 
-const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
+const contentItemsMapper = (clickHandler, defaultTitle) => (
   { name, value, selected, disabled },
   index
 ) => {
@@ -73,7 +74,6 @@ const contentItemsMapper = (clickHandler, keyUpHandler, defaultTitle) => (
           <button
             type="button"
             @click="${clickHandler}"
-            @keyup="${keyUpHandler}"
             tabindex="-1"
             class="m-dropdown__button js-dropdown__button"
             data-index="${index + (defaultTitle ? 1 : 0)}"
@@ -174,8 +174,16 @@ class AXADropdown extends NoShadowDOM {
     forEach(links, (_, link) =>
       link.setAttribute('tabindex', open ? '0' : '-1')
     );
-    if (open && openDropdownInstance) {
-      openDropdownInstance.open = false;
+    if (open) {
+      // close any other open instance in the same document
+      if (openDropdownInstance) {
+        openDropdownInstance.open = false;
+      }
+      // focus on selected item s.t. enhanced-mode keyboard navigation works like native
+      this.focusOnButton(
+        this.selectedIndex,
+        /* already includes default-title offset */ true
+      );
     }
     openDropdownInstance = open ? this : /* help GC */ null;
   }
@@ -186,52 +194,63 @@ class AXADropdown extends NoShadowDOM {
     }
   }
 
-  _focusEntry(direction) {
-    const { open, dropdown } = this;
+  focusOnButton(index, includesOffset) {
+    if (typeof index === 'number') {
+      const { defaultTitle, dropdown } = this;
+      const defaultTitleOffset = defaultTitle && !includesOffset ? 1 : 0;
+      dropdown
+        .querySelector(
+          `.js-dropdown__button[data-index="${index + defaultTitleOffset}"]`
+        )
+        .focus();
+    }
+  }
 
-    if (open) {
-      let selectedIndex = -1;
-      let newSelectedIndex;
-      const selectedLinkButton = dropdown.querySelector(
-        '.m-dropdown__item--is-selected > button'
-      );
-      const focusedLinkButton = dropdown.querySelector('button:focus');
-      const links = dropdown.querySelectorAll('.js-dropdown__button');
+  navigateByKeyboard(direction) {
+    const { items, defaultTitle } = this;
+    const { activeElement } = document;
+    const defaultTitleOffset = defaultTitle ? 1 : 0;
 
-      if (focusedLinkButton) {
-        forEach(links, (index, link) => {
-          if (link === focusedLinkButton) selectedIndex = index;
-        });
-      } else if (selectedLinkButton) {
-        forEach(links, (index, link) => {
-          if (link === selectedLinkButton) selectedIndex = index;
-        });
-      }
+    // don't get involved if preexisting focus outside enhanced-mode DOM
+    if (!/(?:BUTTON|LI)/.test(activeElement.tagName)) {
+      return;
+    }
 
-      if (direction === FOCUSENTRY_DIRECTION_DOWN) {
-        newSelectedIndex = selectedIndex + 1;
-      } else {
-        newSelectedIndex = selectedIndex - 1;
-      }
+    // get selected item's index
+    let focussedIndex =
+      parseInt(activeElement.dataset.index || '0', 10) - defaultTitleOffset;
 
-      if (links[newSelectedIndex]) {
-        links[newSelectedIndex].focus();
-      }
+    // move in the direction of the arrow key, skipping disabled items (if any)
+    for (
+      focussedIndex += direction;
+      items[focussedIndex] && items[focussedIndex].disabled;
+      focussedIndex += direction
+    );
+
+    // we landed on a focussable item?
+    if (items[focussedIndex] && !items[focussedIndex].disabled) {
+      // yes, put the focus on it
+      this.focusOnButton(focussedIndex);
     }
   }
 
   handleKeyUp(e) {
     const { key, keyCode } = e;
     e.preventDefault();
-
+    const arrowKey = ARROW_KEY[keyCode.toString()];
+    // close dropdown via key?
     if (key === 'Escape' || key === 'Esc' || keyCode === 27) {
       this.openDropdown(false);
-    } else if (keyCode === 40) {
-      // arrowkey down
-      this._focusEntry(FOCUSENTRY_DIRECTION_DOWN);
-    } else if (keyCode === 38) {
-      // arrowkey up
-      this._focusEntry(FOCUSENTRY_DIRECTION_UP);
+    } else if (arrowKey) {
+      // arrow keys ↑, ↓,
+      // case 1: dropdown closed
+      if (!this.open) {
+        // open it in order to mimick native <select> behaviour
+        this.openDropdown(true);
+      } else {
+        // case 2: already open, navigate
+        this.navigateByKeyboard(arrowKey);
+      }
     }
   }
 
@@ -277,7 +296,7 @@ class AXADropdown extends NoShadowDOM {
       value,
       name,
       optionLabel,
-      optionIndex: integerIndex,
+      index: integerIndex,
     };
     const syntheticEvent = { target: details };
     onChange(syntheticEvent);
@@ -371,7 +390,7 @@ class AXADropdown extends NoShadowDOM {
               : ''}
           </label>
         `}
-      <div class="m-dropdown__wrapper">
+      <div class="m-dropdown__wrapper" @keyup="${handleKeyUp}">
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
           <div class="m-dropdown__select-wrapper">
@@ -403,7 +422,6 @@ class AXADropdown extends NoShadowDOM {
             @focus="${this.onFocus}"
             @blur="${this.onBlur}"
             @click="${handleDropdownClick}"
-            @keyup="${handleKeyUp}"
           >
             <span class="m-dropdown__flex-wrapper">
               <span class="js-dropdown__title">${this.title}</span>
@@ -418,11 +436,7 @@ class AXADropdown extends NoShadowDOM {
               : ''}"
           >
             ${items.map(
-              contentItemsMapper(
-                handleDropdownItemClick,
-                handleKeyUp,
-                defaultTitle
-              )
+              contentItemsMapper(handleDropdownItemClick, defaultTitle)
             )}
           </ul>
           <!-- ENHANCED END -->
