@@ -322,13 +322,14 @@ class AXADatepicker extends NoShadowDOM {
 
     const cellClasses = ({ sameMonth, today, inactive, value }) => {
       const selected = _selectedDate === value;
+      const isToday = !selected && today;
 
       return classMap({
         'm-datepicker__calendar-cell': true,
         'js-datepicker__calender-body__cell': true,
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
-        'm-datepicker__calendar-today': today,
+        'm-datepicker__calendar-today': isToday,
         'm-datepicker__calendar-selected-day': selected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
