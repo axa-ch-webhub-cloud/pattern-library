@@ -89,13 +89,6 @@ export const ToPatternLibrary = () => {
           >
             <axa-button-link
               href="https://axa.ch"
-              variant=""
-              size="large"
-              style="padding-right:25px;"
-              >GET STARTED</axa-button-link
-            >
-            <axa-button-link
-              href="https://axa.ch"
               variant="secondary"
               size="large"
               icon="upload"
