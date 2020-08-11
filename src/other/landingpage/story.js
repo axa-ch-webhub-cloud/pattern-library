@@ -2,6 +2,7 @@ import { html, render } from 'lit-html';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 import styles from './index.scss';
+import contact from '../utils/contact-banner';
 
 // imagesource="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
 
@@ -53,53 +54,58 @@ export const ToPatternLibrary = () => {
   xhttp.send();
 
   const template = html`
-  <style>${styles}</style>
-  <axa-container>
-    <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
-    <axa-text variant="size-1">
-      Welcome to the Design System of AXA Switzerland. Our Pattern Library
-      provides components and tools to help product teams work more efficiently,
-      and to make AXA’s applications more cohesive.
-    </axa-text>
-    <axa-commercial-hero-banner
-      variant="light"
-  
-    >
-      <header slot="title">
-        <p>HAVE A PERFECT START</p>
-        <h1>New to the AXA Design System?</h1>
-      </header>
-      <p slot="content">
-        Check out our introduction guide on our guidelines, components and key
-        concepts
-      </p>
-      <div class="landingpage-commerical-hero-banner-button-wrapper" slot="button">
-        <axa-button-link href="https://axa.ch" variant="" size="large" style="padding-right:25px;"
-          >GET STARTED</axa-button-link
+    <style>
+      ${styles}
+    </style>
+    <axa-container>
+      <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
+      <axa-text variant="size-1">
+        Welcome to the Design System of AXA Switzerland. Our Pattern Library
+        provides components and tools to help product teams work more
+        efficiently, and to make AXA’s applications more cohesive.
+      </axa-text>
+      <axa-commercial-hero-banner variant="light">
+        <header slot="title">
+          <p>HAVE A PERFECT START</p>
+          <h1>New to the AXA Design System?</h1>
+        </header>
+        <p slot="content">
+          Check out our introduction guide on our guidelines, components and key
+          concepts
+        </p>
+        <div
+          class="landingpage-commerical-hero-banner-button-wrapper"
+          slot="button"
         >
-        <axa-button-link
-          href="https://axa.ch"
-          variant="secondary"
-          size="large"
-          icon="upload"
-          >GITHUB</axa-button-link
-        >
-      </div>
-    </axa-commercial-hero-banner>
-    <img class="landingpage-commercial-hero-banner-image" src="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"><img>
-    <axa-heading rank="2">Last releases</axa-heading>
-    <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
-    <axa-text><span id="githubResponse"></span></axa-text>
-  </axa-container>
-    <section class="landingpage-contact">
-      <div class="landingpage-contact-inner">
-        <div>
-          <p class="landingpage-contact-subtitle">Help & Contact</p>
-          <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
+          <axa-button-link
+            href="https://axa.ch"
+            variant=""
+            size="large"
+            style="padding-right:25px;"
+            >GET STARTED</axa-button-link
+          >
+          <axa-button-link
+            href="https://axa.ch"
+            variant="secondary"
+            size="large"
+            icon="upload"
+            >GITHUB</axa-button-link
+          >
         </div>
-        <axa-button-link href="/?path=/story/contact--contact" variant="inverted">Get in touch</axa-button-link>
-      </div>
-    </section>
+      </axa-commercial-hero-banner>
+      <img
+        class="landingpage-commercial-hero-banner-image"
+        src="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
+      /><img />
+      <axa-heading rank="2">Last releases</axa-heading>
+      <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
+      <axa-text><span id="githubResponse"></span></axa-text>
+      <img
+        class="landingpage-last-releases-image"
+        src="https://drive.google.com/uc?export=view&id=1OWMDEOPROgBm8t8E5FhxtrkDJomfpx8T"
+      /><img />
+    </axa-container>
+    ${contact}
   `;
 
   render(template, wrapper);

@@ -3,6 +3,7 @@ import { html, render } from 'lit-html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
 import styles from './index.scss';
+import contact from '../../utils/contact-banner';
 
 const story = storiesOf('Guides|Getting started', module);
 story.addParameters({
@@ -29,6 +30,7 @@ story.add('Getting started', () => {
         interactions, and flows.
       </axa-text>
     </axa-container>
+    ${contact}
   `;
 
   render(template, wrapper);

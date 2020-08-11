@@ -3,6 +3,7 @@ import { html, render } from 'lit-html';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 import styles from './index.scss';
+import contact from '../utils/contact-banner';
 
 const story = storiesOf("Overview|What's new", module);
 story.addParameters({
@@ -29,6 +30,7 @@ story.add("What's new", () => {
         amet.
       </axa-text>
     </axa-container>
+    ${contact}
   `;
 
   render(template, wrapper);
