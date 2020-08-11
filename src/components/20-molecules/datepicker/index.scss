@@ -296,11 +296,6 @@ axa-datepicker {
   &__calendar-selected-day {
     background-color: $color-axa-blue;
     color: $color-prim-white;
-
-    &--preselected {
-      color: $color-dark-grey;
-      background-color: $color-silver;
-    }
   }
 
   &__calendar-today {

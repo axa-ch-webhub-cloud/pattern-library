@@ -311,8 +311,7 @@ class AXADatepicker extends NoShadowDOM {
       invalid,
       invaliddatetext,
       style,
-      _userSelectedDate,
-      _preselectedDate,
+      _selectedDate,
     } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
@@ -322,16 +321,15 @@ class AXADatepicker extends NoShadowDOM {
     style.width = getFormattedStyle(width); // set width to component's css
 
     const cellClasses = ({ sameMonth, today, inactive, value }) => {
-      const userSelected = _userSelectedDate === value;
-      const preselected = !userSelected && _preselectedDate === value;
+      const selected = _selectedDate === value;
+
       return classMap({
         'm-datepicker__calendar-cell': true,
         'js-datepicker__calender-body__cell': true,
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
         'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': userSelected,
-        'm-datepicker__calendar-selected-day--preselected': preselected,
+        'm-datepicker__calendar-selected-day': selected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
     };
@@ -547,10 +545,10 @@ class AXADatepicker extends NoShadowDOM {
     const { output, tentative } = options;
     if (output) {
       this.outputdate = this.formatDate(_date);
-      this._userSelectedDate = formatISO(_date);
+      this._selectedDate = formatISO(_date);
     }
     if (!tentative) {
-      this._preselectedDate = formatISO(_date);
+      this._selectedDate = formatISO(_date);
     }
 
     return this.outputdate;
