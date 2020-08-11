@@ -36,7 +36,7 @@ story.add('Contact', () => {
       <div class="contact-support-visuals">
         <div class="contact-col-wrapper">
           <img
-            src="/static/support-1o1-637363a4951f26af6883156539241541.jpg"
+            src="support-questions.jpg"
             alt="AXA Design System illustration"
             height="215"
           />
@@ -53,7 +53,7 @@ story.add('Contact', () => {
       <div class="contact-support-visuals">
         <div class="contact-col-wrapper">
           <img
-            src="/static/support-1o1-637363a4951f26af6883156539241541.jpg"
+            src="support-advice.jpg"
             alt="AXA Design System illustration"
             height="215"
           />
