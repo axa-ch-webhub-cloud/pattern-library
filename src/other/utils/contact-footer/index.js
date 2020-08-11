@@ -3,10 +3,10 @@ import styles from './index.scss';
 
 export default html`
 <style>${styles}</style>
-<section class="landingpage-contact">
-  <div class="landingpage-contact-inner">
+<section class="contact-footer">
+  <div class="contact-footer-inner">
     <div>
-      <p class="landingpage-contact-subtitle">Help & Contact</p>
+      <p class="contact-footer-subtitle">Help & Contact</p>
       <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
     </div>
     <axa-button-link href="/?path=/story/contact--contact" variant="inverted">

@@ -2,7 +2,7 @@ html, body, #root {
     height: 100%;
 }
 
-.landingpage-contact {
+.contact-footer {
     position: absolute;
     bottom: 8px;
     right: 0px;
@@ -13,7 +13,7 @@ html, body, #root {
     color: $color-prim-white;
 }
 
-.landingpage-contact-inner {
+.contact-footer-inner {
     padding-left: 30px;
     display: flex;
     align-items: center;
@@ -23,7 +23,7 @@ html, body, #root {
     }
 }
 
-.landingpage-contact-subtitle {
+.contact-footer-subtitle {
     text-transform: uppercase;
     overflow-wrap: break-word;
     @include text(t4);

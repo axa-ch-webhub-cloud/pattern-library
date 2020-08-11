@@ -3,7 +3,7 @@ import { html, render } from 'lit-html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
 import styles from './index.scss';
-import contact from '../../utils/contact-banner';
+import contact from '../../utils/contact-footer';
 
 const story = storiesOf('Guides|Styleguide', module);
 story.addParameters({
