@@ -22,9 +22,20 @@ import {
   parseLocalisedDateIfValid,
   range,
 } from './utils/date';
+import { applyDefaults } from '../../../utils/with-react';
+import styles from './index.scss';
+import {
+  getAllLocaleMonthsArray,
+  getMonthMatrix,
+  getWeekdays,
+  parseLocalisedDateIfValid,
+  range,
+} from './utils/date';
 
 // module constants
 const dateRangeIcon = svg([Date_rangeSvg]);
+const keyboardArrowLeftIcon = svg([KeyboardArrowLeftSvg]);
+const keyboardArrowRightIcon = svg([KeyboardArrowRightSvg]);
 const EMPTY_FUNCTION = () => {};
 
 // module globals
@@ -445,6 +456,12 @@ class AXADatepicker extends NoShadowDOM {
                       )}
                   </div>
                 </div>
+                <button class="m-datepicker__button-back">
+                  ${keyboardArrowLeftIcon}
+                </button>
+                <button class="m-datepicker__button-next">
+                  ${keyboardArrowRightIcon}
+                </button>
               </div>
             `
           : ''}
