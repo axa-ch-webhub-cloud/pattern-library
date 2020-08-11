@@ -21,12 +21,12 @@ story.add('Styleguide', () => {
     <style>
       ${styles}
     </style>
-    <axa-container>
-      <axa-heading rank="1">Styleguide</axa-heading>
+    <div class="accessory-story-content">
+      <axa-heading rank="1" variant="secondary">Styleguide</axa-heading>
       <axa-text variant="size-1">
         Test
       </axa-text>
-    </axa-container>
+    </div>
     ${contact}
   `;
 

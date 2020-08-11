@@ -1,0 +1,10 @@
+@import '../utils/canvas-content-padding.scss';
+
+@include canvas-padding;
+@include content-padding;
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 2.5rem;
+}

@@ -21,7 +21,7 @@ story.add("What's new", () => {
     <style>
       ${styles}
     </style>
-    <axa-container>
+    <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">What's new</axa-heading>
       <axa-text variant="size-1">
         Here you will find the latest updates on the AXA Design System
@@ -35,7 +35,7 @@ story.add("What's new", () => {
         code integration structure. For more information check out our
         <axa-link>Introduction</axa-link>
       </p>
-    </axa-container>
+    </div>
     ${contact}
   `;
 

@@ -1,0 +1,12 @@
+@mixin canvas-padding {
+    .accessory-story-wrapper {
+        padding-left: 6rem;
+    }
+}
+
+@mixin content-padding {
+    .accessory-story-content {
+        padding: 3rem;
+        width: 840px;
+    }
+}

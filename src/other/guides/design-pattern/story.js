@@ -21,12 +21,12 @@ story.add('Design Pattern', () => {
     <style>
       ${styles}
     </style>
-    <axa-container class="accessory-story-content">
-      <axa-heading rank="1">Design Pattern</axa-heading>
+    <div class="accessory-story-content">
+      <axa-heading rank="1" variant="secondary">Design Pattern</axa-heading>
       <axa-text variant="size-1">
         Test
       </axa-text>
-    </axa-container>
+    </div>
     ${contact}
   `;
 

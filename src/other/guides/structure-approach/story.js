@@ -21,8 +21,8 @@ story.add('Structure Approach', () => {
     <style>
       ${styles}
     </style>
-    <axa-container>
-      <axa-heading rank="1">Structure approach</axa-heading>
+    <div class="accessory-story-content">
+      <axa-heading rank="1" variant="secondary">Structure approach</axa-heading>
       <axa-text variant="size-1">
         Test
       </axa-text>
@@ -52,7 +52,7 @@ story.add('Structure Approach', () => {
       <br />
       <br />
       <p>hoi</p>
-    </axa-container>
+    </div>
     ${contact}
   `;
 
