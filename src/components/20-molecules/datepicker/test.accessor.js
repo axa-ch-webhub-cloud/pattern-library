@@ -97,11 +97,6 @@ class DatePickerAccessor {
     if (background === 'rgba(0, 0, 0, 0)' && color === 'rgb(51, 51, 51)') {
       return 'STANDARD';
     } else if (
-      background === 'rgb(204, 204, 204)' &&
-      color === 'rgb(51, 51, 51)'
-    ) {
-      return 'PRESELECTED';
-    } else if (
       background === 'rgb(0, 0, 143)' &&
       color === 'rgb(255, 255, 255)'
     ) {

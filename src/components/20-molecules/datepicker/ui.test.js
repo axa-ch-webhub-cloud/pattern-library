@@ -103,14 +103,13 @@ test('should begin with September 1 as first Monday in 1980', async t => {
   await t.expect(firstVisibleDay.innerText).eql('1');
 });
 
-// Preselected is: 22. Mai 2020
-test('should have working selection and preselection', async t => {
+test('should have working selection', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   let dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseMonth(1);
 
@@ -123,7 +122,7 @@ test('should have working selection and preselection', async t => {
   dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseYear(1971);
 
@@ -137,7 +136,7 @@ test('should have working selection and preselection', async t => {
   dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   let dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     23
