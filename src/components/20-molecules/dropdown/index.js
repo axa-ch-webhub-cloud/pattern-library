@@ -212,7 +212,10 @@ class AXADropdown extends NoShadowDOM {
     const defaultTitleOffset = defaultTitle ? 1 : 0;
 
     // don't get involved if preexisting focus outside enhanced-mode DOM
-    if (!/(?:BUTTON|LI)/.test(activeElement.tagName)) {
+    if (
+      !this.contains(activeElement) ||
+      !/(?:BUTTON|LI)/.test(activeElement.tagName)
+    ) {
       return;
     }
 
