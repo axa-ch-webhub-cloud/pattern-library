@@ -765,7 +765,7 @@ class AXADatepicker extends NoShadowDOM {
 
     if (direction < 0) {
       if (month !== MIN) {
-        month--;
+        month -= 1;
       } else {
         const prevYear = this.getNextYear(-1);
 
@@ -774,16 +774,14 @@ class AXADatepicker extends NoShadowDOM {
           year = prevYear;
         }
       }
+    } else if (month !== MAX) {
+      month += 1;
     } else {
-      if (month !== MAX) {
-        month++;
-      } else {
-        const nextYear = this.getNextYear();
+      const nextYear = this.getNextYear();
 
-        if (nextYear > year) {
-          month = MIN;
-          year = nextYear;
-        }
+      if (nextYear > year) {
+        month = MIN;
+        year = nextYear;
       }
     }
 
@@ -803,12 +801,10 @@ class AXADatepicker extends NoShadowDOM {
 
     if (direction < 0) {
       if (indexOfYear !== MIN) {
-        indexOfYear--;
+        indexOfYear -= 1;
       }
-    } else {
-      if (indexOfYear !== MAX) {
-        indexOfYear++;
-      }
+    } else if (indexOfYear !== MAX) {
+      indexOfYear += 1;
     }
 
     return parseInt(this.allowedyears[indexOfYear], 10);
