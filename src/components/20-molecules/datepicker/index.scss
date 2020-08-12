@@ -157,13 +157,14 @@ axa-datepicker {
   }
 
   &__wrap {
+    position: relative;
     background: $color-prim-white;
     width: 260px;
+    margin: 0 20px;
     padding: 20px 30px;
     background: $color-prim-white;
     border: solid 1px $color-silver;
     box-shadow: 0 5px 7px 0 $color-silver;
-    overflow: hidden;
   }
 
   &__dropdown-wrap {
@@ -302,9 +303,31 @@ axa-datepicker {
     background-color: $color-mercury;
   }
 
-  &__buttons {
-    display: flex;
-    justify-content: space-between;
+  &__button {
+    position: absolute;
+    top: 172px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid $color-silver;
+    box-shadow: 0px 5px 7px $color-silver;
+    box-sizing: border-box;
+    background: $color-prim-white;
+    color: $color-axa-blue;
+    cursor: pointer;
+
+    svg {
+      vertical-align: middle;
+    }
+  }
+
+  &__button-back {
+    left: -20px;
+  }
+
+  &__button-next {
+    right: -20px;
   }
 
   &__error {

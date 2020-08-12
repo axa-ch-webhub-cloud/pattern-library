@@ -456,10 +456,16 @@ class AXADatepicker extends NoShadowDOM {
                       )}
                   </div>
                 </div>
-                <button class="m-datepicker__button-back">
+                <button
+                  class="m-datepicker__button m-datepicker__button-back"
+                  @click=${() => this.showNextMonth(-1)}
+                >
                   ${keyboardArrowLeftIcon}
                 </button>
-                <button class="m-datepicker__button-next">
+                <button
+                  class="m-datepicker__button m-datepicker__button-next"
+                  @click=${() => this.showNextMonth()}
+                >
                   ${keyboardArrowRightIcon}
                 </button>
               </div>
@@ -745,6 +751,67 @@ class AXADatepicker extends NoShadowDOM {
     // since the calendar UI only allows legal dates to be picked,
     // any preexisting error should be cleared
     this.error = null;
+  }
+
+  // Switches to the next allowed month, when 'direction' is positive.
+  // Switches to the previous allowed month, when 'direction' is negative.
+  // Has no effect, when there is no next/previous allowed month.
+  showNextMonth(direction = 0) {
+    const MIN = 0;
+    const MAX = 11;
+
+    let month = parseInt(this.month, 10);
+    let year = parseInt(this.year, 10);
+
+    if (direction < 0) {
+      if (month !== MIN) {
+        month--;
+      } else {
+        const prevYear = this.getNextYear(-1);
+
+        if (prevYear < year) {
+          month = MAX;
+          year = prevYear;
+        }
+      }
+    } else {
+      if (month !== MAX) {
+        month++;
+      } else {
+        const nextYear = this.getNextYear();
+
+        if (nextYear > year) {
+          month = MIN;
+          year = nextYear;
+        }
+      }
+    }
+
+    this.initDate(overrideDate(year, month, null, this._date), {
+      tentative: true,
+    });
+  }
+
+  // Returns the next allowed year, when 'direction' is positive.
+  // Returns the previous allowed year, when 'direction' is negative.
+  // Returns the currently selected year, when there is no next/previous allowed year.
+  getNextYear(direction = 0) {
+    const MIN = 0;
+    const MAX = this.allowedyears.length - 1;
+
+    let indexOfYear = this.allowedyears.findIndex(year => year === this.year);
+
+    if (direction < 0) {
+      if (indexOfYear !== MIN) {
+        indexOfYear--;
+      }
+    } else {
+      if (indexOfYear !== MAX) {
+        indexOfYear++;
+      }
+    }
+
+    return parseInt(this.allowedyears[indexOfYear], 10);
   }
 }
 
