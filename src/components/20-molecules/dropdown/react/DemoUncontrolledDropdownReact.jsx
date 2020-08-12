@@ -4,11 +4,6 @@ import AXADropdownReact from './AXADropdownReact';
 
 const DemoUncontrolledDropdown = props => {
   const items = [
-    {
-      name: 'Please Select',
-      value: 'Please Select',
-      disabled: true,
-    },
     { name: props.item1, value: 'Item 1' },
     { name: props.item2, value: 'Item 2', selected: true },
     { name: props.item3, value: 'Item 3' },
@@ -17,7 +12,6 @@ const DemoUncontrolledDropdown = props => {
   return (
     <AXADropdownReact
       data-test-id="uncontrolled-dropdown-react"
-      title="Please Select"
       items={items}
       label={props.label}
       defaultTitle={props.defaultTitle}

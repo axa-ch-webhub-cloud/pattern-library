@@ -6,11 +6,6 @@ const DemoFocussableDropdown = () => {
   let output;
 
   const items = [
-    {
-      name: 'Please Select',
-      value: 'Please Select',
-      disabled: true,
-    },
     { name: 'Item A', value: 'Item 1' },
     { name: 'Item B', value: 'Item 2', selected: true },
     { name: 'Item C', value: 'Item 3' },
@@ -25,7 +20,7 @@ const DemoFocussableDropdown = () => {
       />
       <AXADropdownReact
         data-test-id="focussable-dropdown-react"
-        title="Please Select"
+        defaultTitle="Please Select"
         items={items}
         onChange={value => {
           output.innerHTML += `${value.target.name},`;

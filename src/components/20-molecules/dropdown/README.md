@@ -35,16 +35,11 @@ export default AXADropdownReact;
 ```js
 <AXADropdownReact
   items={[
-    {
-      name: 'Please Select',
-      value: 'Please Select',
-      selected: true,
-      disabled: true,
-    },
     { name: 'Item 1', value: 'Item 1' },
     { name: 'Item 2', value: 'Item 2' },
     { name: 'Item 3', value: 'Item 3' },
   ]}
+  defaultTitle="Please Select"
   onChange={event => console.log(`value changed ${event.target.value}`)}
 />
 ```
@@ -59,8 +54,6 @@ The String-valued attribute `defaultTitle` sets the initial title of the closed 
 
 Its intended use is primarily for native-HTML situations where server-generated `items` describe the choices proper,
 and a separate title like `defaulttitle="Please select"` prompts the user to make a choice.
-
-See the above React example for an alternative parametrization strategy that relies on using `items` only.
 
 ### value
 
@@ -109,7 +102,6 @@ Is an array of objects to set the options of the dropdown. The objects must have
 | name     | The text that is displayed                                       |
 | value    | The value that is submitted via form submit                      |
 | selected | boolean: just set true to one of the options to preselect option |
-| disabled | boolean: disables the option                                     |
 
 ## Callback Properties
 

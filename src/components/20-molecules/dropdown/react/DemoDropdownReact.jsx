@@ -5,24 +5,18 @@ import findIndex from '../../../../utils/find-index';
 
 const DemoDropdown = () => {
   const items = [
-    {
-      name: 'Please Select',
-      value: 'Please Select',
-      selected: true,
-      disabled: true,
-    },
     { name: 'Item A', value: 'Item 1' },
     { name: 'Item B', value: 'Item 2' },
     { name: 'Item C', value: 'Item 3' },
   ];
 
-  const [value, setValue] = useState(items[0].value);
+  const [value, setValue] = useState('Please Select');
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
   const [native, setNative] = useState(false);
 
   const findName = val =>
-    items[findIndex(items, item => item.value === val)].name;
+    (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
 
   const handleChange = event => {
     setValue(frozen ? value : event.target.value);
@@ -69,6 +63,7 @@ const DemoDropdown = () => {
         invalid={frozen}
         checkMark={!frozen}
         error={error}
+        defaultTitle="Please Select"
       />
       <br />
       <p>

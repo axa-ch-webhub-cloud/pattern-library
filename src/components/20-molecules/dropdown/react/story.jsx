@@ -24,7 +24,7 @@ storiesOf('Examples/Dropdown/React', module)
 
     const label = text('label', '');
     const value = text('value', '');
-    const defaultTitle = text('defaulttitle', '');
+    const defaultTitle = text('defaulttitle', 'Please Select');
     const name = text('name', '');
     const invalid = boolean('invalid', false);
     const error = text('error', 'Error Message');

@@ -46,7 +46,7 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
+const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
   html`
     <option
       class="m-dropdown__option"
@@ -54,20 +54,20 @@ const nativeItemsMapper = ({ name, value, selected, disabled }, index) =>
       data-index="${index}"
       data-value="${value}"
       ?selected="${selected}"
-      ?disabled="${disabled}"
+      ?disabled="${_disabled}"
       >${name}</option
     >
   `;
 
 const contentItemsMapper = (clickHandler, defaultTitle) => (
-  { name, value, selected, disabled },
+  { name, value, selected, _disabled },
   index
 ) => {
   const classes = {
     'm-dropdown__item': true,
     'm-dropdown__item--is-selected': selected,
   };
-  return disabled
+  return _disabled
     ? html``
     : html`
         <li class="${classMap(classes)}">
@@ -87,7 +87,7 @@ const contentItemsMapper = (clickHandler, defaultTitle) => (
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
-    ? [{ name: title, disabled: true, selected: !anotherSelection, value: '' }]
+    ? [{ name: title, _disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
 // CE
@@ -223,15 +223,11 @@ class AXADropdown extends NoShadowDOM {
     let focussedIndex =
       parseInt(activeElement.dataset.index || '0', 10) - defaultTitleOffset;
 
-    // move in the direction of the arrow key, skipping disabled items (if any)
-    for (
-      focussedIndex += direction;
-      items[focussedIndex] && items[focussedIndex].disabled;
-      focussedIndex += direction
-    );
+    // move in the direction of the arrow key
+    focussedIndex += direction;
 
     // we landed on a focussable item?
-    if (items[focussedIndex] && !items[focussedIndex].disabled) {
+    if (items[focussedIndex] && !items[focussedIndex]._disabled) {
       // yes, put the focus on it
       this.focusOnButton(focussedIndex);
     }
@@ -313,13 +309,22 @@ class AXADropdown extends NoShadowDOM {
   }
 
   findByValue(value, indexOnly) {
-    const { items = [] } = this;
+    const { items = [], defaultTitle } = this;
     const itemIndex = findIndex(items, ({ selected, value: selectedValue }) =>
       value === null
         ? selected
         : selectedValue === value || selectedValue === parseInt(value, 10)
     );
-    return indexOnly ? itemIndex : [items[itemIndex], itemIndex];
+    if (indexOnly) {
+      return itemIndex;
+    }
+
+    // no item selected, but defaultTitle set?
+    if (value === null && itemIndex < 0 && defaultTitle) {
+      return [false]; // signal caller (render) to use defaultTitle as title
+    }
+
+    return [items[itemIndex], itemIndex];
   }
 
   updateItems(value) {
