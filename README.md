@@ -27,6 +27,32 @@ We release self-contained plug-and-play web components based on the [custom elem
 
 You can add any Pattern Library component via the community CDN jsdelivr. This is useful for Prototyping or experimenting or if you don't want to bother with a frontend stack. This works only native (no react support). Here an example on how to add the JS for `<axa-button></axa-button>`: `<script src="https://cdn.jsdelivr.net/npm/@axa-ch/button@latest/dist/index.js"></script>`
 
+## Build Pattern Library components in your own application
+
+Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` in ES5 JavaScript and `/lib/index.*` in ES6. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
+
+The de-facto standard in the frontend community is to render `/lib` exports as ESM, i.e. **ES5** + **import/export**. Due to the nature of web components and lit-element, however, we are forced to export in ES6. For more details, see the [custom element specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
+
+If you need to support Internet Explorer (11) in your application, you therefore need to **transpile** our component (/lib) artifacts in your build. To do so, you need to **include** the path to our components (@axa-ch) and their underlying framework (lit-element/html) in the section of your transpilation configuration that describes transpilation to ES5. Here is an example snippet of how this would look in a webpack config:
+
+```
+{
+  test: /.js$/,
+  include: [
+    /src/,
+    new RegExp(`node_modules${sep}lit-html`),
+    new RegExp(`node_modules${sep}lit-element`),
+    new RegExp(`node_modules${sep}@axa-ch(?!${sep}patterns-library-polyfill)`),
+  ],
+  use: {
+    loader: 'babel-loader',
+    options: {
+      ...babelrc,
+    },
+  },
+},
+```
+
 ## Component versioning
 
 Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md).

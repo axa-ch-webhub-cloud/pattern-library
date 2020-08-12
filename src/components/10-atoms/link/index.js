@@ -11,10 +11,15 @@ import {
 import { applyDefaults } from '../../../utils/with-react';
 
 class AXALink extends LitElement {
-  static tagName = 'axa-link';
-  static styles = css`
-    ${unsafeCSS(linkCSS)}
-  `;
+  static get tagName() {
+    return 'axa-link';
+  }
+
+  static get styles() {
+    return css`
+      ${unsafeCSS(linkCSS)}
+    `;
+  }
 
   // N.B. onClick deliberately not declared here, since
   // its use inside render() is guarded appropriately

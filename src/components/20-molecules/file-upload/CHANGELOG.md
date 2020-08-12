@@ -1,3 +1,7 @@
+## 3.3.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.3.0
 
 - New icons. #1882

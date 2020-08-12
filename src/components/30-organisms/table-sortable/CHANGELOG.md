@@ -1,3 +1,7 @@
+## 3.1.1
+
+- Fix: prevent duplicate style attachment. (#1727)
+
 ## 3.1.0
 
 - You can now import ts types for `model` and props.
