@@ -34,8 +34,8 @@ story.add('Structure Approach', () => {
       <axa-text variant="size-1">
         “As the craft of web design continues to evolve, We’re recognizing the
         need to develop thoughtful design systems, rather than creating simple
-        structure-approach-vertical-content__collections of web pages. Atomic
-        design is a methodology for creating design systems.” — Brad Frost
+        collections of web pages. Atomic design is a methodology for creating
+        design systems.”
       </axa-text>
       <axa-text variant="size-1">
         In my word, Build systems mean that not design or develop the front-end
