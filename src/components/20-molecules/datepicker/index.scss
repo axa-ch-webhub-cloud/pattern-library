@@ -1,4 +1,5 @@
 @import '../../00-materials/styles/mixins/check-mark-animated';
+$breakpoint: (min-width: 380px);
 
 axa-datepicker {
   display: inline-block;
@@ -163,7 +164,7 @@ axa-datepicker {
     border: solid 1px $color-silver;
     box-shadow: 0 5px 7px 0 $color-silver;
 
-    @include breakpoint((min-width: 360px)) {
+    @include breakpoint($breakpoint) {
       margin: 0 20px;
     }
   }
@@ -317,7 +318,7 @@ axa-datepicker {
     color: $color-axa-blue;
     cursor: pointer;
 
-    @include breakpoint((min-width: 360px)) {
+    @include breakpoint($breakpoint) {
       display: block;
     }
 
