@@ -6,3 +6,40 @@
 
 @include accessory-story-content;
 @include accessory-story-wrapper;
+
+.structure-approach-vertical-content {
+    &__image {
+        max-height: 110px;
+        margin-right: 2.5rem;
+    }
+    
+    &__item {
+        color: #474747;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        align-items: center;
+    }
+
+    &__item:last-child {
+        border-bottom-color: transparent;
+        margin-bottom: 2.5rem;
+    }
+    
+    &__col {
+        flex: 1;
+    }
+    
+    &__kicker {
+        @include text(t4, semibold);
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+    
+    &__text {
+        @include text(t1);
+    }
+}
+
+
