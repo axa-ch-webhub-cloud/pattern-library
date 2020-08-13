@@ -457,7 +457,7 @@ class AXADatepicker extends NoShadowDOM {
                   </div>
                 </div>
                 <button
-                  class="m-datepicker__button m-datepicker__button-back"
+                  class="m-datepicker__button m-datepicker__button-prev"
                   @click=${() => this.showNextMonth(-1)}
                   ?disabled=${year === this.getNextYear(-1) && month === 0}
                 >

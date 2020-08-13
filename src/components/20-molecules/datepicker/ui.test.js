@@ -824,10 +824,10 @@ fixture('Datepicker no previous month').page(
   `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
 );
 
-test('Should disable back button.', async t => {
-  const back = Selector(
-    () => document.getElementsByClassName('m-datepicker__button-back')[0]
+test('Should disable prev button.', async t => {
+  const prev = Selector(
+    () => document.getElementsByClassName('m-datepicker__button-prev')[0]
   );
 
-  await t.expect(back.hasAttribute('disabled')).ok();
+  await t.expect(prev.hasAttribute('disabled')).ok();
 });
