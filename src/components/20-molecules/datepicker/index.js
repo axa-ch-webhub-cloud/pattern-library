@@ -459,12 +459,14 @@ class AXADatepicker extends NoShadowDOM {
                 <button
                   class="m-datepicker__button m-datepicker__button-back"
                   @click=${() => this.showNextMonth(-1)}
+                  ?disabled=${year === this.getNextYear(-1) && month === 0}
                 >
                   ${keyboardArrowLeftIcon}
                 </button>
                 <button
                   class="m-datepicker__button m-datepicker__button-next"
-                  @click=${() => this.showNextMonth()}
+                  @click=${this.showNextMonth}
+                  ?disabled=${year === this.getNextYear() && month === 11}
                 >
                   ${keyboardArrowRightIcon}
                 </button>

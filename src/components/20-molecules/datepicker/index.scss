@@ -320,6 +320,10 @@ axa-datepicker {
     svg {
       vertical-align: middle;
     }
+
+    &[disabled] {
+      color: $color-mercury;
+    }
   }
 
   &__button-back {

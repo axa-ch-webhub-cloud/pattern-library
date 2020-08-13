@@ -200,7 +200,7 @@ test('should have a fixed width', async t => {
   const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
   const datepickerWrapWidth = await datepickerWrap.getStyleProperty('width');
 
-  await t.expect(datepicker.clientWidth).eql(width + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
+  await t.expect(datepicker.clientWidth).eql(width + 60 + 2 + 40); // 260 min-width + 2*30 padding + 2*1 border + 2*20 margin
   await t.expect(datepickerWrapWidth).eql(`${width}px`); // wrapper has a min-width
 });
 
