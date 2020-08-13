@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
 import { range } from './utils/date';
 
@@ -193,15 +193,15 @@ test('should handle month change with native dropdown element', async t => {
 });
 
 test('should have a fixed width', async t => {
-  const width = 260;
+  const width = 236;
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
   const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
   const datepickerWrapWidth = await datepickerWrap.getStyleProperty('width');
 
-  await t.expect(datepicker.clientWidth).eql(width + 60 + 2 + 40); // 260 min-width + 2*30 padding + 2*1 border + 2*20 margin
-  await t.expect(datepickerWrapWidth).eql(`${width}px`); // wrapper has a min-width
+  await t.expect(datepicker.clientWidth).eql(width + 60 + 2 + 40); // 236 min-width + 2*30 padding + 2*1 border + 2*20 margin
+  await t.expect(datepickerWrapWidth).eql('296px'); // wrapper has a min-width
 });
 
 test('should just add years of a given range', async t => {
