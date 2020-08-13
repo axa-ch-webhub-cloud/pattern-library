@@ -87,25 +87,27 @@ export const ToPatternLibrary = () => {
             style="padding-right:25px;"
             >GET STARTED</axa-button-link
           >
-            <axa-button-link
-              href="https://axa.ch"
-              variant="secondary"
-              size="large"
-              icon="upload"
-              >GITHUB</axa-button-link
-            >
+          <axa-button-link
+            href="https://axa.ch"
+            variant="secondary"
+            size="large"
+            icon="upload"
+            >GITHUB</axa-button-link
+          >
           </div>
         </axa-commercial-hero-banner>
         <img
           class="landingpage-commercial-hero-banner-image"
-          src="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
+          src="axa-design-system-illustration.png"
+          alt="Design system illustration"
         /><img />
         <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
         <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
         <axa-text><span id="githubResponse"></span></axa-text>
         <img
           class="landingpage-last-releases-image"
-          src="https://drive.google.com/uc?export=view&id=1OWMDEOPROgBm8t8E5FhxtrkDJomfpx8T"
+          src="last-releases.png"
+          alt="release timeline"
         /><img />
       </div>
     </div>
