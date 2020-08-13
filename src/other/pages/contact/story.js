@@ -77,7 +77,9 @@ story.add('Contact', () => {
           <axa-text variant="size-2">
             It is the best choice for quick, day-to-day inquiries:
           </axa-text>
-          <axa-link>Go to slack</axa-link>
+          <axa-link href="https://axa-ch.slack.com/messages/patterns-lib-devs/"
+            >Go to slack</axa-link
+          >
         </div>
         <div>
           <img src="github-black-and-white.png" width="40" alt="Github Icon" />
@@ -85,7 +87,9 @@ story.add('Contact', () => {
           <axa-text variant="size-2">
             Let’s talk about the code:
           </axa-text>
-          <axa-link>Go to GitHub</axa-link>
+          <axa-link href="https://github.com/axa-ch/patterns-library"
+            >Go to GitHub</axa-link
+          >
         </div>
       </div>
     </div>
