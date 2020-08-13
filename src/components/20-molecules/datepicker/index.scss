@@ -159,10 +159,13 @@ axa-datepicker {
   &__wrap {
     position: relative;
     background: $color-prim-white;
-    margin: 0 20px;
     background: $color-prim-white;
     border: solid 1px $color-silver;
     box-shadow: 0 5px 7px 0 $color-silver;
+
+    @include breakpoint((min-width: 360px)) {
+      margin: 0 20px;
+    }
   }
 
   &__dropdown-wrap {
@@ -300,6 +303,7 @@ axa-datepicker {
   }
 
   &__button {
+    display: none;
     position: absolute;
     top: 172px;
     width: 40px;
@@ -312,6 +316,10 @@ axa-datepicker {
     background: $color-prim-white;
     color: $color-axa-blue;
     cursor: pointer;
+
+    @include breakpoint((min-width: 360px)) {
+      display: block;
+    }
 
     svg {
       vertical-align: middle;
