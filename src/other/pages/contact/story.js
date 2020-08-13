@@ -37,7 +37,7 @@ story.add('Contact', () => {
         <div class="contact-col-wrapper">
           <img
             src="support-questions.jpg"
-            alt="AXA Design System illustration"
+            alt="support question"
             height="215"
           />
         </div>
@@ -52,11 +52,7 @@ story.add('Contact', () => {
       </div>
       <div class="contact-support-visuals">
         <div class="contact-col-wrapper">
-          <img
-            src="support-advice.jpg"
-            alt="AXA Design System illustration"
-            height="215"
-          />
+          <img src="support-advice.jpg" alt="support advice" height="215" />
         </div>
         <div class="contact-col-wrapper">
           <p class="support-kicker">Design advice and assessments</p>

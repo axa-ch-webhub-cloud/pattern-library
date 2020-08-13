@@ -5,7 +5,8 @@
 
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
     grid-gap: 2.5rem;
     margin-top: 3rem;
 }
