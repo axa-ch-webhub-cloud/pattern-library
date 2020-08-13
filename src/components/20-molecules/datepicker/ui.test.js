@@ -807,3 +807,27 @@ test('should have no minimum width', async t => {
   await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
   await t.expect(datepickerInputWrap.clientWidth).eql(196); // input wrapper has no min-width
 });
+
+fixture('Datepicker no next month').page(
+  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+);
+
+test('Should disable next button.', async t => {
+  const next = Selector(
+    () => document.getElementsByClassName('m-datepicker__button-next')[0]
+  );
+
+  await t.expect(next.hasAttribute('disabled')).ok();
+});
+
+fixture('Datepicker no previous month').page(
+  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+);
+
+test('Should disable back button.', async t => {
+  const back = Selector(
+    () => document.getElementsByClassName('m-datepicker__button-back')[0]
+  );
+
+  await t.expect(back.hasAttribute('disabled')).ok();
+});
