@@ -6,9 +6,6 @@ import styles from './index.scss';
 import contact from '../../utils/contact-footer';
 import { callout } from '../../utils/callout';
 
-const calloutText = `To design with AXA Design System you need the most recent version of
-Sketch installed.`;
-const calloutHeader = 'AXA Design System UI Kit';
 const story = storiesOf('Guides|Getting started', module);
 story.addParameters({
   knobs: { disabled: true },
@@ -20,6 +17,10 @@ story.addParameters({
 story.add('Getting started', () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
+
+  const calloutText = `To design with AXA Design System you need the most recent version of
+  Sketch installed.`;
+  const calloutHeader = 'AXA Design System UI Kit';
 
   const template = html`
     <style>
