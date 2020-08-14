@@ -35,6 +35,12 @@ story.add("What's new", () => {
         code integration structure. For more information check out our
         <axa-link>Introduction</axa-link>
       </p>
+      <axa-heading rank="2" variant="secondary"
+        >Released Components</axa-heading
+      >
+      <axa-heading rank="2" variant="secondary"
+        >Alpha-Released Components</axa-heading
+      >
     </div>
     ${contact}
   `;

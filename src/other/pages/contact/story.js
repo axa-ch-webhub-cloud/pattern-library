@@ -72,23 +72,44 @@ story.add('Contact', () => {
       </axa-text>
       <div class="contact-grid">
         <div>
-          <img src="slack-black-and-white.png" width="40" alt="Slack Icon" />
-          <axa-heading rank="6">Slack</axa-heading>
+          <img src="github-black-and-white.png" width="40" alt="Github Icon" />
+          <axa-heading rank="6">GitHub</axa-heading>
           <axa-text variant="size-2">
-            It is the best choice for quick, day-to-day inquiries:
+            Bug reports, small change requests, "wishes":
+          </axa-text>
+          <axa-link href="https://github.com/axa-ch/patterns-library/issues"
+            >Go to GitHub</axa-link
+          >
+        </div>
+        <div>
+          <img src="email.svg" width="40" alt="Slack Icon" />
+          <axa-heading rank="6">Feature request</axa-heading>
+          <axa-text variant="size-2">
+            You need a feature?
+          </axa-text>
+          <axa-link href="mailto:martin.stuedle@axa-winterthur.ch"
+            >Message our product oxner</axa-link
+          >
+        </div>
+        <div>
+          <img src="slack-black-and-white.png" width="40" alt="Slack Icon" />
+          <axa-heading rank="6">Slack for Developers</axa-heading>
+          <axa-text variant="size-2">
+            Questions, requests for help, requests for product presentations,
+            etc:
           </axa-text>
           <axa-link href="https://axa-ch.slack.com/messages/patterns-lib-devs/"
             >Go to slack</axa-link
           >
         </div>
         <div>
-          <img src="github-black-and-white.png" width="40" alt="Github Icon" />
-          <axa-heading rank="6">GitHub</axa-heading>
+          <img src="slack-black-and-white.png" width="40" alt="Slack Icon" />
+          <axa-heading rank="6">Slack for Designers</axa-heading>
           <axa-text variant="size-2">
-            Let’s talk about the code:
+            Questions and requests for help regarding design issues:
           </axa-text>
-          <axa-link href="https://github.com/axa-ch/patterns-library"
-            >Go to GitHub</axa-link
+          <axa-link href="https://axa-ch.slack.com/messages/ux-ui-support/"
+            >Go to slack</axa-link
           >
         </div>
       </div>
