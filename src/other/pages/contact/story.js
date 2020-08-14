@@ -88,7 +88,7 @@ story.add('Contact', () => {
             You need a feature?
           </axa-text>
           <axa-link href="mailto:martin.stuedle@axa-winterthur.ch"
-            >Message our product oxner</axa-link
+            >Message our product owner</axa-link
           >
         </div>
         <div>
