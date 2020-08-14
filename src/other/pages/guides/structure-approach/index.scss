@@ -7,6 +7,18 @@
 @include accessory-story-content;
 @include accessory-story-wrapper;
 
+.structure-approach__quote {
+    @include text(t2, bold);
+    margin: 2.5rem 0 2.5rem;
+}
+
+.structure-approach__cite {
+    @include text(t4, bold);
+    color: $color-light-grey;
+    margin-top: 1rem;
+    font-style: normal;
+}
+
 .structure-approach-vertical-content {
     &__image {
         max-height: 110px;
@@ -14,17 +26,17 @@
     }
     
     &__item {
-        color: #474747;
+        color: #333;
         padding-top: 2rem;
         padding-bottom: 2rem;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid $color-mercury;
         display: flex;
         align-items: center;
     }
 
     &__item:last-child {
         border-bottom-color: transparent;
-        margin-bottom: 2.5rem;
+        // margin-bottom: 2.5rem;
     }
     
     &__col {

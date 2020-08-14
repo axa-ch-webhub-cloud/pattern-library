@@ -26,18 +26,21 @@ story.add('Structure Approach', () => {
       <axa-heading rank="2" variant="secondary"
         >What is atomic design?</axa-heading
       >
-      <axa-text variant="size-1">
+      <axa-text variant="size-2">
         Atomic Design by Brad Frost is the one of methodology that can
         accelerate the process of creating modular designs. He introduced the
         concept of atomic design about 5 years ago.
       </axa-text>
-      <axa-text variant="size-1">
-        “As the craft of web design continues to evolve, We’re recognizing the
-        need to develop thoughtful design systems, rather than creating simple
-        collections of web pages. Atomic design is a methodology for creating
-        design systems.”
-      </axa-text>
-      <axa-text variant="size-1">
+      <blockquote class="structure-approach__quote">
+        <p>
+          “As the craft of web design continues to evolve, We’re recognizing the
+          need to develop thoughtful design systems, rather than creating simple
+          collections of web pages. Atomic design is a methodology for creating
+          design systems.”
+        </p>
+        <cite class="structure-approach__cite">— Brad Frost</cite>
+      </blockquote>
+      <axa-text variant="size-2">
         In my word, Build systems mean that not design or develop the front-end
         full pages. It’s like small element like as buttons. And all small
         components combine to a large unit like a label, box, table, forms. The
@@ -47,18 +50,11 @@ story.add('Structure Approach', () => {
       <axa-heading rank="2" variant="secondary"
         >How to categorize an element?</axa-heading
       >
-      <axa-text variant="size-1">
+      <axa-text variant="size-2">
         Atomic Design, is an approch that allows you to decompose your UI
         elements in order to standardelize and organize them. An important
         question that we need to ask ourselves is “to what category does a given
         component belong to?”.
-      </axa-text>
-      <axa-text variant="size-1">
-        Each design system can have its own categorization depending on the
-        context and purpose. The objectif of the Axa design system is to be of
-        use to all Axa entities, how have differents needs and constraints. The
-        way we’ve thought the categorization of the elements is to allow for as
-        much possibilities as possible.
       </axa-text>
       <div class="structure-approach-vertical-content">
         <div class="structure-approach-vertical-content__item">
@@ -126,6 +122,13 @@ story.add('Structure Approach', () => {
           </div>
         </div>
       </div>
+      <axa-text variant="size-2">
+        Each design system can have its own categorization depending on the
+        context and purpose. The objectif of the Axa design system is to be of
+        use to all Axa entities, how have differents needs and constraints. The
+        way we’ve thought the categorization of the elements is to allow for as
+        much possibilities as possible.
+      </axa-text>
     </div>
 
     ${contact}
