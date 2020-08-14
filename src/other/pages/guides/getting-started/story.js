@@ -4,8 +4,11 @@ import '../../../../components/10-atoms/text';
 import '../../../../components/10-atoms/heading';
 import styles from './index.scss';
 import contact from '../../utils/contact-footer';
-import callout from '../../utils/callout';
+import { callout } from '../../utils/callout';
 
+const calloutText = `To design with AXA Design System you need the most recent version of
+Sketch installed.`;
+const calloutHeader = 'AXA Design System UI Kit';
 const story = storiesOf('Guides|Getting started', module);
 story.addParameters({
   knobs: { disabled: true },
@@ -66,7 +69,7 @@ story.add('Getting started', () => {
         src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F6zurYk3bJpzUg0H2THSxGF%2FAXA-UI-Kit%3Fnode-id%3D0%253A8209%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
         allowfullscreen
       ></iframe>
-      ${callout}
+      ${callout('figma.png', calloutHeader, calloutText, '#', 'download')}
     </div>
     ${contact}
   `;

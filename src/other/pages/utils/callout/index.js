@@ -1,24 +1,28 @@
 import { html } from 'lit-html';
 import styles from './index.scss';
 
-export default html`
+export const callout = (icon, header, text, link, linkText) => html`
   <style>
     ${styles}
   </style>
   <div class="callout-wrapper">
     <div class="callout-image">
-      <img src="figma.png" alt="AXA Design System UI Kit" />
+      <img src="${icon}" alt="AXA Design System UI Kit" />
     </div>
     <div class="callout-col callout-col-padding">
-      <p class="callout-header">AXA Design System UI Kit</p>
+      <p class="callout-header">${header}</p>
       <p class="callout-text">
-        To design with AXA Design System you need the most recent version of
-        Sketch installed.
+        ${text}
       </p>
     </div>
     <div class="callout-col">
-      <axa-button-link style="width: 100%;" size="large" href="#" external="">
-        Contact us
+      <axa-button-link
+        style="width: 100%;"
+        size="large"
+        href="${link}"
+        external=""
+      >
+        ${linkText}
       </axa-button-link>
     </div>
   </div>
