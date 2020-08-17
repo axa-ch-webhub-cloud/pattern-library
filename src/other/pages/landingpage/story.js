@@ -104,11 +104,7 @@ export const ToPatternLibrary = () => {
         <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
         <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
         <axa-text><span id="githubResponse"></span></axa-text>
-        <img
-          class="landingpage-last-releases-image"
-          src="last-releases.png"
-          alt="release timeline"
-        /><img />
+
       </div>
     </div>
     ${contact}
