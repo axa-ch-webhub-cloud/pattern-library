@@ -1,5 +1,6 @@
 @import '../../utils/accessory-story.scss';
 @import '../../utils/canvas-content-padding.scss';
+@import '../../utils/last-text.scss';
 
 @include canvas-padding;
 @include content-padding;
@@ -20,7 +21,7 @@
 }
 
 .structure-approach__last-text {
-    margin-bottom: 3rem;
+    @include last-text();
 }
 
 .structure-approach-vertical-content {

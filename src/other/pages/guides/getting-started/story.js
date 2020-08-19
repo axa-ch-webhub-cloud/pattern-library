@@ -18,9 +18,11 @@ story.add('Getting started', () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
-  const calloutText = `To design with AXA Design System you need the most recent version of
-  Sketch installed.`;
+  const calloutText =
+    'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit';
   const calloutHeader = 'AXA Design System UI Kit';
+  const calloutLink =
+    'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom';
 
   const template = html`
     <style>
@@ -35,8 +37,8 @@ story.add('Getting started', () => {
         application logic, while designers can focus on the user experience,
         interactions, and flows.
       </axa-text>
-      <header class="getting-started-header">
-        <p class="getting-started-subtitle">A perfect start for a</p>
+      <header class="getting-started__header">
+        <p class="getting-started__subtitle">A perfect start for a</p>
         <axa-heading rank="2" variant="secondary">Developer</axa-heading>
       </header>
       <axa-text variant="size-1"
@@ -47,30 +49,29 @@ story.add('Getting started', () => {
         and production work.</axa-text
       >
       <axa-heading rank="3">Install and use components</axa-heading>
-      <header class="getting-started-header">
-        <p class="getting-started-subtitle">A perfect start for a</p>
+      <header class="getting-started__header">
+        <p class="getting-started__subtitle">A perfect start for a</p>
         <axa-heading rank="2" variant="secondary">Designer</axa-heading>
       </header>
-      <axa-text variant="size-1"
+      <axa-text variant="size-1" style="margin-bottom:3rem;"
         >It is our aim to offer our customers security and trust when using our
         services. To achieve this, we rely on uniform visual communication and
         use existing and tested interactions.</axa-text
       >
-      <br />
-      <axa-text variant="size-1"
-        >In order for us to release your application for go-live, the following
-        requirements have to be considered during product development:</axa-text
-      >
-      <axa-heading rank="3">Design- and Product Development Guide</axa-heading>
-      <!-- TODO: Minimal requirements Go live (Figma) -->
-      <iframe
-        style="border: 1px solid rgba(0, 0, 0, 0.1);"
-        width="840"
-        height="450"
-        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F6zurYk3bJpzUg0H2THSxGF%2FAXA-UI-Kit%3Fnode-id%3D0%253A8209%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
-        allowfullscreen
-      ></iframe>
-      ${callout('figma.png', calloutHeader, calloutText, '#', 'download')}
+      <div class="getting-started__last-text">
+        <axa-text variant="size-1"
+          >In order for us to release your application for go-live, the
+          following requirements have to be considered during product
+          development:</axa-text
+        >
+      </div>
+      ${callout(
+        'figma.png',
+        calloutHeader,
+        calloutText,
+        calloutLink,
+        'take a look'
+      )}
     </div>
     ${contact}
   `;
