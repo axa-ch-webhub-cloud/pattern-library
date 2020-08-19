@@ -3,7 +3,6 @@ import '@axa-ch/patterns-library-polyfill';
 
 import { addParameters, configure, addDecorator } from '@storybook/html';
 import { addReadme } from 'storybook-readme/html';
-import { withA11y } from '@storybook/addon-a11y';
 import { withHTML } from './addons/codepreview/decorators/html';
 
 // Old demos were removed with the commit 508818e6452ff9201f2107487cded7f605cad841. If not used till Jan 2021 -> delete this comment
@@ -16,7 +15,6 @@ addParameters({
 
 //addDecorator(addReadme);
 addDecorator(withHTML);
-addDecorator(withA11y);
 
 // TODO: remove the lines below (and use the documented way to load stories) on upgrading to 6.X:
 const landingpage = require.context('../src/other/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
