@@ -9,7 +9,10 @@ addParameters({
   readme: {
     codeTheme: 'github',
   },
+  options: {
+    theme: {}// this is just a workaround for addon-readme
+  }
 });
 
-//addDecorator(addReadme);
+addDecorator(addReadme);
 addDecorator(withHTML);
