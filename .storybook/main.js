@@ -1,9 +1,10 @@
 module.exports = {
+    stories: ['../src/components/**/story.js'],
     addons: [
-      'storybook-readme/register',
+      //'storybook-readme/register',
       './.storybook/addons/changelog/register.js',
-      '@storybook/addon-knobs/register',
+      '@storybook/addon-knobs',
       './.storybook/addons/codepreview/register.js',
-      '@storybook/addon-a11y/register'
+      '@storybook/addon-a11y'
     ],
 };

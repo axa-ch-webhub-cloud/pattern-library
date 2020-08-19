@@ -14,7 +14,7 @@ addParameters({
   },
 });
 
-addDecorator(addReadme);
+//addDecorator(addReadme);
 addDecorator(withHTML);
 addDecorator(withA11y);
 
