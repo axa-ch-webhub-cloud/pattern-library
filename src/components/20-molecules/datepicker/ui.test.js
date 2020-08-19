@@ -267,6 +267,120 @@ test('should set current year as startup date', async t => {
     );
 });
 
+test('should navigate between months', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000];
+    datepicker.month = 2;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToNextMonth = async () => {
+    const nextButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+    );
+
+    await t.click(nextButton);
+  };
+
+  const navigateToPrevMonth = async () => {
+    const prevButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+    );
+
+    await t.click(prevButton);
+  };
+
+  await setProperties();
+  await t.expect(await getMonth()).eql(2);
+
+  await navigateToNextMonth();
+  await t.expect(await getMonth()).eql(3);
+
+  await navigateToPrevMonth();
+  await t.expect(await getMonth()).eql(2);
+
+  await navigateToPrevMonth();
+  await t.expect(await getMonth()).eql(1);
+});
+
+test('should navigate to next allowed year', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000, 2012];
+    datepicker.year = 2000;
+    datepicker.month = 11;
+  });
+
+  const getYear = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.year;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToNextMonth = async () => {
+    const nextButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+    );
+
+    await t.click(nextButton);
+  };
+
+  await setProperties();
+  await t.expect(await getYear()).eql(2000);
+  await t.expect(await getMonth()).eql(11);
+
+  await navigateToNextMonth();
+  await t.expect(await getYear()).eql(2012);
+  await t.expect(await getMonth()).eql(0);
+});
+
+test('should navigate to previous allowed year', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000, 2012];
+    datepicker.year = 2012;
+    datepicker.month = 0;
+  });
+
+  const getYear = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.year;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToPrevMonth = async () => {
+    const prevButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+    );
+
+    await t.click(prevButton);
+  };
+
+  await setProperties();
+  await t.expect(await getYear()).eql(2012);
+  await t.expect(await getMonth()).eql(0);
+
+  await navigateToPrevMonth();
+  await t.expect(await getYear()).eql(2000);
+  await t.expect(await getMonth()).eql(11);
+});
+
 fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components--datepicker&knob-locale=en-GB`
 );
