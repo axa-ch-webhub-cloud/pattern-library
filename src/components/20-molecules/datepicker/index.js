@@ -367,6 +367,9 @@ class AXADatepicker extends NoShadowDOM {
     >
     </axa-dropdown>`;
 
+    const noPreviousAllowedYear = year === this.navigateYear(-1) && month === 0;
+    const noNextAllowedYear = year === this.navigateYear() && month === 11;
+
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
         ${label &&
@@ -458,15 +461,15 @@ class AXADatepicker extends NoShadowDOM {
                 </div>
                 <button
                   class="m-datepicker__button m-datepicker__button-prev"
-                  @click=${() => this.showNextMonth(-1)}
-                  ?disabled=${year === this.getNextYear(-1) && month === 0}
+                  @click=${this.handleNavigateToPrevMonth}
+                  ?disabled=${noPreviousAllowedYear}
                 >
                   ${keyboardArrowLeftIcon}
                 </button>
                 <button
                   class="m-datepicker__button m-datepicker__button-next"
-                  @click=${this.showNextMonth}
-                  ?disabled=${year === this.getNextYear() && month === 11}
+                  @click=${this.handleNavigateToNextMonth}
+                  ?disabled=${noNextAllowedYear}
                 >
                   ${keyboardArrowRightIcon}
                 </button>
@@ -569,11 +572,12 @@ class AXADatepicker extends NoShadowDOM {
     this.weekdays = getWeekdays(_date, locale);
 
     const { output, tentative } = options;
+
     if (output) {
       this.outputdate = this.formatDate(_date);
-      this._selectedDate = formatISO(_date);
     }
-    if (!tentative) {
+
+    if (output || !tentative) {
       this._selectedDate = formatISO(_date);
     }
 
@@ -755,35 +759,31 @@ class AXADatepicker extends NoShadowDOM {
     this.error = null;
   }
 
-  // Switches to the next allowed month, when 'direction' is positive.
-  // Switches to the previous allowed month, when 'direction' is negative.
+  handleNavigateToPrevMonth() {
+    this.navigateMonth(-1);
+  }
+
+  handleNavigateToNextMonth() {
+    this.navigateMonth();
+  }
+
+  // Navigates to the next allowed month, when offset = 1.
+  // Navigates to the previous allowed month, when offset = -1.
   // Has no effect, when there is no next/previous allowed month.
-  showNextMonth(direction = 0) {
+  navigateMonth(offset = 1) {
     const MIN = 0;
     const MAX = 11;
+    const { min, max, abs } = Math;
 
-    let month = parseInt(this.month, 10);
+    let month = parseInt(this.month, 10) + offset;
     let year = parseInt(this.year, 10);
 
-    if (direction < 0) {
-      if (month !== MIN) {
-        month -= 1;
-      } else {
-        const prevYear = this.getNextYear(-1);
+    if (month < MIN || month > MAX) {
+      month = min(max(month, MIN), MAX); // prevent out-of-bounds navigation
+      year = this.navigateYear(offset);
 
-        if (prevYear < year) {
-          month = MAX;
-          year = prevYear;
-        }
-      }
-    } else if (month !== MAX) {
-      month += 1;
-    } else {
-      const nextYear = this.getNextYear();
-
-      if (nextYear > year) {
-        month = MIN;
-        year = nextYear;
+      if (year !== this.year) {
+        month = abs(month - MAX);
       }
     }
 
@@ -792,22 +792,18 @@ class AXADatepicker extends NoShadowDOM {
     });
   }
 
-  // Returns the next allowed year, when 'direction' is positive.
-  // Returns the previous allowed year, when 'direction' is negative.
+  // Returns the next allowed year, when offset = 1.
+  // Returns the previous allowed year, when offset = -1.
   // Returns the currently selected year, when there is no next/previous allowed year.
-  getNextYear(direction = 0) {
+  navigateYear(offset = 1) {
     const MIN = 0;
     const MAX = this.allowedyears.length - 1;
+    const { min, max } = Math;
 
     let indexOfYear = this.allowedyears.findIndex(year => year === this.year);
 
-    if (direction < 0) {
-      if (indexOfYear !== MIN) {
-        indexOfYear -= 1;
-      }
-    } else if (indexOfYear !== MAX) {
-      indexOfYear += 1;
-    }
+    indexOfYear += offset;
+    indexOfYear = min(max(indexOfYear, MIN), MAX); // prevent out-of-bounds navigation
 
     return parseInt(this.allowedyears[indexOfYear], 10);
   }

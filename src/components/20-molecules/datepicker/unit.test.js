@@ -81,13 +81,13 @@ describe('Datepicker unit tests', () => {
     });
   });
 
-  describe('showNextMonth()', () => {
+  describe('navigateMonth()', () => {
     it('Should switch to the next allowed month, when direction is positive.', () => {
       AXADatepicker.prototype.allowedyears = [2020, 2031];
       AXADatepicker.prototype.year = 2020;
       AXADatepicker.prototype.month = 6;
 
-      AXADatepicker.prototype.showNextMonth(0);
+      AXADatepicker.prototype.navigateMonth(1);
 
       expect(AXADatepicker.prototype.year).toBe(2020);
       expect(AXADatepicker.prototype.month).toBe(7);
@@ -98,7 +98,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.year = 2020;
       AXADatepicker.prototype.month = 11;
 
-      AXADatepicker.prototype.showNextMonth(0);
+      AXADatepicker.prototype.navigateMonth(1);
 
       expect(AXADatepicker.prototype.year).toBe(2031);
       expect(AXADatepicker.prototype.month).toBe(0);
@@ -109,7 +109,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.year = 2031;
       AXADatepicker.prototype.month = 11;
 
-      AXADatepicker.prototype.showNextMonth(100);
+      AXADatepicker.prototype.navigateMonth(1);
 
       expect(AXADatepicker.prototype.year).toBe(2031);
       expect(AXADatepicker.prototype.month).toBe(11);
@@ -120,7 +120,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.year = 2020;
       AXADatepicker.prototype.month = 6;
 
-      AXADatepicker.prototype.showNextMonth(-1000);
+      AXADatepicker.prototype.navigateMonth(-1);
 
       expect(AXADatepicker.prototype.year).toBe(2020);
       expect(AXADatepicker.prototype.month).toBe(5);
@@ -131,7 +131,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.year = 2031;
       AXADatepicker.prototype.month = 0;
 
-      AXADatepicker.prototype.showNextMonth(-1);
+      AXADatepicker.prototype.navigateMonth(-1);
 
       expect(AXADatepicker.prototype.year).toBe(2020);
       expect(AXADatepicker.prototype.month).toBe(11);
@@ -142,40 +142,40 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.year = 2020;
       AXADatepicker.prototype.month = 0;
 
-      AXADatepicker.prototype.showNextMonth(-100);
+      AXADatepicker.prototype.navigateMonth(-1);
 
       expect(AXADatepicker.prototype.year).toBe(2020);
       expect(AXADatepicker.prototype.month).toBe(0);
     });
   });
 
-  describe('getNextYear()', () => {
+  describe('navigateYear()', () => {
     it('Should return the next allowed year, when direction is positive.', () => {
       AXADatepicker.prototype.allowedyears = [2020, 2031];
       AXADatepicker.prototype.year = 2020;
 
-      expect(AXADatepicker.prototype.getNextYear(0)).toBe(2031);
+      expect(AXADatepicker.prototype.navigateYear(1)).toBe(2031);
     });
 
     it('Should return the currently selected year, when there is no next allowed year.', () => {
       AXADatepicker.prototype.allowedyears = [2020, 2031];
       AXADatepicker.prototype.year = 2031;
 
-      expect(AXADatepicker.prototype.getNextYear(100)).toBe(2031);
+      expect(AXADatepicker.prototype.navigateYear(1)).toBe(2031);
     });
 
     it('Should return the previous allowed year, when direction is negative.', () => {
       AXADatepicker.prototype.allowedyears = [2020, 2031];
       AXADatepicker.prototype.year = 2031;
 
-      expect(AXADatepicker.prototype.getNextYear(-1)).toBe(2020);
+      expect(AXADatepicker.prototype.navigateYear(-1)).toBe(2020);
     });
 
     it('Should return the currently selected year, when there is no previous allowed year.', () => {
       AXADatepicker.prototype.allowedyears = [2020, 2031];
       AXADatepicker.prototype.year = 2020;
 
-      expect(AXADatepicker.prototype.getNextYear(-100)).toBe(2020);
+      expect(AXADatepicker.prototype.navigateYear(-1)).toBe(2020);
     });
   });
 });
