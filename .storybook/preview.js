@@ -14,5 +14,4 @@ addParameters({
   }
 });
 
-addDecorator(addReadme);
-addDecorator(withHTML);
+export const decorators = [addReadme, withHTML];
