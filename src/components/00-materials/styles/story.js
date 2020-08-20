@@ -71,11 +71,11 @@ export default {
 export const Colors = () => {
   const darkmode = boolean('darkmode', false);
 
-  const getColorGroups = (scssString) => {
+  const getColorGroups = scssString => {
     const groups = scssString.split('///');
-    const groupsWithColorIds = groups.filter((group) => /#\w+/.test(group));
+    const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
 
-    return groupsWithColorIds.map((group) => {
+    return groupsWithColorIds.map(group => {
       return {
         name: group.split('\n')[0],
         value: group,
@@ -83,12 +83,12 @@ export const Colors = () => {
     });
   };
 
-  const getColors = (colorGroup) => {
+  const getColors = colorGroup => {
     const lines = colorGroup.split('\n');
 
-    const linesWithColorIds = lines.filter((line) => /#\w+/.test(line));
+    const linesWithColorIds = lines.filter(line => /#\w+/.test(line));
 
-    return linesWithColorIds.map((line) => {
+    return linesWithColorIds.map(line => {
       return {
         name: line.split(': ')[0],
         code: line.match(/#\w+/),
@@ -135,19 +135,24 @@ export const Colors = () => {
           </style>
         `
       : ''}
-    ${getColorGroups(colors).map((group) => {
+    ${getColorGroups(colors).map(group => {
       return html`
         <div id="colorGroup">
           <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
           <div class="colorgroupwrapper">
-            ${getColors(group.value).map((color) => {
+            ${getColors(group.value).map(color => {
               return html`
                 <div class="colorwrapper">
-                  <div class="colorvisualisation" style="background-color: ${color.code};"></div>
+                  <div
+                    class="colorvisualisation"
+                    style="background-color: ${color.code};"
+                  ></div>
                   <div>
                     ${color.name /* TODO: change to axa-text if bug is fixed */}
                   </div>
-                  <span>${color.code /* TODO: change to axa-text if bug is fixed */}</span>
+                  <span
+                    >${color.code /* TODO: change to axa-text if bug is fixed */}</span
+                  >
                 </div>
               `;
             })}

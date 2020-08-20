@@ -10,23 +10,27 @@ const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
 
-const _extractIconNameFromPath = (path) => path.substring(2).split(FILE_ENDING).join('');
+const _extractIconNameFromPath = path =>
+  path
+    .substring(2)
+    .split(FILE_ENDING)
+    .join('');
 
-const icons = filepathsIcons.map((path) => {
+const icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
 
-const images = filepathsImages.map((path) => {
+const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
 
-const mapToIconItem = (icon) => {
+const mapToIconItem = icon => {
   return `<div class="image-container">${icon.svgstring}
       <span class="item-name">${icon.path}${FILE_ENDING}</span>
     </div>`;
@@ -40,17 +44,22 @@ export default {
     readme: {
       sidebar: Readme,
     },
+
     changelog: Changelog,
     codepreview: { disabled: true },
   },
 };
 
 export const IconsAndImages = () => {
-  const backgrounds = select('background color', ['red', 'blue', 'white', 'black'], 'white');
+  const backgrounds = select(
+    'background color',
+    ['red', 'blue', 'white', 'black'],
+    'white'
+  );
 
   const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
 
-  window.onCallbackInput = (ev) => {
+  window.onCallbackInput = ev => {
     const { value } = ev.target;
 
     const renderAreaIcons = document.querySelector('.icons');
@@ -58,24 +67,28 @@ export const IconsAndImages = () => {
     const iconHeader = document.querySelector('.icon-header');
     const imageHeader = document.querySelector('.image-header');
 
-    const filteredIcons = icons.filter((icon) => {
+    const filteredIcons = icons.filter(icon => {
       const foundSearchTerm = icon.path.includes(value.trim());
       return foundSearchTerm ? icon : '';
     });
 
-    const filteredImages = images.filter((image) => {
+    const filteredImages = images.filter(image => {
       const foundSearchTerm = image.path.includes(value.trim());
       return foundSearchTerm ? image : '';
     });
 
-    renderAreaIcons.innerHTML = filteredIcons.map((i) => mapToIconItem(i)).join('');
+    renderAreaIcons.innerHTML = filteredIcons
+      .map(i => mapToIconItem(i))
+      .join('');
 
     iconHeader.innerHTML =
       filteredIcons.length === 1
         ? `${filteredIcons.length} Icon:`
         : `${filteredIcons.length} Icons:`;
 
-    renderAreaImages.innerHTML = filteredImages.map((i) => mapToIconItem(i)).join('');
+    renderAreaImages.innerHTML = filteredImages
+      .map(i => mapToIconItem(i))
+      .join('');
 
     imageHeader.innerHTML =
       filteredImages.length === 1
@@ -100,7 +113,7 @@ export const IconsAndImages = () => {
     });
   });
 
-    const template = html`
+  const template = html`
       <style>
         body {
           background-color: ${backgrounds};
@@ -201,7 +214,11 @@ export const IconsAndImages = () => {
       </div>
     `;
 
-    const wrapper = document.createElement('div');
-    render(template, wrapper);
-    return wrapper;
-  });
+  const wrapper = document.createElement('div');
+  render(template, wrapper);
+  return wrapper;
+};
+
+IconsAndImages.story = {
+  name: 'Icons and Images',
+};
