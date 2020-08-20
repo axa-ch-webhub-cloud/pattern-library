@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import Readme from '../../../components/00-materials/README.md';
@@ -57,109 +55,109 @@ $color-malachite: #1cc54e !default;
 $color-shy-tomato: #c91432 !default;
 `;
 
-storiesOf('Materials', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Materials',
+  decorators: [withKnobs],
+
+  parameters: {
     readme: {
       sidebar: Readme,
     },
+
     changelog: Changelog,
-  })
-  .add('Colors', () => {
-    const darkmode = boolean('darkmode', false);
+  },
+};
 
-    const getColorGroups = scssString => {
-      const groups = scssString.split('///');
-      const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
+export const Colors = () => {
+  const darkmode = boolean('darkmode', false);
 
-      return groupsWithColorIds.map(group => {
-        return {
-          name: group.split('\n')[0],
-          value: group,
-        };
-      });
-    };
+  const getColorGroups = (scssString) => {
+    const groups = scssString.split('///');
+    const groupsWithColorIds = groups.filter((group) => /#\w+/.test(group));
 
-    const getColors = colorGroup => {
-      const lines = colorGroup.split('\n');
+    return groupsWithColorIds.map((group) => {
+      return {
+        name: group.split('\n')[0],
+        value: group,
+      };
+    });
+  };
 
-      const linesWithColorIds = lines.filter(line => /#\w+/.test(line));
+  const getColors = (colorGroup) => {
+    const lines = colorGroup.split('\n');
 
-      return linesWithColorIds.map(line => {
-        return {
-          name: line.split(': ')[0],
-          code: line.match(/#\w+/),
-        };
-      });
-    };
+    const linesWithColorIds = lines.filter((line) => /#\w+/.test(line));
 
-    const template = html`
-      <style>
-        body {
-          font-family: Source Sans Pro, Arial, sans-serif;
-        }
+    return linesWithColorIds.map((line) => {
+      return {
+        name: line.split(': ')[0],
+        code: line.match(/#\w+/),
+      };
+    });
+  };
 
-        div.colorgroupwrapper {
-          display: flex;
-          flex-wrap: wrap;
-        }
-        div.colorwrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          border-radius: 5px;
-          border: 1px solid lightgrey;
-          padding: 5px;
-          margin: 10px;
-          width: 250px;
-        }
-        div.colorvisualisation {
-          width: 250px;
-          height: 50px;
-          border-radius: 5px;
-          border: 1px solid lightgrey;
-          margin-bottom: 10px;
-        }
-      </style>
+  const template = html`
+    <style>
+      body {
+        font-family: Source Sans Pro, Arial, sans-serif;
+      }
 
-      ${darkmode
-        ? html`
-            <style>
-              body {
-                background-color: black;
-                color: white;
-              }
-            </style>
-          `
-        : ''}
-      ${getColorGroups(colors).map(group => {
-        return html`
-          <div id="colorGroup">
-            <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
-            <div class="colorgroupwrapper">
-              ${getColors(group.value).map(color => {
-                return html`
-                  <div class="colorwrapper">
-                    <div
-                      class="colorvisualisation"
-                      style="background-color: ${color.code};"
-                    ></div>
-                    <div>
-                      ${color.name /* TODO: change to axa-text if bug is fixed */}
-                    </div>
-                    <span
-                      >${color.code /* TODO: change to axa-text if bug is fixed */}</span
-                    >
+      div.colorgroupwrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      div.colorwrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        padding: 5px;
+        margin: 10px;
+        width: 250px;
+      }
+      div.colorvisualisation {
+        width: 250px;
+        height: 50px;
+        border-radius: 5px;
+        border: 1px solid lightgrey;
+        margin-bottom: 10px;
+      }
+    </style>
+
+    ${darkmode
+      ? html`
+          <style>
+            body {
+              background-color: black;
+              color: white;
+            }
+          </style>
+        `
+      : ''}
+    ${getColorGroups(colors).map((group) => {
+      return html`
+        <div id="colorGroup">
+          <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
+          <div class="colorgroupwrapper">
+            ${getColors(group.value).map((color) => {
+              return html`
+                <div class="colorwrapper">
+                  <div class="colorvisualisation" style="background-color: ${color.code};"></div>
+                  <div>
+                    ${color.name /* TODO: change to axa-text if bug is fixed */}
                   </div>
-                `;
-              })}
-            </div>
+                  <span>${color.code /* TODO: change to axa-text if bug is fixed */}</span>
+                </div>
+              `;
+            })}
           </div>
-        `;
-      })}
-    `;
+        </div>
+      `;
+    })}
+  `;
 
-    const wrapper = document.createElement('div');
-    render(template, wrapper);
-    return wrapper;
-  });
+  const wrapper = document.createElement('div');
+  render(template, wrapper);
+  return wrapper;
+};

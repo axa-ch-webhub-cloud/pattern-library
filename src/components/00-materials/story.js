@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { html, render, svg } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
 import Readme from './README.md';
@@ -12,103 +10,95 @@ const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
 
-const _extractIconNameFromPath = path =>
-  path
-    .substring(2)
-    .split(FILE_ENDING)
-    .join('');
+const _extractIconNameFromPath = (path) => path.substring(2).split(FILE_ENDING).join('');
 
-const icons = filepathsIcons.map(path => {
+const icons = filepathsIcons.map((path) => {
   return {
     svgstring: reqSvgsIcons(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
 
-const images = filepathsImages.map(path => {
+const images = filepathsImages.map((path) => {
   return {
     svgstring: reqSvgsImages(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
 
-const mapToIconItem = icon => {
+const mapToIconItem = (icon) => {
   return `<div class="image-container">${icon.svgstring}
       <span class="item-name">${icon.path}${FILE_ENDING}</span>
     </div>`;
 };
 
-storiesOf('Materials', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Materials',
+  decorators: [withKnobs],
+
+  parameters: {
     readme: {
       sidebar: Readme,
     },
     changelog: Changelog,
     codepreview: { disabled: true },
-  })
-  .add('Icons and Images', () => {
-    const backgrounds = select(
-      'background color',
-      ['red', 'blue', 'white', 'black'],
-      'white'
-    );
+  },
+};
 
-    const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
+export const IconsAndImages = () => {
+  const backgrounds = select('background color', ['red', 'blue', 'white', 'black'], 'white');
 
-    window.onCallbackInput = ev => {
-      const { value } = ev.target;
+  const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
 
-      const renderAreaIcons = document.querySelector('.icons');
-      const renderAreaImages = document.querySelector('.images');
-      const iconHeader = document.querySelector('.icon-header');
-      const imageHeader = document.querySelector('.image-header');
+  window.onCallbackInput = (ev) => {
+    const { value } = ev.target;
 
-      const filteredIcons = icons.filter(icon => {
-        const foundSearchTerm = icon.path.includes(value.trim());
-        return foundSearchTerm ? icon : '';
-      });
+    const renderAreaIcons = document.querySelector('.icons');
+    const renderAreaImages = document.querySelector('.images');
+    const iconHeader = document.querySelector('.icon-header');
+    const imageHeader = document.querySelector('.image-header');
 
-      const filteredImages = images.filter(image => {
-        const foundSearchTerm = image.path.includes(value.trim());
-        return foundSearchTerm ? image : '';
-      });
-
-      renderAreaIcons.innerHTML = filteredIcons
-        .map(i => mapToIconItem(i))
-        .join('');
-
-      iconHeader.innerHTML =
-        filteredIcons.length === 1
-          ? `${filteredIcons.length} Icon:`
-          : `${filteredIcons.length} Icons:`;
-
-      renderAreaImages.innerHTML = filteredImages
-        .map(i => mapToIconItem(i))
-        .join('');
-
-      imageHeader.innerHTML =
-        filteredImages.length === 1
-          ? `${filteredImages.length} Image:`
-          : `${filteredImages.length} Images:`;
-    };
-
-    setTimeout(() => {
-      const colorSwitcher = document.querySelector(
-        '.js-materials__color-switcher'
-      );
-      colorSwitcher.addEventListener('change', ev => {
-        const iconGroup = document.querySelector('.icons');
-        const imageGroup = document.querySelector('.images');
-        if (ev.detail.active) {
-          iconGroup.classList.add('materials__custom-colors');
-          imageGroup.classList.add('materials__custom-colors');
-        } else {
-          iconGroup.classList.remove('materials__custom-colors');
-          imageGroup.classList.remove('materials__custom-colors');
-        }
-      });
+    const filteredIcons = icons.filter((icon) => {
+      const foundSearchTerm = icon.path.includes(value.trim());
+      return foundSearchTerm ? icon : '';
     });
+
+    const filteredImages = images.filter((image) => {
+      const foundSearchTerm = image.path.includes(value.trim());
+      return foundSearchTerm ? image : '';
+    });
+
+    renderAreaIcons.innerHTML = filteredIcons.map((i) => mapToIconItem(i)).join('');
+
+    iconHeader.innerHTML =
+      filteredIcons.length === 1
+        ? `${filteredIcons.length} Icon:`
+        : `${filteredIcons.length} Icons:`;
+
+    renderAreaImages.innerHTML = filteredImages.map((i) => mapToIconItem(i)).join('');
+
+    imageHeader.innerHTML =
+      filteredImages.length === 1
+        ? `${filteredImages.length} Image:`
+        : `${filteredImages.length} Images:`;
+  };
+
+  setTimeout(() => {
+    const colorSwitcher = document.querySelector(
+      '.js-materials__color-switcher'
+    );
+    colorSwitcher.addEventListener('change', ev => {
+      const iconGroup = document.querySelector('.icons');
+      const imageGroup = document.querySelector('.images');
+      if (ev.detail.active) {
+        iconGroup.classList.add('materials__custom-colors');
+        imageGroup.classList.add('materials__custom-colors');
+      } else {
+        iconGroup.classList.remove('materials__custom-colors');
+        imageGroup.classList.remove('materials__custom-colors');
+      }
+    });
+  });
 
     const template = html`
       <style>

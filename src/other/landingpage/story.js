@@ -1,19 +1,21 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Readme from '../../../README.md';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 
-const story = storiesOf('Welcome', module);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Welcome',
+  decorators: [],
+  parameters: {
+    readme: {
+      sidebar: Readme,
+    },
+    knobs: { disabled: true },
+    changelog: { disabled: true },
+    codepreview: { disabled: true },
+    a11y: { disabled: true },
   },
-  knobs: { disabled: true },
-  changelog: { disabled: true },
-  codepreview: { disabled: true },
-  a11y: { disabled: true },
-});
+};
 
 const getFormattedGitCommitMessage = answerJson => {
   const formattedMessage = answerJson.items[0].commit.message
@@ -27,7 +29,7 @@ const getDateFromGitCommit = answerJson => {
   return formattedDate.toLocaleString(navigator.language);
 };
 
-story.add('to Pattern Library', () => {
+export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
 
   const xhttp = new XMLHttpRequest();
@@ -62,4 +64,8 @@ story.add('to Pattern Library', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};
+
+ToPatternLibrary.story = {
+  name: 'to Pattern Library',
+};

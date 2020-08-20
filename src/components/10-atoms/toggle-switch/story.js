@@ -1,22 +1,22 @@
 /* global document */
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
 import './index';
 import Readme from './README.md';
 
-const story = storiesOf('Components', module);
-story.addDecorator(withKnobs);
-
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    readme: {
+      sidebar: Readme,
+    },
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-story.add('Toggle Switch', () => {
+export const ToggleSwitch = () => {
   const active = boolean('active', false);
   const disabled = boolean('disabled', false);
   const wrapper = document.createElement('div');
@@ -30,4 +30,4 @@ story.add('Toggle Switch', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

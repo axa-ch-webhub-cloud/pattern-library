@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { text, number, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../../10-atoms/icon/icon-list';
@@ -6,16 +5,18 @@ import './index';
 import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const story = storiesOf('Components', module);
-story.addDecorator(withKnobs);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    readme: {
+      sidebar: Readme,
+    },
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-story.add('File Upload', () => {
+export const FileUpload = () => {
   const wrapperWidth = text('Width', '455px');
   const numberOfFilesSliderOptions = {
     range: true,
@@ -91,4 +92,4 @@ story.add('File Upload', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

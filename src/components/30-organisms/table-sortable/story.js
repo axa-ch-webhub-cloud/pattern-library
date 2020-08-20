@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
@@ -66,34 +65,39 @@ const model = {
   ],
 };
 
-storiesOf('Components', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+
+  parameters: {
     readme: {
       sidebar: Readme,
     },
+
     changelog: Changelog,
-  })
-  .add('Table Sortable', () => {
-    const wrapper = document.createElement('div');
+  },
+};
 
-    const innerscroll = text('innerscroll', '');
-    const maxheight = text('maxheight', '');
+export const TableSortable = () => {
+  const wrapper = document.createElement('div');
 
-    const template = html`
-      <axa-table-sortable
-        innerscroll="${innerscroll}"
-        maxheight="${maxheight}"
-        datesortcolumnindex="3,4"
-        model="${JSON.stringify(model)}"
-      ></axa-table-sortable>
-      <br />
-      <axa-text variant="size-3">
-        Note: The datesortcolumnindex="3,4" is set. It can't be controlled by
-        the knobs.
-      </axa-text>
-    `;
+  const innerscroll = text('innerscroll', '');
+  const maxheight = text('maxheight', '');
 
-    render(template, wrapper);
-    return wrapper;
-  });
+  const template = html`
+    <axa-table-sortable
+      innerscroll="${innerscroll}"
+      maxheight="${maxheight}"
+      datesortcolumnindex="3,4"
+      model="${JSON.stringify(model)}"
+    ></axa-table-sortable>
+    <br />
+    <axa-text variant="size-3">
+      Note: The datesortcolumnindex="3,4" is set. It can't be controlled by the
+      knobs.
+    </axa-text>
+  `;
+
+  render(template, wrapper);
+  return wrapper;
+};

@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
 import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
@@ -8,17 +6,18 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const storyAXACarousel = storiesOf('Components', module);
-storyAXACarousel.addDecorator(withNoBorder);
-storyAXACarousel.addDecorator(withKnobs);
-storyAXACarousel.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs, withNoBorder],
+  parameters: {
+    readme: {
+      sidebar: Readme,
+    },
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-storyAXACarousel.add('Carousel', () => {
+export const Carousel = () => {
   const autorotatedisabled = boolean('autorotatedisabled', false);
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);
@@ -64,4 +63,4 @@ storyAXACarousel.add('Carousel', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

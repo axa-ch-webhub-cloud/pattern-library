@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
@@ -9,17 +7,18 @@ import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Components', module);
-story.addDecorator(withNoBorder);
-story.addDecorator(withKnobs);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs, withNoBorder],
+  parameters: {
+    readme: {
+      sidebar: Readme,
+    },
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-story.add('Policy Features', () => {
+export const PolicyFeatures = () => {
   const variants = select(
     'variant',
     STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
@@ -83,4 +82,4 @@ story.add('Policy Features', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};
