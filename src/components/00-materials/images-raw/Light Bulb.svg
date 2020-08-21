@@ -1,16 +1,1 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7 21.2916H10.4167" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M8.79175 29.7916L12.7084 27.2916" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M10.5042 11.0043L12.9197 13.4199" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M23.7917 5V8.41667" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M37.0792 11.5043L34.6636 13.9199" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M41.0834 21.2916H37.6667" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M37.7917 29.7916L34.7917 27.2916" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M34.0417 21.2916C34.0417 15.6311 29.4523 11.0416 23.7917 11.0416C18.1312 11.0416 13.5417 15.6311 13.5417 21.2916C13.5417 25.7529 16.3964 29.5369 20.3751 30.9454V35.8125H27.2084V30.9454C31.1871 29.5369 34.0417 25.7529 34.0417 21.2916Z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="square"/>
-    <path d="M20.375 38.0834H27.2083" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M20.375 40.0834H27.2083" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M21 42H26.5" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M22.5 44H25" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M15.7917 21.2916C15.8751 19.2083 17.7501 14.75 21.0001 13.75" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-    <path d="M22.5 13.0417C23 12.875 23.75 12.75 24.5417 13.0416" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/>
-</svg>
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 21.292h3.417M8.792 29.792l3.916-2.5M10.504 11.004l2.416 2.416M23.792 5v3.417M37.08 11.504l-2.416 2.416M41.083 21.292h-3.416M37.792 29.792l-3-2.5" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/><path d="M34.042 21.292c0-5.66-4.59-10.25-10.25-10.25s-10.25 4.59-10.25 10.25c0 4.46 2.854 8.245 6.833 9.653v4.867h6.833v-4.867c3.98-1.408 6.834-5.192 6.834-9.653z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="square"/><path d="M20.375 38.083h6.833M20.375 40.083h6.833M21 42h5.5M22.5 44H25M15.792 21.292c.083-2.084 1.958-6.542 5.208-7.542M22.5 13.042c.5-.167 1.25-.292 2.042 0" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round"/></svg>
