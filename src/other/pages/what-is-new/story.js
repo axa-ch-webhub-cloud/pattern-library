@@ -66,8 +66,9 @@ story.add("What's new", () => {
         We are happy to introduce to you that we support component versioning.
         Our solution automatically injects package.json version information into component code at build time. With PL components now being version-aware at runtime, we can rewrite custom element names under the hood to include version information.
         For more information check out our
-        <axa-link src="https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>
+        <axa-link href="https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>.
       </p>
+      
       <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
         <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
         <axa-text><span id="githubResponse"></span></axa-text>
