@@ -63,10 +63,10 @@ story.add("What's new", () => {
       <axa-heading rank="2" variant="secondary">Update log</axa-heading>
       <axa-heading rank="5">Component versioning is now live!</axa-heading>
       <p class="what-is-new-text-with-link">
-        We are happy to introduce to you the AXA Design System V1! Following the
-        MVP, developed at the end of 2019, the V1 comes with improved UX and
-        code integration structure. For more information check out our
-        <axa-link>Introduction</axa-link>
+        We are happy to introduce to you that we support component versioning.
+        Our solution automatically injects package.json version information into component code at build time. With PL components now being version-aware at runtime, we can rewrite custom element names under the hood to include version information.
+        For more information check out our
+        <axa-link src="https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>
       </p>
       <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
         <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
