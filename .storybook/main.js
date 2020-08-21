@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../src/other/landingpage/story.js', '../src/components/**/(story|demo).(js|jsx)', '../src/pages/axa-ch-main/story.js'],
+    stories: ['../src/other/landingpage/story.js', '../src/components/**/@(story|demo).@(js|jsx)', '../src/pages/axa-ch-main/story.js'],
     addons: [
       'storybook-readme/register',
       //'./addons/changelog/register',
