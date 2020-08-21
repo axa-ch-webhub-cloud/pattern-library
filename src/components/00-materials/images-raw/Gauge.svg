@@ -1,0 +1,11 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.75 30.5H6.25C5.2835 30.5 4.5 31.2835 4.5 32.25V32.25C4.5 33.2165 5.2835 34 6.25 34H42.75C43.7165 34 44.5 33.2165 44.5 32.25V32.25C44.5 31.2835 43.7165 30.5 42.75 30.5H28.75" stroke="currentColor"/>
+    <path d="M43.2635 30.75C41.8332 21.7343 34.089 14.5 24.75 14.5C15.4111 14.5 7.66685 21.7343 6.23657 30.75" stroke="currentColor"/>
+    <path d="M30 34C29.5944 30.9485 27.3983 28.5 24.75 28.5C22.1017 28.5 19.9056 30.9485 19.5 34" stroke="currentColor"/>
+    <path d="M27.5 34C27.2875 32.3356 26.1372 31 24.75 31C23.3628 31 22.2125 32.3356 22 34" stroke="currentColor"/>
+    <line x1="10.686" y1="25.3285" x2="12.3285" y2="26.314" stroke="currentColor" stroke-linecap="round"/>
+    <line x1="33.1715" y1="19.686" x2="32.186" y2="21.3285" stroke="currentColor" stroke-linecap="round"/>
+    <line x1="25" y1="17.5" x2="25" y2="19.5" stroke="currentColor" stroke-linecap="round"/>
+    <line x1="38.8285" y1="25.686" x2="37.186" y2="26.6715" stroke="currentColor" stroke-linecap="round"/>
+    <path d="M20.75 30.5L17.5888 23.4189C17.1123 22.3515 18.5409 21.4735 19.2781 22.3807L24.25 28.5" stroke="currentColor"/>
+</svg>
