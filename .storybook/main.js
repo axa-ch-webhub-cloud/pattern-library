@@ -4,7 +4,7 @@ module.exports = {
       'storybook-readme/register',
       //'./addons/changelog/register',
       '@storybook/addon-knobs',
-      //'./addons/codepreview/register',
+      '@whitespace/storybook-addon-html/register',
       '@storybook/addon-a11y'
     ],
 };
