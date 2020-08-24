@@ -21,49 +21,41 @@ story.add('Getting started', () => {
   wrapper.classList.add('accessory-story-wrapper');
 
   const callouts = [
-    {
-      icon: 'github-mark.png',
-      header: 'ReadMe',
-      text:
-        'You have a question or want to get to know us? The readme is the best way to start.',
-      link: 'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
-      linkText: 'Read me',
-    },
-    {
-      icon: 'github-mark.png',
-      header: 'Contribute',
-      text: `You want to contribute to us? Nice! Here you'll find the "how-to".`,
-      link:
-        'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
-      linkText: 'take a look',
-    },
-    {
-      icon: 'github-mark.png',
-      header: 'Architecture',
-      text:
-        'Read more about the big picture of V2 and how we got here. This includes framework choices and much more.',
-      link:
-        'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
-      linkText: 'take a look',
-    },
-    {
-      icon: 'github-mark.png',
-      header: 'Code of Conduct',
-      text:
-        'We as the Pattern Library Team commited ourselves to a  set of rules, responsibilities and practices.',
-      link:
-        'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
-      linkText: 'take a look',
-    },
-    {
-      icon: 'figma.png',
-      header: 'AXA Design System UI Kit',
-      text:
-        'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit',
-      link:
-        'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
-      linkText: 'take a look',
-    },
+    callout(
+      'github-mark.png',
+      'ReadMe',
+      'You have a question or want to get to know us? The readme is the best way to start.',
+      'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
+      'Read me'
+    ),
+    callout(
+      'github-mark.png',
+      'Contribute',
+      `You want to contribute to us? Nice! Here you'll find the "how-to".`,
+      'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
+      'Take a look'
+    ),
+    callout(
+      'github-mark.png',
+      'Architecture',
+      'Read more about the big picture of V2 and how we got here. This includes framework choices and much more.',
+      'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
+      'take a look'
+    ),
+    callout(
+      'github-mark.png',
+      'Code of Conduct',
+      'We as the Pattern Library Team commited ourselves to a  set of rules, responsibilities and practices.',
+      'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
+      'take a look'
+    ),
+    callout(
+      'figma.png',
+      'AXA Design System UI Kit',
+      'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit',
+      'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
+      'take a look'
+    ),
   ];
 
   const div = document.createElement('div');
@@ -102,13 +94,13 @@ story.add('Getting started', () => {
           which you can import one by one. All you need to do is install the
           @axa-ch/ corresponding package. Here is an example with a button:
         </AXAText>
-        {/* <ReactSyntaxHighlighter language="html">
+        <ReactSyntaxHighlighter language="html">
           {`<code class="language-css">$ npm install @axa-ch/button</code>`}
-        </ReactSyntaxHighlighter> */}
+        </ReactSyntaxHighlighter>
         <AXAText>
           Import the button-defining script and use a button like this:
         </AXAText>
-        {/* <ReactSyntaxHighlighter language="html">
+        <ReactSyntaxHighlighter language="html">
           {`<!DOCTYPE html>
         <html lang="en">
           <head>
@@ -122,7 +114,7 @@ story.add('Getting started', () => {
             <script src="node_modules/@axa-ch/button/dist/index.js"></script>
           </body>
         </html>`}
-        </ReactSyntaxHighlighter> */}
+        </ReactSyntaxHighlighter>
         <AXAText>
           <span role="img" aria-label="important">
             ⚠️
@@ -132,48 +124,22 @@ story.add('Getting started', () => {
           this scenario. You need to create a React-ified button with the
           createElement function from your React.
         </AXAText>
-        {/* <ReactSyntaxHighlighter language="javascript">
+        <ReactSyntaxHighlighter language="javascript">
           {`import {createElement} from 'react'; import createAXAButtonReact
             from '@axa-ch/button/lib/index.react'; const AXAButtonReact =
             createAXAButtonReact(createElement); export default AXAButtonReact;`}
-        </ReactSyntaxHighlighter> */}
-        {/* <ReactSyntaxHighlighter language="html">
+        </ReactSyntaxHighlighter>
+        <ReactSyntaxHighlighter language="html">
           {`<AXAButtonReact motionOff onClick={handler}>
               I am a Button
             </AxaButtonReact>`}
-        </ReactSyntaxHighlighter> */}
+        </ReactSyntaxHighlighter>
+        {/* 
+        {callouts[0]}
+        {callouts[1]}
+        {callouts[2]}
+        {callouts[3]} */}
 
-        {/* {callout(
-          callouts[0].icon,
-          callouts[0].header,
-          callouts[0].text,
-          callouts[0].link,
-          callouts[0].linkText
-        )}
-
-        {callout(
-          callouts[1].icon,
-          callouts[1].header,
-          callouts[1].text,
-          callouts[1].link,
-          callouts[1].linkText
-        )}
-
-        {callout(
-          callouts[2].icon,
-          callouts[2].header,
-          callouts[2].text,
-          callouts[2].link,
-          callouts[2].linkText
-        )}
-
-        {callout(
-          callouts[3].icon,
-          callouts[3].header,
-          callouts[3].text,
-          callouts[3].link,
-          callouts[3].linkText
-        )} */}
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
           <AXAHeading rank="2" variant="secondary">
@@ -193,14 +159,9 @@ story.add('Getting started', () => {
           </AXAText>
         </div>
 
-        {/* {callout(
-          callouts[4].icon,
-          callouts[4].header,
-          callouts[4].text,
-          callouts[4].link,
-          callouts[4].linkText
-        )} */}
+        {/* {callouts[4]} */}
       </div>
+
       {/* {contact} */}
     </div>,
     div
