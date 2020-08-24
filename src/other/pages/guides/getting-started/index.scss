@@ -36,3 +36,16 @@
     font-weight: 500;
     padding: 2px 4px;
 }
+
+.getting-started__text {
+    @include text(t2);
+}
+
+.getting-started__text--important {
+    margin-bottom: 1.5rem;
+}
+
+
+.getting-started__text--bold {
+    @include text(t2, bold);
+}
