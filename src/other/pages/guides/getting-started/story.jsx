@@ -94,7 +94,7 @@ story.add('Getting started', () => {
           which you can import one by one. All you need to do is install
           the&nbsp;
           <code className="getting-started__dependency">@axa-ch/</code>
-          corresponding package. Here is an example with a button:
+          &nbsp;corresponding package. Here is an example with a button:
         </p>
         <ReactSyntaxHighlighter
           language="shell"
