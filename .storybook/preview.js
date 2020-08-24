@@ -1,7 +1,6 @@
 import '@axa-ch/patterns-library-polyfill';
 
 import { addParameters } from '@storybook/html';
-import { addReadme } from 'storybook-readme/html';
 import { withHTML } from '@whitespace/storybook-addon-html/html';
 
 addParameters({
@@ -13,4 +12,4 @@ addParameters({
   }
 });
 
-export const decorators = [addReadme, withHTML];
+export const decorators = [withHTML];
