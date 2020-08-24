@@ -1,3 +1,8 @@
+## 11.0.0
+
+- BREAKING CHANGE: Update some internal image margins.
+- Add new images: `carelessness`, `living-with-parents`, `location-image`, `number-of-rooms`, `solid-construction`, `sports-equipment`, `usage-type-house`
+
 ## 10.2.0
 
 - Add text format `semibold` to sass mixin `text`. #1895
