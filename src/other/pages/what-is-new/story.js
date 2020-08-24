@@ -56,7 +56,7 @@ story.add("What's new", () => {
     </style>
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">What's new</axa-heading>
-      <axa-text variant="size-1">
+      <axa-text variant="size-2">
         Here you will find the latest updates on the AXA Design System
         development.
       </axa-text>
@@ -71,7 +71,7 @@ story.add("What's new", () => {
       
       <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
         <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
-        <axa-text><span id="githubResponse"></span></axa-text>
+        <axa-text variant="size-2"><span id="githubResponse"></span></axa-text>
     </div>
     ${contact}
   `;
