@@ -22,3 +22,17 @@
 .getting-started__header {
     margin-top: 18px;
 }
+
+.getting-started__dependency-wrapper {
+    @include text(t2);
+}
+
+.getting-started__dependency {
+    background-color: #fef4f7;
+    box-shadow: 0 0 0 1px #f3a0bb;
+    color: #a71545;
+    border-radius: 2px;
+    font-size: 90%;
+    font-weight: 500;
+    padding: 2px 4px;
+}
