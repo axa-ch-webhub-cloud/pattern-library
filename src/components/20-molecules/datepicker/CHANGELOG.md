@@ -1,5 +1,6 @@
-## 10.1.0
+## 11.0.0
 
+- The datepicker is now wider than before.
 - New buttons to switch between months. (#1908)
 - Today is now always highlighted. (#1909)
 
