@@ -6,7 +6,7 @@ import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 export default {
-  title: 'Components',
+  title: 'Components/Testimonials',
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme: {
