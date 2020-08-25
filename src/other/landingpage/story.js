@@ -4,7 +4,7 @@ import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 
 export default {
-  title: 'Welcome',
+  title: 'Others/Welcome',
   decorators: [],
   parameters: {
     readme: {

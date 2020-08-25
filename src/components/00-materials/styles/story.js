@@ -56,7 +56,7 @@ $color-shy-tomato: #c91432 !default;
 `;
 
 export default {
-  title: 'Materials',
+  title: 'Others/Materials',
   decorators: [withKnobs],
 
   parameters: {

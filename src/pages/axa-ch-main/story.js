@@ -11,7 +11,7 @@ import navbar from './navbar';
 import footerSmall from './footer-small';
 
 export default {
-  title: 'Pages|AXA',
+  title: 'Pages/AXA',
   decorators: [withKnobs],
   parameters: {
     readme: {

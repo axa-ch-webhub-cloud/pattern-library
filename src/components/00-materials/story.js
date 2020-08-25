@@ -37,7 +37,7 @@ const mapToIconItem = icon => {
 };
 
 export default {
-  title: 'Materials',
+  title: 'Others/Materials',
   decorators: [withKnobs],
 
   parameters: {
