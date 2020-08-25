@@ -1,3 +1,7 @@
+## 4.1.7
+
+- Fix: change rendering to requestAnimationFrame timing, s.t. browsers have more time to attach children to DOM. (#1890)
+
 ## 4.1.3
 
 - Fix: prevent duplicate style attachment. (#1727)
