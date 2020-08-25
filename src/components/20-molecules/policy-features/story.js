@@ -3,7 +3,6 @@ import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
 import { html, render } from 'lit-html';
 import { STYLE_WHITELIST } from './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
@@ -11,9 +10,6 @@ export default {
   title: 'Components',
   decorators: [withKnobs, withNoBorder],
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   },
 };

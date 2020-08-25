@@ -11,15 +11,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import Changelog from '../CHANGELOG.md';
-import Readme from '../README.md';
 import AXAInputFileReact from './AXAInputFileReact';
 
 storiesOf('Examples/Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story', () => {

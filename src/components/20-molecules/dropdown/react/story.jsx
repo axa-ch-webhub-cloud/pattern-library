@@ -4,15 +4,11 @@ import { text, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Dropdown/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story - uncontrolled', () => {

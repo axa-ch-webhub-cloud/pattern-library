@@ -3,15 +3,11 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Changelog from '../CHANGELOG.md';
-import Readme from '../README.md';
 import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
 
 storiesOf('Examples/Button/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Clickable', () => {

@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Changelog from '../CHANGELOG.md';
-import Readme from '../README.md';
 import AXAInputText from './AXAInputText';
 
 const typeOptions = {
@@ -16,9 +15,6 @@ const typeOptions = {
 const storyInputText = storiesOf('Examples/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
   changelog: Changelog,
 });
 

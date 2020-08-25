@@ -3,14 +3,10 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoTextReact from './DemoTextReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Text/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
     knobs: { disabled: true },
   })

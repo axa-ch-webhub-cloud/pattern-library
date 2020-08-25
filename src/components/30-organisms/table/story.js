@@ -1,7 +1,6 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 export default {
@@ -9,10 +8,6 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
-
     changelog: Changelog,
   },
 };

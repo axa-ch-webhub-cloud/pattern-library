@@ -4,15 +4,10 @@ import { storiesOf } from '@storybook/html';
 import { CarSvg } from '@axa-ch/materials/images';
 import { html, render } from 'lit-html';
 import './index';
-
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 storiesOf('Examples/Radio/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Default', () => {

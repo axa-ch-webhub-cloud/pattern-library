@@ -4,14 +4,10 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 storiesOf('Examples/Textarea/Pure HTML', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add(

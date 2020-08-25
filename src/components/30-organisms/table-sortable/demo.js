@@ -1,7 +1,6 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const model = {
@@ -67,9 +66,6 @@ const model = {
 
 storiesOf('Examples/Table Sortable/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('On row click', () => {

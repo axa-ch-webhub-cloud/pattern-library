@@ -3,13 +3,9 @@ import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 storiesOf('Examples/Button/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
     knobs: { disabled: true },
   })

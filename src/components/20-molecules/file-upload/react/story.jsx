@@ -5,15 +5,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../../10-atoms/icon/icon-list';
 import AXAFileUploadReact from './AXAFileUploadReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story', () => {

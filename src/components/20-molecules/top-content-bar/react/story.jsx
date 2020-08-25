@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/html';
 import { text, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
@@ -19,9 +18,6 @@ storiesOf('Examples/Top Content Bar/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   /* Default */

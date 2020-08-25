@@ -3,14 +3,10 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoControlledRadioButtonReact from './DemoRadioButtonReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Radio/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Controlled-component React-ified', () => {

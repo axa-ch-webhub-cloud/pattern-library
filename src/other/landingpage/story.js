@@ -7,9 +7,6 @@ export default {
   title: 'Welcome',
   decorators: [],
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
     knobs: { disabled: true },
     changelog: { disabled: true },
     codepreview: { disabled: true },

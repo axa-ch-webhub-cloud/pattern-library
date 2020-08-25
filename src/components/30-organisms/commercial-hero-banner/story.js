@@ -3,16 +3,12 @@ import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 export default {
   title: 'Components',
   decorators: [withKnobs, withNoBorder],
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   },
 };

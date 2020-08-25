@@ -8,16 +8,12 @@ import {
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import AXAIcon from './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 export default {
   title: 'Components',
   decorators: [withKnobs],
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   },
 };

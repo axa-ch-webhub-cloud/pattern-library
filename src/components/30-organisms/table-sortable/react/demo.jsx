@@ -3,7 +3,6 @@ import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import createTableSortableReact from '../index.react';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 const TableSortable = createTableSortableReact(createElement);
@@ -64,9 +63,6 @@ const model = {
 
 storiesOf('Examples/Table Sortable/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('On click works also in react', () => {

@@ -4,15 +4,11 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Changelog from '../CHANGELOG.md';
-import Readme from '../README.md';
 import AXATextarea from './AXATextarea';
 
 const storyTextarea = storiesOf('Examples/Textarea/React', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
   changelog: Changelog,
 });
 

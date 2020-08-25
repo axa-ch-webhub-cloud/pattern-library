@@ -1,14 +1,10 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 storiesOf('Examples/Button Link/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add(

@@ -11,7 +11,6 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXADatepickerReact from './AXADatepickerReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 const localeOptions = {
@@ -24,9 +23,6 @@ const localeOptions = {
 storiesOf('Examples/Datepicker/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story', () => {

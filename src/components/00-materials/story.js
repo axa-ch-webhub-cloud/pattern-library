@@ -1,6 +1,5 @@
 import { html, render, svg } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const FILE_ENDING = '.svg.js';
@@ -41,10 +40,6 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
-
     changelog: Changelog,
     codepreview: { disabled: true },
   },

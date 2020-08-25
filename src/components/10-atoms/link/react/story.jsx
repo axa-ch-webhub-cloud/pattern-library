@@ -4,7 +4,6 @@ import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import { iconList } from '../../icon/icon-list';
 import AXALinkReact from './AXALinkReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
@@ -38,9 +37,6 @@ const variantOptions = {
 storiesOf('Examples/Link/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story', () => {

@@ -2,7 +2,6 @@ import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import withNoBorder from '../../../../.storybook/addons/no-border';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 export default {
@@ -10,10 +9,6 @@ export default {
   decorators: [withNoBorder, withKnobs],
 
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
-
     changelog: Changelog,
   },
 };

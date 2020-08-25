@@ -8,15 +8,11 @@ import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation
 import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
 import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import DemoDatepickerReactPod from './DemoDatepickerReactPod';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 import DemoDatepickerOnInputfieldKeyUp from './DemoDatepickerOnInputfieldKeyUp';
 
 storiesOf('Examples/Datepicker/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Controlled-component with inputfield', () => {

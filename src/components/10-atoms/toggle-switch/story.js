@@ -3,15 +3,11 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 export default {
   title: 'Components',
   decorators: [withKnobs],
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   },
 };

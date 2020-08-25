@@ -14,10 +14,7 @@ export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
   parameters: {
-    readme: {
-      sidebar: Readme,
     },
-  },
 };
 
 function getFirstChildOfEachAxaCustomElement() {

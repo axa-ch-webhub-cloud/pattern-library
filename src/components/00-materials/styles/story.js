@@ -60,10 +60,6 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
-
     changelog: Changelog,
   },
 };

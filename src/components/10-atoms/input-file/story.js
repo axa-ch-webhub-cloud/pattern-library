@@ -10,17 +10,12 @@ import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 export default {
   title: 'Components',
   decorators: [withKnobs],
 
   parameters: {
-    readme: {
-      sidebar: Readme,
-    },
-
     changelog: Changelog,
   },
 };

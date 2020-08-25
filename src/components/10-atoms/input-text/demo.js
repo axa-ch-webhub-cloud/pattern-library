@@ -1,15 +1,11 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Examples/Input text/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('In a form', () => {
