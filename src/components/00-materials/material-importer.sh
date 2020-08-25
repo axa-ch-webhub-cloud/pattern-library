@@ -10,10 +10,10 @@
 #
 
 MATERIAL_ICONS_LOCATION=~/Downloads/material-design-icons
-# find ~/Downloads/material-design-icons -type f -name "*_24px.svg" -and \( -name "*ic*" \)
-# ALL_ICONS=$(find $MATERIAL_ICONS_LOCATION -type f -name "*_24px.svg" -and \( -name "*/production/*" \))
 ALL_ICONS=$(find $MATERIAL_ICONS_LOCATION -type f -name "*_24px.svg")
 ICON_DIR=./icons-raw/
+STRING_TO_REMOVE_1="_24px"
+STRING_TO_REMOVE_2="ic_"
 
 mkdir -p $ICON_DIR
 
@@ -23,8 +23,12 @@ mkdir -p $ICON_DIR
 for x in $ALL_ICONS; do
     # Use only optimized production svgs.
     if [[ $x == *"/production/"* ]]; then
-        echo "Copy file: $x"
+        # echo "Copy file: $x"
+        OPTIMIZED_FILENAME=$(printf '%s\n' "${x//$STRING_TO_REMOVE_1/}")
+        OPTIMIZED_FILENAME=$(printf '%s\n' "${OPTIMIZED_FILENAME//$STRING_TO_REMOVE_2/}")
+        cp -f $x $OPTIMIZED_FILENAME
+        mv -v $OPTIMIZED_FILENAME $ICON_DIR
+        # cp -f $OPTIMIZED_FILENAME $ICON_DIR
         #   mv -v $x $ICON_DIR
-        cp -f $x $ICON_DIR
     fi
 done)
