@@ -62,7 +62,7 @@ story.add("What's new", () => {
       </axa-text>
       <axa-heading rank="2" variant="secondary">Update log</axa-heading>
       <axa-heading rank="5">Component versioning is now live!</axa-heading>
-      <p class="what-is-new-text-with-link">
+      <p class="what-is-new__text-with-link">
         We are happy to introduce to you that we support component versioning.
         Our solution automatically injects package.json version information into component code at build time. With PL components now being version-aware at runtime, we can rewrite custom element names under the hood to include version information.
         For more information check out our

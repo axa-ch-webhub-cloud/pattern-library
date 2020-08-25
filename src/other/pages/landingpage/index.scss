@@ -10,11 +10,11 @@
     height: 396px;
 }
 
-.landingpage-commerical-hero-banner-button-wrapper {
+.landingpage__commercial-hero-banner-button-wrapper {
     display: flex;
 }
 
-.landingpage-commercial-hero-banner-image {
+.landingpage__commercial-hero-banner-image {
     display: none;
     @include breakpoint($mediaquery-md-up) {
         display: block;
@@ -28,8 +28,4 @@
         top: 325px;
         height: 420px;
     }
-}
-
-.landingpage-last-releases-image {
-    height: 300px;
 }

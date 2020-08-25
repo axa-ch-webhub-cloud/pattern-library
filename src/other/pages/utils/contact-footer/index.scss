@@ -13,20 +13,19 @@ html, body, #root {
     @include breakpoint($mediaquery-md-up) {
         min-width: 420px;
     }
-}
-
-.contact-footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @include breakpoint($mediaquery-md-up) {
-        padding-left: 30px;
-        padding-left: 80px;
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        @include breakpoint($mediaquery-md-up) {
+            padding-left: 30px;
+            padding-left: 80px;
+        }
     }
-}
-
-.contact-footer-subtitle {
-    text-transform: uppercase;
-    overflow-wrap: break-word;
-    @include text(t4);
+    
+    &__subtitle {
+        text-transform: uppercase;
+        overflow-wrap: break-word;
+        @include text(t4);
+    }
 }

@@ -77,16 +77,16 @@ story.add('Structure Approach', () => {
         question that we need to ask ourselves is “to what category does a given
         component belong to?”.
       </axa-text>
-      <div class="structure-approach-vertical-content">
-        <div class="structure-approach-vertical-content__item">
+      <div class="structure-approach__vertical-content">
+        <div class="structure-approach__vertical-content-item">
           <img
-            class="structure-approach-vertical-content__image"
+            class="structure-approach__vertical-content-image"
             src="materials.svg"
             alt="Materials"
           />
-          <div class="structure-approach-vertical-content__col">
-            <p class="structure-approach-vertical-content__kicker">Materials</p>
-            <p class="structure-approach-vertical-content__text">
+          <div class="structure-approach__vertical-content-col">
+            <p class="structure-approach__vertical-content-kicker">Materials</p>
+            <p class="structure-approach__vertical-content-text">
               Elements that we categorize in the “Materials” category will be
               transversal element as font-size, line-height, colors, spacing
               units, elevation, etc. This are also elements that are not
@@ -94,15 +94,15 @@ story.add('Structure Approach', () => {
             </p>
           </div>
         </div>
-        <div class="structure-approach-vertical-content__item">
+        <div class="structure-approach__vertical-content-item">
           <img
-            class="structure-approach-vertical-content__image"
+            class="structure-approach__vertical-content-image"
             src="atoms.svg"
             alt="Atoms"
           />
-          <div class="structure-approach-vertical-content__col">
-            <p class="structure-approach-vertical-content__kicker">Atoms</p>
-            <p class="structure-approach-vertical-content__text">
+          <div class="structure-approach__vertical-content-col">
+            <p class="structure-approach__vertical-content-kicker">Atoms</p>
+            <p class="structure-approach__vertical-content-text">
               Elements that we categorize in the “Atoms” category will be basic
               elements, generally used more than once on a web page. They are
               generally embedded in other elements (larger ones), and have
@@ -110,15 +110,15 @@ story.add('Structure Approach', () => {
             </p>
           </div>
         </div>
-        <div class="structure-approach-vertical-content__item">
+        <div class="structure-approach__vertical-content-item">
           <img
-            class="structure-approach-vertical-content__image"
+            class="structure-approach__vertical-content-image"
             src="molecules.svg"
             alt="Molecules"
           />
-          <div class="structure-approach-vertical-content__col">
-            <p class="structure-approach-vertical-content__kicker">Molecules</p>
-            <p class="structure-approach-vertical-content__text">
+          <div class="structure-approach__vertical-content-col">
+            <p class="structure-approach__vertical-content-kicker">Molecules</p>
+            <p class="structure-approach__vertical-content-text">
               Elements that we categorize in the “Molecules” category will
               generally be elements that contain smaller and simpler elements
               (atoms). Generally this elements are made for specific cases and
@@ -126,15 +126,15 @@ story.add('Structure Approach', () => {
             </p>
           </div>
         </div>
-        <div class="structure-approach-vertical-content__item">
+        <div class="structure-approach__vertical-content-item">
           <img
-            class="structure-approach-vertical-content__image"
+            class="structure-approach__vertical-content-image"
             src="organisms.svg"
             alt="Organisms"
           />
-          <div class="structure-approach-vertical-content__col">
-            <p class="structure-approach-vertical-content__kicker">Organisms</p>
-            <p class="structure-approach-vertical-content__text">
+          <div class="structure-approach__vertical-content-col">
+            <p class="structure-approach__vertical-content-kicker">Organisms</p>
+            <p class="structure-approach__vertical-content-text">
               Elements that we categorize in the “Organisms” category will
               generally be complex elements that are composed of smaller
               elements. You can think of Organisms as a “part” of a web page. A

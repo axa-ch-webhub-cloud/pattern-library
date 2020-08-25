@@ -54,7 +54,7 @@ export const ToPatternLibrary = () => {
           concepts
         </p>
         <div
-          class="landingpage-commerical-hero-banner-button-wrapper"
+          class="landingpage__commercial-hero-banner-button-wrapper"
           slot="button"
         >
           <axa-button-link
@@ -73,7 +73,7 @@ export const ToPatternLibrary = () => {
           </div>
         </axa-commercial-hero-banner>
         <img
-          class="landingpage-commercial-hero-banner-image"
+          class="landingpage__commercial-hero-banner-image"
           src="axa-design-system-illustration.png"
           alt="Design system illustration"
         /><img />

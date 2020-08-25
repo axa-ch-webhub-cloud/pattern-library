@@ -7,7 +7,7 @@
 @include accessory-story-content;
 @include accessory-story-wrapper;
 
-.what-is-new-text-with-link {
+.what-is-new__text-with-link {
     @include text(t2);
     max-width: 750px;
 }

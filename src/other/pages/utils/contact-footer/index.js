@@ -4,9 +4,9 @@ import styles from './index.scss';
 export default html`
 <style>${styles}</style>
 <section class="contact-footer">
-  <div class="contact-footer-inner">
+  <div class="contact-footer__inner">
     <div>
-      <p class="contact-footer-subtitle">Help & Contact</p>
+      <p class="contact-footer__subtitle">Help & Contact</p>
       <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
     </div>
     <axa-button-link size="large" href="/?path=/story/contact--contact" variant="inverted">

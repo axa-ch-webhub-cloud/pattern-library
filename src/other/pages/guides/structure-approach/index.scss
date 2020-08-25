@@ -24,13 +24,13 @@
     @include last-text();
 }
 
-.structure-approach-vertical-content {
-    &__image {
+.structure-approach__vertical-content {
+    &-image {
         max-height: 110px;
         margin-right: 2.5rem;
     }
     
-    &__item {
+    &-item {
         color: #333;
         padding-top: 2rem;
         padding-bottom: 2rem;
@@ -39,22 +39,22 @@
         align-items: center;
     }
 
-    &__item:last-child {
+    &-item:last-child {
         border-bottom-color: transparent;
         // margin-bottom: 2.5rem;
     }
     
-    &__col {
+    &-col {
         flex: 1;
     }
     
-    &__kicker {
+    &-kicker {
         @include text(t4, semibold);
         margin-bottom: 0;
         text-transform: uppercase;
     }
     
-    &__text {
+    &-text {
         @include text(t1);
     }
 }
