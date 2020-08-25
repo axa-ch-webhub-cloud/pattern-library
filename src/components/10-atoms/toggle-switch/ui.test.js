@@ -33,7 +33,7 @@ test('should set correct background-color to inactive toggle-switch-slider', asy
     return window
       .getComputedStyle(toggleSwitchSlider)
       .getPropertyValue('background-color');
-  }).with({ boundTestRun: t });
+  });
 
   await t.expect(await getBackgroundColor()).eql('rgb(153, 153, 153)');
 });
@@ -52,18 +52,14 @@ test('should set correct background-color to active toggle-switch-slider', async
       '.a-toggle-switch__slider'
     );
 
-    return new Promise(resolve => {
-      toggleSwitchSlider.addEventListener('transitionend', () =>
-        resolve(
-          window
-            .getComputedStyle(toggleSwitchSlider)
-            .getPropertyValue('background-color')
-        )
-      );
-    });
-  }).with({ boundTestRun: t });
+    return window
+      .getComputedStyle(toggleSwitchSlider)
+      .getPropertyValue('background-color');
+  });
 
   await setProperties();
+
+  await t.wait(500);
   await t.expect(await getBackgroundColor()).eql('rgb(28, 197, 78)');
 });
 
@@ -81,18 +77,14 @@ test('should set correct background-color to inactive disabled toggle-switch-sli
       '.a-toggle-switch__slider'
     );
 
-    return new Promise(resolve => {
-      toggleSwitchSlider.addEventListener('transitionend', () =>
-        resolve(
-          window
-            .getComputedStyle(toggleSwitchSlider)
-            .getPropertyValue('background-color')
-        )
-      );
-    });
-  }).with({ boundTestRun: t });
+    return window
+      .getComputedStyle(toggleSwitchSlider)
+      .getPropertyValue('background-color');
+  });
 
   await setProperties();
+
+  await t.wait(500);
   await t.expect(await getBackgroundColor()).eql('rgb(245, 245, 245)');
 });
 
@@ -112,18 +104,14 @@ test('should set correct background-color to active disabled toggle-switch-slide
       '.a-toggle-switch__slider'
     );
 
-    return new Promise(resolve => {
-      toggleSwitchSlider.addEventListener('transitionend', () =>
-        resolve(
-          window
-            .getComputedStyle(toggleSwitchSlider)
-            .getPropertyValue('background-color')
-        )
-      );
-    });
-  }).with({ boundTestRun: t });
+    return window
+      .getComputedStyle(toggleSwitchSlider)
+      .getPropertyValue('background-color');
+  });
 
   await setProperties();
+
+  await t.wait(500);
   await t.expect(await getBackgroundColor()).eql('rgb(159, 217, 180)');
 });
 
