@@ -778,11 +778,17 @@ class AXADatepicker extends NoShadowDOM {
     let month = parseInt(this.month, 10) + offset;
     let year = parseInt(this.year, 10);
 
+    // Month out of bounds?
     if (month < MIN || month > MAX) {
-      month = min(max(month, MIN), MAX); // prevent out-of-bounds navigation
+      // Clamp month to valid range
+      month = min(max(month, MIN), MAX);
+
+      // Try to adjust year (might fail if not an allowed year)
       year = this.navigateYear(offset);
 
+      // Year adjustment succeeded?
       if (year !== this.year) {
+        // Correct month
         month = abs(month - MAX);
       }
     }
