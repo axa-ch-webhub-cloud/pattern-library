@@ -140,30 +140,7 @@ Here are some example DO'S and DONT'S:
 
 ### How-to write a story
 
-- Add a description: `.addDecorator(withMarkdown(Readme))`
-- Add a body reset for the story in order to test and showcase 100% width components: `.addDecorator(withBodyReset())`
-
-Example:
-
-```js
-/* global document */
-import { storiesOf } from '@storybook/html';
-import './index';
-
-import withNoBorder from '../../../../.storybook/addons/no-border';
-import Readme from './README.md';
-storiesOf('Components|Top content bar', module)
-  .addDecorator(withNoBorder)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
-  })
-  .add(
-    'Top content bar - default',
-    () => '<axa-top-content-bar>Some children</axa-top-content-bar>'
-  );
-```
+Please see [Storybook documentation](https://storybook.js.org/docs/react/writing-stories/introduction) for details.
 
 ## How-to release a component
 
