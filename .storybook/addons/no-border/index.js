@@ -1,7 +1,7 @@
 // Sometimes we receive (storyFn()) a DOMNode which we have to append
 // Sometimes it's already the finalized HTML String.
 export default storyFn => {
-    const noBorderStyles = '.sb-show-main{ margin: 0; }';
+    const noBorderStyles = '.sb-show-main{ padding: 0 !important; }';
 
     if (typeof storyFn() === 'string') {
         return `
