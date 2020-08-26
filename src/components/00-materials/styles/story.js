@@ -1,6 +1,5 @@
 import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-import Readme from '../../../components/00-materials/README.md';
 import Changelog from '../../../components/00-materials/CHANGELOG.md';
 import '../../10-atoms/text';
 import '../../10-atoms/heading';

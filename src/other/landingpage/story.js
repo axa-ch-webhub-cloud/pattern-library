@@ -1,5 +1,4 @@
 import { html, render } from 'lit-html';
-import Readme from '../../../README.md';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 
@@ -30,7 +29,7 @@ export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
 
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = () => {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
       document.querySelector(

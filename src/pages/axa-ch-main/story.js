@@ -1,7 +1,6 @@
 import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 
-import Readme from '../../../README.md';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 import commercialHeroBanner from './commercial-hero-banner';
@@ -13,8 +12,7 @@ import footerSmall from './footer-small';
 export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
-  parameters: {
-    },
+  parameters: {},
 };
 
 function getFirstChildOfEachAxaCustomElement() {
