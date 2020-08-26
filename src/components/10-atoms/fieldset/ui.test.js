@@ -67,7 +67,7 @@ test('should responsive stretch', async t => {
     ];
   });
 
-  const expected = JSON.stringify(['513px', '0px']); // 513px width of the radio correspond to 100% in a 575px window
+  const expected = JSON.stringify(['545px', '0px']); // 545px width of the radio correspond to 100% in a 575px window
   await t.expect(JSON.stringify(await getError())).eql(expected);
 }).before(async t => {
   await t.resizeWindow(575, 575);
