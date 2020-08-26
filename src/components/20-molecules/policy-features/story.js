@@ -4,12 +4,12 @@ import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
 import { html, render } from 'lit-html';
 import { STYLE_WHITELIST } from './index';
 import Changelog from './CHANGELOG.md';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 
 export default {
   title: 'Components',
-  decorators: [withKnobs],
+  decorators: [withKnobs, withNoBorder],
   parameters: {
-    layout: 'fullscreen',
     changelog: Changelog,
   },
 };

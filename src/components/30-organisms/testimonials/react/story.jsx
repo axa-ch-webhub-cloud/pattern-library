@@ -5,11 +5,12 @@ import { boolean, text, withKnobs, number } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Changelog from '../CHANGELOG.md';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 const story = storiesOf('Examples/Testimonials/React', module);
 story.addDecorator(withKnobs);
+story.addDecorator(withNoBorder);
 story.addParameters({
-  layout: 'fullscreen',
   changelog: Changelog,
 });
 

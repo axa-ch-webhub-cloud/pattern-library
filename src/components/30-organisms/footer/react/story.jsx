@@ -1,6 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 import Changelog from '../CHANGELOG.md';
 import AXAFooterReact from './Footer';
 
@@ -12,8 +13,8 @@ const setNewlyClickedLink = link => {
 };
 
 storiesOf('Examples/Footer/React', module)
+  .addDecorator(withNoBorder)
   .addParameters({
-    layout: 'fullscreen',
     changelog: Changelog,
   })
 

@@ -1,11 +1,12 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Examples/Footer/Pure HTML', module)
+  .addDecorator(withNoBorder)
   .addParameters({
-    layout: 'fullscreen',
     changelog: Changelog,
   })
 

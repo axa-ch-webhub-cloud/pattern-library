@@ -5,13 +5,14 @@ import { text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 import AXALinkReact from './AXALinkReact';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Cookie Disclaimer/React', module)
+  .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    layout: 'fullscreen',
     changelog: Changelog,
   })
   .add('Story', () => {

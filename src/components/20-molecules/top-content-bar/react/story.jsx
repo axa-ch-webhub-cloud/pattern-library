@@ -5,6 +5,7 @@ import { text, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import AXATopContentBar from './AXATopContentBarReact';
 import Changelog from '../CHANGELOG.md';
+import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
 
@@ -14,9 +15,9 @@ const variantOptions = {
 };
 
 storiesOf('Examples/Top Content Bar/React', module)
+  .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    layout: 'fullscreen',
     changelog: Changelog,
   })
   /* Default */

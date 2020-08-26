@@ -1,11 +1,13 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import withNoBorder from '../../../../.storybook/addons/no-border';
 import Changelog from './CHANGELOG.md';
 import './index';
 
 storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
+  .addDecorator(story => withNoBorder(story))
+  .addDecorator(withNoBorder)
   .addParameters({
-    layout: 'fullscreen',
     changelog: Changelog,
   })
   .add('Dynamic (Story is invisible after click on ok button)', () => {
