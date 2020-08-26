@@ -29,7 +29,8 @@ export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
 
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = () => {
+  // eslint-disable-next-line func-names
+  xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
       document.querySelector(
