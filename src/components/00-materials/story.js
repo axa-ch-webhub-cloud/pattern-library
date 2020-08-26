@@ -109,105 +109,105 @@ export const IconsAndImages = () => {
   });
 
   const template = html`
-      <style>
-        body {
-          background-color: ${backgrounds};
-          color: ${colors};
-        }
+    <style>
+      body {
+        background-color: ${backgrounds};
+        color: ${colors};
+      }
 
-        svg {
-          border: 3px solid green;
-        }
+      svg {
+        border: 3px solid green;
+      }
 
-        .images > div > svg {
-          width: 40px;
-          height: 40px;
-        }
+      .images > div > svg {
+        width: 40px;
+        height: 40px;
+      }
 
-        .image-container {
-          display: flex;
-          align-items: center;
-          margin-bottom: 4px;
-        }
+      .image-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+      }
 
-        .image-container > svg {
-          margin-right: 5px;
-        }
+      .image-container > svg {
+        margin-right: 5px;
+      }
 
-        .materials__controls {
-          display: flex;
-          flex-wrap: wrap;
-        }
+      .materials__controls {
+        display: flex;
+        flex-wrap: wrap;
+      }
 
-        .materials__input-field {
-          margin-right: 50px;
-        }
+      .materials__input-field {
+        margin-right: 50px;
+      }
 
-        .materials__input-field {
-          height: 40px;
-          padding: 0 10px 0 20px;
-          min-width: 180px;
-          border: 1px solid;
-          font-size: 14px;
-          outline: none;
-          border-color: #e5e5e5; /* $color-mercury */
-          background-color: #fafafa; /* $color-alabaster */
-          color: #999; /* $color-light-grey */
-          fill: #999; /* $color-light-grey */
-        }
+      .materials__input-field {
+        height: 40px;
+        padding: 0 10px 0 20px;
+        min-width: 180px;
+        border: 1px solid;
+        font-size: 14px;
+        outline: none;
+        border-color: #e5e5e5; /* $color-mercury */
+        background-color: #fafafa; /* $color-alabaster */
+        color: #999; /* $color-light-grey */
+        fill: #999; /* $color-light-grey */
+      }
 
-        .materials__input-field:hover {
-          border: 1px solid #00008f;
-        }
+      .materials__input-field:hover {
+        border: 1px solid #00008f;
+      }
 
-        .materials__input-field:focus {
-          outline: 2px solid #00008f;
-          outline-offset: -2px;
-          color: #000;
-        }
+      .materials__input-field:focus {
+        outline: 2px solid #00008f;
+        outline-offset: -2px;
+        color: #000;
+      }
 
-        .materials__colorizer {
-          display: flex;
-          align-items: center;
-        }
+      .materials__colorizer {
+        display: flex;
+        align-items: center;
+      }
 
-        .materials__label {
-          margin-right: 10px;
-        }
+      .materials__label {
+        margin-right: 10px;
+      }
 
-        .materials__custom-colors {
-          background: lightcoral;
-          color: white;
-        }
-      </style>
-      <h2>
-        Note: The green borders reveal the dimensions of the SVGs.
-      </h2>
-      <div class="materials__controls">
-        <input
-          class="materials__input-field"
-          type="text"
-          placeholder="Find icon / image"
-          oninput="onCallbackInput(arguments[0])"
-        />
-        <div class="materials__colorizer">
-          <label class="materials__label">Overwrite Colors:</label>
-          <axa-toggle-switch
-            class="js-materials__color-switcher"
-          ></axa-toggle-switch>
-        </div>
+      .materials__custom-colors {
+        background: lightcoral;
+        color: white;
+      }
+    </style>
+    <h2>
+      Note: The green borders reveal the dimensions of the SVGs.
+    </h2>
+    <div class="materials__controls">
+      <input
+        class="materials__input-field"
+        type="text"
+        placeholder="Find icon / image"
+        oninput="onCallbackInput(arguments[0])"
+      />
+      <div class="materials__colorizer">
+        <label class="materials__label">Overwrite Colors:</label>
+        <axa-toggle-switch
+          class="js-materials__color-switcher"
+        ></axa-toggle-switch>
       </div>
+    </div>
 
-      <h3 class="icon-header">${icons.length} Icons:</h3>
-      <div class="icons">
-        ${svg(icons.map(i => mapToIconItem(i)))}
-      </div>
+    <h3 class="icon-header">${icons.length} Icons:</h3>
+    <div class="icons">
+      ${svg(icons.map(i => mapToIconItem(i)))}
+    </div>
 
-      <h3 class="image-header">${images.length} Images:</h3>
-      <div class="images">
-        ${svg(images.map(i => mapToIconItem(i)))}
-      </div>
-    `;
+    <h3 class="image-header">${images.length} Images:</h3>
+    <div class="images">
+      ${svg(images.map(i => mapToIconItem(i)))}
+    </div>
+  `;
 
   const wrapper = document.createElement('div');
   render(template, wrapper);
