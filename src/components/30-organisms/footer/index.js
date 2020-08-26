@@ -2,7 +2,7 @@
 import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
-import { CaretSvg } from '@axa-ch/materials/icons';
+import { Expand_moreSvg } from '@axa-ch/materials/icons';
 import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
@@ -229,7 +229,7 @@ class AXAFooter extends InlineStyles {
       };
     };
 
-    const showCaret = svg([CaretSvg || '']);
+    const showCaret = svg([Expand_moreSvg || '']);
 
     this._addListenersToLinks();
 
