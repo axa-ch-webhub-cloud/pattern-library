@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import AXADropdown from '@axa-ch/dropdown';
 import { Date_rangeSvg } from '@axa-ch/materials/icons';

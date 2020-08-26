@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';

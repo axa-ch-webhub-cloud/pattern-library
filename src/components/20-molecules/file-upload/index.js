@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';

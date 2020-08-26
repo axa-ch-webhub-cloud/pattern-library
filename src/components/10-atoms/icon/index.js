@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
