@@ -4,13 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoFooterSmall from './FooterSmall';
 import Changelog from '../CHANGELOG.md';
-import withNoBorder from '../../../../../.storybook/addons/no-border';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 
 storiesOf('Examples/Footer Small/React', module)
-  .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
+    layout: 'fullscreen',
     changelog: Changelog,
   })
   .add('Callbacks on language', () => {

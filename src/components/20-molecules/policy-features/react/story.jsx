@@ -9,13 +9,12 @@ import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
 import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
 import Changelog from '../CHANGELOG.md';
 import { STYLE_WHITELIST } from '../index';
-import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 const story = storiesOf('Examples/Policy Features/React', module);
-story.addDecorator(withNoBorder);
 story.addDecorator(withKnobs);
 story
   .addParameters({
+    layout: 'fullscreen',
     changelog: Changelog,
   })
   /* Default */

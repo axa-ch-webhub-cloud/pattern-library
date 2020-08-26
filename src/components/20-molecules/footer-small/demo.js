@@ -2,13 +2,12 @@
 import { storiesOf } from '@storybook/html';
 import './index';
 import Changelog from './CHANGELOG.md';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const selectedLanguageKey = '-';
 
 storiesOf('Examples/Footer Small/Pure HTML', module)
-  .addDecorator(withNoBorder)
   .addParameters({
+    layout: 'fullscreen',
     changelog: Changelog,
   })
   .add('Dynamic Links', () => {

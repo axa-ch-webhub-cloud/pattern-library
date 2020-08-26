@@ -2,7 +2,6 @@ import { text, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Changelog from './CHANGELOG.md';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 
 const variantOptions = {
   none: '',
@@ -11,9 +10,10 @@ const variantOptions = {
 
 export default {
   title: 'Components',
-  decorators: [withNoBorder, withKnobs],
+  decorators: [withKnobs],
 
   parameters: {
+    layout: 'fullscreen',
     changelog: Changelog,
   },
 };

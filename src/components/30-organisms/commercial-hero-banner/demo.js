@@ -4,7 +4,6 @@ import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
 import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
 import Changelog from './CHANGELOG.md';
 
@@ -12,9 +11,9 @@ const storyAXACommercialHeroBanner = storiesOf(
   'Examples/Commercial Hero Banner/Pure HTML',
   module
 );
-storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
 storyAXACommercialHeroBanner.addParameters({
+  layout: 'fullscreen',
   changelog: Changelog,
 });
 

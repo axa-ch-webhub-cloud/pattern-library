@@ -2,13 +2,12 @@ import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import Changelog from './CHANGELOG.md';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 
 export default {
   title: 'Components',
-  decorators: [withNoBorder, withKnobs],
-
+  decorators: [withKnobs],
   parameters: {
+    layout: 'fullscreen',
     changelog: Changelog,
   },
 };

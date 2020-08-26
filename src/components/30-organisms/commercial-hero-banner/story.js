@@ -1,14 +1,14 @@
 // if your need more boolean, select, radios
 import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
 import Changelog from './CHANGELOG.md';
 
 export default {
   title: 'Components',
-  decorators: [withKnobs, withNoBorder],
+  decorators: [withKnobs],
   parameters: {
+    layout: 'fullscreen',
     changelog: Changelog,
   },
 };
