@@ -2,8 +2,6 @@
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  Arrow_backSvg,
-  Arrow_forwardSvg,
   Expand_lessSvg,
   Insert_drive_fileSvg,
   File_downloadSvg,
@@ -16,6 +14,7 @@ import {
   File_uploadSvg,
   Cloud_uploadSvg,
 } from '@axa-ch/materials/icons';
+import { arrowRightSvg, arrowLeftSvg } from '@axa-ch/materials/intenal-icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -35,8 +34,8 @@ class AXAIcon extends LitElement {
 
   static get iconsMapping() {
     return {
-      'arrow-left': Arrow_backSvg,
-      'arrow-right': Arrow_forwardSvg,
+      'arrow-left': arrowLeftSvg,
+      'arrow-right': arrowRightSvg,
       collapse: Expand_lessSvg,
       document: Insert_drive_fileSvg,
       download: File_downloadSvg,
