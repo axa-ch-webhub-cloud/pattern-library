@@ -29,10 +29,15 @@ storyDropdown.add('Dropdown', () => {
   const dataTestId = text('data-test-id', '');
   const maxHeight = text('max-height', '');
 
+  const handleChange = e => {
+    const { target, detail } = e;
+    target.dataset.change = JSON.stringify(detail);
+  };
+
   const wrapper = document.createElement('div');
   const template = html`
     <axa-dropdown
-      onchange="console.log('onchange triggered: ', event.detail)"
+      @change="${handleChange}"
       defaulttitle="${defaultTitle}"
       value="${value}"
       label="${label}"
