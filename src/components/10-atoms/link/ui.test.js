@@ -343,10 +343,8 @@ test('should correctly update icon and text', async t => {
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
 
-  const downIconSignature =
-    'M16.59 8.295L12 12.875l-4.59-4.58L6 9.705l6 6 6-6-1.41-1.41z'; // expand.svg
-  const upIconSignature =
-    'M12 8.295l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41-6-6z'; // collapse.svg
+  const downIconSignature = 'M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'; // expand.svg
+  const upIconSignature = 'M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z'; // collapse.svg
 
   const iconSVGPathElement = Selector(() =>
     document
