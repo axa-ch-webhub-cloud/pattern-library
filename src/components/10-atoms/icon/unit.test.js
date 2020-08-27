@@ -1,5 +1,6 @@
+/* eslint-disable camelcase */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { DownloadSvg } from '@axa-ch/materials/icons';
+import { File_downloadSvg } from '@axa-ch/materials/icons';
 import AXAIcon from './index';
 
 describe('Icon', () => {
@@ -17,7 +18,7 @@ describe('Icon', () => {
 
     AXAIcon.prototype.updated();
 
-    expect(AXAIcon.prototype._loadedSvg).toBe(DownloadSvg);
+    expect(AXAIcon.prototype._loadedSvg).toBe(File_downloadSvg);
   });
   test('firstUpdated() should set _loadedSvg to empty string', () => {
     AXAIcon.prototype.icon = 'thisIsNotValid';
