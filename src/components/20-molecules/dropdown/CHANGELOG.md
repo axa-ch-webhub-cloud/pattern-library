@@ -1,8 +1,14 @@
-## 8.4.1
+## 9.0.0
+
+- Breaking change 1: onChange/change event gives 'name' field new semantics, adds 'optionLabel' for old, cf. README. (#1910)
+- Breaking change 2: 'disabled' is no longer supported in dropdown items; use 'defaultTitle' instead, cf. README. (#1923)
+- to match native select, a closed but focussed dropdown can now be opened via up/down arrow keys. (#1923)
+
+## 8.3.2
 
 - Fix: prevent duplicate style attachment. (#1727)
 
-## 8.4.0
+## 8.3.1
 
 - New styled icon for the arrow of the dropdown. #1882
 
