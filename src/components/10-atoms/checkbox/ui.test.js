@@ -300,3 +300,16 @@ test('should shows correct controlled behavior', async t => {
   await t.wait(50);
   await t.expect(checkbox.checked).notOk();
 });
+
+fixture('Checkbox - without a label, with error state').page(
+  `${host}/iframe.html?id=examples-checkbox-pure-html--without-a-label&viewMode=story`
+);
+
+test('should be clickable', async t => {
+  const checkbox = await Selector('axa-checkbox');
+  const checkboxClickable = await Selector('axa-checkbox > label');
+
+  await t.expect(checkbox.exists).ok();
+  await t.click(checkboxClickable);
+  await t.expect(checkbox.checked).ok();
+});
