@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
+// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
-// eslint-disable-next-line camelcase
 import { Expand_moreSvg } from '@axa-ch/materials/icons';
 import AXAContainer from '@axa-ch/container';
 import {
