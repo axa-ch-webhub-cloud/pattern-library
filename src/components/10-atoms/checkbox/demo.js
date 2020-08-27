@@ -48,7 +48,10 @@ storiesOf('Examples/Checkbox/Pure HTML', module)
   })
   .add('Without a label', () => {
     const template = html`
-      <axa-checkbox name="checkbox" error="This checkbox do not have a label, but its also clickable">
+      <axa-checkbox
+        name="checkbox"
+        error="This checkbox do not have a label, but its also clickable"
+      >
       </axa-checkbox>
     `;
 
