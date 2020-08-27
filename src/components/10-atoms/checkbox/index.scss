@@ -141,8 +141,14 @@ axa-checkbox {
 
   .a-checkbox__error {
     display: block;
-    margin: $checkbox-error-top-margin 0 0 ($checkbox-dimension + $checkbox-label-left-margin);
+    margin: $checkbox-error-top-margin 0 0 0;
     line-height: 1.37;
+  }
+
+  &[label]:not([label=""]) { // if label is set and is not empty the error text should have some margin-left
+    .a-checkbox__error {
+      margin: $checkbox-error-top-margin 0 0 ($checkbox-dimension + $checkbox-label-left-margin);
+    }
   }
 
   &[disabled] {

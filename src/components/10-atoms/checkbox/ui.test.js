@@ -103,6 +103,15 @@ test('should set refId on label and input', async t => {
     .ok();
 });
 
+fixture('Checkbox - with error label').page(
+  `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-h555d87h399&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-checked=true&knob-error=true&viewMode=story`
+);
+
+test('should show error text with a margin left', async t => {
+  const errorlabel = await Selector('.a-checkbox__error');
+  await t.expect(errorlabel.getStyleProperty('margin-left')).eql('31px');
+});
+
 fixture('Checkbox - Disabled and checked').page(
   `${host}/iframe.html?id=components--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
 );
@@ -312,4 +321,9 @@ test('should be clickable', async t => {
   await t.expect(checkbox.exists).ok();
   await t.click(checkboxClickable);
   await t.expect(checkbox.checked).ok();
+});
+
+test('should show error text without a margin left', async t => {
+  const errorlabel = await Selector('.a-checkbox__error');
+  await t.expect(errorlabel.getStyleProperty('margin-left')).eql('0px');
 });
