@@ -1,5 +1,4 @@
 /* eslint-disable camelcase */
-// TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
