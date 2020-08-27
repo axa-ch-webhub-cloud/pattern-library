@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/datepicker",
-  "version": "10.0.4",
+  "version": "10.0.5",
   "description": "The datepicker component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/datepicker#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/dropdown": "8.3.4",
-    "@axa-ch/materials": "11.0.1",
+    "@axa-ch/dropdown": "9.0.0",
+    "@axa-ch/materials": "11.0.2",
     "@skatejs/val": "^0.4.0",
     "date-fns": "^2.9.0",
     "lit-element": "^2.2.0",
