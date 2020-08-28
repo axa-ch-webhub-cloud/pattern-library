@@ -50,29 +50,72 @@ export const ToPatternLibrary = () => {
   xhttp.send();
 
   const template = html`
-    <axa-heading rank="3">Welcome to AXA’s Design System 🚀</axa-heading>
+    <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
     <axa-text variant="size-3">
       Welcome to the Design System of AXA Switzerland. Our Pattern Library
       provides components and tools to help product teams work more efficiently,
       and to make AXA’s applications more cohesive.
     </axa-text>
-    <axa-heading rank="3">Latest Releases:</axa-heading>
+    <axa-commercial-hero-banner
+      variant="light"
+      imagesource="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
+    >
+      <header slot="title">
+        <p>HAVE A PERFECT START</p>
+        <h1>New to the AXA Design System?</h1>
+      </header>
+      <p slot="content">
+        Check out our introduction guide on our guidelines, components and key
+        concepts
+      </p>
+      <div slot="button">
+        <axa-button-link href="https://axa.ch" variant="" size="large"
+          >GET STARTED</axa-button-link
+        >
+        <axa-button-link
+          href="https://axa.ch"
+          variant="secondary"
+          size="large"
+          icon="upload"
+          >GITHUB</axa-button-link
+        >
+      </div>
+    </axa-commercial-hero-banner>
+    <axa-heading rank="2">Last releases</axa-heading>
     <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
     <axa-text><span id="githubResponse"></span></axa-text>
-    <axa-heading rank="4">How to contribute</axa-heading>
-    <axa-text variant="size-3">
-      Whether you are helping us to fix bugs, or you are more into creating
-      components, we would love to have you as
-      <axa-link
-        href="https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md"
-        >contributer</axa-link
-      >
-      of the AXA Pattern Library! Check out our Contributing Guide for ideas on
-      contributing and setup steps for getting the repository up and running on
-      your local machine.
-    </axa-text>
+    <section class="PageCallToAction">
+      <div class="PageCallToAction-inner">
+        <div>
+          <p class="landingpage-questions-subtitle">Help & Contact</p>
+          <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
+        </div>
+        <axa-button-link href="/contact" variant="inverted"
+          >Get in touch</axa-button-link
+        >
+      </div>
+    </section>
+    
+    <style>
+    
+.landingpage-questions-subtitle {
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+}
 
-    <axa-heading rank="4">Contact</axa-heading>
+.PageCallToAction {
+    padding: 20px 40px;
+    background-color: #333;
+    color: #fff;
+}
+  
+.PageCallToAction-inner {
+    padding-left: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 960px;
+}</style>
   `;
 
   render(template, wrapper);
