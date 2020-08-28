@@ -45,4 +45,17 @@ storiesOf('Examples/Checkbox/Pure HTML', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
+  })
+  .add('Without a label', () => {
+    const template = html`
+      <axa-checkbox
+        name="checkbox"
+        error="This checkbox do not have a label, but its also clickable"
+      >
+      </axa-checkbox>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
   });
