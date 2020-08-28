@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/button",
-  "version": "5.2.11",
+  "version": "5.2.12",
   "description": "The button component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/button#readme",
@@ -29,7 +29,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "5.1.10",
+    "@axa-ch/icon": "5.1.11",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
