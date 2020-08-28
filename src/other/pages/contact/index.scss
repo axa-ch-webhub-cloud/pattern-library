@@ -7,11 +7,14 @@
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap: 2.5rem;
+    margin-top: 3rem;
 }
+
 .contact-support-visuals {
     display: flex;
     margin-bottom: 2.5rem;
     align-items: center;
+    margin-top: 10px;
 }
 
 .contact-col-wrapper {

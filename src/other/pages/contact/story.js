@@ -78,7 +78,7 @@ story.add('Contact', () => {
         <div>
           <img src="slack-black-and-white.png" width="40" alt="Slack Icon" />
           <axa-heading rank="6">Slack</axa-heading>
-          <axa-text variant="size-3">
+          <axa-text variant="size-2">
             It is the best choice for quick, day-to-day inquiries:
           </axa-text>
           <axa-link>Go to slack</axa-link>
@@ -86,7 +86,7 @@ story.add('Contact', () => {
         <div>
           <img src="github-black-and-white.png" width="40" alt="Github Icon" />
           <axa-heading rank="6">GitHub</axa-heading>
-          <axa-text variant="size-3">
+          <axa-text variant="size-2">
             Let’s talk about the code:
           </axa-text>
           <axa-link>Go to GitHub</axa-link>
