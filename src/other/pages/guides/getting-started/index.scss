@@ -50,6 +50,14 @@
     @include text(t2, bold);
 }
 
+.callout__first-element {
+    margin-top: 2rem;
+}
+
+pre {
+    margin: 3rem 0;
+}
+
 // Duplicate to src/other/pages/utils/contact-footer/index.scss
 html, body, #root {
     height: 100%;

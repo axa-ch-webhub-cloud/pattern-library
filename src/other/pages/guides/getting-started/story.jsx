@@ -141,14 +141,17 @@ export default AXAButtonReact;`}
   I am a Button
 </AxaButtonReact>`}
         </ReactSyntaxHighlighter>
-        {callout(
-          'github-mark.png',
-          'ReadMe',
-          `You have a question or want to get
+        <AXAHeading rank="3">Read more about the Pattern Library</AXAHeading>
+        <div className="callout__first-element">
+          {callout(
+            'github-mark.png',
+            'ReadMe',
+            `You have a question or want to get
         to know us? The readme is the best way to start.`,
-          'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
-          'Read me'
-        )}
+            'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
+            'Read me'
+          )}
+        </div>
         {callout(
           'github-mark.png',
           'Contribute',
