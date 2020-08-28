@@ -17,7 +17,7 @@ const getDateFromGitCommit = answerJson => {
 };
 
 export default {
-  title: 'Overview/What is new',
+  title: 'What is new',
   decorators: [],
   parameters: {
     knobs: { disabled: true },

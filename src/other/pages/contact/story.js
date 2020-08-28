@@ -4,7 +4,7 @@ import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 
 export default {
-  title: 'Overview/Contact',
+  title: 'Others/Contact',
   decorators: [],
   parameters: {
     knobs: { disabled: true },
