@@ -21,14 +21,14 @@ story.add('Contact', () => {
       ${styles}
     </style>
     <div class="accessory-story-content">
-      <axa-heading rank="2" variant="secondary">Help & Contact</axa-heading>
+      <axa-heading rank="1" variant="secondary">Help & Contact</axa-heading>
       <axa-text variant="size-1">
         The AXA core team provides support for users in adopting the AXA Design
         System. Reach out to us with the details of your project and we will do
         our bet to provide you with a tailored advice on how to reach your
         project objectives.
       </axa-text>
-      <axa-heading rank="3" variant="secondary">Support</axa-heading>
+      <axa-heading rank="2" variant="secondary">Support</axa-heading>
       <axa-text variant="size-2"
         >Part of our mission is to guide you, AXA production teams, with the
         adoption of the tool during your digital journey.</axa-text
@@ -42,8 +42,8 @@ story.add('Contact', () => {
           />
         </div>
         <div class="contact-col-wrapper">
-          <p class="support-kicker">Day-to-day questions</p>
-          <p class="support-paragraph">
+          <p class="contact-support-visuals__kicker">Day-to-day questions</p>
+          <p class="contact-support-visuals__paragraph">
             <strong>You need a clarification</strong> on any of the design/code
             elements? Something is not clear in the guidelines or processes?
             Don’t hesitate to reach out to us - we are happy to help.
@@ -55,8 +55,10 @@ story.add('Contact', () => {
           <img src="support-advice.jpg" alt="support advice" height="215" />
         </div>
         <div class="contact-col-wrapper">
-          <p class="support-kicker">Design advice and assessments</p>
-          <p class="support-paragraph">
+          <p class="contact-support-visuals__kicker">
+            Design advice and assessments
+          </p>
+          <p class="contact-support-visuals__paragraph">
             You have a digital project and
             <strong>you want to make sure the design is compliant</strong>
             to the AXA Brand standards? You need help and advice in adopting the
@@ -65,7 +67,7 @@ story.add('Contact', () => {
           </p>
         </div>
       </div>
-      <axa-heading rank="3" variant="secondary">Contact Us</axa-heading>
+      <axa-heading rank="2" variant="secondary">Contact Us</axa-heading>
       <axa-text variant="size-1">
         For any questions or feedback — don’t hesitate to be in touch via the
         channel that suits you best.

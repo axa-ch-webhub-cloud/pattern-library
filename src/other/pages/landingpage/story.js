@@ -4,8 +4,6 @@ import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 import contact from '../utils/contact-footer';
 
-// imagesource="https://drive.google.com/uc?export=view&id=1CZAbIBfCiH0aRhMoFtpOT4wXCLSxnY-1"
-
 export default {
   title: 'Welcome',
   decorators: [],
