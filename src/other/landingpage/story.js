@@ -56,7 +56,7 @@ export const ToPatternLibrary = () => {
   <style>${styles}</style>
   <axa-container>
     <axa-heading rank="1">AXA’s Design System 🚀</axa-heading>
-    <axa-text variant="size-3">
+    <axa-text variant="size-1">
       Welcome to the Design System of AXA Switzerland. Our Pattern Library
       provides components and tools to help product teams work more efficiently,
       and to make AXA’s applications more cohesive.
@@ -97,9 +97,7 @@ export const ToPatternLibrary = () => {
           <p class="landingpage-contact-subtitle">Help & Contact</p>
           <axa-heading rank="4" variant="secondary">Any question?<axa-heading>
         </div>
-        <axa-button-link href="/contact" variant="inverted"
-          >Get in touch</axa-button-link
-        >
+        <axa-button-link href="/?path=/story/contact--contact" variant="inverted">Get in touch</axa-button-link>
       </div>
     </section>
   `;
