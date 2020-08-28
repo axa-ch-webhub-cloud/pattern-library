@@ -31,27 +31,6 @@ export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
-  const xhttp = new XMLHttpRequest();
-  // eslint-disable-next-line func-names
-  xhttp.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      const responseJson = JSON.parse(xhttp.responseText);
-      document.querySelector(
-        '#githubResponse'
-      ).innerHTML = getFormattedGitCommitMessage(responseJson);
-      document.querySelector(
-        '#githubResponseDate'
-      ).innerHTML = getDateFromGitCommit(responseJson);
-    }
-  };
-  xhttp.open(
-    'GET',
-    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
-    true
-  );
-  xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
-  xhttp.send();
-
   const template = html`
     <style>
       ${styles}
@@ -99,10 +78,6 @@ export const ToPatternLibrary = () => {
           src="axa-design-system-illustration.png"
           alt="Design system illustration"
         /><img />
-        <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
-        <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
-        <axa-text><span id="githubResponse"></span></axa-text>
-
       </div>
     </div>
     ${contact}

@@ -5,6 +5,18 @@ import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 import contact from '../utils/contact-footer';
 
+const getFormattedGitCommitMessage = answerJson => {
+  const formattedMessage = answerJson.items[0].commit.message
+    .replace('Publish\n\n', '')
+    .replace(/- /g, '<br/>');
+  return formattedMessage;
+};
+
+const getDateFromGitCommit = answerJson => {
+  const formattedDate = new Date(answerJson.items[0].commit.author.date);
+  return formattedDate.toLocaleString(navigator.language);
+};
+
 const story = storiesOf("Overview|What's new", module);
 story.addParameters({
   knobs: { disabled: true },
@@ -16,6 +28,27 @@ story.addParameters({
 story.add("What's new", () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
+
+  const xhttp = new XMLHttpRequest();
+  // eslint-disable-next-line func-names
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      const responseJson = JSON.parse(xhttp.responseText);
+      document.querySelector(
+        '#githubResponse'
+      ).innerHTML = getFormattedGitCommitMessage(responseJson);
+      document.querySelector(
+        '#githubResponseDate'
+      ).innerHTML = getDateFromGitCommit(responseJson);
+    }
+  };
+  xhttp.open(
+    'GET',
+    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
+    true
+  );
+  xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
+  xhttp.send();
 
   const template = html`
     <style>
@@ -35,6 +68,9 @@ story.add("What's new", () => {
         code integration structure. For more information check out our
         <axa-link>Introduction</axa-link>
       </p>
+      <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
+        <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
+        <axa-text><span id="githubResponse"></span></axa-text>
     </div>
     ${contact}
   `;
