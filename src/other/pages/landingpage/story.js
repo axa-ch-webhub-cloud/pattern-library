@@ -15,18 +15,6 @@ export default {
   },
 };
 
-const getFormattedGitCommitMessage = answerJson => {
-  const formattedMessage = answerJson.items[0].commit.message
-    .replace('Publish\n\n', '')
-    .replace(/- /g, '<br/>');
-  return formattedMessage;
-};
-
-const getDateFromGitCommit = answerJson => {
-  const formattedDate = new Date(answerJson.items[0].commit.author.date);
-  return formattedDate.toLocaleString(navigator.language);
-};
-
 export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');

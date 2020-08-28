@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../src/other/landingpage/story.js', '../src/components/**/@(story|demo).@(js|jsx)', '../src/pages/axa-ch-main/story.js'],
+    stories: ['../src/other/pages/landingpage/story.js', '../src/components/**/@(story|demo).@(js|jsx)', '../src/other/pages/showcases/axa-ch-main/story.js'],
     addons: [
       //'./addons/changelog/register', // deactivated because of SB issue
       '@storybook/addon-knobs',
