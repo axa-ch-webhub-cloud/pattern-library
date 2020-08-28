@@ -11,7 +11,6 @@ import {
 } from '@storybook/addon-knobs';
 import AXAButtonLink from './AXAButtonLink';
 import { iconList } from '../../icon/icon-list';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 const variantOptions = {
@@ -44,9 +43,6 @@ const invertedBgs = {
 const storyButton = storiesOf('Examples/Button Link/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
   changelog: Changelog,
 });
 

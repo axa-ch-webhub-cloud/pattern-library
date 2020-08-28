@@ -6,7 +6,6 @@ import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
@@ -16,9 +15,6 @@ const storyAXACommercialHeroBanner = storiesOf(
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
 storyAXACommercialHeroBanner.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
   changelog: Changelog,
 });
 

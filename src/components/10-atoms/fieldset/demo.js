@@ -2,15 +2,10 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import './index';
-
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 storiesOf('Examples/Fieldset/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Responsive stretch', () => {

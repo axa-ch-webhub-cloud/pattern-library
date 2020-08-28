@@ -1,23 +1,18 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs, number } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
-const story = storiesOf('Components|Testimonials', module);
-story.addDecorator(withKnobs);
-story.addDecorator(withNoBorder);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components/Testimonials',
+  decorators: [withKnobs, withNoBorder],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-story.add('Testimonials', () => {
+export const Testimonials = () => {
   const title = text('title', 'Customer Reviews');
   const subtitle = text(
     'Text',
@@ -74,4 +69,4 @@ story.add('Testimonials', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

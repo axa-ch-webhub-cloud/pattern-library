@@ -1,11 +1,7 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import './index';
-
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const variantOptions = {
@@ -33,45 +29,46 @@ const variantOptions = {
   'hyperlink-red-underline': 'hyperlink-red-underline',
 };
 
-storiesOf('Components', module)
-  .addDecorator(withKnobs)
-  .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+
+  parameters: {
     changelog: Changelog,
-  })
-  .add('Link', () => {
-    const link = text(
-      'link',
-      'https://www.axa.ch/en/information/data-protection.html'
-    );
-    const linkText = text('Link text', 'Data protection statement');
-    const external = boolean('external', false);
-    const variant = select('variant', variantOptions, '');
-    const icon = select('icon', iconList, '');
-    const backgrounds = select(
-      'Background color',
-      ['red', 'blue', 'white', 'black'],
-      'white'
-    );
+  },
+};
 
-    const wrapper = document.createElement('div');
-    const template = html`
-      <style>
-        body {
-          background-color: ${backgrounds};
-        }
-      </style>
-      <axa-link
-        href="${link}"
-        ?external="${external}"
-        variant="${variant}"
-        icon="${icon}"
-        >${linkText}</axa-link
-      >
-    `;
+export const Link = () => {
+  const link = text(
+    'link',
+    'https://www.axa.ch/en/information/data-protection.html'
+  );
+  const linkText = text('Link text', 'Data protection statement');
+  const external = boolean('external', false);
+  const variant = select('variant', variantOptions, '');
+  const icon = select('icon', iconList, '');
+  const backgrounds = select(
+    'Background color',
+    ['red', 'blue', 'white', 'black'],
+    'white'
+  );
 
-    render(template, wrapper);
-    return wrapper;
-  });
+  const wrapper = document.createElement('div');
+  const template = html`
+    <style>
+      body {
+        background-color: ${backgrounds};
+      }
+    </style>
+    <axa-link
+      href="${link}"
+      ?external="${external}"
+      variant="${variant}"
+      icon="${icon}"
+      >${linkText}</axa-link
+    >
+  `;
+
+  render(template, wrapper);
+  return wrapper;
+};

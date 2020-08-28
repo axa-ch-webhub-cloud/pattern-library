@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import Changelog from '../CHANGELOG.md';
-import Readme from '../README.md';
 import AXAFooterReact from './Footer';
 
 const setNewlyClickedLink = link => {
@@ -16,9 +15,6 @@ const setNewlyClickedLink = link => {
 storiesOf('Examples/Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
 

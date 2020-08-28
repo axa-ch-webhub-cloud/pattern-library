@@ -7,16 +7,12 @@ import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import AXALinkReact from './AXALinkReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Cookie Disclaimer/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Story', () => {

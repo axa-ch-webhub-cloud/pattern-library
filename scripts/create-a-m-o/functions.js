@@ -195,35 +195,26 @@ const createFiles = (store, a, m, o, done) => () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/story.js`,
     outdent`
-    /* global document */
-    import { storiesOf } from '@storybook/html';
-    // if your need more boolean, select, radios
     import { text, withKnobs } from '@storybook/addon-knobs';
     import { html, render } from 'lit-html';
     import './index';
-    import Readme from './README.md';
-    import Changelog from './CHANGELOG.md';
 
-    const story = storiesOf('Components|${compTitle}', module);
-    story.addDecorator(withKnobs);
-    story.addParameters({
-      readme: {
-        sidebar: Readme,
-      },
-      changelog: Changelog
-    });
-
-    story.add('${compTitle}', () => {
+    export default {
+      title: 'Components',
+      decorators: [withKnobs],
+    };
+    
+    export const ${compTitle} = () => {
       const textknob = text('This is a knob', 'Value of text knob');
-
+      
       const wrapper = document.createElement('div');
       const template = html\`
         <axa-${fileName}>\${textknob}</axa-${fileName}>
       \`;
-
+      
       render(template, wrapper);
       return wrapper;
-    });
+    }
     `,
     'utf8',
   );

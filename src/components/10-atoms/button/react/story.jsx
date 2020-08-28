@@ -50,9 +50,6 @@ const invertedBgs = {
 const storyButton = storiesOf('Examples/Button/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
   changelog: Changelog,
 });
 

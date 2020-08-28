@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import {
   boolean,
   select,
@@ -10,7 +8,6 @@ import {
 import { html, render } from 'lit-html';
 import './index';
 import { iconList } from '../icon/icon-list';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const variantOptions = {
@@ -40,16 +37,15 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButtonLink = storiesOf('Components', module);
-storyButtonLink.addDecorator(withKnobs);
-storyButtonLink.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-storyButtonLink.add('Button Link', () => {
+export const ButtonLink = () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
   const external = text('external', '');
@@ -81,4 +77,4 @@ storyButtonLink.add('Button Link', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

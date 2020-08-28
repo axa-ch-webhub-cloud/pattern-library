@@ -1,5 +1,3 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import {
   boolean,
   select,
@@ -10,19 +8,17 @@ import {
 import { html, render } from 'lit-html';
 import './index';
 import { iconList } from '../icon/icon-list';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyButton = storiesOf('Components', module);
-storyButton.addDecorator(withKnobs);
-storyButton.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-export const variantOptions = {
+const variantOptions = {
   default: '',
   red: 'red',
   secondary: 'secondary',
@@ -34,19 +30,19 @@ export const variantOptions = {
   'inverted-blue-teal': 'inverted-blue-teal',
 };
 
-export const sizeOptions = {
+const sizeOptions = {
   default: '',
   large: 'large',
   small: 'small',
 };
 
-export const typesOptions = {
+const typesOptions = {
   button: 'button',
   submit: 'submit',
   reset: 'reset',
 };
 
-export const invertedBgs = {
+const invertedBgs = {
   inverted: '#00008f',
   'inverted-blue-ocean': '#4976ba',
   'inverted-red-tosca': '#914146',
@@ -55,7 +51,7 @@ export const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-storyButton.add('Button', () => {
+export const Button = () => {
   const buttonText = text('text', 'Calculate Premium');
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
@@ -84,4 +80,4 @@ storyButton.add('Button', () => {
   `;
   render(template, wrapper);
   return wrapper;
-});
+};

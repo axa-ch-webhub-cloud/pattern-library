@@ -1,25 +1,19 @@
-/* global document */
-/* eslint-disable import/no-extraneous-dependencies */
-import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
 import { text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyAXACommercialHeroBanner = storiesOf('Components', module);
-storyAXACommercialHeroBanner.addDecorator(withNoBorder);
-storyAXACommercialHeroBanner.addDecorator(withKnobs);
-storyAXACommercialHeroBanner.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs, withNoBorder],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
+export const CommercialHeroBanner = () => {
   const variant = radios(
     'Variant',
     {
@@ -62,4 +56,4 @@ storyAXACommercialHeroBanner.add('Commercial Hero Banner', () => {
   `;
   render(template, wrapper);
   return wrapper;
-});
+};

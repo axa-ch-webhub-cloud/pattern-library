@@ -2,13 +2,9 @@
 import { storiesOf } from '@storybook/html';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 storiesOf('Examples/Input File/Pure HTML', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Clickable', () => {

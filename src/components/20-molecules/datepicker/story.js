@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import {
   text,
   number,
@@ -9,7 +8,6 @@ import {
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
 const localeOptions = {
@@ -22,16 +20,15 @@ const localeOptions = {
   'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
 };
 
-const story = storiesOf('Components', module);
-story.addDecorator(withKnobs);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-story.add('Datepicker', () => {
+export const Datepicker = () => {
   const inputfield = boolean('inputfield', false);
   const locale = select('locale', localeOptions, 'de-CH');
   const year = number('year', 2020);
@@ -86,4 +83,4 @@ story.add('Datepicker', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

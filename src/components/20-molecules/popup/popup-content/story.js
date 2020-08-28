@@ -1,19 +1,15 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from '../CHANGELOG.md';
 
-const storyPopupContent = storiesOf('Components', module);
-storyPopupContent.addDecorator(withKnobs);
-storyPopupContent.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
 const children = html`
   <h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>
@@ -23,7 +19,7 @@ const children = html`
   </p>
 `;
 
-storyPopupContent.add('Popup Content', () => {
+export const PopupContent = () => {
   const open = boolean('open', true);
 
   const wrapper = document.createElement('div');
@@ -33,4 +29,4 @@ storyPopupContent.add('Popup Content', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

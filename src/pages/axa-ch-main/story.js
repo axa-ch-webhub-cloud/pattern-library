@@ -1,9 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 
-import Readme from '../../../README.md';
 import '../../components/10-atoms/text';
 import '../../components/10-atoms/heading';
 import commercialHeroBanner from './commercial-hero-banner';
@@ -12,13 +9,11 @@ import policyFeatures from './policy-features';
 import navbar from './navbar';
 import footerSmall from './footer-small';
 
-const story = storiesOf('Pages|AXA', module);
-story.addDecorator(withKnobs);
-story.addParameters({
-  readme: {
-    sidebar: Readme,
-  },
-});
+export default {
+  title: 'Pages/AXA',
+  decorators: [withKnobs],
+  parameters: {},
+};
 
 function getFirstChildOfEachAxaCustomElement() {
   return Array.prototype.slice
@@ -41,7 +36,7 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   }
 }
 
-story.add('Main Page', () => {
+export const MainPage = () => {
   const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
   const wrapper = document.createElement('div');
 
@@ -97,4 +92,4 @@ story.add('Main Page', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

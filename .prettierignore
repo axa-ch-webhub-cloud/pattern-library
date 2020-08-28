@@ -13,6 +13,7 @@ src/static
 *.rtf
 .gitignore
 .DS_Store
+*.sh
 
 # Ignore auto generated files
 node_modules

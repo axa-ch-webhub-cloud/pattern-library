@@ -6,14 +6,10 @@ import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 import DemoDropdownReact from './DemoDropdownReact';
 import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Dropdown/React', module)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   .add('Focussable', () => {

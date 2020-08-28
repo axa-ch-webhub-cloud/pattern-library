@@ -3,14 +3,10 @@ import { storiesOf } from '@storybook/html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import Changelog from './CHANGELOG.md';
 import './index';
-import Readme from './README.md';
 
 storiesOf('Examples/Footer/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
 

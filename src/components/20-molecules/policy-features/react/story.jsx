@@ -7,7 +7,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
 import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
-import Readme from '../README.md';
 import Changelog from '../CHANGELOG.md';
 import { STYLE_WHITELIST } from '../index';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
@@ -17,9 +16,6 @@ story.addDecorator(withNoBorder);
 story.addDecorator(withKnobs);
 story
   .addParameters({
-    readme: {
-      sidebar: Readme,
-    },
     changelog: Changelog,
   })
   /* Default */

@@ -1,21 +1,17 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyTextarea = storiesOf('Components', module);
-storyTextarea.addDecorator(withKnobs);
-storyTextarea.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
-storyTextarea.add('Textarea', () => {
+export const Textarea = () => {
   const label = text('label*', 'Please describe the course of events');
   const name = text('name*', '');
   const refId = text('refId', '');
@@ -49,4 +45,4 @@ storyTextarea.add('Textarea', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

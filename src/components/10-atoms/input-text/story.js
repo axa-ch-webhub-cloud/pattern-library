@@ -1,19 +1,15 @@
-/* global document */
-import { storiesOf } from '@storybook/html';
 import { boolean, text, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
-import Readme from './README.md';
 import Changelog from './CHANGELOG.md';
 
-const storyInputText = storiesOf('Components', module);
-storyInputText.addDecorator(withKnobs);
-storyInputText.addParameters({
-  readme: {
-    sidebar: Readme,
+export default {
+  title: 'Components',
+  decorators: [withKnobs],
+  parameters: {
+    changelog: Changelog,
   },
-  changelog: Changelog,
-});
+};
 
 const typeOptions = {
   text: 'text',
@@ -21,7 +17,7 @@ const typeOptions = {
   password: 'password',
 };
 
-storyInputText.add('Input Text', () => {
+export const InputText = () => {
   const label = text('label*', '');
   const name = text('name*', '');
   const refId = text('refid', '');
@@ -67,4 +63,4 @@ storyInputText.add('Input Text', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};
