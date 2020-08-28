@@ -1,18 +1,20 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 
-const story = storiesOf('Contact', module);
-story.addParameters({
-  knobs: { disabled: true },
-  changelog: { disabled: true },
-  codepreview: { disabled: true },
-  options: { showPanel: false },
-});
+export default {
+  title: 'Overview/Contact',
+  decorators: [],
+  parameters: {
+    knobs: { disabled: true },
+    changelog: { disabled: true },
+    codepreview: { disabled: true },
+    a11y: { disabled: true },
+  },
+};
 
-story.add('Contact', () => {
+export const Contact = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
@@ -120,4 +122,4 @@ story.add('Contact', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

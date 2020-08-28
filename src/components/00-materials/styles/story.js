@@ -55,7 +55,7 @@ $color-shy-tomato: #c91432 !default;
 `;
 
 export default {
-  title: 'Brand Elements|Colors',
+  title: 'Brand Elements/Colors',
   decorators: [withKnobs],
 
   parameters: {

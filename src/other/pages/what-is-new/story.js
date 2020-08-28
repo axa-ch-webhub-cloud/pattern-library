@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
@@ -17,15 +16,18 @@ const getDateFromGitCommit = answerJson => {
   return formattedDate.toLocaleString(navigator.language);
 };
 
-const story = storiesOf("Overview|What's new", module);
-story.addParameters({
-  knobs: { disabled: true },
-  changelog: { disabled: true },
-  codepreview: { disabled: true },
-  options: { showPanel: false },
-});
+export default {
+  title: 'Overview/What is new',
+  decorators: [],
+  parameters: {
+    knobs: { disabled: true },
+    changelog: { disabled: true },
+    codepreview: { disabled: true },
+    a11y: { disabled: true },
+  },
+};
 
-story.add("What's new", () => {
+export const WhatIsNew = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
@@ -78,4 +80,4 @@ story.add("What's new", () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

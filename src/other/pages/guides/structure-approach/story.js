@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import '../../../../components/10-atoms/text';
 import '../../../../components/10-atoms/heading';
@@ -6,15 +5,18 @@ import styles from './index.scss';
 import contact from '../../utils/contact-footer';
 import { callout } from '../../utils/callout';
 
-const story = storiesOf('Guides|Structure Approach', module);
-story.addParameters({
-  knobs: { disabled: true },
-  changelog: { disabled: true },
-  codepreview: { disabled: true },
-  options: { showPanel: false },
-});
+export default {
+  title: 'Guides/Structure Approach',
+  decorators: [],
+  parameters: {
+    knobs: { disabled: true },
+    changelog: { disabled: true },
+    codepreview: { disabled: true },
+    a11y: { disabled: true },
+  },
+};
 
-story.add('Structure Approach', () => {
+export const StructureApproach = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
@@ -166,4 +168,4 @@ story.add('Structure Approach', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

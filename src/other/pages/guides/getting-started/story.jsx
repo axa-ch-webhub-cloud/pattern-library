@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
@@ -6,15 +5,18 @@ import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
 import { AXAText, AXAHeading } from './plib-components';
 import styles from './index.scss';
 
-const story = storiesOf('Guides|Getting started', module);
-story.addParameters({
-  knobs: { disabled: true },
-  changelog: { disabled: true },
-  codepreview: { disabled: true },
-  options: { showPanel: false },
-});
+export default {
+  title: 'Guides/Getting started',
+  decorators: [],
+  parameters: {
+    knobs: { disabled: true },
+    changelog: { disabled: true },
+    codepreview: { disabled: true },
+    a11y: { disabled: true },
+  },
+};
 
-story.add('Getting started', () => {
+export const GettingStarted = () => {
   const buttonLinkStyle = {
     width: '100%',
   };
@@ -221,4 +223,4 @@ export default AXAButtonReact;`}
     div
   );
   return div;
-});
+};
