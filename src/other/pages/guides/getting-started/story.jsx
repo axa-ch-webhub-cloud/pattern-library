@@ -145,6 +145,7 @@ export default AXAButtonReact;`}
         </ReactSyntaxHighlighter>
         <AXAHeading rank="3">Read more about the Pattern Library</AXAHeading>
         <div className="callout__first-element">
+          {/* TODO: Find way to use ad hoc component callout footer from  src/other/pages/utils/callout/index.js */}
           {callout(
             'github-mark.png',
             'ReadMe',
@@ -201,6 +202,7 @@ export default AXAButtonReact;`}
           'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
           'take a look'
         )}
+        {/* TODO: Find way to use ad hoc component contact footer from  src/other/pages/utils/contact-footer/index.js */}
         <section className="contact-footer">
           <div className="contact-footer__inner">
             <div>
@@ -211,7 +213,7 @@ export default AXAButtonReact;`}
             </div>
             <axa-button-link
               size="large"
-              href="/?path=/story/contact--contact"
+              href="?path=/story/others-contact--contact"
               variant="inverted"
             >
               Get in touch
