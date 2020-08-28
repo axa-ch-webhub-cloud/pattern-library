@@ -1,6 +1,7 @@
+/* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import AXADropdown from '@axa-ch/dropdown';
-import { DateInputSvg } from '@axa-ch/materials/icons';
+import { Date_rangeSvg } from '@axa-ch/materials/icons';
 import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
@@ -23,7 +24,7 @@ import {
 } from './utils/date';
 
 // module constants
-const dateInputIcon = svg([DateInputSvg]);
+const dateRangeIcon = svg([Date_rangeSvg]);
 const EMPTY_FUNCTION = () => {};
 
 // module globals
@@ -392,7 +393,7 @@ class AXADatepicker extends NoShadowDOM {
                   class="m-datepicker__input-button js-datepicker__input-button"
                   @click="${this.handleInputButtonClick}"
                 >
-                  ${dateInputIcon}
+                  ${dateRangeIcon}
                 </button>
                 ${checkMark
                   ? html`

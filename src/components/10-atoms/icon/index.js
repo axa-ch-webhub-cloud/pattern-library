@@ -1,20 +1,20 @@
+/* eslint-disable camelcase */
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  ArrowLeftSvg,
-  ArrowRightSvg,
-  CollapseSvg,
-  DocumentSvg,
-  DownloadSvg,
+  Expand_lessSvg,
+  Insert_drive_fileSvg,
+  File_downloadSvg,
   EmailSvg,
-  ExpandSvg,
-  MobileSvg,
-  PhoneSvg,
+  Expand_moreSvg,
+  Phone_iphoneSvg,
+  Local_phoneSvg,
   AddSvg,
   SearchSvg,
-  UploadSvg,
-  CloudUploadSvg,
+  File_uploadSvg,
+  Cloud_uploadSvg,
 } from '@axa-ch/materials/icons';
+import { arrowRightSvg, arrowLeftSvg } from '@axa-ch/materials/internal-icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -34,19 +34,19 @@ class AXAIcon extends LitElement {
 
   static get iconsMapping() {
     return {
-      'arrow-left': ArrowLeftSvg,
-      'arrow-right': ArrowRightSvg,
-      collapse: CollapseSvg,
-      document: DocumentSvg,
-      download: DownloadSvg,
+      'arrow-left': arrowLeftSvg,
+      'arrow-right': arrowRightSvg,
+      collapse: Expand_lessSvg,
+      document: Insert_drive_fileSvg,
+      download: File_downloadSvg,
       email: EmailSvg,
-      expand: ExpandSvg,
-      mobile: MobileSvg,
-      phone: PhoneSvg,
+      expand: Expand_moreSvg,
+      mobile: Phone_iphoneSvg,
+      phone: Local_phoneSvg,
       add: AddSvg,
       search: SearchSvg,
-      upload: UploadSvg,
-      'cloud-upload': CloudUploadSvg,
+      upload: File_uploadSvg,
+      'cloud-upload': Cloud_uploadSvg,
       'axa-logo': AxaLogoSvg,
       'axa-logo-open': AxaLogoOpenSvg,
     };

@@ -1,12 +1,13 @@
+/* eslint-disable camelcase */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
 
 import {
   AddSvg,
-  DeleteForeverSvg,
+  Delete_foreverSvg,
   ClearSvg,
-  AttachFileSvg,
+  Attach_fileSvg,
 } from '@axa-ch/materials/icons';
 import AXAInputFile from '@axa-ch/input-file';
 
@@ -22,8 +23,8 @@ import styles from './index.scss';
 import compressImage from './utils/imageCompressor';
 
 const ADD_ICON = svg([AddSvg]);
-const ATTACH_FILE_ICON = svg([AttachFileSvg]);
-const DELETE_FOREVER_ICON = svg([DeleteForeverSvg]);
+const ATTACH_FILE_ICON = svg([Attach_fileSvg]);
+const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
