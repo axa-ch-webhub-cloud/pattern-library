@@ -36,7 +36,11 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   }
 }
 
+<<<<<<< HEAD
 export const MainPage = () => {
+=======
+story.add('AXA Main Page', () => {
+>>>>>>> rename pages story
   const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
   const wrapper = document.createElement('div');
 
