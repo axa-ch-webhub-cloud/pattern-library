@@ -5,8 +5,6 @@ import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
 import { AXAText, AXAHeading } from './plib-components';
 import styles from './index.scss';
-import contact from '../../utils/contact-footer';
-import { callout } from '../../utils/callout';
 
 const story = storiesOf('Guides|Getting started', module);
 story.addParameters({
@@ -17,48 +15,35 @@ story.addParameters({
 });
 
 story.add('Getting started', () => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('accessory-story-wrapper');
-
-  const calloutReadMe = callout(
-    'github-mark.png',
-    'ReadMe',
-    'You have a question or want to get to know us? The readme is the best way to start.',
-    'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
-    'Read me'
-  );
-
-  //   callout(
-  //     'github-mark.png',
-  //     'Contribute',
-  //     `You want to contribute to us? Nice! Here you'll find the "how-to".`,
-  //     'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
-  //     'Take a look'
-  //   ),
-  //   callout(
-  //     'github-mark.png',
-  //     'Architecture',
-  //     'Read more about the big picture of V2 and how we got here. This includes framework choices and much more.',
-  //     'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
-  //     'take a look'
-  //   ),
-  //   callout(
-  //     'github-mark.png',
-  //     'Code of Conduct',
-  //     'We as the Pattern Library Team commited ourselves to a  set of rules, responsibilities and practices.',
-  //     'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
-  //     'take a look'
-  //   ),
-  //   callout(
-  //     'figma.png',
-  //     'AXA Design System UI Kit',
-  //     'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit',
-  //     'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
-  //     'take a look'
-  //   ),
-  // ];
+  const buttonLinkStyle = {
+    width: '100%',
+  };
+  function callout(icon, header, text, link, linkText) {
+    return (
+      <div className="callout">
+        <div className="callout__image">
+          <img src={icon} alt="AXA Design System UI Kit" />
+        </div>
+        <div className="callout__col callout__col-padding">
+          <p className="callout__header">{header}</p>
+          <p className="callout__text">{text}</p>
+        </div>
+        <div className="callout__col">
+          <axa-button-link
+            style={buttonLinkStyle}
+            size="large"
+            href={link}
+            external=""
+          >
+            {linkText}
+          </axa-button-link>
+        </div>
+      </div>
+    );
+  }
 
   const div = document.createElement('div');
+  div.classList.add('accessory-story-wrapper');
 
   ReactDOM.render(
     <div>
@@ -156,12 +141,35 @@ export default AXAButtonReact;`}
   I am a Button
 </AxaButtonReact>`}
         </ReactSyntaxHighlighter>
-        {/* {calloutReadMe} */}
-        {/* 
-        {callouts[0]}
-        {callouts[1]}
-        {callouts[2]}
-        {callouts[3]} */}
+        {callout(
+          'github-mark.png',
+          'ReadMe',
+          `You have a question or want to get
+        to know us? The readme is the best way to start.`,
+          'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
+          'Read me'
+        )}
+        {callout(
+          'github-mark.png',
+          'Contribute',
+          `You want to contribute to us? Nice! Here you'll find the "how-to".`,
+          'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
+          'Take a look'
+        )}
+        {callout(
+          'github-mark.png',
+          'Architecture',
+          'Read more about the big picture of V2 and how we got here. This includes framework choices and much more.',
+          'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
+          'take a look'
+        )}
+        {callout(
+          'github-mark.png',
+          'Code of Conduct',
+          'We as the Pattern Library Team commited ourselves to a  set of rules, responsibilities and practices.',
+          'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
+          'take a look'
+        )}
 
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
@@ -181,11 +189,31 @@ export default AXAButtonReact;`}
             development:
           </AXAText>
         </div>
-
-        {/* {callouts[4]} */}
+        {callout(
+          'figma.png',
+          'AXA Design System UI Kit',
+          'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit',
+          'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
+          'take a look'
+        )}
+        <section className="contact-footer">
+          <div className="contact-footer__inner">
+            <div>
+              <p className="contact-footer__subtitle">Help & Contact</p>
+              <axa-heading rank="4" variant="secondary">
+                Any question?
+              </axa-heading>
+            </div>
+            <axa-button-link
+              size="large"
+              href="/?path=/story/contact--contact"
+              variant="inverted"
+            >
+              Get in touch
+            </axa-button-link>
+          </div>
+        </section>
       </div>
-
-      {/* {contact} */}
     </div>,
     div
   );
