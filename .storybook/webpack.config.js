@@ -24,7 +24,7 @@ module.exports = ({ config }) => {
 
   config.plugins.push(
     new webpack.DefinePlugin({__VERSION_INFO__: stringifiedVersionInfo}),
-    new CopyPlugin({ patterns: [{ from: 'src/other/utils/assets'}]})
+    new CopyPlugin({ patterns: [{ from: 'src/other/pages/utils/assets'}]})
   );
 
   config.module.rules.push(

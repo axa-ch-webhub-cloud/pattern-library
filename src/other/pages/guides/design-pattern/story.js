@@ -1,11 +1,11 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import '../../../components/10-atoms/text';
-import '../../../components/10-atoms/heading';
+import '../../../../components/10-atoms/text';
+import '../../../../components/10-atoms/heading';
 import styles from './index.scss';
 import contact from '../../utils/contact-footer';
 
-const story = storiesOf('Guides|Structure Approach', module);
+const story = storiesOf('Guides|Design Pattern', module);
 story.addParameters({
   knobs: { disabled: true },
   changelog: { disabled: true },
@@ -13,7 +13,7 @@ story.addParameters({
   options: { showPanel: false },
 });
 
-story.add('Structure Approach', () => {
+story.add('Design Pattern', () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
@@ -22,36 +22,10 @@ story.add('Structure Approach', () => {
       ${styles}
     </style>
     <div class="accessory-story-content">
-      <axa-heading rank="1" variant="secondary">Structure approach</axa-heading>
+      <axa-heading rank="1" variant="secondary">Design Pattern</axa-heading>
       <axa-text variant="size-1">
         Test
       </axa-text>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <p>hoi</p>
     </div>
     ${contact}
   `;

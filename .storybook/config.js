@@ -27,14 +27,14 @@ addDecorator(addReadme);
 addDecorator(withHTML);
 addDecorator(withA11y);
 
-const landingpage = require.context('../src/other/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const whatIsNew = require.context('../src/other/what-is-new', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const contact = require.context('../src/other/contact', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
-const guides = require.context('../src/other/guides', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const landingpage = require.context('../src/other/pages/landingpage', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const whatIsNew = require.context('../src/other/pages/what-is-new', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const contact = require.context('../src/other/pages/contact', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const guides = require.context('../src/other/pages/guides', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 // N.B. don't-look-into-node-modules behaviour uses negative lookbehind (?<!) as part of its regular expression
 // (https://v8.dev/blog/regexp-lookbehind-assertions), which is supported for node 9 and greater
 const components = require.context('../src/components', true, /(?<!node_modules.*)(story|demo)\.(js|jsx)$/);
-const showcases = require.context('../src/other/showcases', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
+const showcases = require.context('../src/other/pages/showcases', true, /(story\.(js|jsx)|demo.(js|jsx))$/);
 
 configure(() => {
   landingpage.keys().forEach(landingpage);

@@ -1,7 +1,7 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import '../../components/10-atoms/text';
-import '../../components/10-atoms/heading';
+import '../../../components/10-atoms/text';
+import '../../../components/10-atoms/heading';
 import styles from './index.scss';
 import contact from '../utils/contact-footer';
 
