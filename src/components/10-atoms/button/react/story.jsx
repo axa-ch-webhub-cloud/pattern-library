@@ -12,7 +12,6 @@ import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import Changelog from '../CHANGELOG.md';
 import Readme from './../README.md';
-import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import AXAButton from './AXAButton';
 
 const variantOptions = {
@@ -66,11 +65,17 @@ storyButton.add('Story', () => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
-      <ReactSyntaxHighlighter language="javascript">
-        {`import {createElement} from 'react'; import createAXAButtonReact from
-        '@axa-ch/button/lib/index.react'; const AXAButtonReact =
-        createAXAButtonReact(createElement); export default AXAButtonReact;`}
-      </ReactSyntaxHighlighter>
+      <AXAButton
+        type={types}
+        variant={variants}
+        className="myCssClass"
+        size={sizes}
+        icon={icons}
+        disabled={disabled}
+        motionOff={motionOff}
+      >
+        {buttonText}
+      </AXAButton>
     </div>,
     wrapper
   );
