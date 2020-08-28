@@ -15,7 +15,8 @@
     "icons",
     "images",
     "icons-raw",
-    "images-raw"
+    "images-raw",
+    "internal-icons"
   ],
   "publishConfig": {
     "access": "public"
