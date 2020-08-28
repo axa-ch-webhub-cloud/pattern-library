@@ -1,3 +1,8 @@
+## 5.1.5
+
+- The checkbox was not able to click if no label was set (#1929)
+- The error text is always aligned correct (#1929)
+
 ## 5.1.1
 
 - Fix: prevent duplicate style attachment. (#1727)

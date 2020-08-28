@@ -218,7 +218,9 @@ class AXACheckbox extends NoShadowDOM {
           </label>
         `
       : html`
-          ${inputElements} ${errorElement}
+          <label for="${refId}" class="a-checkbox__wrapper">
+            ${inputElements} ${errorElement}
+          </label>
         `;
   }
 
