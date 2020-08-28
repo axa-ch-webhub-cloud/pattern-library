@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/dropdown",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "The dropdown component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/dropdown#readme",
@@ -26,7 +26,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "11.0.2",
+    "@axa-ch/materials": "12.0.0",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
