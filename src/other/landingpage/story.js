@@ -81,7 +81,7 @@ export const ToPatternLibrary = () => {
           slot="button"
         >
           <axa-button-link
-            href="https://axa.ch"
+            href="/?path=/story/guides-getting-started--getting-started"
             variant=""
             size="large"
             style="padding-right:25px;"
@@ -114,7 +114,7 @@ export const ToPatternLibrary = () => {
           class="landingpage-last-releases-image"
           src="https://drive.google.com/uc?export=view&id=1OWMDEOPROgBm8t8E5FhxtrkDJomfpx8T"
         /><img />
-      </axa-container>
+      </div>
     </div>
     ${contact}
   `;
