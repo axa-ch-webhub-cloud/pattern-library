@@ -36,7 +36,7 @@ const mapToIconItem = icon => {
 };
 
 export default {
-  title: 'Others/Materials',
+  title: 'Brand Identity Elements|Icons and Images',
   decorators: [withKnobs],
 
   parameters: {
