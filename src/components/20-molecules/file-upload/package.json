@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/file-upload",
-  "version": "3.2.12",
+  "version": "3.2.13",
   "description": "The file-upload component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/file-upload#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/input-file": "4.0.9",
-    "@axa-ch/materials": "13.0.1",
+    "@axa-ch/input-file": "4.0.10",
+    "@axa-ch/materials": "13.0.2",
     "@skatejs/val": "^0.4.0",
     "blueimp-canvas-to-blob": "^3.15.0",
     "lit-element": "^2.2.0",
