@@ -1,7 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import AXADropdown from '@axa-ch/dropdown';
-import { Date_rangeSvg } from '@axa-ch/materials/icons';
+import {
+  Date_rangeSvg,
+  KeyboardArrowLeftSvg,
+  KeyboardArrowRightSvg,
+} from '@axa-ch/materials/icons';
 import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
@@ -13,15 +17,6 @@ import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
 import debounce from '../../../utils/debounce';
 import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
-import styles from './index.scss';
-import {
-  getAllLocaleMonthsArray,
-  getMonthMatrix,
-  getWeekdays,
-  parseLocalisedDateIfValid,
-  range,
-} from './utils/date';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import {
