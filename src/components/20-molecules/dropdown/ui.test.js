@@ -509,3 +509,38 @@ test('should react to items property changes', async t => {
   await t.expect(await getValue()).eql('FR');
   await t.expect(await getDropdownTitle()).eql('Français');
 });
+
+fixture('Dropdown Autocomplete').page(
+  `${host}/iframe.html?id=examples-dropdown-pure-html--dropdown-with-lots-of-options`
+);
+
+test('should change selected option by typing', async t => {
+  const dropdown = await Selector(() =>
+    document.querySelector('axa-dropdown[data-test-id="dropdown-many"]')
+  );
+
+  await t.expect(dropdown.exists).ok();
+
+  // focus dropdown
+  await t.click('axa-dropdown[data-test-id="dropdown-many"] label');
+
+  await t.pressKey('tab');
+
+  // type a prefix of Swi(tzerland) in lowercase
+  await t.wait(50).pressKey('s w i');
+
+  // ascertain correct country code was selected...
+  await t
+    .wait(300)
+    .expect(dropdown.value)
+    .eql('CH');
+
+  // ... as well as correct title displayed
+
+  const getDropdownTitle = ClientFunction(
+    () =>
+      document.querySelector('axa-dropdown[data-test-id="dropdown-many"]').title
+  );
+
+  await t.expect(await getDropdownTitle()).eql('Switzerland');
+});
