@@ -12,6 +12,7 @@ export default {
     changelog: { disabled: true },
     codepreview: { disabled: true },
     a11y: { disabled: true },
+    options: { showPanel: false },
   },
 };
 
