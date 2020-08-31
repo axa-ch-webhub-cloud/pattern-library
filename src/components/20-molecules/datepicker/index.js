@@ -3,8 +3,8 @@
 import AXADropdown from '@axa-ch/dropdown';
 import {
   Date_rangeSvg,
-  KeyboardArrowLeftSvg,
-  KeyboardArrowRightSvg,
+  Keyboard_arrow_leftSvg,
+  Keyboard_arrow_rightSvg,
 } from '@axa-ch/materials/icons';
 import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
@@ -29,8 +29,8 @@ import {
 
 // module constants
 const dateRangeIcon = svg([Date_rangeSvg]);
-const keyboardArrowLeftIcon = svg([KeyboardArrowLeftSvg]);
-const keyboardArrowRightIcon = svg([KeyboardArrowRightSvg]);
+const keyboardArrowLeftIcon = svg([Keyboard_arrow_leftSvg]);
+const keyboardArrowRightIcon = svg([Keyboard_arrow_rightSvg]);
 const EMPTY_FUNCTION = () => {};
 
 // module globals
