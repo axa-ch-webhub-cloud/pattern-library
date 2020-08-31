@@ -20,6 +20,11 @@ export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
+  const internalLink = `${window.location.href.replace(
+    /\/[^\/]*$/,
+    ''
+  )}/?path=/story/guides-getting-started--getting-started`;
+
   const template = html`
     <style>
       ${styles}
@@ -54,7 +59,7 @@ export const ToPatternLibrary = () => {
             >GITHUB</axa-button-link
           >
           <axa-button-link
-            href="/?path=/story/guides-getting-started--getting-started"
+            href="${internalLink}"
             variant="secondary"
             size="large"
             >GET STARTED</axa-button-link
