@@ -1,3 +1,7 @@
+## 5.1.10
+
+- The new material icons were added.
+
 ## 5.0.4
 
 - Fix: prevent duplicate style attachment. (#1727)

@@ -1,3 +1,12 @@
+## 13.0.0
+
+- BREAKING CHANGE: Remove the not really needed `height` and `width` attributes from all images (not icons). The adding of them in v12.0.0 lead to some displaying issues for at least one team.
+
+## 12.0.0
+
+- BREAKING CHANGE: Add (and replace) all icons from the material repository: https://github.com/google/material-design-icons/releases
+  This leads to a bigger collection of icons, but some old ones are replaced by newer versions, which could lead to issues on the user side (you will need to update import paths and probably find some other icons for the ones that you are not using).
+
 ## 11.0.0
 
 - BREAKING CHANGE: Update some internal image margins.
