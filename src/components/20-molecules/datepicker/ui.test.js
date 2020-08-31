@@ -1,4 +1,4 @@
-import { Selector, ClientFunction } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
 import { range } from './utils/date';
 
@@ -103,14 +103,13 @@ test('should begin with September 1 as first Monday in 1980', async t => {
   await t.expect(firstVisibleDay.innerText).eql('1');
 });
 
-// Preselected is: 22. Mai 2020
-test('should have working selection and preselection', async t => {
+test('should have working selection', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
   let dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseMonth(1);
 
@@ -123,7 +122,7 @@ test('should have working selection and preselection', async t => {
   dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseYear(1971);
 
@@ -137,7 +136,7 @@ test('should have working selection and preselection', async t => {
   dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     22
   );
-  await t.expect(dayCell22State).eql('PRESELECTED');
+  await t.expect(dayCell22State).eql('SELECTED');
 
   let dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
     23
@@ -194,15 +193,15 @@ test('should handle month change with native dropdown element', async t => {
 });
 
 test('should have a fixed width', async t => {
-  const width = 260;
+  const width = 236;
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
   const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
   const datepickerWrapWidth = await datepickerWrap.getStyleProperty('width');
 
-  await t.expect(datepicker.clientWidth).eql(width + 60 + 2); // 260 min-width + 2*30 padding + 2*1 border
-  await t.expect(datepickerWrapWidth).eql(`${width}px`); // wrapper has a min-width
+  await t.expect(datepicker.clientWidth).eql(width + 60 + 2 + 40); // 236 min-width + 2*30 padding + 2*1 border + 2*20 margin
+  await t.expect(datepickerWrapWidth).eql('296px'); // wrapper has a min-width
 });
 
 test('should just add years of a given range', async t => {
@@ -266,6 +265,140 @@ test('should set current year as startup date', async t => {
     .contains(
       `{"selected":true,"name":"${currentYear}","value":"${currentYear}"},`
     );
+});
+
+test('should navigate between months', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000];
+    datepicker.month = 2;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToNextMonth = async () => {
+    const nextButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+    );
+
+    await t.click(nextButton);
+  };
+
+  const navigateToPrevMonth = async () => {
+    const prevButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+    );
+
+    await t.click(prevButton);
+  };
+
+  await setProperties();
+  await t.expect(await getMonth()).eql(2);
+
+  await navigateToNextMonth();
+  await t.expect(await getMonth()).eql(3);
+
+  await navigateToPrevMonth();
+  await t.expect(await getMonth()).eql(2);
+
+  await navigateToPrevMonth();
+  await t.expect(await getMonth()).eql(1);
+});
+
+test('should navigate to next allowed year', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000, 2012];
+    datepicker.year = 2000;
+    datepicker.month = 11;
+  });
+
+  const getYear = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.year;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToNextMonth = async () => {
+    const nextButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+    );
+
+    await t.click(nextButton);
+  };
+
+  await setProperties();
+  await t.expect(await getYear()).eql(2000);
+  await t.expect(await getMonth()).eql(11);
+
+  await navigateToNextMonth();
+  await t.expect(await getYear()).eql(2012);
+  await t.expect(await getMonth()).eql(0);
+});
+
+test('should navigate to previous allowed year', async t => {
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+
+    datepicker.allowedyears = [2000, 2012];
+    datepicker.year = 2012;
+    datepicker.month = 0;
+  });
+
+  const getYear = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.year;
+  });
+
+  const getMonth = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    return datepicker.month;
+  });
+
+  const navigateToPrevMonth = async () => {
+    const prevButton = Selector(
+      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+    );
+
+    await t.click(prevButton);
+  };
+
+  await setProperties();
+  await t.expect(await getYear()).eql(2012);
+  await t.expect(await getMonth()).eql(0);
+
+  await navigateToPrevMonth();
+  await t.expect(await getYear()).eql(2000);
+  await t.expect(await getMonth()).eql(11);
+});
+
+test('should highlight today', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  const today = new Date();
+
+  const setAllowedYears = ClientFunction(allowedyears => {
+    const datepicker = document.querySelector(`axa-datepicker`);
+    datepicker.allowedyears = allowedyears;
+  });
+
+  await setAllowedYears([today.getFullYear()]);
+  await datePickerAccessor.chooseYear(today.getFullYear());
+  await datePickerAccessor.chooseMonth(today.getMonth() + 1);
+
+  const cell = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    today.getDate()
+  );
+
+  await t.expect(cell).eql('TODAY');
 });
 
 fixture('Datepicker - With Locale').page(
@@ -807,4 +940,28 @@ test('should have no minimum width', async t => {
   );
   await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
   await t.expect(datepickerInputWrap.clientWidth).eql(196); // input wrapper has no min-width
+});
+
+fixture('Datepicker no next month').page(
+  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+);
+
+test('Should disable next button.', async t => {
+  const next = Selector(
+    () => document.getElementsByClassName('m-datepicker__button-next')[0]
+  );
+
+  await t.expect(next.hasAttribute('disabled')).ok();
+});
+
+fixture('Datepicker no previous month').page(
+  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+);
+
+test('Should disable prev button.', async t => {
+  const prev = Selector(
+    () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+  );
+
+  await t.expect(prev.hasAttribute('disabled')).ok();
 });

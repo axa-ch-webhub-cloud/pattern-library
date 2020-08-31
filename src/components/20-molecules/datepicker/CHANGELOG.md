@@ -1,8 +1,14 @@
-## 10.1.1
+## 11.0.0
+
+- The datepicker is now wider than before.
+- New buttons to switch between months. (#1908)
+- Today is now always highlighted. (#1909)
+
+## 10.0.2
 
 - Fix: prevent duplicate style attachment. (#1727)
 
-## 10.1.0
+## 10.0.1
 
 - New calendar icon. #1882
 - New arrow icons at the dropdowns. #1882

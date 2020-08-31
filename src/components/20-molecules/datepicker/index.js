@@ -1,7 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import AXADropdown from '@axa-ch/dropdown';
-import { Date_rangeSvg } from '@axa-ch/materials/icons';
+import {
+  Date_rangeSvg,
+  Keyboard_arrow_leftSvg,
+  Keyboard_arrow_rightSvg,
+} from '@axa-ch/materials/icons';
 import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
@@ -25,6 +29,8 @@ import {
 
 // module constants
 const dateRangeIcon = svg([Date_rangeSvg]);
+const keyboardArrowLeftIcon = svg([Keyboard_arrow_leftSvg]);
+const keyboardArrowRightIcon = svg([Keyboard_arrow_rightSvg]);
 const EMPTY_FUNCTION = () => {};
 
 // module globals
@@ -311,8 +317,7 @@ class AXADatepicker extends NoShadowDOM {
       invalid,
       invaliddatetext,
       style,
-      _userSelectedDate,
-      _preselectedDate,
+      _selectedDate,
     } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
@@ -322,16 +327,16 @@ class AXADatepicker extends NoShadowDOM {
     style.width = getFormattedStyle(width); // set width to component's css
 
     const cellClasses = ({ sameMonth, today, inactive, value }) => {
-      const userSelected = _userSelectedDate === value;
-      const preselected = !userSelected && _preselectedDate === value;
+      const selected = _selectedDate === value;
+      const isToday = !selected && today;
+
       return classMap({
         'm-datepicker__calendar-cell': true,
         'js-datepicker__calender-body__cell': true,
         'm-datepicker__calendar-not-current-month': !sameMonth,
         'm-datepicker__calendar-current-month': sameMonth,
-        'm-datepicker__calendar-today': today,
-        'm-datepicker__calendar-selected-day': userSelected,
-        'm-datepicker__calendar-selected-day--preselected': preselected,
+        'm-datepicker__calendar-today': isToday,
+        'm-datepicker__calendar-selected-day': selected,
         'm-datepicker__calendar-day--inactive': inactive,
       });
     };
@@ -356,6 +361,9 @@ class AXADatepicker extends NoShadowDOM {
       defaulttitle="${this.yeartitle}"
     >
     </axa-dropdown>`;
+
+    const noPreviousAllowedYear = year === this.navigateYear(-1) && month === 0;
+    const noNextAllowedYear = year === this.navigateYear() && month === 11;
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -446,6 +454,20 @@ class AXADatepicker extends NoShadowDOM {
                       )}
                   </div>
                 </div>
+                <button
+                  class="m-datepicker__button m-datepicker__button-prev"
+                  @click=${this.handleNavigateToPrevMonth}
+                  ?disabled=${noPreviousAllowedYear}
+                >
+                  ${keyboardArrowLeftIcon}
+                </button>
+                <button
+                  class="m-datepicker__button m-datepicker__button-next"
+                  @click=${this.handleNavigateToNextMonth}
+                  ?disabled=${noNextAllowedYear}
+                >
+                  ${keyboardArrowRightIcon}
+                </button>
               </div>
             `
           : ''}
@@ -545,12 +567,13 @@ class AXADatepicker extends NoShadowDOM {
     this.weekdays = getWeekdays(_date, locale);
 
     const { output, tentative } = options;
+
     if (output) {
       this.outputdate = this.formatDate(_date);
-      this._userSelectedDate = formatISO(_date);
     }
-    if (!tentative) {
-      this._preselectedDate = formatISO(_date);
+
+    if (output || !tentative) {
+      this._selectedDate = formatISO(_date);
     }
 
     return this.outputdate;
@@ -729,6 +752,61 @@ class AXADatepicker extends NoShadowDOM {
     // since the calendar UI only allows legal dates to be picked,
     // any preexisting error should be cleared
     this.error = null;
+  }
+
+  handleNavigateToPrevMonth() {
+    this.navigateMonth(-1);
+  }
+
+  handleNavigateToNextMonth() {
+    this.navigateMonth();
+  }
+
+  // Navigates to the next allowed month, when offset = 1.
+  // Navigates to the previous allowed month, when offset = -1.
+  // Has no effect, when there is no next/previous allowed month.
+  navigateMonth(offset = 1) {
+    const MIN = 0;
+    const MAX = 11;
+    const { min, max, abs } = Math;
+
+    let month = parseInt(this.month, 10) + offset;
+    let year = parseInt(this.year, 10);
+
+    // Month out of bounds?
+    if (month < MIN || month > MAX) {
+      // Clamp month to valid range
+      month = min(max(month, MIN), MAX);
+
+      // Try to adjust year (might fail if not an allowed year)
+      year = this.navigateYear(offset);
+
+      // Year adjustment succeeded?
+      if (year !== this.year) {
+        // Correct month
+        month = abs(month - MAX);
+      }
+    }
+
+    this.initDate(overrideDate(year, month, null, this._date), {
+      tentative: true,
+    });
+  }
+
+  // Returns the next allowed year, when offset = 1.
+  // Returns the previous allowed year, when offset = -1.
+  // Returns the currently selected year, when there is no next/previous allowed year.
+  navigateYear(offset = 1) {
+    const MIN = 0;
+    const MAX = this.allowedyears.length - 1;
+    const { min, max } = Math;
+
+    let indexOfYear = this.allowedyears.findIndex(year => year === this.year);
+
+    indexOfYear += offset;
+    indexOfYear = min(max(indexOfYear, MIN), MAX); // prevent out-of-bounds navigation
+
+    return parseInt(this.allowedyears[indexOfYear], 10);
   }
 }
 
