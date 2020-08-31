@@ -1,3 +1,7 @@
+## 9.1.0
+
+- Minor change: now supports keyboard-operated auto-suggest-style selection of items. (#1247)
+
 ## 9.0.0
 
 - Breaking change 1: onChange/change event gives 'name' field new semantics, adds 'optionLabel' for old, cf. README. (#1910)
