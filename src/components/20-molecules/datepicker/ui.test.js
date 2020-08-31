@@ -381,6 +381,26 @@ test('should navigate to previous allowed year', async t => {
   await t.expect(await getMonth()).eql(11);
 });
 
+test('should highlight today', async t => {
+  const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
+  const today = new Date();
+
+  const setAllowedYears = ClientFunction(allowedyears => {
+    const datepicker = document.querySelector(`axa-datepicker`);
+    datepicker.allowedyears = allowedyears;
+  });
+
+  await setAllowedYears([today.getFullYear()]);
+  await datePickerAccessor.chooseYear(today.getFullYear());
+  await datePickerAccessor.chooseMonth(today.getMonth() + 1);
+
+  const cell = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+    today.getDate()
+  );
+
+  await t.expect(cell).eql('TODAY');
+});
+
 fixture('Datepicker - With Locale').page(
   `${host}/iframe.html?id=components--datepicker&knob-locale=en-GB`
 );
