@@ -2,7 +2,7 @@
 name: Bug report
 about: File a report for ONLY technical bugs
 title: ''
-labels: bug
+labels: Bug
 assignees: ''
 
 ---
