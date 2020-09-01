@@ -9,7 +9,7 @@
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
-  min-height: 30px;
+  min-height: 40px;
   width: 100%;
   vertical-align: bottom; // Just for IE
   hyphens: auto;
@@ -20,10 +20,6 @@
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-deep-sapphire;
-
-  @include breakpoint($mediaquery-xs-up) {
-    min-height: 40px;
-  }
 
   &:hover,
   &:active,
@@ -60,12 +56,8 @@
 }
 
 .a-button--large {
-  min-height: 40px;
+  min-height: 50px;
   @include text(t3);
-
-  @include breakpoint($mediaquery-xs-up) {
-    min-height: 50px;
-  }
 }
 
 .a-button--small {
