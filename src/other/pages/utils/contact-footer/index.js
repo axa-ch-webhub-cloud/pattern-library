@@ -2,7 +2,7 @@ import { html } from 'lit-html';
 import styles from './index.scss';
 
 const internalLink = `${window.location.href.replace(
-  /\/[^\/]*$/,
+  /\/[^/]*$/,
   ''
 )}/?path=/story/others-contact--contact`;
 

@@ -26,6 +26,11 @@ export const GettingStarted = () => {
     border: '1px solid rgba(0, 0, 0, 0.1)',
   };
 
+  const internalLink = `${window.location.href.replace(
+    /\/[^/]*$/,
+    ''
+  )}/?path=/story/others-contact--contact`;
+
   function callout(icon, header, text, link, linkText) {
     return (
       <div className="callout">
@@ -194,13 +199,6 @@ export default AXAButtonReact;`}
           services. To achieve this, we rely on uniform visual communication and
           use existing and tested interactions.
         </AXAText>
-        <div className="getting-started__last-text">
-          <AXAText variant="size-2">
-            In order for us to release your application for go-live, the
-            following requirements have to be considered during product
-            development:
-          </AXAText>
-        </div>
         {callout(
           'figma.png',
           'AXA Design System UI Kit',
@@ -208,6 +206,15 @@ export default AXAButtonReact;`}
           'https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208',
           'take a look'
         )}
+        <AXAHeading rank="3">Our development guide</AXAHeading>
+        <div className="getting-started__last-text">
+          <AXAText variant="size-2">
+            In order for us to release your application for go-live, the
+            following requirements have to be considered during product
+            development:
+          </AXAText>
+        </div>
+
         <iframe
           title="figma dev guide"
           style={devGuideStyle}
@@ -227,7 +234,7 @@ export default AXAButtonReact;`}
             </div>
             <axa-button-link
               size="large"
-              href="?path=/story/others-contact--contact"
+              href={internalLink}
               variant="inverted"
             >
               Get in touch

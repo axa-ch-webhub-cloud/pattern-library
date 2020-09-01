@@ -21,7 +21,7 @@ export const ToPatternLibrary = () => {
   wrapper.classList.add('accessory-story-wrapper');
 
   const internalLink = `${window.location.href.replace(
-    /\/[^\/]*$/,
+    /\/[^/]*$/,
     ''
   )}/?path=/story/guides-getting-started--getting-started`;
 
