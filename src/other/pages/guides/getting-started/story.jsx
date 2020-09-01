@@ -194,11 +194,13 @@ export default AXAButtonReact;`}
             Designer
           </AXAHeading>
         </header>
-        <AXAText variant="size-2">
-          It is our aim to offer our customers security and trust when using our
-          services. To achieve this, we rely on uniform visual communication and
-          use existing and tested interactions.
-        </AXAText>
+        <div className="getting-started__last-text">
+          <AXAText variant="size-2">
+            It is our aim to offer our customers security and trust when using
+            our services. To achieve this, we rely on uniform visual
+            communication and use existing and tested interactions.
+          </AXAText>
+        </div>
         {callout(
           'figma.png',
           'AXA Design System UI Kit',
