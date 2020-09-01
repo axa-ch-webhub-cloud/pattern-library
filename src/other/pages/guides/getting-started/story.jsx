@@ -21,6 +21,11 @@ export const GettingStarted = () => {
   const buttonLinkStyle = {
     width: '100%',
   };
+
+  const devGuideStyle = {
+    border: '1px solid rgba(0, 0, 0, 0.1)',
+  };
+
   function callout(icon, header, text, link, linkText) {
     return (
       <div className="callout">
@@ -199,10 +204,18 @@ export default AXAButtonReact;`}
         {callout(
           'figma.png',
           'AXA Design System UI Kit',
-          'To see how to use our AXA Design System and be on sync with the Pattern Library take a look ate the AXA UI Kit',
-          'https://www.figma.com/proto/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?chrome=DOCUMENTATION&embed_host=share&kind=&node-id=0%3A8209&scaling=min-zoom',
+          'To see how to use our AXA Design System and be on sync with the Pattern Library take a look at the AXA UI Kit',
+          'https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208',
           'take a look'
         )}
+        <iframe
+          title="figma dev guide"
+          style={devGuideStyle}
+          width="100%"
+          height="500"
+          src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGBd1NZWB94Ek4WVUDROCE6%2FDX-Product-Development-Guide%3Fnode-id%3D196%253A502%26viewport%3D17094%252C-15509%252C0.3761351704597473%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
+          allowFullScreen
+        />
         {/* TODO: Find way to use ad hoc component contact footer from  src/other/pages/utils/contact-footer/index.js */}
         <section className="contact-footer">
           <div className="contact-footer__inner">
