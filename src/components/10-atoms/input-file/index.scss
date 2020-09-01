@@ -59,12 +59,8 @@ axa-input-file {
 }
 
 .a-input-file--large .a-input-file__flex-wrapper {
-  min-height: 40px;
+  min-height: 50px;
   @include text(t3);
-
-  @include breakpoint($mediaquery-xs-up) {
-    min-height: 50px;
-  }
 }
 
 .a-input-file--motion {
