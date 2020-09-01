@@ -87,7 +87,7 @@ export const Contact = () => {
           >
         </div>
         <div>
-          <img src="email.svg" width="40" alt="Slack Icon" />
+          <img src="email.svg" width="40" alt="Email Icon" />
           <axa-heading rank="6">Feature request</axa-heading>
           <axa-text variant="size-2">
             You need a feature?
@@ -108,13 +108,13 @@ export const Contact = () => {
           >
         </div>
         <div>
-          <img src="slack-black-and-white.png" width="40" alt="Slack Icon" />
-          <axa-heading rank="6">Slack for Designers</axa-heading>
+          <img src="email.svg" width="40" alt="Email Icon" />
+          <axa-heading rank="6">Ask a Designer</axa-heading>
           <axa-text variant="size-2">
             Questions and requests for help regarding design issues:
           </axa-text>
-          <axa-link href="https://axa-ch.slack.com/messages/ux-ui-support/"
-            >Go to slack</axa-link
+          <axa-link href="mailto:interactiondesign@axa.ch"
+            >Email the design team</axa-link
           >
         </div>
       </div>
