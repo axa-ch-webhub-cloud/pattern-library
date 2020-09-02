@@ -1,17 +1,17 @@
 /* global document */
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { storiesOf } from '@storybook/html';
 import {
   boolean,
-  select,
   radios,
+  select,
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
-import AXAButtonLink from './AXAButtonLink';
+import { storiesOf } from '@storybook/html';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import Changelog from '../CHANGELOG.md';
+import AXAButtonLink from './AXAButtonLink';
 
 const variantOptions = {
   default: '',
@@ -49,7 +49,7 @@ storyButton.addParameters({
 storyButton.add('Story', () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
-  const external = text('external', '');
+  const external = boolean('external', false);
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
   const icons = select('Icon', iconList, '');
