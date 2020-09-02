@@ -1,14 +1,14 @@
 import {
   boolean,
-  select,
   radios,
+  select,
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
 import { iconList } from '../icon/icon-list';
 import Changelog from './CHANGELOG.md';
+import './index';
 
 const variantOptions = {
   default: '',
@@ -48,7 +48,7 @@ export default {
 export const ButtonLink = () => {
   const buttonText = text('text', 'Contact us');
   const href = text('href', '#');
-  const external = text('external', '');
+  const external = boolean('external', false);
   const variants = radios('variant', variantOptions, '');
   const sizes = radios('size', sizeOptions, '');
   const icons = select('Icon', iconList, '');
@@ -67,7 +67,7 @@ export const ButtonLink = () => {
         size="${sizes}"
         icon="${icons}"
         href="${href}"
-        external="${external}"
+        ?external="${external}"
         ?disabled="${disabled}"
         ?motionoff="${motionOff}"
         >${buttonText}
