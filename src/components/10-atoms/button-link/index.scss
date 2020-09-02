@@ -44,14 +44,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 26px;
+    min-height: 36px;
     // IE11 workaround
     height: 25px;
     box-sizing: border-box;
-
-    @include breakpoint($mediaquery-xs-up) {
-      min-height: 36px;
-    }
   }
 
   &__icon {
@@ -66,19 +62,11 @@
 }
 
 .a-button-link--large {
-  @include text(t4);
-
-  @include breakpoint($mediaquery-xs-up) {
-    @include text(t3);
-  }
+  @include text(t3);
 }
 
 .a-button-link--large .a-button-link__flex-wrapper {
-  min-height: 36px;
-
-  @include breakpoint($mediaquery-xs-up) {
-    min-height: 46px;
-  }
+  min-height: 46px;
 }
 
 .a-button-link--small .a-button-link__flex-wrapper {

@@ -1,3 +1,7 @@
+## 5.0.0
+
+- **BREAKING CHANGE**: Same height on all devices. (#1869)
+
 ## 4.2.4
 
 - Fix: prevent duplicate style attachment. (#1727)
