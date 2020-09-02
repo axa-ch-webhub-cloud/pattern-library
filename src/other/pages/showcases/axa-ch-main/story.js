@@ -12,7 +12,9 @@ import footerSmall from './footer-small';
 export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
-  parameters: {},
+  parameters: {
+    options: { showPanel: true },
+  },
 };
 
 function getFirstChildOfEachAxaCustomElement() {

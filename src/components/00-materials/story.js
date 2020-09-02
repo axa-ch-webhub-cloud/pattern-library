@@ -42,6 +42,7 @@ export default {
   parameters: {
     changelog: Changelog,
     codepreview: { disabled: true },
+    options: { showPanel: true },
   },
 };
 

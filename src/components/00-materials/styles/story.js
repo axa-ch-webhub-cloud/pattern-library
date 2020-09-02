@@ -60,6 +60,7 @@ export default {
 
   parameters: {
     changelog: Changelog,
+    options: { showPanel: true },
   },
 };
 
