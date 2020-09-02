@@ -1,6 +1,6 @@
-## 4.1.0
+## 5.0.0
 
-- Same height on all devices. (#1869)
+- **BREAKING CHANGE**: Same height on all devices. (#1869)
 
 ## 4.0.1
 

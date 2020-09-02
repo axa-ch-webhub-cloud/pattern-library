@@ -1,6 +1,6 @@
-## 5.3.0
+## 6.0.0
 
-- Same height on all devices. (#1869)
+- **BREAKING CHANGE**: Same height on all devices. (#1869)
 
 ## 5.2.4
 
