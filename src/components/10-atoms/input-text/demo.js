@@ -76,11 +76,11 @@ storiesOf('Examples/Input text/Pure HTML', module)
     render(template, wrapper);
     return wrapper;
   })
-  .add(
-    'Native oninput event attribute',
-    () =>
-      `<axa-input-text oninput="console.log('input with')"></axa-input-text>`
-  )
+  .add('Native oninput event attribute', () => {
+    return `<axa-input-text oninput="{document.getElementById('output-oninput').innerText =
+    'oninput event triggered on ' + Date.now();}"></axa-input-text></br>
+      <axa-text id="output-oninput"></axa-text>`;
+  })
   .add('Info popup', () => {
     const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
     <p>Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne bis zum Zeitpunkt Ihrer Pensionierung entscheidend.</p>`;
