@@ -15,6 +15,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,
+    options: { showPanel: true },
   },
 };
 

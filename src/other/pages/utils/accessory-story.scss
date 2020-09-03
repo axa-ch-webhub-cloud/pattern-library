@@ -1,0 +1,14 @@
+@mixin accessory-story-content {
+    .accessory-story-content {
+      padding-bottom: 179px; // 131px (footer height) + 3em (padding bottom content)
+    }
+}
+
+@mixin accessory-story-wrapper {
+    .accessory-story-wrapper {
+        position: relative;
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+    }
+}

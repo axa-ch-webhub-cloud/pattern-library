@@ -36,12 +36,13 @@ const mapToIconItem = icon => {
 };
 
 export default {
-  title: 'Others/Materials',
+  title: 'Brand Elements/Icons and Images',
   decorators: [withKnobs],
 
   parameters: {
     changelog: Changelog,
     codepreview: { disabled: true },
+    options: { showPanel: true },
   },
 };
 
