@@ -6,7 +6,6 @@ import Changelog from '../CHANGELOG.md';
 import AXAFooterReact from './Footer';
 
 const setNewlyClickedLink = link => {
-  console.log('clickediclick');
   document.getElementById(
     'clicked-link'
   ).innerText = `Last clicked link: ${link}`;
