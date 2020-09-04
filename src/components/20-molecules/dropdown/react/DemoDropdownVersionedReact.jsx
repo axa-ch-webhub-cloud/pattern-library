@@ -41,6 +41,7 @@ const DemoVersionedDropdown = () => {
           new value: ${JSON.stringify(value)}`)
         }
       />
+      <br />
       <AXATextReact id="checkbox-output">
         axa-dropdown version {numericalVersion} new value:
       </AXATextReact>
