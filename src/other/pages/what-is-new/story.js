@@ -80,8 +80,8 @@ export const WhatIsNew = () => {
       </p>
       
       <axa-heading rank="2" variant="secondary">Last releases</axa-heading>
-        <axa-heading rank="6"><span id="githubResponseDate"></axa-heading>
-        <axa-text variant="size-2"><span id="githubResponse"></span></axa-text>
+      <axa-heading rank="6" class="what-is-new__response-date"><span id="githubResponseDate"></axa-heading>
+      <axa-text variant="size-2"><span id="githubResponse"></span></axa-text>
     </div>
     ${contact}
   `;
