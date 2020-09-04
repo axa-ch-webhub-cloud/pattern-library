@@ -3,6 +3,7 @@ import React from 'react';
 import AXADropdownVersionedReact, {
   numericalVersion,
 } from './AXADropdownVersionedReact';
+import AXATextReact from './AXATextReact';
 
 const DemoVersionedDropdown = () => {
   const props = {
@@ -19,28 +20,31 @@ const DemoVersionedDropdown = () => {
   ];
 
   return (
-    <AXADropdownVersionedReact
-      data-test-id="versioned-dropdown-react"
-      items={items}
-      label={props.label}
-      defaultTitle={props.defaultTitle}
-      name={props.name}
-      invalid={props.invalid}
-      error={props.error}
-      native={props.native}
-      required={props.required}
-      checkMark={props.checkMark}
-      disabled={props.disabled}
-      // eslint-disable-next-line no-console
-      onChange={value =>
-        console.log(
-          'axa-dropdown version',
-          numericalVersion,
-          'new value:',
-          JSON.stringify(value)
-        )
-      }
-    />
+    <>
+      <AXADropdownVersionedReact
+        data-test-id="versioned-dropdown-react"
+        items={items}
+        label={props.label}
+        defaultTitle={props.defaultTitle}
+        name={props.name}
+        invalid={props.invalid}
+        error={props.error}
+        native={props.native}
+        required={props.required}
+        checkMark={props.checkMark}
+        disabled={props.disabled}
+        // eslint-disable-next-line no-console
+        onChange={value =>
+          (document.getElementById(
+            'checkbox-output'
+          ).innerHTML = `axa-dropdown version ${numericalVersion} 
+          new value: ${JSON.stringify(value)}`)
+        }
+      />
+      <AXATextReact id="checkbox-output">
+        axa-dropdown version {numericalVersion} new value:
+      </AXATextReact>
+    </>
   );
 };
 
