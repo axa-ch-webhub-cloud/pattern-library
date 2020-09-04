@@ -1,3 +1,7 @@
+## 3.1.6
+
+- Fix: Iconified radio buttons no longer have the attribute value `fill="currentColor"`. (#1942)
+
 ## 3.1.1
 
 - Fix: prevent duplicate style attachment. (#1727)
