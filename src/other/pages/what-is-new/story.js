@@ -5,10 +5,17 @@ import styles from './index.scss';
 import contact from '../utils/contact-footer';
 
 const getFormattedGitCommitMessage = answerJson => {
-  const formattedMessage = answerJson.items[0].commit.message
-    .replace('Publish\n\n', '')
-    .replace(/- /g, '<br/>');
-  return formattedMessage;
+  const keyword = 'Publish\n\n - ';
+  for (let i = 0; i < answerJson.items.length; ++i) {
+    if (answerJson.items[0].commit.message.startsWith(keyword)) {
+      const formattedMessage = answerJson.items[0].commit.message.replace(
+        keyword,
+        ''
+      );
+      return formattedMessage;
+    }
+  }
+  return '';
 };
 
 const getDateFromGitCommit = answerJson => {
