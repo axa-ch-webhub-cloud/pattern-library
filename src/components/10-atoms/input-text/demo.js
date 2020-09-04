@@ -78,8 +78,8 @@ storiesOf('Examples/Input text/Pure HTML', module)
   })
   .add('Native oninput event attribute', () => {
     return `<axa-input-text oninput="{document.getElementById('output-oninput').innerText =
-    'oninput event triggered on ' + Date.now();}"></axa-input-text></br>
-      <axa-text id="output-oninput"></axa-text>`;
+    'oninput event triggered on: ' + Date.now();}"></axa-input-text></br>
+      <axa-text id="output-oninput">oninput event triggered on: </axa-text>`;
   })
   .add('Info popup', () => {
     const info = `<h4>Zeitspanne bis zur Pensionierung</h4>
