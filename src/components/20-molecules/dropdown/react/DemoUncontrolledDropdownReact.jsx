@@ -32,7 +32,7 @@ const DemoUncontrolledDropdown = props => {
         }
       />
       <br />
-      <AXATextReact id="checkbox-output">Value</AXATextReact>
+      <AXATextReact id="checkbox-output">Value:</AXATextReact>
     </>
   );
 };

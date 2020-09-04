@@ -218,7 +218,7 @@ const DemoManyOptionsReact = () => {
         }
       />
       <br />
-      <AXATextReact id="checkbox-output">Value</AXATextReact>
+      <AXATextReact id="checkbox-output">Value:</AXATextReact>
     </>
   );
 };
