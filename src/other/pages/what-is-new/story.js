@@ -67,15 +67,15 @@ export const WhatIsNew = () => {
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">What's new</axa-heading>
       <axa-text variant="size-2">
-        Here you will find the latest updates on the AXA Design System
+        Here you will find the latest updates on AXA Design System
         development.
       </axa-text>
       <axa-heading rank="2" variant="secondary">Update log</axa-heading>
       <axa-heading rank="5">Component versioning is now live!</axa-heading>
       <p class="what-is-new__text-with-link">
-        We are happy to introduce to you that we support component versioning.
-        Our solution automatically injects package.json version information into component code at build time. With PL components now being version-aware at runtime, we can rewrite custom element names under the hood to include version information.
-        For more information check out our
+        We are happy to announce that we now support component versioning!
+        Our solution automatically injects package.json version information into component code at build time. Additionally, by making components version-aware at runtime, we can dynamically name custom element to include version information.
+        For more information check out
         <axa-link href="https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>.
       </p>
       

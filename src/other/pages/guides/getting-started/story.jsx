@@ -31,6 +31,9 @@ export const GettingStarted = () => {
     ''
   )}/?path=/story/others-contact--contact`;
 
+  // this intentionally duplicates a similar function in utils/callout.js;
+  // the latter however uses lit-html templates, while in the React context here
+  // we need JSX.
   function callout(icon, header, text, link, linkText) {
     return (
       <div className="callout">
@@ -68,10 +71,10 @@ export const GettingStarted = () => {
         </AXAHeading>
         <AXAText variant="size-2">
           The AXA Design System is a toolbox of resources to create beautiful
-          user interfaces, consistent with the AXA Brand guidelines, principles,
-          and best practices. Instead of focusing on pixels, developers can
-          focus on application logic, while designers can focus on the user
-          experience, interactions, and flows.
+          user interfaces that are consistent with AXA brand guidelines,
+          principles, and best practices. Instead of focusing on pixels,
+          developers can focus on application logic, while designers can focus
+          on user experience, interactions, and flows.
         </AXAText>
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
@@ -80,19 +83,19 @@ export const GettingStarted = () => {
           </AXAHeading>
         </header>
         <AXAText variant="size-2">
-          The library provides front-end developers & engineers a collection of
-          reusable Web components to build websites and user interfaces, aligned
-          with the AXA Brand guidelines. Adopting the AXA components library
-          enables you to use consistent markup, styles, and behavior in
-          prototype and production work.
+          The library provides front-end developers & engineers with a
+          collection of reusable Web Components to build websites and user
+          interfaces that are aligned with AXA brand guidelines. Adopting the
+          AXA components library empowers you to use consistent markup, styling
+          and behavior in both prototype and production work.
         </AXAText>
         <AXAHeading rank="3">Install and use components</AXAHeading>
         <p className="getting-started__dependency-wrapper">
-          AXA Design System is made up of multiple web components and tools
-          which you can import one by one. All you need to do is install
-          the&nbsp;
-          <code className="getting-started__dependency">@axa-ch/</code>
-          &nbsp;corresponding package. Here is an example with a button:
+          AXA's Design System is made up of multiple web components and tools,
+          which you can import one by one. All you need to do is install the
+          corresponding <em>npm</em> package under the &nbsp;
+          <code className="getting-started__dependency">@axa-ch/</code>&nbsp;
+          namespace. Here is an example featuring a button:
         </p>
         <ReactSyntaxHighlighter
           language="shell"
@@ -101,7 +104,8 @@ export const GettingStarted = () => {
           $ npm install @axa-ch/button
         </ReactSyntaxHighlighter>
         <AXAText>
-          Import the button-defining script and use a button like this:
+          Importing the button-defining script and using a button is then as
+          simple as this:
         </AXAText>
         <ReactSyntaxHighlighter
           language="html"
@@ -133,9 +137,10 @@ export const GettingStarted = () => {
           use our polyfill.
         </div>
         <div className="getting-started__text">
-          <span className="getting-started__text--bold">Using React?</span> not
-          a big deal, we covered this scenario. You need to create a React-ified
-          button with the createElement function from your React.
+          <span className="getting-started__text--bold">Using React?</span> Not
+          a big deal, we got you covered! You can easily create a React-ified
+          button with our wrapper plus the &nbsp;<em>createElement</em>&nbsp;
+          function provided by every React version:
         </div>
         <ReactSyntaxHighlighter
           language="javascript"
@@ -159,33 +164,32 @@ export default AXAButtonReact;`}
           {/* TODO: Find way to use ad hoc component callout footer from  src/other/pages/utils/callout/index.js */}
           {callout(
             'github-mark.png',
-            'ReadMe',
-            `You have a question or want to get
-        to know us? The readme is the best way to start.`,
+            'README',
+            `You have a question or just want to see what it's all about? The README is the best way to start.`,
             'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
-            'Read me'
+            'READ MORE'
           )}
         </div>
         {callout(
           'github-mark.png',
           'Contribute',
-          `You want to contribute to us? Nice! Here you'll find the "how-to".`,
+          `You want to contribute? Nice! Here you'll find out how.`,
           'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
-          'Take a look'
+          'READ MORE'
         )}
         {callout(
           'github-mark.png',
           'Architecture',
-          'Read more about the big picture of V2 and how we got here. This includes framework choices and much more.',
+          'Read more about the big picture and how we got here. This includes framework choices and much more.',
           'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
-          'take a look'
+          'READ MORE'
         )}
         {callout(
           'github-mark.png',
           'Code of Conduct',
-          'We as the Pattern Library Team commited ourselves to a  set of rules, responsibilities and practices.',
+          'We as the Pattern Library Team commited ourselves to a set of rules, responsibilities and prudent practices.',
           'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
-          'take a look'
+          'READ MORE'
         )}
 
         <header className="getting-started__header">
@@ -196,22 +200,22 @@ export default AXAButtonReact;`}
         </header>
         <div className="getting-started__last-text">
           <AXAText variant="size-2">
-            It is our aim to offer our customers security and trust when using
-            our services. To achieve this, we rely on uniform visual
-            communication and use existing and tested interactions.
+            It is our aim to offer our customers safety and trust when using our
+            services. To achieve this, we rely on uniform visual communication
+            and use existing and tested interactions.
           </AXAText>
         </div>
         {callout(
           'figma.png',
           'AXA Design System UI Kit',
-          'To see how to use our AXA Design System and be on sync with the Pattern Library take a look at the AXA UI Kit',
+          "To see how to use AXA's Design System and be in sync with the Pattern Library, take a look at the AXA UI Kit!",
           'https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208',
-          'take a look'
+          'READ More'
         )}
         <AXAHeading rank="3">Our development guide</AXAHeading>
         <div className="getting-started__last-text">
           <AXAText variant="size-2">
-            In order for us to release your application for go-live, the
+            In order for us to screen your application for go-live, the
             following requirements have to be considered during product
             development:
           </AXAText>
@@ -231,7 +235,7 @@ export default AXAButtonReact;`}
             <div>
               <p className="contact-footer__subtitle">Help & Contact</p>
               <axa-heading rank="4" variant="secondary">
-                Any question?
+                Any questions?
               </axa-heading>
             </div>
             <axa-button-link
