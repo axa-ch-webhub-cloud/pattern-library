@@ -26,15 +26,15 @@ export const Contact = () => {
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">Help & Contact</axa-heading>
       <axa-text variant="size-1">
-        The AXA core team provides support for users in adopting the AXA Design
+        The AXA core team provides support for users in adopting AXA's Design
         System. Reach out to us with the details of your project and we will do
-        our bet to provide you with a tailored advice on how to reach your
-        project objectives.
+        our best to provide you with tailored advice on how to reach your
+        objectives.
       </axa-text>
       <axa-heading rank="2" variant="secondary">Support</axa-heading>
       <axa-text variant="size-2"
-        >Part of our mission is to guide you, AXA production teams, with the
-        adoption of the tool during your digital journey.</axa-text
+        >Part of our mission is to guide AXA product teams during their digital
+        journey with respect to our areas of competency.</axa-text
       >
       <div class="contact-support-visuals">
         <div class="contact-col-wrapper">
@@ -48,7 +48,7 @@ export const Contact = () => {
           <p class="contact-support-visuals__kicker">Day-to-day questions</p>
           <p class="contact-support-visuals__paragraph">
             <strong>You need a clarification</strong> on any of the design/code
-            elements? Something is not clear in the guidelines or processes?
+            elements? Something is too vague in our guidelines or processes?
             Don’t hesitate to reach out to us - we are happy to help.
           </p>
         </div>
@@ -63,10 +63,10 @@ export const Contact = () => {
           </p>
           <p class="contact-support-visuals__paragraph">
             You have a digital project and
-            <strong>you want to make sure the design is compliant</strong>
-            to the AXA Brand standards? You need help and advice in adopting the
-            AXA Design System in your project? We are here to accompany you
-            through all phases.
+            <strong>want to make sure its design is compliant</strong>
+            to AXA brand standards? You need help and advice in adopting AXA's
+            Design System in your project? We are here to accompany you through
+            all of your project's phases.
           </p>
         </div>
       </div>
@@ -104,7 +104,7 @@ export const Contact = () => {
             etc:
           </axa-text>
           <axa-link href="https://axa-ch.slack.com/messages/patterns-lib-devs/"
-            >Go to slack</axa-link
+            >Go to Slack</axa-link
           >
         </div>
         <div>
