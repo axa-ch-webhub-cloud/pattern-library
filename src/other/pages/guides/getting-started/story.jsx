@@ -210,7 +210,7 @@ export default AXAButtonReact;`}
           'AXA Design System UI Kit',
           "To see how to use AXA's Design System and be in sync with the Pattern Library, take a look at the AXA UI Kit!",
           'https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208',
-          'READ More'
+          'READ MORE'
         )}
         <AXAHeading rank="3">Our development guide</AXAHeading>
         <div className="getting-started__last-text">
