@@ -1,4 +1,5 @@
 import { html, render } from 'lit-html';
+import { storiesOf } from '@storybook/html';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
 import styles from './index.scss';
@@ -23,44 +24,43 @@ const getDateFromGitCommit = answerJson => {
   return formattedDate.toLocaleString(navigator.language);
 };
 
-export default {
-  title: 'Welcome',
-  decorators: [],
-  parameters: {
-    knobs: { disabled: true },
-    changelog: { disabled: true },
-    codepreview: { disabled: true },
-    a11y: { disabled: true },
-    options: { showPanel: false },
-  },
-};
+storiesOf('Welcome', module)
+  .addParameters({
+    decorators: [],
+    parameters: {
+      knobs: { disabled: true },
+      changelog: { disabled: true },
+      codepreview: { disabled: true },
+      a11y: { disabled: true },
+      options: { showPanel: false },
+    },
+  })
+  .add('What is new', () => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('accessory-story-wrapper');
 
-export const WhatIsNew = () => {
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('accessory-story-wrapper');
+    const xhttp = new XMLHttpRequest();
+    // eslint-disable-next-line func-names
+    xhttp.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        const responseJson = JSON.parse(xhttp.responseText);
+        document.querySelector(
+          '#what-is-new__github-response'
+        ).innerHTML = getFormattedGitCommitMessage(responseJson);
+        document.querySelector(
+          '#what-is-new__github-response-date'
+        ).innerHTML = getDateFromGitCommit(responseJson);
+      }
+    };
+    xhttp.open(
+      'GET',
+      'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
+      true
+    );
+    xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
+    xhttp.send();
 
-  const xhttp = new XMLHttpRequest();
-  // eslint-disable-next-line func-names
-  xhttp.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      const responseJson = JSON.parse(xhttp.responseText);
-      document.querySelector(
-        '#what-is-new__github-response'
-      ).innerHTML = getFormattedGitCommitMessage(responseJson);
-      document.querySelector(
-        '#what-is-new__github-response-date'
-      ).innerHTML = getDateFromGitCommit(responseJson);
-    }
-  };
-  xhttp.open(
-    'GET',
-    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
-    true
-  );
-  xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
-  xhttp.send();
-
-  const template = html`
+    const template = html`
     <style>
       ${styles}
     </style>
@@ -86,6 +86,6 @@ export const WhatIsNew = () => {
     ${contact}
   `;
 
-  render(template, wrapper);
-  return wrapper;
-};
+    render(template, wrapper);
+    return wrapper;
+  });
