@@ -47,16 +47,16 @@ export default {
   },
 };
 
-export const ButtonLink = () => {
-  const buttonText = text('text', 'Contact us');
-  const href = text('href', '#');
-  const external = boolean('external', false);
-  const variants = radios('variant', variantOptions, '');
-  const sizes = radios('size', sizeOptions, '');
-  const icons = select('Icon', iconList, '');
-  const motionOff = boolean('motionoff', false);
-  const disabled = boolean('disabled', false);
-
+export const ButtonLink = ({
+  buttonText,
+  href,
+  external,
+  variants,
+  sizes,
+  icons,
+  motionOff,
+  disabled,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <div
@@ -79,4 +79,20 @@ export const ButtonLink = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+ButtonLink.args = {
+  buttonText: 'Contact us',
+  href: '#',
+  external: false,
+  variants: '',
+  sizes: '',
+  icons: '',
+  motionOff: false,
+  disabled: false,
+};
+
+ButtonLink.argTypes = {
+  variants: { control: { type: 'radio', options: variantOptions } },
+  sizes: { control: { type: 'radio', options: sizeOptions } },
+  icons: { control: { type: 'select', options: iconList } },
 };
