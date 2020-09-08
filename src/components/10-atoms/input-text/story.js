@@ -35,6 +35,7 @@ export const InputText = () => {
   const counterMax = text('counterMax', 'Over character limit!');
   const pattern = text('pattern', '');
   const inputmode = text('inputmode', '');
+  const currency = text('currency', '');
   const autofocus = boolean('autofocus', false);
 
   const wrapper = document.createElement('div');
@@ -53,6 +54,7 @@ export const InputText = () => {
       maxlength="${maxLength}"
       pattern="${pattern}"
       inputmode="${inputmode}"
+      currency="${currency}"
       ?checkmark="${checkMark}"
       ?disabled="${disabled}"
       ?required="${required}"
