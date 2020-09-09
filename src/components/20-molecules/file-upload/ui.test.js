@@ -224,7 +224,7 @@ test('should exceed maximum number of files', async t => {
   );
 
   await t
-    .expect(await $errorWrapper.innerText)
+    .expect($errorWrapper.innerText)
     .eql('You exceeded the maximum number of files');
 });
 

@@ -169,7 +169,7 @@ test('should be mutually exclusive', async t => {
 });
 
 test('should update pure text dynamically and wrap in <p>', async t => {
-  const $axaElem = await Selector(() =>
+  const $axaElem = Selector(() =>
     document.querySelector('axa-text[variant]')
   ).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
@@ -181,16 +181,16 @@ test('should update pure text dynamically and wrap in <p>', async t => {
     return text;
   });
 
-  const oldText = $axaElem.textContent;
+  const oldText = await $axaElem.textContent;
   const newText = 'Hello, world.';
 
   await setText(newText);
-  await t.expect(await $axaElem.innerText).contains(newText);
-  await t.expect(await $axaElem.innerHTML).contains('<p>');
+  await t.expect($axaElem.textContent).contains(newText);
+  await t.expect($axaElem.innerHTML).contains('<p>');
 
   await setText(oldText);
-  await t.expect(await $axaElem.innerText).contains(oldText);
-  await t.expect(await $axaElem.innerHTML).contains('<p>');
+  await t.expect($axaElem.textContent).contains(oldText);
+  await t.expect($axaElem.innerHTML).contains('<p>');
 });
 
 fixture('Text - React')
@@ -202,36 +202,57 @@ fixture('Text - React')
   });
 
 test('should update dynamically for pure and HTML texts', async t => {
-  const $axaElem = await Selector(() =>
+  const TESTS = [
+    [true, 'This is example pure text no. 1', '.js-pure-text'],
+    [false, 'This is example HTML text no. 1', '.js-update'],
+    [false, 'This is example HTML text no. 2', '.js-pure-text'],
+    [true, 'This is example pure text no. 2'],
+  ];
+
+  const $axaElem = Selector(() =>
     document.querySelector('axa-text')
   ).addCustomDOMProperties({
     innerHTML: el => el.innerHTML,
   });
 
-  const testText = async (isPure, expectation, clickSelector) => {
-    // existing text is wrapped properly and as expected
-    await t
-      .expect(await $axaElem.innerHTML)
-      .contains(isPure ? '<p>' : '<span>');
-    await t
-      .expect(await $axaElem.innerHTML)
-      .notContains(isPure ? '<span>' : '<p>');
-    await t.expect(await $axaElem.innerText).eql(expectation);
+  let [isPure, expectation, clickSelector] = TESTS[0];
 
-    if (clickSelector) {
-      // change test parameter
-      await t.click(clickSelector);
+  // existing text is wrapped properly and as expected
+  await t.expect($axaElem.innerHTML).contains(isPure ? '<p>' : '<span>');
+  await t.expect($axaElem.innerHTML).notContains(isPure ? '<span>' : '<p>');
+  await t.expect($axaElem.textContent).eql(expectation);
 
-      await t.wait(50);
-    }
-  };
+  // change test parameter
+  await t.click(clickSelector);
 
-  // existing pure text is wrapped in <p> and as expected; then switch to HTML
-  await testText(true, 'This is example pure text no. 1', '.js-pure-text');
-  // existing HTML text is not wrapped and as expected; then update text
-  await testText(false, 'This is example HTML text no. 1', '.js-update');
-  // new HTML text is not wrapped and as expected; then switch back to pure text
-  await testText(false, 'This is example HTML text no. 2', '.js-pure-text');
-  // new pure text is wrapped in <p> and as expected
-  await testText(true, 'This is example pure text no. 2');
+  await t.wait(50);
+
+  /* eslint-disable prefer-destructuring */
+  [isPure, expectation, clickSelector] = TESTS[1];
+
+  await t.expect($axaElem.innerHTML).contains(isPure ? '<p>' : '<span>');
+  await t.expect($axaElem.innerHTML).notContains(isPure ? '<span>' : '<p>');
+  await t.expect($axaElem.textContent).eql(expectation);
+
+  // change test parameter
+  await t.click(clickSelector);
+
+  await t.wait(50);
+
+  [isPure, expectation, clickSelector] = TESTS[2];
+
+  await t.expect($axaElem.innerHTML).contains(isPure ? '<p>' : '<span>');
+  await t.expect($axaElem.innerHTML).notContains(isPure ? '<span>' : '<p>');
+  await t.expect($axaElem.textContent).eql(expectation);
+
+  // change test parameter
+  await t.click(clickSelector);
+
+  await t.wait(50);
+
+  [isPure, expectation, clickSelector] = TESTS[3];
+
+  await t.expect($axaElem.innerHTML).contains(isPure ? '<p>' : '<span>');
+  await t.expect($axaElem.innerHTML).notContains(isPure ? '<span>' : '<p>');
+  await t.expect($axaElem.textContent).eql(expectation);
 });
