@@ -10,9 +10,9 @@ npx wait-on $TEST_HOST_STORYBOOK_URL -t 30000
 
 if [ -z "$1" ]
 then
-    npx testcafe -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
+    npx testcafe -c ${NUM_CPUS} "chrome:headless" -q ./**/ui.test.js
 else
-    npx testcafe -F "${1}" -c ${NUM_CPUS} "chrome:headless" -c 4 ./**/ui.test.js
+    npx testcafe -F "${1}" -c ${NUM_CPUS} "chrome:headless" -q ./**/ui.test.js
 fi
 
 test_status=$?
