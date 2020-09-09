@@ -154,7 +154,7 @@ test('should correctly render social media title in desktop view', async t => {
 });
 
 fixture('Footer - React Smoketest').page(
-  `${host}/iframe.html?id=examples-footer-pure-html--callbacks`
+  `${host}/iframe.html?id=examples-footer-react--callbacks`
 );
 
 test('should render footer with working react callbacks', async t => {

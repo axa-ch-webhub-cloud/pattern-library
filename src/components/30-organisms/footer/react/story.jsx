@@ -30,8 +30,7 @@ storiesOf('Examples/Footer/React', module)
           <h2 slot="column-title">axa & you</h2>
           <a
             slot="column-item"
-            href="https://axa.ch/en/private-customers.html"
-            target="_blank"
+            href="#https://axa.ch/en/private-customers.html"
           >
             Contact
           </a>
@@ -82,11 +81,7 @@ storiesOf('Examples/Footer/React', module)
             AXA worldwide
           </a>
           <h2 slot="social-title">stay in touch</h2>
-          <a
-            slot="social-item"
-            href="https://www.facebook.com/axach/"
-            target="_blank"
-          >
+          <a slot="social-item" href="#https://www.facebook.com/axach/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="25"
