@@ -52,6 +52,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             : undefined,
       },
       inputmode: { type: String },
+      currency: { type: String },
       pattern: {
         // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
         converter: value => value || PATTERN_DEFAULT,
@@ -200,6 +201,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   handleBlur = ev => {
+    this.nativeInput.value = this._formatCurrency(this.value);
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
@@ -248,6 +250,29 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput = this.querySelector('input');
   }
 
+  _formatCurrency(value) {
+    // character left stimmt nicht mehr
+
+    const { currency } = this;
+
+    if (currency && !this.currencyFormatter) {
+      this.currencyFormatter = new Intl.NumberFormat('de-CH', {
+        style: 'currency',
+        currency,
+      });
+    }
+
+    if (this.currencyFormatter) {
+      const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
+
+      if (valueDecimalsOnly) {
+        return this.currencyFormatter.format(valueDecimalsOnly);
+      }
+      return '';
+    }
+    return value;
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
     this._setNativeInput();
@@ -290,6 +315,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       _open,
     } = this;
 
+    let formattedValue = value;
+    if (document.activeElement !== this.nativeInput) {
+      // Do not format the value if the user is still typing. We will format its input onBlur.
+      formattedValue = this._formatCurrency(value);
+    }
+
     this.isControlled = isControlled && isReact;
 
     const inputClasses = {
@@ -327,7 +358,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   class="${classMap(inputClasses)}"
                   autocomplete="off"
                   name="${name}"
-                  value="${value}"
+                  value="${formattedValue}"
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"
@@ -346,7 +377,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   class="${classMap(inputClasses)}"
                   autocomplete="off"
                   name="${name}"
-                  .value="${value}"
+                  .value="${formattedValue}"
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"
