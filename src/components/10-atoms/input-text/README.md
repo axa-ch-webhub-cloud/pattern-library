@@ -160,6 +160,14 @@ It is a string value. Useful to open up numeric keyboard on touch devices. See o
 
 The Boolean attribute autofocus, when true, sets keyboard focus on the underlying native &lt;input&gt; element after initial rendering of the component.
 
+### currency
+
+You can set this string value to format numbers. It formats the input when the `onBlur` event of the input element is fired or if you set `value` programmatically. You can set `ISO 4217` [currency codes](https://en.wikipedia.org/wiki/ISO_4217), but the locale "style" is fixed to `de-CH`.
+
+The formatter is just working if attribute `type` is set to `text`.
+
+Please be aware of using this attribute in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
+
 ## Callbacks
 
 ### onChange
