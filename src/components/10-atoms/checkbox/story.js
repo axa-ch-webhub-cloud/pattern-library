@@ -69,6 +69,9 @@ Checkbox.args = {
 };
 
 Checkbox.argTypes = {
+  errorText: {
+    name: 'error', // TODO set description
+  },
   variant: {
     control: {
       type: 'radio',

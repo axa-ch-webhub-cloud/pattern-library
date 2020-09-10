@@ -56,7 +56,7 @@ PolicyFeatures.args = {
   variants: '',
   title: 'A 5 star car insurance with affordable premium services',
   // TODO set props of axa-policy-features-item in separat tab like on prop
-  itemTitleRadio: 'y', // TODO set description 'Show title?'
+  itemTitleRadio: 'y', // TODO not an attribute
   itemTitle: 'Get Discount', // TODO set description title (of item)
   itemIconUrl: '', // TODO icon -set descriptionload svg icon from this url instead:
   itemDescription: 'A 5 star car insurance with affordable premium services',
@@ -64,12 +64,20 @@ PolicyFeatures.args = {
 
 PolicyFeatures.argTypes = {
   variants: {
+    name: 'variant',
     control: {
       type: 'select',
       options: STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
     },
   },
   itemTitleRadio: {
-    control: { type: 'radio', options: { yes: 'y', no: 'n' } },
+    name: 'Show title?',
+    control: {
+      type: 'radio',
+      options: { yes: 'y', no: 'n' },
+    },
   },
+  itemTitle: { name: 'title' },
+  itemIconUrl: { name: 'icon' },
+  itemDescription: { name: 'description' },
 };

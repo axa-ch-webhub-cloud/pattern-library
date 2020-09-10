@@ -62,6 +62,9 @@ InputFile.args = {
 };
 
 InputFile.argTypes = {
+  text: {
+    name: 'Set input-file content',
+  },
   variant: {
     control: {
       type: 'radio',

@@ -73,7 +73,7 @@ export const ButtonLink = ({
   return wrapper;
 };
 ButtonLink.args = {
-  buttonText: 'Contact us',
+  buttonText: 'Contact us', // TODO not an attribute
   href: '#',
   external: false,
   variants: '',
@@ -84,7 +84,13 @@ ButtonLink.args = {
 };
 
 ButtonLink.argTypes = {
-  variants: { control: { type: 'radio', options: variantOptions } },
-  sizes: { control: { type: 'radio', options: sizeOptions } },
-  icons: { control: { type: 'select', options: iconList } },
+  buttonText: {
+    name: 'Set button-link content',
+  },
+  variants: {
+    name: 'variant',
+    control: { type: 'radio', options: variantOptions },
+  },
+  sizes: { name: 'size', control: { type: 'radio', options: sizeOptions } },
+  icons: { name: 'icon', control: { type: 'select', options: iconList } },
 };
