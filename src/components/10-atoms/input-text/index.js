@@ -202,6 +202,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   handleBlur = ev => {
     this.nativeInput.value = this._formatCurrency(this.value);
+    this.modelCounter = this.getCounterText; // update the chars left counter after formatting the input
+
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
@@ -251,11 +253,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   _formatCurrency(value) {
-    // character left stimmt nicht mehr
+    const { currency, type, currencyFormatter } = this;
 
-    const { currency } = this;
-
-    if (currency && !this.currencyFormatter) {
+    if (currency && type === 'text' && !currencyFormatter) {
+      // just create a new Intl if it does not exist
       this.currencyFormatter = new Intl.NumberFormat('de-CH', {
         style: 'currency',
         currency,
@@ -263,13 +264,16 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
 
     if (this.currencyFormatter) {
-      const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
-
-      if (valueDecimalsOnly) {
-        return this.currencyFormatter.format(valueDecimalsOnly);
+      const containsNumber = /\d/g;
+      if (containsNumber.test(value)) {
+        this.invalid = false;
+        const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
+        return currencyFormatter.format(valueDecimalsOnly);
       }
-      return '';
+
+      this.invalid = value.length > 0;
     }
+
     return value;
   }
 
