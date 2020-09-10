@@ -15,12 +15,8 @@ export default {
   },
 };
 
-export const Footer = () => {
+export const Footer = ({ columnTitle1, columnTitle2, socialTitle }) => {
   const wrapper = document.createElement('div');
-
-  const columnTitle1 = text('First column title', 'axa and you'); // TODO use &, this is a problem with knobs
-  const columnTitle2 = text('Second column title', 'axa worldwide');
-  const socialTitle = text('Social title', 'stay in touch');
 
   const template = html`
     <axa-footer>
@@ -178,4 +174,9 @@ export const Footer = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Footer.args = {
+  columnTitle1: 'axa and you', // TODO set label First column title, set not a real attribute
+  columnTitle2: 'axa worldwide', // TODO set label Second column title, set not a real attribute
+  socialTitle: 'stay in touch', // TODO set label Social title, set not a real attribute
 };
