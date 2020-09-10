@@ -1,9 +1,14 @@
-import AXAInputText, { _formatCurrency } from './index';
+import AXAInputText from './index';
 
 describe('InputText', () => {
   describe('_formatCurrency', () => {
     it('should create new NumberFormat object', () => {
-      expect().toEqual();
+      AXAInputText.prototype.currency = 'chf';
+      AXAInputText.prototype.type = 'text';
+      AXAInputText.prototype.currencyFormatter = null;
+      AXAInputText.prototype._formatCurrency('1');
+
+      expect(AXAInputText.prototype.currencyFormatter).not.toBe(null);
     });
 
     it('should set invalid to false (if input contains a number)', () => {
@@ -21,6 +26,17 @@ describe('InputText', () => {
     });
 
     it('should return inputted value', () => {
+      expect().toEqual();
+    });
+
+    // negative positive tests
+    it('should not create a NumberFormat object (wrong type)', () => {
+      expect().toEqual();
+    });
+    it('should not create a NumberFormat object (already exists)', () => {
+      expect().toEqual();
+    });
+    it('should not create a NumberFormat object (no currency set)', () => {
       expect().toEqual();
     });
   });
