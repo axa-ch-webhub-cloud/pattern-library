@@ -175,7 +175,7 @@ test('should render footer with working react callbacks', async t => {
   await t.expect($contactLink.visible).ok();
 
   const $result = Selector('#clicked-link');
-  await t.expect($result.innerText).contains(' -');
+  await t.expect($result.textContent).contains(' -');
 
   await t.click($contactLink);
 
@@ -193,7 +193,9 @@ test('should render footer with working react callbacks', async t => {
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
 
-  await t.expect($result.innerText).contains('https://www.facebook.com/axach/');
+  await t
+    .expect($result.textContent)
+    .contains('https://www.facebook.com/axach/');
 });
 
 fixture('Footer - Demo Smoketest').page(
@@ -217,7 +219,7 @@ test('should render footer with working native callbacks', async t => {
   await t.expect($contactLink.visible).ok();
 
   const $result = Selector('#clicked-link');
-  await t.expect($result.innerText).contains(' -');
+  await t.expect($result.textContent).contains(' -');
 
   await t.click($contactLink);
 
@@ -226,7 +228,9 @@ test('should render footer with working native callbacks', async t => {
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
 
-  await t.expect($result.innerText).contains('https://www.facebook.com/axach/');
+  await t
+    .expect($result.textContent)
+    .contains('https://www.facebook.com/axach/');
 });
 
 fixture('Footer - without content').page(
