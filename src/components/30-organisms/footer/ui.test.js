@@ -158,6 +158,7 @@ fixture('Footer - React Smoketest').page(
 );
 
 test('should render footer with working react callbacks', async t => {
+  await t.setTestSpeed(0.5);
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
