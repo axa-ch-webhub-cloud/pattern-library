@@ -357,7 +357,7 @@ test('should correctly update icon and text', async t => {
     .expect(await iconSVGPathElement.getAttribute('d'))
     .eql(downIconSignature);
 
-  await t.expect(await axaLink.textContent).eql('Mehr Filter');
+  await t.expect(axaLink.textContent).eql('Mehr Filter');
 
   await t.click(axaLinkEmbedded);
 
@@ -365,5 +365,5 @@ test('should correctly update icon and text', async t => {
     .expect(await iconSVGPathElement.getAttribute('d'))
     .eql(upIconSignature);
 
-  await t.expect(await axaLink.textContent).eql('Weniger Filter');
+  await t.expect(axaLink.textContent).eql('Weniger Filter');
 });

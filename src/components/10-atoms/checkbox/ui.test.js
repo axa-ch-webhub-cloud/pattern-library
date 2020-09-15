@@ -139,7 +139,7 @@ test('should be clickable + change state and render child label', async t => {
   await t.expect($axaCheckbox.count).eql(1);
 
   // has child label
-  await t.expect(label).ok();
+  await t.expect(label.exists).ok();
 });
 
 fixture('Checkbox - Variant checkmark').page(
