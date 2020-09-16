@@ -1,6 +1,6 @@
 import { css, html, LitElement, unsafeCSS } from 'lit-element';
-import fireCustomEvent from '../../../utils/custom-event';
 import { defineVersioned } from '../../../utils/component-versioning';
+import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -20,12 +20,39 @@ class AXAToggleSwitch extends LitElement {
       active: { type: Boolean, reflect: true },
       disabled: { type: Boolean },
       onChange: { type: Function },
+      isReact: { type: Boolean },
     };
   }
 
   constructor() {
     super();
+
+    this.state = {
+      firstUpdate: true,
+      isControlled: false,
+      active: false,
+    };
+
     applyDefaults(this);
+  }
+
+  set active(value) {
+    const {
+      active,
+      isReact,
+      state: { firstUpdate },
+    } = this;
+
+    if (firstUpdate && isReact) {
+      this.state.isControlled = true;
+    }
+
+    this.state.active = value;
+    this.requestUpdate('active', active);
+  }
+
+  get active() {
+    return this.state.active;
   }
 
   render() {
@@ -49,10 +76,17 @@ class AXAToggleSwitch extends LitElement {
     `;
   }
 
+  firstUpdated() {
+    this.state.firstUpdate = false;
+  }
+
   handleChange(event) {
-    this.active = event.target.checked;
-    const { active } = this;
-    fireCustomEvent('change', { active }, this);
+    if (!this.state.isControlled) {
+      this.active = event.target.checked;
+      const { active } = this;
+      fireCustomEvent('change', { active }, this);
+    }
+
     this.onChange(event);
   }
 }
