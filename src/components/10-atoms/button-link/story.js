@@ -85,7 +85,7 @@ ButtonLink.args = {
 
 ButtonLink.argTypes = {
   buttonText: {
-    name: 'Set button-link content',
+    name: 'set button-link content',
   },
   variants: {
     name: 'variant',

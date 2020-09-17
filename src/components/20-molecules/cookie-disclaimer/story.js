@@ -19,14 +19,14 @@ export const CookieDisclaimer = ({
   description,
   dataProtection,
   link,
-  fixed,
+  variant,
 }) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-cookie-disclaimer
       buttonname="${buttonname}"
       title="${title}"
-      variant="${fixed ? 'fixed' : ''}"
+      variant="${variant}"
     >
       <p>${description}</p>
       <axa-link variant="arrowright-animated-white" href="${link}">
@@ -50,9 +50,18 @@ export const CookieDisclaimer = ({
 CookieDisclaimer.args = {
   buttonname: 'Accept',
   title: 'Terms and conditions of data protection',
+  variant: '',
   description:
     'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:', // TODO description & not a real attribute
-  dataProtection: 'Data protection', // TODO description & not a real attribute (link text)
+  dataProtection: 'Data protection',
   link: 'https://axa.ch/de/informationen/datenschutz.html',
-  fixed: false, // TODO Drag your browser smaller to see text behind it
+};
+CookieDisclaimer.argTypes = {
+  variant: {
+    name: 'variant (Drag your browser smaller to see text behind it)',
+    control: { type: 'select', options: ['', 'fixed'] },
+  },
+  description: { name: 'set a description' },
+  dataProtection: { name: 'set a link text' },
+  link: { name: 'set a link address' },
 };

@@ -108,4 +108,5 @@ FileUpload.argTypes = {
       step: 1,
     },
   },
+  headerText: { name: 'set header text' },
 };

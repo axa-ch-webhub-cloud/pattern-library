@@ -24,3 +24,7 @@ export const Container = ({ childsText }) => {
 Container.args = {
   childsText: 'Some children',
 };
+
+Container.argTypes = {
+  childsText: { name: 'set the childs text' },
+};

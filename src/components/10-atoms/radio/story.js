@@ -28,7 +28,7 @@ export const Radio = ({
 
   const template = html`
     <axa-text variant="size-3">
-      Knobs with a * only affect the first radio button
+      Controls with a * only affect the first radio button
     </axa-text>
     <br />
     <axa-text variant="size-2">
@@ -75,12 +75,18 @@ export const Radio = ({
   return wrapper;
 };
 Radio.args = {
-  label: 'car', // TODO: set description to: only sets first element of radios & remove text on line 29
-  checked: false, // TODO: set description to: only sets first element of radios
-  focus: false, // TODO: set description to: only sets first element of radios
+  label: 'car',
+  checked: false,
+  focus: false,
   disabled: false,
   button: false,
   icon: false,
   noGap: false,
   noAutoWidth: false,
+};
+
+Radio.argTypes = {
+  label: { type: { required: true } },
+  checked: { type: { required: true } },
+  focus: { type: { required: true } },
 };

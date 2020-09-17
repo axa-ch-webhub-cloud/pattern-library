@@ -63,7 +63,7 @@ InputFile.args = {
 
 InputFile.argTypes = {
   text: {
-    name: 'Set input-file content',
+    name: 'set input-file content',
   },
   variant: {
     control: {

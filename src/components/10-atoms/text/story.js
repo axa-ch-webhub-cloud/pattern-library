@@ -36,13 +36,15 @@ export const Text = ({ variant, addSpanTag, content }) => {
 };
 Text.args = {
   variant: '',
-  addSpanTag: false, // TODO add description Add <span> tag and say that attribute is not an official attribute
   content: `Is your car your pride and joy, or just a means of getting from A to
   B ? Whichever applies to you, it will certainly have the best
   insurance with us. Calculate your premium online – You keep your
   advisor even when you purchase from us online.`,
+  addSpanTag: false,
 };
 
 Text.argTypes = {
   variant: { control: { type: 'select', options: variantOptions } },
+  addSpanTag: { name: 'add a span tag around the content' },
+  content: { name: 'set content' },
 };

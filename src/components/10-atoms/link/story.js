@@ -38,8 +38,8 @@ export default {
 };
 
 export const Link = ({
-  link,
   linkText,
+  link,
   external,
   variant,
   icon,
@@ -65,18 +65,25 @@ export const Link = ({
   return wrapper;
 };
 Link.args = {
-  link: 'https://www.axa.ch/en/information/data-protection.html',
   linkText: 'Data protection statement',
+  backgrounds: 'white',
+  link: 'https://www.axa.ch/en/information/data-protection.html',
   external: false,
   variant: '',
   icon: '',
-  backgrounds: 'white',
 };
 
 Link.argTypes = {
+  link: {
+    name: 'href',
+  },
+  linkText: {
+    name: 'set link text',
+  },
   variant: { control: { type: 'select', options: variantOptions } },
   icon: { control: { type: 'select', options: iconList } },
   backgrounds: {
+    name: 'set a story background color',
     control: { type: 'select', options: ['red', 'blue', 'white', 'black'] },
-  }, // TODO description or set as not required
+  },
 };

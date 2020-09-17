@@ -67,8 +67,8 @@ export const InputText = ({
   return wrapper;
 };
 InputText.args = {
-  label: '', // TODO set required
-  name: '', // TODO set required
+  label: '',
+  name: '',
   refId: '',
   placeholder: '',
   value: '',
@@ -88,5 +88,5 @@ InputText.args = {
 };
 
 InputText.argTypes = {
-  types: { control: { type: 'radio', options: typeOptions } },
+  types: { name: 'type', control: { type: 'radio', options: typeOptions } },
 };
