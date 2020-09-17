@@ -70,7 +70,7 @@ Checkbox.args = {
 
 Checkbox.argTypes = {
   errorText: {
-    name: 'error', // TODO set description
+    name: 'error',
   },
   variant: {
     control: {

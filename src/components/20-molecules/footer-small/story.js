@@ -61,10 +61,19 @@ export const FooterSmall = ({
   return wrapper;
 };
 FooterSmall.args = {
-  language1: 'DE', // TODO set description or label name: First language
-  language2: 'FR', // TODO set description or label name: Second language
-  language3: 'IT', // TODO set description or label name: Third language
-  language4: 'EN', // TODO set description or label name: Fourth language
-  termsOfUse: `Terms of use`, // TODO set description or label name: Terms of use
-  dataProtection: `Data protection`, // TODO set description or label name: Data protection
+  language1: 'DE',
+  language2: 'FR',
+  language3: 'IT',
+  language4: 'EN',
+  termsOfUse: `Terms of use`,
+  dataProtection: `Data protection`,
+};
+
+FooterSmall.argTypes = {
+  language1: { name: 'set first language' },
+  language2: { name: 'set second language' },
+  language3: { name: 'set third language' },
+  language4: { name: 'set fourth language' },
+  termsOfUse: { name: 'set terms of use' },
+  dataProtection: { name: 'set data protection' },
 };

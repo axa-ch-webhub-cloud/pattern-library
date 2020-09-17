@@ -27,10 +27,6 @@ export const Radio = ({
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-text variant="size-3">
-      Controls with a * only affect the first radio button
-    </axa-text>
-    <br />
     <axa-text variant="size-2">
       What type of vehicle do you want to insure?
     </axa-text>
@@ -86,7 +82,7 @@ Radio.args = {
 };
 
 Radio.argTypes = {
-  label: { type: { required: true } },
-  checked: { type: { required: true } },
-  focus: { type: { required: true } },
+  label: { name: 'label (set label of first item)' },
+  checked: { name: 'checked (check first item)' },
+  focus: { name: 'focus (focus on first item)' },
 };

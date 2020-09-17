@@ -52,7 +52,7 @@ CookieDisclaimer.args = {
   title: 'Terms and conditions of data protection',
   variant: '',
   description:
-    'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:', // TODO description & not a real attribute
+    'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:',
   dataProtection: 'Data protection',
   link: 'https://axa.ch/de/informationen/datenschutz.html',
 };

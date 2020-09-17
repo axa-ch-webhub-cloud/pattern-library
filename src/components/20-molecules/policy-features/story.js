@@ -55,10 +55,9 @@ export const PolicyFeatures = ({
 PolicyFeatures.args = {
   variants: '',
   title: 'A 5 star car insurance with affordable premium services',
-  // TODO set props of axa-policy-features-item in separat tab like on prop
-  itemTitleRadio: 'y', // TODO not an attribute
-  itemTitle: 'Get Discount', // TODO set description title (of item)
-  itemIconUrl: '', // TODO icon -set descriptionload svg icon from this url instead:
+  itemTitleRadio: 'y',
+  itemTitle: 'Get Discount',
+  itemIconUrl: '',
   itemDescription: 'A 5 star car insurance with affordable premium services',
 };
 
@@ -77,7 +76,9 @@ PolicyFeatures.argTypes = {
       options: { yes: 'y', no: 'n' },
     },
   },
-  itemTitle: { name: 'title' },
-  itemIconUrl: { name: 'icon' },
-  itemDescription: { name: 'description' },
+  itemTitle: { name: 'title (set title of first item)' },
+  itemIconUrl: {
+    name: 'icon (load svg icon of first element from this url instead)',
+  },
+  itemDescription: { name: 'description (set description of first item)' },
 };

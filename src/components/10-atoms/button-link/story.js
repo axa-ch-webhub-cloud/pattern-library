@@ -73,7 +73,7 @@ export const ButtonLink = ({
   return wrapper;
 };
 ButtonLink.args = {
-  buttonText: 'Contact us', // TODO not an attribute
+  buttonText: 'Contact us',
   href: '#',
   external: false,
   variants: '',

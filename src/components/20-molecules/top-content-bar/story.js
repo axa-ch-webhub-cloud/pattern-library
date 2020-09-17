@@ -45,10 +45,12 @@ TopContentBar.args = {
   variant: '',
   href: '',
   textValue:
-    'Unidentified flying object detected in your region. People are panicking. Stay calm!', // TODO set description an label: not a real attribte
-  link: '', // TODO set description an label: not a real attribte
+    'Unidentified flying object detected in your region. People are panicking. Stay calm!',
+  link: '',
 };
 
 TopContentBar.argTypes = {
   variant: { control: { type: 'radio', options: variantOptions } },
+  textValue: { name: 'set content' },
+  link: { name: 'set link text' },
 };
