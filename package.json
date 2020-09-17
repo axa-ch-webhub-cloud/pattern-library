@@ -61,6 +61,7 @@
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "chalk": "^2.4.2",
     "clipboardy": "^2.0.0",
+    "copy-webpack-plugin": "^6.0.3",
     "core-js": "^2.6.5",
     "cp": "^0.2.0",
     "cross-env": "^5.2.0",
@@ -95,7 +96,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "sass-loader": "^7.1.0",
     "svgo": "^1.2.0",
-    "testcafe": "1.8.2",
+    "testcafe": "1.9.2",
     "testcafe-browser-provider-browserstack": "1.12.0",
     "to-string-loader": "^1.1.5"
   },

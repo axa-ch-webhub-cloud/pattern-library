@@ -87,35 +87,27 @@ test('should sort strings', async t => {
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect(await $columnTwoFirstRow.textContent).eql('Petra');
-  await t.expect(await $columnTwoLastRow.textContent).eql('Chris');
+  await t.expect($columnTwoFirstRow.textContent).eql('Petra');
+  await t.expect($columnTwoLastRow.textContent).eql('Chris');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect(await $columnTwoFirstRow.textContent).eql('Chris');
-  await t.expect(await $columnTwoLastRow.textContent).eql('Petra');
+  await t.expect($columnTwoFirstRow.textContent).eql('Chris');
+  await t.expect($columnTwoLastRow.textContent).eql('Petra');
 
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnTwoFirstRow.innerHTML)
-    .contains('<span>Petra</span>');
-  await t
-    .expect(await $columnTwoLastRow.innerHTML)
-    .contains('<span>Chris</span>');
+  await t.expect($columnTwoFirstRow.innerHTML).contains('<span>Petra</span>');
+  await t.expect($columnTwoLastRow.innerHTML).contains('<span>Chris</span>');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect(await $columnTwoFirstRow.innerHTML)
-    .contains('<span>Chris</span>');
-  await t
-    .expect(await $columnTwoLastRow.innerHTML)
-    .contains('<span>Petra</span>');
+  await t.expect($columnTwoFirstRow.innerHTML).contains('<span>Chris</span>');
+  await t.expect($columnTwoLastRow.innerHTML).contains('<span>Petra</span>');
 });
 
 test('should sort numbers', async t => {
@@ -146,31 +138,27 @@ test('should sort numbers', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect(await $columnOneFirstRow.textContent).eql('55');
-  await t.expect(await $columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.textContent).eql('55');
+  await t.expect($columnOneLastRow.textContent).eql('18');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect(await $columnOneFirstRow.textContent).eql('18');
-  await t.expect(await $columnOneLastRow.textContent).eql('55');
+  await t.expect($columnOneFirstRow.textContent).eql('18');
+  await t.expect($columnOneLastRow.textContent).eql('55');
 
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .contains('<span>55</span>');
-  await t.expect(await $columnOneLastRow.innerHTML).contains('<span>18</span>');
+  await t.expect($columnOneFirstRow.innerHTML).contains('<span>55</span>');
+  await t.expect($columnOneLastRow.innerHTML).contains('<span>18</span>');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect(await $columnOneFirstRow.innerHTML)
-    .contains('<span>18</span>');
-  await t.expect(await $columnOneLastRow.innerHTML).contains('<span>55</span>');
+  await t.expect($columnOneFirstRow.innerHTML).contains('<span>18</span>');
+  await t.expect($columnOneLastRow.innerHTML).contains('<span>55</span>');
 });
 
 test('should sort dates', async t => {
@@ -201,34 +189,34 @@ test('should sort dates', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect(await $columnFourFirstRow.textContent).eql('02.05.2013');
-  await t.expect(await $columnFourLastRow.textContent).eql('01.01.2020');
+  await t.expect($columnFourFirstRow.textContent).eql('02.05.2013');
+  await t.expect($columnFourLastRow.textContent).eql('01.01.2020');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect(await $columnFourFirstRow.textContent).eql('01.01.2020');
-  await t.expect(await $columnFourLastRow.textContent).eql('02.05.2013');
+  await t.expect($columnFourFirstRow.textContent).eql('01.01.2020');
+  await t.expect($columnFourLastRow.textContent).eql('02.05.2013');
 
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
   await t
-    .expect(await $columnFourFirstRow.innerHTML)
+    .expect($columnFourFirstRow.innerHTML)
     .contains('<span>02.05.2013</span>');
   await t
-    .expect(await $columnFourLastRow.innerHTML)
+    .expect($columnFourLastRow.innerHTML)
     .contains('<span>01.01.2020</span>');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
   await t
-    .expect(await $columnFourFirstRow.innerHTML)
+    .expect($columnFourFirstRow.innerHTML)
     .contains('<span>01.01.2020</span>');
   await t
-    .expect(await $columnFourLastRow.innerHTML)
+    .expect($columnFourLastRow.innerHTML)
     .contains('<span>02.05.2013</span>');
 });
 
@@ -378,8 +366,8 @@ test('should sort also when innerscroll is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect(await $columnOneFirstRow.textContent).eql('55');
-  await t.expect(await $columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.textContent).eql('55');
+  await t.expect($columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
@@ -438,8 +426,8 @@ test('should sort also when maxheight is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect(await $columnOneFirstRow.textContent).eql('55');
-  await t.expect(await $columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.textContent).eql('55');
+  await t.expect($columnOneLastRow.textContent).eql('18');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);

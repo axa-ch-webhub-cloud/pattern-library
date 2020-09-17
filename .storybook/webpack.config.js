@@ -3,6 +3,7 @@ const base = path.resolve(process.cwd(), 'src');
 const babelOptions = require('./.babelrc'); // get the babelrc file
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 require('dotenv-extended').load();
 
@@ -22,7 +23,8 @@ module.exports = ({ config }) => {
   });
 
   config.plugins.push(
-    new webpack.DefinePlugin({__VERSION_INFO__: stringifiedVersionInfo})
+    new webpack.DefinePlugin({__VERSION_INFO__: stringifiedVersionInfo}),
+    new CopyPlugin({ patterns: [{ from: 'src/other/pages/utils/assets'}]})
   );
 
   config.module.rules.push(

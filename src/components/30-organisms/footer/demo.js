@@ -16,7 +16,7 @@ storiesOf('Examples/Footer/Pure HTML', module)
     const footerMarkup = `
     <axa-footer clickevents>
       <h2 slot="column-title">axa & you</h2>
-      <a slot="column-item" href="https://axa.ch/en/private-customers.html" target="_blank">Contact</a>
+      <a slot="column-item" href="#https://axa.ch/en/private-customers.html">Contact</a>
       <a slot="column-item" href="https://axa.ch/en/private-customers/claims/everything-about-claiming/file-claim.html" target="_blank">Report a claim</a>
       <a slot="column-item" href="https://axa.ch/en/information/broker-services.html" target="_blank">Broker</a>
       <a slot="column-item" href="https://axa.ch/en/about-axa/jobs-career/job-vacancies/job-vacancies.html" target="_blank">Job vacancies</a>
@@ -26,7 +26,7 @@ storiesOf('Examples/Footer/Pure HTML', module)
       <h2 slot="column-title">axa worldwide</h2>
       <a slot="column-item" href="http://www.axa.com" target="_blank">AXA worldwide</a>
       <h2 slot="social-title">stay in touch</h2>
-      <a slot="social-item" href="https://www.facebook.com/axach/" target="_blank">
+      <a slot="social-item" href="#https://www.facebook.com/axach/">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><path d="M8.865 9.043H6.213v3.473h2.652v10.42h4.452v-10.42h3.274l.31-3.473h-3.584V7.634c0-.832.164-1.152.982-1.152h2.57V2.096h-3.388c-3.274 0-4.616 1.377-4.616 4.002v2.945z" fill="#FFFFFF"/></svg>
       </a>
       <a slot="social-item" href="https://www.instagram.com/axaswitzerland/" target="_blank">

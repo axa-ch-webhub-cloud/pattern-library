@@ -51,6 +51,7 @@ const storyButton = storiesOf('Examples/Button/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   changelog: Changelog,
+  options: { showPanel: true },
 });
 
 storyButton.add('Story', () => {

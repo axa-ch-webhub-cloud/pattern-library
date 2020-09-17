@@ -1,3 +1,7 @@
+## 13.1.0
+
+- Added new image: `corrupt-file`
+
 ## 13.0.0
 
 - BREAKING CHANGE: Remove the not really needed `height` and `width` attributes from all images (not icons). The adding of them in v12.0.0 lead to some displaying issues for at least one team.

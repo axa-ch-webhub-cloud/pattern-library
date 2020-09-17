@@ -6,8 +6,8 @@ addParameters({
   options: {
     storySort: {
       method: 'alphabetical',
-      order: ['Welcome', 'Components', 'Pages', 'Others', ['Materials', 'Examples']]
-    }
+      order: ['Welcome', 'What is new', 'Guides', 'Brand Elements', 'Components', 'Pages', 'Examples', 'Others']
+    },
   }
 });
 
