@@ -224,3 +224,18 @@ test('should format value', async t => {
 
   await t.expect($axaInputElement.value).eql('CHF 1’234.00');
 });
+
+fixture('Input text - currency on controlled component').page(
+  `${host}/iframe.html?id=examples-input-text-react--controlled-uncontrolled`
+);
+
+test('should format value of controlled component', async t => {
+  const $axaInputElement = await Selector(() =>
+    document.querySelector('#controlled_currency')
+  ).find(CLASS);
+
+  await t.typeText($axaInputElement, '1234', { replace: true });
+  await t.pressKey('tab'); // to blur input-element
+
+  await t.expect($axaInputElement.value).eql('CHF 1’234.00');
+});

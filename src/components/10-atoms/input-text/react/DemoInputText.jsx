@@ -22,6 +22,16 @@ const DemoInputText = () => {
         value={firstName}
         onChange={handleChange}
       />
+      <p>
+        <AXAInputText
+          currency="chf"
+          label="Controlled with currency attribute set to 'CHF'"
+          error="Please enter at least one number"
+          id="controlled_currency"
+          value={firstName}
+          onChange={handleChange}
+        />
+      </p>
       <AXAInputText
         required
         label="Controlled value freeze"
