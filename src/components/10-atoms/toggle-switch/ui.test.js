@@ -214,3 +214,93 @@ test('should not change state when clicked and disabled', async t => {
 
   await t.expect(await isChecked()).notOk();
 });
+
+fixture('Toggle Switch - controlled mode without onChange (active=false)').page(
+  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`
+);
+
+test('should not change state when clicked', async t => {
+  const performClick = async () => {
+    const toggleSwitch = Selector(() =>
+      document
+        .querySelector('axa-toggle-switch')
+        .shadowRoot.querySelector('.a-toggle-switch')
+    );
+
+    await t.click(toggleSwitch);
+  };
+
+  const isChecked = ClientFunction(() => {
+    const toggleSwitch = document.querySelector('axa-toggle-switch');
+    const toggleSwitchShadow = toggleSwitch.shadowRoot;
+
+    const toggleSwitchInput = toggleSwitchShadow.querySelector(
+      '.a-toggle-switch__input'
+    );
+
+    return toggleSwitchInput.hasAttribute('checked');
+  });
+
+  await performClick();
+  await t.expect(await isChecked()).notOk();
+});
+
+fixture('Toggle Switch - controlled mode without onChange (active=true)').page(
+  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`
+);
+
+test('should not change state when clicked', async t => {
+  const performClick = async () => {
+    const toggleSwitch = Selector(() =>
+      document
+        .querySelector('axa-toggle-switch')
+        .shadowRoot.querySelector('.a-toggle-switch')
+    );
+
+    await t.click(toggleSwitch);
+  };
+
+  const isChecked = ClientFunction(() => {
+    const toggleSwitch = document.querySelector('axa-toggle-switch');
+    const toggleSwitchShadow = toggleSwitch.shadowRoot;
+
+    const toggleSwitchInput = toggleSwitchShadow.querySelector(
+      '.a-toggle-switch__input'
+    );
+
+    return toggleSwitchInput.hasAttribute('checked');
+  });
+
+  await performClick();
+  await t.expect(await isChecked()).ok();
+});
+
+fixture('Toggle Switch - controlled mode with onChange').page(
+  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-onchange&viewMode=story`
+);
+
+test('should change state when clicked', async t => {
+  const performClick = async () => {
+    const toggleSwitch = Selector(() =>
+      document
+        .querySelector('axa-toggle-switch')
+        .shadowRoot.querySelector('.a-toggle-switch')
+    );
+
+    await t.click(toggleSwitch);
+  };
+
+  const isChecked = ClientFunction(() => {
+    const toggleSwitch = document.querySelector('axa-toggle-switch');
+    const toggleSwitchShadow = toggleSwitch.shadowRoot;
+
+    const toggleSwitchInput = toggleSwitchShadow.querySelector(
+      '.a-toggle-switch__input'
+    );
+
+    return toggleSwitchInput.hasAttribute('checked');
+  });
+
+  await performClick();
+  await t.expect(await isChecked()).ok();
+});
