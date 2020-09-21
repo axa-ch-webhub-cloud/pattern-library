@@ -1,6 +1,7 @@
 # AXA Toggle Switch
 
 &lt;axa-toggle-switch&gt; provides a UI element for toggling between two states, active and inactive.
+You can use it in [React controlled components](https://reactjs.org/docs/forms.html#controlled-components).
 
 ## Usage
 
@@ -62,6 +63,7 @@ Import the toggle-switch-defining script and use a toggle-switch like this:
 ### active
 
 The Boolean attribute `active` sets the visual state of the toggle switch to active, if true, and inactive otherwise.
+If `active` is defined when first set under React, controlled-component mode is activated.
 
 ### disabled
 
