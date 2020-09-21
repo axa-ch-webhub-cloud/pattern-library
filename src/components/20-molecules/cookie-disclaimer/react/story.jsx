@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import AXALinkReact from './AXALinkReact';
+import AXATextReact from './AXATextReact';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Cookie Disclaimer/React', module)
@@ -34,21 +35,25 @@ storiesOf('Examples/Cookie Disclaimer/React', module)
 
     const div = document.createElement('div');
     ReactDOM.render(
-      <AXACookieDisclaimerReact
-        onClick={() => {
-          // eslint-disable-next-line no-console
-          console.log('Pressed');
-        }}
-        title={title}
-        buttonname={buttonname}
-      >
-        <p>
-          {description}
-          <AXALinkReact variant="arrowright-animated-white" href={link}>
-            {dataProtection}
-          </AXALinkReact>
-        </p>
-      </AXACookieDisclaimerReact>,
+      <>
+        <AXACookieDisclaimerReact
+          onClick={() => {
+            document.getElementById(
+              'checkbox-output'
+            ).innerHTML = `Clicked on: ${Date.now()}`;
+          }}
+          title={title}
+          buttonname={buttonname}
+        >
+          <p>
+            {description}
+            <AXALinkReact variant="arrowright-animated-white" href={link}>
+              {dataProtection}
+            </AXALinkReact>
+          </p>
+        </AXACookieDisclaimerReact>
+        <AXATextReact id="checkbox-output">Clicked on:</AXATextReact>
+      </>,
       div
     );
     const warning = document.createElement('div');

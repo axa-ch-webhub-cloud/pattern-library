@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { storiesOf } from '@storybook/html';
 import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
 import AXACheckboxReact from './AXACheckboxReact';
+import AXATextReact from './AXATextReact';
 import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Checkbox/React', module)
@@ -33,18 +34,25 @@ storiesOf('Examples/Checkbox/React', module)
     }
 
     ReactDOM.render(
-      <AXACheckboxReact
-        name={name}
-        label={label}
-        disabled={disabled}
-        variant={variant}
-        required={required}
-        styled={styled}
-        onChange={e =>
-          console.log('checkbox', name, ' changed to: ', e.target.checked)
-        }
-        error={errortext ? 'Please accept our terms and conditions.' : ''}
-      />,
+      <>
+        <AXACheckboxReact
+          name={name}
+          label={label}
+          disabled={disabled}
+          variant={variant}
+          required={required}
+          styled={styled}
+          onChange={e =>
+            (document.getElementById(
+              'checkbox-output'
+            ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)
+          }
+          error={errortext ? 'Please accept our terms and conditions.' : ''}
+        />
+        <AXATextReact id="checkbox-output">
+          checkbox {name} state changed to:
+        </AXATextReact>
+      </>,
       div
     );
     return div;

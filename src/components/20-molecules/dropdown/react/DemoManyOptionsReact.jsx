@@ -1,5 +1,6 @@
 import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
+import AXATextReact from './AXATextReact';
 
 const DemoManyOptionsReact = () => {
   const items = [
@@ -203,14 +204,22 @@ const DemoManyOptionsReact = () => {
   ];
 
   return (
-    <AXADropdownReact
-      data-test-id="many-options-dropdown-react"
-      defaultTitle="Choose country..."
-      maxHeight
-      items={items}
-      // eslint-disable-next-line no-console
-      onChange={value => console.log(JSON.stringify(value))}
-    />
+    <>
+      <AXADropdownReact
+        data-test-id="many-options-dropdown-react"
+        defaultTitle="Choose country..."
+        maxHeight
+        items={items}
+        // eslint-disable-next-line no-console
+        onChange={value =>
+          (document.getElementById(
+            'checkbox-output'
+          ).innerHTML = `Value: ${JSON.stringify(value)}`)
+        }
+      />
+      <br />
+      <AXATextReact id="checkbox-output">Value:</AXATextReact>
+    </>
   );
 };
 

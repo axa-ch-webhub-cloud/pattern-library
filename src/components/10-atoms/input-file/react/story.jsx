@@ -12,6 +12,7 @@ import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import Changelog from '../CHANGELOG.md';
 import AXAInputFileReact from './AXAInputFileReact';
+import AXATextReact from './AXATextReact';
 
 storiesOf('Examples/Input File/React', module)
   .addDecorator(withKnobs)
@@ -53,21 +54,30 @@ storiesOf('Examples/Input File/React', module)
     }
 
     ReactDOM.render(
-      <AXAInputFileReact
-        text={_text}
-        variant={variant}
-        onChange={e => {
-          console.log('files selected: ', e.target.files);
-        }}
-        className="myCssClass"
-        icon={icon}
-        large={large}
-        motionOff={motionOff}
-        multiple={multiple}
-        accept={accept}
-        disabled={disabled}
-        capture={capture}
-      ></AXAInputFileReact>,
+      <>
+        <AXAInputFileReact
+          text={_text}
+          variant={variant}
+          onChange={e => {
+            const allFileNames = [];
+            [...e.target.files].forEach(i => allFileNames.push(i.name));
+
+            document.getElementById(
+              'checkbox-output'
+            ).innerHTML = `Files selected: ${allFileNames.toString()}`;
+          }}
+          className="myCssClass"
+          icon={icon}
+          large={large}
+          motionOff={motionOff}
+          multiple={multiple}
+          accept={accept}
+          disabled={disabled}
+          capture={capture}
+        />
+        <br />
+        <AXATextReact id="checkbox-output">Files selected:</AXATextReact>
+      </>,
       div
     );
 
