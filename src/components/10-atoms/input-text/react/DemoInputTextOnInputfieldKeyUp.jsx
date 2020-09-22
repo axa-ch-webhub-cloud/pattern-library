@@ -1,5 +1,5 @@
 import React from 'react';
-import AXAInputText from "./AXAInputText";
+import AXAInputText from './AXAInputText';
 
 const DemoInputTextOnInputfieldKeyUp = () => {
   return (

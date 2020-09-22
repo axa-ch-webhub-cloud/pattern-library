@@ -227,4 +227,3 @@ test('should fire onInputfieldKeyUp callback on user input', async t => {
 
   await t.expect(await testoutput().innerHTML).eql('x');
 });
-
