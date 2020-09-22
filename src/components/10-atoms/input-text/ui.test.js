@@ -209,3 +209,22 @@ test('should display correct default value', async t => {
 
   await t.expect(await getValue()).eql('qwertz');
 });
+
+fixture('Input-Text React OnInputfieldKeyUp').page(
+  `${host}/iframe.html?id=examples-datepicker-react--using-oninputfieldkeyup-event`
+);
+
+test('should fire onInputfieldKeyUp callback on user input', async t => {
+  const testoutput = await Selector(() =>
+    document.querySelector('#inputtext-react-testoutput')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t.typeText('axa-input-text', 'x', {
+    replace: true,
+  });
+
+  await t.expect(await testoutput().innerHTML).eql('x');
+});
+

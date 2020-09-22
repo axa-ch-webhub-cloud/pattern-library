@@ -1,3 +1,8 @@
+## 4.3.2
+
+- New callback `onInputfieldKeyUp` which is called if the user presses a key in the input-text field. 
+Can for example be used to recognize when the ENTER key has been pressed.
+
 ## 4.3.1
 
 - Fix: prevent duplicate style attachment. (#1727)
