@@ -239,3 +239,21 @@ test('should format value of controlled component', async t => {
 
   await t.expect($axaInputElement.value).eql('CHF 1’234.00');
 });
+
+fixture('Input-Text React OnInputfieldKeyUp').page(
+  `${host}/iframe.html?id=examples-datepicker-react--using-oninputfieldkeyup-event`
+);
+
+test('should fire onInputfieldKeyUp callback on user input', async t => {
+  const testoutput = await Selector(() =>
+    document.querySelector('#inputtext-react-testoutput')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t.typeText('axa-input-text', 'x', {
+    replace: true,
+  });
+
+  await t.expect(await testoutput().innerHTML).eql('x');
+});
