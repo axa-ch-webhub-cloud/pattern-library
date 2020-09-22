@@ -219,7 +219,7 @@ fixture('Toggle Switch - controlled mode without onChange (active=false)').page(
   `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`
 );
 
-test('should not change state when clicked', async t => {
+test('should stay inactive when clicked', async t => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document
@@ -249,7 +249,7 @@ fixture('Toggle Switch - controlled mode without onChange (active=true)').page(
   `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`
 );
 
-test('should not change state when clicked', async t => {
+test('should stay active when clicked', async t => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document
