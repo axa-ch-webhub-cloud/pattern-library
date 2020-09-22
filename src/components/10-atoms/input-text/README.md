@@ -162,11 +162,11 @@ The Boolean attribute autofocus, when true, sets keyboard focus on the underlyin
 
 ### currency
 
-You can set this string value to format numbers. It formats the input when the `onBlur` event of the input element is fired or if you set `value` programmatically. You can set `ISO 4217` [currency codes](https://en.wikipedia.org/wiki/ISO_4217), but the locale "style" is fixed to `de-CH`.
+You can set the `currency` attribute to a valid [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) string. When set, &lt;input-text&gt; formats the input whenever the `onBlur` event of its internal input element fires, and also upon setting `value` programmatically. Note that the locale "style" remains fixed to `de-CH`.
 
-The formatter is just working if attribute `type` is set to `text`.
+Currency formatting is only active when attribute `type` is set to `text`.
 
-Please be aware of using this attribute in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
+Please be mindful of using currency formatting in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
 
 ## Callbacks
 
