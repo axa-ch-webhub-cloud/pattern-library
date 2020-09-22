@@ -254,9 +254,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
   _formatCurrency(value) {
     const { currency, type } = this;
-    const containsNumber = /\d/g;
 
     if (currency && type === 'text') {
+      const hasAtLeastOneDigit = /\d/.test(value);
+
       if (!this.currencyFormatter) {
         // just create a new Intl if it does not exist
         this.currencyFormatter = new Intl.NumberFormat('de-CH', {
@@ -265,7 +266,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         });
       }
 
-      if (containsNumber.test(value)) {
+      if (hasAtLeastOneDigit) {
         this.invalid = false;
         const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
         return this.currencyFormatter.format(valueDecimalsOnly);
