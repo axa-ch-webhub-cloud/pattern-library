@@ -4,7 +4,7 @@ const { gatherAllVersions } = require(path.resolve(__dirname, 'scripts', 'build'
 const stringifiedVersionInfo = gatherAllVersions(path.resolve(__dirname));
 
 module.exports = {
-  globals: {'__VERSION_INFO__': stringifiedVersionInfo},
+  globals: {'__VERSION_INFO__': JSON.parse(stringifiedVersionInfo)},
   collectCoverageFrom: [
     'src/**/*.js',
     '!**/dist/**',
