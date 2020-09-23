@@ -20,8 +20,7 @@ const BLUEPRINT_MONTH = 10; // 0-based index
 const BLUEPRINT_DAY = 23;
 const BLUEPRINT = new Date(BLUEPRINT_YEAR, BLUEPRINT_MONTH, BLUEPRINT_DAY); // safe even for buggy Safari...
 
-const LOCALE_DEFAULT = 'en-UK';
-const LOCALE_DE_CH = 'de-CH';
+const DATE_SEPARATOR = '.'; // hard-coded on purpose! Our dates are dd.mm.yyyy, irrespective of locale (#1845)
 
 export const getStartOfWeek = date => {
   return startOfWeek(date, { weekStartsOn: WEEK_STARTS_ON });
@@ -67,14 +66,8 @@ const getMonthMatrix = (date, allowedYears = []) => {
   return cells;
 };
 
-const ALL_DATE_SEPARATORS = / |,|\.|-|\//;
-
-const clearStringFromIEGeneratedCharacters = string => {
-  if (string) {
-    return string.replace(/[^\x00-\x7F]/g, ''); // eslint-disable-line no-control-regex
-  }
-  return '';
-};
+const clearStringFromIEGeneratedCharacters = string =>
+  typeof string === 'string' ? string.replace(/[^\x00-\x7F]/g, '') : ''; // eslint-disable-line no-control-regex
 
 const addLeadingZeroes = (rawNumber, numDigits) => {
   const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
@@ -84,71 +77,21 @@ const addLeadingZeroes = (rawNumber, numDigits) => {
   return `${leadingZeroesString}${number}`;
 };
 
-const parseLocalisedDateIfValid = (
-  inputLocale = LOCALE_DEFAULT,
-  inputValue = ''
-) => {
-  let locale = inputLocale;
-  const localeUnsupported = () =>
-    !Intl.DateTimeFormat.supportedLocalesOf(locale).length;
-  const localeMissing = !locale;
-  const localeIsSwissItalian = locale === 'it-CH';
-
-  if (localeMissing || localeUnsupported()) {
-    locale = LOCALE_DEFAULT;
-  } else if (localeIsSwissItalian) {
-    locale = LOCALE_DE_CH; // change locale to de-CH because of wrong date formatting of browsers (#1740)
-  }
-
-  // find out which valid separator the current locale uses
-  const localisedBlueprintDate = new Intl.DateTimeFormat(locale).format(
-    BLUEPRINT
-  );
-  const localisedBlueprintDateString = localisedBlueprintDate.toString();
-
-  const usedSeparator =
-    localisedBlueprintDateString.match(ALL_DATE_SEPARATORS)[0] || null;
-
-  if (!usedSeparator) {
-    return null;
-  }
-
-  // find out how the localized date is structured (YYYY-MM-DD, YYYY-DD-MM, etc), using the blueprint
-  const splitBlueprint = clearStringFromIEGeneratedCharacters(
-    localisedBlueprintDateString
-  ).split(usedSeparator);
-
-  const [yearIndex, monthIndex, dayIndex] = [
-    splitBlueprint.indexOf(`${BLUEPRINT_YEAR}`),
-    splitBlueprint.indexOf(`${BLUEPRINT_MONTH + 1}`),
-    splitBlueprint.indexOf(`${BLUEPRINT_DAY}`),
-  ];
-
+const parseLocalisedDateIfValid = (inputValue = '') => {
   // passing a Date object asks us to *generate* rather than parse a date format
-  const generate =
-    Object.prototype.toString.call(inputValue) === '[object Date]';
-  if (generate) {
+  if (Object.prototype.toString.call(inputValue) === '[object Date]') {
     // decompose date into parts
     const year = inputValue.getFullYear();
     const month = inputValue.getMonth() + 1;
     const day = inputValue.getDate();
-    // insert parts into blueprint
-    splitBlueprint[yearIndex] = year;
-    splitBlueprint[monthIndex] = month;
-    splitBlueprint[dayIndex] = day;
-    // combine with appropriate separator to format date according to locale
-    return splitBlueprint.join(usedSeparator);
+    // combine with appropriate separator to format date
+    return [day, month, year].join(DATE_SEPARATOR);
   }
 
-  const splitValue = clearStringFromIEGeneratedCharacters(inputValue).split(
-    usedSeparator
-  );
-
-  const [year, month, day] = [
-    splitValue[yearIndex],
-    splitValue[monthIndex],
-    splitValue[dayIndex],
-  ];
+  // parsing proper: split date string into parts using appropriate separator
+  const [day, month, year] = clearStringFromIEGeneratedCharacters(
+    inputValue
+  ).split(DATE_SEPARATOR);
 
   // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,

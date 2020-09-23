@@ -484,7 +484,7 @@ test('should have correct format at input field', async t => {
     () =>
       document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
   );
-  await t.expect(await getInputValue()).eql('14/2/2019');
+  await t.expect(await getInputValue()).eql('14.2.2019');
 });
 
 // React smoke test

@@ -251,7 +251,7 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   formatDate(date) {
-    return parseLocalisedDateIfValid(this.locale, date);
+    return parseLocalisedDateIfValid(date);
   }
 
   constructor() {
@@ -614,8 +614,8 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   validate(value, pure) {
-    const { locale, invaliddatetext, allowedyears } = this;
-    const validDate = parseLocalisedDateIfValid(locale, value);
+    const { invaliddatetext, allowedyears } = this;
+    const validDate = parseLocalisedDateIfValid(value);
     const validYear = date => allowedyears.indexOf(date.getFullYear()) > -1;
     const isValid = validDate && validYear(validDate);
     if (pure) {

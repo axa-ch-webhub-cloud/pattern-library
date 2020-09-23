@@ -1,65 +1,56 @@
 import { parseLocalisedDateIfValid, getAllLocaleMonthsArray } from './date';
 
+// note on date formats: we can new Date(datestring) - which internally uses Date.parse - despite caveats about browser-specific implementation differences by
+// explicitly constructing an unambiguous date string here,
+// cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
+// One such safe date format is 'yyyy-mm-ddThh:mm'.
+
 describe('Datepicker utils', () => {
   describe('parseLocalisedDateIfValid', () => {
-    const inputDateObject = new Date('01.02.1999 12:30');
-    const inputDateString = '01/02/1999';
+    const inputDateObject = new Date('1999-02-01T12:30');
+    const inputDateString = '01.02.1999';
 
     it('should return formatted date', () => {
-      expect(parseLocalisedDateIfValid('en', inputDateObject)).toBe('1/2/1999');
+      expect(parseLocalisedDateIfValid(inputDateObject)).toBe('1.2.1999');
     });
     it('should return formatted date (if input date is a string)', () => {
-      expect(parseLocalisedDateIfValid('en', inputDateString)).toStrictEqual(
-        new Date('1/2/1999')
+      expect(parseLocalisedDateIfValid(inputDateString)).toStrictEqual(
+        new Date('1999-02-01T00:00')
       );
-    });
-
-    it('should return formatted date from default language if unsupported locale is given', () => {
-      expect(parseLocalisedDateIfValid('ff', inputDateObject)).toBe('1/2/1999');
-    });
-
-    it('should return formatted date if locale is undefined', () => {
-      expect(parseLocalisedDateIfValid(undefined, inputDateObject)).toBe(
-        '1/2/1999'
-      );
-    });
-
-    it('should return formatted date if locale is null', () => {
-      expect(parseLocalisedDateIfValid(null, inputDateObject)).toBe('1/2/1999');
     });
 
     it('should return formatted date if date is older than unix epoch', () => {
-      const inputDateObjectVeryOld = new Date('01.02.1900 12:30');
-      expect(parseLocalisedDateIfValid('en', inputDateObjectVeryOld)).toBe(
-        '1/2/1900'
+      const inputDateObjectVeryOld = new Date('1900-02-01T12:30');
+      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe(
+        '1.2.1900'
       );
     });
     it('should return formatted date if date is older than unix epoch (if input date is a string)', () => {
-      const inputDateStringVeryOld = '1/2/1900';
-      expect(
-        parseLocalisedDateIfValid('en', inputDateStringVeryOld)
-      ).toStrictEqual(new Date('1/2/1900'));
+      const inputDateStringVeryOld = '1.2.1900';
+      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(
+        new Date('1900-02-01T00:00')
+      );
     });
 
     it('should work far far in the future', () => {
-      const inputDateObjectVeryOld = new Date('01.02.9999 12:30');
-      expect(parseLocalisedDateIfValid('en', inputDateObjectVeryOld)).toBe(
-        '1/2/9999'
+      const inputDateObjectVeryOld = new Date('9999-02-01T12:30');
+      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe(
+        '1.2.9999'
       );
     });
     it('should work far far in the future (if input date is a string)', () => {
-      const inputDateStringVeryOld = '01/02/9999';
-      expect(
-        parseLocalisedDateIfValid('en', inputDateStringVeryOld)
-      ).toStrictEqual(new Date('01/02/9999'));
+      const inputDateStringVeryOld = '01.02.9999';
+      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(
+        new Date('9999-02-01T00:00')
+      );
     });
 
     it('should return null if date is not given', () => {
-      expect(parseLocalisedDateIfValid('en')).toBe(null);
+      expect(parseLocalisedDateIfValid()).toBe(null);
     });
 
     it('should return null if date is null', () => {
-      expect(parseLocalisedDateIfValid('en', null)).toBe(null);
+      expect(parseLocalisedDateIfValid(null)).toBe(null);
     });
   });
 
