@@ -100,6 +100,7 @@ export const Colors = () => {
       }
 
       div.colorgroupwrapper {
+        margin: 0 -10px;
         display: flex;
         flex-wrap: wrap;
       }
@@ -112,11 +113,11 @@ export const Colors = () => {
         border: 1px solid lightgrey;
         padding: 5px;
         margin: 10px;
-        width: 240px;
+        width: 250px;
       }
 
       div.colorvisualisation {
-        width: 240px;
+        width: 250px;
         height: 50px;
         border-radius: 5px;
         border: 1px solid lightgrey;
