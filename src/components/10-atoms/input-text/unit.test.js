@@ -63,5 +63,11 @@ describe('InputText', () => {
 
       expect(AXAInputText.prototype.currencyFormatter).toBe(null);
     });
+
+    it('should set invalid state if too many dots are present', () => {
+      const returnValue = AXAInputText.prototype._formatCurrency('n.2.3.5');
+      expect(returnValue).toBe('n.2.3.5');
+      expect(AXAInputText.prototype.invalid).toBe(true);
+    });
   });
 });
