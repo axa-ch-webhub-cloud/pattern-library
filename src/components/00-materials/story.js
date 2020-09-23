@@ -1,6 +1,7 @@
-import { html, render, svg } from 'lit-html';
 import { select, withKnobs } from '@storybook/addon-knobs';
+import { html, render, svg } from 'lit-html';
 import Changelog from './CHANGELOG.md';
+import styles from './story.scss';
 
 const FILE_ENDING = '.svg.js';
 
@@ -180,37 +181,43 @@ export const IconsAndImages = () => {
         background: lightcoral;
         color: white;
       }
+
+      ${styles}
     </style>
-    <h2>
-      Note: The green borders reveal the dimensions of the SVGs.
-    </h2>
-    <div class="materials__controls">
-      <input
-        class="materials__input-field"
-        type="text"
-        placeholder="Find icon / image"
-        oninput="onCallbackInput(arguments[0])"
-      />
-      <div class="materials__colorizer">
-        <label class="materials__label">Overwrite Colors:</label>
-        <axa-toggle-switch
-          class="js-materials__color-switcher"
-        ></axa-toggle-switch>
+    <div class="accessory-story-content">
+      <h2>
+        Note: The green borders reveal the dimensions of the SVGs.
+      </h2>
+      <div class="materials__controls">
+        <input
+          class="materials__input-field"
+          type="text"
+          placeholder="Find icon / image"
+          oninput="onCallbackInput(arguments[0])"
+        />
+        <div class="materials__colorizer">
+          <label class="materials__label">Overwrite Colors:</label>
+          <axa-toggle-switch
+            class="js-materials__color-switcher"
+          ></axa-toggle-switch>
+        </div>
       </div>
-    </div>
 
-    <h3 class="icon-header">${icons.length} Icons:</h3>
-    <div class="icons">
-      ${svg(icons.map(i => mapToIconItem(i)))}
-    </div>
+      <h3 class="icon-header">${icons.length} Icons:</h3>
+      <div class="icons">
+        ${svg(icons.map(i => mapToIconItem(i)))}
+      </div>
 
-    <h3 class="image-header">${images.length} Images:</h3>
-    <div class="images">
-      ${svg(images.map(i => mapToIconItem(i)))}
+      <h3 class="image-header">${images.length} Images:</h3>
+      <div class="images">
+        ${svg(images.map(i => mapToIconItem(i)))}
+      </div>
     </div>
   `;
 
   const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
+
   render(template, wrapper);
   return wrapper;
 };
