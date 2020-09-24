@@ -52,6 +52,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
             : undefined,
       },
       inputmode: { type: String },
+      currency: { type: String },
       pattern: {
         // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
         converter: value => value || PATTERN_DEFAULT,
@@ -200,6 +201,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   handleBlur = ev => {
+    this.nativeInput.value = this._formatCurrency(this.value);
+    this.modelCounter = this.getCounterText; // update the chars left counter after formatting the input
+
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
@@ -248,6 +252,36 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput = this.querySelector('input');
   }
 
+  _formatCurrency(value) {
+    const { currency, type } = this;
+
+    if (currency && type === 'text') {
+      const hasAtLeastOneDigit = /\d/.test(value);
+
+      if (!this.currencyFormatter) {
+        // just create a new Intl if it does not exist
+        this.currencyFormatter = new Intl.NumberFormat('de-CH', {
+          style: 'currency',
+          currency,
+        });
+      }
+
+      if (hasAtLeastOneDigit) {
+        const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
+
+        // eslint-disable-next-line no-restricted-globals
+        if (!isNaN(valueDecimalsOnly)) {
+          this.invalid = false;
+          return this.currencyFormatter.format(valueDecimalsOnly);
+        }
+      }
+
+      this.invalid = value.length > 0;
+    }
+
+    return value;
+  }
+
   firstUpdated() {
     const { defaultValue, isReact, value } = this;
     this._setNativeInput();
@@ -290,6 +324,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       _open,
     } = this;
 
+    let formattedValue = value;
+    // Do not format the value if the user is still typing. We will format its input on blur
+    if (document.activeElement !== this.nativeInput) {
+      formattedValue = this._formatCurrency(value);
+    }
+
     this.isControlled = isControlled && isReact;
 
     const inputClasses = {
@@ -327,7 +367,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   class="${classMap(inputClasses)}"
                   autocomplete="off"
                   name="${name}"
-                  value="${value}"
+                  value="${formattedValue}"
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"
@@ -346,7 +386,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   class="${classMap(inputClasses)}"
                   autocomplete="off"
                   name="${name}"
-                  .value="${value}"
+                  .value="${formattedValue}"
                   placeholder="${placeholder}"
                   aria-required="${required}"
                   maxlength="${maxLength}"

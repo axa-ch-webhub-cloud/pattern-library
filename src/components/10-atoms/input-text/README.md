@@ -160,6 +160,14 @@ It is a string value. Useful to open up numeric keyboard on touch devices. See o
 
 The Boolean attribute autofocus, when true, sets keyboard focus on the underlying native &lt;input&gt; element after initial rendering of the component.
 
+### currency
+
+You can set the `currency` attribute to a valid [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) string. When set, &lt;input-text&gt; formats the input whenever the `onBlur` event of its internal input element fires, and also upon setting `value` programmatically. Note that the locale "style" remains fixed to `de-CH`.
+
+Currency formatting is only active when attribute `type` is set to `text`. If the inputted text can not be formatted the attribute `invalid` switches to `true`. The Formatter do not accept values which are only letters ("onehundret") or has more than 1 decimal separators ("12.30.1").
+
+Please be mindful of using currency formatting in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
+
 ## Callbacks
 
 ### onChange

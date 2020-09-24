@@ -209,3 +209,33 @@ test('should display correct default value', async t => {
 
   await t.expect(await getValue()).eql('qwertz');
 });
+
+fixture('Input text - currency').page(
+  `${host}/iframe.html?id=components--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-currency=chf&knob-error=&knob-info=&knob-checkmark=&knob-disabled=&knob-required=&knob-invalid=&knob-type=text&knob-maxlength=50&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=&knob-autofocus=`
+);
+
+test('should format value', async t => {
+  const $axaInputElement = await Selector(() => document.querySelector(TAG), {
+    dependencies: { TAG },
+  }).find(CLASS);
+
+  await t.typeText($axaInputElement, '1234', { replace: true });
+  await t.pressKey('tab'); // to blur input-element
+
+  await t.expect($axaInputElement.value).eql('CHF 1’234.00');
+});
+
+fixture('Input text - currency on controlled component').page(
+  `${host}/iframe.html?id=examples-input-text-react--controlled-uncontrolled`
+);
+
+test('should format value of controlled component', async t => {
+  const $axaInputElement = await Selector(() =>
+    document.querySelector('#controlled_currency')
+  ).find(CLASS);
+
+  await t.typeText($axaInputElement, '1234', { replace: true });
+  await t.pressKey('tab'); // to blur input-element
+
+  await t.expect($axaInputElement.value).eql('CHF 1’234.00');
+});

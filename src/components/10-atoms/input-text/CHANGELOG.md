@@ -1,3 +1,7 @@
+## 4.4.0
+
+- You can now set a `currency` attribute. This will format the input `1000` for example to `CHF 1’000.00`. For details see README.md.
+
 ## 4.3.1
 
 - Fix: prevent duplicate style attachment. (#1727)

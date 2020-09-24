@@ -23,6 +23,7 @@ export const InputText = () => {
   const refId = text('refid', '');
   const placeholder = text('placeholder', '');
   const value = text('value', '');
+  const currency = text('currency', '');
   const error = text('error', '');
   const info = text('info', '');
   const checkMark = boolean('checkmark', false);
@@ -53,6 +54,7 @@ export const InputText = () => {
       maxlength="${maxLength}"
       pattern="${pattern}"
       inputmode="${inputmode}"
+      currency="${currency}"
       ?checkmark="${checkMark}"
       ?disabled="${disabled}"
       ?required="${required}"

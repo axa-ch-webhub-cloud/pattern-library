@@ -25,6 +25,7 @@ storyInputText.add('Story', () => {
   const placeholder = text('placeholder', '');
   const error = text('error', '');
   const info = text('info', '');
+  const currency = text('currency', '');
   const defaultValue = text('defaultValue', '');
   const checkMark = boolean('checkMark', false);
   const disabled = boolean('disabled', false);
@@ -53,6 +54,7 @@ storyInputText.add('Story', () => {
       pattern={pattern}
       inputmode={inputmode}
       autofocus={autofocus}
+      currency={currency}
     />,
     wrapper
   );

@@ -6,6 +6,7 @@ export interface AXAInputTextProps {
   label?: string;
   placeholder?: string;
   value?: string | number;
+  currency?: string;
   defaultValue?: string;
   error?: string;
   type?: string;
