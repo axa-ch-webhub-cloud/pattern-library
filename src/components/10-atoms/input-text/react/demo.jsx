@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoInputText from './DemoInputText';
 import Changelog from '../CHANGELOG.md';
-import DemoInputTextOnInputfieldKeyUp from '../../../10-atoms/input-text/react/DemoInputTextOnInputfieldKeyUp';
+import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
 storiesOf('Examples/Input Text/React', module)
   .addParameters({
@@ -16,8 +16,8 @@ storiesOf('Examples/Input Text/React', module)
     ReactDOM.render(<DemoInputText />, div);
     return div;
   })
-  .add('Using onInputfieldKeyUp event', () => {
+  .add('Using onKeyUp event', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<DemoInputTextOnInputfieldKeyUp />, div);
+    ReactDOM.render(<DemoInputTextonKeyUp />, div);
     return div;
   });

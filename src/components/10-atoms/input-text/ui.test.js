@@ -240,11 +240,11 @@ test('should format value of controlled component', async t => {
   await t.expect($axaInputElement.value).eql('CHF 1’234.00');
 });
 
-fixture('Input-Text - React OnInputfieldKeyUp').page(
-  `${host}/iframe.html?id=examples-input-text-react--using-oninputfieldkeyup-event&viewMode=story`
+fixture('Input-Text - React onKeyUp').page(
+  `${host}/iframe.html?id=examples-input-text-react--using-onKeyUp-event&viewMode=story`
 );
 
-test('should fire onInputfieldKeyUp callback on user input', async t => {
+test('should fire onKeyUp callback on user input', async t => {
   const testoutput = await Selector(() =>
     document.querySelector('#inputtext-react-testoutput')
   ).addCustomDOMProperties({

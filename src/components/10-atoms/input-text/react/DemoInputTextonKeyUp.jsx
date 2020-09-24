@@ -1,7 +1,7 @@
 import React from 'react';
 import AXAInputText from './AXAInputText';
 
-const DemoInputTextOnInputfieldKeyUp = () => {
+const DemoInputTextonKeyUp = () => {
   return (
     <div>
       <p>
@@ -10,7 +10,7 @@ const DemoInputTextOnInputfieldKeyUp = () => {
       </p>
       <AXAInputText
         id="inputtext-react-inputfield-on-key-pressed"
-        onInputfieldKeyUp={e => {
+        onKeyUp={e => {
           document.querySelector('#inputtext-react-testoutput').innerHTML =
             e.key;
         }}
@@ -19,4 +19,4 @@ const DemoInputTextOnInputfieldKeyUp = () => {
   );
 };
 
-export default DemoInputTextOnInputfieldKeyUp;
+export default DemoInputTextonKeyUp;
