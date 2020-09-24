@@ -257,7 +257,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     if (currency && type === 'text') {
       const hasAtLeastOneDigit = /\d/.test(value);
-      const dotsCounted = (value.match(/\./g) || []).length;
 
       if (!this.currencyFormatter) {
         // just create a new Intl if it does not exist
@@ -267,10 +266,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         });
       }
 
-      if (hasAtLeastOneDigit && dotsCounted <= 1) {
-        this.invalid = false;
+      if (hasAtLeastOneDigit) {
         const valueDecimalsOnly = value.replace(/[^0-9.]/g, '');
-        return this.currencyFormatter.format(valueDecimalsOnly);
+
+        // eslint-disable-next-line no-restricted-globals
+        if (!isNaN(valueDecimalsOnly)) {
+          this.invalid = false;
+          return this.currencyFormatter.format(valueDecimalsOnly);
+        }
       }
 
       this.invalid = value.length > 0;
