@@ -188,6 +188,12 @@ The function-valued property `onBlur` can be used as a callback prop for React a
 
 Its only argument is the original `blur` event from the element's underlying native &lt;input&gt; field.
 
+### onKeyUp
+
+The function-valued attribute `onKeyUp` can be used as a callback prop for React and other frameworks.
+
+The callback is invoked once for every _user key up_ on the inputfield.
+
 ## Methods
 
 ### focus()

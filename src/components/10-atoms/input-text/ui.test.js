@@ -239,3 +239,25 @@ test('should format value of controlled component', async t => {
 
   await t.expect($axaInputElement.value).eql('CHF 1’234.00');
 });
+
+fixture('Input-Text - React onKeyUp').page(
+  `${host}/iframe.html?id=examples-input-text-react--using-onkeyup-event&viewMode=story`
+);
+
+test('should fire onKeyUp callback on user input', async t => {
+  const testoutput = await Selector(() =>
+    document.querySelector('#inputtext-react-testoutput')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const realInputField = await Selector(() =>
+    document.querySelector('axa-input-text').querySelector('input')
+  );
+
+  await t.typeText(realInputField, 'x', {
+    replace: true,
+  });
+
+  await t.expect(await testoutput().innerHTML).eql('x');
+});

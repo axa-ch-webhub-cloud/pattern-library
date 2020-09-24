@@ -1,3 +1,8 @@
+## 4.5.0
+
+- New callback `onKeyUp` which is called if the user presses a key in the input-text field.
+  Can for example be used to recognize when the ENTER key has been pressed.
+
 ## 4.4.0
 
 - You can now set a `currency` attribute. This will format the input `1000` for example to `CHF 1’000.00`. For details see README.md.
