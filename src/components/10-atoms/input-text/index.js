@@ -322,8 +322,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     } = this;
 
     let formattedValue = value;
+    // Do not format the value if the user is still typing. We will format its input on blur
     if (document.activeElement !== this.nativeInput) {
-      // Do not format the value if the user is still typing. We will format its input on blur.
       formattedValue = this._formatCurrency(value);
     }
 
