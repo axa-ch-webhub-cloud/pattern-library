@@ -241,7 +241,7 @@ test('should format value of controlled component', async t => {
 });
 
 fixture('Input-Text - React onKeyUp').page(
-  `${host}/iframe.html?id=examples-input-text-react--using-onKeyUp-event&viewMode=story`
+  `${host}/iframe.html?id=examples-input-text-react--using-onkeyup-event&viewMode=story`
 );
 
 test('should fire onKeyUp callback on user input', async t => {
