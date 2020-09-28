@@ -6,7 +6,6 @@ import {
   Keyboard_arrow_leftSvg,
   Keyboard_arrow_rightSvg,
 } from '@axa-ch/materials/icons';
-import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import {
@@ -143,6 +142,11 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   static get properties() {
+    const now = new Date();
+    // formally mark the (internal) default date, s.t. it can be distinguished
+    // from dates that are set by applications (exploiting the malleability
+    // of system objects...)
+    now.type = 'default';
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
@@ -156,7 +160,7 @@ class AXADatepicker extends NoShadowDOM {
           fromAttribute: value => (value ? new Date(value) : null),
           toAttribute: value => (value ? value.toISOString() : null),
         },
-        defaultValue: new Date(),
+        defaultValue: now,
       },
       outputdate: { type: String, reflect: true },
       year: { type: Number, reflect: true, defaultValue: undefined },
@@ -311,14 +315,7 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const {
-      width = '100%',
-      error,
-      invalid,
-      invaliddatetext,
-      style,
-      _selectedDate,
-    } = this;
+    const { width = '100%', error, invalid, invaliddatetext, style } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
     const getFormattedStyle = parameter =>
@@ -326,8 +323,7 @@ class AXADatepicker extends NoShadowDOM {
 
     style.width = getFormattedStyle(width); // set width to component's css
 
-    const cellClasses = ({ sameMonth, today, inactive, value }) => {
-      const selected = _selectedDate === value;
+    const cellClasses = ({ sameMonth, today, inactive, selected }) => {
       const isToday = !selected && today;
 
       return classMap({
@@ -510,6 +506,7 @@ class AXADatepicker extends NoShadowDOM {
 
       if (isReact && defaultValue) {
         input.value = defaultValue;
+        this.validate(defaultValue);
       }
     }
 
@@ -550,8 +547,14 @@ class AXADatepicker extends NoShadowDOM {
       }
     }
 
-    if (this.allowedyears && !this.allowedyears.includes(this.year)) {
-      // to avoid that datepicker don't show any days to select and looks like "empty"
+    // does the range of allowed years exclude the starting year?
+    if (
+      this.allowedyears &&
+      this.year &&
+      !this.allowedyears.includes(this.year)
+    ) {
+      // yes, so in order to prevent the datepicker from showing an "empty" month sheet
+      // without any days to select, force-pick the starting year as the first of the range of allowed years
       const [newStartYear] = this.allowedyears;
       this.year = newStartYear;
     }
@@ -563,18 +566,23 @@ class AXADatepicker extends NoShadowDOM {
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
 
-    this.cells = getMonthMatrix(_date, this.allowedyears);
-    this.weekdays = getWeekdays(_date, locale);
-
     const { output, tentative } = options;
 
     if (output) {
       this.outputdate = this.formatDate(_date);
     }
 
-    if (output || !tentative) {
-      this._selectedDate = formatISO(_date);
+    const isUserOrApplicationSelected = !tentative && _date.type !== 'default';
+
+    if (output || isUserOrApplicationSelected) {
+      // remember selected date, ensuring it is an independent copy
+      // (so that navigation - which changes _date - does not inadvertantly change the
+      // selected date with it)
+      this._selectedDate = new Date(_date);
     }
+
+    this.cells = getMonthMatrix(_date, this.allowedyears, this._selectedDate);
+    this.weekdays = getWeekdays(_date, locale);
 
     return this.outputdate;
   }
