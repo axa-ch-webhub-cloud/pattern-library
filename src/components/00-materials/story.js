@@ -1,5 +1,7 @@
 import { select, withKnobs } from '@storybook/addon-knobs';
 import { html, render, svg } from 'lit-html';
+import '../10-atoms/heading';
+import '../10-atoms/text';
 import Changelog from './CHANGELOG.md';
 import styles from './story.scss';
 
@@ -142,7 +144,7 @@ export const IconsAndImages = () => {
       }
 
       .materials__input-field {
-        margin-right: 50px;
+        margin-right: 3rem;
       }
 
       .materials__input-field {
@@ -174,7 +176,7 @@ export const IconsAndImages = () => {
       }
 
       .materials__label {
-        margin-right: 10px;
+        margin-right: 1rem;
       }
 
       .materials__custom-colors {
@@ -182,12 +184,19 @@ export const IconsAndImages = () => {
         color: white;
       }
 
+      .note-text {
+        margin-top: 15px;
+      }
+
+      .icon-header, .image-header {
+        display: block;
+        margin: 20px 0;
+      }
+
       ${styles}
     </style>
     <div class="accessory-story-content">
-      <h2>
-        Note: The green borders reveal the dimensions of the SVGs.
-      </h2>
+      <axa-heading rank="1" variant="secondary">Icons and Images</axa-heading>
       <div class="materials__controls">
         <input
           class="materials__input-field"
@@ -196,19 +205,28 @@ export const IconsAndImages = () => {
           oninput="onCallbackInput(arguments[0])"
         />
         <div class="materials__colorizer">
-          <label class="materials__label">Overwrite Colors:</label>
+          <axa-text class="materials__label" variant="size-2"
+            >Overwrite Colors:</axa-text
+          >
           <axa-toggle-switch
             class="js-materials__color-switcher"
           ></axa-toggle-switch>
         </div>
+        <axa-text variant="size-2" class="note-text">
+          Note: The green borders reveal the dimensions of the SVGs.
+        </axa-text>
       </div>
 
-      <h3 class="icon-header">${icons.length} Icons:</h3>
+      <axa-text class="icon-header" variant="bold"
+        >${icons.length} Icons:</axa-text
+      >
       <div class="icons">
         ${svg(icons.map(i => mapToIconItem(i)))}
       </div>
 
-      <h3 class="image-header">${images.length} Images:</h3>
+      <axa-text class="image-header" variant="bold"
+        >${images.length} Images:</axa-text
+      >
       <div class="images">
         ${svg(images.map(i => mapToIconItem(i)))}
       </div>

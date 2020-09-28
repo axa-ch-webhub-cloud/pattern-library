@@ -95,10 +95,6 @@ export const Colors = () => {
 
   const template = html`
     <style>
-      body {
-        font-family: Source Sans Pro, Arial, sans-serif;
-      }
-
       div.colorgroupwrapper {
         margin: 0 -10px;
         display: flex;
@@ -139,10 +135,11 @@ export const Colors = () => {
       : ''}
 
     <div class="accessory-story-content">
+      <axa-heading rank="1" variant="secondary">Colors</axa-heading>
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
-            <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
+            <axa-heading rank="3">${group.name}</axa-heading>
             <div class="colorgroupwrapper">
               ${getColors(group.value).map(color => {
                 return html`
