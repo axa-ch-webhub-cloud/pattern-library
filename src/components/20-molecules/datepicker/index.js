@@ -103,15 +103,17 @@ export const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
 };
 
 // gather all native Date-object setters in one place
-const overrideDate = (year, month, day, date) => {
+const overrideDate = (year, month, day, date, status = {}) => {
   let _day = day;
 
   if (typeof year === 'number' && year >= 0) {
     date.setFullYear(year);
+    status.set = true;
   }
 
   if (typeof month === 'number' && month >= 0) {
     date.setMonth(month);
+    status.set = true;
     // month not changed as desired since target day unavailable?
     // (e.g. July 31 =/=> June 31)
     if (date.getMonth() !== month) {
@@ -124,6 +126,7 @@ const overrideDate = (year, month, day, date) => {
     // day 1 = first day, day 0 = last day of prev. month
     // day -1 = one day before last day of prev. month, ...
     date.setDate(_day);
+    status.set = true;
   }
 
   date.setHours(0, 0, 0, 0); // exactly midnight
@@ -561,8 +564,15 @@ class AXADatepicker extends NoShadowDOM {
 
     const { year, month, day, allowedyears, locale, startDate } = this;
 
-    this._date = overrideDate(year, month, day, startDate);
+    const status = {};
+    this._date = overrideDate(year, month, day, startDate, status);
     const { _date } = this;
+    // did the start date get actually overridden via one or more of the
+    // date parts (year, month, day)?
+    if (status.set) {
+      // yes, so the resulting _date is application-selected
+      delete _date.type;
+    }
 
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
 
