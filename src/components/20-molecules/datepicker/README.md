@@ -54,7 +54,7 @@ _Note 2: The locale `it-CH` is mapped to date format `de-CH`. Example: `8.1.1982
 
 ### year
 
-The number-valued `year` defines the start year of the datepicker (default: current year). If `year` attribute does not match any entries at `allowedyears`, the first entry of `allowedyears` will be set as `year` attribute to avoid that datepicker don't show any days to select and looks like "empty".
+The number-valued `year` defines the start year of the datepicker (default: current year). If `year` is non-empty but does not match any entries at `allowedyears`, the first entry of `allowedyears` will be set as `year` attribute to avoid an 'empty' datepicker that would not show any days to select.
 
 ### month
 
