@@ -1,12 +1,13 @@
-import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
 import Changelog from '../../../components/00-materials/CHANGELOG.md';
-import '../../10-atoms/text';
 import '../../10-atoms/heading';
+import '../../10-atoms/text';
+import styles from '../story.scss';
 
 /*
  * Just copy & paste 00-colors.scss to const colors below
- * */
+ */
 
 const colors = `
 // Colors as specified at
@@ -94,14 +95,12 @@ export const Colors = () => {
 
   const template = html`
     <style>
-      body {
-        font-family: Source Sans Pro, Arial, sans-serif;
-      }
-
       div.colorgroupwrapper {
+        margin: 0 -10px;
         display: flex;
         flex-wrap: wrap;
       }
+
       div.colorwrapper {
         display: flex;
         flex-direction: column;
@@ -112,13 +111,16 @@ export const Colors = () => {
         margin: 10px;
         width: 250px;
       }
+
       div.colorvisualisation {
         width: 250px;
         height: 50px;
         border-radius: 5px;
         border: 1px solid lightgrey;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
+
+      ${styles}
     </style>
 
     ${darkmode
@@ -131,34 +133,40 @@ export const Colors = () => {
           </style>
         `
       : ''}
-    ${getColorGroups(colors).map(group => {
-      return html`
-        <div id="colorGroup">
-          <axa-heading rank="5">${group.name.toUpperCase()}</axa-heading>
-          <div class="colorgroupwrapper">
-            ${getColors(group.value).map(color => {
-              return html`
-                <div class="colorwrapper">
-                  <div
-                    class="colorvisualisation"
-                    style="background-color: ${color.code};"
-                  ></div>
-                  <div>
-                    ${color.name /* TODO: change to axa-text if bug is fixed */}
+
+    <div class="accessory-story-content">
+      <axa-heading rank="1" variant="secondary">Colors</axa-heading>
+      ${getColorGroups(colors).map(group => {
+        return html`
+          <div id="colorGroup">
+            <axa-heading rank="3">${group.name}</axa-heading>
+            <div class="colorgroupwrapper">
+              ${getColors(group.value).map(color => {
+                return html`
+                  <div class="colorwrapper">
+                    <div
+                      class="colorvisualisation"
+                      style="background-color: ${color.code};"
+                    ></div>
+                    <axa-text>
+                      ${color.name /* TODO: change to axa-text if bug is fixed */}
+                    </axa-text>
+                    <axa-text variant="size-2"
+                      >${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text
+                    >
                   </div>
-                  <span
-                    >${color.code /* TODO: change to axa-text if bug is fixed */}</span
-                  >
-                </div>
-              `;
-            })}
+                `;
+              })}
+            </div>
           </div>
-        </div>
-      `;
-    })}
+        `;
+      })}
+    </div>
   `;
 
   const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
+
   render(template, wrapper);
   return wrapper;
 };
