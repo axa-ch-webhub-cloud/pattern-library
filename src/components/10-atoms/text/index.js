@@ -1,4 +1,3 @@
-import { css, unsafeCSS } from 'lit-element';
 import NoShadowDOM from '../../../utils/no-shadow';
 
 /* eslint-disable import/no-extraneous-dependencies */
@@ -16,9 +15,7 @@ class AXAText extends NoShadowDOM {
   }
 
   static get styles() {
-    return css`
-      ${unsafeCSS(styles)}
-    `;
+    return styles;
   }
 
   static get properties() {
