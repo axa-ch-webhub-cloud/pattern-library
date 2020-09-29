@@ -117,7 +117,7 @@ export const Colors = () => {
         height: 50px;
         border-radius: 5px;
         border: 1px solid lightgrey;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
 
       ${styles}
@@ -148,11 +148,11 @@ export const Colors = () => {
                       class="colorvisualisation"
                       style="background-color: ${color.code};"
                     ></div>
-                    <div>
+                    <axa-text>
                       ${color.name /* TODO: change to axa-text if bug is fixed */}
-                    </div>
-                    <span
-                      >${color.code /* TODO: change to axa-text if bug is fixed */}</span
+                    </axa-text>
+                    <axa-text variant="size-2"
+                      >${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text
                     >
                   </div>
                 `;

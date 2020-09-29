@@ -34,7 +34,7 @@ const images = filepathsImages.map(path => {
 
 const mapToIconItem = icon => {
   return `<div class="image-container">${icon.svgstring}
-      <span class="item-name">${icon.path}${FILE_ENDING}</span>
+      <axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>
     </div>`;
 };
 
@@ -191,6 +191,10 @@ export const IconsAndImages = () => {
       .icon-header, .image-header {
         display: block;
         margin: 20px 0;
+      }
+
+      .item-name {
+        margin-left: 5px;
       }
 
       ${styles}
