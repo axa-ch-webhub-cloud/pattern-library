@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-globals */
-import { LitElement, css, unsafeCSS, html } from 'lit-element';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AXATable from '@axa-ch/table';
+import { css, html, LitElement, unsafeCSS } from 'lit-element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import {
   defineVersioned,
   versionedHtml,
@@ -312,7 +312,9 @@ class AXATableSortable extends LitElement {
                     ${cells &&
                       cells.map(
                         cell => html`
-                          <td>${unsafeHTML(cell.html)}</td>
+                          <td>
+                            ${cell.html ? unsafeHTML(cell.html) : cell.text}
+                          </td>
                         `
                       )}
                   </tr>
