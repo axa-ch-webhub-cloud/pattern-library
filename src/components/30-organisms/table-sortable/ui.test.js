@@ -466,3 +466,20 @@ test('should react to click on row', async t => {
       'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
     );
 });
+
+fixture('Table Sortable - react').page(
+  `${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`
+);
+
+test('should display HTML as text if desired', async t => {
+  const $rowOneDate = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t.expect($rowOneDate.innerText).eql('<span>22.04.2019</span>');
+});
