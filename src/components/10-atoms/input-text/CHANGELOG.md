@@ -1,3 +1,7 @@
+## 4.5.1
+
+- Fix: Text wasn't legible in safari when disabled. (#1978)
+
 ## 4.5.0
 
 - New callback `onKeyUp` which is called if the user presses a key in the input-text field.
