@@ -1,7 +1,7 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
 import Changelog from './CHANGELOG.md';
+import './index';
 
 const model = {
   thead: [
@@ -19,7 +19,7 @@ const model = {
       { html: '<span>Winterthur</span>' },
       { html: '<span>22.04.2019</span>' },
       { html: '<span>10.01.2020</span>' },
-      { html: 'A' },
+      { text: 'A' },
     ],
     [
       { html: '<span>22</span>' },
@@ -27,7 +27,7 @@ const model = {
       { html: '<span>Zürich</span>' },
       { html: '<span>04.04.2019</span>' },
       { html: '<span>04.06.2019</span>' },
-      { html: 'B' },
+      { text: 'B' },
     ],
     [
       { html: '<span>46</span>' },
@@ -35,7 +35,7 @@ const model = {
       { html: '<span>Kreuzlingen</span>' },
       { html: '<span>01.01.2020</span>' },
       { html: '<span>05.02.2020</span>' },
-      { html: 'C' },
+      { text: 'C' },
     ],
     [
       { html: '<span>51</span>' },
@@ -43,7 +43,7 @@ const model = {
       { html: '<span>Kreuzlingen</span>' },
       { html: '<span>08.10.2018</span>' },
       { html: '<span>11.12.2019</span>' },
-      { html: 'D' },
+      { text: 'D' },
     ],
     [
       { html: '<span>18</span>' },
@@ -51,7 +51,7 @@ const model = {
       { html: '<span>Frauenfeld</span>' },
       { html: '<span>29.04.2018</span>' },
       { html: '<span>01.01.2020</span>' },
-      { html: 'E' },
+      { text: 'E' },
     ],
     [
       { html: '<span>29</span>' },
@@ -59,7 +59,7 @@ const model = {
       { html: '<span>Frauenfeld</span>' },
       { html: '<span>02.05.2013</span>' },
       { html: '<span>02.05.2015</span>' },
-      { html: 'F' },
+      { text: 'F' },
     ],
   ],
 };
