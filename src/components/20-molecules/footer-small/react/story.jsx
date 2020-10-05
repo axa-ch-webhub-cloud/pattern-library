@@ -14,7 +14,7 @@ export default {
   },
 };
 
-export const Story = ({
+export const FooterSmall = ({
   language1,
   language2,
   language3,
@@ -61,7 +61,7 @@ export const Story = ({
   return div;
 };
 
-Story.args = {
+FooterSmall.args = {
   language1: 'DE',
   language2: 'FR',
   language3: 'IT',
@@ -70,7 +70,7 @@ Story.args = {
   dataProtection: `Data protection`,
 };
 
-Story.argTypes = {
+FooterSmall.argTypes = {
   language1: { name: 'set first language' },
   language2: { name: 'set second language' },
   language3: { name: 'set third language' },
