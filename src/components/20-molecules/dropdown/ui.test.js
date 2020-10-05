@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Dropdown')
-  .page(`${host}/iframe.html?id=components--dropdown`)
+  .page(`${host}/iframe.html?id=components-dropdown--dropdown`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -118,7 +118,7 @@ test('should select previous element with key if a element has focus', async t =
 });
 
 fixture('Dropdown named').page(
-  `${host}//iframe.html?id=components--dropdown&knob-defaulttitle=Select%20amount&knob-name=my-insurance`
+  `${host}//iframe.html?id=components-dropdown--dropdown&knob-defaulttitle=Select%20amount&knob-name=my-insurance`
 );
 
 test('should select entry and fire change event correctly', async t => {
@@ -158,7 +158,7 @@ test('should open via arrow keys alone', async t => {
 });
 
 fixture('Dropdown disabled').page(
-  `${host}/iframe.html?id=components--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
+  `${host}/iframe.html?id=components-dropdown--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
 );
 
 test('should render arrow icon color correctly if disabled', async t => {
@@ -182,7 +182,7 @@ test('should not set any background color on svg parent span', async t => {
 });
 
 fixture('Dropdown check mark').page(
-  `${host}/iframe.html?id=components--dropdown&knob-checkmark=true`
+  `${host}/iframe.html?id=components-dropdown--dropdown&knob-checkmark=true`
 );
 test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
@@ -192,7 +192,7 @@ test('should show checkmark', async t => {
 });
 
 fixture('Dropdown error').page(
-  `${host}/iframe.html?id=components--dropdown&knob-invalid=true&knob-error=error`
+  `${host}/iframe.html?id=components-dropdown--dropdown&knob-invalid=true&knob-error=error`
 );
 
 test('should show error message and have the correct color', async t => {

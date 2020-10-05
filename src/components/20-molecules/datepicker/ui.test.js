@@ -15,7 +15,7 @@ const reactDatepickerYearDropdown = Selector(() =>
 );
 
 fixture('Datepicker')
-  .page(`${host}/iframe.html?id=components--datepicker`)
+  .page(`${host}/iframe.html?id=components-datepicker--datepicker`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -402,7 +402,7 @@ test('should highlight today', async t => {
 });
 
 fixture('Datepicker - With Locale').page(
-  `${host}/iframe.html?id=components--datepicker&knob-locale=en-GB`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=en-GB`
 );
 
 test('should display month in English', async t => {
@@ -414,7 +414,7 @@ test('should display month in English', async t => {
 });
 
 fixture('Datepicker - Collapsible Version').page(
-  `${host}/iframe.html?id=components--datepicker&knob-inputfield=true&knob-year=2019`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-year=2019`
 );
 
 test('should write date into input field for input calendars', async t => {
@@ -446,7 +446,7 @@ test('should change enhanced dropdown title (only on large screens) on month cha
 });
 
 fixture('Datepicker - Collapsible Version with it-CH locale').page(
-  `${host}/iframe.html?id=components--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-CH`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-CH`
 );
 
 test('should have correct format at input field', async t => {
@@ -467,7 +467,7 @@ test('should have correct format at input field', async t => {
 });
 
 fixture('Datepicker - Collapsible Version with it-IT locale').page(
-  `${host}/iframe.html?id=components--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-IT`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-year=2019&knob-locale=it-IT`
 );
 
 test('should have correct format at input field', async t => {
@@ -906,7 +906,7 @@ test('should have default width', async t => {
 });
 
 fixture('Datepicker as inputfield with fixed width').page(
-  `${host}/iframe.html?id=components--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200`
 );
 
 test('should have 200px width', async t => {
@@ -928,7 +928,7 @@ test('button should have flex-shrink set because of IE', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width').page(
-  `${host}/iframe.html?id=components--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196`
 );
 
 test('should have no minimum width', async t => {
@@ -943,7 +943,7 @@ test('should have no minimum width', async t => {
 });
 
 fixture('Datepicker no next month').page(
-  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
 );
 
 test('Should disable next button.', async t => {
@@ -955,7 +955,7 @@ test('Should disable next button.', async t => {
 });
 
 fixture('Datepicker no previous month').page(
-  `${host}/iframe.html?id=components--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
 );
 
 test('Should disable prev button.', async t => {

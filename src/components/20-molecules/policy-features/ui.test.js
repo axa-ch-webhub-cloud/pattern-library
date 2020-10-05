@@ -20,7 +20,7 @@ const $axaPolicyFeaturesArticleEl = Selector(
 ).find('article');
 
 fixture('Policy features - basic functionality')
-  .page(`${host}/iframe.html?id=components--policy-features`)
+  .page(`${host}/iframe.html?id=components-policy-features--policy-features`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -75,7 +75,7 @@ test('should render title with correct size on all other screen sizes', async t 
 });
 
 fixture('Policy features - attribute variant: not set').page(
-  `${host}/iframe.html?id=components--policy-features&knob-variant=&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?id=components-policy-features--policy-features&knob-variant=&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
 test('should set default background-color if variant is not set', async t => {
@@ -87,7 +87,7 @@ test('should set default background-color if variant is not set', async t => {
 });
 
 fixture('Policy features - attribute variant: not in whitelist').page(
-  `${host}/iframe.html?id=components--policy-features&knob-variant=thisStyleIsNotInWhitelist&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?id=components-policy-features--policy-features&knob-variant=thisStyleIsNotInWhitelist&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
 );
 
 test('should set default style if variant string is not in whitelist', async t => {

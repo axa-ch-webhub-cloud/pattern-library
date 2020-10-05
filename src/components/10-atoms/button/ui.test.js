@@ -65,7 +65,7 @@ test('should inherit width to internal button', async t => {
 });
 
 fixture('Button - set properties').page(
-  `${host}/iframe.html?id=components--button`
+  `${host}/iframe.html?id=components-button--button`
 );
 
 test('should set button element disabled', async t => {

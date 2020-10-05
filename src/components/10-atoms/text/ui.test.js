@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Text - basic functionality')
-  .page(`${host}/iframe.html?id=components--text`)
+  .page(`${host}/iframe.html?id=components-text--text`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -36,7 +36,7 @@ test('should have correct font definitions for text size 1', async t => {
 });
 
 fixture('Text - Size 2')
-  .page(`${host}/iframe.html?id=components--text&knob-variant=size-2`)
+  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-2`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -62,7 +62,7 @@ test('should have correct font definitions for text size 2', async t => {
 });
 
 fixture('Text - Size 3')
-  .page(`${host}/iframe.html?id=components--text&knob-variant=size-3`)
+  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-3`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -89,7 +89,7 @@ test('should have correct font definitions for text size 3', async t => {
 
 fixture('Text - Size 2 with custom tag')
   .page(
-    `${host}/iframe.html?id=components--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
+    `${host}/iframe.html?id=components-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
   )
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
@@ -116,7 +116,7 @@ test('should have correct font definitions for text size 2 with custom span tag'
 });
 
 fixture('Text - Bold')
-  .page(`${host}/iframe.html?id=components--text&knob-variant=bold`)
+  .page(`${host}/iframe.html?id=components-text--text&knob-variant=bold`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -132,7 +132,7 @@ test('should have correct font weight for text bold', async t => {
 });
 
 fixture('Text - Semibold').page(
-  `${host}/iframe.html?id=components--text&knob-variant=semibold`
+  `${host}/iframe.html?id=components-text--text&knob-variant=semibold`
 );
 
 test('should have correct font weight for text semibold', async t => {
@@ -146,7 +146,7 @@ test('should have correct font weight for text semibold', async t => {
 });
 
 fixture('Text - Variant')
-  .page(`${host}/iframe.html?id=components--text&knob-variant=size-1%20bold`)
+  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-1%20bold`)
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);
   });
