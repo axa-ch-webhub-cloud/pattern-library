@@ -146,7 +146,9 @@ test('should have correct font weight for text semibold', async t => {
 });
 
 fixture('Text - Variant')
-  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-1%20bold`)
+  .page(
+    `${host}/iframe.html?id=components-text--text&knob-variant=size-1%20bold`
+  )
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);
   });
