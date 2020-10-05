@@ -7,7 +7,7 @@ import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 
 export default {
-  title: 'Components',
+  title: 'Components/Policy Features',
   decorators: [withKnobs, withNoBorder],
   parameters: {
     changelog: Changelog,

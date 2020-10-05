@@ -11,7 +11,7 @@ import { iconList } from '../icon/icon-list';
 import Changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Button',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

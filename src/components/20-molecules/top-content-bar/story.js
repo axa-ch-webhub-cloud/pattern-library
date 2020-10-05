@@ -10,7 +10,7 @@ const variantOptions = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Top Content Bar',
   decorators: [withNoBorder, withKnobs],
 
   parameters: {

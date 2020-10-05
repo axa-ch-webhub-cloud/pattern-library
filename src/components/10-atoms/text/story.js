@@ -13,7 +13,7 @@ const variantOptions = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Text',
   decorators: [withKnobs],
 
   parameters: {

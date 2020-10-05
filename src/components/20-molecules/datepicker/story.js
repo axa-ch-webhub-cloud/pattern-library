@@ -21,7 +21,7 @@ const localeOptions = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Datepicker',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

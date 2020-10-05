@@ -5,7 +5,7 @@ import Changelog from './CHANGELOG.md';
 import createRefId from '../../../utils/create-ref-id';
 
 export default {
-  title: 'Components',
+  title: 'Components/Checkbox',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

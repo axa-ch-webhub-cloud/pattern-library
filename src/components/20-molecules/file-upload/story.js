@@ -5,7 +5,7 @@ import './index';
 import Changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/File Upload',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

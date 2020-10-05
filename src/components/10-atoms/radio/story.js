@@ -7,7 +7,7 @@ import './index';
 import Changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Radio',
   decorators: [withKnobs],
 
   parameters: {

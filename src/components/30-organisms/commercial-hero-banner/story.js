@@ -6,7 +6,7 @@ import './index';
 import Changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Commercial Hero Banner',
   decorators: [withKnobs, withNoBorder],
   parameters: {
     changelog: Changelog,

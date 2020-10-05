@@ -12,7 +12,7 @@ import Changelog from './CHANGELOG.md';
 import './index';
 
 export default {
-  title: 'Components',
+  title: 'Components/Input File',
   decorators: [withKnobs],
 
   parameters: {

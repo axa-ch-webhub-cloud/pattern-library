@@ -5,7 +5,7 @@ import Changelog from './CHANGELOG.md';
 import './index';
 
 export default {
-  title: 'Components',
+  title: 'Components/Toggle Switch',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,
