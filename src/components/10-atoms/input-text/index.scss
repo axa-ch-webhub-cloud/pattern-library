@@ -72,9 +72,11 @@ axa-input-text {
     }
 
     &:disabled {
-      color: $color-light-grey;
       background-color: $color-alabaster;
       border-color: $color-mercury;
+      color: $color-light-grey;
+      -webkit-text-fill-color: $color-light-grey;
+      opacity: 1;
     }
   }
 
