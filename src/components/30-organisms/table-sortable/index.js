@@ -167,30 +167,27 @@ class AXATableSortable extends LitElement {
       });
 
     return arr.sort((rowLx, rowRx) => {
-      const {
-        [index]: { html: cellRx },
-      } = rowRx;
-      const {
-        [index]: { html: cellLx },
-      } = rowLx;
-      const cleanCellRx = cellRx.replace(/<[^>]*>/g, '').trim();
-      const cleanCellLx = cellLx.replace(/<[^>]*>/g, '').trim();
+      const cleanCell = (cell = '') => cell.replace(/<[^>]*>/g, '').trim();
+
+      const cellRx = cleanCell(rowRx[index].html) || rowRx[index].text;
+      const cellLx = cleanCell(rowLx[index].html) || rowLx[index].text;
+
       const convertComparatorToSortingType = compNumber => {
         return sortAs === ASC ? compNumber : -compNumber;
       };
       let result;
       if (this.dateSortColumnIndex && dateColumnsCustomSort.includes(index)) {
-        const cleanDateLx = this.convertDateToUnixEpochInteger(cleanCellLx);
-        const cleanDateRx = this.convertDateToUnixEpochInteger(cleanCellRx);
+        const cleanDateLx = this.convertDateToUnixEpochInteger(cellLx);
+        const cleanDateRx = this.convertDateToUnixEpochInteger(cellRx);
 
         result = this.numCollator.compare(cleanDateLx, cleanDateRx);
         return convertComparatorToSortingType(result);
       }
 
-      if (!isNaN(parseInt(cleanCellLx.charAt(0), 10))) {
-        result = this.numCollator.compare(cleanCellLx, cleanCellRx);
+      if (!isNaN(parseInt(cellLx.charAt(0), 10))) {
+        result = this.numCollator.compare(cellLx, cellRx);
       } else {
-        result = this.strCollator.compare(cleanCellLx, cleanCellRx);
+        result = this.strCollator.compare(cellLx, cellRx);
       }
 
       return convertComparatorToSortingType(result);
