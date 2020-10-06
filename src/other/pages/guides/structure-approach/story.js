@@ -1,7 +1,7 @@
 import { html, render } from 'lit-html';
 import '../../../../components/10-atoms/heading';
 import '../../../../components/10-atoms/text';
-import { callout } from '../../utils/callout';
+import '../../utils/callout';
 import '../../utils/contact-footer';
 import styles from './index.scss';
 
@@ -72,13 +72,13 @@ export const ModularDesign = () => {
           nutshell.
         </axa-text>
       </div>
-      ${callout(
-        'molecules.svg',
-        calloutHeaderAtomic,
-        calloutTextAtomic,
-        calloutLinkAtomic,
-        calloutLinkTextAtomic
-      )}
+      <pl-callout
+        icon="molecules.svg"
+        header="${calloutHeaderAtomic}"
+        text="${calloutTextAtomic}"
+        link="${calloutLinkAtomic}"
+        linkText="${calloutLinkTextAtomic}"
+      ></pl-callout>
       <axa-heading rank="2" variant="secondary"
         >How to categorize an element?</axa-heading
       >
@@ -162,13 +162,13 @@ export const ModularDesign = () => {
           elements is to allow as much combinatoric variation as possible.
         </axa-text>
       </div>
-      ${callout(
-        'organisms.svg',
-        calloutHeaderNewElements,
-        calloutTextNewElements,
-        calloutLinkNewElements,
-        calloutLinkTextNewElements
-      )}
+      <pl-callout
+        icon="organisms.svg"
+        header="${calloutHeaderNewElements}"
+        text="${calloutTextNewElements}"
+        link="${calloutLinkNewElements}"
+        linkText="${calloutLinkTextNewElements}"
+      ></pl-callout>
     </div>
     <pl-contact-footer></pl-contact-footer>
   `;
