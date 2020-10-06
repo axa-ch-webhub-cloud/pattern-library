@@ -65,7 +65,7 @@ const model = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Table Sortable',
   decorators: [withKnobs],
 
   parameters: {

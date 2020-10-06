@@ -11,7 +11,7 @@ import AXAIcon from './index';
 import Changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Icon',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

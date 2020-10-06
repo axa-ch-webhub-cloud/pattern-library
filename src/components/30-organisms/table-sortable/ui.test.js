@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
-  .page(`${host}/iframe.html?id=components--table-sortable`)
+  .page(`${host}/iframe.html?id=components-table-sortable--table-sortable`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -326,7 +326,7 @@ test('should not render arrows', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components--table-sortable&knob-innerscroll=650`
+  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=650`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -381,7 +381,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components--table-sortable&knob-innerscroll=900&knob-maxheight=160`
+  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
 );
 
 test('should sort also when maxheight is set ', async t => {

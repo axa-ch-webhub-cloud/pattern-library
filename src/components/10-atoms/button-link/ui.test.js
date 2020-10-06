@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Button Link - basic functionality').page(
-  `${host}/iframe.html?id=components--button-link`
+  `${host}/iframe.html?id=components-button-link--button-link`
 );
 
 test('should render button-link', async t => {
@@ -50,7 +50,7 @@ test('should pass width to internal button', async t => {
 });
 
 fixture('Button Link - set properties').page(
-  `${host}/iframe.html?id=components--button-link`
+  `${host}/iframe.html?id=components-button-link--button-link`
 );
 
 test('should set button element disabled', async t => {

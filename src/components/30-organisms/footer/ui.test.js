@@ -4,7 +4,7 @@ import FooterAccessor from './ui.accessor';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer - Basic Functionality')
-  .page(`${host}/iframe.html?id=components--footer`)
+  .page(`${host}/iframe.html?id=components-footer--footer`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });

@@ -38,7 +38,7 @@ const invertedBgs = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Button Link',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

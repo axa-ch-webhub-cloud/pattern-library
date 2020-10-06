@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Fieldset - basic functionality').page(
-  `${host}/iframe.html?id=components--fieldset`
+  `${host}/iframe.html?id=components-fieldset--fieldset`
 );
 
 test('should render fieldset', async t => {
@@ -35,7 +35,7 @@ test('should render an error message', async t => {
 });
 
 fixture('Fieldset - horizontal').page(
-  `${host}/iframe.html?id=components--fieldset&knob-error=&knob-horizontal=true`
+  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=true`
 );
 
 test('should render horizontally', async t => {
@@ -54,7 +54,7 @@ test('should render horizontally', async t => {
 });
 
 fixture('Fieldset - enableResponsiveStretch').page(
-  `${host}/iframe.html?id=components--fieldset&knob-error=&knob-horizontal=stretch`
+  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=stretch`
 );
 
 test('should responsive stretch', async t => {
@@ -67,7 +67,7 @@ test('should responsive stretch', async t => {
     ];
   });
 
-  const expected = JSON.stringify(['545px', '0px']); // 545px width of the radio correspond to 100% in a 575px window
+  const expected = JSON.stringify(['513px', '0px']); // 545px width of the radio correspond to 100% in a 575px window
   await t.expect(JSON.stringify(await getError())).eql(expected);
 }).before(async t => {
   await t.resizeWindow(575, 575);

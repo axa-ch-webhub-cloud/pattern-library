@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer Small - Static links').page(
-  `${host}/iframe.html?id=components--footer-small`
+  `${host}/iframe.html?id=components-footer-small--footer-small`
 );
 
 test('should render four languages', async t => {

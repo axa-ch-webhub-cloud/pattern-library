@@ -4,7 +4,7 @@ import './index';
 import Changelog from '../CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Popup Button',
   decorators: [withKnobs],
   parameters: {
     changelog: Changelog,

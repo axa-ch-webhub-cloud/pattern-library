@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Popup content - basic functionality').page(
-  `${host}/iframe.html?id=components--popup-content`
+  `${host}/iframe.html?id=components-popup-content--popup-content`
 );
 
 const TAG = 'axa-popup-content';

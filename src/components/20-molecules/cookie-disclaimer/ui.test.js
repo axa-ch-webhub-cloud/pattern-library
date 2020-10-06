@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Cookie disclaimer - basic functionality').page(
-  `${host}/iframe.html?id=components--cookie-disclaimer`
+  `${host}/iframe.html?id=components-cookie-disclaimer--cookie-disclaimer`
 );
 
 const TAG = 'axa-cookie-disclaimer';

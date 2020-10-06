@@ -30,7 +30,7 @@ const variantOptions = {
 };
 
 export default {
-  title: 'Components',
+  title: 'Components/Link',
   decorators: [withKnobs],
 
   parameters: {
