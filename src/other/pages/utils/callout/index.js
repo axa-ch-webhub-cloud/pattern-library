@@ -23,10 +23,6 @@ class PLCallout extends LitElement {
     };
   }
 
-  constructor() {
-    super();
-  }
-
   render() {
     const { icon, header, text, link, linkText } = this;
 

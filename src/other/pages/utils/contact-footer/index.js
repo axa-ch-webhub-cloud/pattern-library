@@ -19,10 +19,6 @@ class PLContactFooter extends NoShadowDOM {
     `;
   }
 
-  constructor() {
-    super();
-  }
-
   render() {
     return html`
       <section class="contact-footer">
