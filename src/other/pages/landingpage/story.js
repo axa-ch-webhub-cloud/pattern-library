@@ -13,6 +13,7 @@ export default {
     codepreview: { disabled: true },
     a11y: { disabled: true },
     options: { showPanel: false },
+    layout: 'fullscreen',
   },
 };
 
