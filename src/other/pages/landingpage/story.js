@@ -1,8 +1,8 @@
 import { html, render } from 'lit-html';
-import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
+import '../../../components/10-atoms/text';
+import '../utils/contact-footer';
 import styles from './index.scss';
-import contact from '../utils/contact-footer';
 
 export default {
   title: 'Welcome',
@@ -74,7 +74,7 @@ export const ToPatternLibrary = () => {
         /><img />
       </div>
     </div>
-    ${contact}
+    <pl-contact-footer></pl-contact-footer>
   `;
 
   render(template, wrapper);

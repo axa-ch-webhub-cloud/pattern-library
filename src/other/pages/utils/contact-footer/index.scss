@@ -10,13 +10,16 @@ html, body, #root {
     padding: 20px 40px;
     background-color: $color-dark-grey;
     color: $color-prim-white;
+
     @include breakpoint($mediaquery-md-up) {
         min-width: 420px;
     }
+
     &__inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        
         @include breakpoint($mediaquery-md-up) {
             padding-left: 30px;
             padding-left: 80px;

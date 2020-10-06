@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
-import { AXAText, AXAHeading } from './plib-components';
+import PLContactFooter from '../../utils/contact-footer/index.react';
 import styles from './index.scss';
+import { AXAHeading, AXAText } from './plib-components';
 
 export default {
   title: 'Guides/Getting started',
@@ -26,11 +27,6 @@ export const GettingStarted = () => {
   const devGuideStyle = {
     border: '1px solid rgba(0, 0, 0, 0.1)',
   };
-
-  const internalLink = `${window.location.href.replace(
-    /\/[^/]*$/,
-    ''
-  )}/?path=/story/others-contact--contact`;
 
   // this intentionally duplicates a similar function in utils/callout.js;
   // the latter however uses lit-html templates, while in the React context here
@@ -230,24 +226,7 @@ export default AXAButtonReact;`}
           src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGBd1NZWB94Ek4WVUDROCE6%2FDX-Product-Development-Guide%3Fnode-id%3D196%253A502%26viewport%3D17094%252C-15509%252C0.3761351704597473%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
           allowFullScreen
         />
-        {/* TODO: Find way to use ad hoc component contact footer from  src/other/pages/utils/contact-footer/index.js */}
-        <section className="contact-footer">
-          <div className="contact-footer__inner">
-            <div>
-              <p className="contact-footer__subtitle">Help & Contact</p>
-              <axa-heading rank="4" variant="secondary">
-                Any questions?
-              </axa-heading>
-            </div>
-            <axa-button-link
-              size="large"
-              href={internalLink}
-              variant="inverted"
-            >
-              Get in touch
-            </axa-button-link>
-          </div>
-        </section>
+        <PLContactFooter />
       </div>
     </div>,
     div

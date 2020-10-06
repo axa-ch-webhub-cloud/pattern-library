@@ -1,9 +1,9 @@
 import { html, render } from 'lit-html';
-import '../../../../components/10-atoms/text';
 import '../../../../components/10-atoms/heading';
-import styles from './index.scss';
-import contact from '../../utils/contact-footer';
+import '../../../../components/10-atoms/text';
 import { callout } from '../../utils/callout';
+import '../../utils/contact-footer';
+import styles from './index.scss';
 
 export default {
   title: 'Guides/Modular Design',
@@ -170,8 +170,7 @@ export const ModularDesign = () => {
         calloutLinkTextNewElements
       )}
     </div>
-
-    ${contact}
+    <pl-contact-footer></pl-contact-footer>
   `;
 
   render(template, wrapper);

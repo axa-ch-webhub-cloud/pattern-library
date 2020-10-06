@@ -1,9 +1,9 @@
-import { html, render } from 'lit-html';
 import { storiesOf } from '@storybook/html';
-import '../../../components/10-atoms/text';
+import { html, render } from 'lit-html';
 import '../../../components/10-atoms/heading';
+import '../../../components/10-atoms/text';
+import '../utils/contact-footer';
 import styles from './index.scss';
-import contact from '../utils/contact-footer';
 
 const getFormattedGitCommitMessage = answerJson => {
   const keyword = 'Publish\n\n - ';
@@ -83,7 +83,7 @@ storiesOf('Welcome', module)
       <axa-heading rank="6" class="what-is-new__response-date"><span id="what-is-new__github-response-date"></axa-heading>
       <axa-text variant="size-2"><span id="what-is-new__github-response"></span></axa-text>
     </div>
-    ${contact}
+    <pl-contact-footer></pl-contact-footer>
   `;
 
     render(template, wrapper);

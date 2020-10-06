@@ -57,42 +57,9 @@
 pre {
     margin: 3rem 0;
 }
-
-// Duplicate to src/other/pages/utils/contact-footer/index.scss
-html, body, #root {
-    height: 100%;
-  }
   
-  .contact-footer {
-    position: absolute;
-    bottom: 8px;
-    right: 0px;
-    left: 0px;
-    padding: 20px 40px;
-    background-color: $color-dark-grey;
-    color: $color-prim-white;
-    @include breakpoint($mediaquery-md-up) {
-        min-width: 420px;
-    }
-    &__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @include breakpoint($mediaquery-md-up) {
-            padding-left: 30px;
-            padding-left: 80px;
-        }
-    }
-    
-    &__subtitle {
-        text-transform: uppercase;
-        overflow-wrap: break-word;
-        @include text(t4);
-    }
-  }
-  
-  // Duplicate to src/other/pages/utils/callout/index.scss
-  .callout {
+// Duplicate to src/other/pages/utils/callout/index.scss
+.callout {
     background-color: $color-prim-white;
     padding: 0.5rem 2.5rem;
     box-shadow: 0 0 1px rgba(0,0,0,.35), 0 0 8px rgba(0,0,0,.25);
