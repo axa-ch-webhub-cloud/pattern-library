@@ -1,3 +1,7 @@
+## 13.2.0
+
+- Added new images: `floor` and `chair` #1972
+
 ## 13.1.0
 
 - Added new image: `corrupt-file`
