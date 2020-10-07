@@ -282,7 +282,7 @@ test('should navigate between months', async t => {
 
   const navigateToNextMonth = async () => {
     const nextButton = Selector(
-      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+      () => document.getElementsByClassName('js-datepicker__button-next')[0]
     );
 
     await t.click(nextButton);
@@ -290,7 +290,7 @@ test('should navigate between months', async t => {
 
   const navigateToPrevMonth = async () => {
     const prevButton = Selector(
-      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+      () => document.getElementsByClassName('js-datepicker__button-prev')[0]
     );
 
     await t.click(prevButton);
@@ -330,7 +330,7 @@ test('should navigate to next allowed year', async t => {
 
   const navigateToNextMonth = async () => {
     const nextButton = Selector(
-      () => document.getElementsByClassName('m-datepicker__button-next')[0]
+      () => document.getElementsByClassName('js-datepicker__button-next')[0]
     );
 
     await t.click(nextButton);
@@ -366,7 +366,7 @@ test('should navigate to previous allowed year', async t => {
 
   const navigateToPrevMonth = async () => {
     const prevButton = Selector(
-      () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+      () => document.getElementsByClassName('js-datepicker__button-prev')[0]
     );
 
     await t.click(prevButton);
@@ -956,7 +956,7 @@ fixture('Datepicker no next month').page(
 
 test('Should disable next button.', async t => {
   const next = Selector(
-    () => document.getElementsByClassName('m-datepicker__button-next')[0]
+    () => document.getElementsByClassName('js-datepicker__button-next')[0]
   );
 
   await t.expect(next.hasAttribute('disabled')).ok();
@@ -968,7 +968,7 @@ fixture('Datepicker no previous month').page(
 
 test('Should disable prev button.', async t => {
   const prev = Selector(
-    () => document.getElementsByClassName('m-datepicker__button-prev')[0]
+    () => document.getElementsByClassName('js-datepicker__button-prev')[0]
   );
 
   await t.expect(prev.hasAttribute('disabled')).ok();
@@ -997,4 +997,64 @@ test('Should preselect defaultValue date', async t => {
   await t
     .expect(expectedSelectedDay.hasClass('m-datepicker__calendar-selected-day'))
     .ok();
+});
+
+fixture('Datepicker React - Story').page(
+  `${host}/iframe.html?id=examples-datepicker-react--story`
+);
+
+test('Should not preselect by default', async t => {
+  const nothingPreselected = ClientFunction(() => {
+    const days = Array.prototype.slice.call(
+      document.querySelectorAll(
+        '#datepicker-react .js-datepicker__calender-body__cell'
+      )
+    );
+
+    return (
+      days.filter(cell => cell.className.indexOf('selected') > -1).length === 0
+    );
+  });
+
+  await t.expect(await nothingPreselected()).eql(true);
+});
+
+test('Should blend in/out user selection upon navigation', async t => {
+  const nothingPreselected = ClientFunction(() => {
+    const days = Array.prototype.slice.call(
+      document.querySelectorAll(
+        '#datepicker-react .js-datepicker__calender-body__cell'
+      )
+    );
+
+    return (
+      days.filter(cell => cell.className.indexOf('selected') > -1).length === 0
+    );
+  });
+
+  // click in the middle, selecting a day that will always exist
+  await t.click(
+    '#datepicker-react .js-datepicker__calender-body__cell[data-day="15"]'
+  );
+  await t.wait(50);
+  // there *is* a selection
+  await t.expect(await nothingPreselected()).eql(false);
+  // navigate to next month
+  await t.click('#datepicker-react .js-datepicker__button-next');
+
+  await t.wait(50);
+  // selection vanishes
+  await t.expect(await nothingPreselected()).eql(true);
+  // navigate back
+  await t.click('#datepicker-react .js-datepicker__button-prev');
+
+  await t.wait(50);
+  // selection resurfaces
+  await t.expect(await nothingPreselected()).eql(false);
+  // navigate to previous month
+  await t.click('#datepicker-react .js-datepicker__button-prev');
+
+  await t.wait(50);
+  // selection again vanishes
+  await t.expect(await nothingPreselected()).eql(true);
 });

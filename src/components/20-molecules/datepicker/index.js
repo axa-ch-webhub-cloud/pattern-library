@@ -103,17 +103,15 @@ export const parseAndFormatAllowedYears = (allowedyears = [], setYear) => {
 };
 
 // gather all native Date-object setters in one place
-const overrideDate = (year, month, day, date, status = {}) => {
+const overrideDate = (year, month, day, date) => {
   let _day = day;
 
   if (typeof year === 'number' && year >= 0) {
     date.setFullYear(year);
-    status.set = true;
   }
 
   if (typeof month === 'number' && month >= 0) {
     date.setMonth(month);
-    status.set = true;
     // month not changed as desired since target day unavailable?
     // (e.g. July 31 =/=> June 31)
     if (date.getMonth() !== month) {
@@ -126,7 +124,6 @@ const overrideDate = (year, month, day, date, status = {}) => {
     // day 1 = first day, day 0 = last day of prev. month
     // day -1 = one day before last day of prev. month, ...
     date.setDate(_day);
-    status.set = true;
   }
 
   date.setHours(0, 0, 0, 0); // exactly midnight
@@ -229,13 +226,55 @@ class AXADatepicker extends NoShadowDOM {
   set date(value) {
     if (value && value instanceof Date) {
       const oldValue = this._date;
-      this.initDate(value);
+      // a date is considered externally pre-set iff it's not an internal 'default' date;
+      // tracking pre-set date-related property values is important to differentiate between
+      // which dates are to be considered as selected-by-application-or-user.
+      this.initDate(value, { preset: value.type !== 'default' });
       this.requestUpdate('date', oldValue);
     }
   }
 
   get date() {
     return this._date;
+  }
+
+  set day(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._day = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('day', oldValue);
+    }
+  }
+
+  get day() {
+    return this._day;
+  }
+
+  set month(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._month = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('month', oldValue);
+    }
+  }
+
+  get month() {
+    return this._month;
+  }
+
+  set year(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._year = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('year', oldValue);
+    }
+  }
+
+  get year() {
+    return this._year;
   }
 
   setMonthAndYearItems(month, year) {
@@ -454,14 +493,14 @@ class AXADatepicker extends NoShadowDOM {
                   </div>
                 </div>
                 <button
-                  class="m-datepicker__button m-datepicker__button-prev"
+                  class="m-datepicker__button m-datepicker__button-prev js-datepicker__button-prev"
                   @click=${this.handleNavigateToPrevMonth}
                   ?disabled=${noPreviousAllowedYear}
                 >
                   ${keyboardArrowLeftIcon}
                 </button>
                 <button
-                  class="m-datepicker__button m-datepicker__button-next"
+                  class="m-datepicker__button m-datepicker__button-next js-datepicker__button-next"
                   @click=${this.handleNavigateToNextMonth}
                   ?disabled=${noNextAllowedYear}
                 >
@@ -544,9 +583,9 @@ class AXADatepicker extends NoShadowDOM {
       const isValidDateObject = date instanceof Date && !isNaN(+date);
       if (isValidDateObject) {
         this.startDate = date;
-        this.day = date.getDate();
-        this.year = date.getFullYear();
-        this.month = date.getMonth();
+        this._day = date.getDate();
+        this._year = date.getFullYear();
+        this._month = date.getMonth();
       }
     }
 
@@ -562,27 +601,24 @@ class AXADatepicker extends NoShadowDOM {
       this.year = newStartYear;
     }
 
-    const { year, month, day, allowedyears, locale, startDate } = this;
-
-    const status = {};
-    this._date = overrideDate(year, month, day, startDate, status);
+    const { _year, _month, _day, allowedyears, locale, startDate } = this;
+    const { output, tentative, preset } = options;
+    this._date = overrideDate(_year, _month, _day, startDate);
     const { _date } = this;
     // did the start date get actually overridden via one or more of the
     // date parts (year, month, day)?
-    if (status.set) {
+    if (preset) {
       // yes, so the resulting _date is application-selected
       delete _date.type;
     }
 
-    this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-
-    const { output, tentative } = options;
+    this.allowedyears = parseAndFormatAllowedYears(allowedyears, _year);
 
     if (output) {
       this.outputdate = this.formatDate(_date);
     }
 
-    const isUserOrApplicationSelected = !tentative && _date.type !== 'default';
+    const isUserOrApplicationSelected = !tentative && preset;
 
     if (output || isUserOrApplicationSelected) {
       // remember selected date, ensuring it is an independent copy
