@@ -44,7 +44,7 @@ addParameters({
   options: {
     storySort: {
       method: 'alphabetical',
-      order: ['Welcome', 'What is new', 'Guides', 'Brand Elements', 'Components', 'Pages', 'Examples', 'Others']
+      order: ['to Pattern Library', 'What is new', 'Guides', 'Brand Elements', 'Components', 'Pages', 'Examples', 'Others']
     },
   },
   viewport: {
