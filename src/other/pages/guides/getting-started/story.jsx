@@ -127,7 +127,7 @@ export default AXAButtonReact;`}
         </ReactSyntaxHighlighter>
         <AXAHeading rank="3">Read more about the Pattern Library</AXAHeading>
         <PLCallout
-          className="callout__first-element"
+          className="getting-started__callout-first"
           icon="github-mark.png"
           header="README"
           text="You have a question or just want to see what it's all about? The README is the best way to start."
