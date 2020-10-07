@@ -1,15 +1,14 @@
 /* global document */
 /* eslint-disable import/no-extraneous-dependencies */
-import { CarSvg, SailBoatSvg, PlaneSvg } from '@axa-ch/materials/images';
+import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
 import Changelog from './CHANGELOG.md';
+import './index';
 
 export default {
   title: 'Components/Radio',
   decorators: [withKnobs],
-
   parameters: {
     changelog: Changelog,
   },
@@ -36,41 +35,40 @@ export const Radio = () => {
       What type of vehicle do you want to insure?
     </axa-text>
     <br />
-    <axa-fieldset>
+    <axa-fieldset ?horizontal=${button}>
       <axa-radio
         name="contract"
         label="${label}"
         ?focus="${focus}"
         ?checked="${checked}"
         icon="${icon ? CarSvg : ''}"
-        ?noGap="${noGap}"
+        ?nogap="${noGap}"
         ?button="${button}"
         ?disabled="${disabled}"
-        ?noAutoWidth="${noAutoWidth}"
+        ?noautowidth="${noAutoWidth}"
         value="1"
       ></axa-radio>
       <axa-radio
         name="contract"
         icon="${icon ? PlaneSvg : ''}"
-        ?noGap="${noGap}"
+        ?nogap="${noGap}"
         ?button="${button}"
         ?disabled="${disabled}"
-        ?noAutoWidth="${noAutoWidth}"
+        ?noautowidth="${noAutoWidth}"
         label="plane"
         value="2"
       ></axa-radio>
       <axa-radio
         name="contract"
         icon="${icon ? SailBoatSvg : ''}"
-        ?noGap="${noGap}"
+        ?nogap="${noGap}"
         ?button="${button}"
         ?disabled="${disabled}"
-        ?noAutoWidth="${noAutoWidth}"
+        ?noautowidth="${noAutoWidth}"
         label="sailboat"
         value="3"
       ></axa-radio>
-      <axa-fieldset horizontal></axa-fieldset
-    ></axa-fieldset>
+    </axa-fieldset>
   `;
 
   render(template, wrapper);
