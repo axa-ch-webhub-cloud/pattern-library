@@ -46,7 +46,7 @@ describe('Datepicker unit tests', () => {
       expect(AXADatepicker.prototype.initDate(new Date(), {})).toEqual(
         undefined
       );
-    }); /*
+    });
     it('should set class variables', () => {
       // init values
       AXADatepicker.prototype._date = null;
@@ -71,13 +71,16 @@ describe('Datepicker unit tests', () => {
       expect(AXADatepicker.prototype.outputdate).not.toBe(null);
       expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
     });
-    it('should set class variables if tentative:false', () => {
+    it('should set class variables if tentative:false and preset:true', () => {
       // init values
       AXADatepicker.prototype._selectedDate = null;
 
-      AXADatepicker.prototype.initDate(new Date(), { tentative: false });
+      AXADatepicker.prototype.initDate(new Date(), {
+        tentative: false,
+        preset: true,
+      });
 
       expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
-    }); */
+    });
   });
 });
