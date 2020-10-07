@@ -973,3 +973,28 @@ test('Should disable prev button.', async t => {
 
   await t.expect(prev.hasAttribute('disabled')).ok();
 });
+
+fixture('Datepicker React - uncontrolled').page(
+  `${host}/iframe.html?id=examples-datepicker-react--uncontrolled-ondatechange-driven-with-inputfield`
+);
+
+test('Should preselect defaultValue date', async t => {
+  const datepickerOpenButton = Selector(
+    () => document.getElementsByClassName('js-datepicker__input-button')[0]
+  );
+
+  // click on open button, without prior click on input field
+  await t.click(datepickerOpenButton);
+  // wait for DOM to stabilize
+  await t.wait(50);
+
+  const expectedSelectedDay = Selector(() =>
+    document.querySelector(
+      '[data-test-id="datepicker-react-inputfield-on-date-change"] .js-datepicker__calender-body__cell[data-value^="2019-07-29"]'
+    )
+  );
+  // confirm expected day is indeed selected
+  await t
+    .expect(expectedSelectedDay.hasClass('m-datepicker__calendar-selected-day'))
+    .ok();
+});
