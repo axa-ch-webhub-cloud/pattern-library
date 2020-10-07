@@ -564,6 +564,7 @@ class AXADatepicker extends NoShadowDOM {
   updated(changedProperties) {
     if (changedProperties.has('open') && this.open) {
       applyEffect(this);
+      this.handleViewportCheck(this.input);
     }
   }
 
@@ -598,7 +599,7 @@ class AXADatepicker extends NoShadowDOM {
       // yes, so in order to prevent the datepicker from showing an "empty" month sheet
       // without any days to select, force-pick the starting year as the first of the range of allowed years
       const [newStartYear] = this.allowedyears;
-      this._year = newStartYear;
+      this.year = newStartYear;
     }
 
     const { _year, _month, _day, allowedyears, locale, startDate } = this;

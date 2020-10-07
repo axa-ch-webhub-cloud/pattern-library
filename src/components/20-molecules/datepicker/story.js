@@ -50,11 +50,12 @@ export const Datepicker = () => {
   const invalid = boolean('invalid', false);
   const placeholder = text('placeholder', 'Please select a date');
   const width = text('width', '');
+  const marginTop = number('margin-top', 0);
 
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="background-color: lightgrey">
+    <div style="background-color: lightgrey;margin-top: ${marginTop}px">
       <axa-datepicker
         locale="${locale}"
         ?inputfield="${inputfield}"
