@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
-import { AXAText, AXAHeading } from './plib-components';
+import PLCallout from '../../utils/callout/index.react';
+import PLContactFooter from '../../utils/contact-footer/index.react';
 import styles from './index.scss';
+import { AXAHeading, AXAText } from './plib-components';
 
 export default {
   title: 'Guides/Getting started',
@@ -14,49 +16,14 @@ export default {
     codepreview: { disabled: true },
     a11y: { disabled: true },
     options: { showPanel: false },
+    layout: 'fullscreen',
   },
 };
 
 export const GettingStarted = () => {
-  const buttonLinkStyle = {
-    width: '100%',
-  };
-
   const devGuideStyle = {
     border: '1px solid rgba(0, 0, 0, 0.1)',
   };
-
-  const internalLink = `${window.location.href.replace(
-    /\/[^/]*$/,
-    ''
-  )}/?path=/story/others-contact--contact`;
-
-  // this intentionally duplicates a similar function in utils/callout.js;
-  // the latter however uses lit-html templates, while in the React context here
-  // we need JSX.
-  function callout(icon, header, text, link, linkText) {
-    return (
-      <div className="callout">
-        <div className="callout__image">
-          <img src={icon} alt="AXA Design System UI Kit" />
-        </div>
-        <div className="callout__col callout__col-padding">
-          <p className="callout__header">{header}</p>
-          <p className="callout__text">{text}</p>
-        </div>
-        <div className="callout__col">
-          <axa-button-link
-            style={buttonLinkStyle}
-            size="large"
-            href={link}
-            external=""
-          >
-            {linkText}
-          </axa-button-link>
-        </div>
-      </div>
-    );
-  }
 
   const div = document.createElement('div');
   div.classList.add('accessory-story-wrapper');
@@ -64,7 +31,6 @@ export const GettingStarted = () => {
   ReactDOM.render(
     <div>
       <style>{styles}</style>
-
       <div className="accessory-story-content">
         <AXAHeading rank="1" variant="secondary">
           Getting started
@@ -160,38 +126,35 @@ export default AXAButtonReact;`}
 </AxaButtonReact>`}
         </ReactSyntaxHighlighter>
         <AXAHeading rank="3">Read more about the Pattern Library</AXAHeading>
-        <div className="callout__first-element">
-          {/* TODO: Find way to use ad hoc component callout footer from  src/other/pages/utils/callout/index.js */}
-          {callout(
-            'github-mark.png',
-            'README',
-            `You have a question or just want to see what it's all about? The README is the best way to start.`,
-            'https://github.com/axa-ch/patterns-library/blob/develop/README.md',
-            'READ MORE'
-          )}
-        </div>
-        {callout(
-          'github-mark.png',
-          'Contribute',
-          `You want to contribute? Nice! Here you'll find out how.`,
-          'https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md',
-          'READ MORE'
-        )}
-        {callout(
-          'github-mark.png',
-          'Architecture',
-          'Read more about the big picture and how we got here. This includes framework choices and much more.',
-          'https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md',
-          'READ MORE'
-        )}
-        {callout(
-          'github-mark.png',
-          'Code of Conduct',
-          'We as the Pattern Library Team commited ourselves to a set of rules, responsibilities and prudent practices.',
-          'https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md',
-          'READ MORE'
-        )}
-
+        <PLCallout
+          className="getting-started__callout-first"
+          icon="github-mark.png"
+          header="README"
+          text="You have a question or just want to see what it's all about? The README is the best way to start."
+          link="https://github.com/axa-ch/patterns-library/blob/develop/README.md"
+          linkText="READ MORE"
+        />
+        <PLCallout
+          icon="github-mark.png"
+          header="Contribute"
+          text="You want to contribute? Nice! Here you'll find out how."
+          link="https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md"
+          linkText="READ MORE"
+        />
+        <PLCallout
+          icon="github-mark.png"
+          header="Architecture"
+          text="Read more about the big picture and how we got here. This includes framework choices and much more."
+          link="https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md"
+          linkText="READ MORE"
+        />
+        <PLCallout
+          icon="github-mark.png"
+          header="Code of Conduct"
+          text="We as the Pattern Library Team commited ourselves to a set of rules, responsibilities and prudent practices."
+          link="https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md"
+          linkText="READ MORE"
+        />
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
           <AXAHeading rank="2" variant="secondary">
@@ -205,13 +168,13 @@ export default AXAButtonReact;`}
             and use existing and tested interactions.
           </AXAText>
         </div>
-        {callout(
-          'figma.png',
-          'AXA Design System UI Kit',
-          "To see how to use AXA's Design System and be in sync with the Pattern Library, take a look at the AXA UI Kit!",
-          'https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208',
-          'READ MORE'
-        )}
+        <PLCallout
+          icon="figma.png"
+          header="AXA Design System UI Kit"
+          text="To see how to use AXA's Design System and be in sync with the Pattern Library, take a look at the AXA UI Kit!"
+          link="https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208"
+          linkText="READ MORE"
+        />
         <AXAHeading rank="3">Our development guide</AXAHeading>
         <div className="getting-started__last-text">
           <AXAText variant="size-2">
@@ -220,7 +183,6 @@ export default AXAButtonReact;`}
             development:
           </AXAText>
         </div>
-
         <iframe
           title="figma dev guide"
           style={devGuideStyle}
@@ -229,27 +191,11 @@ export default AXAButtonReact;`}
           src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGBd1NZWB94Ek4WVUDROCE6%2FDX-Product-Development-Guide%3Fnode-id%3D196%253A502%26viewport%3D17094%252C-15509%252C0.3761351704597473%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
           allowFullScreen
         />
-        {/* TODO: Find way to use ad hoc component contact footer from  src/other/pages/utils/contact-footer/index.js */}
-        <section className="contact-footer">
-          <div className="contact-footer__inner">
-            <div>
-              <p className="contact-footer__subtitle">Help & Contact</p>
-              <axa-heading rank="4" variant="secondary">
-                Any questions?
-              </axa-heading>
-            </div>
-            <axa-button-link
-              size="large"
-              href={internalLink}
-              variant="inverted"
-            >
-              Get in touch
-            </axa-button-link>
-          </div>
-        </section>
+        <PLContactFooter />
       </div>
     </div>,
     div
   );
+
   return div;
 };

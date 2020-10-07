@@ -46,6 +46,7 @@ export default {
     changelog: Changelog,
     codepreview: { disabled: true },
     options: { showPanel: true },
+    layout: 'fullscreen',
   },
 };
 
