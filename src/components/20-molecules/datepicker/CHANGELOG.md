@@ -1,3 +1,9 @@
+## 13.0.0
+
+- make `defaultValue` under React affect preselected datepicker date. (#1974)
+- do not auto-select dates, limit selection to user interaction or property updates. (#1977)
+- fix datepicker auto-positioning on first open. (#1981)
+
 ## 12.0.0
 
 - breaking change: inputfield formatting is always dd.mm.yyyy irrespective of locale. (#1845)
