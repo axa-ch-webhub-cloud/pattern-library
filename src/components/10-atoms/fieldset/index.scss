@@ -41,8 +41,6 @@ axa-fieldset {
   }
 
   &[error]:not([error=""]) {
-    padding-bottom: 28px;
-
     axa-radio:not(:hover):not([disabled]):not([checked]) {
 
       &[button] .a-radio__wrapper {
@@ -57,10 +55,8 @@ axa-fieldset {
     &:after {
       @include text(t4);
       content: attr(error);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      margin: 0 !important;
+      display: inline-block;
+      margin: 11px 0 0 !important;
       color: $color-shy-tomato;
     }
   }
