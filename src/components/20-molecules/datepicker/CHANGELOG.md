@@ -1,3 +1,7 @@
+## 12.0.2
+
+- Fix: positioning of the datepicker (top/bottom). (#1998)
+
 ## 12.0.0
 
 - breaking change: inputfield formatting is always dd.mm.yyyy irrespective of locale. (#1845)
