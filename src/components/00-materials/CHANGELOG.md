@@ -1,3 +1,7 @@
+## 13.2.1
+
+- Remove icon width and heigth of newly added icons #2002
+
 ## 13.2.0
 
 - Added new images: `floor` and `chair` #1972
