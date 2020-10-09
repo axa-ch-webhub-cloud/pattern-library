@@ -131,8 +131,10 @@ const model = {
   ],
   tbody: [
     [
+      // Use 'html' to insert html to the table.
       { html: '<span>11 Test</span>' },
-      { html: '<span>Hello</span>' },
+      // Use 'text' to display sanitized html.
+      { text: '<span>Hello</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'A' },
     ],

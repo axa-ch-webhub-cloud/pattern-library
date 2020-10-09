@@ -2,8 +2,8 @@
 import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
-import createTableSortableReact from '../index.react';
 import Changelog from '../CHANGELOG.md';
+import createTableSortableReact from '../index.react';
 
 const TableSortable = createTableSortableReact(createElement);
 
@@ -20,7 +20,7 @@ const model = {
       { html: '<span>55</span>' },
       { html: '<span>Peter</span>' },
       { html: '<span>Winterthur</span>' },
-      { html: '<span>22.04.2019</span>' },
+      { text: '<span>22.04.2019</span>' },
       { html: 'A' },
     ],
     [

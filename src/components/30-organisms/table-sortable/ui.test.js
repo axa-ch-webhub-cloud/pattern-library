@@ -87,14 +87,14 @@ test('should sort strings', async t => {
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect($columnTwoFirstRow.textContent).eql('Petra');
-  await t.expect($columnTwoLastRow.textContent).eql('Chris');
+  await t.expect($columnTwoFirstRow.innerText).eql('Petra');
+  await t.expect($columnTwoLastRow.innerText).eql('Chris');
   await t
     .click($columnTwo)
     .expect($columnTwo.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect($columnTwoFirstRow.textContent).eql('Chris');
-  await t.expect($columnTwoLastRow.textContent).eql('Petra');
+  await t.expect($columnTwoFirstRow.innerText).eql('Chris');
+  await t.expect($columnTwoLastRow.innerText).eql('Petra');
 
   await t
     .click($columnTwo)
@@ -138,14 +138,14 @@ test('should sort numbers', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect($columnOneFirstRow.textContent).eql('55');
-  await t.expect($columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.innerText).eql('55');
+  await t.expect($columnOneLastRow.innerText).eql('18');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect($columnOneFirstRow.textContent).eql('18');
-  await t.expect($columnOneLastRow.textContent).eql('55');
+  await t.expect($columnOneFirstRow.innerText).eql('18');
+  await t.expect($columnOneLastRow.innerText).eql('55');
 
   await t
     .click($columnOne)
@@ -189,14 +189,14 @@ test('should sort dates', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t.expect($columnFourFirstRow.textContent).eql('02.05.2013');
-  await t.expect($columnFourLastRow.textContent).eql('01.01.2020');
+  await t.expect($columnFourFirstRow.innerText).eql('02.05.2013');
+  await t.expect($columnFourLastRow.innerText).eql('01.01.2020');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect($columnFourFirstRow.textContent).eql('01.01.2020');
-  await t.expect($columnFourLastRow.textContent).eql('02.05.2013');
+  await t.expect($columnFourFirstRow.innerText).eql('01.01.2020');
+  await t.expect($columnFourLastRow.innerText).eql('02.05.2013');
 
   await t
     .click($columnOne)
@@ -366,8 +366,8 @@ test('should sort also when innerscroll is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect($columnOneFirstRow.textContent).eql('55');
-  await t.expect($columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.innerText).eql('55');
+  await t.expect($columnOneLastRow.innerText).eql('18');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
@@ -426,8 +426,8 @@ test('should sort also when maxheight is set ', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t.expect($columnOneFirstRow.textContent).eql('55');
-  await t.expect($columnOneLastRow.textContent).eql('18');
+  await t.expect($columnOneFirstRow.innerText).eql('55');
+  await t.expect($columnOneLastRow.innerText).eql('18');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
@@ -458,11 +458,28 @@ test('should react to click on row', async t => {
 
   await t.click($elTableTr);
 
-  const text = await $elTableRenderArea.textContent;
+  const text = await $elTableRenderArea.innerText;
 
   await t
     .expect(text.replace(/\s+/g, ' '))
     .eql(
       'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
     );
+});
+
+fixture('Table Sortable - react').page(
+  `${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`
+);
+
+test('should display HTML as text if desired', async t => {
+  const $rowOneDate = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+
+    return firstRow.querySelectorAll('td')[3];
+  }).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  await t.expect($rowOneDate.innerText).eql('<span>22.04.2019</span>');
 });

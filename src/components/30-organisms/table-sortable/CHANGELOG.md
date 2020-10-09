@@ -1,3 +1,7 @@
+## 3.2.0
+
+- It is now possible to display HTML as text. (#1959)
+
 ## 3.1.1
 
 - Fix: prevent duplicate style attachment. (#1727)
