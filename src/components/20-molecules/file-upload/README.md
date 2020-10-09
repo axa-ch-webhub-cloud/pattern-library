@@ -66,6 +66,26 @@ Use the file-upload like this:
 </html>
 ```
 
+```js
+const { files } = document.querySelector('axa-file-upload');
+
+if (files.length > 0) {
+  files.map(file => {
+    const reader = new FileReader();
+
+    reader.onload = file => {
+      // success
+    };
+
+    reader.onerror = evt => {
+      // error
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+```
+
 ## Properties
 
 ### Variant
