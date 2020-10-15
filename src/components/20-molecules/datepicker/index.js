@@ -6,7 +6,6 @@ import {
   Keyboard_arrow_leftSvg,
   Keyboard_arrow_rightSvg,
 } from '@axa-ch/materials/icons';
-import { formatISO } from 'date-fns';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import {
@@ -143,6 +142,11 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   static get properties() {
+    const now = new Date();
+    // formally mark the (internal) default date, s.t. it can be distinguished
+    // from dates that are set by applications (exploiting the malleability
+    // of system objects...)
+    now.type = 'default';
     return {
       'data-test-id': { type: String, reflect: true },
       open: { type: Boolean, reflect: true },
@@ -156,7 +160,7 @@ class AXADatepicker extends NoShadowDOM {
           fromAttribute: value => (value ? new Date(value) : null),
           toAttribute: value => (value ? value.toISOString() : null),
         },
-        defaultValue: new Date(),
+        defaultValue: now,
       },
       outputdate: { type: String, reflect: true },
       year: { type: Number, reflect: true, defaultValue: undefined },
@@ -222,13 +226,55 @@ class AXADatepicker extends NoShadowDOM {
   set date(value) {
     if (value && value instanceof Date) {
       const oldValue = this._date;
-      this.initDate(value);
+      // a date is considered externally pre-set iff it's not an internal 'default' date;
+      // tracking pre-set date-related property values is important to differentiate between
+      // which dates are to be considered as selected-by-application-or-user.
+      this.initDate(value, { preset: value.type !== 'default' });
       this.requestUpdate('date', oldValue);
     }
   }
 
   get date() {
     return this._date;
+  }
+
+  set day(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._day = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('day', oldValue);
+    }
+  }
+
+  get day() {
+    return this._day;
+  }
+
+  set month(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._month = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('month', oldValue);
+    }
+  }
+
+  get month() {
+    return this._month;
+  }
+
+  set year(value) {
+    if (typeof value === 'number') {
+      const oldValue = this._day;
+      this._year = value;
+      this.initDate(null, { preset: true });
+      this.requestUpdate('year', oldValue);
+    }
+  }
+
+  get year() {
+    return this._year;
   }
 
   setMonthAndYearItems(month, year) {
@@ -311,14 +357,7 @@ class AXADatepicker extends NoShadowDOM {
 
     this.setMonthAndYearItems(month, year);
 
-    const {
-      width = '100%',
-      error,
-      invalid,
-      invaliddatetext,
-      style,
-      _selectedDate,
-    } = this;
+    const { width = '100%', error, invalid, invaliddatetext, style } = this;
     const needToShowError = (error || invalid) && invaliddatetext;
 
     const getFormattedStyle = parameter =>
@@ -326,8 +365,7 @@ class AXADatepicker extends NoShadowDOM {
 
     style.width = getFormattedStyle(width); // set width to component's css
 
-    const cellClasses = ({ sameMonth, today, inactive, value }) => {
-      const selected = _selectedDate === value;
+    const cellClasses = ({ sameMonth, today, inactive, selected }) => {
       const isToday = !selected && today;
 
       return classMap({
@@ -455,14 +493,14 @@ class AXADatepicker extends NoShadowDOM {
                   </div>
                 </div>
                 <button
-                  class="m-datepicker__button m-datepicker__button-prev"
+                  class="m-datepicker__button m-datepicker__button-prev js-datepicker__button-prev"
                   @click=${this.handleNavigateToPrevMonth}
                   ?disabled=${noPreviousAllowedYear}
                 >
                   ${keyboardArrowLeftIcon}
                 </button>
                 <button
-                  class="m-datepicker__button m-datepicker__button-next"
+                  class="m-datepicker__button m-datepicker__button-next js-datepicker__button-next"
                   @click=${this.handleNavigateToNextMonth}
                   ?disabled=${noNextAllowedYear}
                 >
@@ -510,6 +548,7 @@ class AXADatepicker extends NoShadowDOM {
 
       if (isReact && defaultValue) {
         input.value = defaultValue;
+        this.validate(defaultValue);
       }
     }
 
@@ -525,6 +564,7 @@ class AXADatepicker extends NoShadowDOM {
   updated(changedProperties) {
     if (changedProperties.has('open') && this.open) {
       applyEffect(this);
+      this.handleViewportCheck(this.input);
     }
   }
 
@@ -544,37 +584,52 @@ class AXADatepicker extends NoShadowDOM {
       const isValidDateObject = date instanceof Date && !isNaN(+date);
       if (isValidDateObject) {
         this.startDate = date;
-        this.day = date.getDate();
-        this.year = date.getFullYear();
-        this.month = date.getMonth();
+        this._day = date.getDate();
+        this._year = date.getFullYear();
+        this._month = date.getMonth();
       }
     }
 
-    if (this.allowedyears && !this.allowedyears.includes(this.year)) {
-      // to avoid that datepicker don't show any days to select and looks like "empty"
+    // does the range of allowed years exclude the starting year?
+    if (
+      this.allowedyears &&
+      this.year &&
+      !this.allowedyears.includes(this.year)
+    ) {
+      // yes, so in order to prevent the datepicker from showing an "empty" month sheet
+      // without any days to select, force-pick the starting year as the first of the range of allowed years
       const [newStartYear] = this.allowedyears;
       this.year = newStartYear;
     }
 
-    const { year, month, day, allowedyears, locale, startDate } = this;
-
-    this._date = overrideDate(year, month, day, startDate);
+    const { _year, _month, _day, allowedyears, locale, startDate } = this;
+    const { output, tentative, preset } = options;
+    this._date = overrideDate(_year, _month, _day, startDate);
     const { _date } = this;
+    // did the start date get actually overridden via one or more of the
+    // date parts (year, month, day)?
+    if (preset) {
+      // yes, so the resulting _date is application-selected
+      delete _date.type;
+    }
 
-    this.allowedyears = parseAndFormatAllowedYears(allowedyears, year);
-
-    this.cells = getMonthMatrix(_date, this.allowedyears);
-    this.weekdays = getWeekdays(_date, locale);
-
-    const { output, tentative } = options;
+    this.allowedyears = parseAndFormatAllowedYears(allowedyears, _year);
 
     if (output) {
       this.outputdate = this.formatDate(_date);
     }
 
-    if (output || !tentative) {
-      this._selectedDate = formatISO(_date);
+    const isUserOrApplicationSelected = !tentative && preset;
+
+    if (output || isUserOrApplicationSelected) {
+      // remember selected date, ensuring it is an independent copy
+      // (so that navigation - which changes _date - does not inadvertantly change the
+      // selected date with it)
+      this._selectedDate = new Date(_date);
     }
+
+    this.cells = getMonthMatrix(_date, this.allowedyears, this._selectedDate);
+    this.weekdays = getWeekdays(_date, locale);
 
     return this.outputdate;
   }

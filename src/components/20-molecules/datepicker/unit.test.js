@@ -53,6 +53,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.allowedyears = [1900];
       AXADatepicker.prototype.cells = null;
       AXADatepicker.prototype.weekdays = null;
+      AXADatepicker.prototype.requestUpdate = () => {};
 
       AXADatepicker.prototype.initDate(new Date(), {});
 
@@ -71,11 +72,14 @@ describe('Datepicker unit tests', () => {
       expect(AXADatepicker.prototype.outputdate).not.toBe(null);
       expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
     });
-    it('should set class variables if tentative:false', () => {
+    it('should set class variables if tentative:false and preset:true', () => {
       // init values
       AXADatepicker.prototype._selectedDate = null;
 
-      AXADatepicker.prototype.initDate(new Date(), { tentative: false });
+      AXADatepicker.prototype.initDate(new Date(), {
+        tentative: false,
+        preset: true,
+      });
 
       expect(AXADatepicker.prototype._selectedDate).not.toBe(null);
     });
