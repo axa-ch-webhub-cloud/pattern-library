@@ -1,3 +1,7 @@
+## 4.1.7
+
+- Fix: gap between error message and content. (#1998)
+
 ## 4.1.1
 
 - Fix: prevent duplicate style attachment. (#1727)
