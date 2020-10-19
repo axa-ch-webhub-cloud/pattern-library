@@ -25,7 +25,7 @@ const customViewports = {
     },
   },
   xl: {
-    name: 'sm',
+    name: 'xl',
     styles: {
       width: '1200px',
       height: '100%',
