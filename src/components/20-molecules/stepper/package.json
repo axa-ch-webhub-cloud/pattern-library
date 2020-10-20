@@ -1,18 +1,15 @@
 {
-  "name": "@axa-ch/patterns-library-polyfill",
-  "version": "1.5.4",
-  "description": "The polyfill component for the AXA Pattern Library (IE Support)",
+  "name": "@axa-ch/stepper",
+  "version": "0.0.0-beta.0",
+  "description": "The stepper component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill#readme",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/stepper#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
     "postpublish": "../../../../scripts/build/postpublish.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
-  },
-  "directories": {
-    "lib": "lib"
   },
   "files": [
     "lib",
@@ -29,8 +26,8 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "2.2.10",
-    "core-js": "^2.6.5"
-  },
-  "main": "lib/index.js"
+    "@skatejs/val": "^0.4.0",
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.0"
+  }
 }

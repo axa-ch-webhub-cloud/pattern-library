@@ -8,21 +8,22 @@
     "src/components/10-atoms/checkbox",
     "src/components/10-atoms/fieldset",
     "src/components/10-atoms/heading",
-    "src/components/10-atoms/radio",
     "src/components/10-atoms/icon",
     "src/components/10-atoms/input-file",
     "src/components/10-atoms/input-text",
     "src/components/10-atoms/link",
+    "src/components/10-atoms/radio",
     "src/components/10-atoms/text",
     "src/components/10-atoms/textarea",
     "src/components/10-atoms/toggle-switch",
     "src/components/20-molecules/cookie-disclaimer",
     "src/components/20-molecules/datepicker",
     "src/components/20-molecules/dropdown",
+    "src/components/20-molecules/file-upload",
     "src/components/20-molecules/footer-small",
     "src/components/20-molecules/policy-features",
-    "src/components/20-molecules/file-upload",
     "src/components/20-molecules/popup",
+    "src/components/20-molecules/stepper",
     "src/components/20-molecules/top-content-bar",
     "src/components/30-organisms/commercial-hero-banner",
     "src/components/30-organisms/container",
@@ -36,7 +37,11 @@
       "allowBranch": "develop"
     }
   },
-  "ignoreChanges": ["**/*.test.js", "**/node_modules/**", "**/package-lock.json"],
+  "ignoreChanges": [
+    "**/*.test.js",
+    "**/node_modules/**",
+    "**/package-lock.json"
+  ],
   "version": "independent",
   "npmClient": "npm"
 }
