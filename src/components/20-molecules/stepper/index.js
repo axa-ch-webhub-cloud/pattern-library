@@ -32,24 +32,25 @@ class AXAStepper extends LitElement {
   }
 
   render() {
-    const { steps, stepActive, stepProgress } = this;
+    const { min, max, floor } = Math;
+    let { steps, stepActive, stepProgress } = this;
 
-    const stepsHTML = steps.map((text, index) => {
+    stepActive = floor(max(stepActive, 1));
+    stepProgress = max(min(stepProgress, 1), 0);
+
+    steps = steps.map((text, index) => {
       const currentStep = index + 1;
 
-      let state = 'done';
-      let symbol = checkIcon;
+      let state = 'active';
+      let symbol = html`
+        <span class="m-stepper__circle">${currentStep}</span>
+      `;
 
-      if (currentStep === stepActive) {
-        state = 'active';
-        symbol = html`
-          <span class="m-stepper__circle">${currentStep}</span>
-        `;
+      if (currentStep < stepActive) {
+        state = 'done';
+        symbol = checkIcon;
       } else if (currentStep > stepActive) {
         state = 'inactive';
-        symbol = html`
-          <span class="m-stepper__circle">${currentStep}</span>
-        `;
       }
 
       return html`
@@ -59,17 +60,15 @@ class AXAStepper extends LitElement {
       `;
     });
 
+    const progress = (100 / steps.length) * (stepActive - 1 + stepProgress);
+
     return html`
       <div class="m-stepper">
         <div class="m-stepper__wrapper">
-          ${stepsHTML}
+          ${steps}
         </div>
         <div class="m-stepper__progressbar">
-          <div
-            class="m-stepper__progress"
-            style="width: ${(100 / steps.length) *
-              (stepActive + stepProgress - 1)}%"
-          ></div>
+          <div class="m-stepper__progress" style="width: ${progress}%"></div>
         </div>
       </div>
     `;
