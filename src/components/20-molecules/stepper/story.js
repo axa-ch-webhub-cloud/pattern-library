@@ -1,6 +1,7 @@
 /* global document */
-import { withKnobs } from '@storybook/addon-knobs';
+import { number, object, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import Changelog from './CHANGELOG.md';
 import './index';
 
 export default {
@@ -14,8 +15,22 @@ export default {
 export const Stepper = () => {
   const wrapper = document.createElement('div');
 
+  const steps = object('steps', [
+    'Angaben',
+    'Leistungen',
+    'Übersicht',
+    'Fertig',
+  ]);
+
+  const stepActive = number('stepActive', 2);
+  const stepProgress = number('stepProgress', 0.5);
+
   const template = html`
-    <axa-stepper></axa-stepper>
+    <axa-stepper
+      .steps=${steps}
+      stepactive=${stepActive}
+      stepprogress=${stepProgress}
+    ></axa-stepper>
   `;
 
   render(template, wrapper);
