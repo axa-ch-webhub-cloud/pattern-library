@@ -13,30 +13,14 @@
 
   &__step {
     display: flex;
-    height: 53px;
+    height: 27px;
     flex: 1;
     justify-content: center;
     align-items: center;
     border: 1px solid $color-mercury;
 
     svg {
-      margin-right: 8px;
       color: $color-malachite;
-    }
-
-    .m-stepper__circle {
-      @include text(t4);
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
-      margin-right: 10px;
-      text-align: center;
-      border-radius: 50%;
-    }
-
-    .m-stepper__text {
-      @include text(t3);
-      letter-spacing: 0.2px;
     }
 
     &--done {
@@ -49,13 +33,14 @@
     &--active {
       .m-stepper__circle {
         font-weight: bold;
-        background: $color-deep-sapphire;
+        border: 1px solid $color-axa-blue;
+        background: $color-axa-blue;
         color: $color-prim-white;
       }
 
       .m-stepper__text {
         font-weight: bold;
-        color: $color-deep-sapphire;
+        color: $color-axa-blue;
       }
     }
 
@@ -72,13 +57,56 @@
     }
   }
 
+  &__circle {
+    @include text(t4);
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  &__text {
+    @include text(t3);
+    display: none;
+    letter-spacing: 0.2px;
+  }
+
   &__progressbar {
     background: $color-mercury;
   }
 
   &__progress {
-    height: 4px;
+    height: 2px;
     max-width: 100%;
-    background: $color-burnt-sienna;
+    background: $color-axa-blue;
+  }
+}
+
+@include breakpoint($mediaquery-sm-up) {
+  .m-stepper {
+    &__step {
+      height: 53px;
+
+      svg {
+        margin-right: 8px;
+      }
+    }
+
+    &__circle {
+      @include text(t3);
+      width: 22px;
+      height: 22px;
+      line-height: 22px;
+      margin-right: 10px;
+    }
+  
+    &__text {
+      display: block;
+    }
+
+    &__progress {
+      height: 4px;
+    }
   }
 }
