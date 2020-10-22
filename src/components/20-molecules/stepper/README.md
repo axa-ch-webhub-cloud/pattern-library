@@ -1,6 +1,6 @@
 # Stepper
 
-TODO Description
+&lt;axa-stepper&gt; conveys progress through numbered steps.
 
 ## Usage
 
@@ -13,12 +13,12 @@ npm install @axa-ch/stepper
 ```js
 import '@axa-ch/stepper';
 ...
-<axa-stepper></axa-stepper>
+<axa-stepper steps='["Step 1", "Step 2", "Step 3"]'></axa-stepper>
 ```
 
 ### React
 
-Create a React-ified stepper with the createElement function from your React version anØd then use it like this:
+Create a React-ified stepper with the createElement function from your React version and then use it like this:
 
 ```js
 import { createElement } from 'react';
@@ -30,7 +30,7 @@ export default AXAStepperReact;
 ```
 
 ```js
-<AXAStepperReact></AXAStepperReact>
+<AXAStepperReact steps={['Step 1', 'Step 2', 'Step 3']}></AXAStepperReact>
 ```
 
 ### Pure HTML pages
@@ -47,10 +47,22 @@ Import the stepper-defining script and use a stepper like this:
     <title>Your awesome title</title>
   </head>
   <body>
-    <axa-stepper></axa-stepper>
+    <axa-stepper steps='["Step 1", "Step 2", "Step 3"]'></axa-stepper>
     <script src="node_modules/@axa-ch/stepper/dist/index.js"></script>
   </body>
 </html>
 ```
 
 ## Properties
+
+### steps
+
+The Array attribute `steps` specifies the descriptions of the steps. The length of this array equals the number of steps.
+
+### stepActive
+
+The Number attribute `stepActive` defines the currently active step.
+
+### stepProgress
+
+The Number attribute `stepProgress` defines the progress of the currently active step.
