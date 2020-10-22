@@ -73,6 +73,7 @@
     letter-spacing: 0.2px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__progressbar {
