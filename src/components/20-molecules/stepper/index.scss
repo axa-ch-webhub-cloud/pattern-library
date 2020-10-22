@@ -69,7 +69,10 @@
   &__text {
     @include text(t3);
     display: none;
+    max-width: 8rem;
     letter-spacing: 0.2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__progressbar {
