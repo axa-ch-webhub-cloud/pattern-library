@@ -1,6 +1,9 @@
 import React from 'react';
 
 export interface AXAStepperProps {
+  steps: Array<string>;
+  stepActive: number;
+  stepProgress: number;
   className?: string;
 }
 
