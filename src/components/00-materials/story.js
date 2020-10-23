@@ -139,6 +139,8 @@ export const IconsAndImages = () => {
             'materials__single-icon'
           )
         );
+      }
+      for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
         imageGroup.appendChild(
           mapToIconItemNode(
             images[i],
@@ -166,7 +168,8 @@ export const IconsAndImages = () => {
       }
 
       .materials__single-image > svg {
-
+        margin-bottom: 9px;
+        margin-top: 9px;
       }
 
       .materials__images-container > .image-container > svg {
@@ -288,7 +291,7 @@ export const IconsAndImages = () => {
           <div class="materials__images-container">
             ${svg(
               images
-                .slice(0, assetsToRender)
+                .slice(0, assetsToRender / 2)
                 .map(i => mapToIconItem(i, 'materials__single-image'))
             )}
           </div>
