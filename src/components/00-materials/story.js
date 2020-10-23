@@ -12,6 +12,9 @@ const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
 
+let iconsLoadedAlready = 0;
+let assetsToRender = 50;
+
 const _extractIconNameFromPath = path =>
   path
     .substring(2)
@@ -32,10 +35,17 @@ const images = filepathsImages.map(path => {
   };
 });
 
-const mapToIconItem = icon => {
-  return `<div class="image-container">${icon.svgstring}
+const mapToIconItem = (icon, ...cssClasses) => {
+  return `<div class="image-container ${cssClasses}">${icon.svgstring}
       <axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>
     </div>`;
+};
+
+const mapToIconItemNode = (icon, ...cssClasses) => {
+  const asset = document.createElement('div');
+  asset.classList.add(...cssClasses);
+  asset.innerHTML = `${icon.svgstring}<axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>`;
+  return asset;
 };
 
 export default {
@@ -62,8 +72,12 @@ export const IconsAndImages = () => {
   window.onCallbackInput = ev => {
     const { value } = ev.target;
 
-    const renderAreaIcons = document.querySelector('.icons');
-    const renderAreaImages = document.querySelector('.images');
+    const renderAreaIcons = document.querySelector(
+      '.materials__icon-container'
+    );
+    const renderAreaImages = document.querySelector(
+      '.materials__images-container'
+    );
     const iconHeader = document.querySelector('.icon-header');
     const imageHeader = document.querySelector('.image-header');
 
@@ -78,7 +92,7 @@ export const IconsAndImages = () => {
     });
 
     renderAreaIcons.innerHTML = filteredIcons
-      .map(i => mapToIconItem(i))
+      .map(i => mapToIconItem(i, 'materials__single-icon'))
       .join('');
 
     iconHeader.innerHTML =
@@ -87,7 +101,7 @@ export const IconsAndImages = () => {
         : `${filteredIcons.length} Icons:`;
 
     renderAreaImages.innerHTML = filteredImages
-      .map(i => mapToIconItem(i))
+      .map(i => mapToIconItem(i, 'materials__single-image'))
       .join('');
 
     imageHeader.innerHTML =
@@ -100,15 +114,38 @@ export const IconsAndImages = () => {
     const colorSwitcher = document.querySelector(
       '.js-materials__color-switcher'
     );
+    const iconGroup = document.querySelector('.materials__icon-container');
+    const imageGroup = document.querySelector('.materials__images-container');
     colorSwitcher.addEventListener('change', ev => {
-      const iconGroup = document.querySelector('.icons');
-      const imageGroup = document.querySelector('.images');
       if (ev.detail.active) {
         iconGroup.classList.add('materials__custom-colors');
         imageGroup.classList.add('materials__custom-colors');
       } else {
         iconGroup.classList.remove('materials__custom-colors');
         imageGroup.classList.remove('materials__custom-colors');
+      }
+    });
+
+    const loadMore = document.querySelector('.js-materials__load-more-button');
+    loadMore.addEventListener('click', ev => {
+      iconsLoadedAlready = assetsToRender;
+      assetsToRender += 50;
+
+      for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
+        iconGroup.appendChild(
+          mapToIconItemNode(
+            icons[i],
+            'image-container',
+            'materials__single-icon'
+          )
+        );
+        imageGroup.appendChild(
+          mapToIconItemNode(
+            images[i],
+            'image-container',
+            'materials__single-image'
+          )
+        );
       }
     });
   });
@@ -124,7 +161,15 @@ export const IconsAndImages = () => {
         border: 3px solid green;
       }
 
-      .images > div > svg {
+      .materials__single-icon {
+
+      }
+
+      .materials__single-image > svg {
+
+      }
+
+      .materials__images-container > .image-container > svg {
         width: 40px;
         height: 40px;
       }
@@ -222,19 +267,36 @@ export const IconsAndImages = () => {
         </axa-text>
       </div>
 
-      <axa-text class="icon-header" variant="bold"
-        >${icons.length} Icons:</axa-text
-      >
-      <div class="icons">
-        ${svg(icons.map(i => mapToIconItem(i)))}
-      </div>
+      <div style="display:flex;">
+        <div>
+          <axa-text class="icon-header" variant="bold">
+            ${icons.length} Icons:
+          </axa-text>
+          <div class="materials__icon-container">
+            ${svg(
+              icons
+                .slice(0, assetsToRender)
+                .map(i => mapToIconItem(i, 'materials__single-icon'))
+            )}
+          </div>
+        </div>
 
-      <axa-text class="image-header" variant="bold"
-        >${images.length} Images:</axa-text
-      >
-      <div class="images">
-        ${svg(images.map(i => mapToIconItem(i)))}
+        <div>
+          <axa-text class="image-header" variant="bold">
+            ${images.length} Images:
+          </axa-text>
+          <div class="materials__images-container">
+            ${svg(
+              images
+                .slice(0, assetsToRender)
+                .map(i => mapToIconItem(i, 'materials__single-image'))
+            )}
+          </div>
+        </div>
       </div>
+      <axa-button class="js-materials__load-more-button">
+        Load More...
+      </axa-button>
     </div>
   `;
 
