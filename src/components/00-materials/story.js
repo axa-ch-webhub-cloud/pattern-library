@@ -37,14 +37,14 @@ const images = filepathsImages.map(path => {
 
 const mapToIconItem = (icon, ...cssClasses) => {
   return `<div class="image-container ${cssClasses}">${icon.svgstring}
-      <axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>
+      <axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>
     </div>`;
 };
 
 const mapToIconItemNode = (icon, ...cssClasses) => {
   const asset = document.createElement('div');
   asset.classList.add(...cssClasses);
-  asset.innerHTML = `${icon.svgstring}<axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>`;
+  asset.innerHTML = `${icon.svgstring}<axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>`;
   return asset;
 };
 
@@ -258,8 +258,15 @@ export const IconsAndImages = () => {
         margin: 20px 0;
       }
 
-      .item-name {
+      .materials__asset-name {
         margin-left: 5px;
+        margin-right: 10px;
+        width: 210px;
+      }
+
+      .materials__asset-name > p {
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       ${styles}
