@@ -92,7 +92,7 @@ export const IconsAndImages = () => {
     });
 
     renderAreaIcons.innerHTML = filteredIcons
-      .map(i => mapToIconItem(i, 'materials__single-icon'))
+      .map(i => mapToIconItem(i))
       .join('');
 
     iconHeader.innerHTML =
@@ -132,13 +132,7 @@ export const IconsAndImages = () => {
       assetsToRender += 50;
 
       for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
-        iconGroup.appendChild(
-          mapToIconItemNode(
-            icons[i],
-            'image-container',
-            'materials__single-icon'
-          )
-        );
+        iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
       }
       for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
         imageGroup.appendChild(
@@ -172,10 +166,6 @@ export const IconsAndImages = () => {
       .materials__asset-group {
         display: flex;
         flex-wrap: wrap;
-      }
-
-      .materials__single-icon {
-
       }
 
       .materials__single-image > svg {
@@ -299,11 +289,7 @@ export const IconsAndImages = () => {
               ${icons.length} Icons:
             </axa-text>
             <div class="materials__icon-container">
-              ${svg(
-                icons
-                  .slice(0, assetsToRender)
-                  .map(i => mapToIconItem(i, 'materials__single-icon'))
-              )}
+              ${svg(icons.slice(0, assetsToRender).map(i => mapToIconItem(i)))}
             </div>
           </div>
 
