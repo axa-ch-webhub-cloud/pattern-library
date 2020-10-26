@@ -12,8 +12,8 @@ const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
 
-let iconsLoadedAlready = 0;
-let assetsToRender = 50;
+let assetsLoadedAlready = 0;
+let assetsToRenderNext = 50;
 
 const _extractIconNameFromPath = path =>
   path
@@ -66,11 +66,11 @@ export default {
 };
 
 const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
-  for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
+  for (let i = assetsLoadedAlready; i < assetsToRenderNext; ++i) {
     if (i >= icons.length) break;
     iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
   }
-  for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
+  for (let i = assetsLoadedAlready / 2; i < assetsToRenderNext / 2; ++i) {
     if (i >= images.length) break;
     imageGroup.appendChild(
       mapToIconItemNode(images[i], 'image-container', 'materials__single-image')
@@ -107,8 +107,8 @@ export const IconsAndImages = () => {
       document.querySelector('.js-materials__load-more-button').style.display =
         'block';
 
-      iconsLoadedAlready = 0;
-      assetsToRender = 50;
+      assetsLoadedAlready = 0;
+      assetsToRenderNext = 50;
 
       const iconGroup = document.querySelector('.materials__icon-container');
       const imageGroup = document.querySelector('.materials__images-container');
@@ -170,12 +170,15 @@ export const IconsAndImages = () => {
 
     const loadMore = document.querySelector('.js-materials__load-more-button');
     loadMore.addEventListener('click', () => {
-      iconsLoadedAlready = assetsToRender;
-      assetsToRender += 50;
+      assetsLoadedAlready = assetsToRenderNext;
+      assetsToRenderNext += 50;
 
       renderMoreIconsAndImages(iconGroup, imageGroup);
 
-      if (assetsToRender >= icons.length && assetsToRender >= images.length) {
+      if (
+        assetsToRenderNext >= icons.length &&
+        assetsToRenderNext >= images.length
+      ) {
         hideLoadMoreButton();
       }
     });
@@ -324,7 +327,9 @@ export const IconsAndImages = () => {
               ${icons.length} Icons:
             </axa-text>
             <div class="materials__icon-container">
-              ${svg(icons.slice(0, assetsToRender).map(i => mapToIconItem(i)))}
+              ${svg(
+                icons.slice(0, assetsToRenderNext).map(i => mapToIconItem(i))
+              )}
             </div>
           </div>
 
@@ -335,7 +340,7 @@ export const IconsAndImages = () => {
             <div class="materials__images-container">
               ${svg(
                 images
-                  .slice(0, assetsToRender / 2)
+                  .slice(0, assetsToRenderNext / 2)
                   .map(i => mapToIconItem(i, 'materials__single-image'))
               )}
             </div>
