@@ -65,6 +65,19 @@ export default {
   },
 };
 
+const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
+  for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
+    if (i >= icons.length) break;
+    iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
+  }
+  for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
+    if (i >= images.length) break;
+    imageGroup.appendChild(
+      mapToIconItemNode(images[i], 'image-container', 'materials__single-image')
+    );
+  }
+};
+
 export const IconsAndImages = () => {
   const backgrounds = select(
     'background color',
@@ -103,20 +116,7 @@ export const IconsAndImages = () => {
       iconGroup.innerHTML = '';
       imageGroup.innerHTML = '';
 
-      for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
-        if (i >= icons.length) break;
-        iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
-      }
-      for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
-        if (i >= images.length) break;
-        imageGroup.appendChild(
-          mapToIconItemNode(
-            images[i],
-            'image-container',
-            'materials__single-image'
-          )
-        );
-      }
+      renderMoreIconsAndImages(iconGroup, imageGroup);
 
       iconHeader.innerHTML = `${icons.length} Icons:`;
       imageHeader.innerHTML = `${images.length} Images:`;
@@ -169,24 +169,11 @@ export const IconsAndImages = () => {
     });
 
     const loadMore = document.querySelector('.js-materials__load-more-button');
-    loadMore.addEventListener('click', ev => {
+    loadMore.addEventListener('click', () => {
       iconsLoadedAlready = assetsToRender;
       assetsToRender += 50;
 
-      for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
-        if (i >= icons.length) break;
-        iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
-      }
-      for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
-        if (i >= images.length) break;
-        imageGroup.appendChild(
-          mapToIconItemNode(
-            images[i],
-            'image-container',
-            'materials__single-image'
-          )
-        );
-      }
+      renderMoreIconsAndImages(iconGroup, imageGroup);
 
       if (assetsToRender >= icons.length && assetsToRender >= images.length) {
         hideLoadMoreButton();
