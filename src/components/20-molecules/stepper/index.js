@@ -35,21 +35,28 @@ class AXAStepper extends LitElement {
     const { min, max, floor } = Math;
     let { steps, stepActive, stepProgress } = this;
 
+    // ensure it's a positive integer
     stepActive = floor(max(stepActive, 1));
+
+    // bound stepProgress between 0 and 1, inclusive
     stepProgress = max(min(stepProgress, 1), 0);
 
     steps = steps.map((text, index) => {
       const currentStep = index + 1;
 
+      // default values: step is active
       let state = 'active';
       let symbol = html`
         <span class="m-stepper__circle js-stepper__circle">${currentStep}</span>
       `;
 
+      // check whether this step is active
       if (currentStep < stepActive) {
+        // a step after this one is active -> this one should be marked as done
         state = 'done';
         symbol = checkIcon;
       } else if (currentStep > stepActive) {
+        // a step before this one is active -> this one should be marked as inactive
         state = 'inactive';
       }
 
@@ -60,6 +67,7 @@ class AXAStepper extends LitElement {
       `;
     });
 
+    // convert stepper state to progress-bar length (in percent)
     const progress = (100 / steps.length) * (stepActive - 1 + stepProgress);
 
     return html`
