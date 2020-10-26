@@ -167,7 +167,7 @@ export const IconsAndImages = () => {
         display: flex;
         flex-direction: column;
         align-items: center;
-        max-width: 650px;
+        max-width: 536px;
       }
 
       .materials__asset-group {
