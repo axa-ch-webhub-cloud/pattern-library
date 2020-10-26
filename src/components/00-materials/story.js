@@ -79,18 +79,6 @@ export const IconsAndImages = () => {
 
     if (value) {
       hideLoadMoreButton();
-    } else {
-      // if (
-      //   iconsLoadedAlready >= icons.length &&
-      //   iconsLoadedAlready >= images.length
-      // ) {
-      //   hideLoadMoreButton();
-      // }
-      // else {
-      //   document.querySelector(
-      //     '.js-materials__load-more-button'
-      //   ).style.display = 'block';
-      // }
     }
 
     const renderAreaIcons = document.querySelector(
@@ -101,6 +89,39 @@ export const IconsAndImages = () => {
     );
     const iconHeader = document.querySelector('.icon-header');
     const imageHeader = document.querySelector('.image-header');
+
+    if (!value) {
+      document.querySelector('.js-materials__load-more-button').style.display =
+        'block';
+
+      iconsLoadedAlready = 0;
+      assetsToRender = 50;
+
+      const iconGroup = document.querySelector('.materials__icon-container');
+      const imageGroup = document.querySelector('.materials__images-container');
+
+      iconGroup.innerHTML = '';
+      imageGroup.innerHTML = '';
+
+      for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
+        if (i >= icons.length) break;
+        iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
+      }
+      for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
+        if (i >= images.length) break;
+        imageGroup.appendChild(
+          mapToIconItemNode(
+            images[i],
+            'image-container',
+            'materials__single-image'
+          )
+        );
+      }
+
+      iconHeader.innerHTML = `${icons.length} Icons:`;
+      imageHeader.innerHTML = `${images.length} Images:`;
+      return;
+    }
 
     const filteredIcons = icons.filter(icon => {
       const foundSearchTerm = icon.path.includes(value.trim());
