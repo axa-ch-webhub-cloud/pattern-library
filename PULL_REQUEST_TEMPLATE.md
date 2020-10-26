@@ -8,4 +8,4 @@ Fixes #
 - [ ] Changelog is up to date.
 - [ ] Typescript typings for properties are up to date.
 - [ ] Designers approved changes or no approval needed.
-- [ ] Peer dependencies of components still work.
+- [ ] Dependencies to other components still work.
