@@ -86,9 +86,9 @@ test('should display correct step state', async t => {
         return 1;
       } else if (circleBackground === 'rgb(255, 255, 255)') {
         return 2;
-      } else {
-        return 3;
       }
+
+      return 3;
     },
     { dependencies: { TAG } }
   );
