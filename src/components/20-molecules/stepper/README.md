@@ -57,12 +57,12 @@ Import the stepper-defining script and use a stepper like this:
 
 ### steps
 
-The Array attribute `steps` specifies the descriptions of the steps. The length of this array equals the number of steps.
+The array-valued attribute `steps` specifies the descriptions of the steps, each step being described by a non-empty label string.
 
 ### stepActive
 
-The Number attribute `stepActive` defines the currently active step.
+The integer-valued attribute `stepActive` defines the currently active step.
 
 ### stepProgress
 
-The Number attribute `stepProgress` defines the progress of the currently active step.
+The numeric attribute `stepProgress` defines the progress of the currently active step. Legal values are between 0 and 1, inclusive (e.g. 0.5).
