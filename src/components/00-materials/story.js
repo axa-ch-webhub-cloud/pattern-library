@@ -35,6 +35,11 @@ const images = filepathsImages.map(path => {
   };
 });
 
+const hideLoadMoreButton = () => {
+  document.querySelector('.js-materials__load-more-button').style.display =
+    'none';
+};
+
 const mapToIconItem = (icon, ...cssClasses) => {
   return `<div class="image-container ${cssClasses}">${icon.svgstring}
       <axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>
@@ -71,6 +76,22 @@ export const IconsAndImages = () => {
 
   window.onCallbackInput = ev => {
     const { value } = ev.target;
+
+    if (value) {
+      hideLoadMoreButton();
+    } else {
+      // if (
+      //   iconsLoadedAlready >= icons.length &&
+      //   iconsLoadedAlready >= images.length
+      // ) {
+      //   hideLoadMoreButton();
+      // }
+      // else {
+      //   document.querySelector(
+      //     '.js-materials__load-more-button'
+      //   ).style.display = 'block';
+      // }
+    }
 
     const renderAreaIcons = document.querySelector(
       '.materials__icon-container'
@@ -132,9 +153,11 @@ export const IconsAndImages = () => {
       assetsToRender += 50;
 
       for (let i = iconsLoadedAlready; i < assetsToRender; ++i) {
+        if (i >= icons.length) break;
         iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
       }
       for (let i = iconsLoadedAlready / 2; i < assetsToRender / 2; ++i) {
+        if (i >= images.length) break;
         imageGroup.appendChild(
           mapToIconItemNode(
             images[i],
@@ -142,6 +165,10 @@ export const IconsAndImages = () => {
             'materials__single-image'
           )
         );
+      }
+
+      if (assetsToRender >= icons.length && assetsToRender >= images.length) {
+        hideLoadMoreButton();
       }
     });
   });
