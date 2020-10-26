@@ -163,6 +163,18 @@ export const IconsAndImages = () => {
         border: 3px solid green;
       }
 
+      .materials__asset-group-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 650px;
+      }
+
+      .materials__asset-group {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
       .materials__single-icon {
 
       }
@@ -185,6 +197,10 @@ export const IconsAndImages = () => {
 
       .image-container > svg {
         margin-right: 5px;
+      }
+
+      .materials__load-more-button {
+        margin-top: 20px;
       }
 
       .materials__controls {
@@ -270,36 +286,40 @@ export const IconsAndImages = () => {
         </axa-text>
       </div>
 
-      <div style="display:flex;">
-        <div>
-          <axa-text class="icon-header" variant="bold">
-            ${icons.length} Icons:
-          </axa-text>
-          <div class="materials__icon-container">
-            ${svg(
-              icons
-                .slice(0, assetsToRender)
-                .map(i => mapToIconItem(i, 'materials__single-icon'))
-            )}
+      <div class="materials__asset-group-container">
+        <div class="materials__asset-group">
+          <div>
+            <axa-text class="icon-header" variant="bold">
+              ${icons.length} Icons:
+            </axa-text>
+            <div class="materials__icon-container">
+              ${svg(
+                icons
+                  .slice(0, assetsToRender)
+                  .map(i => mapToIconItem(i, 'materials__single-icon'))
+              )}
+            </div>
           </div>
-        </div>
 
-        <div>
-          <axa-text class="image-header" variant="bold">
-            ${images.length} Images:
-          </axa-text>
-          <div class="materials__images-container">
-            ${svg(
-              images
-                .slice(0, assetsToRender / 2)
-                .map(i => mapToIconItem(i, 'materials__single-image'))
-            )}
+          <div>
+            <axa-text class="image-header" variant="bold">
+              ${images.length} Images:
+            </axa-text>
+            <div class="materials__images-container">
+              ${svg(
+                images
+                  .slice(0, assetsToRender / 2)
+                  .map(i => mapToIconItem(i, 'materials__single-image'))
+              )}
+            </div>
           </div>
         </div>
+        <axa-button
+          class="js-materials__load-more-button materials__load-more-button"
+        >
+          Load More...
+        </axa-button>
       </div>
-      <axa-button class="js-materials__load-more-button">
-        Load More...
-      </axa-button>
     </div>
   `;
 
