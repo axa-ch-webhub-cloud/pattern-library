@@ -154,21 +154,8 @@ export const IconsAndImages = () => {
   };
 
   setTimeout(() => {
-    const colorSwitcher = document.querySelector(
-      '.js-materials__color-switcher'
-    );
     const iconGroup = document.querySelector('.materials__icon-container');
     const imageGroup = document.querySelector('.materials__images-container');
-    colorSwitcher.addEventListener('change', ev => {
-      if (ev.detail.active) {
-        iconGroup.classList.add('materials__custom-colors');
-        imageGroup.classList.add('materials__custom-colors');
-      } else {
-        iconGroup.classList.remove('materials__custom-colors');
-        imageGroup.classList.remove('materials__custom-colors');
-      }
-    });
-
     const loadMore = document.querySelector('.js-materials__load-more-button');
     loadMore.addEventListener('click', () => {
       assetsLoadedAlready = assetsToRenderNext;
@@ -263,15 +250,6 @@ export const IconsAndImages = () => {
         color: #000;
       }
 
-      .materials__colorizer {
-        display: flex;
-        align-items: center;
-      }
-
-      .materials__label {
-        margin-right: 1rem;
-      }
-
       .materials__custom-colors {
         background: lightcoral;
         color: white;
@@ -308,14 +286,6 @@ export const IconsAndImages = () => {
           placeholder="Find icon / image"
           oninput="onCallbackInput(arguments[0])"
         />
-        <div class="materials__colorizer">
-          <axa-text class="materials__label" variant="size-2"
-            >Overwrite Colors:</axa-text
-          >
-          <axa-toggle-switch
-            class="js-materials__color-switcher"
-          ></axa-toggle-switch>
-        </div>
         <axa-text variant="size-2" class="note-text">
           Note: The green borders reveal the dimensions of the SVGs.
         </axa-text>
