@@ -28,8 +28,8 @@ export const Stepper = () => {
   const template = html`
     <axa-stepper
       .steps=${steps}
-      .stepactive=${stepActive || 0}
-      .stepprogress=${stepProgress || 0}
+      .stepActive=${stepActive || 0}
+      .stepProgress=${stepProgress || 0}
     ></axa-stepper>
   `;
 

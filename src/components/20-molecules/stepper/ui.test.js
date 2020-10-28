@@ -175,7 +175,7 @@ test('should treat stepActive=0 like stepActive=1', async t => {
   await t.expect(await getStepState()).ok();
 });
 
-test('should round stepProgress up to 0 if it is smaller', async t => {
+test('should treat stepProgress=-1 like stepProgress=0', async t => {
   const setStepProgress = ClientFunction(
     value => {
       const stepper = document.querySelector(TAG);
@@ -198,7 +198,7 @@ test('should round stepProgress up to 0 if it is smaller', async t => {
   await t.expect(await getProgress()).eql('25%');
 });
 
-test('should round stepProgress down to 1 if it is greater', async t => {
+test('should treat stepProgress=2 like stepProgress=1', async t => {
   const setStepProgress = ClientFunction(
     value => {
       const stepper = document.querySelector(TAG);
