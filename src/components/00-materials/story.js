@@ -1,4 +1,4 @@
-import { select, withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
 import '../10-atoms/heading';
@@ -80,13 +80,7 @@ const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
 };
 
 export const IconsAndImages = () => {
-  const backgrounds = select(
-    'background color',
-    ['red', 'blue', 'white', 'black'],
-    'white'
-  );
-
-  const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
+  const mixColors = boolean('change icon and background color', false);
 
   window.onCallbackInput = ev => {
     const { value } = ev.target;
@@ -175,8 +169,8 @@ export const IconsAndImages = () => {
   const template = html`
     <style>
       body {
-        background-color: ${backgrounds};
-        color: ${colors};
+        color: ${mixColors ? 'white' : 'black'};
+        background-color: ${mixColors ? 'lightcoral' : 'white'};
       }
 
       svg {
