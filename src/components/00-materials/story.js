@@ -188,8 +188,7 @@ export const IconsAndImages = () => {
       }
 
       .materials__single-image > svg {
-        margin-bottom: 9px;
-        margin-top: 9px;
+        margin-bottom: 18px;
       }
 
       .materials__images-container > .image-container > svg {
