@@ -180,7 +180,6 @@ export const IconsAndImages = () => {
       .materials__asset-group-container {
         display: flex;
         flex-direction: column;
-        max-width: 536px;
       }
 
       .materials__asset-group {
@@ -261,7 +260,7 @@ export const IconsAndImages = () => {
       .materials__asset-name {
         margin-left: 5px;
         margin-right: 10px;
-        width: 210px;
+        max-width: 300px;
       }
 
       .materials__asset-name > p {
