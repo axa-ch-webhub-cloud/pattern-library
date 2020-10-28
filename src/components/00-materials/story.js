@@ -1,5 +1,6 @@
-import { select, withKnobs } from '@storybook/addon-knobs';
-import { html, render, svg } from 'lit-html';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { html, render } from 'lit-html';
+import { repeat } from 'lit-html/directives/repeat';
 import '../10-atoms/heading';
 import '../10-atoms/text';
 import Changelog from './CHANGELOG.md';
@@ -11,6 +12,9 @@ const reqSvgsIcons = require.context('./icons', true, /\.svg.js$/);
 const filepathsIcons = reqSvgsIcons.keys();
 const reqSvgsImages = require.context('./images', true, /\.svg.js$/);
 const filepathsImages = reqSvgsImages.keys();
+
+let assetsLoadedAlready = 0;
+let assetsToRenderNext = 50;
 
 const _extractIconNameFromPath = path =>
   path
@@ -32,10 +36,22 @@ const images = filepathsImages.map(path => {
   };
 });
 
-const mapToIconItem = icon => {
-  return `<div class="image-container">${icon.svgstring}
-      <axa-text class="item-name" variant="size-3">${icon.path}${FILE_ENDING}</axa-text>
+const hideLoadMoreButton = () => {
+  document.querySelector('.js-materials__load-more-button').style.display =
+    'none';
+};
+
+const mapToIconItem = (icon, ...cssClasses) => {
+  return `<div class="image-container ${cssClasses}">${icon.svgstring}
+      <axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>
     </div>`;
+};
+
+const mapToIconItemNode = (icon, ...cssClasses) => {
+  const asset = document.createElement('div');
+  asset.classList.add(...cssClasses);
+  asset.innerHTML = `${icon.svgstring}<axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>`;
+  return asset;
 };
 
 export default {
@@ -50,22 +66,57 @@ export default {
   },
 };
 
-export const IconsAndImages = () => {
-  const backgrounds = select(
-    'background color',
-    ['red', 'blue', 'white', 'black'],
-    'white'
-  );
+const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
+  for (let i = assetsLoadedAlready; i < assetsToRenderNext; ++i) {
+    if (i >= icons.length) break;
+    iconGroup.appendChild(mapToIconItemNode(icons[i], 'image-container'));
+  }
+  for (let i = assetsLoadedAlready / 2; i < assetsToRenderNext / 2; ++i) {
+    if (i >= images.length) break;
+    imageGroup.appendChild(
+      mapToIconItemNode(images[i], 'image-container', 'materials__single-image')
+    );
+  }
+};
 
-  const colors = select('color', ['red', 'blue', 'white', 'black'], 'black');
+export const IconsAndImages = () => {
+  const mixColors = boolean('change icon and background color', false);
 
   window.onCallbackInput = ev => {
     const { value } = ev.target;
 
-    const renderAreaIcons = document.querySelector('.icons');
-    const renderAreaImages = document.querySelector('.images');
+    if (value) {
+      hideLoadMoreButton();
+    }
+
+    const renderAreaIcons = document.querySelector(
+      '.materials__icon-container'
+    );
+    const renderAreaImages = document.querySelector(
+      '.materials__images-container'
+    );
     const iconHeader = document.querySelector('.icon-header');
     const imageHeader = document.querySelector('.image-header');
+
+    if (!value) {
+      document.querySelector('.js-materials__load-more-button').style.display =
+        'block';
+
+      assetsLoadedAlready = 0;
+      assetsToRenderNext = 50;
+
+      const iconGroup = document.querySelector('.materials__icon-container');
+      const imageGroup = document.querySelector('.materials__images-container');
+
+      iconGroup.innerHTML = '';
+      imageGroup.innerHTML = '';
+
+      renderMoreIconsAndImages(iconGroup, imageGroup);
+
+      iconHeader.innerHTML = `${icons.length} Icons:`;
+      imageHeader.innerHTML = `${images.length} Images:`;
+      return;
+    }
 
     const filteredIcons = icons.filter(icon => {
       const foundSearchTerm = icon.path.includes(value.trim());
@@ -87,7 +138,7 @@ export const IconsAndImages = () => {
         : `${filteredIcons.length} Icons:`;
 
     renderAreaImages.innerHTML = filteredImages
-      .map(i => mapToIconItem(i))
+      .map(i => mapToIconItem(i, 'materials__single-image'))
       .join('');
 
     imageHeader.innerHTML =
@@ -97,18 +148,20 @@ export const IconsAndImages = () => {
   };
 
   setTimeout(() => {
-    const colorSwitcher = document.querySelector(
-      '.js-materials__color-switcher'
-    );
-    colorSwitcher.addEventListener('change', ev => {
-      const iconGroup = document.querySelector('.icons');
-      const imageGroup = document.querySelector('.images');
-      if (ev.detail.active) {
-        iconGroup.classList.add('materials__custom-colors');
-        imageGroup.classList.add('materials__custom-colors');
-      } else {
-        iconGroup.classList.remove('materials__custom-colors');
-        imageGroup.classList.remove('materials__custom-colors');
+    const iconGroup = document.querySelector('.materials__icon-container');
+    const imageGroup = document.querySelector('.materials__images-container');
+    const loadMore = document.querySelector('.js-materials__load-more-button');
+    loadMore.addEventListener('click', () => {
+      assetsLoadedAlready = assetsToRenderNext;
+      assetsToRenderNext += 50;
+
+      renderMoreIconsAndImages(iconGroup, imageGroup);
+
+      if (
+        assetsToRenderNext >= icons.length &&
+        assetsToRenderNext >= images.length
+      ) {
+        hideLoadMoreButton();
       }
     });
   });
@@ -116,15 +169,29 @@ export const IconsAndImages = () => {
   const template = html`
     <style>
       body {
-        background-color: ${backgrounds};
-        color: ${colors};
+        color: ${mixColors ? 'white' : 'black'};
+        background-color: ${mixColors ? 'lightcoral' : 'white'};
       }
 
       svg {
         border: 3px solid green;
       }
 
-      .images > div > svg {
+      .materials__asset-group-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .materials__asset-group {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .materials__single-image > svg {
+        margin-bottom: 18px;
+      }
+
+      .materials__images-container > .image-container > svg {
         width: 40px;
         height: 40px;
       }
@@ -139,13 +206,18 @@ export const IconsAndImages = () => {
         margin-right: 5px;
       }
 
+      .materials__load-more-button {
+        margin-top: 20px;
+      }
+
       .materials__controls {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
       }
 
       .materials__input-field {
         margin-right: 3rem;
+        max-width: 300px;
       }
 
       .materials__input-field {
@@ -171,15 +243,6 @@ export const IconsAndImages = () => {
         color: #000;
       }
 
-      .materials__colorizer {
-        display: flex;
-        align-items: center;
-      }
-
-      .materials__label {
-        margin-right: 1rem;
-      }
-
       .materials__custom-colors {
         background: lightcoral;
         color: white;
@@ -194,8 +257,15 @@ export const IconsAndImages = () => {
         margin: 20px 0;
       }
 
-      .item-name {
+      .materials__asset-name {
         margin-left: 5px;
+        margin-right: 10px;
+        max-width: 300px;
+      }
+
+      .materials__asset-name > p {
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
 
       ${styles}
@@ -209,31 +279,40 @@ export const IconsAndImages = () => {
           placeholder="Find icon / image"
           oninput="onCallbackInput(arguments[0])"
         />
-        <div class="materials__colorizer">
-          <axa-text class="materials__label" variant="size-2"
-            >Overwrite Colors:</axa-text
-          >
-          <axa-toggle-switch
-            class="js-materials__color-switcher"
-          ></axa-toggle-switch>
-        </div>
         <axa-text variant="size-2" class="note-text">
           Note: The green borders reveal the dimensions of the SVGs.
         </axa-text>
       </div>
 
-      <axa-text class="icon-header" variant="bold"
-        >${icons.length} Icons:</axa-text
-      >
-      <div class="icons">
-        ${svg(icons.map(i => mapToIconItem(i)))}
-      </div>
+      <div class="materials__asset-group-container">
+        <div class="materials__asset-group">
+          <div>
+            <axa-text class="icon-header" variant="bold">
+              ${icons.length} Icons:
+            </axa-text>
+            <div class="materials__icon-container">
+              ${repeat(icons.slice(0, assetsToRenderNext), i =>
+                html([mapToIconItem(i)])
+              )}
+            </div>
+          </div>
 
-      <axa-text class="image-header" variant="bold"
-        >${images.length} Images:</axa-text
-      >
-      <div class="images">
-        ${svg(images.map(i => mapToIconItem(i)))}
+          <div>
+            <axa-text class="image-header" variant="bold">
+              ${images.length} Images:
+            </axa-text>
+            <div class="materials__images-container">
+              ${repeat(images.slice(0, assetsToRenderNext / 2), i =>
+                html([mapToIconItem(i, 'materials__single-image')])
+              )}
+            </div>
+          </div>
+        </div>
+        <axa-button
+          class="js-materials__load-more-button materials__load-more-button"
+        >
+          Load More...
+        </axa-button>
       </div>
     </div>
   `;
