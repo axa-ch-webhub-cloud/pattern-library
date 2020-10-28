@@ -493,6 +493,7 @@ class AXADatepicker extends NoShadowDOM {
                   </div>
                 </div>
                 <button
+                  type="button"
                   class="m-datepicker__button m-datepicker__button-prev js-datepicker__button-prev"
                   @click=${this.handleNavigateToPrevMonth}
                   ?disabled=${noPreviousAllowedYear}
@@ -500,6 +501,7 @@ class AXADatepicker extends NoShadowDOM {
                   ${keyboardArrowLeftIcon}
                 </button>
                 <button
+                  type="button"
                   class="m-datepicker__button m-datepicker__button-next js-datepicker__button-next"
                   @click=${this.handleNavigateToNextMonth}
                   ?disabled=${noNextAllowedYear}

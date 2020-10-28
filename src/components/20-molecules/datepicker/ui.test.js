@@ -869,6 +869,27 @@ test('should submit datepicker correctly in form', async t => {
     .expect((await Selector('#datepicker-forms-content')).innerText)
     .eql('date = 29.2.2020 (of 1 submittable elements)');
 });
+test('should not submit form if click on arrow buttons', async t => {
+  const datepickerForm = await Selector(() =>
+    document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
+  );
+  await t.setTestSpeed(0.5);
+  await t.expect(datepickerForm.exists).ok();
+  await t.typeText(
+    `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,
+    '29.2.2020'
+  );
+  await t.click('.js-datepicker__input-button');
+  await t.click('.js-datepicker__button-next');
+
+  await t
+    .wait(
+      50 /* give click handler time to set innerText below,
+            and then time for the DOM to stabilize */
+    )
+    .expect((await Selector('#datepicker-forms-content')).innerText)
+    .notEql('date = 29.2.2020 (of 1 submittable elements)');
+});
 
 fixture('Datepicker with onchange handler').page(
   `${host}/iframe.html?id=examples-datepicker-pure-html--with-onchange-handler`

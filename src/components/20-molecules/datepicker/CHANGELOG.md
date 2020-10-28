@@ -1,3 +1,7 @@
+## 13.0.1
+
+- The arrow buttons do not submit a form anymore #2015.
+
 ## 13.0.0
 
 - make `defaultValue` under React affect preselected datepicker date. (#1974)
