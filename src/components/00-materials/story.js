@@ -1,5 +1,6 @@
 import { select, withKnobs } from '@storybook/addon-knobs';
-import { html, render, svg } from 'lit-html';
+import { html, render } from 'lit-html';
+import { repeat } from 'lit-html/directives/repeat';
 import '../10-atoms/heading';
 import '../10-atoms/text';
 import Changelog from './CHANGELOG.md';
@@ -327,8 +328,8 @@ export const IconsAndImages = () => {
               ${icons.length} Icons:
             </axa-text>
             <div class="materials__icon-container">
-              ${svg(
-                icons.slice(0, assetsToRenderNext).map(i => mapToIconItem(i))
+              ${repeat(icons.slice(0, assetsToRenderNext), i =>
+                html([mapToIconItem(i)])
               )}
             </div>
           </div>
@@ -338,10 +339,8 @@ export const IconsAndImages = () => {
               ${images.length} Images:
             </axa-text>
             <div class="materials__images-container">
-              ${svg(
-                images
-                  .slice(0, assetsToRenderNext / 2)
-                  .map(i => mapToIconItem(i, 'materials__single-image'))
+              ${repeat(images.slice(0, assetsToRenderNext / 2), i =>
+                html([mapToIconItem(i, 'materials__single-image')])
               )}
             </div>
           </div>
