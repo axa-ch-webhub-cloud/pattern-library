@@ -212,11 +212,12 @@ export const IconsAndImages = () => {
 
       .materials__controls {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
       }
 
       .materials__input-field {
         margin-right: 3rem;
+        max-width: 300px;
       }
 
       .materials__input-field {
