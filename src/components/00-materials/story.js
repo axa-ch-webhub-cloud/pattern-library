@@ -187,7 +187,8 @@ export const IconsAndImages = () => {
         flex-wrap: wrap;
       }
 
-      .materials__single-image > svg {
+      .materials__single-image > svg,
+      .materials__single-image > axa-text {
         margin-bottom: 18px;
       }
 
@@ -207,6 +208,7 @@ export const IconsAndImages = () => {
       }
 
       .materials__load-more-button {
+        max-width: 200px;
         margin-top: 20px;
       }
 
