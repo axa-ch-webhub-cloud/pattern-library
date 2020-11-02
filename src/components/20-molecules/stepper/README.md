@@ -65,4 +65,4 @@ The integer-valued attribute `stepActive` defines the currently active step.
 
 ### stepProgress
 
-The numeric attribute `stepProgress` defines the progress of the currently active step. Legal values are between 0 and 1, inclusive (e.g. 0.5).
+The numeric attribute `stepProgress` defines the fraction, to which the UI progress bar extends into the currently active step. Legal values are floating-point numbers between 0 and 1, inclusive (e.g. 0.5).
