@@ -1,5 +1,9 @@
 ## 13.2.1
 
+- Fix duplicated icons bug. #2012
+
+## 13.2.1
+
 - Remove icon width and heigth of newly added icons #2002
 
 ## 13.2.0
