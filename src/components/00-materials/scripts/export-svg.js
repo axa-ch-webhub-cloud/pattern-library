@@ -48,6 +48,9 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
         fileName = cleanFileName(fileName);
         const className = toClassName(fileName);
 
+        // Remove old icon, in case it was renamed (to avoid duplication)
+        fs.unlinkSync(iconPath);
+
         // Generate a js file forEach svg file found
         fs.writeFileSync(
           `${exportPath}/${fileName}.js`,
