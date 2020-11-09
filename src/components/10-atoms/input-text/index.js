@@ -284,11 +284,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   firstUpdated() {
-    const { defaultValue, isReact, value } = this;
+    const { defaultValue, isReact } = this;
     this._setNativeInput();
 
-    if (isReact) {
-      this.nativeInput.value = defaultValue || value;
+    if (isReact && defaultValue) {
+      this.nativeInput.value = this._formatCurrency(defaultValue);
     }
 
     this.isPlaceholderInCounter = this.counter && /##.*##/.test(this.counter);
