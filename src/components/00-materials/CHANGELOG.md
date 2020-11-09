@@ -1,4 +1,4 @@
-## 13.2.1
+## 13.2.3
 
 - Fix duplicated icons bug. #2012
 
