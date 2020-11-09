@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/link",
-  "version": "4.2.16",
+  "version": "4.2.17",
   "description": "The link component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/link/README.md",
@@ -29,7 +29,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "5.1.16",
+    "@axa-ch/icon": "5.1.17",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0"
   }
