@@ -38,7 +38,6 @@ export interface AXADatepickerProps {
   label?: string;
   required?: boolean;
   className?: string;
-  width?: number | string;
 }
 
 declare function createAXADatepicker(
