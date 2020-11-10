@@ -78,6 +78,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.modelValue = '';
     this.isControlled = false;
     this.isPlaceholderInCounter = false;
+    this.invalidFormat = false;
 
     /* eslint-disable no-undef */
     const enrichedVersionInfo = __VERSION_INFO__; // This object is different at webpack and rollup build!
@@ -117,7 +118,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   get showCounter() {
     return (
       this.maxLength > 0 &&
-      !this.invalid &&
+      !(this.invalid || this.invalidFormat) &&
       this.areCharsLeft &&
       this.counter &&
       !this.disabled
@@ -179,7 +180,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   get showError() {
-    return this.error && this.invalid && !this.disabled && !this._open;
+    return (
+      this.error &&
+      (this.invalid || this.invalidFormat) &&
+      !this.disabled &&
+      !this._open
+    );
   }
 
   get showCheckMark() {
@@ -207,6 +213,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
+
+    this.requestUpdate();
   };
 
   handleInput = ev => {
@@ -272,12 +280,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
         // eslint-disable-next-line no-restricted-globals
         if (!isNaN(valueDecimalsOnly)) {
-          this.invalid = false;
+          this.invalidFormat = false;
           return this.currencyFormatter.format(valueDecimalsOnly);
         }
       }
 
-      this.invalid = value.length > 0;
+      this.invalidFormat = value.length > 0;
     }
 
     return value;
@@ -317,6 +325,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       isReact,
       maxLength = '',
       invalid,
+      invalidFormat,
       checkMark,
       isControlled,
       refId,
@@ -336,7 +345,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     const inputClasses = {
       'a-input-text__input': true,
       'a-input-text__input--error':
-        (invalid && !disabled) || this.showCounterMax,
+        ((invalid || invalidFormat) && !disabled) || this.showCounterMax,
       'a-input-text__input--check':
         checkMark && !this.showCounterMax && !disabled,
     };
