@@ -78,6 +78,8 @@ class AXAFileUpload extends LitElement {
         defaultValue:
           'Your file does not correspond with our allowed file-types',
       },
+      onFileDrop: { type: Function, attribute: false },
+      onFileRemove: { type: Function, attribute: false },
     };
   }
 
@@ -155,6 +157,10 @@ class AXAFileUpload extends LitElement {
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
     this.filterAndAddFiles(files);
+
+    if (typeof this.onFileDrop === 'function') {
+      this.onFileDrop(e);
+    }
   }
 
   handleFileDeletion(index) {
@@ -191,6 +197,11 @@ class AXAFileUpload extends LitElement {
       this.showAddMoreInputFile = false;
     }
     this.validateOverallSize();
+
+    if (typeof this.onFileRemove === 'function') {
+      this.onFileRemove();
+    }
+
     this.requestUpdate();
   }
 
