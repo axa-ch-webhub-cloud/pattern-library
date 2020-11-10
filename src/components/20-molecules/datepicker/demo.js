@@ -22,7 +22,7 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
 
     const template = html`
       <form id="datepicker-form" @submit="${handleSubmit}">
-        <fieldset width="589">
+        <fieldset width="589px">
           <legend>Date</legend>
           <axa-datepicker
             data-test-id="datepicker-forms"
@@ -34,7 +34,6 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
             year="2020"
             month="1"
             day="2"
-            width="300px"
           ></axa-datepicker>
           <axa-button type="submit" id="datepicker-forms-submit">OK</axa-button>
           <details
@@ -95,6 +94,26 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
         rows="31"
         cols="30"
       ></textarea>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
+  })
+  .add('Set width with inline style', () => {
+    const template = html`
+      <axa-datepicker
+        style="width: 200px"
+        inputfield
+        data-test-id="datepicker-onchange"
+        name="date"
+        required
+        label="Choose a date"
+        allowedyears='["1971-2020"]'
+        year="2020"
+        month="1"
+        day="29"
+      ></axa-datepicker>
     `;
 
     const wrapper = document.createElement('div');

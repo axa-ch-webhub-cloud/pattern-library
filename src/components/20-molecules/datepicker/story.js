@@ -49,14 +49,17 @@ export const Datepicker = () => {
   const invaliddatetext = text('invaliddatetext', 'Invalid date');
   const invalid = boolean('invalid', false);
   const placeholder = text('placeholder', 'Please select a date');
-  const width = text('width', '');
   const marginTop = number('margin-top', 0);
+  const width = text('width (not an attribute)', '');
 
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div style="background-color: lightgrey;margin-top: ${marginTop}px">
+    <div
+      style="background-color: lightgrey;margin-top: ${marginTop}px; width: 500px"
+    >
       <axa-datepicker
+        style="width:${width}"
         locale="${locale}"
         ?inputfield="${inputfield}"
         ?autofocus="${autofocus}"
@@ -72,7 +75,6 @@ export const Datepicker = () => {
         label="${label}"
         monthtitle="${monthtitle}"
         yeartitle="${yeartitle}"
-        width="${width}"
         data-test-id="datepicker"
       ></axa-datepicker>
       <span

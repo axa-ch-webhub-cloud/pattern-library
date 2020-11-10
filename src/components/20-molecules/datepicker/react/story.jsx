@@ -41,7 +41,7 @@ storiesOf('Examples/Datepicker/React', module)
     const invalid = boolean('invalid', false);
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
-    const width = text('width', '400');
+    // const inlineWidth = text('width (not an attribute)', '');
     const allowedYears = object('allowedyears', [
       '1971-2000',
       2012,
@@ -78,7 +78,6 @@ storiesOf('Examples/Datepicker/React', module)
             'axa-datepicker[data-test-id="datepicker-react"]'
           ).title = newDate;
         }}
-        width={width}
       />,
       div
     );
