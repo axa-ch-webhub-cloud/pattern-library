@@ -6,7 +6,7 @@ describe('InputText', () => {
       AXAInputText.prototype.currency = 'chf';
       AXAInputText.prototype.type = 'text';
       AXAInputText.prototype.currencyFormatter = null;
-      AXAInputText.prototype.invalid = null;
+      AXAInputText.prototype.invalidFormat = null;
     });
 
     it('should create new NumberFormat object', () => {
@@ -16,15 +16,15 @@ describe('InputText', () => {
 
     it('should set invalid to false (if input contains a number)', () => {
       AXAInputText.prototype._formatCurrency('1');
-      expect(AXAInputText.prototype.invalid).toBe(false);
+      expect(AXAInputText.prototype.invalidFormat).toBe(false);
     });
     it('should set invalid to false (if input is empty)', () => {
       AXAInputText.prototype._formatCurrency('');
-      expect(AXAInputText.prototype.invalid).toBe(false);
+      expect(AXAInputText.prototype.invalidFormat).toBe(false);
     });
     it('should set invalid to true (if input contains just no-digits and is not empty)', () => {
       AXAInputText.prototype._formatCurrency('nodigits');
-      expect(AXAInputText.prototype.invalid).toBe(true);
+      expect(AXAInputText.prototype.invalidFormat).toBe(true);
     });
 
     it('should return formatted number', () => {
@@ -67,7 +67,7 @@ describe('InputText', () => {
     it('should set invalid state if too many dots are present', () => {
       const returnValue = AXAInputText.prototype._formatCurrency('n.2.3.5');
       expect(returnValue).toBe('n.2.3.5');
-      expect(AXAInputText.prototype.invalid).toBe(true);
+      expect(AXAInputText.prototype.invalidFormat).toBe(true);
     });
   });
 });
