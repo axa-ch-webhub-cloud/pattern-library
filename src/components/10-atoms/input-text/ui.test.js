@@ -240,6 +240,33 @@ test('should format value of controlled component', async t => {
   await t.expect($axaInputElement.value).eql('CHF 1’234.00');
 });
 
+fixture('Input text - currency formatting on first render react').page(
+  `${host}/iframe.html?id=examples-input-text-react--story&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-currency=chf&knob-defaultValue=&knob-value=45&knob-type=text&knob-pattern=&knob-inputmode=&viewMode=story`
+);
+
+test('should format value on first render', async t => {
+  const $axaInputElement = Selector(() => document.querySelector(TAG), {
+    dependencies: { TAG },
+  }).find(CLASS);
+
+  await t.expect($axaInputElement.value).eql('CHF 45.00');
+});
+
+fixture('Input text - currency validation and property invalid').page(
+  `${host}/iframe.html?id=components-input-text--input-text&knob-label%2A=&knob-name%2A=&knob-refid=&knob-placeholder=&knob-value=2&knob-currency=chf&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-counter=Still%20%23%23counter%23%23%20characters%20left&knob-counterMax=Over%20character%20limit%21&knob-pattern=&knob-inputmode=&knob-invalid=true&viewMode=story`
+);
+
+test('should display error when invalid is set', async t => {
+  const getBorderColor = ClientFunction(() => {
+    const inputText = document.querySelector('axa-input-text');
+    const input = inputText.querySelector('input');
+
+    return window.getComputedStyle(input).getPropertyValue('border-color');
+  });
+
+  await t.expect(await getBorderColor()).eql('rgb(201, 20, 50)');
+});
+
 fixture('Input-Text - React onKeyUp').page(
   `${host}/iframe.html?id=examples-input-text-react--using-onkeyup-event&viewMode=story`
 );
