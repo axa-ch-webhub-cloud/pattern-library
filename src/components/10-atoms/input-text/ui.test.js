@@ -253,10 +253,14 @@ test('should format value on first render', async t => {
 });
 
 fixture('Input text - currency validation and property invalid').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label%2A=&knob-name%2A=&knob-refid=&knob-placeholder=&knob-value=2&knob-currency=chf&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-counter=Still%20%23%23counter%23%23%20characters%20left&knob-counterMax=Over%20character%20limit%21&knob-pattern=&knob-inputmode=&knob-invalid=true&viewMode=story`
+  `${host}/iframe.html?id=components-input-text--input-text&knob-label%2A=&knob-name%2A=&knob-refid=&knob-placeholder=&knob-value=2&knob-currency=chf&knob-error=fehler&knob-info=&knob-type=text&knob-maxlength=50&knob-counter=Still%20%23%23counter%23%23%20characters%20left&knob-counterMax=Over%20character%20limit%21&knob-pattern=&knob-inputmode=&knob-invalid=true&viewMode=story`
 );
 
 test('should display error when invalid is set', async t => {
+  const errorLabel = Selector(() => document.querySelector(TAG), {
+    dependencies: { TAG },
+  }).find('.a-input-text__error');
+
   const getBorderColor = ClientFunction(() => {
     const inputText = document.querySelector('axa-input-text');
     const input = inputText.querySelector('input');
@@ -264,6 +268,8 @@ test('should display error when invalid is set', async t => {
     return window.getComputedStyle(input).getPropertyValue('border-color');
   });
 
+  await t.expect(errorLabel.exists).ok();
+  await t.expect(errorLabel.innerText).eql('fehler');
   await t.expect(await getBorderColor()).eql('rgb(201, 20, 50)');
 });
 
