@@ -251,7 +251,7 @@ test('should exceed maximum size of all files', async t => {
   await t.expect($errorWrapper.innerText).eql('File sizes exceed maximum size');
 });
 
-fixture('File upload - maxSizeOfSingleFileKB prop').page(
+fixture('File upload - Remove file event').page(
   `${host}/iframe.html?id=examples-file-upload-react--story&viewMode=story`
 );
 test('should throw an event if a file was removed from the list', async t => {
