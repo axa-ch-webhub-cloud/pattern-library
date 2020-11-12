@@ -250,3 +250,39 @@ test('should exceed maximum size of all files', async t => {
   );
   await t.expect($errorWrapper.innerText).eql('File sizes exceed maximum size');
 });
+
+fixture('File upload - maxSizeOfSingleFileKB prop').page(
+  `${host}/iframe.html?id=examples-file-upload-react--story&viewMode=story`
+);
+test('should throw an event if a file was removed from the list', async t => {
+  const $inputFileInputElem = await Selector(
+    () =>
+      document
+        .querySelector('axa-file-upload')
+        .shadowRoot.querySelector('.js-file-upload__input .a-input-file__input') // TODO change to .js-
+  );
+  await t.expect($inputFileInputElem.exists).ok();
+
+  await t.setFilesToUpload($inputFileInputElem, validFiles);
+
+  const $fileOverviewElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__dropzone-file-overview')
+  );
+  await $fileOverviewElem();
+  await t.expect($fileOverviewElem.exists).ok();
+
+  const $firstFile = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .querySelector('.m-file-upload__icon-hover-area')
+  );
+  const $eventElement = await Selector('#m-fileupload-story__events');
+
+  await t.expect($eventElement.textContent).eql('-');
+
+  await t.click($firstFile);
+
+  await t.expect($eventElement.textContent).contains('File removed on');
+});
