@@ -1,3 +1,7 @@
+## 4.1.0
+
+- Added function callbacks for `onFileDrop` and `onFileRemove` events.
+
 ## 3.3.1
 
 - Fix: prevent duplicate style attachment. (#1727)

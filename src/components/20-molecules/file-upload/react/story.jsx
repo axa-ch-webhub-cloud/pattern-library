@@ -85,9 +85,23 @@ storiesOf('Examples/File Upload/React', module)
           infoText={infoText}
           wrongFileTypeStatusText={wrongFileTypeStatusText}
           icon={icon}
+          onFileDrop={() => {
+            document.querySelector(
+              '#m-fileupload-story__events'
+            ).textContent = `File dropped on ${new Date()}`;
+          }}
+          onFileRemove={() => {
+            document.querySelector(
+              '#m-fileupload-story__events'
+            ).textContent = `File removed on ${new Date()}`;
+          }}
         >
           {headerText}
         </AXAFileUploadReact>
+        <div>
+          <p>Events:</p>
+          <p id="m-fileupload-story__events">-</p>
+        </div>
       </div>,
       div
     );
