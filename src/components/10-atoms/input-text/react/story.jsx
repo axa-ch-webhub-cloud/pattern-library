@@ -66,7 +66,7 @@ storyInputText.add('Story', () => {
           inputmode={inputmode}
           autofocus={autofocus}
           currency={currency}
-          onChange={evt => this.setState(evt.target.value)}
+          onChange={evt => this.setState({ value: evt.target.value })}
         />
       );
     }
