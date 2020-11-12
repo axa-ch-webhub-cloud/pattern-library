@@ -15,6 +15,8 @@ export interface AXAFileUploadProps {
   infoText?: string;
   orText?: string;
   wrongFileTypeStatusText?: string;
+  onFileDrop?: () => void;
+  onFileRemove?: () => void;
 }
 
 declare function createAXAFileUpload(
