@@ -142,7 +142,19 @@ const distributeProperties = (properties, componentClass) => {
 
     // map property name to value *unless* value is undefined
     if (value !== undefined) {
-      map[name] = value;
+      if (name === 'style') {
+        // {width: "500px"} -> width:500px;
+        const styleString = Object.keys(value).reduce((prev, curr) => {
+          let previousValue = prev;
+          return `${(previousValue += curr
+            .split(/(?=[A-Z])/)
+            .join('-')
+            .toLowerCase())}:${value[curr]};`;
+        }, '');
+        map[name] = styleString;
+      } else {
+        map[name] = value;
+      }
     }
   });
   return { attrs, props };
@@ -157,7 +169,7 @@ export default (createElement, componentClass, version) => {
 
   const reactStatelessComponent = ({ children, ...properties }) => {
     const { attrs, props } = distributeProperties(properties, componentClass);
-
+    console.log(attrs, props);
     return val(createElement)(
       finalTagName,
       { isReact: true, attrs, ...props },

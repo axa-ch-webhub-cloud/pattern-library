@@ -41,14 +41,18 @@ storiesOf('Examples/Datepicker/React', module)
     const invalid = boolean('invalid', false);
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
-    // const inlineWidth = text('width (not an attribute)', '');
+    const inlineWidth = text('width (not an attribute)', '');
     const allowedYears = object('allowedyears', [
       '1971-2000',
       2012,
       2014,
       '2018-2022',
     ]);
+
     const div = document.createElement('div');
+    const style = {
+      width: inlineWidth,
+    };
 
     ReactDOM.render(
       <AXADatepickerReact
@@ -60,6 +64,7 @@ storiesOf('Examples/Datepicker/React', module)
         allowedyears={allowedYears}
         year={year}
         month={month}
+        style={style}
         day={day}
         placeholder={placeholder}
         defaultValue={defaultValue}
