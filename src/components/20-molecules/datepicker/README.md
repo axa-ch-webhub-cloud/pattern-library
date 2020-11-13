@@ -142,14 +142,22 @@ Boolean `invalid`, when set to true, forces showing the error message set with `
 
 The intended use case is to easily convey external validation failure, e.g. when an application decides the entered date is outside a permissible date range.
 
-### width
+### width (has to be set as inline-style)
 
-String-valued `width` allows to override the intrinsic dimensions of the datepicker. Default is `100%`. Note that there is a minimum of `260px` if you use it inline.
+You can set the width of the datepicker with inline-style. It allows to override the intrinsic dimensions of the datepicker. Note that there is a minimum of `260px` if you use the datepicker with an input-field.
 
 Example values:
 
 - `90%`: Sets percentage value of width of parent element.
-- `400`: Sets px value of width of parent element. Note that missing `px` is added to numeric values automatically.
+- `400px`: Sets px value of width of parent element.
+
+Example native:
+
+- `style="width:500px"`
+
+Example react:
+
+- `style={{width:"500px"}}`
 
 ### label
 
