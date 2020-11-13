@@ -29,20 +29,18 @@ const DemoDatepickerOnDateChange = () => {
   return (
     <div>
       <p>Selected date: {selectedDateString}</p>
-      <div style={widthStyle}>
-        <AXADatepickerReact
-          style={widthStyle}
-          inputfield
-          id="datepicker-react-inputfield-on-date-change"
-          data-test-id="datepicker-react-inputfield-on-date-change"
-          locale={locale}
-          defaultValue={defaultValue}
-          onDateChange={newDate => setSelectedDateString(formatDate(newDate))}
-          onBlur={undefined}
-          placeholder="Wählen Sie ein Datum"
-          allowedyears={[2019, 2020]}
-        />
-      </div>
+      <AXADatepickerReact
+        style={widthStyle}
+        inputfield
+        id="datepicker-react-inputfield-on-date-change"
+        data-test-id="datepicker-react-inputfield-on-date-change"
+        locale={locale}
+        defaultValue={defaultValue}
+        onDateChange={newDate => setSelectedDateString(formatDate(newDate))}
+        onBlur={undefined}
+        placeholder="Wählen Sie ein Datum"
+        allowedyears={[2019, 2020]}
+      />
     </div>
   );
 };
