@@ -124,12 +124,15 @@ const distributeProperties = (properties, componentClass) => {
       type = Function;
     } else if (name === 'className') {
       type = 'className';
+    } else if (name === 'style') {
+      type = 'style';
     } else {
       type = declaredType;
     }
 
     switch (type) {
       case 'className':
+      case 'style':
       case Array:
       case Object:
       case Function:
@@ -142,7 +145,7 @@ const distributeProperties = (properties, componentClass) => {
 
     // map property name to value *unless* value is undefined
     if (value !== undefined) {
-      if (name === 'style') {
+      if (type === 'style') {
         // {width: "500px"} -> width:500px;
         const styleString = Object.keys(value).reduce((prev, curr) => {
           let previousValue = prev;
@@ -169,7 +172,6 @@ export default (createElement, componentClass, version) => {
 
   const reactStatelessComponent = ({ children, ...properties }) => {
     const { attrs, props } = distributeProperties(properties, componentClass);
-    console.log(attrs, props);
     return val(createElement)(
       finalTagName,
       { isReact: true, attrs, ...props },
