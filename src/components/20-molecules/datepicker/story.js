@@ -59,8 +59,8 @@ export const Datepicker = () => {
       style="background-color: lightgrey;margin-top: ${marginTop}px; width: 500px"
     >
       <axa-datepicker
-        style="width:${width}"
         locale="${locale}"
+        style="width:${width}"
         ?inputfield="${inputfield}"
         ?autofocus="${autofocus}"
         ?checkMark="${checkMark}"
