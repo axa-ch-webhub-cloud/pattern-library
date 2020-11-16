@@ -22,7 +22,7 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
 
     const template = html`
       <form id="datepicker-form" @submit="${handleSubmit}">
-        <fieldset width="589px">
+        <fieldset>
           <legend>Date</legend>
           <axa-datepicker
             data-test-id="datepicker-forms"
