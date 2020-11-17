@@ -1,7 +1,8 @@
-import { types } from '@storybook/addons';
+import { addons, types } from '@storybook/addons';
 import { useParameter } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
-import addonAPI, { addons } from '@storybook/addons';
+import 'github-markdown-css/github-markdown.css';
+import marked from 'marked';
 import React from 'react';
 
 const ADDON_ID = 'axa-ch/changelog';
@@ -10,32 +11,41 @@ const PANEL_ID = `${ADDON_ID}/panel`;
 const MyPanel = () => {
   const value = useParameter('changelog', null);
 
-  const replaceUnneeded = (value) => {
+  const mdToHTML = value => {
     if (value) {
-      return value
-        .replace('module.exports = "', '')
-        .replace(/\\n";/g, '')
-        .replace(/\\n/g, '');
+      let lines = value.split(/\\n/);
+
+      lines[0] = lines[0].substring(22);
+      lines = lines.slice(0, lines.length - 1);
+
+      value = lines.join('');
+    } else {
+      value = 'No CHANGELOG found.';
     }
-    return 'No Changelog found.';
+
+    return marked(value);
   };
 
-  return <div style={{ margin: '8px' }}
-              dangerouslySetInnerHTML={{ __html: replaceUnneeded(value) }}></div>;
+  return (
+    <div
+      className="markdown-body"
+      style={{ margin: '20px' }}
+      dangerouslySetInnerHTML={{ __html: mdToHTML(value) }}
+    ></div>
+  );
 };
 
-addonAPI.register(ADDON_ID, api => {
+addons.register(ADDON_ID, () => {
   const render = ({ active, key }) => (
     <AddonPanel active={active} key={key}>
-      <MyPanel/>
+      <MyPanel />
     </AddonPanel>
   );
-  const title = 'Changelog';
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title: title,
-    render: render,
-    paramKey: 'changelog'
+    title: 'CHANGELOG',
+    paramKey: 'changelog',
+    render,
   });
 });
