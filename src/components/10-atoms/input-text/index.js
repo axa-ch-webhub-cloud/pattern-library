@@ -213,12 +213,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
-
-    this.requestUpdate();
   };
 
   handleInput = ev => {
-    this.onChange(ev);
+    this._formatCurrency(ev.target.value);
+    this.onChange(ev, this.invalidFormat);
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
       // yes, set UI from model state
