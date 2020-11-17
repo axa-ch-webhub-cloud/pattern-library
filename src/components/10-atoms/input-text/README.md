@@ -174,7 +174,8 @@ Please be mindful of using currency formatting in combination with `maxLength`. 
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
 
-Its only argument is the original `change` event from the element's underlying native &lt;input&gt; field.
+Its first argument is the original `change` event from the element's underlying native &lt;input&gt; field.
+The second argument is the internal `invalidFormat` property, which is `true` when the user's input can't be formatted.
 
 ### onFocus
 
