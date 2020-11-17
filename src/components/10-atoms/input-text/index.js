@@ -216,6 +216,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   handleInput = ev => {
+    // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
     this.onChange(ev, this.invalidFormat);
     // are we a 'controlled' input in the React sense?

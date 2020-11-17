@@ -164,7 +164,7 @@ The Boolean attribute autofocus, when true, sets keyboard focus on the underlyin
 
 You can set the `currency` attribute to a valid [ISO 4217 currency code](https://en.wikipedia.org/wiki/ISO_4217) string. When set, &lt;input-text&gt; formats the input whenever the `onBlur` event of its internal input element fires, and also upon setting `value` programmatically. Note that the locale "style" remains fixed to `de-CH`.
 
-Currency formatting is only active when attribute `type` is set to `text`. The formatter does not accept values, which are either only letters ("one hundred") or have more than one decimal separator ("12.30.1").
+Currency formatting is only active when attribute `type` is set to `text`. The formatter does not accept values which are either only letters ("one hundred") or have more than one decimal separator ("12.30.1").
 
 Please be mindful of using currency formatting in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
 
@@ -175,7 +175,7 @@ Please be mindful of using currency formatting in combination with `maxLength`. 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
 
 Its first argument is the original `change` event from the element's underlying native &lt;input&gt; field.
-The second argument is the internal `invalidFormat` property, which is `true` when the user's input can't be formatted.
+The second argument is a Boolean flag `invalidFormat` which is true if, and only if, the user's input cannot be formatted as a currency.
 
 ### onFocus
 
