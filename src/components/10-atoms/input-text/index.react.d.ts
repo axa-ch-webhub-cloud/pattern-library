@@ -25,7 +25,7 @@ export interface AXAInputTextProps {
   autofocus?: boolean;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e: { target: HTMLInputElement }) => void;
+  onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
