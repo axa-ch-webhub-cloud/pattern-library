@@ -1,7 +1,7 @@
 /* global document */
 import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import React from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
 import Changelog from '../CHANGELOG.md';
 import AXAInputText from './AXAInputText';
@@ -27,6 +27,7 @@ storyInputText.add('Story', () => {
   const info = text('info', '');
   const currency = text('currency', '');
   const defaultValue = text('defaultValue', '');
+  const value = text('value', '');
   const checkMark = boolean('checkMark', false);
   const disabled = boolean('disabled', false);
   const required = boolean('required', false);
@@ -36,28 +37,43 @@ storyInputText.add('Story', () => {
   const inputmode = text('inputmode', '');
   const autofocus = boolean('autofocus', false);
 
+  class InputText extends PureComponent {
+    constructor() {
+      super();
+
+      this.state = {
+        value,
+      };
+    }
+
+    render() {
+      return (
+        <AXAInputText
+          refId={refId}
+          name={name}
+          label={label}
+          placeholder={placeholder}
+          checkMark={checkMark}
+          disabled={disabled}
+          required={required}
+          invalid={invalid}
+          defaultValue={defaultValue}
+          value={this.state.value}
+          type={types}
+          error={error}
+          info={info}
+          pattern={pattern}
+          inputmode={inputmode}
+          autofocus={autofocus}
+          currency={currency}
+          onChange={evt => this.setState({ value: evt.target.value })}
+        />
+      );
+    }
+  }
+
   const wrapper = document.createElement('div');
-  ReactDOM.render(
-    <AXAInputText
-      refId={refId}
-      name={name}
-      label={label}
-      placeholder={placeholder}
-      checkMark={checkMark}
-      disabled={disabled}
-      required={required}
-      invalid={invalid}
-      defaultValue={defaultValue}
-      type={types}
-      error={error}
-      info={info}
-      pattern={pattern}
-      inputmode={inputmode}
-      autofocus={autofocus}
-      currency={currency}
-    />,
-    wrapper
-  );
+  ReactDOM.render(<InputText />, wrapper);
 
   return wrapper;
 });

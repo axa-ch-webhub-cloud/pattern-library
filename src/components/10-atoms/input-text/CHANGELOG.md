@@ -1,3 +1,8 @@
+## 4.5.4
+
+- Fix: No currency formatting on first render. (#2020)
+- Fix: Property invalid doesn't work with currency formatting. (#2021)
+
 ## 4.5.1
 
 - Fix: Text wasn't legible in safari when disabled. (#1978)
