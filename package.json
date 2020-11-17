@@ -22,7 +22,7 @@
     "test-jest-coverage": "jest --env=jsdom --coverage",
     "test-jest-watch": "jest --env=jsdom --watch -o",
     "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
-    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/input-text/ui.test.js",
+    "test-ui-hl": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js",
     "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh"
