@@ -1,13 +1,15 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import './index';
-import Changelog from '../CHANGELOG.md';
 
 export default {
   title: 'Components/Popup Button',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

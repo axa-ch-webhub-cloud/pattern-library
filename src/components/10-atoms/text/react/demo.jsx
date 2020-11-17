@@ -2,13 +2,15 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoTextReact from './DemoTextReact';
 import DemoTextReactVersioned from './DemoTextReactVersioned';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Text/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
     knobs: { disabled: true },
   })
   /* Default */

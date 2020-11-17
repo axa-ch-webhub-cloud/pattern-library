@@ -1,7 +1,8 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 const model = {
   thead: [
@@ -69,7 +70,8 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

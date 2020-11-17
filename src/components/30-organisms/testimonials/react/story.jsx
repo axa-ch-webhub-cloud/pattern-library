@@ -1,17 +1,18 @@
-import AXATestimonialsReact from './Testimonials';
-
+import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { boolean, text, withKnobs, number } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
+import AXATestimonialsReact from './Testimonials';
 
 const story = storiesOf('Examples/Testimonials/React', module);
 story.addDecorator(withKnobs);
 story.addDecorator(withNoBorder);
 story.addParameters({
-  changelog: Changelog,
+  readme,
+  changelog,
 });
 
 story.add('Story', () => {

@@ -1,15 +1,17 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
-import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
+import './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Cookie Disclaimer',
   decorators: [withNoBorder, withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

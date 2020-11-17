@@ -1,11 +1,13 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 storiesOf('Examples/Input File/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Clickable', () => {
     const inputFile = document.createElement('axa-input-file');

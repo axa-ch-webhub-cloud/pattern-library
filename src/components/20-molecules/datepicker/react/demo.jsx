@@ -2,18 +2,20 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DemoControlledDatepickerReact from './DemoDatepickerReact';
-import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
-import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
 import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
-import DemoDatepickerReactPod from './DemoDatepickerReactPod';
-import Changelog from '../CHANGELOG.md';
+import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';
 import DemoDatepickerOnInputfieldKeyUp from './DemoDatepickerOnInputfieldKeyUp';
+import DemoControlledDatepickerReact from './DemoDatepickerReact';
+import DemoDatepickerReactPod from './DemoDatepickerReactPod';
+import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDateChange';
 
 storiesOf('Examples/Datepicker/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Controlled-component with inputfield', () => {
     const div = document.createElement('div');

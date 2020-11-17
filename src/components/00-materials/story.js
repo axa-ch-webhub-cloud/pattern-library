@@ -3,7 +3,8 @@ import { html, render } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
 import '../10-atoms/heading';
 import '../10-atoms/text';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
+import readme from './README.md';
 import styles from './story.scss';
 
 const FILE_ENDING = '.svg.js';
@@ -59,7 +60,8 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
     codepreview: { disabled: true },
     options: { showPanel: true },
     layout: 'fullscreen',

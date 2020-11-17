@@ -1,16 +1,18 @@
 /* global document */
+import { number, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { text, number, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../../10-atoms/icon/icon-list';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAFileUploadReact from './AXAFileUploadReact';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const wrapperWidth = text('Width', '455px');

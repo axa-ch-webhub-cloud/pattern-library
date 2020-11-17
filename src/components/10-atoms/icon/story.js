@@ -1,20 +1,15 @@
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
+import changelog from './CHANGELOG.md';
 import AXAIcon from './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 export default {
   title: 'Components/Icon',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

@@ -2,13 +2,15 @@ import { storiesOf } from '@storybook/html';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAFooterReact from './Footer';
 
 storiesOf('Examples/Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
 
   .add('Callbacks', () => {

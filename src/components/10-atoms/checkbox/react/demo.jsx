@@ -2,14 +2,16 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
 import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
 import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
 
 storiesOf('Examples/Checkbox/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Default with label', () => {
     const div = document.createElement('div');

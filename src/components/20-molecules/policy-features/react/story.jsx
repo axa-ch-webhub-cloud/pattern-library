@@ -1,22 +1,24 @@
 /* global document */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
+import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
+import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { select, radios, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
-import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
-import Changelog from '../CHANGELOG.md';
-import { STYLE_WHITELIST } from '../index';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
+import changelog from '../CHANGELOG.md';
+import { STYLE_WHITELIST } from '../index';
+import readme from '../README.md';
+import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
+import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
 
 const story = storiesOf('Examples/Policy Features/React', module);
 story.addDecorator(withNoBorder);
 story.addDecorator(withKnobs);
 story
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   /* Default */
   .add('Story', () => {

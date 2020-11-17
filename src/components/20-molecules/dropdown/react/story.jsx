@@ -1,15 +1,17 @@
 /* global document */
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { text, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Dropdown/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story - uncontrolled', () => {
     const div = document.createElement('div');

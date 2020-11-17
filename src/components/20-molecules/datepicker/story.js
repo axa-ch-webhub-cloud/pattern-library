@@ -1,15 +1,15 @@
 import {
-  text,
-  number,
   boolean,
+  number,
   object,
   select,
+  text,
   withKnobs,
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 const localeOptions = {
   'de-CH': 'de-CH',
   'it-CH': 'it-CH',
@@ -24,7 +24,8 @@ export default {
   title: 'Components/Datepicker',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

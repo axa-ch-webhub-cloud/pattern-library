@@ -8,15 +8,17 @@ import {
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Input File',
   decorators: [withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

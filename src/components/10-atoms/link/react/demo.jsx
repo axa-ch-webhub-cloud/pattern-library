@@ -2,12 +2,14 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoLink from './DemoLink';
 
 storiesOf('Examples/Link/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Variable icons', () => {
     const div = document.createElement('div');

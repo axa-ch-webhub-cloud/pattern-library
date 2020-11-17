@@ -2,13 +2,15 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoButtonClick from './DemoButtonClick';
 import DemoButtonForm from './DemoButtonForm';
 
 storiesOf('Examples/Button/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Clickable', () => {
     const div = document.createElement('div');

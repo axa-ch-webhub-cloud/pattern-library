@@ -1,17 +1,18 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 import {
-  text,
   boolean,
   number,
-  select,
-  withKnobs,
   object,
+  select,
+  text,
+  withKnobs,
 } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXADatepickerReact from './AXADatepickerReact';
-import Changelog from '../CHANGELOG.md';
 
 const localeOptions = {
   'de-CH': 'de-CH',
@@ -23,7 +24,8 @@ const localeOptions = {
 storiesOf('Examples/Datepicker/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const inputfield = boolean('inputfield', false);

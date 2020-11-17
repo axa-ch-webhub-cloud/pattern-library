@@ -1,14 +1,15 @@
-import { text, number, select, withKnobs } from '@storybook/addon-knobs';
+import { number, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../../10-atoms/icon/icon-list';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 export default {
   title: 'Components/File Upload',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

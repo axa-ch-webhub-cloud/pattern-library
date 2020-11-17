@@ -1,8 +1,8 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 const model = {
   thead: [
     { html: 'Age', sort: 'ASC' },
@@ -66,7 +66,8 @@ const model = {
 
 storiesOf('Examples/Table Sortable/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('On row click', () => {
     const wrapper = document.createElement('div');

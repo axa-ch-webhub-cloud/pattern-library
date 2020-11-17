@@ -1,15 +1,17 @@
 /* global document */
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { storiesOf } from '@storybook/html';
-import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXACheckboxReact from './AXACheckboxReact';
 import AXATextReact from './AXATextReact';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Checkbox/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .addDecorator(withKnobs)
   .add('Story - uncontrolled', () => {

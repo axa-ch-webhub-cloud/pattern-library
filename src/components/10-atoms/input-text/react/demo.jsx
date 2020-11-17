@@ -2,13 +2,15 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoInputText from './DemoInputText';
-import Changelog from '../CHANGELOG.md';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
 storiesOf('Examples/Input Text/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   /* Default */
   .add('Controlled/uncontrolled', () => {

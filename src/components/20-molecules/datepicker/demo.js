@@ -1,12 +1,13 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 storiesOf('Examples/Datepicker/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('In a form', () => {
     const handleSubmit = event => {

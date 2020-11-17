@@ -1,16 +1,18 @@
-import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
+import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
+import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import { STYLE_WHITELIST } from './index';
-import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
+import { STYLE_WHITELIST } from './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Policy Features',
   decorators: [withKnobs, withNoBorder],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

@@ -1,6 +1,7 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import Changelog from '../../../components/00-materials/CHANGELOG.md';
+import changelog from '../../../components/00-materials/CHANGELOG.md';
+import readme from '../../../components/00-materials/README.md';
 import '../../10-atoms/heading';
 import '../../10-atoms/text';
 import styles from '../story.scss';
@@ -60,7 +61,8 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
     options: { showPanel: true },
     layout: 'fullscreen',
   },

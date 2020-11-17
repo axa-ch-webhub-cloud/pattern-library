@@ -1,12 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 storiesOf('Examples/Button/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
     knobs: { disabled: true },
   })
   .add(

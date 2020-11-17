@@ -1,11 +1,12 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
-
+import readme from './README.md';
 storiesOf('Examples/Button Link/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add(
     'Icon visible',
