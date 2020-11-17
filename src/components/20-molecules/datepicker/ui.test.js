@@ -944,16 +944,22 @@ test('button should have flex-shrink set because of IE', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width').page(
-  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date`
 );
 
 test('should have no minimum width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.style = 'width: 196px';
+  });
   const datepickerInputWrap = await datepicker.find(
     '.m-datepicker__input-wrap'
   );
+
+  await setProperties();
   await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
   await t.expect(datepickerInputWrap.clientWidth).eql(196); // input wrapper has no min-width
 });
