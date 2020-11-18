@@ -7,7 +7,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { default as React, default as React } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
