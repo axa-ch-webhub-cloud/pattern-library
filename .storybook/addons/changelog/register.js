@@ -22,7 +22,7 @@ const MyPanel = () => {
   return (
     <div
       className="markdown-body"
-      style={{ margin: '20px' }}
+      style={{ margin: '15px' }}
       dangerouslySetInnerHTML={{ __html: mdToHTML(value) }}
     ></div>
   );
@@ -37,7 +37,7 @@ addons.register(ADDON_ID, () => {
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title: 'CHANGELOG',
+    title: 'Changelog',
     paramKey: 'changelog',
     render,
   });
