@@ -12,14 +12,7 @@ const MyPanel = () => {
   const value = useParameter('changelog', null);
 
   const mdToHTML = value => {
-    if (value) {
-      let lines = value.split(/\\n/);
-
-      lines[0] = lines[0].substring(22);
-      lines = lines.slice(0, lines.length - 1);
-
-      value = lines.join('');
-    } else {
+    if (!value) {
       value = 'No CHANGELOG found.';
     }
 
