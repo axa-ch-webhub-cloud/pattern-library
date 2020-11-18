@@ -22,14 +22,16 @@ const DemoDatepickerOnDateChange = () => {
   };
 
   const defaultValue = localizedDateString(new Date(startDateString));
-
+  const style = {
+    width: '300px',
+  };
   // N.B. onBlur={undefined} is there to demonstrate undefined property values don't throw exceptions (cf. issue #1613)
   return (
     <div>
       <p>Selected date: {selectedDateString}</p>
       <AXADatepickerReact
+        style={style}
         inputfield
-        width="300px"
         id="datepicker-react-inputfield-on-date-change"
         data-test-id="datepicker-react-inputfield-on-date-change"
         locale={locale}

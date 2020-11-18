@@ -192,18 +192,6 @@ test('should handle month change with native dropdown element', async t => {
   await t.resizeWindow(200, 200);
 });
 
-test('should have a fixed width', async t => {
-  const width = 236;
-  const datepicker = await Selector(() =>
-    document.querySelector('axa-datepicker')
-  );
-  const datepickerWrap = await datepicker.find('.m-datepicker__wrap');
-  const datepickerWrapWidth = await datepickerWrap.getStyleProperty('width');
-
-  await t.expect(datepicker.clientWidth).eql(width + 60 + 2 + 40); // 236 min-width + 2*30 padding + 2*1 border + 2*20 margin
-  await t.expect(datepickerWrapWidth).eql('296px'); // wrapper has a min-width
-});
-
 test('should just add years of a given range', async t => {
   const setProperties = ClientFunction(() => {
     const datepicker = document.querySelector('axa-datepicker');
@@ -927,21 +915,20 @@ test('should fire the right events', async t => {
     .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
 });
 
-test('should have default width', async t => {
-  const datepicker = await Selector(() =>
-    document.querySelector('axa-datepicker')
-  );
-  await t.expect(datepicker.getAttribute('width')).eql('100%');
-});
-
 fixture('Datepicker as inputfield with fixed width').page(
-  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=200`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date`
 );
 
 test('should have 200px width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.style = 'width: 200px';
+  });
+
+  await setProperties();
   await t.expect(datepicker.clientWidth).eql(200);
 });
 
@@ -957,22 +944,28 @@ test('button should have flex-shrink set because of IE', async t => {
 });
 
 fixture('Datepicker as inputfield with 196px width').page(
-  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=196`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-inputfield=true&knob-locale=de-CH&knob-year=2020&knob-month=4&knob-day=22&knob-disabled=&knob-autofocus=&knob-checkMark=&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date`
 );
 
 test('should have no minimum width', async t => {
   const datepicker = await Selector(() =>
     document.querySelector('axa-datepicker')
   );
+  const setProperties = ClientFunction(() => {
+    const datepicker = document.querySelector('axa-datepicker');
+    datepicker.style = 'width: 196px';
+  });
   const datepickerInputWrap = await datepicker.find(
     '.m-datepicker__input-wrap'
   );
+
+  await setProperties();
   await t.expect(datepicker.clientWidth).eql(196); // component has no min-width
   await t.expect(datepickerInputWrap.clientWidth).eql(196); // input wrapper has no min-width
 });
 
 fixture('Datepicker no next month').page(
-  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=2022&knob-month=11&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date`
 );
 
 test('Should disable next button.', async t => {
@@ -984,7 +977,7 @@ test('Should disable next button.', async t => {
 });
 
 fixture('Datepicker no previous month').page(
-  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a date&knob-width=`
+  `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=1971&knob-month=0&knob-day=15&knob-allowedyears=["1971-2000",2012,2014,"2018-2022"]&knob-label=&knob-monthtitle=Choose Month&knob-yeartitle=Choose Year&knob-invaliddatetext=Invalid date&knob-placeholder=Please select a dateshould have default width`
 );
 
 test('Should disable prev button.', async t => {

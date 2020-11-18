@@ -1,3 +1,7 @@
+## 14.0.0
+
+- Remove `width` property. Instead set the inline-style. #1894.
+
 ## 13.0.1
 
 - The arrow buttons do not submit a form anymore #2015.

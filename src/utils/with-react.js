@@ -103,6 +103,18 @@ const applyDefaults = ceInst => {
 
 export { applyDefaults };
 
+const transformStylesObjectToString = value => {
+  // {width: "500px"} -> width:500px;
+  const styleString = Object.keys(value).reduce((prev, curr) => {
+    let previousValue = prev;
+    return `${(previousValue += curr
+      .split(/(?=[A-Z])/)
+      .join('-')
+      .toLowerCase())}:${value[curr]};`;
+  }, '');
+  return styleString;
+};
+
 const distributeProperties = (properties, componentClass) => {
   // initialize
   const attrs = {};
@@ -142,7 +154,11 @@ const distributeProperties = (properties, componentClass) => {
 
     // map property name to value *unless* value is undefined
     if (value !== undefined) {
-      map[name] = value;
+      if (name === 'style') {
+        map[name] = transformStylesObjectToString(value);
+      } else {
+        map[name] = value;
+      }
     }
   });
   return { attrs, props };
@@ -157,7 +173,6 @@ export default (createElement, componentClass, version) => {
 
   const reactStatelessComponent = ({ children, ...properties }) => {
     const { attrs, props } = distributeProperties(properties, componentClass);
-
     return val(createElement)(
       finalTagName,
       { isReact: true, attrs, ...props },
