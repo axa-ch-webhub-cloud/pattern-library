@@ -1,10 +1,10 @@
 // polyfills etc
 import 'mutationobserver-shim';
 import '@webcomponents/webcomponentsjs';
-import 'core-js/es/reflect';
-import 'core-js/es/promise';
-import 'core-js/features/array/from';
-import 'core-js/features/object/assign';
-import 'core-js/features/object/create';
-import 'core-js/features/object/define-properties';
-import 'core-js/features/object/set-prototype-of';
+import 'core-js/es6/reflect';
+import 'core-js/es6/promise';
+import 'core-js/fn/array/from';
+import 'core-js/fn/object/assign';
+import 'core-js/fn/object/create';
+import 'core-js/fn/object/define-properties';
+import 'core-js/fn/object/set-prototype-of';
