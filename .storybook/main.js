@@ -4,8 +4,8 @@ module.exports = {
       './addons/readme/register',
       './addons/changelog/register',
       '@storybook/addon-knobs',
-      //'@whitespace/storybook-addon-html/register', // deactivated because of IE11 issue
       '@storybook/addon-a11y',
-      '@storybook/addon-viewport'
+      '@storybook/addon-viewport',
+      '@whitespace/storybook-addon-html/register'
     ],
 };
