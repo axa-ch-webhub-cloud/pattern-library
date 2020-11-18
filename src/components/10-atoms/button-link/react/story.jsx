@@ -1,7 +1,13 @@
 /* global document */
-import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  boolean,
+  radios,
+  select,
+  text,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import React from 'react';
+import { default as React, default as React } from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
@@ -39,7 +45,7 @@ const storyButton = storiesOf('Examples/Button Link/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme,
-    changelog,
+  changelog,
 });
 
 storyButton.add('Story', () => {

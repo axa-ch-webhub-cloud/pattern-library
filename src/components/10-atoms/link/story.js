@@ -4,6 +4,7 @@ import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 const variantOptions = {
   none: '',
   icon: 'icon',

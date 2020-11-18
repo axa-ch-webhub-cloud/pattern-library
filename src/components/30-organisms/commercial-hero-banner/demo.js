@@ -8,10 +8,12 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 const storyAXACommercialHeroBanner = storiesOf(
   'Examples/Commercial Hero Banner/Pure HTML',
   module
 );
+
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
 storyAXACommercialHeroBanner.addParameters({

@@ -10,6 +10,7 @@ import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 const localeOptions = {
   'de-CH': 'de-CH',
   'it-CH': 'it-CH',

@@ -3,6 +3,7 @@ import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 const variantOptions = {
   default: '',
   'size-1': 'size-1',

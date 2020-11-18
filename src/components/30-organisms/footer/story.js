@@ -4,6 +4,7 @@ import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 export default {
   title: 'Components/Footer',
   decorators: [withNoBorder, withKnobs],

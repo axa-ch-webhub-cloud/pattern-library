@@ -4,6 +4,7 @@ import { iconList } from '../../10-atoms/icon/icon-list';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 export default {
   title: 'Components/File Upload',
   decorators: [withKnobs],

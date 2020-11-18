@@ -3,6 +3,7 @@ import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
+
 const model = {
   thead: [
     { html: 'Age', sort: 'ASC' },
