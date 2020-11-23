@@ -9,7 +9,7 @@ export interface AXAStepperProps {
 
 declare function createAXAStepper(
   createElement: typeof React.createElement,
-  version: string
+  version?: string
 ): React.ComponentType<AXAStepperProps>;
 
 export default createAXAStepper;
