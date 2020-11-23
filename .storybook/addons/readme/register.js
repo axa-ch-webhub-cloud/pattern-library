@@ -1,6 +1,10 @@
 import { addons, types } from '@storybook/addons';
 import { useParameter } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
+<<<<<<< HEAD
+=======
+import 'github-markdown-css/github-markdown.css';
+>>>>>>> parent of da591749e... Add readme syntax highlighting
 import marked from 'marked';
 import React from 'react';
 
