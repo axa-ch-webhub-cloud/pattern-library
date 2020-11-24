@@ -37,7 +37,11 @@ const oldTag = (tagName, closing = '', openingBracket = '<') =>
 
 // Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
 const newTag = (tagName, aVersion, closing) =>
+<<<<<<< HEAD
   oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
+=======
+  oldTag(versionedTag(tagName, aVersion) + ' ', closing);
+>>>>>>> fix component versioning the ugly way
 
 // Example: someStrings = ['<div><axa-dropdown .items="','" </axa-dropdown></div>']
 //          aTagname = 'axa-dropdown', aVersion = '7.0.2'
@@ -50,10 +54,12 @@ const newTag = (tagName, aVersion, closing) =>
 const rewrite = (someStrings, aTagName, aVersion) =>
   someStrings.map(string =>
     string
-      .split(oldTag(aTagName))
-      .join(newTag(aTagName, aVersion))
-      .split(oldTag(aTagName, '/'))
-      .join(newTag(aTagName, aVersion, '/'))
+      .split('\n')
+      .join(' ')
+      .split(oldTag(aTagName + ' '))
+      .join(newTag(aTagName, aVersion + ' '))
+      .split(oldTag(aTagName + ' ', '/'))
+      .join(newTag(aTagName, aVersion + ' ', '/'))
   );
 
 // ///
