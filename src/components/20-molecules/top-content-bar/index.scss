@@ -31,6 +31,16 @@
       }
     }
   }
+
+  &__children {
+    display: flex;
+    align-items: center;
+
+    .m-top-content-bar__button-link,
+    .m-top-content-bar__button {
+      margin-left: 10px;
+    }
+  }
 }
 
 

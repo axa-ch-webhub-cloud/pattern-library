@@ -68,6 +68,7 @@ class AXATopContentBar extends LitElement {
             }
           }}"
           variant="inverted"
+          size="small"
         >
           ${ctatext}
         </axa-button-link>
@@ -83,6 +84,7 @@ class AXATopContentBar extends LitElement {
             }
           }}"
           variant="inverted"
+          size="small"
         >
           ${ctatext}
         </axa-button>
@@ -104,9 +106,11 @@ class AXATopContentBar extends LitElement {
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container class="m-top-content-bar__container-component">
-            <span><slot></slot></span>
+          <div class="m-top-content-bar__children">
+            <slot></slot>
             ${btnHtml}
           </axa-container>
+          </div>
         </div>
       </article>
     `;
