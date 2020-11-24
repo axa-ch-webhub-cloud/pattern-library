@@ -1,20 +1,22 @@
 /* eslint-disable react/no-danger */
 /* global document */
-import { storiesOf } from '@storybook/html';
 import { text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
+import AXACookieDisclaimerReact from './AXACookieDisclaimerReact';
 import AXALinkReact from './AXALinkReact';
 import AXATextReact from './AXATextReact';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Cookie Disclaimer/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const buttonname = text('buttonname', 'Accept');

@@ -1,12 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 storiesOf('Examples/Checkbox/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Use your own label as a child of the component', () => {
     const template = html`

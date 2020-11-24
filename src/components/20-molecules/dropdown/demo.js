@@ -1,12 +1,14 @@
 import { boolean, text } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 storiesOf('Examples/Dropdown/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add(
     'In a form',

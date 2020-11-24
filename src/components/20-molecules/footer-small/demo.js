@@ -1,15 +1,17 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
-import './index';
-import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
+import './index';
+import readme from './README.md';
 
 const selectedLanguageKey = '-';
 
 storiesOf('Examples/Footer Small/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Dynamic Links', () => {
     const wrapper = document.createElement('div');

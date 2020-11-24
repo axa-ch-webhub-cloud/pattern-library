@@ -3,13 +3,15 @@ import { boolean } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 import ControlledWithOnChange from './ControlledWithOnChange';
 
 storiesOf('Examples/Toggle Switch/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Controlled without onChange', () => {
     const div = document.createElement('div');

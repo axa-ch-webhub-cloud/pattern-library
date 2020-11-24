@@ -1,9 +1,10 @@
 /* global document */
+import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { select, boolean, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAText from './AXATextReact';
 
 const variantOptions = {
@@ -17,7 +18,8 @@ const variantOptions = {
 storiesOf('Examples/Text/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const div = document.createElement('div');

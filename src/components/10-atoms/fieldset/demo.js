@@ -1,12 +1,14 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 storiesOf('Examples/Fieldset/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Responsive stretch', () => {
     const root = document.createElement('div');

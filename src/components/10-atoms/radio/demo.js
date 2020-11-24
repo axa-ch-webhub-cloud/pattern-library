@@ -1,14 +1,16 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 /* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg } from '@axa-ch/materials/images';
+import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 storiesOf('Examples/Radio/Pure HTML', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Default', () => {
     const root = document.createElement('div');

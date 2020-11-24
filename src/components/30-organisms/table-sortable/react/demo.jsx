@@ -2,8 +2,9 @@
 import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
 import createTableSortableReact from '../index.react';
+import readme from '../README.md';
 
 const TableSortable = createTableSortableReact(createElement);
 
@@ -63,7 +64,8 @@ const model = {
 
 storiesOf('Examples/Table Sortable/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('On click works also in react', () => {
     const div = document.createElement('div');

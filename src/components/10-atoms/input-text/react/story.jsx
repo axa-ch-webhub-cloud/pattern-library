@@ -3,7 +3,8 @@ import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAInputText from './AXAInputText';
 
 const typeOptions = {
@@ -15,7 +16,8 @@ const typeOptions = {
 const storyInputText = storiesOf('Examples/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
-  changelog: Changelog,
+  readme,
+  changelog,
 });
 
 storyInputText.add('Story', () => {

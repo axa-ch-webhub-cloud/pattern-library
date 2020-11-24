@@ -1,20 +1,22 @@
 import {
   boolean,
-  select,
   radios,
+  select,
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
 import { iconList } from '../icon/icon-list';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
+import './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Button',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
     options: { showPanel: true },
   },
 };

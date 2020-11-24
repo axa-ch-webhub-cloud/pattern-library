@@ -1,7 +1,8 @@
-import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 const variantOptions = {
   default: '',
@@ -17,7 +18,8 @@ export default {
   decorators: [withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

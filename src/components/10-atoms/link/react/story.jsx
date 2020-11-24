@@ -1,12 +1,12 @@
 /* global document */
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-import { select, boolean, text, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import { iconList } from '../../icon/icon-list';
-import AXALinkReact from './AXALinkReact';
-import Changelog from '../CHANGELOG.md';
-
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
+import { iconList } from '../../icon/icon-list';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
+import AXALinkReact from './AXALinkReact';
 
 const variantOptions = {
   none: '',
@@ -37,7 +37,8 @@ const variantOptions = {
 storiesOf('Examples/Link/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const link = text(

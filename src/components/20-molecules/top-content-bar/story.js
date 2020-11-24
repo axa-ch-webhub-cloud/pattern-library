@@ -1,8 +1,9 @@
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
-import Changelog from './CHANGELOG.md';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
+import './index';
+import readme from './README.md';
 
 const variantOptions = {
   none: '',
@@ -14,7 +15,8 @@ export default {
   decorators: [withNoBorder, withKnobs],
 
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

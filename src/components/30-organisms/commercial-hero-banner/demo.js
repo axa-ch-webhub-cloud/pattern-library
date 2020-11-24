@@ -1,21 +1,24 @@
 /* global document */
 /* eslint-disable import/no-extraneous-dependencies */
-import { storiesOf } from '@storybook/html';
 // if your need more boolean, select, radios
-import { text, radios, withKnobs } from '@storybook/addon-knobs';
+import { radios, text, withKnobs } from '@storybook/addon-knobs';
+import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 const storyAXACommercialHeroBanner = storiesOf(
   'Examples/Commercial Hero Banner/Pure HTML',
   module
 );
+
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
 storyAXACommercialHeroBanner.addParameters({
-  changelog: Changelog,
+  readme,
+  changelog,
 });
 
 storyAXACommercialHeroBanner.add('With Badges', () => {

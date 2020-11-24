@@ -10,14 +10,16 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAInputFileReact from './AXAInputFileReact';
 import AXATextReact from './AXATextReact';
 
 storiesOf('Examples/Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Story', () => {
     const _text = text('text', 'Select a File');

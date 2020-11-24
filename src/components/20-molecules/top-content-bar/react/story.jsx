@@ -1,13 +1,12 @@
 /* global document */
+import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
-
-import { text, select, withKnobs } from '@storybook/addon-knobs';
 import React from 'react';
-import AXATopContentBar from './AXATopContentBarReact';
-import Changelog from '../CHANGELOG.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
-
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
+import AXATopContentBar from './AXATopContentBarReact';
 
 const variantOptions = {
   none: '',
@@ -18,7 +17,8 @@ storiesOf('Examples/Top Content Bar/React', module)
   .addDecorator(withNoBorder)
   .addDecorator(withKnobs)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   /* Default */
   .add('Story', () => {

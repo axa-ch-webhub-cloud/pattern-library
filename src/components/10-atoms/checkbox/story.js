@@ -1,14 +1,16 @@
-import { boolean, text, select, withKnobs } from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import './index';
-import Changelog from './CHANGELOG.md';
 import createRefId from '../../../utils/create-ref-id';
+import changelog from './CHANGELOG.md';
+import './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Checkbox',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

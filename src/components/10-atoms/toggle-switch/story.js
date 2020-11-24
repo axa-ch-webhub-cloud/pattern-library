@@ -1,14 +1,16 @@
 /* global document */
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 export default {
   title: 'Components/Toggle Switch',
   decorators: [withKnobs],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

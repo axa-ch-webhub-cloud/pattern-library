@@ -2,12 +2,14 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoContUncontTextarea from './DemoContUncontTextarea';
-import Changelog from '../CHANGELOG.md';
 
 storiesOf('Examples/Textarea/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   /* Default */
   .add('Controlled/uncontrolled', () => {

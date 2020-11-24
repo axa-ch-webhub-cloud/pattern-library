@@ -1,15 +1,17 @@
 // if your need more boolean, select, radios
-import { text, radios, withKnobs } from '@storybook/addon-knobs';
+import { radios, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
+import changelog from './CHANGELOG.md';
 import './index';
-import Changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 export default {
   title: 'Components/Commercial Hero Banner',
   decorators: [withKnobs, withNoBorder],
   parameters: {
-    changelog: Changelog,
+    readme,
+    changelog,
   },
 };
 

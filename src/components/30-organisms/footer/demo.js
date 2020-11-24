@@ -1,13 +1,15 @@
 /* global document */
 import { storiesOf } from '@storybook/html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
-import Changelog from './CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 import './index';
+import readme from './README.md';
 
 storiesOf('Examples/Footer/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
 
   .add('Callbacks', () => {

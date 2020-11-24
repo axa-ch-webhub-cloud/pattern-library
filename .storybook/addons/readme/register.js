@@ -5,15 +5,15 @@ import 'github-markdown-css/github-markdown.css';
 import marked from 'marked';
 import React from 'react';
 
-const ADDON_ID = 'axa-ch/changelog';
+const ADDON_ID = 'axa-ch/readme';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
 const MyPanel = () => {
-  const value = useParameter('changelog', null);
+  const value = useParameter('readme', null);
 
   const mdToHTML = value => {
     if (!value) {
-      value = 'No CHANGELOG found.';
+      value = 'No README found.';
     }
 
     return marked(value);
@@ -37,8 +37,8 @@ addons.register(ADDON_ID, () => {
 
   addons.add(PANEL_ID, {
     type: types.PANEL,
-    title: 'Changelog',
-    paramKey: 'changelog',
+    title: 'Readme',
+    paramKey: 'readme',
     render,
   });
 });

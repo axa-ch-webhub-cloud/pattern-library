@@ -2,15 +2,17 @@
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
-import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';
 import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
-import Changelog from '../CHANGELOG.md';
+import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
+import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 
 storiesOf('Examples/Dropdown/React', module)
   .addParameters({
-    changelog: Changelog,
+    readme,
+    changelog,
   })
   .add('Focussable', () => {
     const div = document.createElement('div');

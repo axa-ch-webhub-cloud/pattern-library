@@ -10,8 +10,8 @@ import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
-import Changelog from '../CHANGELOG.md';
-import Readme from './../README.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import AXAButton from './AXAButton';
 
 const variantOptions = {
@@ -50,7 +50,8 @@ const invertedBgs = {
 const storyButton = storiesOf('Examples/Button/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
-  changelog: Changelog,
+  readme,
+  changelog,
   options: { showPanel: true },
 });
 
