@@ -8,7 +8,8 @@
   "scripts": {
     "build-icons": "rm -rf ./icons-raw/.tmp && svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
     "build-images": "rm -rf ./images-raw/.tmp && svgo --quiet --disable=removeViewBox --config 'svgo-config.json' -f images-raw -r -o images-raw/.tmp",
-    "build": "node scripts/export-svg"
+    "build": "node scripts/export-svg",
+    "genPackagelock": "npm i --package-lock-only"
   },
   "files": [
     "styles",
