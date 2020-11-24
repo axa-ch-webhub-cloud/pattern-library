@@ -164,6 +164,10 @@ The attribute `orText` specifies the orange text in the dropzone.
 
 The attribute `wrongFileTypeStatusText` specifies the global error text, when a file without a valid file-type is dropped.
 
+### accessOriginalFiles
+
+The boolean attribute provides to user with the orignal files. If set to `false` the user receives compromised images and converted files.
+
 ### onFileDrop
 
 The attribute `onFileDrop` function executes, as soon as the user dropped one or multiple files by drag & drop.

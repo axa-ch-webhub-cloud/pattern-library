@@ -1,3 +1,7 @@
+## 4.2.0
+
+- New property `accessOriginalFil` to choose between compromised and original files. #2036
+
 ## 4.1.0
 
 - Added function callbacks for `onFileDrop` and `onFileRemove` events.

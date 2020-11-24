@@ -6,6 +6,7 @@ export interface AXAFileUploadProps {
   maxSizeOfAllFilesKB?: number;
   maxNumberOfFiles?: number;
   showFileOverview?: boolean;
+  accessOriginalFiles?: boolean;
   icon?: string;
   deleteStatusText?: string;
   addStatusText?: string;
