@@ -234,7 +234,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     declare function create${className}(
       createElement: typeof React.createElement,
-      version: string
+      version?: string
     ): React.ComponentType<${className}Props>;
 
     export default create${className};
