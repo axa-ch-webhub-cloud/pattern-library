@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/patterns-library-polyfill",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "The polyfill component for the AXA Pattern Library (IE Support)",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill#readme",

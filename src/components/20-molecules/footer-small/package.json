@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/footer-small",
-  "version": "5.2.7",
+  "version": "5.2.8",
   "description": "The footer-small component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/footer-small/README.md",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/container": "3.0.9",
+    "@axa-ch/container": "3.0.10",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
