@@ -139,6 +139,7 @@ const onResultCanvas = (res, _image, _options, file) => {
       _result.lastModified = date.getTime();
       _result.lastModifiedDate = date;
       _result.name = file.name;
+      _result.id = file.id;
 
       // Convert the extension to match its type
       if (_result.name && _result.type !== file.type) {
