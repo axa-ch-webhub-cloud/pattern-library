@@ -38,29 +38,49 @@ const oldTag = (tagName, closing = '', openingBracket = '<') =>
 // Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
 const newTag = (tagName, aVersion, closing) =>
 <<<<<<< HEAD
+<<<<<<< HEAD
   oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
 =======
   oldTag(versionedTag(tagName, aVersion) + ' ', closing);
 >>>>>>> fix component versioning the ugly way
+=======
+  oldTag(`${versionedTag(tagName, aVersion)} `, closing);
+>>>>>>> improve documentation and eslint fixes
 
 // Example: someStrings = ['<div><axa-dropdown .items="','" </axa-dropdown></div>']
 //          aTagname = 'axa-dropdown', aVersion = '7.0.2'
 //
 // Rewritten as           ['<div><axa-dropdown-7-0-2 .items="','" </axa-dropdown-7-0-2></div>'].
 //
+<<<<<<< HEAD
 // Note: this uses the split-join technique to perform global string substitution
 // without needing the special-character escaping necessary for
 // a reg-exp-based alternative (the latter is marginally faster, but our strings here are short)
 const rewrite = (someStrings, aTagName, aVersion) =>
   someStrings.map(string =>
+=======
+// The first character after each tag name (e.g. after "<axa-button-link") can be either a line
+// break or a whitespace. We also need to consider that charater, because "<axa-button" is part
+// of "<axa-button-link" (which was a prod issue) and generated a version like this: "<axa-button-6.0.5-link"
+// Reason: It was not made sure that the tagname is "finished" before, just if it is contained.
+//
+// Note: This uses the split-join technique to perform global string substitution without needing the
+// special-character escaping necessary a reg-exp-based alternative (the latter is marginally faster,
+// but our strings here are short)
+const rewriteTagsWithVersion = (someStrings, aTagName, aVersion) => {
+  const tagNameWithAddedWhitespace = `${aTagName} `;
+  const versionWithAddedWhitespace = `${aVersion} `;
+  return someStrings.map(string =>
+>>>>>>> improve documentation and eslint fixes
     string
       .split('\n')
       .join(' ')
-      .split(oldTag(aTagName + ' '))
-      .join(newTag(aTagName, aVersion + ' '))
-      .split(oldTag(aTagName + ' ', '/'))
-      .join(newTag(aTagName, aVersion + ' ', '/'))
+      .split(oldTag(tagNameWithAddedWhitespace))
+      .join(newTag(aTagName, versionWithAddedWhitespace))
+      .split(oldTag(tagNameWithAddedWhitespace, '/'))
+      .join(newTag(aTagName, versionWithAddedWhitespace, '/'))
   );
+};
 
 // ///
 // API functions
@@ -130,7 +150,7 @@ const versionedHtml = componentInstance => (strings, ...args) => {
   let newStrings = strings;
   // 1. rewriting proper, turning tags into versioned ones with funny initial brackets (see newTag(...) above)
   for (let i = 0, n = tagNames.length; i < n; i++) {
-    newStrings = rewrite(newStrings, tagNames[i], versions[i]);
+    newStrings = rewriteTagsWithVersion(newStrings, tagNames[i], versions[i]);
   }
   // 2. finish rewriting by converting funny initial brackets back to standard ones
   for (let i = 0, n = newStrings.length; i < n; i++) {
