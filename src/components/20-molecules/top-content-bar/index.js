@@ -106,11 +106,11 @@ class AXATopContentBar extends LitElement {
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container class="m-top-content-bar__container-component">
-          <div class="m-top-content-bar__children">
-            <slot></slot>
-            ${btnHtml}
+            <div class="m-top-content-bar__children">
+              <slot></slot>
+              ${btnHtml}
+            </div>
           </axa-container>
-          </div>
         </div>
       </article>
     `;
