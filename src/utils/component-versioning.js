@@ -73,8 +73,7 @@ const rewriteTagsWithVersion = (someStrings, aTagName, aVersion) => {
   return someStrings.map(string =>
 >>>>>>> improve documentation and eslint fixes
     string
-      .split('\n')
-      .join(' ')
+      .replace(/\s+/g, ' ') // Convert linebreaks, tabs, returns, etc. into whitespaces
       .split(oldTag(tagNameWithAddedWhitespace))
       .join(newTag(aTagName, versionWithAddedWhitespace))
       .split(oldTag(tagNameWithAddedWhitespace, '/'))
