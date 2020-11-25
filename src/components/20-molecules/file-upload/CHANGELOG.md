@@ -1,6 +1,6 @@
 ## 4.2.0
 
-- New property `accessOriginalFil` to choose between compromised and original files. #2036
+- New property `accessOriginalFile` to choose between compromised and original files. #2036
 
 ## 4.1.0
 
