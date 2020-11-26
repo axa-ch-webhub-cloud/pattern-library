@@ -20,7 +20,7 @@ import {
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
-import compressImage from './utils/imageCompressor';
+import compressImages from './utils/imageCompressor';
 
 const ADD_ICON = svg([AddSvg]);
 const ATTACH_FILE_ICON = svg([Attach_fileSvg]);
@@ -91,6 +91,10 @@ class AXAFileUpload extends LitElement {
     this.files = [];
     this.faultyFiles = [];
     this.allFiles = [];
+
+    this.allOriginalFiles = [];
+    this.validOriginalFiles = [];
+    this.faultyOriginalFiles = [];
 
     this.sizeOfAllFilesInBytes = 0;
     this.allDroppedFiles = 0;
@@ -207,26 +211,37 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles, removeGlobalMessage) {
-    this.showAddMoreInputFile = true;
+    // generate id to match orignal files with compressed one if this.accessOriginalFiles is set
+    const droppedFilesWithID = droppedFiles.map(file => {
+      file.id = Math.random()
+        .toString(36)
+        .substr(2, 9);
+      return file;
+    });
 
+    this.allOriginalFiles = this.allOriginalFiles.concat(droppedFilesWithID);
+
+    console.log('id', droppedFilesWithID, this.allOriginalFiles);
+
+    this.showAddMoreInputFile = true;
     if (removeGlobalMessage) {
       this.globalErrorMessage = '';
     }
 
-    this.allDroppedFiles += droppedFiles.length;
+    this.allDroppedFiles += droppedFilesWithID.length;
 
-    const notImagesFiles = [...droppedFiles].filter(
+    const notImagesFiles = [...droppedFilesWithID].filter(
       file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
     );
 
     // compress all images. pngs will become jpeg's and unrecognised files will be deleted
-    const compressedImages = await compressImage(droppedFiles);
+    const compressedImagesWithID = await compressImages(droppedFilesWithID);
 
-    this.validateFiles(compressedImages, notImagesFiles);
+    this.validateFiles(compressedImagesWithID, notImagesFiles);
 
     if (
       (this.files.length > 0 || this.faultyFiles.length > 0) &&
-      droppedFiles.length > 0
+      droppedFilesWithID.length > 0
     ) {
       this.showFileOverview = true;
     }
@@ -266,12 +281,29 @@ class AXAFileUpload extends LitElement {
       const file = files[i];
       const fileSize = file.size;
       if (fileSize > maxSizeOfSingleFileInBytes) {
+        // add compromised file to array
         faultyFiles.push(file);
+
+        // find the original file with same id and add it to array
+        for (let j = 0; this.allOriginalFiles.length > j; j++) {
+          if (this.allOriginalFiles[j].id === file.id) {
+            this.faultyOriginalFiles.push(this.allOriginalFiles[j]);
+          }
+        }
       } else {
+        // add compromised file to array
         finalFiles.push(file);
+
+        // find the original file with same id and add it to array
+        for (let j = 0; this.allOriginalFiles.length > j; j++) {
+          if (this.allOriginalFiles[j].id === file.id) {
+            this.validOriginalFiles.push(this.allOriginalFiles[j]);
+          }
+        }
       }
+
       this.sizeOfAllFilesInBytes += fileSize;
-      this.validateOverallSize(fileSize);
+      this.validateOverallSize(fileSize); // todo -> orignal file size; immer original file size?
     }
 
     const numberOfFilesLeftOver = Math.max(
@@ -280,7 +312,10 @@ class AXAFileUpload extends LitElement {
     );
 
     const filesLeftOver = finalFiles.slice(0, numberOfFilesLeftOver);
-
+    if (this.accessOriginalFiles) {
+      // TODO
+      // return;
+    }
     // concat the latest valid files from a file-upload to the existing ones
     this.files = this.files.concat(filesLeftOver);
 
