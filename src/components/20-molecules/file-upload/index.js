@@ -52,7 +52,6 @@ class AXAFileUpload extends LitElement {
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
       maxNumberOfFiles: { type: Number, defaultValue: 10 },
-      showFileOverview: { type: Boolean },
       accessOriginalFiles: { type: Boolean, reflect: true },
       icon: { type: String, defaultValue: 'cloud-upload' },
       deleteStatusText: { type: String, defaultValue: 'Delete' },
