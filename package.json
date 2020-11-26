@@ -19,6 +19,7 @@
     "test-chrome": "sh scripts/testcafe-chrome.sh",
     "test-ie": "sh scripts/testcafe-ie.sh",
     "test-jest": "jest --env=jsdom",
+    "test-playwright": "jest --config=jest.ui.config.js",
     "test-jest-coverage": "jest --env=jsdom --coverage",
     "test-jest-watch": "jest --env=jsdom --watch -o",
     "test-ui": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
