@@ -90,7 +90,6 @@ class AXAFileUpload extends LitElement {
     this.files = [];
     this.faultyFiles = [];
 
-    this.allCompressedFiles = []; // Used for previews -> TODO delete
     this.validCompressedFiles = []; // Used for previews
     this.faultyCompressedFiles = []; // Used for previews
 
@@ -99,15 +98,14 @@ class AXAFileUpload extends LitElement {
     this.faultyOriginalFiles = [];
 
     this.sizeOfAllFilesInBytes = 0;
-    this.allDroppedFiles = 0;
+    this.numberOfDroppedFiles = 0;
     this.isFileMaxReached = false;
 
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
 
-    /* eslint-disable no-undef */
+    // eslint-disable-next-line no-undef
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   handleAddMoreInputClick() {
@@ -171,10 +169,10 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
-    // TODO
+    // TODO delete also in other arrays
     let clonedFiles = [];
 
-    this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
+    this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
     if (index >= this.files.length) {
       // faulty file
@@ -193,15 +191,15 @@ class AXAFileUpload extends LitElement {
 
     this.handleMaxNumberOfFiles();
 
-    this.sizeOfAllFilesInBytes -= this.allCompressedFiles[index].size;
+    this.sizeOfAllFilesInBytes -= this.allOriginalFiles[index].size;
 
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
       this.sizeOfAllFilesInBytes = 0;
-      this.allDroppedFiles = 0;
+      this.numberOfDroppedFiles = 0;
       this.files = [];
-      this.allCompressedFiles = [];
       this.faultyFiles = [];
+      this.allOriginalFiles = [];
       this.showAddMoreInputFile = false;
     }
     this.validateOverallSize();
@@ -231,7 +229,7 @@ class AXAFileUpload extends LitElement {
       this.globalErrorMessage = '';
     }
 
-    this.allDroppedFiles += droppedFilesWithID.length;
+    this.numberOfDroppedFiles += droppedFilesWithID.length;
 
     const notImagesFiles = [...droppedFilesWithID].filter(
       file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
@@ -367,14 +365,14 @@ class AXAFileUpload extends LitElement {
 
   handleMaxNumberOfFiles() {
     const {
-      allDroppedFiles,
+      numberOfDroppedFiles,
       faultyFiles,
       maxNumberOfFiles,
       tooManyFilesStatusText,
     } = this;
 
     if (
-      allDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
+      numberOfDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
       faultyFiles.length + this.files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
