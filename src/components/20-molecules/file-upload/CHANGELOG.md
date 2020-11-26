@@ -1,6 +1,7 @@
-## 4.2.0
+## 5.0.0
 
 - New property `accessOriginalFile` to choose between compromised and original files. #2036
+- BREAKING CHANGE: Make `showFileOverview` private.
 
 ## 4.1.0
 
