@@ -90,7 +90,10 @@ class AXAFileUpload extends LitElement {
 
     this.files = [];
     this.faultyFiles = [];
-    this.allFiles = [];
+
+    this.allCompressedFiles = []; // Used for previews -> TODO delete
+    this.validCompressedFiles = []; // Used for previews
+    this.faultyCompressedFiles = []; // Used for previews
 
     this.allOriginalFiles = [];
     this.validOriginalFiles = [];
@@ -169,6 +172,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
+    // TODO
     let clonedFiles = [];
 
     this.allDroppedFiles = this.files.length + this.faultyFiles.length - 1;
@@ -190,14 +194,14 @@ class AXAFileUpload extends LitElement {
 
     this.handleMaxNumberOfFiles();
 
-    this.sizeOfAllFilesInBytes -= this.allFiles[index].size;
+    this.sizeOfAllFilesInBytes -= this.allCompressedFiles[index].size;
 
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
       this.sizeOfAllFilesInBytes = 0;
       this.allDroppedFiles = 0;
       this.files = [];
-      this.allFiles = [];
+      this.allCompressedFiles = [];
       this.faultyFiles = [];
       this.showAddMoreInputFile = false;
     }
@@ -272,13 +276,13 @@ class AXAFileUpload extends LitElement {
   }
 
   validateFiles(compressedImages, notImagesFiles, droppedFilesWithID) {
-    const { maxSizeOfSingleFileKB, maxNumberOfFiles } = this;
+    const { maxSizeOfSingleFileKB } = this;
     const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(
       maxSizeOfSingleFileKB
     );
 
-    const faultyCompromisedFiles = [];
-    const validCompromisedFiles = [];
+    const faultyCompressedFiles = [];
+    const validCompressedFiles = [];
     const faultyOriginalFiles = [];
     const validOriginalFiles = [];
 
@@ -295,7 +299,7 @@ class AXAFileUpload extends LitElement {
         // find the compromised file with same id and add it to array
         for (let j = 0; newCompressedFiles.length > j; j++) {
           if (newCompressedFiles[j].id === file.id) {
-            faultyCompromisedFiles.push(newCompressedFiles[j]); // TODO new oder alle?
+            faultyCompressedFiles.push(newCompressedFiles[j]); // TODO new oder alle?
           }
         }
       } else {
@@ -305,7 +309,7 @@ class AXAFileUpload extends LitElement {
         // find the compromised file with same id and add it to array
         for (let j = 0; newCompressedFiles.length > j; j++) {
           if (newCompressedFiles[j].id === file.id) {
-            validCompromisedFiles.push(newCompressedFiles[j]);
+            validCompressedFiles.push(newCompressedFiles[j]);
           }
         }
       }
@@ -314,29 +318,52 @@ class AXAFileUpload extends LitElement {
       this.validateOverallSize(fileSize);
     }
 
+    this.addFilesToSpecificArray(
+      validOriginalFiles,
+      validCompressedFiles,
+      faultyOriginalFiles,
+      faultyCompressedFiles
+    );
+  }
+
+  addFilesToSpecificArray(
+    validOriginalFiles,
+    validCompressedFiles,
+    faultyOriginalFiles,
+    faultyCompressedFiles
+  ) {
+    const { maxNumberOfFiles } = this;
     const numberOfFilesLeftover = Math.max(
       maxNumberOfFiles - this.files.length,
       0
     );
+    const originalFilesLeftover = validOriginalFiles.slice(
+      0,
+      numberOfFilesLeftover
+    );
+    const compressedFilesLeftover = validCompressedFiles.slice(
+      0,
+      numberOfFilesLeftover
+    );
 
     if (this.accessOriginalFiles) {
-      const filesLeftover = validOriginalFiles.slice(0, numberOfFilesLeftover);
-      // concat the latest valid files from a file-upload to the existing ones
-      this.files = this.files.concat(filesLeftover);
-
-      // concat the latest faulty files from a file-upload to the existing ones
+      this.files = this.files.concat(originalFilesLeftover);
+      // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyOriginalFiles);
     } else {
-      const filesLeftover = validCompromisedFiles.slice(
-        0,
-        numberOfFilesLeftover
-      );
-      // concat the latest valid files from a file-upload to the existing ones
-      this.files = this.files.concat(filesLeftover);
-
-      // concat the latest faulty files from a file-upload to the existing ones
-      this.faultyFiles = this.faultyFiles.concat(faultyCompromisedFiles);
+      // Concat the latest valid files from a file-upload to the existing ones
+      this.files = this.files.concat(compressedFilesLeftover);
+      // Concat the latest faulty files from a file-upload to the existing ones
+      this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
+    // Used for previws
+    this.validCompressedFiles = this.validCompressedFiles.concat(
+      compressedFilesLeftover
+    );
+    // Used for previws
+    this.faultyCompressedFiles = this.faultyCompressedFiles.concat(
+      faultyCompressedFiles
+    );
   }
 
   handleMaxNumberOfFiles() {
@@ -357,19 +384,23 @@ class AXAFileUpload extends LitElement {
     this.isFileMaxReached = this.files.length === maxNumberOfFiles;
   }
 
-  fileOverviewMapping() {
-    const { deleteStatusText, fileTooBigStatusText } = this;
+  fileOverviewMapping(allCompressedFiles) {
+    const {
+      deleteStatusText,
+      fileTooBigStatusText,
+      faultyCompressedFiles,
+    } = this;
     const urlCreator = window.URL || window.webkitURL;
 
-    return this.allFiles.map((file, index) => {
+    return allCompressedFiles.map((file, index) => {
       let isfaultyFile = false;
 
       if (!file) {
         return '';
       }
 
-      for (let i = 0; i < this.faultyFiles.length; i++) {
-        if (this.faultyFiles[i] === file) {
+      for (let i = 0; i < faultyCompressedFiles.length; i++) {
+        if (faultyCompressedFiles[i] === file) {
           isfaultyFile = true;
           break;
         }
@@ -451,6 +482,16 @@ class AXAFileUpload extends LitElement {
   }
 
   render() {
+    const {
+      faultyCompressedFiles,
+      validCompressedFiles,
+      infoText,
+      orText,
+      icon,
+      inputFileText,
+      showAddMoreInputFile,
+      globalErrorMessage,
+    } = this;
     const fileOverviewClasses = {
       'm-file-upload__dropzone': true,
       'js-file-upload__dropzone': true,
@@ -459,8 +500,10 @@ class AXAFileUpload extends LitElement {
     };
 
     // displaying files with errors (e.g. too big) after valid ones
-    this.allFiles = this.files.concat(this.faultyFiles);
-    const fileOverview = this.fileOverviewMapping(this.allFiles);
+    const allCompressedFiles = validCompressedFiles.concat(
+      faultyCompressedFiles
+    );
+    const fileOverview = this.fileOverviewMapping(allCompressedFiles);
 
     return html`
       <article class="m-file-upload">
@@ -476,28 +519,26 @@ class AXAFileUpload extends LitElement {
                 <div>
                   ${FILE_UPLOAD_GROUP_ICON}
                 </div>
-                <p class="m-file-upload__information">${this.infoText}</p>
-                <p class="m-file-upload__or">${this.orText}</p>
+                <p class="m-file-upload__information">${infoText}</p>
+                <p class="m-file-upload__or">${orText}</p>
                 <axa-input-file
                   class="m-file-upload__input js-file-upload__input"
                   accept="${ACCEPTED_FILE_TYPES}"
-                  icon="${this.icon}"
+                  icon="${icon}"
                   multiple
                   @change=${this.handleInputFileChange}
                   variant="red"
-                  text="${this.inputFileText}"
+                  text="${inputFileText}"
                 ></axa-input-file>
               `
             : html`
                 ${fileOverview}
-                ${this.showAddMoreInputFile
-                  ? this.generateAddMoreInputFile()
-                  : ``}
+                ${showAddMoreInputFile ? this.generateAddMoreInputFile() : ``}
               `}
         </section>
 
         <div class="m-file-upload__error-wrapper js-file-upload__error-wrapper">
-          ${this.globalErrorMessage}
+          ${globalErrorMessage}
         </div>
       </article>
     `;
