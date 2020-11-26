@@ -17,7 +17,6 @@ afterEach(async () => {
   await page.close();
 });
 
-// it.only('should work', async () => {
-//   await page.goto('https://www.exsample.com/');
-//   expect(await page.title()).toBe('Example Domain');
-// });
+it('init', async () => {
+  expect(true).toBe(true);
+});
