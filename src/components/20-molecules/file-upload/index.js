@@ -234,10 +234,14 @@ class AXAFileUpload extends LitElement {
       file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
     );
 
-    // compress all images. pngs will become jpeg's and unrecognised files will be deleted
+    // compress all images. pngs will become jpeg's and unrecognised files will be deleted. (all pfd's were removed)
     const compressedImagesWithID = await compressImages(droppedFilesWithID);
 
-    this.validateFiles(compressedImagesWithID, notImagesFiles);
+    this.validateFiles(
+      compressedImagesWithID,
+      notImagesFiles,
+      droppedFilesWithID
+    );
 
     if (
       (this.files.length > 0 || this.faultyFiles.length > 0) &&
@@ -267,60 +271,72 @@ class AXAFileUpload extends LitElement {
         : '';
   }
 
-  validateFiles(compressedImages, notImagesFiles) {
+  validateFiles(compressedImages, notImagesFiles, droppedFilesWithID) {
     const { maxSizeOfSingleFileKB, maxNumberOfFiles } = this;
     const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(
       maxSizeOfSingleFileKB
     );
 
-    const faultyFiles = [];
-    const finalFiles = [];
-    const files = [...notImagesFiles].concat(compressedImages);
+    const faultyCompromisedFiles = [];
+    const validCompromisedFiles = [];
+    const faultyOriginalFiles = [];
+    const validOriginalFiles = [];
 
-    for (let i = 0, n = files.length; i < n; i++) {
-      const file = files[i];
+    const newOriginalFiles = droppedFilesWithID;
+    const newCompressedFiles = [...notImagesFiles].concat(compressedImages);
+
+    for (let i = 0, n = newOriginalFiles.length; i < n; i++) {
+      const file = newOriginalFiles[i];
       const fileSize = file.size;
       if (fileSize > maxSizeOfSingleFileInBytes) {
-        // add compromised file to array
-        faultyFiles.push(file);
+        // add original file to array
+        faultyOriginalFiles.push(file);
 
-        // find the original file with same id and add it to array
-        for (let j = 0; this.allOriginalFiles.length > j; j++) {
-          if (this.allOriginalFiles[j].id === file.id) {
-            this.faultyOriginalFiles.push(this.allOriginalFiles[j]);
+        // find the compromised file with same id and add it to array
+        for (let j = 0; newCompressedFiles.length > j; j++) {
+          if (newCompressedFiles[j].id === file.id) {
+            faultyCompromisedFiles.push(newCompressedFiles[j]); // TODO new oder alle?
           }
         }
       } else {
-        // add compromised file to array
-        finalFiles.push(file);
+        // add original file to array
+        validOriginalFiles.push(file);
 
-        // find the original file with same id and add it to array
-        for (let j = 0; this.allOriginalFiles.length > j; j++) {
-          if (this.allOriginalFiles[j].id === file.id) {
-            this.validOriginalFiles.push(this.allOriginalFiles[j]);
+        // find the compromised file with same id and add it to array
+        for (let j = 0; newCompressedFiles.length > j; j++) {
+          if (newCompressedFiles[j].id === file.id) {
+            validCompromisedFiles.push(newCompressedFiles[j]);
           }
         }
       }
 
       this.sizeOfAllFilesInBytes += fileSize;
-      this.validateOverallSize(fileSize); // todo -> orignal file size; immer original file size?
+      this.validateOverallSize(fileSize);
     }
 
-    const numberOfFilesLeftOver = Math.max(
+    const numberOfFilesLeftover = Math.max(
       maxNumberOfFiles - this.files.length,
       0
     );
 
-    const filesLeftOver = finalFiles.slice(0, numberOfFilesLeftOver);
     if (this.accessOriginalFiles) {
-      // TODO
-      // return;
-    }
-    // concat the latest valid files from a file-upload to the existing ones
-    this.files = this.files.concat(filesLeftOver);
+      const filesLeftover = validOriginalFiles.slice(0, numberOfFilesLeftover);
+      // concat the latest valid files from a file-upload to the existing ones
+      this.files = this.files.concat(filesLeftover);
 
-    // concat the latest faulty files from a file-upload to the existing ones
-    this.faultyFiles = this.faultyFiles.concat(faultyFiles);
+      // concat the latest faulty files from a file-upload to the existing ones
+      this.faultyFiles = this.faultyFiles.concat(faultyOriginalFiles);
+    } else {
+      const filesLeftover = validCompromisedFiles.slice(
+        0,
+        numberOfFilesLeftover
+      );
+      // concat the latest valid files from a file-upload to the existing ones
+      this.files = this.files.concat(filesLeftover);
+
+      // concat the latest faulty files from a file-upload to the existing ones
+      this.faultyFiles = this.faultyFiles.concat(faultyCompromisedFiles);
+    }
   }
 
   handleMaxNumberOfFiles() {
