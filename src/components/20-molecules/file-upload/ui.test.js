@@ -290,8 +290,8 @@ test('should throw an event if a file was removed from the list', async t => {
 fixture('Access original Files').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-Width=455px&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1051&knob-maxSizeOfAllFilesKB=7411&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-wrongFileTypeText=Your%20file%20does%20not%20correspond%20with%20our%20allowed%20file-types&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred%3A&knob-accessOriginalFiles=true&viewMode=story`
 );
-// eslint-disable-next-line jest/no-focused-tests
-test.only(`shouldn't convert .png file to .jpg`, async t => {
+
+test(`shouldn't convert .png file to .jpg`, async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')

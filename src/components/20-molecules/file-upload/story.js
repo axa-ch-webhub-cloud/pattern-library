@@ -84,7 +84,7 @@ export const FileUpload = () => {
         deleteStatusText="${deleteStatusText}"
         addStatusText="${addStatusText}"
         fileTooBigStatusText="${fileTooBigStatusText}"
-        accessOriginalFiles="${accessOriginalFiles}"
+        ?accessOriginalFiles="${accessOriginalFiles}"
         filesTooBigStatusText="${filesTooBigStatusText}"
         tooManyFilesStatusText="${tooManyFilesStatusText}"
         orText="${orText}"

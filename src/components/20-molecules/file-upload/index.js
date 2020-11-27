@@ -162,9 +162,6 @@ class AXAFileUpload extends LitElement {
     // prevent browser from displaying the file fullscreen
     e.preventDefault();
 
-    if (this.isFileMaxReached) {
-      return;
-    }
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
     this.filterAndAddFiles(files);
@@ -422,8 +419,13 @@ class AXAFileUpload extends LitElement {
       deleteStatusText,
       fileTooBigStatusText,
       faultyCompressedFiles,
+      accessOriginalFiles,
     } = this;
     const urlCreator = window.URL || window.webkitURL;
+
+    const allOriginalFiles = this.validOriginalFiles.concat(
+      this.faultyOriginalFiles
+    );
 
     return allCompressedFiles.map((file, index) => {
       let isfaultyFile = false;
@@ -438,7 +440,9 @@ class AXAFileUpload extends LitElement {
           break;
         }
       }
-
+      const fileName = accessOriginalFiles
+        ? allOriginalFiles[index].name
+        : file.name;
       const isNonImageFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
@@ -457,7 +461,7 @@ class AXAFileUpload extends LitElement {
                   <img
                     class="m-file-upload__img-element"
                     src="${imageUrl}"
-                    alt="${file.name}"
+                    alt="${fileName}"
                   />
                 `}
             <div class="m-file-upload__icon-layer">
@@ -471,11 +475,11 @@ class AXAFileUpload extends LitElement {
           </div>
           <figcaption
             class="m-file-upload__img-caption js-file-upload__img-caption"
-            title="${file.name}"
+            title="${fileName}"
             data-status="${deleteStatusText}"
           >
             <span class="m-file-upload__filename js-file-upload__filename"
-              >${file.name}</span
+              >${fileName}</span
             >
             ${isfaultyFile
               ? html`
