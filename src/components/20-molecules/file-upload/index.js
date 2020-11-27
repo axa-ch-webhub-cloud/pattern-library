@@ -93,7 +93,6 @@ class AXAFileUpload extends LitElement {
     this.validCompressedFiles = []; // Used for previews
     this.faultyCompressedFiles = []; // Used for previews
 
-    this.allOriginalFiles = [];
     this.validOriginalFiles = [];
     this.faultyOriginalFiles = [];
 
@@ -169,38 +168,64 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
-    // TODO delete also in other arrays
-    let clonedFiles = [];
+    let clonedOriginalFiles = [];
+    let clonedCompressedFiles = [];
 
     this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
+    const allOriginalFiles = this.validOriginalFiles.concat(
+      this.faultyOriginalFiles
+    );
+
     if (index >= this.files.length) {
-      // faulty file
-      clonedFiles = [...this.faultyFiles];
-      clonedFiles.splice(index - this.files.length, 1);
-      this.faultyFiles = clonedFiles;
+      // remove a faulty file from file arrays
+      clonedOriginalFiles = [...this.faultyOriginalFiles];
+      clonedOriginalFiles.splice(index - this.validOriginalFiles.length, 1);
+      this.faultyOriginalFiles = clonedOriginalFiles;
+
+      clonedCompressedFiles = [...this.faultyCompressedFiles];
+      clonedCompressedFiles.splice(index - this.validCompressedFiles.length, 1);
+      this.faultyCompressedFiles = clonedCompressedFiles;
     } else {
-      // valid file
-      clonedFiles = [...this.files];
-      clonedFiles.splice(index, 1);
-      this.files = clonedFiles;
-      if (this.files.length + 1 === this.maxNumberOfFiles) {
+      // remove a valid file from file arrays
+      clonedOriginalFiles = [...this.validOriginalFiles];
+      clonedOriginalFiles.splice(index, 1);
+      this.validOriginalFiles = clonedOriginalFiles;
+
+      clonedCompressedFiles = [...this.validCompressedFiles];
+      clonedCompressedFiles.splice(index, 1);
+      this.validCompressedFiles = clonedCompressedFiles;
+
+      if (this.validOriginalFiles.length + 1 === this.maxNumberOfFiles) {
         this.showAddMoreInputFile = true;
       }
     }
 
-    this.handleMaxNumberOfFiles();
+    if (this.accessOriginalFiles) {
+      this.files = this.validOriginalFiles;
+      this.faultyFiles = this.faultyOriginalFiles;
+    } else {
+      this.files = this.validCompressedFiles;
+      this.faultyFiles = this.faultyCompressedFiles;
+      console.log('files', this.files);
+    }
 
-    this.sizeOfAllFilesInBytes -= this.allOriginalFiles[index].size;
+    this.handleMaxNumberOfFiles(); // TODO
 
+    this.sizeOfAllFilesInBytes -= allOriginalFiles[index].size;
+
+    // All files are deleted -> go back to default screen
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
       this.sizeOfAllFilesInBytes = 0;
       this.numberOfDroppedFiles = 0;
+      this.showAddMoreInputFile = false;
       this.files = [];
       this.faultyFiles = [];
-      this.allOriginalFiles = [];
-      this.showAddMoreInputFile = false;
+      this.validOriginalFiles = [];
+      this.faultyOriginalFiles = [];
+      this.validCompressedFiles = [];
+      this.faultyCompressedFiles = [];
     }
     this.validateOverallSize();
 
@@ -219,10 +244,6 @@ class AXAFileUpload extends LitElement {
         .substr(2, 9);
       return file;
     });
-
-    this.allOriginalFiles = this.allOriginalFiles.concat(droppedFilesWithID);
-
-    console.log('id', droppedFilesWithID, this.allOriginalFiles);
 
     this.showAddMoreInputFile = true;
     if (removeGlobalMessage) {
@@ -360,6 +381,14 @@ class AXAFileUpload extends LitElement {
     // Used for previws
     this.faultyCompressedFiles = this.faultyCompressedFiles.concat(
       faultyCompressedFiles
+    );
+
+    this.validOriginalFiles = this.validOriginalFiles.concat(
+      compressedFilesLeftover
+    );
+
+    this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
+      faultyOriginalFiles
     );
   }
 
