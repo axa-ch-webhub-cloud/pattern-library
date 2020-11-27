@@ -1,16 +1,12 @@
-const { chromium } = require('playwright-chromium');
+const { browserInstance, config } = require('../../../test/playwright-config');
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 let browser;
 let page;
 
-const config = {
-  // devtools: true
-};
-
 beforeAll(async () => {
-  browser = await chromium.launch(config);
+  browser = await browserInstance.launch(config);
 });
 
 afterAll(async () => {
