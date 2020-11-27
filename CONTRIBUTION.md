@@ -41,13 +41,13 @@ We reuse the Patterns Lib v1 JavaScript linting settings.
 
 # Testing
 
-- Library uses [TestCafe](https://devexpress.github.io/testcafe/) for ui testing
-- Library uses [Jest](https://jestjs.io/) for unit testing
-
+- [Jest](https://jestjs.io/) for unit testing
+- [Playwright](https://playwright.dev/) for UI tests
+- Deprecated: ~~TestCafe](https://devexpress.github.io/testcafe/) for UI tests~~
 ## UI Testing
 
-- Are written in ui.test.js
 - A Component should have at least a smoke test
+- Test file name: `pw.ui.test.js`
 
 ```js
 // React smoke test
