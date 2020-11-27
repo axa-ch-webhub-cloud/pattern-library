@@ -52,7 +52,7 @@ class AXAFileUpload extends LitElement {
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
       maxNumberOfFiles: { type: Number, defaultValue: 10 },
-      accessOriginalFiles: { type: Boolean, reflect: true },
+      accessOriginalFiles: { type: Boolean },
       icon: { type: String, defaultValue: 'cloud-upload' },
       deleteStatusText: { type: String, defaultValue: 'Delete' },
       addStatusText: { type: String, defaultValue: 'Add more' },
@@ -387,7 +387,7 @@ class AXAFileUpload extends LitElement {
     );
 
     this.validOriginalFiles = this.validOriginalFiles.concat(
-      compressedFilesLeftover
+      originalFilesLeftover
     );
 
     this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
