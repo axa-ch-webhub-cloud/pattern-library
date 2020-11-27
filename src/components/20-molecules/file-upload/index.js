@@ -161,6 +161,10 @@ class AXAFileUpload extends LitElement {
   handleDropZoneDrop(e) {
     // prevent browser from displaying the file fullscreen
     e.preventDefault();
+
+    if (this.isFileMaxReached) {
+      return;
+    }
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
     this.filterAndAddFiles(files);
@@ -212,7 +216,7 @@ class AXAFileUpload extends LitElement {
       this.faultyFiles = this.faultyCompressedFiles;
     }
 
-    this.handleMaxNumberOfFiles(); // TODO
+    this.handleMaxNumberOfFiles();
 
     this.sizeOfAllFilesInBytes -= allOriginalFiles[index].size;
 
@@ -319,7 +323,7 @@ class AXAFileUpload extends LitElement {
         // find the compromised file with same id and add it to array
         for (let j = 0; newCompressedFiles.length > j; j++) {
           if (newCompressedFiles[j].id === file.id) {
-            faultyCompressedFiles.push(newCompressedFiles[j]); // TODO new oder alle?
+            faultyCompressedFiles.push(newCompressedFiles[j]);
           }
         }
       } else {
@@ -354,7 +358,7 @@ class AXAFileUpload extends LitElement {
   ) {
     const { maxNumberOfFiles } = this;
     const numberOfFilesLeftover = Math.max(
-      maxNumberOfFiles - this.files.length,
+      maxNumberOfFiles - this.validOriginalFiles.length,
       0
     );
     const originalFilesLeftover = validOriginalFiles.slice(
@@ -400,16 +404,17 @@ class AXAFileUpload extends LitElement {
       faultyFiles,
       maxNumberOfFiles,
       tooManyFilesStatusText,
+      files,
     } = this;
 
     if (
       numberOfDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
-      faultyFiles.length + this.files.length >= maxNumberOfFiles
+      faultyFiles.length + files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
     }
 
-    this.isFileMaxReached = this.files.length === maxNumberOfFiles;
+    this.isFileMaxReached = files.length === maxNumberOfFiles;
   }
 
   fileOverviewMapping(allCompressedFiles) {
