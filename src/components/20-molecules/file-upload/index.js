@@ -87,12 +87,15 @@ class AXAFileUpload extends LitElement {
     super();
     applyDefaults(this);
 
+    // User gets access to the files over these. The output varies if accessOriginalFiles is set
     this.files = [];
     this.faultyFiles = [];
 
-    this.validCompressedFiles = []; // Used for previews
-    this.faultyCompressedFiles = []; // Used for previews
+    // Used for previews */
+    this.validCompressedFiles = [];
+    this.faultyCompressedFiles = [];
 
+    // Used for calculating the file sizes */
     this.validOriginalFiles = [];
     this.faultyOriginalFiles = [];
 
@@ -207,14 +210,13 @@ class AXAFileUpload extends LitElement {
     } else {
       this.files = this.validCompressedFiles;
       this.faultyFiles = this.faultyCompressedFiles;
-      console.log('files', this.files);
     }
 
     this.handleMaxNumberOfFiles(); // TODO
 
     this.sizeOfAllFilesInBytes -= allOriginalFiles[index].size;
 
-    // All files are deleted -> go back to default screen
+    // If all files were deleted -> go back to default screen
     if (this.files.length + this.faultyFiles.length === 0) {
       this.showFileOverview = false;
       this.sizeOfAllFilesInBytes = 0;
