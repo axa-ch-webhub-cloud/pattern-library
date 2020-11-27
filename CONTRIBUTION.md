@@ -60,8 +60,6 @@ test('should render a button as reactified component', async t => {
 });
 ```
 
-## Unit Testing
-
 ### How-to write and run tests
 
 - `npm run test-jest` Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
