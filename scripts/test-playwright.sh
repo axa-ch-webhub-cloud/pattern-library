@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# npm run test-playwright --config="jest.ui.config.js"
-
 npx jest --config=jest.ui.config.js
 test_result=$?
 
