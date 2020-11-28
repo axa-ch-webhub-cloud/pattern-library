@@ -27,10 +27,12 @@ for x in $ALL_ICONS; do
      ICON_FOLDER_PATH=${PARENT_FOLDER_PATH%/*}
      ICON_NAME=${ICON_FOLDER_PATH##*/}
 
-         if [[ $PARENT_FOLDER_NAME == "materialiconsoutlined" ]]; then
-               ICON_NAME_OUTLINED="${ICON_NAME}_outlined"
-               OPTIMIZED_FILENAME=$(printf '%s\n' "${x//$STRING_TO_REMOVE/$ICON_NAME_OUTLINED}")
-         fi
+      #    uncomment below if outlined icons are needed
+      #    if [[ $PARENT_FOLDER_NAME == "materialiconsoutlined" ]]; then
+      #          ICON_NAME_OUTLINED="${ICON_NAME}_outlined"
+      #          OPTIMIZED_FILENAME=$(printf '%s\n' "${x//$STRING_TO_REMOVE/$ICON_NAME_OUTLINED}")
+      #    fi
+
          if [[ $PARENT_FOLDER_NAME == "materialicons" ]]; then
                OPTIMIZED_FILENAME=$(printf '%s\n' "${x//$STRING_TO_REMOVE/$ICON_NAME}")
          fi
