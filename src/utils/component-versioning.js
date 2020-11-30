@@ -1,6 +1,10 @@
 import { html } from 'lit-element';
 import defineOnce from './define-once';
 
+// constants
+const RESERVED_CHARACTER = '{'; // not allowed in HTML tags or their attributes ...
+// and also not part of static template strings due to ${...} syntax!
+
 // helper functions
 const toKebabCase = dottedVersionString =>
   `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
@@ -9,16 +13,31 @@ const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
 const extractDependencies = componentClass => {
   const { versions, tagName } = componentClass;
-  // extract all dependencies by comparing with master-component tag name
-  const dependencies = Object.keys(versions).filter(name => name !== tagName);
+  // extract all dependencies...
+  const dependencies = Object.keys(versions)
+    // ... by comparing with master-component tag name
+    .filter(name => name !== tagName)
+    // ... and sorting longest-first (e.g. axa-button-link comes before axa-button)
+    .sort((a, b) => b.length - a.length);
   // pair the list of dependency tag names with their versions
   return [dependencies, dependencies.map(_tagName => versions[_tagName])];
 };
 
-const oldTag = (tagName, closing = '') => `<${closing}${tagName}`;
+const oldTag = (tagName, closing = '', openingBracket = '<') =>
+  `${openingBracket}${closing}${tagName}`;
 
+// How to make a new tag? It's tempting to just append the version info.
+// However, we don't want to rewrite tags more than once: given axa-button-link in version 6.3.4
+// and axa-button in version 5.0.9, we DONT'T WANT
+// <axa-button-link =1> <axa-button-link-6-3-4 =2> <axa-button-5-0-9-link-6-3-4.
+
+// So, the simplest solution replaces a rewritten tag in such a way that it does not START
+// like any other tag, using a reserved character '{'. To continue with our example, we might have
+// <axa-button-link =1> {axa-button-link-6-3-4. Then the erroneous rewriting step =2> can no longer match.
+
+// Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
 const newTag = (tagName, aVersion, closing) =>
-  oldTag(versionedTag(tagName, aVersion), closing);
+  oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
 
 // Example: someStrings = ['<div><axa-dropdown .items="','" </axa-dropdown></div>']
 //          aTagname = 'axa-dropdown', aVersion = '7.0.2'
@@ -26,7 +45,7 @@ const newTag = (tagName, aVersion, closing) =>
 // Rewritten as           ['<div><axa-dropdown-7-0-2 .items="','" </axa-dropdown-7-0-2></div>'].
 //
 // Note: this uses the split-join technique to perform global string substitution
-// without needing the special-character escaping necessary
+// without needing the special-character escaping necessary for
 // a reg-exp-based alternative (the latter is marginally faster, but our strings here are short)
 const rewrite = (someStrings, aTagName, aVersion) =>
   someStrings.map(string =>
@@ -101,10 +120,15 @@ const versionedHtml = componentInstance => (strings, ...args) => {
   // extract dependency info by looking at versions of component
   const [tagNames, versions] = extractDependencies(componentClass);
   // rewrite incoming array of static parts of template literals
-  // in such a way that tags of dependent components are versioned
+  // in such a way that tags of dependent components are versioned:
   let newStrings = strings;
+  // 1. rewriting proper, turning tags into versioned ones with funny initial brackets (see newTag(...) above)
   for (let i = 0, n = tagNames.length; i < n; i++) {
     newStrings = rewrite(newStrings, tagNames[i], versions[i]);
+  }
+  // 2. finish rewriting by converting funny initial brackets back to standard ones
+  for (let i = 0, n = newStrings.length; i < n; i++) {
+    newStrings[i] = newStrings[i].replace(RESERVED_CHARACTER, '<');
   }
   // let lit-html see the rewritten static parts together with the
   // unchanged dynamic arg(ument)s
