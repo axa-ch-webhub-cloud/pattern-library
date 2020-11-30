@@ -18,7 +18,7 @@
     "test-lint": "eslint src/",
     "test-jest": "jest --env=jsdom",
     "test-playwright": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 jest --config=jest.ui.config.js",
-    "test-ui": "sh scripts/test-ui-testrunner.sh",
+    "test-ui": "sh scripts/ui-test-runner.sh",
     "test-testcafe": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
     "test-testcafe-headless": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js",

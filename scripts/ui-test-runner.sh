@@ -9,15 +9,28 @@ echo "Running Storybook on address '$TEST_HOST_STORYBOOK_URL' and on port '$TEST
 npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci --quiet > /dev/null 2>&1 &
 npx wait-on $TEST_HOST_STORYBOOK_URL -t 60000
 
-sh ./scripts/test-playwright.sh
+### Start playwright tests
+npx jest --config=jest.ui.config.js
+### End playwright tests
 
-if [ $? = 1 ]; then
+test_status=$?
+
+if [ $test_status = 1 ]; then
     # Kill storybook (cleanup) - By port
     kill -9 $(lsof -t -i:$TEST_HOST_STORYBOOK_PORT -sTCP:LISTEN)
     exit 1;
 fi
 
-sh ./scripts/test-testcafe.sh
+
+### Start testcafe tests
+NUM_CPUS=$(python -c 'import multiprocessing as mp; print(mp.cpu_count())')
+if [ -z "$1" ]
+then
+    npx testcafe -c ${NUM_CPUS} "chrome:headless" -q ./**/ui.test.js
+else
+    npx testcafe -F "${1}" -c ${NUM_CPUS} "chrome:headless" -q ./**/ui.test.js
+fi
+### End testcafe tests
 
 test_status=$?
 
