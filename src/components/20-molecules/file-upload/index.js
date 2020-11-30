@@ -173,9 +173,6 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
-    let clonedOriginalFiles = [];
-    let clonedCompressedFiles = [];
-
     this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
     const allOriginalFiles = this.validOriginalFiles.concat(
@@ -183,23 +180,25 @@ class AXAFileUpload extends LitElement {
     );
 
     if (index >= this.files.length) {
-      // remove a faulty file from file arrays
-      clonedOriginalFiles = [...this.faultyOriginalFiles];
-      clonedOriginalFiles.splice(index - this.validOriginalFiles.length, 1);
-      this.faultyOriginalFiles = clonedOriginalFiles;
+      this.faultyOriginalFiles = this.removeFaultyFileFromArray(
+        index,
+        this.faultyOriginalFiles
+      );
 
-      clonedCompressedFiles = [...this.faultyCompressedFiles];
-      clonedCompressedFiles.splice(index - this.validCompressedFiles.length, 1);
-      this.faultyCompressedFiles = clonedCompressedFiles;
+      this.faultyCompressedFiles = this.removeFaultyFileFromArray(
+        index,
+        this.faultyCompressedFiles
+      );
     } else {
-      // remove a valid file from file arrays
-      clonedOriginalFiles = [...this.validOriginalFiles];
-      clonedOriginalFiles.splice(index, 1);
-      this.validOriginalFiles = clonedOriginalFiles;
+      this.validOriginalFiles = this.removeValidFileFromArray(
+        index,
+        this.validOriginalFiles
+      );
 
-      clonedCompressedFiles = [...this.validCompressedFiles];
-      clonedCompressedFiles.splice(index, 1);
-      this.validCompressedFiles = clonedCompressedFiles;
+      this.validCompressedFiles = this.removeValidFileFromArray(
+        index,
+        this.validCompressedFiles
+      );
 
       if (this.validOriginalFiles.length + 1 === this.maxNumberOfFiles) {
         this.showAddMoreInputFile = true;
@@ -238,6 +237,18 @@ class AXAFileUpload extends LitElement {
     }
 
     this.requestUpdate();
+  }
+
+  removeFaultyFileFromArray(index, faultyFiles) {
+    const clonedFile = [...faultyFiles];
+    clonedFile.splice(index - this.validOriginalFiles.length, 1);
+    return clonedFile;
+  }
+
+  removeValidFileFromArray(index, validFiles) {
+    const clonedFile = [...validFiles];
+    clonedFile.splice(index, 1);
+    return clonedFile;
   }
 
   async addFiles(droppedFiles, removeGlobalMessage) {
