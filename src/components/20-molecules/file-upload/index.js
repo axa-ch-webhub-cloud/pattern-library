@@ -21,6 +21,7 @@ import {
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import compressImages from './utils/imageCompressor';
+import createRefId from '../../../utils/create-ref-id';
 
 const ADD_ICON = svg([AddSvg]);
 const ATTACH_FILE_ICON = svg([Attach_fileSvg]);
@@ -242,9 +243,7 @@ class AXAFileUpload extends LitElement {
   async addFiles(droppedFiles, removeGlobalMessage) {
     // generate id to match orignal files with compressed one if this.accessOriginalFiles is set
     const droppedFilesWithID = droppedFiles.map(file => {
-      file.id = Math.random()
-        .toString(36)
-        .substr(2, 9);
+      file.id = createRefId();
       return file;
     });
 
