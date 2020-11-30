@@ -1,7 +1,5 @@
-## 5.0.0
+## 4.0.7
 
-- BREAKING CHANGE: If you provided `<axa-link>` as child to the component, you
-  now need to adapt the margins yourself.
 - Fixed vertical alignment, in case a button is being used. (#2039)
 - Fixed button size (small now).
 

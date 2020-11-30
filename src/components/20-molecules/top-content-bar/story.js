@@ -41,7 +41,7 @@ export const TopContentBar = () => {
       ${textValue}
       ${link
         ? html`
-            <axa-link style="margin-left:5px">${link}</axa-link>
+            <axa-link>${link}</axa-link>
           `
         : ''}
     </axa-top-content-bar>

@@ -1,8 +1,8 @@
 # Top content bar
 
-Used as top of the page Warning or info box that can show text and have a call to action button.
+Used as top of the page warning or info box that can show text and have a call to action button.
 
-There is also the possibility to add children by yourself. Be sure to set the margins yourself in this case.
+There is also the possibility to add child elements.
 
 ## Usage
 
