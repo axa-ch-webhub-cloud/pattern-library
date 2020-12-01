@@ -2,7 +2,7 @@
 
 - New property `accessOriginalFile` to choose between compromised and original files. #2036
 - Use orignal file size to calculate `maxSizeOfSingleFileKB` and `maxSizeOfAllFilesKB`.
-- BREAKING CHANGE: Remove public property `showFileOverview` and only use it internally.
+- BREAKING CHANGE: Remove property `showFileOverview`.
 
 ## 4.1.0
 
