@@ -8,7 +8,6 @@ import footerSmall from './footer-small';
 import navbar from './navbar';
 import policyFeatures from './policy-features';
 
-
 export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
