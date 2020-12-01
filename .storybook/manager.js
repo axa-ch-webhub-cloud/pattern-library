@@ -3,14 +3,20 @@ import { create } from '@storybook/theming/create';
 import logo from '../src/static/svg/logo-axa.svg';
 
 const UI_STORE = '@storybook/ui/store';
-let uiStore = { layout: { showPanel: false } };
 
-if (localStorage.getItem(UI_STORE)) {
-  uiStore = JSON.parse(localStorage.getItem(UI_STORE));
-  uiStore.layout.showPanel = false;
-}
+const setDefault = storage => {
+  if (storage.getItem(UI_STORE)) {
+    const uiStore = JSON.parse(storage.getItem(UI_STORE));
+    uiStore.layout.showPanel = false;
 
-localStorage.setItem(UI_STORE, JSON.stringify(uiStore));
+    storage.setItem(UI_STORE, JSON.stringify(uiStore));
+  } else {
+    storage.setItem(UI_STORE, '{"layout":{"showPanel":false}}');
+  }
+};
+
+setDefault(localStorage);
+setDefault(sessionStorage);
 
 addons.setConfig({
   theme: create({
