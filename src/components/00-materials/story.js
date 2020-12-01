@@ -62,7 +62,7 @@ export default {
   parameters: {
     readme,
     changelog,
-    codepreview: { disabled: true },
+    options: { showPanel: true },
     layout: 'fullscreen',
   },
 };
