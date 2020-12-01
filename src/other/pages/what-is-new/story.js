@@ -15,7 +15,7 @@ const getFormattedGitCommitMessage = answerJson => {
   ) {
     const formattedMessage = answerJson.items[0].commit.message
       .replace(keyword, '')
-      .replaceAll(' - ', seperator);
+      .replace(/ - /g, seperator);
 
     return formattedMessage;
   }
