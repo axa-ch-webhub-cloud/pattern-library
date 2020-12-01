@@ -63,7 +63,6 @@ export default {
   parameters: {
     readme,
     changelog,
-    options: { showPanel: true },
     layout: 'fullscreen',
   },
 };

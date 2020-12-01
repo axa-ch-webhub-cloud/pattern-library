@@ -14,7 +14,6 @@ export default {
   parameters: {
     readme: { disabled: true },
     changelog: { disabled: true },
-    options: { showPanel: true },
   },
 };
 

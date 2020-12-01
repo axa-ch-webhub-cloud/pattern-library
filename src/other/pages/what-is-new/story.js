@@ -28,12 +28,13 @@ storiesOf('Welcome', module)
   .addParameters({
     decorators: [],
     parameters: {
-      readme: { disabled: true },
       knobs: { disabled: true },
+      readme: { disabled: true },
       changelog: { disabled: true },
       codepreview: { disabled: true },
       a11y: { disabled: true },
       options: { showPanel: false },
+      layout: 'fullscreen',
     },
   })
   .add('What is new', () => {

@@ -52,7 +52,6 @@ storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme,
   changelog,
-  options: { showPanel: true },
 });
 
 storyButton.add('Story', () => {
