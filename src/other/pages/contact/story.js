@@ -1,6 +1,6 @@
 import { html, render } from 'lit-html';
-import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';
+import '../../../components/10-atoms/text';
 import styles from './index.scss';
 
 export default {
@@ -8,6 +8,7 @@ export default {
   decorators: [],
   parameters: {
     knobs: { disabled: true },
+    readme: { disabled: true },
     changelog: { disabled: true },
     codepreview: { disabled: true },
     a11y: { disabled: true },

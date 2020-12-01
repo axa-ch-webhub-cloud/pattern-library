@@ -1,18 +1,20 @@
-import { html, render } from 'lit-html';
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-
-import '../../../../components/10-atoms/text';
+import { html, render } from 'lit-html';
 import '../../../../components/10-atoms/heading';
+import '../../../../components/10-atoms/text';
 import commercialHeroBanner from './commercial-hero-banner';
 import footer from './footer';
-import policyFeatures from './policy-features';
-import navbar from './navbar';
 import footerSmall from './footer-small';
+import navbar from './navbar';
+import policyFeatures from './policy-features';
+
 
 export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
   parameters: {
+    readme: { disabled: true },
+    changelog: { disabled: true },
     options: { showPanel: true },
   },
 };

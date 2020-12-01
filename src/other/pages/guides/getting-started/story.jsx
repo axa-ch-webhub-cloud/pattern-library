@@ -12,6 +12,7 @@ export default {
   decorators: [],
   parameters: {
     knobs: { disabled: true },
+    readme: { disabled: true },
     changelog: { disabled: true },
     codepreview: { disabled: true },
     a11y: { disabled: true },

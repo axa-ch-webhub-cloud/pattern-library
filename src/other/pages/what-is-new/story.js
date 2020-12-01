@@ -28,6 +28,7 @@ storiesOf('Welcome', module)
   .addParameters({
     decorators: [],
     parameters: {
+      readme: { disabled: true },
       knobs: { disabled: true },
       changelog: { disabled: true },
       codepreview: { disabled: true },
