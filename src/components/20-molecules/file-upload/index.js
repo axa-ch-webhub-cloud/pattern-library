@@ -324,25 +324,17 @@ class AXAFileUpload extends LitElement {
       const file = newOriginalFiles[i];
       const fileSize = file.size;
       if (fileSize > maxSizeOfSingleFileInBytes) {
-        // add original file to array
         faultyOriginalFiles.push(file);
 
-        // find the compromised file with same id and add it to array
-        for (let j = 0; newCompressedFiles.length > j; j++) {
-          if (newCompressedFiles[j].id === file.id) {
-            faultyCompressedFiles.push(newCompressedFiles[j]);
-          }
-        }
+        faultyCompressedFiles.push(
+          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
+        );
       } else {
-        // add original file to array
         validOriginalFiles.push(file);
 
-        // find the compromised file with same id and add it to array
-        for (let j = 0; newCompressedFiles.length > j; j++) {
-          if (newCompressedFiles[j].id === file.id) {
-            validCompressedFiles.push(newCompressedFiles[j]);
-          }
-        }
+        validCompressedFiles.push(
+          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
+        );
       }
 
       this.sizeOfAllFilesInBytes += fileSize;
@@ -355,6 +347,15 @@ class AXAFileUpload extends LitElement {
       faultyOriginalFiles,
       faultyCompressedFiles
     );
+  }
+
+  findCompromisedFileWithMatchingID(newCompressedFiles, file) {
+    for (let j = 0; newCompressedFiles.length > j; j++) {
+      if (newCompressedFiles[j].id === file.id) {
+        return newCompressedFiles[j];
+      }
+    }
+    return undefined;
   }
 
   addFilesToSpecificArray(
