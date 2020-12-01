@@ -128,7 +128,7 @@ const versionedHtml = componentInstance => (strings, ...args) => {
   }
   // 2. finish rewriting by converting funny initial brackets back to standard ones
   for (let i = 0, n = newStrings.length; i < n; i++) {
-    newStrings[i] = newStrings[i].replace(RESERVED_CHARACTER, '<');
+    newStrings[i] = newStrings[i].split(RESERVED_CHARACTER).join('<');
   }
   // let lit-html see the rewritten static parts together with the
   // unchanged dynamic arg(ument)s
