@@ -173,6 +173,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
+    let spliceStart = 0;
     this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
     const allOriginalFiles = this.validOriginalFiles.concat(
@@ -180,26 +181,30 @@ class AXAFileUpload extends LitElement {
     );
 
     if (index >= this.files.length) {
+      spliceStart = index - this.validOriginalFiles.length;
       this.faultyOriginalFiles = this.removeValidOrFaultyFileFromArray(
         index,
-        this.faultyOriginalFiles
+        this.faultyOriginalFiles,
+        spliceStart
       );
 
       this.faultyCompressedFiles = this.removeValidOrFaultyFileFromArray(
         index,
-        this.faultyCompressedFiles
+        this.faultyCompressedFiles,
+        spliceStart
       );
     } else {
+      spliceStart = index;
       this.validOriginalFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.validOriginalFiles,
-        true
+        spliceStart
       );
 
       this.validCompressedFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.validCompressedFiles,
-        true
+        spliceStart
       );
 
       if (this.validOriginalFiles.length + 1 === this.maxNumberOfFiles) {
@@ -241,13 +246,9 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
-  removeValidOrFaultyFileFromArray(index, files, isValid) {
+  removeValidOrFaultyFileFromArray(index, files, spliceStart) {
     const clonedFile = [...files];
-    if (isValid) {
-      clonedFile.splice(index, 1);
-    } else {
-      clonedFile.splice(index - this.validOriginalFiles.length, 1);
-    }
+    clonedFile.splice(spliceStart, 1);
     return clonedFile;
   }
 
