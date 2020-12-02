@@ -30,24 +30,6 @@ const oldTag = (tagName, closing = '', openingBracket = '<') =>
 // However, we don't want to rewrite tags more than once: given axa-button-link in version 6.3.4
 // and axa-button in version 5.0.9, we DONT'T WANT
 // <axa-button-link =1> <axa-button-link-6-3-4 =2> <axa-button-5-0-9-link-6-3-4.
-<<<<<<< HEAD
-
-// So, the simplest solution replaces a rewritten tag in such a way that it does not START
-// like any other tag, using a reserved character '{'. To continue with our example, we might have
-// <axa-button-link =1> {axa-button-link-6-3-4. Then the erroneous rewriting step =2> can no longer match.
-
-// Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
-const newTag = (tagName, aVersion, closing) =>
-<<<<<<< HEAD
-<<<<<<< HEAD
-  oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
-=======
-  oldTag(versionedTag(tagName, aVersion) + ' ', closing);
->>>>>>> fix component versioning the ugly way
-=======
-  oldTag(`${versionedTag(tagName, aVersion)} `, closing);
->>>>>>> improve documentation and eslint fixes
-=======
 
 // So, the simplest solution replaces a rewritten tag in such a way that it does not START
 // like any other tag, using a reserved character '{'. To continue with our example, we might have
@@ -56,39 +38,17 @@ const newTag = (tagName, aVersion, closing) =>
 // Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
 const newTag = (tagName, aVersion, closing) =>
   oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
->>>>>>> reset component versioning to develop state
 
 // Example: someStrings = ['<div><axa-dropdown .items="','" </axa-dropdown></div>']
 //          aTagname = 'axa-dropdown', aVersion = '7.0.2'
 //
 // Rewritten as           ['<div><axa-dropdown-7-0-2 .items="','" </axa-dropdown-7-0-2></div>'].
 //
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> reset component versioning to develop state
 // Note: this uses the split-join technique to perform global string substitution
 // without needing the special-character escaping necessary for
 // a reg-exp-based alternative (the latter is marginally faster, but our strings here are short)
 const rewrite = (someStrings, aTagName, aVersion) =>
   someStrings.map(string =>
-<<<<<<< HEAD
-=======
-// The first character after each tag name (e.g. after "<axa-button-link") can be either a line
-// break or a whitespace. We also need to consider that charater, because "<axa-button" is part
-// of "<axa-button-link" (which was a prod issue) and generated a version like this: "<axa-button-6.0.5-link"
-// Reason: It was not made sure that the tagname is "finished" before, just if it is contained.
-//
-// Note: This uses the split-join technique to perform global string substitution without needing the
-// special-character escaping necessary a reg-exp-based alternative (the latter is marginally faster,
-// but our strings here are short)
-const rewriteTagsWithVersion = (someStrings, aTagName, aVersion) => {
-  const tagNameWithAddedWhitespace = `${aTagName} `;
-  const versionWithAddedWhitespace = `${aVersion} `;
-  return someStrings.map(string =>
->>>>>>> improve documentation and eslint fixes
-=======
->>>>>>> reset component versioning to develop state
     string
       .split(oldTag(aTagName))
       .join(newTag(aTagName, aVersion))
@@ -165,10 +125,6 @@ const versionedHtml = componentInstance => (strings, ...args) => {
   // 1. rewriting proper, turning tags into versioned ones with funny initial brackets (see newTag(...) above)
   for (let i = 0, n = tagNames.length; i < n; i++) {
     newStrings = rewrite(newStrings, tagNames[i], versions[i]);
-  }
-  // 2. finish rewriting by converting funny initial brackets back to standard ones
-  for (let i = 0, n = newStrings.length; i < n; i++) {
-    newStrings[i] = newStrings[i].split(RESERVED_CHARACTER).join('<');
   }
   // 2. finish rewriting by converting funny initial brackets back to standard ones
   for (let i = 0, n = newStrings.length; i < n; i++) {
