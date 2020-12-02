@@ -75,7 +75,7 @@ storiesOf('Examples/File Upload/React', module)
       'headerText',
       'The following files are being transferred:'
     );
-    const accessOriginalFiles = boolean('accessOriginalFiles', false);
+    const preventFileCompression = boolean('preventFileCompression', false);
 
     const div = document.createElement('div');
     ReactDOM.render(
@@ -87,7 +87,7 @@ storiesOf('Examples/File Upload/React', module)
           maxNumberOfFiles={maxNumberOfFiles}
           deleteStatusText={deleteStatusText}
           addStatusText={addStatusText}
-          accessOriginalFiles={accessOriginalFiles}
+          preventFileCompression={preventFileCompression}
           fileTooBigStatusText={fileTooBigStatusText}
           filesTooBigStatusText={filesTooBigStatusText}
           tooManyFilesStatusText={tooManyFilesStatusText}

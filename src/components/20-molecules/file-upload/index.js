@@ -53,7 +53,7 @@ class AXAFileUpload extends LitElement {
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
       maxNumberOfFiles: { type: Number, defaultValue: 10 },
-      accessOriginalFiles: { type: Boolean },
+      preventFileCompression: { type: Boolean },
       icon: { type: String, defaultValue: 'cloud-upload' },
       deleteStatusText: { type: String, defaultValue: 'Delete' },
       addStatusText: { type: String, defaultValue: 'Add more' },
@@ -88,7 +88,7 @@ class AXAFileUpload extends LitElement {
     super();
     applyDefaults(this);
 
-    // User gets access to the files over these. The output varies if accessOriginalFiles is set
+    // User gets access to the files over these. The output varies if preventFileCompression is set
     this.files = [];
     this.faultyFiles = [];
 
@@ -212,7 +212,7 @@ class AXAFileUpload extends LitElement {
       }
     }
 
-    if (this.accessOriginalFiles) {
+    if (this.preventFileCompression) {
       this.files = this.validOriginalFiles;
       this.faultyFiles = this.faultyOriginalFiles;
     } else {
@@ -253,7 +253,7 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles, removeGlobalMessage) {
-    // generate id to match orignal files with compressed one if this.accessOriginalFiles is set
+    // generate id to match orignal files with compressed one if this.preventFileCompression is set
     const droppedFilesWithID = droppedFiles.map(file => {
       file.id = createRefId();
       return file;
@@ -379,7 +379,7 @@ class AXAFileUpload extends LitElement {
       numberOfFilesLeftover
     );
 
-    if (this.accessOriginalFiles) {
+    if (this.preventFileCompression) {
       this.files = this.files.concat(originalFilesLeftover);
       // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyOriginalFiles);
@@ -431,7 +431,7 @@ class AXAFileUpload extends LitElement {
       deleteStatusText,
       fileTooBigStatusText,
       faultyCompressedFiles,
-      accessOriginalFiles,
+      preventFileCompression,
     } = this;
     const urlCreator = window.URL || window.webkitURL;
 
@@ -452,7 +452,7 @@ class AXAFileUpload extends LitElement {
           break;
         }
       }
-      const fileName = accessOriginalFiles
+      const fileName = preventFileCompression
         ? allOriginalFiles[index].name
         : file.name;
       const isNonImageFile = file.type.indexOf('application') > -1;

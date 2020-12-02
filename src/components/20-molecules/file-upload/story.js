@@ -71,7 +71,7 @@ export const FileUpload = () => {
     'headerText',
     'The following files are being transferred:'
   );
-  const accessOriginalFiles = boolean('accessOriginalFiles', false);
+  const preventFileCompression = boolean('preventFileCompression', false);
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -84,7 +84,7 @@ export const FileUpload = () => {
         deleteStatusText="${deleteStatusText}"
         addStatusText="${addStatusText}"
         fileTooBigStatusText="${fileTooBigStatusText}"
-        ?accessOriginalFiles="${accessOriginalFiles}"
+        ?preventFileCompression="${preventFileCompression}"
         filesTooBigStatusText="${filesTooBigStatusText}"
         tooManyFilesStatusText="${tooManyFilesStatusText}"
         orText="${orText}"
