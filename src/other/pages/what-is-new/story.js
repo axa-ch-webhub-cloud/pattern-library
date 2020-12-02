@@ -7,15 +7,19 @@ import styles from './index.scss';
 
 const getFormattedGitCommitMessage = answerJson => {
   const keyword = 'Publish\n\n - ';
-  for (let i = 0; i < answerJson.items.length; ++i) {
-    if (answerJson.items[0].commit.message.startsWith(keyword)) {
-      const formattedMessage = answerJson.items[0].commit.message.replace(
-        keyword,
-        ''
-      );
-      return formattedMessage;
-    }
+  const seperator = '<br>';
+
+  if (
+    answerJson.items.length > 0 &&
+    answerJson.items[0].commit.message.startsWith(keyword)
+  ) {
+    const formattedMessage = answerJson.items[0].commit.message
+      .replace(keyword, '')
+      .replace(/ - /g, seperator);
+
+    return formattedMessage;
   }
+
   return '';
 };
 
