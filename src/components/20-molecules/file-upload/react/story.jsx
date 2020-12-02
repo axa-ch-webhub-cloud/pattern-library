@@ -1,5 +1,11 @@
 /* global document */
-import { number, select, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  number,
+  select,
+  text,
+  boolean,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -69,6 +75,7 @@ storiesOf('Examples/File Upload/React', module)
       'headerText',
       'The following files are being transferred:'
     );
+    const preventFileCompression = boolean('preventFileCompression', false);
 
     const div = document.createElement('div');
     ReactDOM.render(
@@ -80,6 +87,7 @@ storiesOf('Examples/File Upload/React', module)
           maxNumberOfFiles={maxNumberOfFiles}
           deleteStatusText={deleteStatusText}
           addStatusText={addStatusText}
+          preventFileCompression={preventFileCompression}
           fileTooBigStatusText={fileTooBigStatusText}
           filesTooBigStatusText={filesTooBigStatusText}
           tooManyFilesStatusText={tooManyFilesStatusText}

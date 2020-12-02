@@ -182,7 +182,7 @@ test('should exceed maximum size of single PDF file', async t => {
 });
 
 fixture('File upload - maxNumberOfFiles prop').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=100&knob-maxSizeOfAllFilesKB=500&knob-maxNumberOfFiles=1&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
+  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=1&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
 test('should remove addMoreInputFile', async t => {
   const $inputFileInputElem = await Selector(() =>
@@ -217,7 +217,7 @@ test('should exceed maximum number of files', async t => {
   ).find('.js-file-upload__img-figure');
 
   await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
-  await t.expect(await $figureElems.count).eql(2);
+  await t.expect(await $figureElems.count).eql(1);
 
   const $errorWrapper = await Selector(() =>
     document
@@ -285,4 +285,31 @@ test('should throw an event if a file was removed from the list', async t => {
   await t.click($firstFile);
 
   await t.expect($eventElement.textContent).contains('File removed on');
+});
+
+fixture('Access original Files').page(
+  `${host}/iframe.html?id=components-file-upload--file-upload&knob-Width=455px&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1051&knob-maxSizeOfAllFilesKB=7411&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-wrongFileTypeText=Your%20file%20does%20not%20correspond%20with%20our%20allowed%20file-types&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred%3A&knob-preventFileCompression=true&viewMode=story`
+);
+
+test(`shouldn't convert .png file to .jpg`, async t => {
+  const $inputFileInputElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__input .a-input-file__input')
+  );
+  await t.expect($inputFileInputElem.exists).ok();
+
+  await t.setFilesToUpload($inputFileInputElem, validFiles[1]); // files[1] is a .png file
+
+  const $figcaptionElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector(
+        '.js-file-upload__img-figure .js-file-upload__img-caption'
+      )
+  );
+
+  await t
+    .expect((await $figcaptionElem.getAttribute('title')) === 'test.png')
+    .ok();
 });

@@ -1,3 +1,9 @@
+## 5.0.0
+
+- New property `preventFileCompression` let's you access the original and uncompressed files. #2036
+- Use orignal file size to calculate `maxSizeOfSingleFileKB` and `maxSizeOfAllFilesKB`.
+- BREAKING CHANGE: Remove property `showFileOverview`.
+
 ## 4.1.0
 
 - Added function callbacks for `onFileDrop` and `onFileRemove` events.

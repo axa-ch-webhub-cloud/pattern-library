@@ -123,10 +123,6 @@ The attribute `maxSizeOfAllFilesKB` specifies the maximal size all compressed fi
 
 The attribute `maxNumberOfFiles` specifies the maximum number of files. Every File that is over the limit will not be displayed.
 
-### showFileOverview
-
-The attribute `showFileOverview` turns to the value true as soon as one file is selected. It turns false again when all files are removed through the user.
-
 ### icon
 
 The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
@@ -163,6 +159,10 @@ The attribute `orText` specifies the orange text in the dropzone.
 ### wrongFileTypeStatusText
 
 The attribute `wrongFileTypeStatusText` specifies the global error text, when a file without a valid file-type is dropped.
+
+### preventFileCompression
+
+The boolean attribute provides to user with the orignal files. If set to `false` the user receives compromised images and converted files.
 
 ### onFileDrop
 

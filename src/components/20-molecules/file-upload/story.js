@@ -1,4 +1,10 @@
-import { number, select, text, withKnobs } from '@storybook/addon-knobs';
+import {
+  number,
+  select,
+  text,
+  boolean,
+  withKnobs,
+} from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../../10-atoms/icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -65,6 +71,7 @@ export const FileUpload = () => {
     'headerText',
     'The following files are being transferred:'
   );
+  const preventFileCompression = boolean('preventFileCompression', false);
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -77,6 +84,7 @@ export const FileUpload = () => {
         deleteStatusText="${deleteStatusText}"
         addStatusText="${addStatusText}"
         fileTooBigStatusText="${fileTooBigStatusText}"
+        ?preventFileCompression="${preventFileCompression}"
         filesTooBigStatusText="${filesTooBigStatusText}"
         tooManyFilesStatusText="${tooManyFilesStatusText}"
         orText="${orText}"
