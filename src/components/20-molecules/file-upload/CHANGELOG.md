@@ -1,6 +1,6 @@
 ## 5.0.0
 
-- New property `accessOriginalFiles` to choose between compromised and original files. #2036
+- New property `accessOriginalFiles` let's you access the original and uncompressed files. #2036
 - Use orignal file size to calculate `maxSizeOfSingleFileKB` and `maxSizeOfAllFilesKB`.
 - BREAKING CHANGE: Remove property `showFileOverview`.
 
