@@ -72,7 +72,7 @@ If no attribute `href` is set, it will render an `axa-button` and the `onClick` 
 
 ### href
 
-The attribute `href` specifies the link, that should be opened by pressing on the button with the text defined in `ctatext`. This is mainly for semantic reasons, you still need to forward the user to the new location the user yourself, by listening to the `onClick` callback. Just providing the `href` attribute will not do anything by itself.
+The attribute `href` specifies the link, that should be opened by pressing on the button with the text defined in `ctatext`. This is mainly for semantic reasons, you still need to forward the user to the new location, by listening to the `onClick` callback. Just providing the `href` attribute will not do anything by itself.
 
 ### onClick
 

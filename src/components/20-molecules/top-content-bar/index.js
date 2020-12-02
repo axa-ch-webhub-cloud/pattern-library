@@ -15,7 +15,7 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 /**
- *  We need InlineStyles to give childelements some margins.
+ *  We need InlineStyles to give children some margins.
  */
 class AXATopContentBar extends InlineStyles {
   static get tagName() {
