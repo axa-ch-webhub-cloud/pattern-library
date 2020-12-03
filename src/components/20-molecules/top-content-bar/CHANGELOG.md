@@ -1,3 +1,8 @@
+## 4.0.7
+
+- Fixed vertical alignment, in case a button is being used. (#2039)
+- Fixed button size (small now).
+
 ## 3.2.1
 
 - Fix: prevent duplicate style attachment. (#1727)

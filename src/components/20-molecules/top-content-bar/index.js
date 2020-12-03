@@ -1,9 +1,11 @@
-import { LitElement, css, unsafeCSS } from 'lit-element';
+import { css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';
 import AXAButton from '@axa-ch/button';
 import AXAButtonLink from '@axa-ch/button-link';
+import InlineStyles from '../../../utils/inline-styles';
+import childStyles from './child.scss';
 
 import {
   defineVersioned,
@@ -12,7 +14,10 @@ import {
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
-class AXATopContentBar extends LitElement {
+/**
+ *  We need InlineStyles to give children some margins.
+ */
+class AXATopContentBar extends InlineStyles {
   static get tagName() {
     return 'axa-top-content-bar';
   }
@@ -33,6 +38,10 @@ class AXATopContentBar extends LitElement {
     };
   }
 
+  static get childStyles() {
+    return childStyles;
+  }
+
   constructor() {
     super();
     applyDefaults(this);
@@ -46,6 +55,7 @@ class AXATopContentBar extends LitElement {
   }
 
   firstUpdated() {
+    this.inlineStyles('childStyles');
     const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
     links.forEach(link => {
       link.setAttribute('variant', 'hyperlink-white-underline');
@@ -68,6 +78,7 @@ class AXATopContentBar extends LitElement {
             }
           }}"
           variant="inverted"
+          size="small"
         >
           ${ctatext}
         </axa-button-link>
@@ -83,6 +94,7 @@ class AXATopContentBar extends LitElement {
             }
           }}"
           variant="inverted"
+          size="small"
         >
           ${ctatext}
         </axa-button>
@@ -104,8 +116,10 @@ class AXATopContentBar extends LitElement {
       <article class="m-top-content-bar">
         <div class="m-top-content-bar__container ${classMap(classes)}">
           <axa-container class="m-top-content-bar__container-component">
-            <span><slot></slot></span>
-            ${btnHtml}
+            <div class="m-top-content-bar__children">
+              <slot></slot>
+              ${btnHtml}
+            </div>
           </axa-container>
         </div>
       </article>

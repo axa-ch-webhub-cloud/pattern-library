@@ -31,6 +31,31 @@
       }
     }
   }
+
+  &__children {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+
+    & > * {
+      padding: 5px 0 0 0;
+    }
+
+    @include breakpoint($mediaquery-md-up) {
+      flex-direction: row;
+      padding: 0;
+
+      & > * {
+        padding: 0;
+      }
+    }
+
+    .m-top-content-bar__button-link,
+    .m-top-content-bar__button {
+      margin-left: 10px;
+    }
+  }
 }
 
 

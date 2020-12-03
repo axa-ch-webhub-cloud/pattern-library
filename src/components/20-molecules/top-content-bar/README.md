@@ -1,6 +1,8 @@
 # Top content bar
 
-Used as top of the page Warning or info box that can show text and have a call to action button
+Used as top of the page warning or info box that can show text and have a call to action button.
+
+There is also the possibility to add child elements.
 
 ## Usage
 
@@ -66,11 +68,11 @@ Import the top-content-bar-defining script and use a top-content-bar like this:
 ### ctatext
 
 The attribute `ctatext` specifies the text displayed on the button.
-If no attribute `href` is set, it will render a `axa-button` and only onClick callback will work. If ctatext is omitted, no button will be shown.
+If no attribute `href` is set, it will render an `axa-button` and the `onClick` callback will trigger upon click. If `ctatext` is omitted, no button will be shown.
 
 ### href
 
-The attribute `href` specifies the link that should be opened by pressing on the button with text defined in `ctatext`.
+The attribute `href` specifies the link, that should be opened by pressing on the button with the text defined in `ctatext`. This is mainly for semantic reasons, you still need to forward the user to the new location, by listening to the `onClick` callback. Just providing the `href` attribute will not do anything by itself.
 
 ### onClick
 
