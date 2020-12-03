@@ -20,7 +20,6 @@ mkdir -p $ICON_DIR
 (IFS='
 '
 for x in $ALL_ICONS; do
-     # echo "Copy file: $x"
      PARENT_FOLDER_PATH=${x%/*}
      PARENT_FOLDER_NAME=${PARENT_FOLDER_PATH##*/}
      ICON_FOLDER_PATH=${PARENT_FOLDER_PATH%/*}
@@ -38,6 +37,4 @@ for x in $ALL_ICONS; do
 
      cp -f $x $OPTIMIZED_FILENAME
      mv -v $OPTIMIZED_FILENAME $ICON_DIR
-     # cp -f $OPTIMIZED_FILENAME $ICON_DIR
-     # mv -v $x $ICON_DIR
 done)
