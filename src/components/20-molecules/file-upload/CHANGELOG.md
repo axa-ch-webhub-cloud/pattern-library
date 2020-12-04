@@ -1,3 +1,8 @@
+## 5.0.1
+
+- Fixes jumps in the UI, when the user hovers over a file to delete it.
+- The error message now appears in the title attribute.
+
 ## 5.0.0
 
 - New property `preventFileCompression` let's you access the original and uncompressed files. #2036
