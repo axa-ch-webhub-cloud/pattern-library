@@ -9,6 +9,7 @@ export default {
   parameters: {
     readme,
     changelog,
+    controls: { disabled: true },
   },
 };
 

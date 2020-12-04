@@ -1,12 +1,4 @@
 /* global document */
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
@@ -47,23 +39,23 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButton = storiesOf('Examples/Button/React', module);
-storyButton.addDecorator(withKnobs);
-storyButton.addParameters({
-  readme,
-  changelog,
-  options: { showPanel: true },
-});
+export default {
+  title: 'Examples/Button/React',
+  parameters: {
+    readme,
+    changelog,
+  },
+};
 
-storyButton.add('Story', () => {
-  const buttonText = text('text', 'Calculate Premium');
-  const variants = radios('variant', variantOptions, '');
-  const sizes = radios('size', sizeOptions, '');
-  const icons = select('icon', iconList, '');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-  const types = radios('types', typesOptions, 'button');
-
+export const Story = ({
+  buttonText,
+  variants,
+  sizes,
+  icons,
+  motionOff,
+  disabled,
+  types,
+}) => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
@@ -83,4 +75,36 @@ storyButton.add('Story', () => {
   );
 
   return wrapper;
-});
+};
+
+Story.args = {
+  buttonText: 'Calculate Premium',
+  variants: '',
+  sizes: '',
+  icons: '',
+  motionOff: false,
+  disabled: false,
+  types: 'button',
+};
+
+Story.argTypes = {
+  buttonText: {
+    name: 'set button content',
+  },
+  variants: {
+    name: 'variant',
+    control: { type: 'radio', options: variantOptions },
+  },
+  sizes: {
+    name: 'size',
+    control: { type: 'radio', options: sizeOptions },
+  },
+  icons: {
+    name: 'icon',
+    control: { type: 'select', options: iconList },
+  },
+  types: {
+    name: 'type',
+    control: { type: 'select', options: typesOptions },
+  },
+};
