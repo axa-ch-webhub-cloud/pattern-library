@@ -1,4 +1,3 @@
-import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -12,7 +11,7 @@ const variantOptions = {
 
 export default {
   title: 'Components/Top Content Bar',
-  decorators: [withNoBorder, withKnobs],
+  decorators: [withNoBorder],
 
   parameters: {
     readme,
@@ -20,17 +19,8 @@ export default {
   },
 };
 
-export const TopContentBar = () => {
+export const TopContentBar = ({ ctatext, variant, href, textValue, link }) => {
   const wrapper = document.createElement('div');
-
-  const ctatext = text('ctatext', '');
-  const variant = select('variant', variantOptions, '');
-  const href = text('href', '');
-  const textValue = text(
-    'Text',
-    'Unidentified flying object detected in your region. People are panicking. Stay calm!'
-  );
-  const link = text('Add axa-link', '');
 
   const template = html`
     <axa-top-content-bar
@@ -49,4 +39,16 @@ export const TopContentBar = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+TopContentBar.args = {
+  ctatext: '',
+  variant: '',
+  href: '',
+  textValue:
+    'Unidentified flying object detected in your region. People are panicking. Stay calm!', // TODO set description an label: not a real attribte
+  link: '', // TODO set description an label: not a real attribte
+};
+
+TopContentBar.argTypes = {
+  variant: { control: { type: 'radio', options: variantOptions } },
 };
