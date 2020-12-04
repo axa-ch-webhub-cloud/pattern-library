@@ -1,11 +1,3 @@
-import {
-  boolean,
-  number,
-  object,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -23,37 +15,31 @@ const localeOptions = {
 
 export default {
   title: 'Components/Datepicker',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Datepicker = () => {
-  const inputfield = boolean('inputfield', false);
-  const locale = select('locale', localeOptions, 'de-CH');
-  const year = number('year', 2020);
-  const month = number('month', 4);
-  const day = number('day', 22);
-  const allowedYears = object('allowedyears', [
-    '1971-2000',
-    2012,
-    2014,
-    '2018-2022',
-  ]);
-  const disabled = boolean('disabled', false);
-  const autofocus = boolean('autofocus', false);
-  const checkMark = boolean('checkMark', false);
-  const label = text('label', '');
-  const monthtitle = text('monthtitle', 'Choose Month');
-  const yeartitle = text('yeartitle', 'Choose Year');
-  const invaliddatetext = text('invaliddatetext', 'Invalid date');
-  const invalid = boolean('invalid', false);
-  const placeholder = text('placeholder', 'Please select a date');
-  const marginTop = number('margin-top', 0);
-  const width = text('width (not an attribute)', '');
-
+export const Datepicker = ({
+  inputfield,
+  locale,
+  year,
+  month,
+  day,
+  allowedYears,
+  disabled,
+  autofocus,
+  checkMark,
+  label,
+  monthtitle,
+  yeartitle,
+  invaliddatetext,
+  invalid,
+  placeholder,
+  width,
+  marginTop,
+}) => {
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -88,4 +74,27 @@ export const Datepicker = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Datepicker.args = {
+  inputfield: false,
+  locale: 'de-CH',
+  year: 2020,
+  month: 4,
+  day: 20,
+  allowedYears: ['1971-2000', 2012, 2014, '2018-2022'],
+  disabled: false,
+  autofocus: false,
+  checkMark: false,
+  label: '',
+  monthtitle: 'Choose month',
+  yeartitle: 'Choose year',
+  invaliddatetext: 'Invalid date',
+  invalid: false,
+  placeholder: 'Please select a date',
+  width: '',
+  marginTop: 0,
+};
+
+Datepicker.argTypes = {
+  locale: { control: { type: 'select', options: localeOptions } },
 };
