@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
-import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -9,49 +8,21 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Policy Features',
-  decorators: [withKnobs, withNoBorder],
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const PolicyFeatures = () => {
-  const variants = select(
-    'variant',
-    STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
-    '',
-    'axa-policy-features'
-  );
-  const title = text(
-    'title',
-    'A 5 star car insurance with affordable premium services',
-    'axa-policy-features'
-  );
-
-  // props of axa-policy-features-item
-  const itemTitleRadio = radios(
-    'Show title?',
-    { yes: 'y', no: 'n' },
-    'y',
-    'axa-policy-features-item'
-  );
-  const itemTitle = text(
-    'title (of item)',
-    'Get Discount',
-    'axa-policy-features-item'
-  );
-  const itemIconUrl = text(
-    'icon - load svg icon from this url instead:',
-    '',
-    'axa-policy-features-item'
-  );
-  const itemDescription = text(
-    'description',
-    'A 5 star car insurance with affordable premium services',
-    'axa-policy-features-item'
-  );
-
+export const PolicyFeatures = ({
+  variants,
+  title,
+  itemTitleRadio,
+  itemTitle,
+  itemIconUrl,
+  itemDescription,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-policy-features title="${title}" variant="${variants}">
@@ -80,4 +51,25 @@ export const PolicyFeatures = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+PolicyFeatures.args = {
+  variants: '',
+  title: 'A 5 star car insurance with affordable premium services',
+  // TODO set props of axa-policy-features-item in separat tab like on prop
+  itemTitleRadio: 'y', // TODO set description 'Show title?'
+  itemTitle: 'Get Discount', // TODO set description title (of item)
+  itemIconUrl: '', // TODO icon -set descriptionload svg icon from this url instead:
+  itemDescription: 'A 5 star car insurance with affordable premium services',
+};
+
+PolicyFeatures.argTypes = {
+  variants: {
+    control: {
+      type: 'select',
+      options: STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
+    },
+  },
+  itemTitleRadio: {
+    control: { type: 'radio', options: { yes: 'y', no: 'n' } },
+  },
 };
