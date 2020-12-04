@@ -1,4 +1,3 @@
-import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -7,24 +6,21 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Testimonials',
-  decorators: [withKnobs, withNoBorder],
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Testimonials = () => {
-  const title = text('title', 'Customer Reviews');
-  const subtitle = text(
-    'Text',
-    'AXA works hard to provide the best service possible to its customers.'
-  );
-  const autorotatedisabled = boolean('autorotatedisabled', false);
-  const autorotatetime = number('autorotatetime', 5000);
-  const keysenabled = boolean('keysenabled', true);
-  const showallinline = boolean('showallinline', false);
-
+export const Testimonials = ({
+  title,
+  subtitle,
+  autorotatedisabled,
+  autorotatetime,
+  keysenabled,
+  showallinline,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-testimonials
@@ -71,4 +67,13 @@ export const Testimonials = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Testimonials.args = {
+  title: 'Customer Reviews',
+  subtitle:
+    'AXA works hard to provide the best service possible to its customers.',
+  autorotatedisabled: false,
+  autorotatetime: 5000,
+  keysenabled: true,
+  showallinline: false,
 };
