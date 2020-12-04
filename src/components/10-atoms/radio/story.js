@@ -1,7 +1,6 @@
 /* global document */
 /* eslint-disable import/no-extraneous-dependencies */
-import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
+import { CarSvg, SailBoatSvg, PlaneSvg } from '@axa-ch/materials/images';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -9,24 +8,23 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Radio',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Radio = () => {
+export const Radio = ({
+  label,
+  checked,
+  focus,
+  disabled,
+  button,
+  icon,
+  noGap,
+  noAutoWidth,
+}) => {
   const wrapper = document.createElement('div');
-
-  const label = text('label*', 'car');
-  const checked = boolean('checked*', false);
-  const focus = boolean('focus*', false);
-  const disabled = boolean('disabled', false);
-  const button = boolean('button', false);
-  const icon = boolean('Icon', false);
-  const noGap = boolean('noGap', false);
-  const noAutoWidth = boolean('noAutoWidth', false);
 
   const template = html`
     <axa-text variant="size-3">
@@ -75,4 +73,14 @@ export const Radio = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Radio.args = {
+  label: 'car', // TODO: set description to: only sets first element of radios & remove text on line 29
+  checked: false, // TODO: set description to: only sets first element of radios
+  focus: false, // TODO: set description to: only sets first element of radios
+  disabled: false,
+  button: false,
+  icon: false,
+  noGap: false,
+  noAutoWidth: false,
 };
