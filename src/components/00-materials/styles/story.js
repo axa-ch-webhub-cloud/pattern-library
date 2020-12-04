@@ -172,3 +172,8 @@ export const Colors = ({ darkmode }) => {
 Colors.args = {
   darkmode: false,
 };
+Colors.argTypes = {
+  darkmode: {
+    name: 'set darkmode',
+  },
+};

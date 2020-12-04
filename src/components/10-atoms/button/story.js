@@ -95,7 +95,16 @@ Button.argTypes = {
     name: 'variant',
     control: { type: 'radio', options: variantOptions },
   },
-  sizes: { name: 'size', control: { type: 'radio', options: sizeOptions } },
-  icons: { name: 'icon', control: { type: 'select', options: iconList } },
-  types: { name: 'type', control: { type: 'select', options: typesOptions } },
+  sizes: {
+    name: 'size',
+    control: { type: 'radio', options: sizeOptions },
+  },
+  icons: {
+    name: 'icon',
+    control: { type: 'select', options: iconList },
+  },
+  types: {
+    name: 'type',
+    control: { type: 'select', options: typesOptions },
+  },
 };
