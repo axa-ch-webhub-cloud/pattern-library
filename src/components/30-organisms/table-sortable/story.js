@@ -1,4 +1,3 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -67,19 +66,14 @@ const model = {
 
 export default {
   title: 'Components/Table Sortable',
-  decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const TableSortable = () => {
+export const TableSortable = ({ innerscroll, maxheight }) => {
   const wrapper = document.createElement('div');
-
-  const innerscroll = text('innerscroll', '');
-  const maxheight = text('maxheight', '');
 
   const template = html`
     <axa-table-sortable
@@ -97,4 +91,8 @@ export const TableSortable = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+TableSortable.args = {
+  innerscroll: '',
+  maxheight: '',
 };
