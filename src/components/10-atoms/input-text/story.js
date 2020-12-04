@@ -1,4 +1,3 @@
-import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -6,7 +5,6 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Input Text',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
@@ -19,27 +17,27 @@ const typeOptions = {
   password: 'password',
 };
 
-export const InputText = () => {
-  const label = text('label*', '');
-  const name = text('name*', '');
-  const refId = text('refid', '');
-  const placeholder = text('placeholder', '');
-  const value = text('value', '');
-  const currency = text('currency', '');
-  const error = text('error', '');
-  const info = text('info', '');
-  const checkMark = boolean('checkmark', false);
-  const disabled = boolean('disabled', false);
-  const required = boolean('required', false);
-  const invalid = boolean('invalid', false);
-  const types = radios('type', typeOptions, 'text');
-  const maxLength = text('maxlength', '50');
-  const counter = text('counter', 'Still ##counter## characters left');
-  const counterMax = text('counterMax', 'Over character limit!');
-  const pattern = text('pattern', '');
-  const inputmode = text('inputmode', '');
-  const autofocus = boolean('autofocus', false);
-
+export const InputText = ({
+  label,
+  name,
+  refId,
+  placeholder,
+  value,
+  error,
+  info,
+  checkMark,
+  disabled,
+  required,
+  invalid,
+  types,
+  maxLength,
+  counter,
+  counterMax,
+  pattern,
+  inputmode,
+  currency,
+  autofocus,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-input-text
@@ -67,4 +65,28 @@ export const InputText = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+InputText.args = {
+  label: '', // TODO set required
+  name: '', // TODO set required
+  refId: '',
+  placeholder: '',
+  value: '',
+  error: '',
+  info: '',
+  checkMark: false,
+  disabled: false,
+  required: false,
+  invalid: false,
+  types: 'text',
+  maxLength: 50,
+  counter: 'Still ##counter## characters left',
+  counterMax: 'Over character limit!',
+  pattern: '',
+  inputmode: '',
+  autofocus: false,
+};
+
+InputText.argTypes = {
+  types: { control: { type: 'radio', options: typeOptions } },
 };
