@@ -1,4 +1,3 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -7,22 +6,21 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Footer Small',
-  decorators: [withNoBorder, withKnobs],
-
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const FooterSmall = () => {
-  const language1 = text('First language', `DE`);
-  const language2 = text('Second language', `FR`);
-  const language3 = text('Third language', `IT`);
-  const language4 = text('Fourth language', `EN`);
-  const termsOfUse = text('Terms of use', `Terms of use`);
-  const dataProtection = text('Data protection', `Data protection`);
-
+export const FooterSmall = ({
+  language1,
+  language2,
+  language3,
+  language4,
+  termsOfUse,
+  dataProtection,
+}) => {
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -61,4 +59,12 @@ export const FooterSmall = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+FooterSmall.args = {
+  language1: 'DE', // TODO set description or label name: First language
+  language2: 'FR', // TODO set description or label name: Second language
+  language3: 'IT', // TODO set description or label name: Third language
+  language4: 'EN', // TODO set description or label name: Fourth language
+  termsOfUse: `Terms of use`, // TODO set description or label name: Terms of use
+  dataProtection: `Data protection`, // TODO set description or label name: Data protection
 };
