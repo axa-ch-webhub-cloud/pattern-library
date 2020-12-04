@@ -1,4 +1,3 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { repeat } from 'lit-html/directives/repeat';
 import '../10-atoms/heading';
@@ -57,7 +56,6 @@ const mapToIconItemNode = (icon, ...cssClasses) => {
 
 export default {
   title: 'Brand Elements/Icons and Images',
-  decorators: [withKnobs],
 
   parameters: {
     readme,
@@ -81,9 +79,7 @@ const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
   }
 };
 
-export const IconsAndImages = () => {
-  const mixColors = boolean('change icon and background color', false);
-
+export const IconsAndImages = ({ mixColors }) => {
   window.onCallbackInput = ev => {
     const { value } = ev.target;
 
@@ -330,4 +326,13 @@ export const IconsAndImages = () => {
 
 IconsAndImages.story = {
   name: 'Icons and Images',
+};
+IconsAndImages.args = {
+  mixColors: false,
+};
+
+IconsAndImages.argTypes = {
+  mixColors: {
+    name: 'change icon and background color',
+  },
 };

@@ -89,11 +89,10 @@ Button.args = {
 
 Button.argTypes = {
   buttonText: {
-    name: 'Set button content',
+    name: 'set button content',
   },
   variants: {
     name: 'variant',
-    description: 'variatn',
     control: { type: 'radio', options: variantOptions },
   },
   sizes: { name: 'size', control: { type: 'radio', options: sizeOptions } },
