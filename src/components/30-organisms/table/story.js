@@ -1,4 +1,3 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -6,19 +5,14 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Table',
-  decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Table = () => {
+export const Table = ({ innerscroll, maxheight }) => {
   const wrapper = document.createElement('div');
-
-  const innerscroll = text('innerscroll', '');
-  const maxheight = text('maxheight', '');
 
   const template = html`
     <axa-table innerscroll="${innerscroll}" maxheight="${maxheight}">
@@ -78,4 +72,8 @@ export const Table = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Table.args = {
+  innerscroll: '',
+  maxheight: '',
 };

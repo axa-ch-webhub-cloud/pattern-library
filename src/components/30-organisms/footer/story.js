@@ -1,4 +1,3 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -7,8 +6,7 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Footer',
-  decorators: [withNoBorder, withKnobs],
-
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
