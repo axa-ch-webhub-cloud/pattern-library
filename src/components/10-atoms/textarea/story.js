@@ -1,4 +1,3 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -6,27 +5,26 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Textarea',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Textarea = () => {
-  const label = text('label*', 'Please describe the course of events');
-  const name = text('name*', '');
-  const refId = text('refId', '');
-  const placeholder = text('placeholder', '');
-  const error = text('error', '');
-  const checkMark = boolean('checkmark', false);
-  const disabled = boolean('disabled', false);
-  const required = boolean('required', false);
-  const invalid = boolean('invalid', false);
-  const counter = text('counter', '');
-  const counterMax = text('countermax', '');
-  const maxLength = text('maxlength', '');
-
+export const Textarea = ({
+  label,
+  name,
+  refId,
+  placeholder,
+  error,
+  checkMark,
+  disabled,
+  required,
+  invalid,
+  counter,
+  counterMax,
+  maxLength,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-textarea
@@ -47,4 +45,18 @@ export const Textarea = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Textarea.args = {
+  label: 'Please describe the course of events',
+  name: '',
+  refId: '',
+  placeholder: '',
+  error: '',
+  checkMark: false,
+  disabled: false,
+  required: false,
+  invalid: false,
+  counter: '',
+  counterMax: '',
+  maxLength: '',
 };
