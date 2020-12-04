@@ -7,5 +7,6 @@ module.exports = {
       //'@whitespace/storybook-addon-html/register', // deactivated because of IE11 issue
       '@storybook/addon-a11y',
       '@storybook/addon-viewport',
+      '@storybook/addon-controls'
     ],
 };
