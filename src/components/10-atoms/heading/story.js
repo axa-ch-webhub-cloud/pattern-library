@@ -1,4 +1,3 @@
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -8,16 +7,15 @@ const loremIpsum = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 
 export default {
   title: 'Components/Heading',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Heading = () => {
-  const rank = select('Rank', ['1', '2', '3', '4', '5', '6'], '1');
-  const secondary = boolean('Secondary (variant)', false);
+export const Heading = ({ rank, secondary }) => {
+  // const rank = select('Rank', ['1', '2', '3', '4', '5', '6'], '1');
+  // const secondary = boolean('Secondary (variant)', false);
   const wrapper = document.createElement('div');
 
   const template = secondary
@@ -34,4 +32,12 @@ export const Heading = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Heading.args = {
+  rank: 1,
+  secondary: false,
+};
+
+Heading.argTypes = {
+  rank: { control: { type: 'range', min: 1, max: 6, step: 1 } },
 };
