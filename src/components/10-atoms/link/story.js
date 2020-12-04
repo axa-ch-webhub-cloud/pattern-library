@@ -1,4 +1,3 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -32,29 +31,20 @@ const variantOptions = {
 
 export default {
   title: 'Components/Link',
-  decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Link = () => {
-  const link = text(
-    'link',
-    'https://www.axa.ch/en/information/data-protection.html'
-  );
-  const linkText = text('Link text', 'Data protection statement');
-  const external = boolean('external', false);
-  const variant = select('variant', variantOptions, '');
-  const icon = select('icon', iconList, '');
-  const backgrounds = select(
-    'Background color',
-    ['red', 'blue', 'white', 'black'],
-    'white'
-  );
-
+export const Link = ({
+  link,
+  linkText,
+  external,
+  variant,
+  icon,
+  backgrounds,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <style>
@@ -73,4 +63,20 @@ export const Link = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Link.args = {
+  link: 'https://www.axa.ch/en/information/data-protection.html',
+  linkText: 'Data protection statement',
+  external: false,
+  variant: '',
+  icon: '',
+  backgrounds: 'white',
+};
+
+Link.argTypes = {
+  variant: { control: { type: 'select', options: variantOptions } },
+  icon: { control: { type: 'select', options: iconList } },
+  backgrounds: {
+    control: { type: 'select', options: ['red', 'blue', 'white', 'black'] },
+  }, // TODO description or set as not required
 };
