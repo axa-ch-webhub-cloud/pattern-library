@@ -41,7 +41,7 @@ export default {
   },
 };
 
-export const ButtonLink = ({
+export const Story = ({
   buttonText,
   href,
   external,
@@ -71,7 +71,7 @@ export const ButtonLink = ({
   return wrapper;
 };
 
-ButtonLink.args = {
+Story.args = {
   buttonText: 'Contact us',
   href: '#',
   external: false,
@@ -82,7 +82,7 @@ ButtonLink.args = {
   disabled: false,
 };
 
-ButtonLink.argTypes = {
+Story.argTypes = {
   buttonText: {
     name: 'set button-link content',
   },
