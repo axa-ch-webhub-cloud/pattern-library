@@ -77,13 +77,10 @@ test('should convert .png file to .jpg', async t => {
   const $figcaptionElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
-      .shadowRoot.querySelector(
-        '.js-file-upload__img-figure .js-file-upload__img-caption'
-      )
+      .shadowRoot.querySelector('.js-file-upload__filename')
   );
-  await t
-    .expect((await $figcaptionElem.getAttribute('title')) === 'test.jpg')
-    .ok();
+
+  await t.expect($figcaptionElem.textContent).eql('test.jpg');
 });
 
 test('should delete image', async t => {
@@ -304,12 +301,8 @@ test(`shouldn't convert .png file to .jpg`, async t => {
   const $figcaptionElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
-      .shadowRoot.querySelector(
-        '.js-file-upload__img-figure .js-file-upload__img-caption'
-      )
+      .shadowRoot.querySelector('.js-file-upload__filename')
   );
 
-  await t
-    .expect((await $figcaptionElem.getAttribute('title')) === 'test.png')
-    .ok();
+  await t.expect($figcaptionElem.textContent).eql('test.png');
 });
