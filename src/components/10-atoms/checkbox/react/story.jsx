@@ -1,61 +1,96 @@
 /* global document */
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AXACheckboxReact from './AXACheckboxReact';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import AXACheckboxReact from './AXACheckboxReact';
+import createRefId from '../../../../utils/create-ref-id';
 import AXATextReact from './AXATextReact';
 
-storiesOf('Examples/Checkbox/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Checkbox/React',
+  parameters: {
     readme,
     changelog,
-  })
-  .addDecorator(withKnobs)
-  .add('Story - uncontrolled', () => {
-    const label = text('label', 'I agree to conditions of data protection.');
-    const name = text('name', 'my-checkbox');
-    const variant = select('variant', [
-      'square',
-      'checkmark',
-      'checkmark-inverted',
-    ]);
-    boolean('checked (no effect, uncontrolled mode!)', false);
-    const disabled = boolean('disabled', false);
-    const errortext = boolean('error', false);
-    const required = boolean('required', false);
-    const styled = boolean('styled', false);
+  },
+};
 
-    const div = document.createElement('div');
+export const Story = ({
+  checked,
+  disabled,
+  errortext,
+  required,
+  styled,
+  refId,
+  label,
+  name,
+  variant,
+}) => {
+  const div = document.createElement('div');
 
-    if (variant && variant.includes('inverted')) {
-      div.style.backgroundColor = '#027180';
-      div.style.padding = '10px';
-    }
+  if (variant && variant.includes('inverted')) {
+    div.style.backgroundColor = '#027180';
+    div.style.padding = '10px';
+  }
 
-    ReactDOM.render(
-      <>
-        <AXACheckboxReact
-          name={name}
-          label={label}
-          disabled={disabled}
-          variant={variant}
-          required={required}
-          styled={styled}
-          onChange={e =>
-            (document.getElementById(
-              'checkbox-output'
-            ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)
-          }
-          error={errortext ? 'Please accept our terms and conditions.' : ''}
-        />
-        <AXATextReact id="checkbox-output">
-          checkbox {name} state changed to:
-        </AXATextReact>
-      </>,
-      div
-    );
-    return div;
-  });
+  ReactDOM.render(
+    <>
+      <AXACheckboxReact
+        checked={checked}
+        refId={refId}
+        name={name}
+        label={label}
+        disabled={disabled}
+        variant={variant}
+        required={required}
+        styled={styled}
+        onChange={e =>
+          console.log('checkbox', name, ' changed to: ', e.target.checked)
+        }
+        error={errortext ? 'Please accept our terms and conditions.' : ''}
+      />
+      <AXATextReact id="checkbox-output">
+        checkbox {name} state changed to:
+      </AXATextReact>
+    </>,
+    div
+  );
+  return div;
+};
+
+Story.story = {
+  parameters: {
+    knobs: {
+      escapeHTML: false,
+    },
+  },
+};
+Story.args = {
+  checked: false,
+  disabled: false,
+  errortext: false,
+  required: false,
+  styled: false,
+  refId: `checkbox-${createRefId()}`,
+  label: 'I agree to conditions of data protection.',
+  name: 'my-checkbox',
+  variant: 'square',
+};
+
+Story.argTypes = {
+  checked: { name: 'checked (no effect -> uncontrolled mode)' },
+  errorText: {
+    name: 'error',
+  },
+  variant: {
+    control: {
+      type: 'radio',
+      options: [
+        'square',
+        'checkmark',
+        // 'inverted-square', // not officially supported yet
+        'checkmark-inverted',
+      ],
+    },
+  },
+};
