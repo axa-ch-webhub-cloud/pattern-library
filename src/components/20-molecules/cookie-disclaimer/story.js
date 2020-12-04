@@ -1,4 +1,3 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -7,35 +6,21 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Cookie Disclaimer',
-  decorators: [withNoBorder, withKnobs],
-
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const CookieDisclaimer = () => {
-  const buttonname = text('buttonname', 'Accept');
-  const title = text('text', 'Terms and conditions of data protection');
-  const description = text(
-    'Description (not an attribute)',
-    // eslint-disable-next-line max-len
-    'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:'
-  );
-  const dataProtection = text(
-    'Link text (not an attribute)',
-    'Data protection'
-  );
-  const link = text(
-    'Link address (not an attribute)',
-    'https://axa.ch/de/informationen/datenschutz.html'
-  );
-  const fixed = boolean(
-    'fixed position (Drag your browser smaller to see text behind it)',
-    false
-  );
-
+export const CookieDisclaimer = ({
+  buttonname,
+  title,
+  description,
+  dataProtection,
+  link,
+  fixed,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-cookie-disclaimer
@@ -61,4 +46,13 @@ export const CookieDisclaimer = () => {
   `;
   render(template, wrapper);
   return wrapper;
+};
+CookieDisclaimer.args = {
+  buttonname: 'Accept',
+  title: 'Terms and conditions of data protection',
+  description:
+    'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:', // TODO description & not a real attribute
+  dataProtection: 'Data protection', // TODO description & not a real attribute (link text)
+  link: 'https://axa.ch/de/informationen/datenschutz.html',
+  fixed: false, // TODO Drag your browser smaller to see text behind it
 };
