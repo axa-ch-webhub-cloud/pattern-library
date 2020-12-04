@@ -1,10 +1,3 @@
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -40,7 +33,6 @@ const invertedBgs = {
 
 export default {
   title: 'Components/Button Link',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,

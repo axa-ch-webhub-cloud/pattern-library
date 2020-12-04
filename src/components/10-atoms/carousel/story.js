@@ -1,5 +1,4 @@
 // if your need more boolean, select, radios
-import { boolean, number, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -8,18 +7,18 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Carousel',
-  decorators: [withKnobs, withNoBorder],
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Carousel = () => {
-  const autorotatedisabled = boolean('autorotatedisabled', false);
-  const autorotatetime = number('autorotatetime', 5000);
-  const keysenabled = boolean('keysenabled', true);
-
+export const Carousel = ({
+  autorotatedisabled,
+  autorotatetime,
+  keysenabled,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <div id="colorWrapper" style="background: lightcoral; color: white;">
@@ -61,4 +60,9 @@ export const Carousel = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Carousel.args = {
+  autorotatedisabled: false,
+  autorotatetime: 5000,
+  keysenabled: true,
 };
