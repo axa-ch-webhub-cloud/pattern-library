@@ -1,27 +1,23 @@
-import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
 
+const options = {
+  none: null,
+  stretch: 'stretch',
+  horizontal: 'horizontal',
+};
+
 export default {
   title: 'Components/Fieldset',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Fieldset = () => {
-  const error = text('error', '');
-  const options = {
-    none: null,
-    stretch: 'stretch',
-    horizontal: 'horizontal',
-  };
-  const horizontal = select('horizontal', options);
-
+export const Fieldset = ({ error, horizontal }) => {
   const wrapper = document.createElement('div');
 
   const radioElement = html`
@@ -57,4 +53,12 @@ export const Fieldset = () => {
   `;
   render(template, wrapper);
   return wrapper;
+};
+Fieldset.args = {
+  error: '',
+  horizontal: '#',
+};
+
+Fieldset.argTypes = {
+  horizontal: { control: { type: 'select', options } },
 };
