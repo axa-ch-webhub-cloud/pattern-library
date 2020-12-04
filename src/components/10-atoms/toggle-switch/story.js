@@ -1,5 +1,4 @@
 /* global document */
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -7,16 +6,13 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Toggle Switch',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const ToggleSwitch = () => {
-  const active = boolean('active', false);
-  const disabled = boolean('disabled', false);
+export const ToggleSwitch = ({ active, disabled }) => {
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -28,4 +24,8 @@ export const ToggleSwitch = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+ToggleSwitch.args = {
+  active: false,
+  disabled: false,
 };
