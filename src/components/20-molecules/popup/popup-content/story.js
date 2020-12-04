@@ -1,4 +1,3 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -6,7 +5,6 @@ import './index';
 
 export default {
   title: 'Components/Popup Content',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
@@ -21,9 +19,7 @@ const children = html`
   </p>
 `;
 
-export const PopupContent = () => {
-  const open = boolean('open', true);
-
+export const PopupContent = ({ open }) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-popup-content ?open="${open}">${children}</axa-popup-content>
@@ -31,4 +27,7 @@ export const PopupContent = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+PopupContent.args = {
+  open: true,
 };
