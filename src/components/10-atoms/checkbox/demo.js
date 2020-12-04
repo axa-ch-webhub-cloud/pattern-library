@@ -9,6 +9,7 @@ storiesOf('Examples/Checkbox/Pure HTML', module)
   .addParameters({
     readme,
     changelog,
+    controls: { disabled: true },
   })
   .add('Use your own label as a child of the component', () => {
     const template = html`
