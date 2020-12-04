@@ -1,10 +1,10 @@
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+// import {
+//   boolean,
+//   select,
+//   radios,
+//   text,
+//   withKnobs,
+// } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -13,7 +13,7 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Button',
-  decorators: [withKnobs],
+  // decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
@@ -54,15 +54,15 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-export const Button = () => {
-  const buttonText = text('text', 'Calculate Premium');
-  const variants = radios('variant', variantOptions, '');
-  const sizes = radios('size', sizeOptions, '');
-  const icons = select('icon', iconList, '');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-  const types = radios('types', typesOptions, 'button');
-
+export const Button = ({
+  buttonText,
+  variants,
+  sizes,
+  icons,
+  motionOff,
+  disabled,
+  types,
+}) => {
   const wrapper = document.createElement('div');
   const template = html`
     <div
@@ -83,4 +83,21 @@ export const Button = () => {
   `;
   render(template, wrapper);
   return wrapper;
+};
+
+Button.args = {
+  buttonText: 'Calculate Premium',
+  variants: '',
+  sizes: '',
+  icons: '',
+  motionOff: false,
+  disabled: false,
+  types: 'button',
+};
+
+Button.argTypes = {
+  variants: { control: { type: 'radio', options: variantOptions } },
+  sizes: { control: { type: 'radio', options: sizeOptions } },
+  icons: { control: { type: 'select', options: iconList } },
+  types: { control: { type: 'select', options: typesOptions } },
 };
