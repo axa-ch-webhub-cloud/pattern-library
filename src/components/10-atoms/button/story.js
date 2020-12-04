@@ -1,10 +1,3 @@
-// import {
-//   boolean,
-//   select,
-//   radios,
-//   text,
-//   withKnobs,
-// } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -13,7 +6,6 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Button',
-  // decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
