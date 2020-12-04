@@ -1,5 +1,3 @@
-// if your need more boolean, select, radios
-import { radios, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -8,28 +6,14 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Commercial Hero Banner',
-  decorators: [withKnobs, withNoBorder],
+  decorators: [withNoBorder],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const CommercialHeroBanner = () => {
-  const variant = radios(
-    'Variant',
-    {
-      light: 'light',
-      dark: 'dark',
-    },
-    'light'
-  );
-
-  const imageSource = text(
-    'Image Source',
-    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
-  );
-
+export const CommercialHeroBanner = ({ variant, imageSource }) => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-commercial-hero-banner
@@ -58,4 +42,21 @@ export const CommercialHeroBanner = () => {
   `;
   render(template, wrapper);
   return wrapper;
+};
+CommercialHeroBanner.args = {
+  variant: 'light',
+  imageSource:
+    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg',
+};
+
+CommercialHeroBanner.argTypes = {
+  variant: {
+    control: {
+      type: 'radio',
+      options: {
+        light: 'light',
+        dark: 'dark',
+      },
+    },
+  },
 };
