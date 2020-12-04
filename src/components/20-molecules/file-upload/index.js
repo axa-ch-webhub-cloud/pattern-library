@@ -487,7 +487,7 @@ class AXAFileUpload extends LitElement {
           </div>
           <figcaption
             class="m-file-upload__img-caption js-file-upload__img-caption"
-            title="${fileName}"
+            title="${isfaultyFile ? fileTooBigStatusText : fileName}"
             data-status="${deleteStatusText}"
           >
             <span class="m-file-upload__filename js-file-upload__filename"
