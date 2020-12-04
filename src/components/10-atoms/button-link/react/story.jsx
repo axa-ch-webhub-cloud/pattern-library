@@ -1,12 +1,4 @@
 /* global document */
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { iconList } from '../../icon/icon-list';
@@ -41,23 +33,24 @@ const invertedBgs = {
   'inverted-blue-teal': '#027180',
 };
 
-const storyButton = storiesOf('Examples/Button Link/React', module);
-storyButton.addDecorator(withKnobs);
-storyButton.addParameters({
-  readme,
-  changelog,
-});
+export default {
+  title: 'Examples/Button Link/React',
+  parameters: {
+    readme,
+    changelog,
+  },
+};
 
-storyButton.add('Story', () => {
-  const buttonText = text('text', 'Contact us');
-  const href = text('href', '#');
-  const external = boolean('external', false);
-  const variants = radios('variant', variantOptions, '');
-  const sizes = radios('size', sizeOptions, '');
-  const icons = select('Icon', iconList, '');
-  const motionOff = boolean('motionOff', false);
-  const disabled = boolean('disabled', false);
-
+export const ButtonLink = ({
+  buttonText,
+  href,
+  external,
+  variants,
+  sizes,
+  icons,
+  motionOff,
+  disabled,
+}) => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
@@ -76,4 +69,27 @@ storyButton.add('Story', () => {
     wrapper
   );
   return wrapper;
-});
+};
+
+ButtonLink.args = {
+  buttonText: 'Contact us',
+  href: '#',
+  external: false,
+  variants: '',
+  sizes: '',
+  icons: '',
+  motionOff: false,
+  disabled: false,
+};
+
+ButtonLink.argTypes = {
+  buttonText: {
+    name: 'set button-link content',
+  },
+  variants: {
+    name: 'variant',
+    control: { type: 'radio', options: variantOptions },
+  },
+  sizes: { name: 'size', control: { type: 'radio', options: sizeOptions } },
+  icons: { name: 'icon', control: { type: 'select', options: iconList } },
+};
