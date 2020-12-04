@@ -1,4 +1,3 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from '../../../components/00-materials/CHANGELOG.md';
 import readme from '../../../components/00-materials/README.md';
@@ -58,7 +57,6 @@ $color-shy-tomato: #c91432 !default;
 
 export default {
   title: 'Brand Elements/Colors',
-  decorators: [withKnobs],
 
   parameters: {
     readme,
@@ -68,9 +66,7 @@ export default {
   },
 };
 
-export const Colors = () => {
-  const darkmode = boolean('darkmode', false);
-
+export const Colors = ({ darkmode }) => {
   const getColorGroups = scssString => {
     const groups = scssString.split('///');
     const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
@@ -172,4 +168,7 @@ export const Colors = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Colors.args = {
+  darkmode: false,
 };
