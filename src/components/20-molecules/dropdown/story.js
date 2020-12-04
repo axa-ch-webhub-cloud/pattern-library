@@ -1,4 +1,3 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -6,27 +5,26 @@ import readme from './README.md';
 
 export default {
   title: 'Components/Dropdown',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
 };
 
-export const Dropdown = () => {
-  const label = text('label', '');
-  const value = text('value', '');
-  const defaultTitle = text('defaulttitle', 'Select amount');
-  const name = text('name', '');
-  const invalid = boolean('invalid', false);
-  const error = text('error', 'This selection is required.');
-  const native = boolean('native', false);
-  const required = boolean('required', false);
-  const checkMark = boolean('checkmark', false);
-  const disabled = boolean('disabled', false);
-  const dataTestId = text('data-test-id', '');
-  const maxHeight = text('max-height', '');
-
+export const Dropdown = ({
+  label,
+  value,
+  defaultTitle,
+  name,
+  invalid,
+  error,
+  native,
+  required,
+  checkMark,
+  disabled,
+  dataTestId,
+  maxHeight,
+}) => {
   const handleChange = e => {
     const { target, detail } = e;
     target.dataset.change = JSON.stringify(detail);
@@ -58,4 +56,18 @@ export const Dropdown = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+Dropdown.args = {
+  label: '',
+  value: '',
+  defaultTitle: 'Select amount',
+  name: '',
+  invalid: false,
+  error: 'This selection is required.',
+  native: false,
+  required: false,
+  checkMark: false,
+  disabled: false,
+  dataTestId: '',
+  maxHeight: '',
 };
