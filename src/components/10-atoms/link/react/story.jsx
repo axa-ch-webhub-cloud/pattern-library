@@ -1,12 +1,20 @@
 /* global document */
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXALinkReact from './AXALinkReact';
+
+export default {
+  title: 'Examples/Link/React',
+  parameters: {
+    readme,
+    changelog,
+    controls: { disabled: false },
+    options: { showPanel: true },
+  },
+};
 
 const variantOptions = {
   none: '',
@@ -34,47 +42,59 @@ const variantOptions = {
   secondary: 'secondary',
 };
 
-storiesOf('Examples/Link/React', module)
-  .addDecorator(withKnobs)
-  .addParameters({
-    readme,
-    changelog,
-  })
-  .add('Story', () => {
-    const link = text(
-      'link',
-      'https://www.axa.ch/en/information/data-protection.html'
-    );
-    const linkText = text('Link text', 'Data protection statement');
-    const external = boolean('external', false);
-    const variant = select('variant', variantOptions, '');
-    const icon = select('icon', iconList);
-    const backgrounds = select(
-      'Background color',
-      ['red', 'blue', 'white', 'black'],
-      'white'
-    );
-    const css = `
+export const Story = ({
+  linkText,
+  link,
+  external,
+  variant,
+  icon,
+  backgrounds,
+}) => {
+  const css = `
         body {
             background-color: ${backgrounds};
         }
       `;
 
-    return wrap(
-      <div>
-        <style>{css}</style>
-        <AXALinkReact
-          href={link}
-          external={external}
-          variant={variant}
-          icon={icon}
-          onClick={() => {
-            // eslint-disable-next-line no-alert, no-undef
-            alert('on link click');
-          }}
-        >
-          {linkText}
-        </AXALinkReact>
-      </div>
-    );
-  });
+  return wrap(
+    <div>
+      <style>{css}</style>
+      <AXALinkReact
+        href={link}
+        external={external}
+        variant={variant}
+        icon={icon}
+        onClick={() => {
+          // eslint-disable-next-line no-alert, no-undef
+          alert('on link click');
+        }}
+      >
+        {linkText}
+      </AXALinkReact>
+    </div>
+  );
+};
+
+Story.args = {
+  linkText: 'Data protection statement',
+  backgrounds: 'white',
+  link: 'https://www.axa.ch/en/information/data-protection.html',
+  external: false,
+  variant: '',
+  icon: '',
+};
+
+Story.argTypes = {
+  link: {
+    name: 'href',
+  },
+  linkText: {
+    name: 'set link text',
+  },
+  variant: { control: { type: 'select', options: variantOptions } },
+  icon: { control: { type: 'select', options: iconList } },
+  backgrounds: {
+    name: 'set a story background color',
+    control: { type: 'select', options: ['red', 'blue', 'white', 'black'] },
+  },
+};
