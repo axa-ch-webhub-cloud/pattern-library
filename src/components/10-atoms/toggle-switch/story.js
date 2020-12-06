@@ -25,6 +25,7 @@ export const ToggleSwitch = ({ active, disabled }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 ToggleSwitch.args = {
   active: false,
   disabled: false,
