@@ -91,7 +91,7 @@ Icon.argTypes = {
     name: 'Show list of available icons',
   },
   noIcon: {
-    name: 'Do not set icon on component',
+    name: 'Do not set an icon on component',
   },
   loadIconType: {
     name: 'How do you want to load your icon?',
