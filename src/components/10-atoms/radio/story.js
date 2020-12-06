@@ -70,6 +70,7 @@ export const Radio = ({
   render(template, wrapper);
   return wrapper;
 };
+
 Radio.args = {
   label: 'car',
   checked: false,
