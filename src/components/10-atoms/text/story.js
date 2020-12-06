@@ -34,6 +34,7 @@ export const Text = ({ variant, addSpanTag, content }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 Text.args = {
   variant: '',
   content: `Is your car your pride and joy, or just a means of getting from A to
