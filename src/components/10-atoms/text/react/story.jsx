@@ -1,11 +1,19 @@
 /* global document */
-import { boolean, select, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAText from './AXATextReact';
+
+export default {
+  title: 'Examples/Text/React',
+  parameters: {
+    readme,
+    changelog,
+    controls: { disabled: false },
+    options: { showPanel: true },
+  },
+};
 
 const variantOptions = {
   default: '',
@@ -15,22 +23,28 @@ const variantOptions = {
   bold: 'bold',
 };
 
-storiesOf('Examples/Text/React', module)
-  .addDecorator(withKnobs)
-  .addParameters({
-    readme,
-    changelog,
-  })
-  .add('Story', () => {
-    const div = document.createElement('div');
-    const variant = select('variant', variantOptions, '');
-    const addSpanTag = boolean('Add <span> tag', false);
-    const text = `Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.`;
-    ReactDOM.render(
-      <AXAText variant={variant}>
-        {addSpanTag ? <span>{text}</span> : text}
-      </AXAText>,
-      div
-    );
-    return div;
-  });
+export const Story = ({ variant, addSpanTag, content }) => {
+  const div = document.createElement('div');
+  ReactDOM.render(
+    <AXAText variant={variant}>
+      {addSpanTag ? <span>{content}</span> : content}
+    </AXAText>,
+    div
+  );
+  return div;
+};
+
+Story.args = {
+  variant: '',
+  content: `Is your car your pride and joy, or just a means of getting from A to
+  B ? Whichever applies to you, it will certainly have the best
+  insurance with us. Calculate your premium online – You keep your
+  advisor even when you purchase from us online.`,
+  addSpanTag: false,
+};
+
+Story.argTypes = {
+  variant: { control: { type: 'select', options: variantOptions } },
+  addSpanTag: { name: 'add a span tag around the content' },
+  content: { name: 'set content' },
+};
