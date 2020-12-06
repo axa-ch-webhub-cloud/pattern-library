@@ -3,6 +3,14 @@ import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
 
+export default {
+  title: 'Components',
+  parameters: {
+    readme,
+    changelog,
+  },
+};
+
 const localeOptions = {
   'de-CH': 'de-CH',
   'it-CH': 'it-CH',
@@ -11,14 +19,6 @@ const localeOptions = {
   'en-GB': 'en-GB',
   'it-IT': 'it-IT',
   'invalid/ unsupported': 'ff-XX', // To show the default language fallback scenario
-};
-
-export default {
-  title: 'Components/Datepicker',
-  parameters: {
-    readme,
-    changelog,
-  },
 };
 
 export const Datepicker = ({
@@ -75,6 +75,7 @@ export const Datepicker = ({
   render(template, wrapper);
   return wrapper;
 };
+
 Datepicker.args = {
   inputfield: false,
   locale: 'de-CH',
