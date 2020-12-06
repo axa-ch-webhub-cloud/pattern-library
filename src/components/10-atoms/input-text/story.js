@@ -74,6 +74,7 @@ InputText.args = {
   value: '',
   error: '',
   info: '',
+  currency: '',
   checkMark: false,
   disabled: false,
   required: false,
