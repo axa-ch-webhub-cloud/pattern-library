@@ -46,6 +46,7 @@ export const Textarea = ({
   render(template, wrapper);
   return wrapper;
 };
+
 Textarea.args = {
   label: 'Please describe the course of events',
   name: '',
