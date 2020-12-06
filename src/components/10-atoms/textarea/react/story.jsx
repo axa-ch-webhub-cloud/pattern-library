@@ -1,34 +1,33 @@
 /* global document */
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATextarea from './AXATextarea';
 
-const storyTextarea = storiesOf('Examples/Textarea/React', module);
-storyTextarea.addDecorator(withKnobs);
-storyTextarea.addParameters({
-  readme,
-  changelog,
-});
+export default {
+  title: 'Examples/Textarea/React',
+  parameters: {
+    readme,
+    changelog,
+  },
+};
 
-storyTextarea.add('Story', () => {
-  const label = text('label', 'Please describe the course of events');
-  const name = text('name', '');
-  const refId = text('refId', '');
-  const placeholder = text('placeholder', '');
-  const error = text('error', '');
-  const defaultValue = text('defaultValue', '');
-  const checkMark = boolean('checkMark', false);
-  const disabled = boolean('disabled', false);
-  const required = boolean('required', false);
-  const invalid = boolean('invalid', false);
-  const counter = text('counter', '');
-  const counterMax = text('counterMax', '');
-  const maxLength = text('maxLength', '');
-
+export const Story = ({
+  label,
+  name,
+  refId,
+  placeholder,
+  error,
+  checkMark,
+  disabled,
+  required,
+  invalid,
+  counter,
+  counterMax,
+  defaultValue,
+  maxLength,
+}) => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <AXATextarea
@@ -50,4 +49,20 @@ storyTextarea.add('Story', () => {
   );
 
   return wrapper;
-});
+};
+
+Story.args = {
+  label: 'Please describe the course of events',
+  name: '',
+  refId: '',
+  placeholder: '',
+  defaultValue: '',
+  error: '',
+  checkMark: false,
+  disabled: false,
+  required: false,
+  invalid: false,
+  counter: '',
+  counterMax: '',
+  maxLength: '',
+};
