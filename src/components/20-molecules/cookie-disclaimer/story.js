@@ -40,7 +40,7 @@ export const CookieDisclaimer = ({
       <h1>
         This is not rendered by the component. This story disappears after click
         (Empty your cache and/or localStorage if this page is only showing this
-        message)
+        message).
       </h1>
     </div>
   `;
