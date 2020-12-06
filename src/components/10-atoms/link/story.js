@@ -64,6 +64,7 @@ export const Link = ({
   render(template, wrapper);
   return wrapper;
 };
+
 Link.args = {
   linkText: 'Data protection statement',
   backgrounds: 'white',
