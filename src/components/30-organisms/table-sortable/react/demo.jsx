@@ -1,5 +1,4 @@
 /* global document */
-import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
@@ -62,22 +61,26 @@ const model = {
   ],
 };
 
-storiesOf('Examples/Table Sortable/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Table Sortable/React',
+
+  parameters: {
     readme,
     changelog,
-  })
-  .add('On click works also in react', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
-      <TableSortable
-        model={model}
-        datesortcolumnindex="3"
-        onClick={ev => {
-          window.alert(JSON.stringify(ev));
-        }}
-      />,
-      div
-    );
-    return div;
-  });
+  },
+};
+
+export const OnClickWorksAlsoInReact = () => {
+  const div = document.createElement('div');
+  ReactDOM.render(
+    <TableSortable
+      model={model}
+      datesortcolumnindex="3"
+      onClick={ev => {
+        window.alert(JSON.stringify(ev));
+      }}
+    />,
+    div
+  );
+  return div;
+};
