@@ -40,6 +40,7 @@ export const TopContentBar = ({ ctatext, variant, href, textValue, link }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 TopContentBar.args = {
   ctatext: '',
   variant: '',

@@ -1,6 +1,4 @@
 /* global document */
-import { select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
@@ -13,35 +11,43 @@ const variantOptions = {
   warning: 'warning',
 };
 
-storiesOf('Examples/Top Content Bar/React', module)
-  .addDecorator(withNoBorder)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Examples/Top Content Bar/React',
+  decorators: [withNoBorder],
+
+  parameters: {
     readme,
     changelog,
-  })
-  /* Default */
-  .add('Story', () => {
-    const ctatext = text('ctatext', '');
-    const variant = select('variant', variantOptions, '');
-    const href = text('href', '');
-    const textValue = text(
-      'Text',
-      'Undefined flighting object detected in your region. People are paniking. Stay calm'
-    );
-    const link = text('Add axa-link', '');
+  },
+};
 
-    return wrap(
-      <AXATopContentBar
-        variant={variant}
-        href={href}
-        ctatext={ctatext}
-        onClick={() => {
-          // eslint-disable-next-line no-alert, no-undef
-          alert('on AXATopContentBar click');
-        }}
-      >
-        {textValue} {link ? <axa-link>{link}</axa-link> : ''}
-      </AXATopContentBar>
-    );
-  });
+export const Story = ({ ctatext, variant, href, textValue, link }) => {
+  return wrap(
+    <AXATopContentBar
+      variant={variant}
+      href={href}
+      ctatext={ctatext}
+      onClick={() => {
+        // eslint-disable-next-line no-alert, no-undef
+        alert('on AXATopContentBar click');
+      }}
+    >
+      {textValue} {link ? <axa-link>{link}</axa-link> : ''}
+    </AXATopContentBar>
+  );
+};
+
+Story.args = {
+  ctatext: '',
+  variant: '',
+  href: '',
+  textValue:
+    'Unidentified flying object detected in your region. People are panicking. Stay calm!',
+  link: '',
+};
+
+Story.argTypes = {
+  variant: { control: { type: 'radio', options: variantOptions } },
+  textValue: { name: 'set content' },
+  link: { name: 'set link text' },
+};
