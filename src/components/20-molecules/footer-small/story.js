@@ -60,6 +60,7 @@ export const FooterSmall = ({
   render(template, wrapper);
   return wrapper;
 };
+
 FooterSmall.args = {
   language1: 'DE',
   language2: 'FR',
