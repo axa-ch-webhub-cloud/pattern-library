@@ -73,6 +73,7 @@ export const Table = ({ innerscroll, maxheight }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 Table.args = {
   innerscroll: '',
   maxheight: '',
