@@ -12,17 +12,25 @@ npm install @axa-ch/materials
 
 ```js
 import { svg } from 'lit-html';
-import { ArrowRightSvg } from '@axa-ch/materials/icons';
+import { Arrow_forwardSvg } from '@axa-ch/materials/icons';
 
-<span>${svg(ArrowRightSvg)}</span>;
+<span>${svg(Arrow_forwardSvg)}</span>;
 ```
 
 ### React
 
 ```js
-import ArrowRightSvg from '@axa-ch/materials/icons-raw/arrow-right.svg';
+import ArrowForwardSvg from '@axa-ch/materials/icons-raw/arrow-forward.svg';
 
-<ArrowRightSvg />;
+<ArrowForwardSvg />;
+```
+
+### React with Typescript
+
+```js
+import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/arrow-forward.svg';
+
+<ArrowForwardSvg />;
 ```
 
 You need to use `SVGR` that takes external SVG files and transforms them into React components with Webpack. It is installed automatically if you use `create-pod-app`.
