@@ -63,7 +63,7 @@ Dropdown.args = {
   defaultTitle: 'Select amount',
   name: '',
   invalid: false,
-  error: 'This selection is required.',
+  error: 'A selection is required.',
   native: false,
   required: false,
   checkMark: false,
