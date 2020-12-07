@@ -63,7 +63,6 @@ export default {
     readme,
     changelog,
     codepreview: { disabled: true },
-    options: { showPanel: true },
     layout: 'fullscreen',
   },
 };

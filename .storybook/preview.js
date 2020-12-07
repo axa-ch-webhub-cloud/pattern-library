@@ -42,6 +42,7 @@ const customViewports = {
 
 addParameters({
   options: {
+    showPanel: true,
     storySort: {
       method: 'alphabetical',
       order: ['Welcome', 'What is new', 'Guides', 'Brand Elements', 'Components', 'Pages', 'Examples', 'Others']
