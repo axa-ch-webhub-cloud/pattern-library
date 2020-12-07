@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -65,31 +64,36 @@ const model = {
   ],
 };
 
-storiesOf('Examples/Table Sortable/Pure HTML', module)
-  .addParameters({
+export default {
+  title: 'Examples/Table Sortable/Pure HTML',
+
+  parameters: {
     readme,
     changelog,
-  })
-  .add('On row click', () => {
-    const wrapper = document.createElement('div');
-    window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
-      if (index > -1) {
-        const renderArea = document.querySelector('#renderArea');
-        renderArea.innerHTML = `Pressed on row ${index} in ${type}.
+    controls: { disabled: true },
+  },
+};
 
-        Inner Text is: ${JSON.stringify(textArray)}`;
-      }
-    };
-    const template = html`
-      <axa-table-sortable
-        onclick="onCallbackClick(arguments[0])"
-        innerscroll="500"
-        datesortcolumnindex="3,4"
-        model="${JSON.stringify(model)}"
-      >
-      </axa-table-sortable>
-      <div id="renderArea"></div>
-    `;
-    render(template, wrapper);
-    return wrapper;
-  });
+export const OnRowClick = () => {
+  const wrapper = document.createElement('div');
+  window.onCallbackClick = ({ detail: { index, type, textArray } }) => {
+    if (index > -1) {
+      const renderArea = document.querySelector('#renderArea');
+      renderArea.innerHTML = `Pressed on row ${index} in ${type}.
+
+      Inner Text is: ${JSON.stringify(textArray)}`;
+    }
+  };
+  const template = html`
+    <axa-table-sortable
+      onclick="onCallbackClick(arguments[0])"
+      innerscroll="500"
+      datesortcolumnindex="3,4"
+      model="${JSON.stringify(model)}"
+    >
+    </axa-table-sortable>
+    <div id="renderArea"></div>
+  `;
+  render(template, wrapper);
+  return wrapper;
+};
