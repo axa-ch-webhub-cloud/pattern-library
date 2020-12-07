@@ -173,11 +173,13 @@ export const Footer = ({ columnTitle1, columnTitle2, socialTitle }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 Footer.args = {
   columnTitle1: 'axa and you',
   columnTitle2: 'axa worldwide',
   socialTitle: 'stay in touch',
 };
+
 Footer.argTypes = {
   columnTitle1: { name: 'set first column title' },
   columnTitle2: { name: 'set second column title' },
