@@ -57,6 +57,7 @@ export const FileUpload = ({
   render(template, wrapper);
   return wrapper;
 };
+
 FileUpload.args = {
   wrapperWidth: '455px',
   inputFileText: 'Upload file',
