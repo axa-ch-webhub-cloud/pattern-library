@@ -16,6 +16,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      innerText: 'I am a button',
+      propsReact: 'motionOff onClick={handler}',
+    },
     changelog,
   },
 };

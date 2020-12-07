@@ -11,6 +11,7 @@ export default {
 
   parameters: {
     readme,
+    usage: { tagName: 'axa-cookie-disclaimer' },
     changelog,
   },
 };

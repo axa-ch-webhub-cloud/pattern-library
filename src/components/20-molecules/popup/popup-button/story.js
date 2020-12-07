@@ -9,6 +9,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: { tagName: 'axa-popup' },
     changelog,
   },
 };

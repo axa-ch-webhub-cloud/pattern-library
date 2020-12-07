@@ -3,6 +3,7 @@ module.exports = {
     addons: [
       '@storybook/addon-knobs',
       './addons/readme/register',
+      './addons/usage/register',
       './addons/changelog/register',
       '@storybook/addon-a11y',
       '@storybook/addon-viewport',
