@@ -13,6 +13,7 @@ export default {
   parameters: {
     knobs: { disabled: true },
     readme: { disabled: true },
+    usage: { disabled: true },
     changelog: { disabled: true },
     a11y: { disabled: true },
     options: { showPanel: false },
