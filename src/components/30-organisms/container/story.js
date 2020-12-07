@@ -21,6 +21,7 @@ export const Container = ({ childsText }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 Container.args = {
   childsText: 'Some children',
 };
