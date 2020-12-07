@@ -4,7 +4,7 @@ import './index';
 import readme from './README.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Datepicker',
   parameters: {
     readme,
     changelog,
