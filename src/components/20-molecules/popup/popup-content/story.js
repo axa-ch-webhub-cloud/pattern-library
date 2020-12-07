@@ -28,6 +28,7 @@ export const PopupContent = ({ open }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 PopupContent.args = {
   open: true,
 };
