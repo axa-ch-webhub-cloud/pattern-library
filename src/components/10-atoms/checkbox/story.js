@@ -49,13 +49,6 @@ export const Checkbox = ({
   return wrapper;
 };
 
-Checkbox.story = {
-  parameters: {
-    knobs: {
-      escapeHTML: false,
-    },
-  },
-};
 Checkbox.args = {
   checked: true,
   disabled: false,

@@ -1,5 +1,4 @@
 import { html, render } from 'lit-html';
-import { boolean, withKnobs } from '@storybook/addon-knobs';
 
 import '../../../../components/10-atoms/text';
 import '../../../../components/10-atoms/heading';
@@ -11,9 +10,9 @@ import footerSmall from './footer-small';
 
 export default {
   title: 'Pages/AXA',
-  decorators: [withKnobs],
   parameters: {
     options: { showPanel: true },
+    controls: { disabled: false },
   },
 };
 
@@ -38,8 +37,7 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   }
 }
 
-export const MainPage = () => {
-  const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
+export const MainPage = ({ markWebcomponents }) => {
   const wrapper = document.createElement('div');
 
   // Execution is guaranteed to happen after the render, by putting it at the
@@ -94,4 +92,14 @@ export const MainPage = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+
+MainPage.args = {
+  markWebcomponents: false,
+};
+
+MainPage.argTypes = {
+  markWebcomponents: {
+    name: 'highlight AXA Webcomponents',
+  },
 };

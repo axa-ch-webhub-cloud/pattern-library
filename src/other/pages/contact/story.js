@@ -7,8 +7,8 @@ export default {
   title: 'Others/Contact',
   decorators: [],
   parameters: {
-    knobs: { disabled: true },
     changelog: { disabled: true },
+    controls: { disabled: true },
     codepreview: { disabled: true },
     a11y: { disabled: true },
     options: { showPanel: false },

@@ -85,7 +85,7 @@ export const TableSortable = ({ innerscroll, maxheight }) => {
     <br />
     <axa-text variant="size-3">
       Note: The datesortcolumnindex="3,4" is set. It can't be controlled by the
-      knobs.
+      controls.
     </axa-text>
   `;
 

@@ -69,13 +69,6 @@ export const Icon = ({
   return wrapper;
 };
 
-Icon.story = {
-  parameters: {
-    knobs: {
-      escapeHTML: false,
-    },
-  },
-};
 Icon.args = {
   showAll: false,
   noIcon: false,

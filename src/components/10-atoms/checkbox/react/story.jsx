@@ -65,6 +65,7 @@ Story.story = {
     },
   },
 };
+
 Story.args = {
   checked: false,
   disabled: false,
