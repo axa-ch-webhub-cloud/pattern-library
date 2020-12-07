@@ -1,55 +1,77 @@
 /* global document */
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
 
-storiesOf('Examples/Dropdown/React', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Examples/Dropdown/React',
+  parameters: {
     readme,
     changelog,
-  })
-  .add('Story - uncontrolled', () => {
-    const div = document.createElement('div');
+  },
+};
 
-    const item1 = text('First Item', '< CHF 1,000');
-    const item2 = text('Second Item', 'From CHF 1,000 to 10,000');
-    const item3 = text('Third Item', '> CHF 10,000');
+export const Story = ({
+  label,
+  value,
+  defaultTitle,
+  name,
+  invalid,
+  error,
+  native,
+  required,
+  checkMark,
+  disabled,
+  maxHeight,
+  item1,
+  item2,
+  item3,
+}) => {
+  const div = document.createElement('div');
+  ReactDOM.render(
+    <DemoUncontrolledDropdownReact
+      item1={item1}
+      item2={item2}
+      item3={item3}
+      label={label}
+      value={value}
+      defaultTitle={defaultTitle}
+      name={name}
+      invalid={invalid}
+      error={error}
+      native={native}
+      required={required}
+      checkMark={checkMark}
+      disabled={disabled}
+      maxHeight={maxHeight}
+    />,
+    div
+  );
+  return div;
+};
 
-    const label = text('label', '');
-    const value = text('value', '');
-    const defaultTitle = text('defaulttitle', 'Please Select');
-    const name = text('name', '');
-    const invalid = boolean('invalid', false);
-    const error = text('error', 'Error Message');
-    const native = boolean('native', false);
-    const required = boolean('required', false);
-    const checkMark = boolean('checkmark', false);
-    const disabled = boolean('disabled', false);
-    const maxHeight = text('max-height', '');
+Story.args = {
+  label: '',
+  value: '',
+  item1: '< CHF 1,000", "value": "Item 1',
+  item2: 'From CHF 1,000 to 10,0000", "value": "Item 2',
+  item3: '> CHF 10,000", "value": "Item 3',
+  defaultTitle: 'Select amount',
+  name: '',
+  invalid: false,
+  error: 'This selection is required.',
+  native: false,
+  required: false,
+  checkMark: false,
+  disabled: false,
+  dataTestId: '',
+  maxHeight: '',
+};
 
-    ReactDOM.render(
-      <DemoUncontrolledDropdownReact
-        item1={item1}
-        item2={item2}
-        item3={item3}
-        label={label}
-        value={value}
-        defaultTitle={defaultTitle}
-        name={name}
-        invalid={invalid}
-        error={error}
-        native={native}
-        required={required}
-        checkMark={checkMark}
-        disabled={disabled}
-        maxHeight={maxHeight}
-      />,
-      div
-    );
-    return div;
-  });
+Story.argTypes = {
+  item1: { name: 'set first item' },
+  item2: { name: 'set second item' },
+  item3: { name: 'set third item' },
+};
