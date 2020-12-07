@@ -1,41 +1,22 @@
 /* global document */
 /* eslint-disable import/no-extraneous-dependencies */
-// if your need more boolean, select, radios
-import { radios, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
 
-const storyAXACommercialHeroBanner = storiesOf(
-  'Examples/Commercial Hero Banner/Pure HTML',
-  module
-);
+export default {
+  title: 'Examples/Commercial Hero Banner/Pure HTML',
+  decorators: [withNoBorder],
+  parameters: {
+    readme,
+    changelog,
+    controls: { disabled: true },
+  },
+};
 
-storyAXACommercialHeroBanner.addDecorator(withNoBorder);
-storyAXACommercialHeroBanner.addDecorator(withKnobs);
-storyAXACommercialHeroBanner.addParameters({
-  readme,
-  changelog,
-});
-
-storyAXACommercialHeroBanner.add('With Badges', () => {
-  const variant = radios(
-    'Variant',
-    {
-      light: 'light',
-      dark: 'dark',
-    },
-    'light'
-  );
-
-  const imageSource = text(
-    'Image Source',
-    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
-  );
-
+export const Withbadges = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <style>
@@ -115,8 +96,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
       }
     </style>
     <axa-commercial-hero-banner
-      variant="${variant}"
-      imagesource="${imageSource}"
+      imagesource="https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg"
     >
       <h2 slot="category">This example shows specific picture classes</h2>
       <h1 slot="title">Drive with peace of mind</h1>
@@ -149,4 +129,4 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
 
   render(template, wrapper);
   return wrapper;
-});
+};

@@ -43,6 +43,7 @@ export const CommercialHeroBanner = ({ variant, imageSource }) => {
   render(template, wrapper);
   return wrapper;
 };
+
 CommercialHeroBanner.args = {
   variant: 'light',
   imageSource:
