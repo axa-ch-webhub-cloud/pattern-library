@@ -5,13 +5,14 @@ import './index';
 import readme from './README.md';
 
 export default {
-  title: 'Examples/Input text/Pure HTML',
+  title: 'Examples/Input Text/Pure HTML',
   parameters: {
     readme,
     changelog,
     controls: { disabled: true },
   },
 };
+
 export const InAForm = () => {
   const handleSubmit = ev => {
     ev.preventDefault();
@@ -83,6 +84,9 @@ export const InAForm = () => {
 
 export const NativeOninputEventAttribute = () =>
   `<axa-input-text oninput="console.log('input with')"></axa-input-text>`;
+NativeOninputEventAttribute.story = {
+  name: 'Native oninput Event Attribute',
+};
 
 export const InfoPopup = () => {
   const info = `<h4>Zeitspanne bis zur Pensionierung</h4>

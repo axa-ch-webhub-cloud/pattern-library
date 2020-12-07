@@ -70,7 +70,7 @@ export default {
   },
 };
 
-export const OnClickWorksAlsoInReact = () => {
+export const OnclickWorksAlsoInReact = () => {
   const div = document.createElement('div');
   ReactDOM.render(
     <TableSortable

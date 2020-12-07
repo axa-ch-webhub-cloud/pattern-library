@@ -16,7 +16,7 @@ export default {
   },
 };
 
-export const Withbadges = () => {
+export const WithBadges = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <style>

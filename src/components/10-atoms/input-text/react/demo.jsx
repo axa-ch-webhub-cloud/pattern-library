@@ -58,3 +58,7 @@ export const UsingOnkeyupEvent = () => {
   ReactDOM.render(<DemoInputTextonKeyUp />, div);
   return div;
 };
+
+UsingOnkeyupEvent.story = {
+  name: 'Using onKeyUp Event',
+};

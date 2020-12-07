@@ -13,7 +13,7 @@ export default {
   },
 };
 
-export const DynamicChildrenUnderReact = () => {
+export const ControlledAndUncontrolled = () => {
   const div = document.createElement('div');
   ReactDOM.render(<DemoContUncontTextarea />, div);
   return div;

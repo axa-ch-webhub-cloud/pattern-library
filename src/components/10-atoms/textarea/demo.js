@@ -34,7 +34,7 @@ export const CharacterCounter = () => `<div>
 ></axa-textarea>
 </div>`;
 
-export const ChildrenDefaultValue = () =>
+export const ChildrenWithDefaultValue = () =>
   `<axa-textarea>prefilled value</axa-textarea>`;
 export const MaxlengthAddedLater = () => {
   const wrapper = document.createElement('div');

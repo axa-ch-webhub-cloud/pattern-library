@@ -11,7 +11,7 @@ export default {
   },
 };
 
-export const Dropdown = ({
+export const DropdownUncontrolled = ({
   label,
   value,
   defaultTitle,
@@ -57,7 +57,8 @@ export const Dropdown = ({
   render(template, wrapper);
   return wrapper;
 };
-Dropdown.args = {
+
+DropdownUncontrolled.args = {
   label: '',
   value: '',
   defaultTitle: 'Select amount',

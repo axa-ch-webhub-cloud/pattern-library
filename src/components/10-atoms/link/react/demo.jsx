@@ -13,7 +13,7 @@ export default {
   },
 };
 
-export const Clickable = () => {
+export const VariableIcons = () => {
   const div = document.createElement('div');
   ReactDOM.render(<DemoLink />, div);
   return div;

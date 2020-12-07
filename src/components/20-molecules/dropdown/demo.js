@@ -51,7 +51,7 @@ export const ItemsDelayedAndNumericValues = () => {
   return wrapper;
 };
 
-export const DropdownWithLotsOfOptions = () => {
+export const ManyOptions = () => {
   const wrapper = document.createElement('div');
   const items = [
     { value: 'AF', name: 'Afghanistan' },
