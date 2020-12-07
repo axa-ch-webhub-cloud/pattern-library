@@ -52,3 +52,7 @@ export const Dynamic = () => {
 
   return divWrapper;
 };
+
+Dynamic.story = {
+  name: 'Dynamic (Story Is Invisible After Click On Ok Button)',
+};

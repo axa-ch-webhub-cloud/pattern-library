@@ -30,17 +30,26 @@ export const UncontrolledOndateChangeDrivenWithInputfield = () => {
   ReactDOM.render(<DemoDatepickerOnDateChange />, div);
   return div;
 };
+UncontrolledOndateChangeDrivenWithInputfield.story = {
+  name: 'Uncontrolled onDateChange - Driven With Inputfield',
+};
 
-export const ExternalVAlidationUsingOndatechangeDrivenWithInputfield = () => {
+export const ExternalValidationUsingOndatechangeDrivenWithInputfield = () => {
   const div = document.createElement('div');
   ReactDOM.render(<DemoDatepickerExternalValidation />, div);
   return div;
+};
+ExternalValidationUsingOndatechangeDrivenWithInputfield.story = {
+  name: 'External Validation Using onDateChange - Driven With Inputfield',
 };
 
 export const RerenderingOnEveryKeystrokeWithInputfield = () => {
   const div = document.createElement('div');
   ReactDOM.render(<DemoDatepickerReRenderOnEveryKeyStroke />, div);
   return div;
+};
+RerenderingOnEveryKeystrokeWithInputfield.story = {
+  name: 'Re-rendering On Every Keystroke With Inputfield',
 };
 
 export const NoInputfiledWithExternalShowAndHide = () => {
@@ -54,9 +63,15 @@ export const PodVersioned = () => {
   ReactDOM.render(<DemoDatepickerReactPod />, div);
   return div;
 };
+PodVersioned.story = {
+  name: 'Pod-versioned',
+};
 
-export const UsingOninputgieldkeyupEvent = () => {
+export const UsingOninputfieldkeyupEvent = () => {
   const div = document.createElement('div');
   ReactDOM.render(<DemoDatepickerOnInputfieldKeyUp />, div);
   return div;
+};
+UsingOninputfieldkeyupEvent.story = {
+  name: 'Using onInputfieldKeyUp Event',
 };

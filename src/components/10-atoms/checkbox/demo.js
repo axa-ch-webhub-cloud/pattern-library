@@ -53,6 +53,10 @@ export const UseAStyledHtmlLabel = () => {
   return wrapper;
 };
 
+UseAStyledHtmlLabel.story = {
+  name: 'Use A Styled HTML Label',
+};
+
 export const WithoutALabel = () => {
   const template = html`
     <axa-checkbox

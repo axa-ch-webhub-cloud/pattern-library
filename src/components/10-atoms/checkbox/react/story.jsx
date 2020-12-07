@@ -59,6 +59,7 @@ export const Story = ({
 };
 
 Story.story = {
+  name: 'Story - Uncontrolled',
   parameters: {
     knobs: {
       escapeHTML: false,
