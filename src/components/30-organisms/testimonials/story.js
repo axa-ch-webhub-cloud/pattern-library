@@ -68,6 +68,7 @@ export const Testimonials = ({
   render(template, wrapper);
   return wrapper;
 };
+
 Testimonials.args = {
   title: 'Customer Reviews',
   subtitle:

@@ -1,31 +1,27 @@
-import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AXATestimonialsReact from './Testimonials';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import AXATestimonialsReact from './Testimonials';
 
-const story = storiesOf('Examples/Testimonials/React', module);
-story.addDecorator(withKnobs);
-story.addDecorator(withNoBorder);
-story.addParameters({
-  readme,
-  changelog,
-});
+export default {
+  title: 'Examples/Testimonials/React',
+  decorators: [withNoBorder],
+  parameters: {
+    readme,
+    changelog,
+  },
+};
 
-story.add('Story', () => {
-  const title = text('title', 'Customer Reviews');
-  const subtitle = text(
-    'Text',
-    'AXA works hard to provide the best service possible to its customers.'
-  );
-  const autorotatedisabled = boolean('autorotatedisabled', false);
-  const autorotatetime = number('autorotatetime', 5000);
-  const keysenabled = boolean('keysenabled', true);
-  const showallinline = boolean('showallinline', false);
-
+export const Story = ({
+  title,
+  subtitle,
+  autorotatedisabled,
+  autorotatetime,
+  keysenabled,
+  showallinline,
+}) => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <AXATestimonialsReact
@@ -72,4 +68,14 @@ story.add('Story', () => {
   );
 
   return wrapper;
-});
+};
+
+Story.args = {
+  title: 'Customer Reviews',
+  subtitle:
+    'AXA works hard to provide the best service possible to its customers.',
+  autorotatedisabled: false,
+  autorotatetime: 5000,
+  keysenabled: true,
+  showallinline: false,
+};
