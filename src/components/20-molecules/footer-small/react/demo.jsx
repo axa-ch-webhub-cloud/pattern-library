@@ -3,17 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DemoFooterSmallDynamicChildren from './footerSmallDynamicChildren';
 import DemoFooterSmall from './FooterSmall';
-import Changelog from '../CHANGELOG.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 
 export default {
-  title: 'Examples/Footer Small/React Demo',
+  title: 'Examples/Footer Small/React',
   decorators: [withNoBorder],
-
   parameters: {
-    changelog: Changelog,
-    controls: { disabled: true },
-    options: { showPanel: true },
+    readme,
+    changelog,
   },
 };
 
