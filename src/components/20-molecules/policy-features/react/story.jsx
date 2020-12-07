@@ -1,8 +1,6 @@
 /* global document */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
-import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
+import { CarSvg, UmbrellaSvg, TickSvg } from '@axa-ch/materials/images';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
@@ -12,77 +10,82 @@ import readme from '../README.md';
 import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
 import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
 
-const story = storiesOf('Examples/Policy Features/React', module);
-story.addDecorator(withNoBorder);
-story.addDecorator(withKnobs);
-story
-  .addParameters({
+export default {
+  title: 'Examples/Policy Features/React',
+  decorators: [withNoBorder],
+  parameters: {
     readme,
     changelog,
-  })
-  /* Default */
-  .add('Story', () => {
-    const variants = select(
-      'variant',
-      STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
-      '',
-      'axa-policy-features'
-    );
-    const title = text(
-      'title',
-      'A 5 star car insurance with affordable premium services',
-      'axa-policy-features'
-    );
+    controls: { disabled: false },
+    options: { showPanel: true },
+  },
+};
 
-    // props of axa-policy-features-item
-    const itemTitleRadio = radios(
-      'Show title?',
-      { yes: 'y', no: 'n' },
-      'y',
-      'axa-policy-features-item'
-    );
-    const itemTitle = text(
-      'title (of item)',
-      'Get Discount',
-      'axa-policy-features-item'
-    );
-    const itemIconUrl = text(
-      'icon - load svg icon from this url instead:',
-      '',
-      'axa-policy-features-item'
-    );
-    const itemDescription = text(
-      'description',
-      'A 5 star car insurance with affordable premium services',
-      'axa-policy-features-item'
-    );
+export const Story = ({
+  variants,
+  title,
+  itemTitleRadio,
+  itemTitle,
+  itemIconUrl,
+  itemDescription,
+}) => {
+  const div = document.createElement('div');
 
-    const div = document.createElement('div');
+  ReactDOM.render(
+    <AXAPolicyFeaturesReact title={title} variant={variants}>
+      <AXAPolicyFeaturesItemReact
+        title={itemTitleRadio === 'y' ? itemTitle : ''}
+        description={itemDescription}
+        icon={itemIconUrl || CarSvg}
+      />
+      <AXAPolicyFeaturesItemReact
+        title="24/7 assistance"
+        description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
+        icon={UmbrellaSvg}
+      />
+      <AXAPolicyFeaturesItemReact
+        title="Discount partners"
+        description="We reward safe drivers."
+        icon={TickSvg}
+      />
+      <AXAPolicyFeaturesItemReact
+        title="Online & Apps"
+        description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
+        icon={CarSvg}
+      />
+    </AXAPolicyFeaturesReact>,
+    div
+  );
+  return div;
+};
 
-    ReactDOM.render(
-      <AXAPolicyFeaturesReact title={title} variant={variants}>
-        <AXAPolicyFeaturesItemReact
-          title={itemTitleRadio === 'y' ? itemTitle : ''}
-          description={itemDescription}
-          icon={itemIconUrl || CarSvg}
-        />
-        <AXAPolicyFeaturesItemReact
-          title="24/7 assistance"
-          description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online. This is a long text."
-          icon={UmbrellaSvg}
-        />
-        <AXAPolicyFeaturesItemReact
-          title="Discount partners"
-          description="We reward safe drivers."
-          icon={TickSvg}
-        />
-        <AXAPolicyFeaturesItemReact
-          title="Online & Apps"
-          description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
-          icon={CarSvg}
-        />
-      </AXAPolicyFeaturesReact>,
-      div
-    );
-    return div;
-  });
+Story.args = {
+  variants: '',
+  title: 'A 5 star car insurance with affordable premium services',
+  itemTitleRadio: 'y',
+  itemTitle: 'Get Discount',
+  itemIconUrl: '',
+  itemDescription: 'A 5 star car insurance with affordable premium services',
+};
+
+Story.argTypes = {
+  variants: {
+    name: 'variant',
+    control: {
+      type: 'select',
+      options: STYLE_WHITELIST.concat('thisStyleIsNotInWhitelist', ''),
+    },
+  },
+  itemTitleRadio: {
+    name: 'Show title?',
+    control: {
+      type: 'radio',
+      options: { yes: 'y', no: 'n' },
+    },
+  },
+  itemTitle: { name: 'title (set title of first item)' },
+  itemIconUrl: {
+    name: 'icon (load svg icon of first element from this url instead)',
+  },
+  itemDescription: { name: 'description (set description of first item)' },
+};

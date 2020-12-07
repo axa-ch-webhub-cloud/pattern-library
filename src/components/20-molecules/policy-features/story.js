@@ -52,6 +52,7 @@ export const PolicyFeatures = ({
   render(template, wrapper);
   return wrapper;
 };
+
 PolicyFeatures.args = {
   variants: '',
   title: 'A 5 star car insurance with affordable premium services',
