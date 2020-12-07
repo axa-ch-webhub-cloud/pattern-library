@@ -14,10 +14,10 @@ export default {
 };
 
 const children = html`
-  <h4 style="margin-top: 0">Zeitspanne bis zur Pensionierung</h4>
+  <h4 style="margin-top: 0">Time until retirement</h4>
   <p>
-    Für die Berechnung Ihres monatlichen Einkommens im Alter ist die Zeitspanne
-    bis zum Zeitpunkt Ihrer Pensionierung entscheidend.
+    To calculate your monthly income in old age the time span until you retire
+    is decisive.
   </p>
 `;
 
