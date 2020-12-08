@@ -79,3 +79,13 @@ The callback function signature is `callBackFunction(nativeChangeEvent)`.
 
 A `change` event is fired on the component itself. The event bubbles and is cancellable. Its `detail` property contains
 this object: `{active}`, where the meaning of active is as defined above for the same-named property.
+
+The "onChange" handler will receive a synthetic event of the following structure:
+
+```js
+{
+  target: {
+    checked: true / false;
+  }
+}
+```
