@@ -10,20 +10,21 @@ export default class example extends React.Component {
       receivedEvent: '-'
     };
   }
-
-  render() {
-    return (
-        <div>
-            <AXAToggleSwitchReact active={this.state.active} onChange={this.change} />
-            <p>
-                Received onchange event: {this.state.receivedEvent}
-            </p>
-        </div>
-    );
-  }
-
+  
   change = (ev) => {
     this.setState({ active: ev.target.checked });
     this.setState({ receivedEvent: String(ev.target.checked) });
   };
+
+  render() {
+    return (
+      <div>
+        <AXAToggleSwitchReact active={this.state.active} onChange={this.change} />
+        <p>
+          Received onchange event: <span className="axa-toggle-switch-demo__event-info">{this.state.receivedEvent}</span>
+        </p>
+      </div>
+    );
+  }
+
 }
