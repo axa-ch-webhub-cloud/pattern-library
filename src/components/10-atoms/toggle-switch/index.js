@@ -85,9 +85,10 @@ class AXAToggleSwitch extends LitElement {
       this.active = event.target.checked;
       const { active } = this;
       fireCustomEvent('change', { active }, this);
+      this.onChange(event);
+    } else {
+      this.onChange({ target: { checked: this.active } });
     }
-
-    this.onChange(event);
   }
 }
 
