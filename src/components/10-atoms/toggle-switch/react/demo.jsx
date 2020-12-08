@@ -7,6 +7,7 @@ import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 import ControlledWithOnChange from './ControlledWithOnChange';
+import ControlledWithConstantActiveProperty from './ControlledWithConstantActiveProperty';
 
 storiesOf('Examples/Toggle Switch/React', module)
   .addParameters({
@@ -24,6 +25,12 @@ storiesOf('Examples/Toggle Switch/React', module)
   .add('Controlled with onChange', () => {
     const div = document.createElement('div');
     ReactDOM.render(<ControlledWithOnChange />, div);
+
+    return div;
+  })
+  .add('Controlled with dummy onChange listener', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<ControlledWithConstantActiveProperty />, div);
 
     return div;
   })

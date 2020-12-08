@@ -73,7 +73,15 @@ The Boolean attribute `disabled`, when true, disables the toggle switch natively
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
 
-The callback function signature is `callBackFunction(nativeChangeEvent)`.
+The "onChange" handler will receive a synthetic event of the following structure:
+
+```js
+{
+  target: {
+    checked: true / false;
+  }
+}
+```
 
 ## Events
 
