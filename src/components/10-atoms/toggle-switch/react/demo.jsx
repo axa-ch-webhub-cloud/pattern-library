@@ -7,7 +7,7 @@ import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 import ControlledWithOnChange from './ControlledWithOnChange';
-import ControlledWithDummyOnChange from './ControlledWithDummyOnChange';
+import ControlledWithDummyOnChange from './ControlledWithConstantActiveProperty';
 
 storiesOf('Examples/Toggle Switch/React', module)
   .addParameters({
