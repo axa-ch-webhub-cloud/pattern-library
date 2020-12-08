@@ -10,6 +10,7 @@ export default {
 
   parameters: {
     readme,
+    usage: { innerHTML: '...children' },
     changelog,
   },
 };

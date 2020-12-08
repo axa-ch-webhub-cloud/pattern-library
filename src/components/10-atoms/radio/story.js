@@ -12,6 +12,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      tagName: 'axa-radio',
+      propsPureHTML: 'checked',
+      propsReact: 'checked={checked} onChange={handler}',
+    },
     changelog,
   },
 };

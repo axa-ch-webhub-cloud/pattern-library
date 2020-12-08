@@ -16,6 +16,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: { propsReact: 'onClick={handler}' },
     changelog,
   },
 };

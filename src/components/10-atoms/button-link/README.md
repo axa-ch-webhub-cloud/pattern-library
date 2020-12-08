@@ -3,59 +3,6 @@
 Button links provide link functionality, but in the style of a button. They may display text, icons, or both. Button links can be styled via several properties to change their look-and-feel.
 If you need a semantically correct button, use [axa-button](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button/README.md) instead.
 
-## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
-
-```bash
-npm install @axa-ch/button-link
-```
-
-```js
-import '@axa-ch/button-link';
-...
-<axa-button-link>I am a button link</axa-button-link>
-```
-
-### React
-
-Create a React-ified button link with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXAButtonLinkReact from '@axa-ch/button-link/lib/index.react';
-
-const AXAButtonLinkReact = createAXAButtonLinkReact(createElement);
-
-export default AXAButtonLinkReact;
-```
-
-```js
-<AXAButtonLinkReact href="#axa" motionOff onClick={handler}>
-  I am a Button Link
-</AxaButtonReact>
-```
-
-### Pure HTML pages
-
-Import the button-link-defining script and use a button link like this:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Your awesome title</title>
-  </head>
-  <body>
-    <axa-button-link>I am a button link</axa-button-link>
-    <script src="node_modules/@axa-ch/button-link/dist/index.js"></script>
-  </body>
-</html>
-```
-
 ## Properties
 
 ### Variant

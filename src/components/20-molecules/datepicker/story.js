@@ -26,6 +26,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      propsPureHTML: 'locale="de-CH" year="2020" month="1" day="20"',
+      propsReact: 'locale="de-CH" year={2020} month={1} day={1}',
+    },
     changelog,
   },
 };

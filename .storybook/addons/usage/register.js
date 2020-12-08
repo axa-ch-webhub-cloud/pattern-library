@@ -67,9 +67,27 @@ const getFormattedTagNames = () => {
   return formatTagName(tagName);
 };
 
+const beginsWithVowel = (tagName = '') => {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  const firstLetter = tagName.substr(0, 1);
+  let beginsWithVowel = false;
+
+  for (let index = 0; index < vowels.length; index++) {
+    if (firstLetter === vowels[index]) {
+      beginsWithVowel = true;
+      break;
+    }
+  }
+
+  return beginsWithVowel;
+};
+
 const MyPanel = () => {
   const { PURE_HTML_TAG, REACT_TAG } = getFormattedTagNames();
-  const { innerText, propsPureHTML, propsReact } = useParameter('usage', {});
+  const { innerHTML, propsPureHTML, propsReact, usageReact } = useParameter(
+    'usage',
+    {}
+  );
 
   return (
     <div className="markdown-body" style={{ margin: '15px' }}>
@@ -94,48 +112,54 @@ const MyPanel = () => {
           ...
           <br />
           &lt;axa-{PURE_HTML_TAG}
-          {propsPureHTML && ` ${propsPureHTML}`}&gt;{innerText}&lt;/axa-
+          {propsPureHTML && ` ${propsPureHTML}`}&gt;{innerHTML}&lt;/axa-
           {PURE_HTML_TAG}&gt;
         </code>
       </pre>
       <h3 id="react">React</h3>
-      <p>
-        Create a React-ified {PURE_HTML_TAG} with the createElement function
-        from your React version and then use it like this:
-      </p>
-      <pre>
-        <code className="language-js">
-          import {'{ createElement }'} from 'react';
-          <br />
-          import createAXA{REACT_TAG}React from '@axa-ch/
-          {PURE_HTML_TAG}
-          /lib/index.react';
-          <br />
-          <br />
-          const AXA{REACT_TAG}React = createAXA
-          {REACT_TAG}React(createElement);
-          <br />
-          <br />
-          export default AXA{REACT_TAG}React;
-        </code>
-      </pre>
-      <pre>
-        <code className="language-js">
-          &lt;AXA{REACT_TAG}React{propsReact && ` ${propsReact}`}&gt;
-          {innerText && (
-            <>
+      {usageReact ? (
+        usageReact
+      ) : (
+        <>
+          <p>
+            Create a React-ified {PURE_HTML_TAG} with the createElement function
+            from your React version and then use it like this:
+          </p>
+          <pre>
+            <code className="language-js">
+              import {'{ createElement }'} from 'react';
               <br />
-              {`  ${innerText}`}
+              import createAXA{REACT_TAG}React from '@axa-ch/
+              {PURE_HTML_TAG}
+              /lib/index.react';
               <br />
-            </>
-          )}
-          &lt;/Axa{REACT_TAG}React&gt;
-        </code>
-      </pre>
+              <br />
+              const AXA{REACT_TAG}React = createAXA
+              {REACT_TAG}React(createElement);
+              <br />
+              <br />
+              export default AXA{REACT_TAG}React;
+            </code>
+          </pre>
+          <pre>
+            <code className="language-js">
+              &lt;AXA{REACT_TAG}React{propsReact && ` ${propsReact}`}&gt;
+              {innerHTML && (
+                <>
+                  <br />
+                  {`  ${innerHTML}`}
+                  <br />
+                </>
+              )}
+              &lt;/Axa{REACT_TAG}React&gt;
+            </code>
+          </pre>
+        </>
+      )}
       <h3 id="pure-html-pages">Pure HTML pages</h3>
       <p>
-        Import the {PURE_HTML_TAG}-defining script and use a {PURE_HTML_TAG}{' '}
-        like this:
+        Import the {PURE_HTML_TAG}-defining script and use{' '}
+        {beginsWithVowel(PURE_HTML_TAG) ? 'an' : 'a'} {PURE_HTML_TAG} like this:
       </p>
       <pre>
         <code className="language-html">
@@ -159,7 +183,7 @@ const MyPanel = () => {
           {'  '}&lt;body&gt;
           <br />
           {'    '}&lt;axa-{PURE_HTML_TAG}
-          {propsPureHTML && ` ${propsPureHTML}`}&gt;{innerText}
+          {propsPureHTML && ` ${propsPureHTML}`}&gt;{innerHTML}
           &lt;/axa-
           {PURE_HTML_TAG}&gt;
           <br />

@@ -11,6 +11,10 @@ export default {
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
+    usage: {
+      propsPureHTML: 'keysenabled=""',
+      propsReact: 'keysenabled',
+    },
     changelog,
   },
 };

@@ -33,9 +33,13 @@ const variantOptions = {
 export default {
   title: 'Components/Link',
   decorators: [withKnobs],
-
   parameters: {
     readme,
+    usage: {
+      innerHTML: 'I am a link',
+      propsPureHTML: 'href="https://axa.ch/en/private-customers.html"',
+      propsReact: 'href="https://axa.ch/en/private-customers.html"',
+    },
     changelog,
   },
 };

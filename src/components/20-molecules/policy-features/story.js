@@ -12,6 +12,10 @@ export default {
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
+    usage: {
+      propsPureHTML: 'title="Your main title" variant="axa-blue"',
+      propsReact: 'title="Your main title" variant="axa-blue"',
+    },
     changelog,
   },
 };

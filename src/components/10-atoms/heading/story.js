@@ -11,6 +11,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      innerHTML: 'H1 Heading',
+      propsPureHTML: 'rank="1"',
+      propsReact: 'rank="1"',
+    },
     changelog,
   },
 };

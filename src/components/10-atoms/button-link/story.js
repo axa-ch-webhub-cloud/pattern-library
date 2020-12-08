@@ -43,6 +43,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      innerHTML: 'I am a button-link',
+      propsReact: 'href="#axa" motionOff onClick={handler}',
+    },
     changelog,
   },
 };

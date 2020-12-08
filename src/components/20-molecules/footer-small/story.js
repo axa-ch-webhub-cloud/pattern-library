@@ -8,9 +8,9 @@ import readme from './README.md';
 export default {
   title: 'Components/Footer Small',
   decorators: [withNoBorder, withKnobs],
-
   parameters: {
     readme,
+    usage: { innerHTML: '...children' },
     changelog,
   },
 };

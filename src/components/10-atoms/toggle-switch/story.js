@@ -10,6 +10,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: { propsReact: 'onChange={handler}' },
     changelog,
   },
 };

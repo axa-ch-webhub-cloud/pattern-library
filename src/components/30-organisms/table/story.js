@@ -7,7 +7,6 @@ import readme from './README.md';
 export default {
   title: 'Components/Table',
   decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,

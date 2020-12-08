@@ -2,48 +2,6 @@
 
 This component represents a styled, enhanced replacement for native HTML &lt;select&gt;. The component is responsive, falling back to native look-and-feel under mobile viewports. Keyboard operation is supported.
 
-## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
-
-`npm install @axa-ch/dropdown`
-
-### Native Example
-
-```
-<axa-dropdown defaulttitle="Please Select" valid
-    items='[
-    {"name": "Item A", "value": "Item 1" },
-    {"name": "Item B", "value": "Item 2" },
-    {"name": "Item C", "value": "Item 3" }
-    ]'></axa-dropdown>
-```
-
-### React Example
-
-Create a React-ified Dropdown with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXADropdownReact from '@axa-ch/dropdown/lib/index.react';
-
-const AXADropdownReact = createAXADropdownReact(createElement);
-
-export default AXADropdownReact;
-```
-
-```js
-<AXADropdownReact
-  items={[
-    { name: 'Item 1', value: 'Item 1' },
-    { name: 'Item 2', value: 'Item 2' },
-    { name: 'Item 3', value: 'Item 3' },
-  ]}
-  defaultTitle="Please Select"
-  onChange={event => console.log(`value changed ${event.target.value}`)}
-/>
-```
-
 [Controlled-Component](https://reactjs.org/docs/forms.html#the-select-tag) behaviour is supported.
 
 ## Properties

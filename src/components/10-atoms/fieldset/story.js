@@ -9,6 +9,12 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      tagName: 'axa-fieldset',
+      innerHTML: '...children',
+      propsPureHTML: 'horizontal',
+      propsReact: 'horizontal',
+    },
     changelog,
   },
 };

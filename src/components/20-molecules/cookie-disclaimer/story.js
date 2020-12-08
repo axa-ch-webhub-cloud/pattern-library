@@ -11,7 +11,10 @@ export default {
 
   parameters: {
     readme,
-    usage: { tagName: 'axa-cookie-disclaimer' },
+    usage: {
+      tagName: 'axa-cookie-disclaimer',
+      propsReact: 'title="Any Title"',
+    },
     changelog,
   },
 };

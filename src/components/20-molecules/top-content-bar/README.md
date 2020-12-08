@@ -4,59 +4,6 @@ Used as top of the page warning or info box that can show text and have a call t
 
 There is also the possibility to add child elements.
 
-## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
-
-```bash
-npm install @axa-ch/top-content-bar
-```
-
-```js
-import '@axa-ch/top-content-bar';
-...
-<axa-top-content-bar ctatext="Click Me">Some Text</axa-top-content-bar>
-```
-
-### React
-
-Create a React-ified top-content-bar with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXATopContentBarReact from '@axa-ch/top-content-bar/lib/index.react';
-
-const AXATopContentBarReact = createAXATopContentBarReact(createElement);
-
-export default AXATopContentBarReact;
-```
-
-```js
-<AXATopContentBarReact onClick={handler} ctatext="Click Me" />
-```
-
-### Pure HTML pages
-
-Import the top-content-bar-defining script and use a top-content-bar like this:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Your awesome title</title>
-  </head>
-  <body>
-    <axa-top-content-bar ctatext="Click Me" href="http://www.axa.ch">
-      Some Text
-    </axa-top-content-bar>
-    <script src="node_modules/@axa-ch/top-content-bar/dist/index.js"></script>
-  </body>
-</html>
-```
-
 ## Properties
 
 ### Variant

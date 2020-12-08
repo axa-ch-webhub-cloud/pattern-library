@@ -9,6 +9,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      propsPureHTML: `items='[{"name": "Item A", "value": "Item 1" }]'`,
+      propsReact: `items={[{ name: 'Item 1', value: 'Item 1' }]}`,
+    },
     changelog,
   },
 };

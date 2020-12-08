@@ -68,7 +68,6 @@ const model = {
 export default {
   title: 'Components/Table Sortable',
   decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,
