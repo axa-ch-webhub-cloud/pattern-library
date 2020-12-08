@@ -12,21 +12,22 @@ export default class example extends React.Component {
   }
 
   change = ev => {
-    this.setState({ active: ev.target.checked });
-    this.setState({ receivedEvent: String(ev.target.checked) });
+    // we expect 'ev.target.checked' to always contain the same value, as the active flag.
+    this.setState({
+      active: ev.target.checked,
+      receivedEvent: String(ev.target.checked),
+    });
   };
 
   render() {
+    const { receivedEvent, active } = this.state;
     return (
       <div>
-        <AXAToggleSwitchReact
-          active={this.state.active}
-          onChange={this.change}
-        />
+        <AXAToggleSwitchReact active={active} onChange={this.change} />
         <p>
-          Received onchange event:
+          Received onChange event:
           <span className="axa-toggle-switch-demo__event-info">
-            {this.state.receivedEvent}
+            {receivedEvent}
           </span>
         </p>
       </div>
