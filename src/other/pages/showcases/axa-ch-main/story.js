@@ -13,7 +13,9 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme: { disabled: true },
+    usage: { disabled: true },
     changelog: { disabled: true },
+    a11y: { disabled: true },
   },
 };
 
@@ -38,7 +40,7 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   }
 }
 
-export const MainPage = () => {
+export const AXA = () => {
   const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
   const wrapper = document.createElement('div');
 

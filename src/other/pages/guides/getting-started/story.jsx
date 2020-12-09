@@ -8,7 +8,7 @@ import styles from './index.scss';
 import { AXAHeading, AXAText } from './plib-components';
 
 export default {
-  title: 'Guides/Getting started',
+  title: 'Guides/Getting Started',
   decorators: [],
   parameters: {
     knobs: { disabled: true },
