@@ -13,7 +13,7 @@ const manipulateUISettings = storage => {
   if (storage.getItem(UI_STORE)) {
     const uiStore = JSON.parse(storage.getItem(UI_STORE));
 
-    if (uiStore.layout === undefined) {
+    if (!uiStore.layout) {
       uiStore.layout = {};
     }
 
