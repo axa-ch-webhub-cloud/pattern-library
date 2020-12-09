@@ -12,8 +12,12 @@ const UI_STORE = '@storybook/ui/store';
 const manipulateUISettings = storage => {
   if (storage.getItem(UI_STORE)) {
     const uiStore = JSON.parse(storage.getItem(UI_STORE));
-    uiStore.layout.showPanel = false;
 
+    if (uiStore.layout === undefined) {
+      uiStore.layout = {};
+    }
+
+    uiStore.layout.showPanel = false;
     storage.setItem(UI_STORE, JSON.stringify(uiStore));
   } else {
     storage.setItem(UI_STORE, '{"layout":{"showPanel":false}}');
