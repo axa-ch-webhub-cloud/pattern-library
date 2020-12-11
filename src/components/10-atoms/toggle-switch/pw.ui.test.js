@@ -1,26 +1,4 @@
-const { browserInstance, config } = require('../../../test/playwright-config');
-
 const host = process.env.TEST_HOST_STORYBOOK_URL;
-
-// let browser;
-// let page;
-
-// beforeAll(async () => {
-//   console.log('here we go 1');
-//   browser = await browserInstance.launch(config);
-// });
-
-// afterAll(async () => {
-//   await browser.close();
-// });
-
-beforeEach(async () => {
-  page = await browser.newPage();
-});
-
-afterEach(async () => {
-  await page.close();
-});
 
 it('should fire correct change event in controlled mode', async () => {
   await page.goto(
