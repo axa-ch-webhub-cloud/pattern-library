@@ -2,16 +2,17 @@ const { browserInstance, config } = require('../../../test/playwright-config');
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-let browser;
-let page;
+// let browser;
+// let page;
 
-beforeAll(async () => {
-  browser = await browserInstance.launch(config);
-});
+// beforeAll(async () => {
+//   console.log('here we go 2');
+//   browser = await browserInstance.launch(config);
+// });
 
-afterAll(async () => {
-  await browser.close();
-});
+// afterAll(async () => {
+//   await browser.close();
+// });
 
 beforeEach(async () => {
   page = await browser.newPage();
