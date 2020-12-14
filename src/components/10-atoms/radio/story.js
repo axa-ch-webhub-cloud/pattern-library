@@ -13,6 +13,7 @@ export default {
   parameters: {
     readme,
     usage: {
+      disabled: false,
       componentName: 'radio',
       propsPureHTML: 'checked',
       propsReact: 'checked={checked} onChange={handler}',

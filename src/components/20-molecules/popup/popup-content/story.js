@@ -9,7 +9,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { componentName: 'popup', propsReact: 'onClick={handler}' },
+    usage: {
+      disabled: false,
+      componentName: 'popup',
+      propsReact: 'onClick={handler}',
+    },
     changelog,
   },
 };

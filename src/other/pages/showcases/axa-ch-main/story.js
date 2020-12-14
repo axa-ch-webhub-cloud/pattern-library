@@ -13,7 +13,6 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme: { disabled: true },
-    usage: { disabled: true },
     changelog: { disabled: true },
     a11y: { disabled: true },
   },

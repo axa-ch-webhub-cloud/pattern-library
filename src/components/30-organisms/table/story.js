@@ -9,7 +9,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { componentName: 'table' },
+    usage: {
+      disabled: false,
+      componentName: 'table',
+    },
     changelog,
   },
 };

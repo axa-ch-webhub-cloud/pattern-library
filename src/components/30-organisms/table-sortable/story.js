@@ -70,7 +70,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { componentName: 'table-sortable' },
+    usage: {
+      disabled: false,
+      componentName: 'table-sortable',
+    },
     changelog,
   },
 };

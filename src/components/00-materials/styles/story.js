@@ -61,7 +61,6 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { disabled: true },
     changelog,
     a11y: { disabled: true },
     layout: 'fullscreen',

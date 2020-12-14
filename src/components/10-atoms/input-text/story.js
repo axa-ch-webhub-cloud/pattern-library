@@ -10,6 +10,7 @@ export default {
   parameters: {
     readme,
     usage: {
+      disabled: false,
       componentName: 'input-text',
       propsReact: 'onChange={handleChange}',
     },

@@ -10,7 +10,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { componentName: 'toggle-switch', propsReact: 'onChange={handler}' },
+    usage: {
+      disabled: false,
+      componentName: 'toggle-switch',
+      propsReact: 'onChange={handler}',
+    },
     changelog,
   },
 };
