@@ -7,7 +7,7 @@ import React from 'react';
 const ADDON_ID = 'axa-ch/usage';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
-const formatcomponentName = componentName => {
+const formatComponentName = componentName => {
   if (componentName === undefined) {
     return {};
   }
@@ -54,7 +54,7 @@ const beginsWithVowel = (componentName = '') => {
 const MyPanel = () => {
   const param = useParameter('usage', {});
 
-  const { PURE_HTML_TAG, REACT_TAG } = formatcomponentName(param.componentName);
+  const { PURE_HTML_TAG, REACT_TAG } = formatComponentName(param.componentName);
   const { innerHTML, propsPureHTML, propsReact, usageReact } = param;
 
   return (
