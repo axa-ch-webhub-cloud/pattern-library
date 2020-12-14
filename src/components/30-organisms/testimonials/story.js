@@ -10,6 +10,7 @@ export default {
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
+    usage: { componentName: 'testimonials' },
     changelog,
   },
 };

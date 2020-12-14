@@ -10,7 +10,7 @@ export default {
 
   parameters: {
     readme,
-    usage: { innerHTML: '...children' },
+    usage: { componentName: 'container', innerHTML: '...children' },
     changelog,
   },
 };

@@ -16,6 +16,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     usage: {
+      componentName: 'icon',
       propsPureHTML: 'icon="arrow-right"',
       usageReact:
         'You can use this component directly in your JSX without further React-ification (see Usage above).',

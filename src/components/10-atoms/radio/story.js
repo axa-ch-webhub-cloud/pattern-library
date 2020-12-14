@@ -13,7 +13,7 @@ export default {
   parameters: {
     readme,
     usage: {
-      tagName: 'axa-radio',
+      componentName: 'radio',
       propsPureHTML: 'checked',
       propsReact: 'checked={checked} onChange={handler}',
     },

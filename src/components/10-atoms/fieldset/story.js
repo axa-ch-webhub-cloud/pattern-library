@@ -10,7 +10,7 @@ export default {
   parameters: {
     readme,
     usage: {
-      tagName: 'axa-fieldset',
+      componentName: 'fieldset',
       innerHTML: '...children',
       propsPureHTML: 'horizontal',
       propsReact: 'horizontal',

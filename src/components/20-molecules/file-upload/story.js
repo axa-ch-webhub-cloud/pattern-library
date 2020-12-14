@@ -16,7 +16,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { propsReact: 'onClick={handler}' },
+    usage: { componentName: 'file-upload', propsReact: 'onClick={handler}' },
     changelog,
   },
 };

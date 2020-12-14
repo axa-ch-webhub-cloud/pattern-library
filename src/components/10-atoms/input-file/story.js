@@ -17,7 +17,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { innerHTML: 'I am a upload', propsReact: 'onChange={handler}' },
+    usage: {
+      componentName: 'input-file',
+      innerHTML: 'I am a upload',
+      propsReact: 'onChange={handler}',
+    },
     changelog,
   },
 };

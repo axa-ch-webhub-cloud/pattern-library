@@ -18,7 +18,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { innerHTML: 'Lorem ipsum dolor sit amet' },
+    usage: { componentName: 'text', innerHTML: 'Lorem ipsum dolor sit amet' },
     changelog,
   },
 };

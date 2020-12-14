@@ -9,6 +9,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: { componentName: 'table' },
     changelog,
   },
 };

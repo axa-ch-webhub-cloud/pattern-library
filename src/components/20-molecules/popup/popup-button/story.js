@@ -9,7 +9,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { tagName: 'axa-popup', propsReact: 'onClick={handler}' },
+    usage: { componentName: 'popup', propsReact: 'onClick={handler}' },
     changelog,
   },
 };

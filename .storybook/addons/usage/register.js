@@ -7,42 +7,21 @@ import React from 'react';
 const ADDON_ID = 'axa-ch/usage';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
-const getTagName = () => {
-  let result;
-
-  try {
-    const iframe = document.querySelector('iframe');
-    const root = iframe.contentWindow.document.querySelector('#root');
-    const nodeList = root.querySelectorAll('*:not(div)');
-
-    for (let index = 0; index < nodeList.length; index++) {
-      const tagName = nodeList[index].tagName;
-
-      if (tagName.substring(0, 4) === 'AXA-') {
-        result = tagName;
-        break;
-      }
-    }
-  } finally {
-    return result;
-  }
-};
-
-const formatTagName = tagName => {
-  if (tagName === undefined) {
+const formatcomponentName = componentName => {
+  if (componentName === undefined) {
     return {};
   }
 
-  const pureHTML = tagName.substr(4).toLowerCase();
-  const formatReactTag = tagName => {
-    let result = tagName.substring(0, 1).toUpperCase();
+  const pureHTML = componentName.toLowerCase();
+  const formatReactTag = componentName => {
+    let result = componentName.substring(0, 1).toUpperCase();
 
-    for (let index = 1; index < tagName.length; index++) {
-      const char = tagName.charAt(index);
+    for (let index = 1; index < componentName.length; index++) {
+      const char = componentName.charAt(index);
 
       if (char === '-') {
         index++;
-        result = result + tagName.charAt(index).toUpperCase();
+        result = result + componentName.charAt(index).toUpperCase();
       } else {
         result = result + char;
       }
@@ -57,19 +36,9 @@ const formatTagName = tagName => {
   };
 };
 
-const getFormattedTagNames = () => {
-  let tagName = useParameter('usage', {}).tagName;
-
-  if (tagName === undefined) {
-    tagName = getTagName();
-  }
-
-  return formatTagName(tagName);
-};
-
-const beginsWithVowel = (tagName = '') => {
+const beginsWithVowel = (componentName = '') => {
   const vowels = ['a', 'e', 'i', 'o', 'u'];
-  const firstLetter = tagName.substr(0, 1);
+  const firstLetter = componentName.substr(0, 1);
   let beginsWithVowel = false;
 
   for (let index = 0; index < vowels.length; index++) {
@@ -83,11 +52,10 @@ const beginsWithVowel = (tagName = '') => {
 };
 
 const MyPanel = () => {
-  const { PURE_HTML_TAG, REACT_TAG } = getFormattedTagNames();
-  const { innerHTML, propsPureHTML, propsReact, usageReact } = useParameter(
-    'usage',
-    {}
-  );
+  const param = useParameter('usage', {});
+
+  const { PURE_HTML_TAG, REACT_TAG } = formatcomponentName(param.componentName);
+  const { innerHTML, propsPureHTML, propsReact, usageReact } = param;
 
   return (
     <div className="markdown-body" style={{ margin: '15px' }}>

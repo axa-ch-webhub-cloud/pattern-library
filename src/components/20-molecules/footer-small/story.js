@@ -10,7 +10,7 @@ export default {
   decorators: [withNoBorder, withKnobs],
   parameters: {
     readme,
-    usage: { innerHTML: '...children' },
+    usage: { componentName: 'footer-small', innerHTML: '...children' },
     changelog,
   },
 };

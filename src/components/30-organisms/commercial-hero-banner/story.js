@@ -11,6 +11,7 @@ export default {
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
+    usage: { componentName: 'commercial-hero-banner' },
     changelog,
   },
 };

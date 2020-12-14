@@ -17,6 +17,7 @@ export default {
   parameters: {
     readme,
     usage: {
+      componentName: 'button',
       innerHTML: 'I am a button',
       propsReact: 'motionOff onClick={handler}',
     },

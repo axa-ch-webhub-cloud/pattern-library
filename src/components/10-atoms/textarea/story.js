@@ -9,7 +9,7 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
-    usage: { propsReact: 'onChange={handleChange}' },
+    usage: { componentName: 'textarea', propsReact: 'onChange={handleChange}' },
     changelog,
   },
 };
