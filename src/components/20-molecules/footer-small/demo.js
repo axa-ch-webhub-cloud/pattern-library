@@ -11,6 +11,7 @@ storiesOf('Examples/Footer Small/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Dynamic Links', () => {

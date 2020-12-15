@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'fieldset',
       innerHTML: '...children',
       propsPureHTML: 'horizontal',

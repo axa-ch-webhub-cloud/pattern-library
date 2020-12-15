@@ -10,6 +10,7 @@ storiesOf('Examples/Footer/React', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
 

@@ -19,7 +19,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'text',
       innerHTML: 'Lorem ipsum dolor sit amet',
     },

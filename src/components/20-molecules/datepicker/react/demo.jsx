@@ -15,6 +15,7 @@ import DemoDatepickerReRenderOnEveryKeyStroke from './DemoDatepickerReRenderOnDa
 storiesOf('Examples/Datepicker/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Controlled-component with inputfield', () => {

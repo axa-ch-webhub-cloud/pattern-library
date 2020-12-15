@@ -17,7 +17,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'file-upload',
       propsReact: 'onClick={handler}',
     },

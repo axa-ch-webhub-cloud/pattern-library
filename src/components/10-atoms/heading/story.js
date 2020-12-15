@@ -12,7 +12,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'heading',
       innerHTML: 'H1 Heading',
       propsPureHTML: 'rank="1"',

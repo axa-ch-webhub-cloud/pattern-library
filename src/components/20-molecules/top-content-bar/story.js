@@ -16,7 +16,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'top-content-bar',
       innerHTML: 'Some Text',
       propsPureHTML: 'ctatext="Click Me"',

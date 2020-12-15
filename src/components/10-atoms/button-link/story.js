@@ -44,7 +44,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'button-link',
       innerHTML: 'I am a button-link',
       propsReact: 'href="#axa" motionOff onClick={handler}',

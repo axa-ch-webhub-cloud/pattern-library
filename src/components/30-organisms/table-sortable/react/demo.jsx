@@ -65,6 +65,7 @@ const model = {
 storiesOf('Examples/Table Sortable/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('On click works also in react', () => {

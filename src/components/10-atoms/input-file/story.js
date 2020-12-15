@@ -18,7 +18,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'input-file',
       innerHTML: 'I am a upload',
       propsReact: 'onChange={handler}',

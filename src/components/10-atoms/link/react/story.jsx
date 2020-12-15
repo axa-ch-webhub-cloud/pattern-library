@@ -38,6 +38,7 @@ storiesOf('Examples/Link/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Story', () => {

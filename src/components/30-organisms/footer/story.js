@@ -12,7 +12,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'footer',
     },
     changelog,

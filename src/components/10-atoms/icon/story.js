@@ -16,7 +16,6 @@ export default {
   decorators: [withKnobs],
   parameters: {
     usage: {
-      disabled: false,
       componentName: 'icon',
       propsPureHTML: 'icon="arrow-right"',
       usageReact:

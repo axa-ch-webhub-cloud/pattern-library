@@ -13,7 +13,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'policy-features',
       propsPureHTML: 'title="Your main title" variant="axa-blue"',
       propsReact: 'title="Your main title" variant="axa-blue"',

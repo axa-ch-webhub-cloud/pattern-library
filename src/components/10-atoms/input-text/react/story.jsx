@@ -17,6 +17,7 @@ const storyInputText = storiesOf('Examples/Input Text/React', module);
 storyInputText.addDecorator(withKnobs);
 storyInputText.addParameters({
   readme,
+  usage: { disabled: true },
   changelog,
 });
 

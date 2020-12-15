@@ -40,7 +40,6 @@ const customViewports = {
 };
 
 addParameters({
-  usage: { disabled: true },
   options: {
     showPanel: true,
     storySort: {

@@ -71,7 +71,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'table-sortable',
     },
     changelog,

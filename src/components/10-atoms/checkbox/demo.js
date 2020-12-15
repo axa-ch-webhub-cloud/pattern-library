@@ -8,6 +8,7 @@ import readme from './README.md';
 storiesOf('Examples/Checkbox/Pure HTML', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Use your own label as a child of the component', () => {

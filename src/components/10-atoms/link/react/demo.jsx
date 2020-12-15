@@ -9,6 +9,7 @@ import DemoLink from './DemoLink';
 storiesOf('Examples/Link/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Variable icons', () => {

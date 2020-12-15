@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'popup',
       propsReact: 'onClick={handler}',
     },

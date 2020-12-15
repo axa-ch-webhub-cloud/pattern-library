@@ -11,7 +11,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      disabled: false,
       componentName: 'checkbox',
       propsPureHTML: `label="I'm a checkbox"`,
       propsReact: `onChange={handler} label="I'm a checkbox" defaultChecked`,

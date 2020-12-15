@@ -10,6 +10,7 @@ import DemoTextReactVersioned from './DemoTextReactVersioned';
 storiesOf('Examples/Text/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
     knobs: { disabled: true },
   })
