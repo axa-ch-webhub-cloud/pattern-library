@@ -40,7 +40,10 @@
   "ignoreChanges": [
     "**/*.test.js",
     "**/node_modules/**",
-    "**/package-lock.json"
+    "**/package-lock.json",
+    "**/story.js",
+    "**/README.md",
+    "**/CHANGELOG.js"
   ],
   "version": "independent",
   "npmClient": "npm"
