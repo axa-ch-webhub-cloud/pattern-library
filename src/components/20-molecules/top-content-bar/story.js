@@ -13,9 +13,14 @@ const variantOptions = {
 export default {
   title: 'Components/Top Content Bar',
   decorators: [withNoBorder, withKnobs],
-
   parameters: {
     readme,
+    usage: {
+      componentName: 'top-content-bar',
+      innerHTML: 'Some Text',
+      propsPureHTML: 'ctatext="Click Me"',
+      propsReact: 'onClick={handler} ctatext="Click Me"',
+    },
     changelog,
   },
 };

@@ -34,8 +34,8 @@ storiesOf('Welcome', module)
     parameters: {
       knobs: { disabled: true },
       readme: { disabled: true },
+      usage: { disabled: true },
       changelog: { disabled: true },
-      codepreview: { disabled: true },
       a11y: { disabled: true },
       options: { showPanel: false },
       layout: 'fullscreen',

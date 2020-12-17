@@ -16,9 +16,12 @@ const variantOptions = {
 export default {
   title: 'Components/Text',
   decorators: [withKnobs],
-
   parameters: {
     readme,
+    usage: {
+      componentName: 'text',
+      innerHTML: 'Lorem ipsum dolor sit amet',
+    },
     changelog,
   },
 };

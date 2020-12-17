@@ -58,11 +58,11 @@ const mapToIconItemNode = (icon, ...cssClasses) => {
 export default {
   title: 'Brand Elements/Icons and Images',
   decorators: [withKnobs],
-
   parameters: {
     readme,
     changelog,
-    codepreview: { disabled: true },
+    a11y: { disabled: true },
+    options: { showPanel: true },
     layout: 'fullscreen',
   },
 };

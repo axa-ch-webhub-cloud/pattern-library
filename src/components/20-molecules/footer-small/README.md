@@ -2,17 +2,23 @@
 
 This is the small version of the footer. This footer belongs to the very bottom of the webpage.
 
-## Usage
+## Properties
 
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+### dynamic
 
-```bash
-npm install @axa-ch/footer-small
-```
+Add this boolean attribute if you want to have control over what happens if a user clicks one of the language- or disclaimer-items.
+
+### [React exclusive] onLanguageClick
+
+Add a callback method that should run as soon as a language link gets clicked.
+
+### [React exclusive] onDisclaimerClick
+
+Add a callback method that should run as soon as a disclaimer link gets clicked.
+
+## Examples
 
 ### React
-
-Create a React-ified small footer with the createElement function from your React version and then use it like this:
 
 ```js
 import React, { createElement, useState } from 'react';
@@ -231,17 +237,3 @@ This approach will not redirect the user automatically, if he/she clicks on a li
 Set the class `.m-footer-small__link--active` to the language item children, that you want to highlight. Example:
 
 `<a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">`
-
-## Properties
-
-### dynamic
-
-Add this boolean attribute if you want to have control over what happens if a user clicks one of the language- or disclaimer-items.
-
-### [React exclusive] onLanguageClick
-
-Add a callback method that should run as soon as a language link gets clicked.
-
-### [React exclusive] onDisclaimerClick
-
-Add a callback method that should run as soon as a disclaimer link gets clicked.

@@ -11,6 +11,11 @@ export default {
   decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
+    usage: {
+      componentName: 'carousel',
+      propsPureHTML: 'keysenabled=""',
+      propsReact: 'keysenabled',
+    },
     changelog,
   },
 };

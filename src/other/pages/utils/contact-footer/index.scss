@@ -7,22 +7,23 @@ html, body, #root {
     bottom: 0px;
     right: 0px;
     left: 0px;
-    padding: 20px 40px;
+    padding: 20px 40px 20px 1rem;
     background-color: $color-dark-grey;
     color: $color-prim-white;
 
     @include breakpoint($mediaquery-md-up) {
         min-width: 420px;
+        padding-left: 4rem;
     }
 
     &__inner {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        
-        @include breakpoint($mediaquery-md-up) {
-            padding-left: 30px;
-            padding-left: 80px;
+        padding-left: 1rem;
+
+        @include breakpoint($mediaquery-xs-up) {
+            padding-left: 3rem;
         }
     }
     

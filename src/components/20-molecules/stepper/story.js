@@ -10,6 +10,11 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      componentName: 'stepper',
+      propsPureHTML: `steps='["Step 1", "Step 2", "Step 3"]'`,
+      propsReact: `steps={['Step 1', 'Step 2', 'Step 3']}`,
+    },
     changelog,
   },
 };

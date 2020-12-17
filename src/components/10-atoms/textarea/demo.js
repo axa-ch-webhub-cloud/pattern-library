@@ -10,6 +10,7 @@ storiesOf('Examples/Textarea/Pure HTML', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add(

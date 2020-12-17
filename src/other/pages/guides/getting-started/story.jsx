@@ -8,13 +8,13 @@ import styles from './index.scss';
 import { AXAHeading, AXAText } from './plib-components';
 
 export default {
-  title: 'Guides/Getting started',
+  title: 'Guides/Getting Started',
   decorators: [],
   parameters: {
     knobs: { disabled: true },
     readme: { disabled: true },
+    usage: { disabled: true },
     changelog: { disabled: true },
-    codepreview: { disabled: true },
     a11y: { disabled: true },
     options: { showPanel: false },
     layout: 'fullscreen',

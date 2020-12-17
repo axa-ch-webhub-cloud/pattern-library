@@ -25,6 +25,7 @@ storiesOf('Examples/Datepicker/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Story', () => {

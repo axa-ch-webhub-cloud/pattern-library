@@ -1,9 +1,22 @@
 # AXA Table
 
-Install it with your CLI:
-`npm install @axa-ch/table`
+## Properties
 
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+| Attribute           | Details                                                                                                                                                                                              |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `innerscroll="500"` | Sets a min width in pixel to the table and if the viewport width is smaller than _innerscroll_, adds a horizontal scrollbar. This property obligatorily requires thead and tbody.                    |
+| `maxheight="500"`   | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses _maxheight_. This property obligatorily requires thead and tbody. |
+
+## Variants
+
+The consumer of axa-table can create variants of the default look-and-feel by applying classes to cells.
+
+The following classes are provided:
+
+- `<td class="o-table--light">Longer Body A2</td>` For a lighter-styled cell
+- `<td class="o-table--bold">Super Long Body B3 </td>` For a bolder-styled cell
+
+## Example
 
 Example on how to use it in a HTML standalone page:
 
@@ -109,19 +122,3 @@ export default App;
 ```
 
 **Note: axa-table does _not_ use ShadowDOM, unlike its sister component axa-table-sortable.**
-
-## Properties
-
-| Attribute           | Details                                                                                                                                                                                              |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `innerscroll="500"` | Sets a min width in pixel to the table and if the viewport width is smaller than _innerscroll_, adds a horizontal scrollbar. This property obligatorily requires thead and tbody.                    |
-| `maxheight="500"`   | (`innerscroll` must be set) Sets a min height in pixel for the table body. Adds a vertical scrollbar, if the list height surpasses _maxheight_. This property obligatorily requires thead and tbody. |
-
-## Variants
-
-The consumer of axa-table can create variants of the default look-and-feel by applying classes to cells.
-
-The following classes are provided:
-
-- `<td class="o-table--light">Longer Body A2</td>` For a lighter-styled cell
-- `<td class="o-table--bold">Super Long Body B3 </td>` For a bolder-styled cell

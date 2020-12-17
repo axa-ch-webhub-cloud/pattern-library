@@ -11,6 +11,7 @@ import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
 storiesOf('Examples/Checkbox/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Default with label', () => {

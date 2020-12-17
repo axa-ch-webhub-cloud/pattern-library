@@ -18,6 +18,7 @@ storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
 storyAXACommercialHeroBanner.addParameters({
   readme,
+  usage: { disabled: true },
   changelog,
 });
 

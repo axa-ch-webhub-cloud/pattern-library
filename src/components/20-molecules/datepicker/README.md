@@ -1,47 +1,5 @@
 # AXA Datepicker
 
-## Usage
-
-```bash
-npm install @axa-ch/datepicker
-```
-
-**Important:** If this component needs to run in Internet Explorer 11,
-[you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
-
-### Native Example
-
-```js
-import '@axa-ch/datepicker';
-
-`<axa-datepicker locale="de-CH" year="2020" month="1" day="20"><axa-datepicker>`;
-```
-
-### React Example
-
-Create a React-ified datepicker with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXADatepickerReact from '@axa-ch/datepicker/lib/index.react';
-
-const AXADatepickerReact = createAXADatepickerReact(createElement);
-
-export default AXADatepickerReact;
-```
-
-```js
-<AXADatepickerReact
-  locale="de-CH"
-  year={2020}
-  month={1}
-  day={1}
-  onDateChange={date => console.log(`date changed ${date}`)}
-></AxaDatepickerReact>
-```
-
-[Controlled-Component](https://reactjs.org/docs/forms.html#the-select-tag) behaviour is supported when the `inputfield` property is set.
-
 ## Properties
 
 ### locale

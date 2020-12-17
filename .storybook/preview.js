@@ -1,6 +1,5 @@
 import '@axa-ch/patterns-library-polyfill';
 import { addParameters } from '@storybook/html';
-import { withHTML } from '@whitespace/storybook-addon-html/html';
 
 const customViewports = {
   xs: {
@@ -52,5 +51,3 @@ addParameters({
     viewports: customViewports,
   },
 });
-
-export const decorators = [withHTML];

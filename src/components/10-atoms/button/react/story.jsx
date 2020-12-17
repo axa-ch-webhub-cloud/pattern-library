@@ -51,6 +51,7 @@ const storyButton = storiesOf('Examples/Button/React', module);
 storyButton.addDecorator(withKnobs);
 storyButton.addParameters({
   readme,
+  usage: { disabled: true },
   changelog,
 });
 

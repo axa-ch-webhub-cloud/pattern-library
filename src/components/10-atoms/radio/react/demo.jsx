@@ -9,6 +9,7 @@ import DemoControlledRadioButtonReact from './DemoRadioButtonReact';
 storiesOf('Examples/Radio/React', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add('Controlled-component React-ified', () => {

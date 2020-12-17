@@ -7,68 +7,6 @@ Radio buttons can be used in HTML forms as well as [React controlled components]
 
 For grouping multiple related radio buttons in a style-guide-conformant fashion see [&lt;axa-fieldset&gt;](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset).
 
-## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
-
-```bash
-npm install @axa-ch/radio
-```
-
-```js
-import '@axa-ch/radio';
-...
-<axa-radio></axa-radio>
-```
-
-### React
-
-Create a React-ified radio button with the createElement function from your React version and then use it like this:
-
-```js
-import { createElement } from 'react';
-import createAXARadioReact from '@axa-ch/radio/lib/index.react';
-
-const AXARadioReact = createAXARadioReact(createElement);
-
-export default AXARadioReact;
-```
-
-```js
-<AXARadioReact
-  name="insurance"
-  label="yes, take out insurance"
-  value="1"
-  checked={checked}
-  onChange={handler}
-/>
-```
-
-### Pure HTML pages
-
-Import the radio-button-defining script and use a radio button like this:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Your awesome title</title>
-  </head>
-  <body>
-    <axa-radio
-      name="insurance"
-      label="yes, take out insurance"
-      value="1"
-      checked
-    ></axa-radio>
-    <script src="node_modules/@axa-ch/radio/dist/index.js"></script>
-  </body>
-</html>
-```
-
 ## Properties
 
 ### button

@@ -9,6 +9,10 @@ export default {
   decorators: [withKnobs],
   parameters: {
     readme,
+    usage: {
+      componentName: 'input-text',
+      propsReact: 'onChange={handleChange}',
+    },
     changelog,
   },
 };

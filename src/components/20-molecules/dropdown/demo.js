@@ -8,6 +8,7 @@ import readme from './README.md';
 storiesOf('Examples/Dropdown/Pure HTML', module)
   .addParameters({
     readme,
+    usage: { disabled: true },
     changelog,
   })
   .add(

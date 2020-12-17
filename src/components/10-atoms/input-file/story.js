@@ -15,9 +15,13 @@ import readme from './README.md';
 export default {
   title: 'Components/Input File',
   decorators: [withKnobs],
-
   parameters: {
     readme,
+    usage: {
+      componentName: 'input-file',
+      innerHTML: 'I am a upload',
+      propsReact: 'onChange={handler}',
+    },
     changelog,
   },
 };
