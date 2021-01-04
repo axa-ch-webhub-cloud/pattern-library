@@ -37,6 +37,7 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
             year="2020"
             month="1"
             day="2"
+            allowedyears="[2020]"
           ></axa-datepicker>
           <axa-button type="submit" id="datepicker-forms-submit">OK</axa-button>
           <details
