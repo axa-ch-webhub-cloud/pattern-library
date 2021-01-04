@@ -295,8 +295,8 @@ class AXADatepicker extends NoShadowDOM {
     }));
   }
 
-  formatDate(date) {
-    return parseLocalisedDateIfValid(date);
+  formatDate(date, options = {}) {
+    return parseLocalisedDateIfValid(date, options);
   }
 
   constructor() {
@@ -598,8 +598,16 @@ class AXADatepicker extends NoShadowDOM {
       this.year = newStartYear;
     }
 
-    const { _year, _month, _day, allowedyears, locale, startDate } = this;
-    const { output, tentative, preset } = options;
+    const {
+      _year,
+      _month,
+      _day,
+      allowedyears,
+      locale,
+      startDate,
+      isControlled,
+    } = this;
+    const { output, tentative, preset, handleBlur } = options;
     this._date = overrideDate(_year, _month, _day, startDate);
     const { _date } = this;
     // did the start date get actually overridden via one or more of the
@@ -612,7 +620,9 @@ class AXADatepicker extends NoShadowDOM {
     this.allowedyears = parseAndFormatAllowedYears(allowedyears, _year);
 
     if (output) {
-      this.outputdate = this.formatDate(_date);
+      this.outputdate = this.formatDate(_date, {
+        formatted: handleBlur && !isControlled,
+      });
     }
 
     const isUserOrApplicationSelected = !tentative && preset;
@@ -664,7 +674,7 @@ class AXADatepicker extends NoShadowDOM {
     }
   }
 
-  validate(value, pure) {
+  validate(value, pure, options = {}) {
     const { invaliddatetext, allowedyears } = this;
     const validDate = parseLocalisedDateIfValid(value);
     const validYear = date => allowedyears.indexOf(date.getFullYear()) > -1;
@@ -674,7 +684,10 @@ class AXADatepicker extends NoShadowDOM {
     }
     this.error = null;
     if (isValid) {
-      this.initDate(validDate, { output: true }); // sets this._date
+      this.initDate(validDate, {
+        output: true,
+        handleBlur: options.handleBlur,
+      }); // sets this._date
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
       this._date = null;
@@ -760,7 +773,7 @@ class AXADatepicker extends NoShadowDOM {
 
   handleBlur(e) {
     const { input, onBlur } = this;
-    this.validate(input.value);
+    this.validate(input.value, false, { handleBlur: true });
     onBlur(e);
   }
 

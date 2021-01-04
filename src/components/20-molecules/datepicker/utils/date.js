@@ -79,7 +79,7 @@ const addLeadingZeroes = (rawNumber, numDigits) => {
   return `${leadingZeroesString}${number}`;
 };
 
-const parseLocalisedDateIfValid = (inputValue = '') => {
+const parseLocalisedDateIfValid = (inputValue = '', options = {}) => {
   // passing a Date object asks us to *generate* rather than parse a date format
   if (Object.prototype.toString.call(inputValue) === '[object Date]') {
     // decompose date into parts
@@ -87,7 +87,14 @@ const parseLocalisedDateIfValid = (inputValue = '') => {
     const month = inputValue.getMonth() + 1;
     const day = inputValue.getDate();
     // combine with appropriate separator to format date
-    return [day, month, year].join(DATE_SEPARATOR);
+    const dateParts = options.formatted
+      ? [
+          addLeadingZeroes(day, 2),
+          addLeadingZeroes(month, 2),
+          addLeadingZeroes(year, 4),
+        ]
+      : [day, month, year];
+    return dateParts.join(DATE_SEPARATOR);
   }
 
   // parsing proper: split date string into parts using appropriate separator
