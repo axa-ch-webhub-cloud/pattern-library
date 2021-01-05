@@ -47,7 +47,7 @@ class AXACarousel extends InlineStyles {
     this.slides = null;
     this.visibleSlideIndex = 0;
     this.swiper = null;
-    this.removeEventListenerAnimationEnd = null;
+    this.removeEventListenerAnimationEnd = () => {};
   }
 
   // public methods

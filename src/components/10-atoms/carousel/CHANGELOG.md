@@ -1,3 +1,7 @@
+## 3.2.8
+
+- No console error if web component is destroyed/ disconnectedCallback is called.
+
 ## 3.2.1
 
 - Fix: prevent duplicate style attachment. (#1727)
