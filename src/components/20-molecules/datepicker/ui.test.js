@@ -239,22 +239,6 @@ test('should set the first entry of allowedyears as startup date (year is set bu
     .contains('{"selected":true,"name":"2020","value":"2020"},');
 });
 
-test('should set current year as startup date', async t => {
-  const currentYear = new Date().getFullYear();
-  const setProperties = ClientFunction(currentYear => {
-    const datepicker = document.querySelector('axa-datepicker');
-    datepicker.allowedyears = [1999, currentYear];
-  });
-  const itemsString = await datepickerYearDropdown.getAttribute('items');
-
-  await setProperties(currentYear);
-  await t
-    .expect(itemsString)
-    .contains(
-      `{"selected":true,"name":"${currentYear}","value":"${currentYear}"},`
-    );
-});
-
 test('should navigate between months', async t => {
   const setProperties = ClientFunction(() => {
     const datepicker = document.querySelector('axa-datepicker');
@@ -387,6 +371,26 @@ test('should highlight today', async t => {
   );
 
   await t.expect(cell).eql('TODAY');
+});
+
+const illegal_year_to_avoid_storybook_default = 'x';
+fixture('Datepicker without startyear')
+  .page(
+    `${host}/iframe.html?id=components-datepicker--datepicker&knob-locale=de-CH&knob-year=${illegal_year_to_avoid_storybook_default}&knob-month=4&knob-day=22&knob-allowedyears=%5B%221971-2000%22%2C2012%2C2014%2C%222018-2022%22%5D&knob-label=&knob-monthtitle=Choose%20Month&knob-yeartitle=Choose%20Year&knob-invaliddatetext=Invalid%20date&knob-placeholder=Please%20select%20a%20date&knob-margin-top=0&knob-width%20%28not%20an%20attribute%29=&knob-disabled=true&viewMode=story`
+  )
+  .afterEach(async t => {
+    await t.maximizeWindow();
+  });
+
+test('should set current year as startup date', async t => {
+  const currentYear = new Date().getFullYear();
+  const itemsString = await datepickerYearDropdown.getAttribute('items');
+
+  await t
+    .expect(itemsString)
+    .contains(
+      `{"selected":true,"name":"${currentYear}","value":"${currentYear}"},`
+    );
 });
 
 fixture('Datepicker - With Locale').page(
