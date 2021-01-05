@@ -859,7 +859,7 @@ test('should submit datepicker correctly in form', async t => {
             and then time for the DOM to stabilize */
     )
     .expect((await Selector('#datepicker-forms-content')).innerText)
-    .eql('date = 29.2.2020 (of 1 submittable elements)');
+    .eql('date = 29.02.2020 (of 1 submittable elements)');
 });
 test('should not submit form if click on arrow buttons', async t => {
   const datepickerForm = await Selector(() =>
@@ -880,7 +880,7 @@ test('should not submit form if click on arrow buttons', async t => {
             and then time for the DOM to stabilize */
     )
     .expect((await Selector('#datepicker-forms-content')).innerText)
-    .notEql('date = 29.2.2020 (of 1 submittable elements)');
+    .notEql('date = 29.02.2020 (of 1 submittable elements)');
 });
 
 fixture('Datepicker with onchange handler').page(

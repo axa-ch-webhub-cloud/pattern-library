@@ -88,11 +88,7 @@ const parseLocalisedDateIfValid = (inputValue = '', options = {}) => {
     const day = inputValue.getDate();
     // combine with appropriate separator to format date
     const dateParts = options.formatted
-      ? [
-          addLeadingZeroes(day, 2),
-          addLeadingZeroes(month, 2),
-          addLeadingZeroes(year, 4),
-        ]
+      ? [addLeadingZeroes(day, 2), addLeadingZeroes(month, 2), year]
       : [day, month, year];
     return dateParts.join(DATE_SEPARATOR);
   }
