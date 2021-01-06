@@ -21,10 +21,6 @@ const isNativeShadowDOM = (window || global).ShadowRoot
   : false;
 /* eslint-enable no-undef */
 
-// @TODO: REMOVE ONCE IE11 is deprecated!!!!
-// equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
-
 class AXAButton extends InlineStyles {
   static get tagName() {
     return 'axa-button';
@@ -145,7 +141,7 @@ class AXAButton extends InlineStyles {
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
     // that fake button is NOT inside a ShadowDOM. The event instead
     // bubbles out of ShadowDOM, hence the stop propagation trick
-    if (eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset) {
+    if (e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
     }
