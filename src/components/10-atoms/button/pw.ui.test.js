@@ -12,9 +12,7 @@ it('should render button', async () => {
 
 it('should submit before and after text child updates', async () => {
   const axaButtonSelector = '[data-test-id="button-submit-text-change"]';
-  await page.goto(
-    `${host}/iframe.html?id=examples-button-react--in-a-form`
-  );
+  await page.goto(`${host}/iframe.html?id=examples-button-react--in-a-form`);
   await page.waitForSelector(axaButtonSelector);
 
   const axaButton = await page.$(axaButtonSelector);
@@ -22,9 +20,9 @@ it('should submit before and after text child updates', async () => {
 
   expect(await getAxaButtonText()).toContain('0');
 
-  await axaButton.click()
+  await axaButton.click();
   expect(await getAxaButtonText()).toContain('1');
 
-  await axaButton.click()
+  await axaButton.click();
   expect(await getAxaButtonText()).toContain('2');
 });
