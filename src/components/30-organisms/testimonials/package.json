@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/testimonials",
-  "version": "3.2.8",
+  "version": "3.2.9",
   "description": "The testimonials component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/testimonials#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/carousel": "3.2.7",
+    "@axa-ch/carousel": "3.2.8",
     "@axa-ch/container": "3.0.10",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
