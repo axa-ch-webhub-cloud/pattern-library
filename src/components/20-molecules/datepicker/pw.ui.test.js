@@ -19,6 +19,25 @@ describe('Datepicker', () => {
     );
   });
 
+  it('should not submit form if click on arrow buttons', async () => {
+    const datepickerForm = 'axa-datepicker[data-test-id="datepicker-forms"]';
+    await page.goto(
+      `${host}/iframe.html?id=examples-datepicker-pure-html--in-a-form`
+    );
+    await page.waitForSelector(datepickerForm);
+
+    await page.type(
+      `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,
+      '29.2.2020'
+    );
+    await page.click('.js-datepicker__input-button');
+    await page.click('.js-datepicker__button-next');
+
+    expect(await page.textContent('#form-data-date')).not.toBe(
+      '29.2.2020 (of 1 submittable elements)'
+    );
+  });
+
   it('should submit before and after text child updates', async () => {
     const axaButtonSelector = '[data-test-id="button-submit-text-change"]';
     await page.goto(`${host}/iframe.html?id=examples-button-react--in-a-form`);
