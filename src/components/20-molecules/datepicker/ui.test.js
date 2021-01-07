@@ -844,25 +844,6 @@ test('should allow year ranges', async t => {
 fixture('Datepicker Form').page(
   `${host}/iframe.html?id=examples-datepicker-pure-html--in-a-form`
 );
-test('should submit datepicker correctly in form', async t => {
-  const datepickerForm = await Selector(() =>
-    document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
-  );
-  await t.setTestSpeed(0.5);
-  await t.expect(datepickerForm.exists).ok();
-  await t.typeText(
-    `axa-datepicker[data-test-id="datepicker-forms"] .js-datepicker__input`,
-    '29.2.2020'
-  );
-  await t.click('#datepicker-forms-submit');
-  await t
-    .wait(
-      50 /* give click handler time to set innerText below,
-            and then time for the DOM to stabilize */
-    )
-    .expect((await Selector('#datepicker-forms-content')).innerText)
-    .eql('date = 29.02.2020 (of 1 submittable elements)');
-});
 test('should not submit form if click on arrow buttons', async t => {
   const datepickerForm = await Selector(() =>
     document.querySelector(`axa-datepicker[data-test-id="datepicker-forms"]`)
