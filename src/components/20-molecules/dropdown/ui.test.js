@@ -391,42 +391,6 @@ fixture('Dropdown Form').page(
   `${host}/iframe.html?id=examples-dropdown-pure-html--in-a-form`
 );
 
-test('should submit correct value to form', async t => {
-  const dropdown = await Selector(() =>
-    document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
-  );
-  await t.expect(dropdown.exists).ok();
-  await t.click(dropdown);
-  const secondOption = await Selector(() =>
-    document.querySelector(
-      'axa-dropdown[data-test-id="dropdown-forms"] button[data-value="FR"]'
-    )
-  );
-  await t.click(secondOption);
-  const submitButton = await Selector(() =>
-    document.querySelector('#dropdown-form axa-button[type="submit"]')
-  );
-  await t.click(submitButton);
-  const getFormData = ClientFunction(() => {
-    const valueSpan = document.querySelector(
-      '#dropdown-form span[id="form-data-lang"]'
-    );
-    return valueSpan.innerText;
-  });
-  await t
-    .wait(50 /* give click handler time to execute and influence form data */)
-    .expect(await getFormData())
-    .eql('FR');
-
-  // test that native onchange callback fired upon selecting the 2nd option
-  // and returned the expected event.detail values
-  const getFormTitle = ClientFunction(
-    () => document.querySelector('#dropdown-form').title
-  );
-
-  await t.expect(await getFormTitle()).eql('FR,2 ');
-});
-
 test('should react to value property changes', async t => {
   const getDropdownTitle = ClientFunction(
     () =>
