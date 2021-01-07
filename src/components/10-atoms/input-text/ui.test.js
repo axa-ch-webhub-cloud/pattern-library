@@ -64,37 +64,6 @@ test('should render label', async t => {
   await t.expect($axaLabel.exists).ok();
 });
 
-test('should submit inputs correctly in form', async t => {
-  // default
-  const $InputText = await Selector(() => document.getElementById('default'));
-  const text = 'Warrior';
-  await t.typeText($InputText, text);
-
-  // email
-  const $InputEmail = await Selector(() => document.getElementById('email'));
-  const email = 'pattern@warrior.ch';
-  await t.typeText($InputEmail, email, { paste: true });
-
-  // password
-  const $InputPassword = await Selector(() =>
-    document.getElementById('password')
-  );
-  const password = 'geheim';
-  await t.wait(50).typeText($InputPassword, password);
-
-  await t.click('#submit');
-  await t
-    .wait(50)
-    .expect((await Selector('#default-id')).innerText)
-    .eql(`default: ${text}`);
-  await t
-    .expect((await Selector('#email-id')).innerText)
-    .eql(`email: ${email}`);
-  await t
-    .expect((await Selector('#password-id')).innerText)
-    .eql(`password: ${password}`);
-});
-
 fixture('Input text - Max Length').page(
   `${host}/iframe.html?id=components-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
 );
