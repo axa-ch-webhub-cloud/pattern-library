@@ -20,7 +20,7 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
       for (const entries = formData.entries(); !entries.next().done; n++);
       document.getElementById('form-data-date').textContent = `${formData.get(
         'date'
-      )} (of ${n}  submittable elements)`;
+      )} (of ${n} submittable elements)`;
     };
 
     const template = html`
