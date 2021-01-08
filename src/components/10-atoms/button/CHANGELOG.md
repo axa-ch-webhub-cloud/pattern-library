@@ -1,3 +1,8 @@
+## 6.0.9
+
+- Now its possible to submit a form with keyboard events. (#2078)
+- Removed outline style on focussing the element. (#2085)
+
 ## 6.0.0
 
 - **BREAKING CHANGE**: Same height on all devices. (#1869)
