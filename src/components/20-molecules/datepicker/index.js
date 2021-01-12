@@ -607,7 +607,7 @@ class AXADatepicker extends NoShadowDOM {
       startDate,
       isControlled,
     } = this;
-    const { output, tentative, preset, handleBlur } = options;
+    const { output, tentative, preset, canonicalFormat } = options;
     this._date = overrideDate(_year, _month, _day, startDate);
     const { _date } = this;
     // did the start date get actually overridden via one or more of the
@@ -621,7 +621,7 @@ class AXADatepicker extends NoShadowDOM {
 
     if (output) {
       this.outputdate = this.formatDate(_date, {
-        formatted: handleBlur && !isControlled,
+        formatted: canonicalFormat && !isControlled,
       });
     }
 
@@ -686,7 +686,7 @@ class AXADatepicker extends NoShadowDOM {
     if (isValid) {
       this.initDate(validDate, {
         output: true,
-        handleBlur: options.handleBlur,
+        canonicalFormat: options.canonicalFormat,
       }); // sets this._date
     } else if (value && invaliddatetext) {
       this.error = invaliddatetext;
@@ -773,7 +773,7 @@ class AXADatepicker extends NoShadowDOM {
 
   handleBlur(e) {
     const { input, onBlur } = this;
-    this.validate(input.value, false, { handleBlur: true });
+    this.validate(input.value, false, { canonicalFormat: true });
     onBlur(e);
   }
 
@@ -795,7 +795,10 @@ class AXADatepicker extends NoShadowDOM {
     const cellIndex = parseInt(e.target.dataset.index, 10);
     const date = e.target.dataset.value;
     this.index = cellIndex;
-    const value = this.initDate(new Date(date), { output: true });
+    const value = this.initDate(new Date(date), {
+      output: true,
+      canonicalFormat: true,
+    });
     this.setMonthAndYearItems();
 
     const {
