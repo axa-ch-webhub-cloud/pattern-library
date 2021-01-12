@@ -1,6 +1,6 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-describe('input-text', () => {
+describe('Input text', () => {
   it('should submit inputs correctly in form', async () => {
     await page.goto(
       `${host}/iframe.html?id=examples-input-text-pure-html--in-a-form`
