@@ -1,6 +1,6 @@
 import { ClientFunction, Selector } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
-import { range } from './utils/date';
+import { range, parseLocalisedDateIfValid } from './utils/date';
 
 /* eslint-disable */
 
@@ -423,7 +423,7 @@ test('should write date into input field for input calendars', async t => {
     () =>
       document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
   );
-  await t.expect(await getInputValue()).eql('14.2.2019');
+  await t.expect(await getInputValue()).eql('14.02.2019');
 });
 
 test('should change enhanced dropdown title (only on large screens) on month change', async t => {
@@ -455,7 +455,7 @@ test('should have correct format at input field', async t => {
     () =>
       document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
   );
-  await t.expect(await getInputValue()).eql('14.2.2019');
+  await t.expect(await getInputValue()).eql('14.02.2019');
 });
 
 fixture('Datepicker - Collapsible Version with it-IT locale').page(
@@ -476,7 +476,7 @@ test('should have correct format at input field', async t => {
     () =>
       document.querySelector(`axa-datepicker[data-test-id="datepicker"]`).value
   );
-  await t.expect(await getInputValue()).eql('14.2.2019');
+  await t.expect(await getInputValue()).eql('14.02.2019');
 });
 
 // React smoke test
@@ -677,7 +677,7 @@ test('should react to programmatic date property changes', async t => {
   await t
     .wait(50)
     .expect(await getInputValue())
-    .eql('27.4.2019');
+    .eql('27.04.2019');
 });
 
 fixture('Datepicker React empty inputfield').page(
@@ -715,8 +715,10 @@ test('should allow month change from default date', async t => {
   const preSelectedYear = allowedYears.includes(currentYear)
     ? currentYear
     : allowedYears[0]; // first entry of allowedyears (see README "year")
-  const currentDateString = `${DAY_TO_SELECT}.${currentMonth +
-    1}.${preSelectedYear}`;
+  const currentDateString = parseLocalisedDateIfValid(
+    new Date(`${preSelectedYear}-0${currentMonth + 1}-0${DAY_TO_SELECT}`),
+    { formatted: true }
+  );
 
   // verify committed date meets expectation
   await t
@@ -748,7 +750,7 @@ test('should allow month change from default date', async t => {
   await datePickerAccessor.selectDayOfCurrentMonth(26);
 
   // verify committed date meets expectation: correct month and year
-  const newDateString = `.${newMonth + 1}.${preSelectedYear}`;
+  const newDateString = `${newMonth + 1}.${preSelectedYear}`;
 
   // assert date input has the correct year and month
   await t
@@ -859,7 +861,7 @@ test('should submit datepicker correctly in form', async t => {
             and then time for the DOM to stabilize */
     )
     .expect((await Selector('#datepicker-forms-content')).innerText)
-    .eql('date = 29.2.2020 (of 1 submittable elements)');
+    .eql('date = 29.02.2020 (of 1 submittable elements)');
 });
 test('should not submit form if click on arrow buttons', async t => {
   const datepickerForm = await Selector(() =>
@@ -880,7 +882,7 @@ test('should not submit form if click on arrow buttons', async t => {
             and then time for the DOM to stabilize */
     )
     .expect((await Selector('#datepicker-forms-content')).innerText)
-    .notEql('date = 29.2.2020 (of 1 submittable elements)');
+    .notEql('date = 29.02.2020 (of 1 submittable elements)');
 });
 
 fixture('Datepicker with onchange handler').page(

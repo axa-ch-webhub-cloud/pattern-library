@@ -1,3 +1,7 @@
+## 15.0.0
+
+- format date in inputfield mode with consistent two-digit day and month parts on blur. (#2083)
+
 ## 14.0.0
 
 - Remove `width` property. Instead set the inline-style. #1894.

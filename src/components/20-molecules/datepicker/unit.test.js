@@ -43,12 +43,14 @@ describe('Datepicker unit tests', () => {
 
   describe('initDate()', () => {
     it('should return undefined', () => {
+      AXADatepicker.prototype.state = {};
       expect(AXADatepicker.prototype.initDate(new Date(), {})).toEqual(
         undefined
       );
     });
     it('should set class variables', () => {
       // init values
+      AXADatepicker.prototype.state = {};
       AXADatepicker.prototype._date = null;
       AXADatepicker.prototype.allowedyears = [1900];
       AXADatepicker.prototype.cells = null;
@@ -64,6 +66,7 @@ describe('Datepicker unit tests', () => {
     });
     it('should set class variables if output:true', () => {
       // init values
+      AXADatepicker.prototype.state = {};
       AXADatepicker.prototype.outputdate = null;
       AXADatepicker.prototype._selectedDate = null;
 
@@ -74,6 +77,7 @@ describe('Datepicker unit tests', () => {
     });
     it('should set class variables if tentative:false and preset:true', () => {
       // init values
+      AXADatepicker.prototype.state = {};
       AXADatepicker.prototype._selectedDate = null;
 
       AXADatepicker.prototype.initDate(new Date(), {
