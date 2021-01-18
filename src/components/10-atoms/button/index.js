@@ -146,16 +146,16 @@ class AXAButton extends InlineStyles {
     // that fake button is NOT inside a ShadowDOM. The event instead
     // bubbles out of ShadowDOM, hence the stop propagation trick
 
-    // IF statement that can be removed with IE11 support dropping
-    if (
+    // TODO: remove all the IE stuff if support drops
+    const isIESubmitResetEvent =
       document.documentMode &&
       eventIsTrusted(e) &&
       isNativeShadowDOM &&
-      this.isTypeSubmitOrReset
-    ) {
-      e.stopPropagation();
-      this.fakeButton.click();
-    } else if (e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset) {
+      this.isTypeSubmitOrReset;
+    const isSubmitResetEvent =
+      e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset;
+
+    if (isIESubmitResetEvent || isSubmitResetEvent) {
       e.stopPropagation();
       this.fakeButton.click();
     }
