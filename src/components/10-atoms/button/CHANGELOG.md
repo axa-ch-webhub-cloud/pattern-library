@@ -1,4 +1,4 @@
-## 6.0.9
+## 6.0.10
 
 - Now its possible to submit a form with keyboard events. (#2078)
 - Removed outline style on focussing the element. (#2085)

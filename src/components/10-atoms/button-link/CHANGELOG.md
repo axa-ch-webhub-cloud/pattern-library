@@ -1,4 +1,4 @@
-## 5.0.9
+## 5.0.10
 
 - Removed outline style on focussing the element. (#2085)
 
