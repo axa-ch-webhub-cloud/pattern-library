@@ -1,3 +1,7 @@
+## 5.0.9
+
+- Removed outline style on focussing the element. (#2085)
+
 ## 5.0.0
 
 - **BREAKING CHANGE**: Same height on all devices. (#1869)
