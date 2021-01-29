@@ -28,6 +28,7 @@
     "src/components/30-organisms/commercial-hero-banner",
     "src/components/30-organisms/container",
     "src/components/30-organisms/footer",
+    "src/components/30-organisms/modal",
     "src/components/30-organisms/table",
     "src/components/30-organisms/table-sortable",
     "src/components/30-organisms/testimonials"
