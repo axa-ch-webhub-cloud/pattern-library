@@ -8,13 +8,23 @@ export default {
 };
 
 export const Modal = () => {
-  const textknob = text('This is a knob', 'Value of text knob');
-  
+  setTimeout(() => {
+    document
+      .querySelector('.js-modal-story__button')
+      .addEventListener('click', () => {
+        var modal = document.getElementsByTagName('axa-modal')[0];
+        modal.setAttribute('open', '');
+      });
+  });
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-modal>${textknob}</axa-modal>
+    <axa-modal></axa-modal>
+
+    <button type="button" class="js-modal-story__button">
+      Open modal story
+    </button>
   `;
-  
+
   render(template, wrapper);
   return wrapper;
-}
+};

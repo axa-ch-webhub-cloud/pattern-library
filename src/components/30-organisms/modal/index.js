@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 
@@ -28,8 +29,7 @@ class AXAModal extends LitElement {
   static get properties() {
     // Define properties and types
     return {
-      onClick: { type: Function },
-      foo: { type: String, defaultValue: 'bar' },
+      open: { type: Boolean },
     };
   }
 
@@ -38,7 +38,6 @@ class AXAModal extends LitElement {
     // this functions applies default values per type and verifies if
     // the HTML attribute has been set before defining the custom element
     applyDefaults(this);
-    this.onClick = () => {};
     // if you depend on *other* axa-XXX components and imported them above,
     // then you declare them as versioned here like this:
     /* eslint-disable no-undef */
@@ -46,27 +45,30 @@ class AXAModal extends LitElement {
     /* eslint-enable no-undef */
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
-  }
-
   // if you use dependent components inside your html-tagged string templates below,
   // first uncomment versionedHTML above.
   // Then, wrap them using a new tag versionedHTML(this), like so:
   // versionedHTML(this)`<axa-XXX foo="bar"></axa-XXX>`
   render() {
+    const classes = {
+      'o-modal--open': this.open,
+    };
     return html`
-      <article class="o-modal">
-        <slot></slot>
+      <article class="o-modal ${classMap(classes)}">
+        <div class="o-modal-window">
+        <h2 class="h2-title">Prämie berechnen</h2>
+        <p>
+        <strong>Mehr als 80%</strong> unserer Kunden kombinieren die
+        Hausratversicherung mit einer Privathaftpflichtversicherung.
+        </p>
+          <p>Was möchten Sie?</p>
+          <axa-button data-modal-close
+            >Hausrat und Privathaftpflicht</axa-button
+          >
+          <p>Schützt Sie zusätzlich gegen Forderungen anderer.</p>
+        </div>
       </article>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 
@@ -74,3 +76,5 @@ class AXAModal extends LitElement {
 defineVersioned([AXAModal], __VERSION_INFO__);
 
 export default AXAModal;
+
+// Cancel-Button programmieren => Klasse wird geändert
