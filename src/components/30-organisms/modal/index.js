@@ -56,16 +56,17 @@ class AXAModal extends LitElement {
     return html`
       <article class="o-modal ${classMap(classes)}">
         <div class="o-modal-window">
-        <h2 class="h2-title">Prämie berechnen</h2>
-        <p>
-        <strong>Mehr als 80%</strong> unserer Kunden kombinieren die
-        Hausratversicherung mit einer Privathaftpflichtversicherung.
-        </p>
+          <h2 class="h2-title">Prämie berechnen</h2>
+          <a href="#" class="o-modal-window__close-button"></a>
+          <p>
+            <strong>Mehr als 80%</strong> unserer Kunden kombinieren die
+            Hausratversicherung mit einer Privathaftpflichtversicherung.
+          </p>
           <p>Was möchten Sie?</p>
           <axa-button data-modal-close
             >Hausrat und Privathaftpflicht</axa-button
           >
-          <p>Schützt Sie zusätzlich gegen Forderungen anderer.</p>
+          <p>Schützt Sie zusätzlich gegen Ford rungen anderer.</p>
         </div>
       </article>
     `;
@@ -78,3 +79,6 @@ defineVersioned([AXAModal], __VERSION_INFO__);
 export default AXAModal;
 
 // Cancel-Button programmieren => Klasse wird geändert
+{
+  /* <a href="#" class="o-modal-windows__close" /> */
+}
