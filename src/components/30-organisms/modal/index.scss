@@ -16,59 +16,52 @@ body {
 
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-}
 
-.o-modal--open {
-  display: block;
-}
+  &--open {
+    display: block;
+  }
 
-.o-modal-window {
-  position: relative;
-  margin: 15% auto; 
-  padding: 20px;
-  width: 80%;
-  background-color: white;
-}
-
-.o-modal-window__close-button {
-  
-  position: absolute;
-  right: 32px;
-  top: 32px;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-}
-
-.o-modal-window__close-button:hover {
-  opacity: 1;
-}
-.o-modal-window__close-button:before, .o-modal-window__close-button:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 33px;
-  width: 2px;
-  background-color: #333;
-}
-.o-modal-window__close-button:before {
-  transform: rotate(45deg);
-}
-.o-modal-window__close-button:after {
-  transform: rotate(-45deg);
-}
-
-@media only screen and (max-width: 450px) {
-  .o-modal-window {
-    margin-top: 15% auto; 
-    width: 100%;
-    box-sizing: border-box;
-
+  &-window {
+    position: relative;
     overflow: auto;
+    margin: 15% auto; 
+    padding: 40px;
+    width: 80%;
+    max-height: 70%;
+    border-radius: 3px;
     background-color: white;
+    
+    &__close-button {
+  
+      position: absolute;
+      right: 4px;
+      top: 10px;
+      width: 32px;
+      height: 32px;
+    }
+  }
+  
+  &-close__axa-button {
+    margin: auto;
   }
 }
 
-// vw = view width
-// vh = view height
-// position fixed!
+@media (max-width: 450px) {
+  .o-modal-window {
+    overflow: auto;
+    margin-top: 20%; 
+    padding: 20px;
+    width: 90%;
+    height: 90%; //?
+    box-sizing: border-box;
+
+    background-color: white;
+  }
+
+  .o-modal-window__close-button {
+    right: 20px;
+    top: 20px;
+    width: 32px;
+    height: 32px;
+  }
+}

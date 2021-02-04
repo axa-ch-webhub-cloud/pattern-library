@@ -1,5 +1,6 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import closeIcon from '@axa-ch/materials/icons/close.svg';
 
 /* eslint-disable import/no-extraneous-dependencies */
 
@@ -56,20 +57,26 @@ class AXAModal extends LitElement {
     return html`
       <article class="o-modal ${classMap(classes)}">
         <div class="o-modal-window">
-          <h2 class="h2-title">Prämie berechnen</h2>
-          <a href="#" class="o-modal-window__close-button"></a>
-          <p>
-            <strong>Mehr als 80%</strong> unserer Kunden kombinieren die
-            Hausratversicherung mit einer Privathaftpflichtversicherung.
-          </p>
-          <p>Was möchten Sie?</p>
-          <axa-button data-modal-close
-            >Hausrat und Privathaftpflicht</axa-button
-          >
-          <p>Schützt Sie zusätzlich gegen Ford rungen anderer.</p>
+          <div class="o-modal-window__close-button" @click="${this.closeModal}">
+            ${svg([closeIcon])}
+          </div>
+          <slot></slot>
+          <div>
         </div>
       </article>
     `;
+  }
+
+  closeModal() {
+    this.removeAttribute('open');
+  }
+
+  updated() {
+    document.querySelector('body').addEventListener('click', event => {
+      if (event.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
+        this.closeModal();
+      }
+    });
   }
 }
 
