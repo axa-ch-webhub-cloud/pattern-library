@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/modal",
-  "version": "0.0.0-beta.0",
+  "version": "1.0.0-beta.0",
   "description": "The modal component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/modal#readme",
