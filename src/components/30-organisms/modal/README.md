@@ -1,6 +1,6 @@
 # Modal
 
-TODO Description
+A modal component for custom child elements.
 
 ## Usage
 
@@ -30,8 +30,7 @@ export default AXAModalReact;
 ```
 
 ```js
-<AXAModalReact onClick={handler}>
-</AXAModalReact>
+<AXAModalReact onClick={handler}></AXAModalReact>
 ```
 
 ### Pure HTML pages
@@ -58,14 +57,10 @@ Import the modal-defining script and use a modal like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute   | Details         |
+| ----------- | --------------- |
+| `open=true` | Desc of Variant |
 
-### Bar
+### open
 
-The attribute `bar` specifies...
-
-### onClick
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+If `open` is set to `true`, then the modal will be displayed to the user.
