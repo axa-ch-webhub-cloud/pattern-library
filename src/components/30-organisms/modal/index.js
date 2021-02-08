@@ -1,5 +1,6 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -58,6 +59,7 @@ class AXAModal extends LitElement {
   }
 }
 
+/* eslint-disable no-undef */
 defineVersioned([AXAModal], __VERSION_INFO__);
 
 export default AXAModal;

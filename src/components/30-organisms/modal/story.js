@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 
@@ -12,7 +12,7 @@ export const Modal = () => {
     document
       .querySelector('.js-modal-story__button')
       .addEventListener('click', () => {
-        var modal = document.getElementsByTagName('axa-modal')[0];
+        const modal = document.getElementsByTagName('axa-modal')[0];
         modal.setAttribute('open', '');
       });
   });
