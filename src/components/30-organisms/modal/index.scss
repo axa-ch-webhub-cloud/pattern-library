@@ -18,7 +18,9 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
 
   &--open {
-    display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   }
 
   &-window {
@@ -36,8 +38,8 @@ body {
       position: absolute;
       right: 4px;
       top: 10px;
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
     }
   }
 
@@ -60,8 +62,6 @@ body {
     &__close-button {
       right: 20px;
       top: 20px;
-      width: 32px;
-      height: 32px;
     }
   }
 }

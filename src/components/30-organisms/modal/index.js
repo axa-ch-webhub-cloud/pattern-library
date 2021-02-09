@@ -52,6 +52,7 @@ class AXAModal extends LitElement {
 
   updated() {
     document.querySelector('body').addEventListener('click', event => {
+      console.log(event.path);
       if (event.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
         this.closeModal();
       }

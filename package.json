@@ -83,7 +83,7 @@
     "mv": "^2.1.1",
     "node-sass": "^4.13.1",
     "outdent": "^0.7.0",
-    "playwright-chromium": "^1.6.2",
+    "playwright-chromium": "1.8.0",
     "postcss": "^7.0.26",
     "postcss-strip-font-face": "^1.0.0",
     "prettier": "1.19.1",
