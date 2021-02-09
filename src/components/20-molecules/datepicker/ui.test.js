@@ -696,7 +696,7 @@ test('should allow month change from default date', async t => {
 
   await datePickerAccessor.assertIsOpen();
 
-  const DAY_TO_SELECT = 30;
+  const DAY_TO_SELECT = 1;
   await datePickerAccessor.selectDayOfCurrentMonth(DAY_TO_SELECT);
 
   const getInputValue = ClientFunction(
