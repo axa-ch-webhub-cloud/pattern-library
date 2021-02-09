@@ -10,7 +10,7 @@
     "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "lerna bootstrap --hoist && cross-env NODE_ENV=production npm run build-components && lerna run --parallel genPackagelock",
-    "release": "npm whoami && npx lerna clean && rm -rf node_modules && npm ci && npm run test && lerna version --exact && cross-env NODE_ENV=production npm run build-components && lerna publish from-package",
+    "release": "npm whoami && npx lerna clean && npm ci && npm run test && lerna version --exact && cross-env NODE_ENV=production npm run build-components && lerna publish from-package",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -s src/static",
     "build-storybook": "build-storybook -s ./src/static",
