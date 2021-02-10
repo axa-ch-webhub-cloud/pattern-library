@@ -1,20 +1,20 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 describe('Modal', () => {
-  it.only('should open modal', async () => {
+  it('should open modal', async () => {
     await openModal();
 
     expect(await page.isVisible('.o-modal-window')).toBe(true);
   });
 
-  it.only('modal should close by button', async () => {
+  it('modal should close by button', async () => {
     await openModal();
     await page.click('.o-modal-window__close-button');
 
     expect(await page.isVisible('.o-modal-window')).toBe(false);
   });
 
-  it.only('should close by pressing outside the modal', async () => {
+  it('should close by pressing outside the modal', async () => {
     await openModal();
     await page.evaluate(() => {
       document
@@ -27,7 +27,7 @@ describe('Modal', () => {
     expect(await page.isVisible('.o-modal-window')).toBe(false);
   });
 
-  it.only('should check if children are rendered', async () => {
+  it('should check if children are rendered', async () => {
     await openModal();
 
     expect(await page.textContent('.h2-title')).toBe('Prämie berechnen');
