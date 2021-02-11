@@ -29,12 +29,12 @@ export const Heading = () => {
   const template = secondary
     ? html`
         <axa-heading rank="${rank}" variant="secondary"
-          >H1 Primary Heading</axa-heading
+          >H${rank} Primary Heading</axa-heading
         >
         <axa-text>${loremIpsum}</axa-text>
       `
     : html`
-        <axa-heading rank="${rank}">H1 Primary Heading</axa-heading>
+        <axa-heading rank="${rank}">H${rank} Primary Heading</axa-heading>
         <axa-text>${loremIpsum}</axa-text>
       `;
 
