@@ -30,7 +30,7 @@ describe('Modal', () => {
   it('should check if children are rendered', async () => {
     await openModal();
 
-    expect(await page.textContent('.h2-title')).toBe('Prämie berechnen');
+    expect(await page.textContent('.h2-title')).toBe('Haftpflichtversicherung');
   });
 });
 

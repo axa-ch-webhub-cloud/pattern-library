@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import closeIcon from '@axa-ch/materials/icons/close.svg';
+// import closeIcon from '@axa-ch/materials/icons/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
@@ -37,7 +37,13 @@ class AXAModal extends LitElement {
       <article class="o-modal ${classMap(classes)}">
         <div class="o-modal-window">
           <div class="o-modal-window__close-button" @click="${this.closeModal}">
-            ${svg([closeIcon])}
+
+          <svg width="24" height="24" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="1.41421" y1="1" x2="8" y2="7.58579" stroke="#00008F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="13.4142" y1="13" x2="20" y2="19.5858" stroke="#00008F" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="19.5858" x2="19.5858" y2="1" stroke="#00008F" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+
           </div>
            <slot></slot>
           <div>
@@ -49,7 +55,7 @@ class AXAModal extends LitElement {
   closeModal() {
     this.removeAttribute('open');
   }
-
+  // ${svg([closeIcon])}
   updated() {
     document.querySelector('body').addEventListener('click', event => {
       if (event.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
