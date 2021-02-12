@@ -22,7 +22,6 @@ describe('Modal', () => {
         .shadowRoot.querySelector('.o-modal--open')
         .click();
     });
-    // await page.click('axa-modal .o-modal--open');
 
     expect(await page.isVisible('.o-modal-window')).toBe(false);
   });

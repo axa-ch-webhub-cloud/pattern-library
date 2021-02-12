@@ -17,9 +17,9 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
 
   &--open {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &-window {
@@ -32,8 +32,6 @@ body {
     border-radius: 4px;
     background-color: white;
 
-    // font-family: 'Source Sans Pro';
-    
     &__close-button {
       position: absolute;
       right: 18px;

@@ -82,7 +82,7 @@ class AXAModal extends LitElement {
   closeModal() {
     this.removeAttribute('open');
   }
-  // ${svg([closeIcon])}
+
   updated() {
     document.querySelector('body').addEventListener('click', event => {
       if (event.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
