@@ -16,11 +16,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
+    npm ci
   displayName: 'Install (with build included)'
 
 - script: |
-    npm test	
+    npm test
   displayName: 'Test'
 
 - script: |
