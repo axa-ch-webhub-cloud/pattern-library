@@ -26,10 +26,21 @@ describe('Modal', () => {
     expect(await page.isVisible('.o-modal-window')).toBe(false);
   });
 
+  it('should close by pressing escape on keyboard', async () => {
+    await openModal();
+    await page.keyboard.press('Escape');
+
+    expect(await page.isVisible('.o-modal-window')).toBe(false);
+  });
+
   it('should check if children are rendered', async () => {
     await openModal();
 
-    expect(await page.textContent('.h2-title')).toBe('Haftpflichtversicherung');
+    expect(
+      await page.textContent(
+        '#root > div > axa-modal > axa-heading:nth-child(1)'
+      )
+    ).toBe('Haftpflichtversicherung');
   });
 });
 

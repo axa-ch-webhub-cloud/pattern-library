@@ -56,9 +56,15 @@ class AXAModal extends LitElement {
     this.removeAttribute('open');
   }
 
-  updated() {
-    document.querySelector('body').addEventListener('click', event => {
-      if (event.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
+  firstUpdated() {
+    document.querySelector('body').addEventListener('click', e => {
+      if (e.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
+        this.closeModal();
+      }
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
         this.closeModal();
       }
     });
