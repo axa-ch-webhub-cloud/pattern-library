@@ -25,10 +25,10 @@ body {
   &-window {
     position: relative;
     overflow: auto;
-    margin: 15% auto; 
     padding: 40px;
     width: 100%;
-    height: 100%;
+    margin: auto auto;
+    min-height: 100%;
     border-radius: 4px;
     background-color: white;
 
@@ -38,6 +38,10 @@ body {
       top: 56px;
       width: 24px;
       height: 24px;
+    }
+
+    &__close-container {
+      flex-shrink: 0;
     }
   }
 
