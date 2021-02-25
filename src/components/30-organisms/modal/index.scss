@@ -27,7 +27,7 @@ body {
     padding: 40px;
     width: 100%;
     margin: 10px;
-    min-height: 100%;
+    max-height: 100%;
     background-color: white;
 
     &__close-button {
@@ -42,7 +42,6 @@ body {
       display: flex;
       justify-content: center;
       margin-top: 30px;
-      margin-bottom: 30px;
 
       &-button {
         width: 100%;
@@ -56,23 +55,27 @@ body {
 }
 
 @include breakpoint($mediaquery-xs-up) {
-  .o-modal-window {
-    overflow: auto;
-    box-sizing: border-box;
-    padding: 50px;
-    width: 60%;
-    min-height: 50%;
-    border-radius: 4px;
 
-    background-color: white;
-
-    &__close-button {
-      right: 20px;
-      top: 20px;
-    }
-
-    &__close-container {
-      display: none;
+  .o-modal {
+    align-items: center;
+    &-window {
+      overflow: auto;
+      box-sizing: border-box;
+      padding: 50px;
+      width: 60%;
+      min-height: 50%;
+      border-radius: 4px;
+  
+      background-color: white;
+  
+      &__close-button {
+        right: 20px;
+        top: 20px;
+      }
+  
+      &__close-container {
+        display: none;
+      }
     }
   }
 }
