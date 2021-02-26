@@ -19,15 +19,15 @@ body {
   &--open {
     display: flex;
     justify-content: center;
+    flex-flow: column;
   }
 
   &-window {
     position: relative;
     overflow: auto;
-    padding: 40px;
-    width: 100%;
-    margin: 10px;
-    max-height: 100%;
+    padding: 40px 40px 0px;
+    margin: 10px 10px 0px;
+    height: 100%;
     background-color: white;
 
     &__close-button {
@@ -41,7 +41,9 @@ body {
     &__close-container {
       display: flex;
       justify-content: center;
-      margin-top: 30px;
+      padding: 40px;
+      margin: 0px 10px 10px;
+      background-color: white;
 
       &-button {
         width: 100%;
@@ -63,7 +65,7 @@ body {
       box-sizing: border-box;
       padding: 50px;
       width: 60%;
-      min-height: 50%;
+      max-height: 50%;
       border-radius: 4px;
   
       background-color: white;
