@@ -19,7 +19,7 @@ export const Modal = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-modal>
-      <axa-heading rank="1">Haftpflichtversicherung</axa-heading>
+      <axa-heading rank="3">Haftpflichtversicherung</axa-heading>
       <axa-text>
         Die Haftpflichtversicherung schützt das Unternehmen vor den finanziellen
         Folgen von Personen- und Sachschäden, die das Unternehmen gegenüber

@@ -53,23 +53,28 @@ class AXAModal extends LitElement {
   }
 
   closeModal() {
-    // closes the modal
     this.removeAttribute('open');
   }
 
   firstUpdated() {
     // add eventListener to close modal when pressing outside the modal
-    document.body.addEventListener('click', this.mouseCloseHandler);
+    document.body.addEventListener('click', ev => {
+      this.mouseCloseHandler(ev);
+    });
     // add eventListener to close modal when pressing esc
-    window.addEventListener('keydown', this.keyboardCloseHandler);
+    window.addEventListener('keydown', ev => {
+      this.keyboardCloseHandler(ev);
+    });
 
     // cache DOM node for closing for better performance
-    this.modalOuter = this.shadowRoot.querySelector('.o-modal--open');
+    // this.modalOuter = this.shadowRoot.querySelector('.o-modal--open');
   }
 
   mouseCloseHandler(e) {
     // are we clicking on the outer part of the modal?
-    if (e.path[0] === this.modalOuter) {
+    console.log('test');
+    debugger;
+    if (e.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
       this.closeModal();
     }
   }
