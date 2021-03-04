@@ -50,16 +50,13 @@ body {
       }
     }
   }
-
-  &-close__axa-button {
-    margin: auto;
-  }
 }
 
 @include breakpoint($mediaquery-xs-up) {
 
   .o-modal {
     align-items: center;
+    
     &-window {
       overflow: auto;
       box-sizing: border-box;
@@ -67,7 +64,6 @@ body {
       width: 60%;
       max-height: 50%;
       border-radius: 4px;
-  
       background-color: white;
   
       &__close-button {

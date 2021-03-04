@@ -3,9 +3,9 @@ import React from 'react';
 export type Variant = 'foo' | 'bar';
 
 export interface AXAModalProps {
+  closeButtonText: string;
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
+  open?: boolean;
 }
 
 declare function createAXAModal(

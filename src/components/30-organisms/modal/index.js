@@ -21,6 +21,7 @@ class AXAModal extends LitElement {
   static get properties() {
     return {
       open: { type: Boolean },
+      closeButtonText: { type: String },
     };
   }
 
@@ -45,7 +46,7 @@ class AXAModal extends LitElement {
           <axa-button
             class="o-modal-window__close-container-button"
             @click="${this.closeModal}"
-            >Schliessen</axa-button
+            >${this.closeButtonText}</axa-button
           >
         </div>
       </article>
@@ -63,28 +64,26 @@ class AXAModal extends LitElement {
     });
     // add eventListener to close modal when pressing esc
     window.addEventListener('keydown', ev => {
-      this.keyboardCloseHandler(ev);
+      this.keyboardEscapeCloseHandler(ev);
     });
   }
 
   mouseCloseHandler(e) {
     // are we clicking on the outer part of the modal?
-    if (e.path[0] === this.shadowRoot.querySelector('.o-modal--open')) {
+    if (e.path?.[0] === this.shadowRoot.querySelector('.o-modal--open')) {
       this.closeModal();
     }
   }
 
-  keyboardCloseHandler(e) {
-    // checks if escape was pressed
+  keyboardEscapeCloseHandler(e) {
     if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
       this.closeModal();
     }
   }
 
   disconnectedCallback() {
-    // closes the eventListeners
     document.body.removeEventListener('click', this.handleWindowKeyDown);
-    window.removeEventListener('keydown', this.keyboardCloseHandler);
+    window.removeEventListener('keydown', this.keyboardEscapeCloseHandler);
   }
 }
 

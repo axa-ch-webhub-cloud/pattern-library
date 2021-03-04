@@ -18,42 +18,40 @@ export const Modal = () => {
   });
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-modal>
-      <axa-heading rank="3">Haftpflichtversicherung</axa-heading>
+    <axa-modal closeButtonText="Close">
+      <axa-heading rank="3">Liability insurance</axa-heading>
       <axa-text>
-        Die Haftpflichtversicherung schützt das Unternehmen vor den finanziellen
-        Folgen von Personen- und Sachschäden, die das Unternehmen gegenüber
-        anderen verursacht.
+        The liability insurance protects the company against the financial
+        consequences of personal injury and property damage caused by the
+        company to others. others.
       </axa-text>
-      <axa-heading rank="3">Schadenbeispiel</axa-heading>
+      <axa-heading rank="3">Damage example</axa-heading>
       <axa-text>
-        Eine vom versicherten Unternehmen verkaufte Spraydose explodiert beim
-        Kunden und verletzt diesen.
+        An aerosol can sold by the insured company explodes on the customer's
+        customer and injures him.
       </axa-text>
-      <axa-heading rank="3"
-        >Für wen eignet sich diese Versicherung?</axa-heading
-      >
+      <axa-heading rank="3">For who is this insurance suitable?</axa-heading>
       <axa-text>
-        Für alle Unternehmen, da Schadenersatzforderungen oft existenzbedrohend
-        sein können.
+        For all companies, as claims for damages can often threaten the
+        existence of a company. can be threatening to the company's existence.
       </axa-text>
 
       <axa-text>
-        Den Körper trainieren viele Menschen. Abesr wer trainiert auch sein
-        Gehirn? „Das Gehirn muss genauso trainiert werden wie der Körper“, sagt
-        Professor Siegfried Lehrl von der Universität Erlangen-Nürnberg. Denn
-        wissenschaftliche Untersuchungen haben gezeigt, dass wir die
-        Leistungsfähigkeit unseres Gehirns um 10 bis 15% steigern können, wenn
-        wir einige Wochen lang täglich zehn Minuten unser Gehirn trainieren.
-        Besonders wichtig ist dieses Gehirn-Jogging für Menschen, die sich im
-        Alltag geistig nur wenig anstrengen. Ein Beispiel sind
-        Krankenhauspatienten: Bereits nach wenigen Tagen beginnt ihr
-        Intelligenzquotient zu sinken. Nach drei Wochen Krankenhausaufenthalt
-        kann er bereits 20% niedriger als gewöhnlich sein. Besonders wichtig ist
-        dieses Gehirn-Jogging für Menschen, die sich im Alltag geistig nur wenig
-        anstrengen. Ein Beispiel sind Krankenhauspatienten: Bereits nach wenigen
-        Tagen beginnt ihr Intelligenzquotient zu sinken. Nach drei Wochen
-        Krankenhausaufenthalt kann er bereits 20% niedriger als gewöhnlich sein.
+        Many people train their body. But who also trains their brain? "The
+        brain needs to be trained just as much as the body," says Professor
+        Siegfried Lehrl of the University of Erlangen-Nuremberg. Because
+        scientific studies have shown that we can increase the performance of
+        our brain by 10 to 15% if we exercise our brain for we train our brain
+        for ten minutes a day for a few weeks. This brain jogging is
+        particularly important for people who make little mental little mental
+        effort in everyday life. An example are Hospital patients: After just a
+        few days, their intelligence quotient begins to decline. After three
+        weeks of hospitalization it can already be 20% lower than usual. This
+        brain jogging is particularly important especially important for people
+        who do not exert much mental effort in everyday life. mental effort in
+        everyday life. One example is hospital patients: After just a few days
+        days, their intelligence quotient begins to decline. After three weeks
+        hospitalization, it can already be 20% lower than usual.
       </axa-text>
     </axa-modal>
 
