@@ -144,7 +144,7 @@ Calling this method gives you the `ShadowRoot` in your Selenium environment. **B
 
 ## Dealing with F(lash) O(f) U(nstyled) C(ontent)
 
-As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this if fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
+As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this is fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
 
 ```html
 <style>
