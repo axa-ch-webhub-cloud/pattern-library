@@ -1,3 +1,8 @@
+## next
+
+- Publish mouse event to onClick handler. This allows the consumer to stopPropagation() of the event.
+  This may be a BREAKING CHANGE if consumer relies on onClick() being called with NO argument.
+
 ## 4.2.1
 
 - Fix: prevent duplicate style attachment. (#1727)
