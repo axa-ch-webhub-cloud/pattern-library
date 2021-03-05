@@ -56,3 +56,4 @@ If the variant is `icon`, using the attribute `icon`'s string value as icon name
 ### onClick
 
 On a React-ified component this function-valued attribute can be used as a callback function. Using it will prevent default link navigation.
+Click event object is passed as argument. This allows the consumer to stopPropagation() of the event.
