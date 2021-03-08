@@ -1,4 +1,4 @@
-## 9.1.0
+## 9.1.1
 
 - Bugfix: Nullpointer in `item.name.toLowerCase()`.
 
