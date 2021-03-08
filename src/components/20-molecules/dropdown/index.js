@@ -554,7 +554,7 @@ class AXADropdown extends NoShadowDOM {
 
     this._autosuggestDictionary =
       items
-        .filter(item => !item.disabled)
+        .filter(item => !item.disabled && item.name)
         .map((item, index) => {
           // normalize word for purposes of matching
           const word = item.name.toLowerCase();
