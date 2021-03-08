@@ -1,5 +1,9 @@
 ## 9.1.0
 
+- Bugfix: Nullpointer in `item.name.toLowerCase()`.
+
+## 9.1.0
+
 - Minor change: now supports keyboard-operated auto-suggest-style selection of items. (#1247)
 
 ## 9.0.0
