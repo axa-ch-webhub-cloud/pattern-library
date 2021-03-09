@@ -89,7 +89,7 @@ class AXALink extends LitElement {
         @click="${ev => {
           ev.preventDefault();
           if (typeof this.onClick === 'function') {
-            this.onClick();
+            this.onClick(ev);
           } else {
             window.open(this.href, this.external ? '_blank' : '_top');
           }
