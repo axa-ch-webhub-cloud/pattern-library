@@ -7,6 +7,7 @@ import footer from './footer';
 import footerSmall from './footer-small';
 import navbar from './navbar';
 import policyFeatures from './policy-features';
+import carousel from './carousel';
 
 export default {
   title: 'Pages/AXA',
@@ -89,7 +90,7 @@ export const AXA = () => {
     ${resetBrowserDefaultStyles} ${style}
 
     <div class="pages-axa-main-page">
-      ${navbar} ${commercialHeroBanner} ${policyFeatures} ${footer}
+      ${navbar} ${commercialHeroBanner} ${policyFeatures} ${carousel} ${footer}
       ${footerSmall}
     </div>
   `;

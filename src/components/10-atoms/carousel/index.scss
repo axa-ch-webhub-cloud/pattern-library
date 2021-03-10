@@ -77,3 +77,21 @@
     transform: translate(0, 0);
   }
 }
+
+:host([mode="all"]) {
+  @include breakpoint($mediaquery-md-up) {
+    .a-carousel__wrapper {
+      display: flex;
+      margin: 0;
+    }
+    .a-carousel__arrow {
+      display: none;
+    }
+    .a-carousel {
+      padding: 0;
+      .animation-left, .animation-right {
+        animation: none;
+      }
+    }
+  }
+}

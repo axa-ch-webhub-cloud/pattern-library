@@ -25,6 +25,7 @@ export const Carousel = () => {
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);
   const arrowstyle = text('arrowstyle', '');
+  const mode = text('mode', '');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -34,6 +35,7 @@ export const Carousel = () => {
         ?autorotatedisabled="${autorotatedisabled}"
         ?keysenabled="${keysenabled}"
         arrowstyle="${arrowstyle}"
+        mode="${mode}"
       >
         <span>
           Very helpful once I got through to the correct person but I was

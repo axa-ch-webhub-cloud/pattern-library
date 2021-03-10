@@ -37,6 +37,7 @@ class AXACarousel extends InlineStyles {
       keysenabled: { type: Boolean },
       visible: { type: Number, reflect: true },
       arrowstyle: { type: String, reflect: true },
+      mode: { type: String, reflect: true },
       _animationWrapperClass: { type: String },
       _carouselMinHeight: { type: Number, defaultValue: 0 },
     };
@@ -243,7 +244,11 @@ class AXACarousel extends InlineStyles {
   }
 
   render() {
-    const { arrowstyle, _carouselMinHeight, _animationWrapperClass } = this;
+    const {
+      arrowstyle,
+      _carouselMinHeight,
+      _animationWrapperClass = '',
+    } = this;
     return html`
       <article class="a-carousel" style="min-height: ${_carouselMinHeight}px;">
         <button
