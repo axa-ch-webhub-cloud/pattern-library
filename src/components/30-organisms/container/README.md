@@ -1,3 +1,3 @@
 # Container
 
-Adds a max-with and margin auto according to Style Guide
+Adds a max-width and margin auto according to Style Guide

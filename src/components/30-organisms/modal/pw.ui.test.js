@@ -40,11 +40,13 @@ describe('Modal', () => {
       await page.textContent(
         '#root > div > axa-modal > axa-heading:nth-child(1)'
       )
-    ).toBe('Haftpflichtversicherung');
+    ).toBe('Liability insurance');
   });
 });
 
 async function openModal() {
-  await page.goto(`${host}/iframe.html?id=components--modal&viewMode=story`);
+  await page.goto(
+    `${host}/iframe.html?id=components-modal--modal&viewMode=story`
+  );
   await page.click('.js-modal-story__button');
 }

@@ -1,6 +1,7 @@
 # Modal
 
 A modal component for custom child elements.
+**Important:** `z-index` for the modal is 3000.
 
 ## Usage
 

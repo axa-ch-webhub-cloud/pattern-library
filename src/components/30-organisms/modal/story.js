@@ -1,10 +1,19 @@
 import { withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
+import readme from './README.md';
+import changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Modal',
   decorators: [withKnobs],
+  parameters: {
+    readme,
+    usage: {
+      componentName: 'modal',
+    },
+    changelog,
+  },
 };
 
 export const Modal = () => {
@@ -19,7 +28,7 @@ export const Modal = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-modal closeButtonText="Close">
-      <axa-heading rank="3">Liability insurance</axa-heading>
+      <axa-heading rank="1">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial
         consequences of personal injury and property damage caused by the

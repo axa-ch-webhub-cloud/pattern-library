@@ -10,7 +10,8 @@ body {
   height: 100%;
 
   position: fixed;
-  z-index: 1;
+  // Highest z-index on the axa website
+  z-index: 3000;
   left: 0;
   top: 0;
 
