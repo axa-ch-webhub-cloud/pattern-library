@@ -1,6 +1,6 @@
 @mixin defaultAttributesChildElements {
   @include text(t4);
-  display: flex;
+  display: none;
   flex-direction: column;
   text-align: center;
   justify-content: center; // align the dom element itself (f.e. small spans)
@@ -14,4 +14,17 @@ axa-carousel {
   > * {
     @include defaultAttributesChildElements();
   }
+}
+
+axa-carousel[visible="0"] > *:first-child,
+axa-carousel[visible="1"] > *:first-child + *,
+axa-carousel[visible="2"] > *:first-child + * + *,
+axa-carousel[visible="3"] > *:first-child + * + * + *,
+axa-carousel[visible="4"] > *:first-child + * + * + * + *,
+axa-carousel[visible="5"] > *:first-child + * + * + * + * + *,
+axa-carousel[visible="6"] > *:first-child + * + * + * + * + * + *,
+axa-carousel[visible="7"] > *:first-child + * + * + * + * + * + * + *,
+axa-carousel[visible="8"] > *:first-child + * + * + * + * + * + * + * + *,
+axa-carousel[visible="9"] > *:first-child + * + * + * + * + * + * + * + * + * {
+  display:flex;
 }

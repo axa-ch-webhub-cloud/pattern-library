@@ -128,4 +128,7 @@ const debounce = function debounce(
   }
 };
 
+// sleep <ms>  milliseconds. Use like this: await sleep(1000);
+export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 export default debounce;

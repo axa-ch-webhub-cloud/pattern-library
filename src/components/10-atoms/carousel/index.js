@@ -4,7 +4,7 @@ import { html, css, unsafeCSS } from 'lit-element';
 import { defineVersioned } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import Swipe from './swipe';
-import debounce from '../../../utils/debounce';
+import debounce, { sleep } from '../../../utils/debounce';
 import InlineStyles from '../../../utils/inline-styles';
 import { applyDefaults } from '../../../utils/with-react';
 import childStyles from './child.scss';
@@ -12,6 +12,8 @@ import childStyles from './child.scss';
 const ELEMENT_NODE = 1;
 const ANIMATION_LEFT_CLASS = 'animation-left';
 const ANIMATION_RIGHT_CLASS = 'animation-right';
+const ARROW_LEFT = 37;
+const ARROW_RIGHT = 39;
 
 class AXACarousel extends InlineStyles {
   static get tagName() {
@@ -33,8 +35,9 @@ class AXACarousel extends InlineStyles {
       autorotatedisabled: { type: Boolean },
       autorotatetime: { type: Number, defaultValue: 5000 },
       keysenabled: { type: Boolean },
+      visible: { type: Number, reflect: true },
       _animationWrapperClass: { type: String },
-      _carouselMinHeight: { type: Number },
+      _carouselMinHeight: { type: Number, defaultValue: 0 },
     };
   }
 
@@ -45,7 +48,7 @@ class AXACarousel extends InlineStyles {
     // Internal
     this.autoRotateTimerID = null;
     this.slides = null;
-    this.visibleSlideIndex = 0;
+    this.visible = 0;
     this.swiper = null;
     this.removeEventListenerAnimationEnd = () => {};
   }
@@ -109,57 +112,41 @@ class AXACarousel extends InlineStyles {
   }
 
   _setSlideVisibleWithAnimation(slideIndex, animationClass) {
-    this.visibleSlideIndex = slideIndex;
-    this.slides.forEach(node => {
-      node.style.display = 'none';
-    });
-    this.slides[slideIndex].style.display = 'block';
+    this.visible = slideIndex;
     this._animationWrapperClass = animationClass;
   }
 
-  _nextSlide() {
-    let nextSlideIndex = this.visibleSlideIndex + 1;
-
-    if (nextSlideIndex > this.slides.length - 1) {
-      nextSlideIndex = 0;
-    }
-
-    this._setSlideVisibleWithAnimation(nextSlideIndex, ANIMATION_RIGHT_CLASS);
+  _nextSlide(increment = 1) {
+    let numSlides = this.slides.length;
+    // wrap around after last slide...
+    let nextSlideIndex = (this.visible + increment) % numSlides;
+    this._setSlideVisibleWithAnimation(
+      nextSlideIndex < 0 ? numSlides - 1 : nextSlideIndex, // ... and before first slide
+      increment > 0 ? ANIMATION_RIGHT_CLASS : ANIMATION_LEFT_CLASS
+    );
   }
 
   _previousSlide() {
-    let nextSlideIndex = this.visibleSlideIndex - 1;
-
-    if (nextSlideIndex < 0) {
-      nextSlideIndex = this.slides.length - 1;
-    }
-
-    this._setSlideVisibleWithAnimation(nextSlideIndex, ANIMATION_LEFT_CLASS);
+    this._nextSlide(-1);
   }
 
   // Resize:
 
-  _setSlideVisibleAndAllOthersNone(inputNode) {
-    this.slides.forEach(node => {
-      if (node === inputNode) {
-        node.style.display = 'block';
-      } else {
-        node.style.display = 'none';
-      }
-    });
-  }
-
   _calculateContainerMinHeight() {
-    // we need to set carousel min height in case there are elements with different heights.
-    this.slides.forEach(node => {
-      this._setSlideVisibleAndAllOthersNone(node);
-
-      if (node.clientHeight > this._carouselMinHeight) {
-        this._carouselMinHeight = node.clientHeight;
+    (async () => {
+      const savedVisible = this.visible;
+      // we need to set carousel min height in case there are elements with different heights.
+      for (let nodes = this.slides, i = 0, n = nodes.length, node; i < n; i++) {
+        this.visible = i;
+        node = nodes[i];
+        await sleep(0); // force event-loop
+        this._carouselMinHeight = Math.max(
+          node.clientHeight, // forces repaint
+          this._carouselMinHeight
+        );
       }
-    });
-
-    this._setSlideVisibleAndAllOthersNone(this.slides[this.visibleSlideIndex]);
+      this.visible = savedVisible;
+    })();
   }
 
   _onResize = debounce(() => {
@@ -170,16 +157,22 @@ class AXACarousel extends InlineStyles {
   // AutoRotate:
 
   _startAutoRotate() {
+    // should we *not* autorotate?
+    const { autorotatedisabled, autorotatetime } = this;
     if (
-      !this.autorotatedisabled &&
-      !!this.autorotatetime === true &&
+      autorotatedisabled ||
+      !autorotatetime ||
       // eslint-disable-next-line no-restricted-globals
-      !isNaN(this.autorotatetime)
+      isNaN(autorotatetime)
     ) {
-      this.autoRotateTimerID = setInterval(() => {
-        this._nextSlide();
-      }, this.autorotatetime);
+      // no, we should not - early exit
+      return;
     }
+    // advance to next slide every <autorotatetime> milliseconds
+    this.autoRotateTimerID = setInterval(
+      () => this._nextSlide(),
+      autorotatetime
+    );
   }
 
   _stopAutoRotate() {
@@ -229,9 +222,9 @@ class AXACarousel extends InlineStyles {
   _handleKeyUp = ev => {
     const e = ev || window.event;
 
-    if (e.keyCode === 37) {
+    if (e.keyCode === ARROW_LEFT) {
       this.handlePreviousButtonClick();
-    } else if (e.keyCode === 39) {
+    } else if (e.keyCode === ARROW_RIGHT) {
       this.handleNextButtonClick();
     }
   };
@@ -239,8 +232,8 @@ class AXACarousel extends InlineStyles {
   firstUpdated() {
     this.inlineStyles('childStyles');
     this.slides = this._getSlides();
-    this._calculateContainerMinHeight();
     this._setSlideVisibleWithAnimation(0);
+    this._calculateContainerMinHeight();
     this._initSwipe();
     this._initKeyNavigation();
     this._startAutoRotate();
