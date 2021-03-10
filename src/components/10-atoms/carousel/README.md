@@ -1,20 +1,21 @@
 # Carousel
 
-Every child is rendered as a slide. Only one child is visible at one time.
+Each child is rendered as a slide. By default, only one child is visible at a time. Also,
+auto-rotation to the right is enabled by default.
 
 ## Properties
 
 ### autorotatedisabled
 
-This Boolean attribute specifies if the slides will not automatically rotate.
+This Boolean attribute specifies whether slide auto-rotation should be suppressed (default: false).
 
 ### autorotatetime
 
-This number specifies the milliseconds the slides will automatically rotate.
+This numeric attribute specifies the waiting time in milliseconds for the next slide to appear in auto-rotation mode.
 
 ### keysenabled
 
-This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
+This Boolean attribute specifies whether keyboard navigation via left/right arrow keys should be enabled (default: false).
 
 ### arrowstyle
 
