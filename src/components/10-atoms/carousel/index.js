@@ -36,6 +36,7 @@ class AXACarousel extends InlineStyles {
       autorotatetime: { type: Number, defaultValue: 5000 },
       keysenabled: { type: Boolean },
       visible: { type: Number, reflect: true },
+      arrowstyle: { type: String, reflect: true },
       _animationWrapperClass: { type: String },
       _carouselMinHeight: { type: Number, defaultValue: 0 },
     };
@@ -242,24 +243,23 @@ class AXACarousel extends InlineStyles {
   }
 
   render() {
+    const { arrowstyle, _carouselMinHeight, _animationWrapperClass } = this;
     return html`
-      <article
-        class="a-carousel"
-        style="min-height: ${this._carouselMinHeight}px;"
-      >
+      <article class="a-carousel" style="min-height: ${_carouselMinHeight}px;">
         <button
           type="button"
+          style="${arrowstyle}"
           class="a-carousel__arrow a-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
         ></button>
         <div
-          class="a-carousel__wrapper js-carousel__wrapper ${this
-            ._animationWrapperClass}"
+          class="a-carousel__wrapper js-carousel__wrapper ${_animationWrapperClass}"
         >
           <slot></slot>
         </div>
         <button
           type="button"
+          style="${arrowstyle}"
           class="a-carousel__arrow a-carousel__arrow-right"
           @click="${this.handleNextButtonClick}"
         ></button>

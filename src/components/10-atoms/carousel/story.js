@@ -1,5 +1,5 @@
 // if your need more boolean, select, radios
-import { boolean, number, withKnobs } from '@storybook/addon-knobs';
+import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -24,6 +24,7 @@ export const Carousel = () => {
   const autorotatedisabled = boolean('autorotatedisabled', false);
   const autorotatetime = number('autorotatetime', 5000);
   const keysenabled = boolean('keysenabled', true);
+  const arrowstyle = text('arrowstyle', '');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -32,6 +33,7 @@ export const Carousel = () => {
         autorotatetime="${autorotatetime}"
         ?autorotatedisabled="${autorotatedisabled}"
         ?keysenabled="${keysenabled}"
+        arrowstyle="${arrowstyle}"
       >
         <span>
           Very helpful once I got through to the correct person but I was

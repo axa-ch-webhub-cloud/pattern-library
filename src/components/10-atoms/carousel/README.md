@@ -16,6 +16,11 @@ This number specifies the milliseconds the slides will automatically rotate.
 
 This boolean attribute specifies if the keyboard navigation (left/right keys) should be enabled.
 
+### arrowstyle
+
+This string-valued attribute adds custom inline styling to the arrow buttons of the carousel
+(e.g. `border-color:grey` for grey arrows, or `display:none` to suppress arrows).
+
 ## Child Elements
 
-Do not set more than ~100 child elements. Otherwise, because of height-calculation costs performance will suffer.
+There is an absolute limit of 10 child elements.
