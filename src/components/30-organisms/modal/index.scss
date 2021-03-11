@@ -39,10 +39,20 @@ body {
       background-color: white;
 
       &-button {
+        border: none;
+        background: transparent;
+        outline: none;
+        color: inherit;
+        font: inherit;
+        line-height: normal;
         height: 24px;
         margin: 13px;
-        all: unset
         
+        /* Remove excess padding and border in Firefox 4+ */
+        &::-moz-focus-inner {
+          border: 0;
+          padding: 0;
+        }
       }
     }
 
