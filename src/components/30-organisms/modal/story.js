@@ -17,14 +17,6 @@ export default {
 };
 
 export const Modal = () => {
-  setTimeout(() => {
-    document
-      .querySelector('.js-modal-story__button')
-      .addEventListener('click', () => {
-        const modal = document.getElementsByTagName('axa-modal')[0];
-        modal.setAttribute('open', '');
-      });
-  });
   const wrapper = document.createElement('div');
   const template = html`
     <axa-modal closeButtonText="Close">
@@ -64,7 +56,11 @@ export const Modal = () => {
       </axa-text>
     </axa-modal>
 
-    <button type="button" class="js-modal-story__button">
+    <button
+      type="button"
+      class="js-modal-story__button"
+      onClick="document.getElementsByTagName('axa-modal')[0].setAttribute('open', '');"
+    >
       Open modal story
     </button>
   `;

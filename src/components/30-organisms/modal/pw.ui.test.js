@@ -9,7 +9,7 @@ describe('Modal', () => {
 
   it('modal should close by button', async () => {
     await openModal();
-    await page.click('.o-modal-window__close-button');
+    await page.click('.o-modal-window__upper-close-container-button');
 
     expect(await page.isVisible('.o-modal-window')).toBe(false);
   });
