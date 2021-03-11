@@ -1,3 +1,7 @@
+## 13.4.0
+
+- Added new social media icons
+
 ## 13.2.3
 
 - Fix duplicated icons bug. #2012
