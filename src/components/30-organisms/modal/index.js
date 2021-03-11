@@ -36,10 +36,15 @@ class AXAModal extends LitElement {
     };
     return html`
       <article class="o-modal ${classMap(classes)}">
-        <div class="o-modal-window">
-          <div class="o-modal-window__close-button" @click="${this.closeModal}">
+        <div class="o-modal-window__upper-close-container">
+          <button
+            class="o-modal-window__upper-close-container-button"
+            @click="${this.closeModal}"
+          >
             ${svg([closeIcon])}
-          </div>
+          </button>
+        </div>
+        <div class="o-modal-window">
           <slot></slot>
         </div>
         <div class="o-modal-window__close-container">
