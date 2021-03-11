@@ -1,6 +1,7 @@
-## 13.4.0
+## 14.0.0
 
 - Added new social media icons
+- Move Google Material icons to subfolder `icons/material.io`
 
 ## 13.2.3
 
