@@ -11,7 +11,7 @@
 
 MATERIAL_ICONS_LOCATION=~/Downloads/material-design-icons
 ALL_ICONS=$(find $MATERIAL_ICONS_LOCATION -type f -name "24px.svg")
-ICON_DIR=./icons-raw/
+ICON_DIR=./icons-raw/material.io/
 STRING_TO_REMOVE="24px"
 
 mkdir -p $ICON_DIR
