@@ -4,14 +4,14 @@ describe('Modal', () => {
   it('should open modal', async () => {
     await openModal();
 
-    expect(await page.isVisible('.o-modal-window')).toBe(true);
+    expect(await page.isVisible('.o-modal__content')).toBe(true);
   });
 
   it('modal should close by button', async () => {
     await openModal();
-    await page.click('.o-modal-window__upper-close-container-button');
+    await page.click('.o-modal__upper-close-container-button');
 
-    expect(await page.isVisible('.o-modal-window')).toBe(false);
+    expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
   it('should close by pressing outside the modal', async () => {
@@ -23,14 +23,14 @@ describe('Modal', () => {
         .click();
     });
 
-    expect(await page.isVisible('.o-modal-window')).toBe(false);
+    expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
   it('should close by pressing escape on keyboard', async () => {
     await openModal();
     await page.keyboard.press('Escape');
 
-    expect(await page.isVisible('.o-modal-window')).toBe(false);
+    expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
   it('should check if children are rendered', async () => {
