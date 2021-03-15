@@ -13,8 +13,8 @@ import {
   SearchSvg,
   File_uploadSvg,
   Cloud_uploadSvg,
-} from '@axa-ch/materials/icons';
-import { arrowRightSvg, arrowLeftSvg } from '@axa-ch/materials/internal-icons';
+} from '@axa-ch/materials/icons/material-design';
+import { arrowRightSvg, arrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
