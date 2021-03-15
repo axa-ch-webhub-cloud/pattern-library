@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { File_downloadSvg } from '@axa-ch/materials/icons';
+import { File_downloadSvg } from '@axa-ch/materials/icons/material-design';
 import AXAIcon from './index';
 
 describe('Icon', () => {
