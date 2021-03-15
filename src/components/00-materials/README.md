@@ -20,7 +20,7 @@ import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
 ### React
 
 ```js
-import ArrowForwardSvg from '@axa-ch/materials/icons-raw/arrow-forward.svg';
+import ArrowForwardSvg from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```
@@ -28,7 +28,7 @@ import ArrowForwardSvg from '@axa-ch/materials/icons-raw/arrow-forward.svg';
 ### React with Typescript
 
 ```js
-import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/arrow-forward.svg';
+import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```
