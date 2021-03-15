@@ -5,7 +5,7 @@ import {
   Date_rangeSvg,
   Keyboard_arrow_leftSvg,
   Keyboard_arrow_rightSvg,
-} from '@axa-ch/materials/icons';
+} from '@axa-ch/materials/icons/material-design';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import {

@@ -12,7 +12,7 @@ npm install @axa-ch/materials
 
 ```js
 import { svg } from 'lit-html';
-import { Arrow_forwardSvg } from '@axa-ch/materials/icons';
+import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
 
 <span>${svg(Arrow_forwardSvg)}</span>;
 ```

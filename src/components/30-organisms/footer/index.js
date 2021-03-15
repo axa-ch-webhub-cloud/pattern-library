@@ -3,7 +3,7 @@
 import { html, svg, css, unsafeCSS } from 'lit-element';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
-import { Expand_moreSvg } from '@axa-ch/materials/icons';
+import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
