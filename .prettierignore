@@ -20,5 +20,5 @@ node_modules
 package-lock.json
 lib
 dist
-src/components/00-materials/icons
+src/components/00-materials/icons/*
 src/components/00-materials/images
