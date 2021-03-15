@@ -26,8 +26,8 @@ const cleanFileName = _fileName => {
 
 const importIconsPath = './icons-raw';
 const exportIconsPath = './icons';
-const importMaterialIconsPath = './icons-raw/material.io';
-const exportMaterialIconsPath = './icons/material.io';
+const importMaterialIconsPath = './icons-raw/material-design';
+const exportMaterialIconsPath = './icons/material-design';
 
 const importImagesPath = './images-raw';
 const exportImagesPath = './images';
