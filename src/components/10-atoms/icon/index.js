@@ -14,7 +14,7 @@ import {
   File_uploadSvg,
   Cloud_uploadSvg,
 } from '@axa-ch/materials/icons/material-design';
-import { arrowRightSvg, arrowLeftSvg } from '@axa-ch/materials/icons';
+import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -34,8 +34,8 @@ class AXAIcon extends LitElement {
 
   static get iconsMapping() {
     return {
-      'arrow-left': arrowLeftSvg,
-      'arrow-right': arrowRightSvg,
+      'arrow-left': ArrowLeftSvg,
+      'arrow-right': ArrowRightSvg,
       collapse: Expand_lessSvg,
       document: Insert_drive_fileSvg,
       download: File_downloadSvg,
