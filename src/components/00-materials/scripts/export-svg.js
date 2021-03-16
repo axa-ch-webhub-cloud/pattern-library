@@ -72,10 +72,14 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
 if (!fs.existsSync(exportIconsPath)) {
   fs.mkdirSync(exportIconsPath);
 }
+if (!fs.existsSync(exportMaterialIconsPath)) {
+  fs.mkdirSync(exportMaterialIconsPath);
+}
 if (!fs.existsSync(exportImagesPath)) {
   fs.mkdirSync(exportImagesPath);
 }
 fs.writeFileSync(`${exportIconsPath}/index.js`, '');
+fs.writeFileSync(`${exportMaterialIconsPath}/index.js`, '');
 fs.writeFileSync(`${exportImagesPath}/index.js`, '');
 
 // Proceed icons folder
