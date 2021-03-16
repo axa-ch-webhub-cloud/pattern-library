@@ -26,6 +26,8 @@ const cleanFileName = _fileName => {
 
 const importIconsPath = './icons-raw';
 const exportIconsPath = './icons';
+const importMaterialIconsPath = './icons-raw/material-design';
+const exportMaterialIconsPath = './icons/material-design';
 
 const importImagesPath = './images-raw';
 const exportImagesPath = './images';
@@ -48,9 +50,12 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
         fileName = cleanFileName(fileName);
         const className = toClassName(fileName);
 
+        fs.mkdirSync(path.resolve(exportPath), {
+          recursive: true,
+        });
         // Generate a js file forEach svg file found
         fs.writeFileSync(
-          `${exportPath}/${fileName}.js`,
+          path.resolve(exportPath, `${fileName}.js`),
           outdent`export default '${contents}';`,
           'utf8'
         );
@@ -75,6 +80,7 @@ fs.writeFileSync(`${exportImagesPath}/index.js`, '');
 
 // Proceed icons folder
 readdirAndSaveSvgToJs(importIconsPath, exportIconsPath);
+readdirAndSaveSvgToJs(importMaterialIconsPath, exportMaterialIconsPath);
 
 // Proceed images folder
 fs.readdir(importImagesPath, { withFileTypes: true }, (err, dirents) => {

@@ -12,7 +12,7 @@ npm install @axa-ch/materials
 
 ```js
 import { svg } from 'lit-html';
-import { Arrow_forwardSvg } from '@axa-ch/materials/icons';
+import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
 
 <span>${svg(Arrow_forwardSvg)}</span>;
 ```
@@ -20,7 +20,7 @@ import { Arrow_forwardSvg } from '@axa-ch/materials/icons';
 ### React
 
 ```js
-import ArrowForwardSvg from '@axa-ch/materials/icons-raw/arrow-forward.svg';
+import ArrowForwardSvg from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```
@@ -28,7 +28,7 @@ import ArrowForwardSvg from '@axa-ch/materials/icons-raw/arrow-forward.svg';
 ### React with Typescript
 
 ```js
-import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/arrow-forward.svg';
+import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```

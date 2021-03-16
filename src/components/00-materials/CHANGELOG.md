@@ -1,3 +1,13 @@
+## 14.0.0
+
+BREAKING CHANGES:
+
+- New social media icons added
+  - \*.svg.js to `/icons`
+  - \*.svg to `/icons-raw`
+- Move "Google Material" icons to subfolder `/icons/material-design` and `/icons-raw/material-design`
+- Delete `/internal-icons` folder and move the files to `/icons`
+
 ## 13.2.3
 
 - Fix duplicated icons bug. #2012

@@ -8,7 +8,7 @@ import {
   Delete_foreverSvg,
   ClearSvg,
   Attach_fileSvg,
-} from '@axa-ch/materials/icons';
+} from '@axa-ch/materials/icons/material-design';
 import AXAInputFile from '@axa-ch/input-file';
 
 // icon isolated from others, because it's a component specific icon

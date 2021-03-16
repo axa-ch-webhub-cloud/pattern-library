@@ -3,7 +3,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { Expand_moreSvg } from '@axa-ch/materials/icons';
+import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
