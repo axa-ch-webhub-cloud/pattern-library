@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import closeIcon from '@axa-ch/materials/icons/close.svg';
+import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
@@ -21,7 +21,6 @@ class AXAModal extends LitElement {
   static get properties() {
     return {
       open: { type: Boolean },
-      closeButtonText: { type: String },
     };
   }
 
@@ -47,13 +46,7 @@ class AXAModal extends LitElement {
         <div class="o-modal__content">
           <slot></slot>
         </div>
-        <div class="o-modal__close-container">
-          <axa-button
-            class="o-modal__close-container-button"
-            @click="${this.closeModal}"
-            >${this.closeButtonText}</axa-button
-          >
-        </div>
+        <div class="o-modal__close-container"></div>
       </article>
     `;
   }

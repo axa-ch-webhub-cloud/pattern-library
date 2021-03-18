@@ -17,15 +17,10 @@ import '@axa-ch/modal';
 
 ### Variant
 
-| Attribute                 | Details                    |
-| ------------------------- | -------------------------- |
-| `open=true`               | State of modal visibility  |
-| `closeButtonText='Close'` | Text of modal close button |
+| Attribute   | Details                   |
+| ----------- | ------------------------- |
+| `open=true` | State of modal visibility |
 
 ### open
 
 If `open` is set to `true`, then the modal will be displayed to the user.
-
-### closeButtonText
-
-Defined the text of the close button.
