@@ -38,7 +38,7 @@ describe('Modal', () => {
 
     expect(
       await page.textContent(
-        '#root > div > axa-modal > axa-heading:nth-child(2)'
+        '#root > div > axa-modal > axa-heading:nth-child(1)'
       )
     ).toBe('Liability insurance');
   });
