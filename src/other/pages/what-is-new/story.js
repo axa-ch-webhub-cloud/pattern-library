@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import '../../../components/10-atoms/heading';
 import '../../../components/10-atoms/text';
@@ -28,45 +27,46 @@ const getDateFromGitCommit = answerJson => {
   return formattedDate.toLocaleString(navigator.language);
 };
 
-storiesOf('Welcome', module)
-  .addParameters({
-    decorators: [],
-    parameters: {
-      knobs: { disabled: true },
-      readme: { disabled: true },
-      usage: { disabled: true },
-      changelog: { disabled: true },
-      a11y: { disabled: true },
-      options: { showPanel: false },
-      layout: 'fullscreen',
-    },
-  })
-  .add('What is new', () => {
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('accessory-story-wrapper');
+export default {
+  title: 'Welcome',
+  decorators: [],
+  parameters: {
+    knobs: { disabled: true },
+    readme: { disabled: true },
+    usage: { disabled: true },
+    changelog: { disabled: true },
+    a11y: { disabled: true },
+    options: { showPanel: false },
+    layout: 'fullscreen',
+  },
+};
 
-    const xhttp = new XMLHttpRequest();
-    // eslint-disable-next-line func-names
-    xhttp.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const responseJson = JSON.parse(xhttp.responseText);
-        document.querySelector(
-          '#what-is-new__github-response'
-        ).innerHTML = getFormattedGitCommitMessage(responseJson);
-        document.querySelector(
-          '#what-is-new__github-response-date'
-        ).innerHTML = getDateFromGitCommit(responseJson);
-      }
-    };
-    xhttp.open(
-      'GET',
-      'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
-      true
-    );
-    xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
-    xhttp.send();
+export const WhatsNew = () => {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('accessory-story-wrapper');
 
-    const template = html`
+  const xhttp = new XMLHttpRequest();
+  // eslint-disable-next-line func-names
+  xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      const responseJson = JSON.parse(xhttp.responseText);
+      document.querySelector(
+        '#what-is-new__github-response'
+      ).innerHTML = getFormattedGitCommitMessage(responseJson);
+      document.querySelector(
+        '#what-is-new__github-response-date'
+      ).innerHTML = getDateFromGitCommit(responseJson);
+    }
+  };
+  xhttp.open(
+    'GET',
+    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
+    true
+  );
+  xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
+  xhttp.send();
+
+  const template = html`
     <style>
       ${styles}
     </style>
@@ -92,6 +92,10 @@ storiesOf('Welcome', module)
     <pl-contact-footer></pl-contact-footer>
   `;
 
-    render(template, wrapper);
-    return wrapper;
-  });
+  render(template, wrapper);
+  return wrapper;
+};
+
+WhatsNew.story = {
+  name: "What's new",
+};
