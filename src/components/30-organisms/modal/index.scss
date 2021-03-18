@@ -51,9 +51,14 @@ body {
       font: inherit;
       line-height: normal;
       margin: 16px;
-      height: 32px;
+      height: 24px;
       padding: 0px;
       
+      svg {
+        height: 24px;
+        width: 24px;
+      }
+
       /* Remove excess padding and border in Firefox 4+ */
       &::-moz-focus-inner {
         border: 0;
@@ -82,25 +87,4 @@ body {
 
     }
   }
-
-  &__close-container {
-    display: flex;
-    justify-content: center;
-    padding: 0px 28px 28px;
-    margin: 0px 10px 10px;
-    background-color: white;
-    border-radius: 0px 0px 8px 8px;
-
-    @include breakpoint($mediaquery-xs-up) {
-      display: flex;
-      width: 60%;
-      margin: 0px;
-      padding: 0px 0px 40px;
-    }
-  }
-}
-
-svg {
-  height: 32px;
-  width: 32px;
 }
