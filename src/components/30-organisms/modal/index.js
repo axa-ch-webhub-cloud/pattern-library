@@ -46,7 +46,6 @@ class AXAModal extends LitElement {
         <div class="o-modal__content">
           <slot></slot>
         </div>
-        <div class="o-modal__close-container"></div>
       </article>
     `;
   }
