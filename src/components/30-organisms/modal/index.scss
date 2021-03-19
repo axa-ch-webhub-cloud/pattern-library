@@ -9,7 +9,7 @@
   left: 0;
   top: 0;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba($color-black, 0.5);
 
   @include breakpoint($mediaquery-xs-up) {
     align-items: center;
@@ -25,16 +25,16 @@
     display: flex;
     z-index: 1;
     margin: 10px 10px 0px;
-    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 10px 0px rgba($color-black, 0.15);
     justify-content: flex-end;
     border-radius: 8px 8px 0px 0px;
-    background-color: white;
+    background-color: $color-prim-white;
 
     @include breakpoint($mediaquery-xs-up) {
       width: 60%;
       padding: 0px;
       margin: 0px;
-      background-color: white;
+      background-color: $color-prim-white;
     }
 
     &-button {
@@ -62,17 +62,15 @@
     padding: 0px 28px 28px;
     margin: 0px 10px 10px;
     height: 100%;
-    background-color: white;
+    background-color: $color-prim-white;
     border-radius: 0px 0px 8px 8px;
 
     @include breakpoint($mediaquery-xs-up) {
-      overflow: auto;
       box-sizing: border-box;
       padding: 0px 40px 40px;
       width: 60%;
       margin: 0px;
       max-height: 50%;
-      background-color: white;
 
     }
   }

@@ -1,7 +1,5 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXAModalProps {
   className?: string;
   open?: boolean;
