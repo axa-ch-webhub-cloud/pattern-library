@@ -3,7 +3,6 @@ import React from 'react';
 export type Variant = 'foo' | 'bar';
 
 export interface AXAModalProps {
-  closeButtonText: string;
   className?: string;
   open?: boolean;
 }

@@ -19,7 +19,7 @@ export default {
 export const Modal = () => {
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-modal closeButtonText="Close">
+    <axa-modal>
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial
@@ -61,7 +61,7 @@ export const Modal = () => {
       class="js-modal-story__button"
       onClick="document.getElementsByTagName('axa-modal')[0].setAttribute('open', '');"
     >
-      Open modal story
+      Open modal
     </button>
   `;
 
