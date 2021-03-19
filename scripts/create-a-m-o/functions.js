@@ -251,7 +251,7 @@ const tag = 'axa-${fileName}';
 describe('${compTitle}', () => {
   it('should render', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story`
+      \`\${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story\`
     );
     await page.waitForSelector(tag);
     const visible = await page.isVisible(tag);
