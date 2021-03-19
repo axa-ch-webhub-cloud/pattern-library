@@ -1,4 +1,4 @@
-import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import readme from './README.md';
@@ -17,9 +17,11 @@ export default {
 };
 
 export const Modal = () => {
+  const open = boolean('open', true);
+
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-modal>
+    <axa-modal ?open="${open}">
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial

@@ -48,5 +48,4 @@ async function openModal() {
   await page.goto(
     `${host}/iframe.html?id=components-modal--modal&viewMode=story`
   );
-  await page.click('.js-modal-story__button');
 }
