@@ -1,5 +1,4 @@
-import { boolean } from '@storybook/addon-knobs';
-import { withKnobs } from '@storybook/addon-knobs';
+import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import readme from './README.md';
