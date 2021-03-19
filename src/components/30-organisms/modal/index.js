@@ -66,8 +66,9 @@ class AXAModal extends LitElement {
   }
 
   mouseCloseHandler(e) {
-    // are we clicking on the outer part of the modal?
-    if (e.path?.[0] === this.shadowRoot.querySelector('.o-modal--open')) {
+    if (
+      e.composedPath()?.[0] === this.shadowRoot.querySelector('.o-modal--open')
+    ) {
       this.closeModal();
     }
   }
