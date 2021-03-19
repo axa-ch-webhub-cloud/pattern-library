@@ -243,27 +243,22 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
-    `${BASE_FOLDER}/ui.test.js`,
+    `${BASE_FOLDER}/pw.ui.test.js`,
     outdent`
-    import { Selector } from 'testcafe';
+const host = process.env.TEST_HOST_STORYBOOK_URL;
+const tag = 'axa-${fileName}';
 
-    const host = process.env.TEST_HOST_STORYBOOK_URL;
+describe('${compTitle}', () => {
+  it('should render', async () => {
+    await page.goto(
+      \`\${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story\`
+    );
+    await page.waitForSelector(tag);
+    const visible = await page.isVisible(tag);
+    expect(visible).toBeTruthy();
+  });
+});
 
-    fixture('${compTitle} - basic functionality').page(\`\${host}/iframe.html?id=components-${fileName}--${fileName}\`);
-
-    const TAG = 'axa-${fileName}';
-    const CLASS = '.${type}-${fileName}';
-
-    test('should render ${fileName}', async t => {
-      const $axaElem = await Selector(TAG);
-      await t.expect($axaElem.exists).ok();
-      const $axaElemShadow = await Selector(
-        () => document.querySelector(TAG).shadowRoot,
-        { dependencies: { TAG } }
-      );
-      const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
-      await t.expect($axaElemShadowEl.exists).ok();
-    });
     `,
     'utf8',
   );
