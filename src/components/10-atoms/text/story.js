@@ -5,8 +5,7 @@ import './index';
 import readme from './README.md';
 
 const variantOptions = {
-  default: '',
-  'size-1': 'size-1',
+  '[none]': '',
   'size-2': 'size-2',
   'size-3': 'size-3',
   semibold: 'semibold',
