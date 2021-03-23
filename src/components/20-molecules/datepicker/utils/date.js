@@ -111,7 +111,8 @@ const parseLocalisedDateIfValid = (inputValue = '', options = {}) => {
 
   const isValid =
     typeof dateAsUnixEpochInteger === 'number' &&
-    !Number.isNaN(dateAsUnixEpochInteger);
+    // eslint-disable-next-line no-restricted-globals
+    !isNaN(dateAsUnixEpochInteger);
 
   return isValid ? new Date(dateAsUnixEpochInteger) : null;
 };
