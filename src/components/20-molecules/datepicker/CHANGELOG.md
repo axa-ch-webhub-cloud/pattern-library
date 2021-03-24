@@ -1,3 +1,7 @@
+## 15.0.5
+
+- fix unscoped CSS. #2117
+
 ## 15.0.4
 
 - fix use of non-IE Javascript. #2114
