@@ -34,7 +34,7 @@ describe('Datepicker', () => {
     await page.click('.js-datepicker__button-next');
 
     expect(await page.textContent('#form-data-date')).not.toBe(
-      '29.2.2020 (of 1 submittable elements)'
+      '29.02.2020 (of 1 submittable elements)'
     );
   });
 
