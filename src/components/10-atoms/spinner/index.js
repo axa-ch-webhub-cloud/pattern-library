@@ -26,10 +26,9 @@ class AXASpinner extends LitElement {
   }
 
   static get properties() {
-    // Define properties and types
     return {
-      onClick: { type: Function },
-      foo: { type: String, defaultValue: 'bar' },
+      size: { type: String, defaultValue: 'default' },
+      color: { type: String, defaultValue: 'ocean-blue' },
     };
   }
 
@@ -47,8 +46,14 @@ class AXASpinner extends LitElement {
   }
 
   firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
+    // if(this.size === "small") {
+    //   return css `
+    //     .spinner {
+    //       height: 8px;
+    //       width: 8px;
+    //     }
+    //   `
+    // }
   }
 
   // if you use dependent components inside your html-tagged string templates below,
