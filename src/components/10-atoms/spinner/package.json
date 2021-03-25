@@ -1,0 +1,33 @@
+{
+  "name": "@axa-ch/spinner",
+  "version": "0.0.0-beta.0",
+  "description": "The spinner component for the AXA Pattern Library",
+  "author": "Pattern Warriors",
+  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/spinner#readme",
+  "license": "Copyright 2019 AXA Versicherungen AG",
+  "scripts": {
+    "prepublishOnly": "../../../../scripts/build/prepublish.js",
+    "build": "rollup --silent --config ../../../../rollup.config.js",
+    "postpublish": "../../../../scripts/build/postpublish.js",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axa-ch/patterns-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/axa-ch/patterns-library/issues"
+  },
+  "dependencies": {
+    "@skatejs/val": "^0.4.0",
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.0"
+  }
+}

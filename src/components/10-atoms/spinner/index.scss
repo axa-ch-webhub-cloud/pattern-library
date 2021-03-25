@@ -1,0 +1,73 @@
+.a-spinner {
+  display: block;
+}
+
+.spinner {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  background: rgb(73, 118, 186);
+  border-radius: 50%;
+  top: 0%;
+  bottom: 0%;
+}
+
+.__dot {
+  &-1 {
+    left: 0%;
+    right: 80%;
+    animation: animation-dot-1 1s infinite;
+    
+  }
+
+  @keyframes animation-dot-1 {
+    0% {
+      background-color: rgba(73, 118, 186, 1);;
+    }
+    16% {
+      background-color: rgba(73, 118, 186, 0);
+    }
+    33% {
+      background-color: rgba(73, 118, 186, 1);
+    }
+  }
+
+  &-2 {
+    left: 40%;
+    right: 40%;
+    animation: animation-dot-2 1s infinite;
+
+  }
+
+  @keyframes animation-dot-2 {
+    33% {
+      background-color: rgba(73, 118, 186, 1);
+    }
+    50% {
+      background-color: rgba(73, 118, 186, 0);
+    }
+    66% {
+      background-color: rgba(73, 118, 186, 1);
+    }
+  }
+
+  &-3 {
+    left: 80%;
+    right: 0%;
+    animation: animation-dot-3 1s infinite;
+
+  }
+  
+  @keyframes animation-dot-3 {
+    66% {
+      background-color: rgba(73, 118, 186, 1);
+    }
+    82% {
+      background-color: rgba(73, 118, 186, 0);
+    }
+    100% {
+      background-color: rgba(73, 118, 186, 1);
+    }
+  }
+
+}
