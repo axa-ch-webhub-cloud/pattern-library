@@ -1,4 +1,4 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
+import { radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 
@@ -7,12 +7,23 @@ export default {
   decorators: [withKnobs],
 };
 
+const sizeOptions = {
+  default: 'default',
+  small: 'small',
+};
+
+const invertedBgs = {
+  default: 'inverted-blue-ocean',
+  black: 'inverted-black',
+};
+
 export const Spinner = () => {
-  const textknob = text('This is a knob', 'Value of text knob');
+  const sizes = radios('size', sizeOptions, 'default');
+  const colors = radios('color', invertedBgs, 'inverted-blue-ocean');
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-spinner>${textknob}</axa-spinner>
+    <axa-spinner size="${sizes}" color="${colors}"></axa-spinner>
   `;
 
   render(template, wrapper);

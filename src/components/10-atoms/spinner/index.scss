@@ -1,15 +1,38 @@
 .a-spinner {
   display: block;
-}
 
-.spinner {
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  background: rgb(73, 118, 186);
-  border-radius: 50%;
-  top: 0%;
-  bottom: 0%;
+  &-container {
+    display: flex;
+    align-items: center;
+    margin: 100px; //only temporary
+  }
+
+  &--default {
+    display: inline-block;
+    top: 0%;
+    bottom: 0%;
+    margin: 8px;
+    height: 16px;
+    width: 16px;  
+    border-radius: 50%;
+  }
+
+  &--small {
+    top: 0%;
+    bottom: 0%;
+    margin: 4px;
+    height: 8px;
+    width: 8px;  
+    border-radius: 50%;
+  }
+
+  &--inverted-blue-ocean {
+    background: $color-ocean-blue;
+  }
+
+  &--inverted-black {
+    background: $color-black;
+  }
 }
 
 .__dot {
@@ -17,7 +40,7 @@
     left: 0%;
     right: 80%;
     animation: animation-dot-1 1s infinite;
-    
+
   }
 
   @keyframes animation-dot-1 {
