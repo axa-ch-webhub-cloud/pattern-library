@@ -6,6 +6,8 @@ describe('Spinner', () => {
 
     AXASpinner.prototype.firstUpdated();
 
-    expect(AXASpinner.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
+    expect(
+      AXASpinner.prototype.methodThatShouldNotBeCalled
+    ).not.toHaveBeenCalled();
   });
 });

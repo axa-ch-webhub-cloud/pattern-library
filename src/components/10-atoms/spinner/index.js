@@ -63,6 +63,9 @@ class AXASpinner extends LitElement {
           <span class="spinner __dot-2"></span>
           <span class="spinner __dot-3"></span>
         </div>
+        <div style="margin:100px">
+          <progress class="progressbar" value="32" max="100" />
+        </div>
       </article>
     `;
   }

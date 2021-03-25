@@ -30,8 +30,7 @@ export default AXASpinnerReact;
 ```
 
 ```js
-<AXASpinnerReact onClick={handler}>
-</AXASpinnerReact>
+<AXASpinnerReact onClick={handler}></AXASpinnerReact>
 ```
 
 ### Pure HTML pages
@@ -58,9 +57,9 @@ Import the spinner-defining script and use a spinner like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute       | Details         |
+| --------------- | --------------- |
+| `variant="foo"` | Desc of Variant |
 
 ### Bar
 
