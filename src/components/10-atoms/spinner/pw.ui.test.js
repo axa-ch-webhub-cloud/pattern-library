@@ -1,7 +1,7 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 const tag = 'axa-spinner';
 
-describe('Spinner', () => {
+describe.skip('Spinner', () => {
   it('should render', async () => {
     await page.goto(
       `${host}/iframe.html?id=components-spinner--spinner&viewMode=story`
