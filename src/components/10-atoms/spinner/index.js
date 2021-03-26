@@ -23,14 +23,12 @@ class AXASpinner extends LitElement {
     };
   }
 
-  firstUpdated() {}
-
   render() {
     const { size = '', color = '' } = this;
     const classes = {
-      'a-spinner--default': size === 'default',
+      'a-spinner--default': size === 'default', // TODO @Milchmaa This should not be needed. Default is default, not need to explicitly declare it.
       'a-spinner--small': size === 'small',
-      'a-spinner--inverted-blue-ocean': color === 'inverted-blue-ocean',
+      'a-spinner--inverted-blue-ocean': color === 'inverted-blue-ocean', // TODO @Milchmaa This should not be needed. This could be the default.
       'a-spinner--inverted-black': color === 'inverted-black',
     };
 
