@@ -14,8 +14,9 @@ const ANIMATION_LEFT_CLASS = 'animation-left';
 const ANIMATION_RIGHT_CLASS = 'animation-right';
 const ARROW_LEFT = 37;
 const ARROW_RIGHT = 39;
-const ARROW_LEFT_ICON = svg`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`;
-const ARROW_RIGHT_ICON = svg`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
+const ARROW_RIGHT_ICON = svg`<svg width="20" height="34" viewBox="0 0 20 34" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.275024 30.55L3.22502 33.5L19.725 17L3.22502 0.5L0.275024 3.45L13.825 17L0.275024 30.55H0.275024Z" fill="currentColor"/>
+</svg>`;
 
 class AXACarousel extends InlineStyles {
   static get tagName() {
@@ -260,7 +261,7 @@ class AXACarousel extends InlineStyles {
           class="a-carousel__arrow a-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
         >
-          ${ARROW_LEFT_ICON}
+          ${ARROW_RIGHT_ICON}
         </button>
         <div
           class="a-carousel__wrapper js-carousel__wrapper ${_animationWrapperClass}"
