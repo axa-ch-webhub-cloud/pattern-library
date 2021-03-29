@@ -1,4 +1,5 @@
 .a-carousel {
+  position: relative;
   display: flex;
   flex-direction: row; // for ie
   align-items: center;
@@ -20,27 +21,18 @@
   }
 
   &__arrow {
-    padding: 6px;
-    height: 14px;
-    width: 6px;
-    border: solid $color-prim-white;
-    border-width: 2px 0 0 2px;
+    color: $color-prim-white;
+    border: none;
     cursor: pointer;
     background: transparent;
 
     @include breakpoint($mediaquery-xs-up) {
-      padding: 10px;
-      height: 20px;
-      width: 10px;
     }
-  }
 
-  &__arrow-left {
-    transform: rotate(-45deg);
-  }
-
-  &__arrow-right {
-    transform: rotate(135deg);
+    svg {
+      width: 48px;
+      height: 48px;
+    }
   }
 
   // animations
@@ -93,5 +85,29 @@
         animation: none;
       }
     }
+  }
+}
+
+:host([overlay]){
+  .a-carousel__wrapper {
+    margin: 0;
+  }
+  .a-carousel__arrow {
+    position: absolute;
+    top: 0;
+    width: 64px;
+    z-index: 1;
+  }
+  .a-carousel__arrow-left {
+    left: 6px;
+    background: linear-gradient(
+      90deg
+      , rgba(0,0,0,.2), transparent);
+  }
+  .a-carousel__arrow-right {
+    right: 6px;
+    background: linear-gradient(
+      90deg
+      , transparent, rgba(0,0,0,.2));
   }
 }

@@ -26,6 +26,7 @@ export const Carousel = () => {
   const keysenabled = boolean('keysenabled', true);
   const arrowstyle = text('arrowstyle', '');
   const mode = text('mode', '');
+  const overlay = boolean('overlay', false);
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -36,6 +37,7 @@ export const Carousel = () => {
         ?keysenabled="${keysenabled}"
         arrowstyle="${arrowstyle}"
         mode="${mode}"
+        ?overlay="${overlay}"
       >
         <span>
           Very helpful once I got through to the correct person but I was

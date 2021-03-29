@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS } from 'lit-element';
+import { html, svg, css, unsafeCSS } from 'lit-element';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -14,6 +14,8 @@ const ANIMATION_LEFT_CLASS = 'animation-left';
 const ANIMATION_RIGHT_CLASS = 'animation-right';
 const ARROW_LEFT = 37;
 const ARROW_RIGHT = 39;
+const ARROW_LEFT_ICON = svg`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>`;
+const ARROW_RIGHT_ICON = svg`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
 
 class AXACarousel extends InlineStyles {
   static get tagName() {
@@ -38,6 +40,7 @@ class AXACarousel extends InlineStyles {
       visible: { type: Number, reflect: true },
       arrowstyle: { type: String, reflect: true },
       mode: { type: String, reflect: true },
+      overlay: { type: Boolean, reflect: true },
       _animationWrapperClass: { type: String },
       _carouselMinHeight: { type: Number, defaultValue: 0 },
     };
@@ -256,7 +259,9 @@ class AXACarousel extends InlineStyles {
           style="${arrowstyle}"
           class="a-carousel__arrow a-carousel__arrow-left"
           @click="${this.handlePreviousButtonClick}"
-        ></button>
+        >
+          ${ARROW_LEFT_ICON}
+        </button>
         <div
           class="a-carousel__wrapper js-carousel__wrapper ${_animationWrapperClass}"
         >
@@ -267,7 +272,9 @@ class AXACarousel extends InlineStyles {
           style="${arrowstyle}"
           class="a-carousel__arrow a-carousel__arrow-right"
           @click="${this.handleNextButtonClick}"
-        ></button>
+        >
+          ${ARROW_RIGHT_ICON}
+        </button>
       </article>
     `;
   }

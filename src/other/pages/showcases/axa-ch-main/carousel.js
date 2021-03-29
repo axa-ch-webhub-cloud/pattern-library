@@ -199,9 +199,10 @@ export default html`
   </style>
   <axa-carousel
     mode="all"
+    overlay
     autorotatedisabled
     keysenabled
-    arrowstyle="border-color: #7f7f7f"
+    arrowstyle="color: #fff; height: calc(100% - 90px);"
   >
     <a
       class="m-related-content__item__link"

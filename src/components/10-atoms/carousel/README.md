@@ -20,7 +20,7 @@ This Boolean attribute specifies whether keyboard navigation via left/right arro
 ### arrowstyle
 
 This string-valued attribute adds custom inline styling to the arrow buttons of the carousel
-(e.g. `border-color:grey` for grey arrows, or `display:none` to suppress arrows).
+(e.g. `color:grey` for grey arrows, or `display:none` to suppress arrows).
 
 ### mode
 
@@ -28,6 +28,12 @@ This string-valued attribute forces the carousel into a specific mode of behavio
 
 Currently, one mode value is recognized: `all` switches to horizontal layout of child elements for viewports &gt;= 992px.
 In that layout, _all_ child elements are visible, they fill the viewport width seamlessly, and carousel navigation is suppressed.
+
+### overlay
+
+This Boolean attribute, when present, forces carousel navigation arrows to be visually placed over the child elements (z-index: 1).
+The intended use is with images, and for best results it is advisable to also style arrow color and overlay height via `arrowstyle`
+(e.g. `arrowstyle="color:#fff; height:calc(100% - 90px)"`).
 
 ## Child Elements
 
