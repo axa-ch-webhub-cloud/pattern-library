@@ -22,7 +22,24 @@ class AXASpinner extends LitElement {
     };
   }
 
-  firstUpdated() {}
+  firstUpdated() {
+    if (this.color === 'inverted-blue-ocean') {
+      document
+        .querySelector('#root')
+        .style.setProperty('--spinner-background-color', '$color-ocean-blue');
+      console.log('blue');
+    } else if (this.color === 'inverted-black') {
+      document
+        .querySelector('#root')
+        .style.setProperty('--spinner-background-color', '$color-black');
+      console.log('black');
+    }
+    console.log(
+      getComputedStyle(document.querySelector('#root')).getPropertyValue(
+        '--spinner-background-color'
+      )
+    );
+  }
 
   render() {
     const { size = '', color = '' } = this;

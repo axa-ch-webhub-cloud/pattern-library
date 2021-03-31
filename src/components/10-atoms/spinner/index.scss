@@ -1,3 +1,7 @@
+:root {
+  --spinner-background-color: null;
+}
+
 .a-spinner {
   display: block;
 
@@ -27,11 +31,11 @@
   }
 
   &--inverted-blue-ocean {
-    background: $color-ocean-blue;
+    background-color: $color-ocean-blue;
   }
 
   &--inverted-black {
-    background: $color-black;
+    background-color: $color-black;
   }
 }
 
@@ -45,13 +49,13 @@
 
   @keyframes animation-dot-1 {
     0% {
-      background-color: rgba(73, 118, 186, 1);;
+      background-color: rgba(var(--spinner-background-color), 1);
     }
     16% {
-      background-color: rgba(73, 118, 186, 0);
+      background-color: rgba(var(--spinner-background-color), 0);
     }
     33% {
-      background-color: rgba(73, 118, 186, 1);
+      background-color: rgba(var(--spinner-background-color), 1);
     }
   }
 
@@ -59,18 +63,18 @@
     left: 40%;
     right: 40%;
     animation: animation-dot-2 1s infinite;
-
+    animation: 1s;
   }
 
   @keyframes animation-dot-2 {
     33% {
-      background-color: rgba(73, 118, 186, 1);
+      background-color: rgba(var(--spinner-background-color), 1);
     }
     50% {
-      background-color: rgba(73, 118, 186, 0);
+      background-color: rgba(var(--spinner-background-color), 0);
     }
     66% {
-      background-color: rgba(73, 118, 186, 1);
+      background-color: rgba(var(--spinner-background-color), 1);
     }
   }
 
@@ -83,13 +87,13 @@
   
   @keyframes animation-dot-3 {
     66% {
-      background-color: rgba(73, 118, 186, 1);
+      background-color: rgba(var(--spinner-background-color), 1);
     }
     82% {
-      background-color: rgba(73, 118, 186, 0);
+      background-color: rgba(var(--spinner-background-color), 0);
     }
     100% {
-      background-color: rgba(73, 118, 186, 1);
+      background-color: rgba(var(--spinner-background-color), 1);
     }
   }
 
