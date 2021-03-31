@@ -1,11 +1,9 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXASpinnerProps {
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
+  size?: string;
+  color?: string;
 }
 
 declare function createAXASpinner(

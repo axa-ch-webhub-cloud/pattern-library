@@ -1,10 +1,19 @@
 import { radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
+import readme from './README.md';
+import changelog from './CHANGELOG.md';
 
 export default {
-  title: 'Components',
+  title: 'Components/Spinner',
   decorators: [withKnobs],
+  parameters: {
+    readme,
+    usage: {
+      componentName: 'spinner',
+    },
+    changelog,
+  },
 };
 
 const sizeOptions = {
