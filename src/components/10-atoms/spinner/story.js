@@ -24,10 +24,12 @@ export const Spinner = () => {
 
   const wrapper = document.createElement('div');
 
-  document.body.style.backgroundColor =
-    colors === 'inverted-white' ? '#ccc' : '#fff';
-
   const template = html`
+    <style>
+      body {
+        background-color: ${colors === 'inverted-white' ? '#ccc' : '#fff'};
+      }
+    </style>
     <axa-spinner size="${sizes}" color="${colors}"></axa-spinner>
   `;
 
