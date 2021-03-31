@@ -1,6 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
+// TODO @Milchmaa Isn't this needed?
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -22,40 +23,28 @@ class AXASpinner extends LitElement {
     };
   }
 
-  firstUpdated() {
-    if (this.color === 'inverted-blue-ocean') {
-      document
-        .querySelector('#root')
-        .style.setProperty('--spinner-background-color', '$color-ocean-blue');
-      console.log('blue');
-    } else if (this.color === 'inverted-black') {
-      document
-        .querySelector('#root')
-        .style.setProperty('--spinner-background-color', '$color-black');
-      console.log('black');
-    }
-    console.log(
-      getComputedStyle(document.querySelector('#root')).getPropertyValue(
-        '--spinner-background-color'
-      )
-    );
-  }
-
   render() {
     const { size = '', color = '' } = this;
     const classes = {
-      'a-spinner--default': size === 'default',
+      'a-spinner--default': true,
       'a-spinner--small': size === 'small',
-      'a-spinner--inverted-blue-ocean': color === 'inverted-blue-ocean',
+      'a-spinner--inverted-blue-ocean': true,
       'a-spinner--inverted-black': color === 'inverted-black',
+      'a-spinner--inverted-white': color === 'inverted-white',
     };
 
     return html`
       <article class="a-spinner">
         <div class="a-spinner-container">
-          <span class="${classMap(classes)} __dot-1"></span>
-          <span class="${classMap(classes)} __dot-2"></span>
-          <span class="${classMap(classes)} __dot-3"></span>
+          <span
+            class="${classMap(classes)} a-spinner__dot a-spinner__dot-1"
+          ></span>
+          <span
+            class="${classMap(classes)} a-spinner__dot a-spinner__dot-2"
+          ></span>
+          <span
+            class="${classMap(classes)} a-spinner__dot a-spinner__dot-3"
+          ></span>
         </div>
       </article>
     `;
