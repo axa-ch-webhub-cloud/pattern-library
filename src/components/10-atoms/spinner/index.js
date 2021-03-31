@@ -1,8 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
-// TODO @Milchmaa Isn't this needed?
-import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
 class AXASpinner extends LitElement {
