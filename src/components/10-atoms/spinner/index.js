@@ -27,7 +27,7 @@ class AXASpinner extends LitElement {
       'a-spinner--default': true,
       'a-spinner--small': size === 'small',
       'a-spinner--inverted-blue-ocean': true,
-      'a-spinner--inverted-black': color === 'inverted-black',
+      'a-spinner--inverted-dark-grey': color === 'inverted-dark-grey',
       'a-spinner--inverted-white': color === 'inverted-white',
     };
 

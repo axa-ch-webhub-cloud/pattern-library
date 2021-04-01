@@ -23,7 +23,7 @@ const sizeOptions = {
 
 const invertedBgs = {
   default: 'inverted-blue-ocean',
-  black: 'inverted-black',
+  dark_grey: 'inverted-dark-grey',
   white: 'inverted-white',
 };
 

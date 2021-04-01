@@ -4,14 +4,13 @@
   &-container {
     display: flex;
     align-items: center;
-    margin: 100px; //only temporary
   }
 
   &--inverted-blue-ocean {
     background-color: $color-ocean-blue;
   }
-  &--inverted-black {
-    background-color: $color-black;
+  &--inverted-dark-grey {
+    background-color: $color-dark-grey;
   }
   &--inverted-white {
     background-color: $color-prim-white;
