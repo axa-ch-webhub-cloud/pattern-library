@@ -5,7 +5,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
-import './policy-features-item/index';
+import AXAPolicyFeaturesItem from './policy-features-item/index';
 
 export const STYLE_WHITELIST = ['axa-blue', 'wild-sand', 'white'];
 
@@ -30,6 +30,8 @@ class AXAPolicyFeatures extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+
+    defineVersioned([AXAPolicyFeaturesItem], __VERSION_INFO__, this);
   }
 
   render() {
