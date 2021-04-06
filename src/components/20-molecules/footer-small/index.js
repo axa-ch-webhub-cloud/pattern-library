@@ -37,9 +37,8 @@ class AXAFooterSmall extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
-    /* eslint-disable no-undef */
+
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   // Parent class InlineStyles needs a static method to retrieve styles.
@@ -152,7 +151,6 @@ class AXAFooterSmall extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAFooterSmall], __VERSION_INFO__);
 
 export default AXAFooterSmall;

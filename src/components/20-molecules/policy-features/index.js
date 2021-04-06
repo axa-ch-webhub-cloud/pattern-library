@@ -51,7 +51,6 @@ class AXAPolicyFeatures extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAPolicyFeatures], __VERSION_INFO__);
 
 export default AXAPolicyFeatures;

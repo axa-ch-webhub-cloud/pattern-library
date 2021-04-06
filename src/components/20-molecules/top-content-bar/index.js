@@ -45,13 +45,12 @@ class AXATopContentBar extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
-    /* eslint-disable no-undef */
+
     defineVersioned(
       [AXAButton, AXAButtonLink, AXAContainer],
       __VERSION_INFO__,
       this
     );
-    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -127,7 +126,6 @@ class AXATopContentBar extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXATopContentBar], __VERSION_INFO__);
 
 export default AXATopContentBar;

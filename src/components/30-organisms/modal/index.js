@@ -85,7 +85,6 @@ class AXAModal extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAModal], __VERSION_INFO__);
 
 export default AXAModal;

@@ -86,7 +86,6 @@ class AXAIcon extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAIcon], __VERSION_INFO__);
 
 export default AXAIcon;
