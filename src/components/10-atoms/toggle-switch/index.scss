@@ -13,11 +13,6 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   position: relative;
   height: $toggle-switch-height;
   width: $toggle-switch-width;
-
-  &[error] {
-    border: 5px solid $color-flamingo;
-    border-radius: 50px;
-  }
   
   &__input {
     // The default checkbox should be invisible to the user but not to screen readers.
@@ -64,5 +59,20 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
       background: $color-prim-white;
       transition: $toggle-switch-transition;
     }
+
+    &:focus {
+      border: 2px solid black;
+    }
   }
+
+  &__error-message {
+    display: block;
+    color: $color-shy-tomato;
+    font-family: Source Sans Pro;
+    size: 14px;
+    line-height: 17px;
+    margin: 8px 0px;
+  }
+
+  
 }

@@ -14,6 +14,10 @@ If `active` is defined when first set under React, controlled-component mode is 
 
 The Boolean attribute `disabled`, when true, disables the toggle switch natively.
 
+### error
+
+The String attribute `error` sets an error text. Leave `error` empty, if you don't want an error text.
+
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.

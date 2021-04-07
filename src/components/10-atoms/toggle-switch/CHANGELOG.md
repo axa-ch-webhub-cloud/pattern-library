@@ -1,3 +1,7 @@
+## 2.1.0
+
+- You can now add an error text to the spinner (#2074)
+
 ## 2.0.0
 
 - BREAKING CHANGE: The `onChange` handler now only receives a synthetic event, see the ["Events" section in the readme](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/toggle-switch#events).

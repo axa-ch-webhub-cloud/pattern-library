@@ -1,4 +1,5 @@
 import { css, html, LitElement, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
@@ -19,7 +20,7 @@ class AXAToggleSwitch extends LitElement {
     return {
       active: { type: Boolean, reflect: true },
       disabled: { type: Boolean },
-      error: { type: Boolean },
+      error: { type: String },
       onChange: { type: Function },
       isReact: { type: Boolean },
     };
@@ -58,14 +59,15 @@ class AXAToggleSwitch extends LitElement {
 
   render() {
     const { active, disabled, error, handleChange } = this;
-
+    const classes = {
+      'a-toggle-switch__error-message': this.error != '',
+    };
     const inputElement = html`
       <input
         class="a-toggle-switch__input"
         type="checkbox"
         ?checked="${active}"
         ?disabled="${disabled}"
-        ?error="${error}"
         @change=${handleChange}
       />
     `;
@@ -75,11 +77,8 @@ class AXAToggleSwitch extends LitElement {
         ${inputElement}
         <div class="a-toggle-switch__slider"></div>
       </label>
+      <span class="${classMap(classes)}">${error}</span>
     `;
-  }
-
-  firstUpdated() {
-    this.state.firstUpdate = false;
   }
 
   handleChange(event) {
