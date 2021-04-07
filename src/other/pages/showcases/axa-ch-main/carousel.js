@@ -2,90 +2,98 @@ import { html } from 'lit-html';
 
 // Code for lazy-loading <img> tags under <axa-picture>. Note that <img> tags are deliberately left intact for SEO reasons.
 // This is a simple Custom-Element variant of the technique described in https://ivopetkov.com/b/lazy-load-responsive-images/.
-// Remark: In production, the following ES5 code would go into an inline <script> in the document <head>
-(function() {
-  var dpr = 1; // window.devicePixelRatio;
-  var thresholds = [],
+// Remark: In production, the following ES6 code would go into a minified inline <script type="module"> in the document <head>
+(w => {
+  let dpr = 1; // w.devicePixelRatio;
+  let thresholds = [],
     images = { '0': [] };
+  let wa = w.addEventListener;
 
-  function loadImage(img) {
-    img.removeAttribute('srcset');
-    loadMatchingImages();
-  }
+  let loadImage = img => loadMatchingImages(img);
 
-  function largest(width) {
-    for (var i = 0, n = thresholds.length; i < n; i++) {
+  let largest = width => {
+    for (let i = 0, n = thresholds.length; i < n; i++) {
       if (width < thresholds[i]) continue;
       return thresholds[i];
     }
     return 0;
-  }
+  };
 
-  function loadMatchingImages() {
-    var width = document.body.clientWidth;
-    var matchingThreshold = largest(width);
-    var _images = images[matchingThreshold] || [];
-    for (var i = 0, n = _images.length, image, img; i < n; i++) {
+  let loadMatchingImages = focussedImage => {
+    let width = document.body.clientWidth;
+    let matchingThreshold = largest(width);
+    let _images = images[matchingThreshold] || [];
+    for (let i = 0, n = _images.length, image, img; i < n; i++) {
       image = _images[i];
       img = image.img;
-      if (img.hasAttribute('srcset')) continue;
+      if (img.hasAttribute('srcset')) {
+        if (img !== focussedImage) continue;
+        const tmp = new Image();
+        tmp.onload = () => {
+          img.removeAttribute('srcset');
+          delete tmp.onload;
+          tmp.remove();
+        };
+        tmp.src = image.src;
+      }
       img.setAttribute('src', image.src);
     }
-  }
+  };
 
   // monitor page load and resizes
-  window.onload = loadMatchingImages;
-  window.addEventListener('resize', loadMatchingImages);
+  wa('load', loadMatchingImages);
+  wa('resize', loadMatchingImages);
 
-  // define lazy-loading <axa-picture>, if possible
-  if ('customElements' in window) {
-    // observe an <img>'s visibility:
-    var imgVisibilityObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        // not visible?
-        if (!entry.isIntersecting) return; // no, so early exit
-        // <img> visible, remove srcset attribute from <img> to make it load
-        var img = entry.target;
-        loadImage(img);
-        // and unobserve it
-        imgVisibilityObserver.unobserve(img);
-      });
+  // observe an <img>'s visibility:
+  let imgVisibilityObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      // not visible?
+      if (!entry.isIntersecting) return; // no, so early exit
+      // <img> visible, remove srcset attribute from <img> to make it load
+      let img = entry.target;
+      loadImage(img);
+      // and unobserve it
+      imgVisibilityObserver.unobserve(img);
     });
-    // <axa-picture> definition
-    class AXAPicture extends HTMLElement {
-      connectedCallback() {
-        // get <img> child and make its 'src' the default
-        var img = this.querySelector('img');
-        images[0].push({ src: img.src, img: img });
-        // parse 'srcset'
-        var specs = (this.getAttribute('srcset') || '').split(',');
-        specs.forEach(function(spec) {
-          var parts = spec.trim().split(/\s+/);
-          var width = dpr * (parseInt(parts[1], 10) || 0);
-          thresholds.push(width);
-          images[width] = images[width] || [];
-          images[width].push({ src: parts[0], img: img });
-        });
-        // sort width thresholds in descending order
-        thresholds.sort().reverse();
-        // start observing <img> child
-        imgVisibilityObserver.observe(img);
-      }
+  });
+  // lazy-loading <axa-picture> definition
+  class AXAPicture extends HTMLElement {
+    connectedCallback() {
+      // get <img> child and make its 'src' the default
+      let img = this.querySelector('img');
+      images[0].push({ src: img.src, img: img });
+      // parse 'srcset'
+      let specs = (this.getAttribute('srcset') || '').split(',');
+      specs.forEach(spec => {
+        let parts = spec.trim().split(/\s+/);
+        let width = dpr * (parseInt(parts[1], 10) || 0);
+        thresholds.push(width);
+        images[width] = images[width] || [];
+        images[width].push({ src: parts[0], img: img });
+      });
+      // sort width thresholds in descending order
+      thresholds.sort().reverse();
+      // start observing <img> child
+      imgVisibilityObserver.observe(img);
     }
-    customElements.define('axa-picture', AXAPicture);
-  } else {
-    // IE does not honour the 'srcset' attribute in <img>, cf. https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/srcset
-    // therefore <img>'s load eagerly in the default size anyway. This slight deterioriation of UX (non-responsive) is OK here ;-)
   }
+  customElements.define('axa-picture', AXAPicture);
 
   loadMatchingImages();
-})();
+})(window);
 // End Remark
 
-// this transparent tiny data URI is used to suppress <img> loading despite functional 'src' value!
-// (but see also https://css-tricks.com/preventing-content-reflow-from-lazy-loaded-images/)
+// these tiny data URIs are used to suppress <img> loading despite functional 'src' value!
+// (but see also https://css-tricks.com/preventing-content-reflow-from-lazy-loaded-images/).
+// Additionally, here they provide a blurry preview of the image, for better UX under bad network conditions!
+const preview0 = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsNDQsPDwsSDxgVDBIOFCUXHhURGSIzFyUlHiohMy8pLBUcNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoMCgoKDAsLCwoREBAPEhQLExQWIgwaGBoYEi0gJSAgJRAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//AABEIAAYADgMBIgACEQEDEQH/xABcAAEBAQAAAAAAAAAAAAAAAAAABAYQAAIBBQEBAAAAAAAAAAAAAAECAwAEBREhBkEBAQAAAAAAAAAAAAAAAAAAAAQRAAMAAgMAAAAAAAAAAAAAAAECAwAEERIh/9oADAMBAAIRAxEAPwC71EWYxmLa5kz11OmwhjCLF1vu49Vh7jz7AJK9yzGQBtklj3vd0pSNdVo5DDnwYDed4wRpsQe7Z//Z`;
+const preview1 = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//AABEIAAYADgMBIgACEQEDEQH/xABaAAEBAQAAAAAAAAAAAAAAAAAABQYQAAIBBAMBAAAAAAAAAAAAAAECAwAEBREGEiExAQEAAAAAAAAAAAAAAAAAAAACEQADAQEAAAAAAAAAAAAAAAAAAQJRUv/aAAwDAQACEQMRAD8Al5fDQ4OSzaILOSSxaf0gp80F1W54zZwZbFpeTdo3M0y9YdIvjUpQUzg3ddM//9k=`;
+const preview2 = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//AABEIAAYADgMBIgACEQEDEQH/xABaAAEBAQAAAAAAAAAAAAAAAAAABQYQAAEEAgMAAAAAAAAAAAAAABEAAQIDBAUGQcEBAQEAAAAAAAAAAAAAAAAAAAMEEQEAAwEAAAAAAAAAAAAAAAABAAIRIf/aAAwDAQACEQMRAD8A0rcjypho00xPYKj37XcTvtGe9ZDiEG9KIg1Q1ZRatR4E/9k=`;
+const preview3 = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//AABEIAAYADgMBIgACEQEDEQH/xABfAAEBAQAAAAAAAAAAAAAAAAAABAYQAAICAgIDAAAAAAAAAAAAAAECBBEAAwUSEzFBAQEBAAAAAAAAAAAAAAAAAAAEBREBAAIBBQAAAAAAAAAAAAAAAQIDABESISKh/9oADAMBAAIRAxEAPwDZy5U6RtZNHjXqAzFmIoG/VA5PDj8tN1jYJaIlX9Y2cYwNFFSEmArlG1Y09eNNvuf/2Q==`;
+/* generic transparent 1x1 GIF - useful if above preview data URIs cannot be (server-)generated
 const placeHolderImage = (width = 480, height = 376) =>
   `data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==`;
+  */
 
 export default html`
   <style>
@@ -106,7 +114,7 @@ export default html`
 
     .m-related-content__image {
       display: block;
-      width: 100%;
+      width: 100vw;
       height: 100%;
       -o-object-fit: cover;
       object-fit: cover;
@@ -196,13 +204,18 @@ export default html`
         font-size: 20px;
       }
     }
+    @media (min-width: 992px) {
+      .m-related-content__image {
+        width: 100%;
+      }
+    }
   </style>
   <axa-carousel
     mode="all"
     overlay
     autorotatedisabled
     keysenabled
-    arrowstyle="color: #fff; height: calc(100% - 90px);"
+    arrowstyle="color: #fff; height: calc(100% - 90px); top:0"
   >
     <a
       class="m-related-content__item__link"
@@ -216,7 +229,7 @@ export default html`
           onload="console.log('load', this.src, event)"
           onerror="console.log('error',this.src, event)"
           class="m-related-content__image"
-          srcset="${placeHolderImage()}"
+          srcset="${preview0}"
           src="https://picsum.photos/id/1011/480/376"
         />
       </axa-picture>
@@ -240,7 +253,7 @@ export default html`
           onload="console.log('load', this.src, event)"
           onerror="console.log('error',this.src, event)"
           class="m-related-content__image"
-          srcset="${placeHolderImage()}"
+          srcset="${preview1}"
           src="https://picsum.photos/id/1010/480/376"
         />
       </axa-picture>
@@ -264,7 +277,7 @@ export default html`
           onload="console.log('load', this.src, event)"
           onerror="console.log('error',this.src, event)"
           class="m-related-content__image"
-          srcset="${placeHolderImage()}"
+          srcset="${preview2}"
           src="https://picsum.photos/id/1001/480/376"
         />
       </axa-picture>
@@ -287,7 +300,7 @@ export default html`
           onload="console.log('load', this.src, event)"
           onerror="console.log('error',this.src, event)"
           class="m-related-content__image"
-          srcset="${placeHolderImage()}"
+          srcset="${preview3}"
           src="https://picsum.photos/id/102/480/376"
         />
       </axa-picture>
