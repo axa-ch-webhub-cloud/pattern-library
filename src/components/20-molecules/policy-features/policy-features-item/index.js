@@ -58,6 +58,4 @@ class AXAPolicyFeaturesItem extends LitElement {
   }
 }
 
-defineOnce(AXAPolicyFeaturesItem.tagName, AXAPolicyFeaturesItem);
-
 export default AXAPolicyFeaturesItem;
