@@ -92,9 +92,11 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
     }
     // extract each dependant component's version,
     let { versions } = componentClass;
+    // If there is no version found, use the wrapping custom-element's version
     if (!versions && parentInstance) {
-      // taking the parent component's noted version for this dependency if needed,
       versions = versionInfo[parentInstance.constructor.tagName];
+      // eslint-disable-next-line prefer-destructuring
+      versions[tagName] = Object.values(versions)[0];
     }
     // assembling a new, versioned name,
     const version = customVersion || versions[tagName];

@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
-import { defineVersioned } from '../../../../utils/component-versioning';
+import defineOnce from '../../../../utils/define-once';
 
 class AXAPolicyFeaturesItem extends LitElement {
   static get tagName() {
@@ -58,6 +58,6 @@ class AXAPolicyFeaturesItem extends LitElement {
   }
 }
 
-defineVersioned([AXAPolicyFeaturesItem], __VERSION_INFO__);
+defineOnce(AXAPolicyFeaturesItem.tagName, AXAPolicyFeaturesItem);
 
 export default AXAPolicyFeaturesItem;
