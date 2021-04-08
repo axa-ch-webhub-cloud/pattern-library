@@ -62,10 +62,14 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   }
 
   &__error-message {
-    display: block;
-    color: $color-shy-tomato;
-    size: 14px;
-    line-height: 17px;
-    margin: 8px 0px 0px;
+    display: none;
+    
+    &-active {
+      display: block;
+      color: $color-shy-tomato;
+      size: 14px;
+      line-height: 17px;
+      margin: 8px 0px 0px;
+    }
   }
 }

@@ -61,7 +61,8 @@ class AXAToggleSwitch extends LitElement {
     const { active, disabled, error, handleChange } = this;
 
     const classes = {
-      'a-toggle-switch__error-message': this.error !== '',
+      'a-toggle-switch__error-message': true,
+      'a-toggle-switch__error-message-active': this.error !== '',
     };
 
     const inputElement = html`
