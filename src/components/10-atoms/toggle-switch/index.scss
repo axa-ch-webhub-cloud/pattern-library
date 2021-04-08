@@ -59,20 +59,13 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
       background: $color-prim-white;
       transition: $toggle-switch-transition;
     }
-
-    &:focus {
-      border: 2px solid black;
-    }
   }
 
   &__error-message {
     display: block;
     color: $color-shy-tomato;
-    font-family: Source Sans Pro;
     size: 14px;
     line-height: 17px;
-    margin: 8px 0px;
+    margin: 8px 0px 0px;
   }
-
-  
 }
