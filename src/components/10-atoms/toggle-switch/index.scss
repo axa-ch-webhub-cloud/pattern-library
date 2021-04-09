@@ -1,4 +1,4 @@
-$toggle-switch-transition: 0.4s ease;
+$toggle-switch-transition: all 0.4s ease, height, width 0s linear;  //Needed to ignore transition when height & width values gets changed
 $toggle-switch-height: 30px;
 $toggle-switch-width: 50px;
 $toggle-switch-spacing: 2px;
@@ -7,6 +7,7 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
 :host {
   display: inline-block;
 }
+
 
 .a-toggle-switch {
   display: block;
@@ -70,6 +71,21 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
       size: 14px;
       line-height: 17px;
       margin: 8px 0px 0px;
+    }
+  }
+
+  &:focus {
+    outline: none !important; //Needed to overwrite the browsers default focus outline
+    border: 2px solid $color-dark-grey;
+    border-radius: 18px;
+    height: $toggle-switch-height - 2;
+    width: $toggle-switch-width - 2;
+
+    .a-toggle-switch__slider {
+      &::before {
+        height: $toggle-switch-circle-size - 2;
+        width: $toggle-switch-circle-size - 2;
+      }
     }
   }
 }
