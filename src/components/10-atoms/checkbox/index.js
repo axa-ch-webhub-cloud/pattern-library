@@ -265,7 +265,6 @@ class AXACheckbox extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXACheckbox], __VERSION_INFO__);
 
 export default AXACheckbox;

@@ -86,6 +86,5 @@ class AXAStepper extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAStepper], __VERSION_INFO__);
 export default AXAStepper;

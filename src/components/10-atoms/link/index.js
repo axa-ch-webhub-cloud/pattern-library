@@ -35,9 +35,8 @@ class AXALink extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-    /* eslint-disable no-undef */
+
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   render() {
@@ -117,7 +116,6 @@ class AXALink extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXALink], __VERSION_INFO__);
 
 export default AXALink;

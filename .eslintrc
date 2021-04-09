@@ -75,7 +75,8 @@
     "DEV": true,
     "fixture": true,
     "test": true,
-    "page": true
+    "page": true,
+    "__VERSION_INFO__": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

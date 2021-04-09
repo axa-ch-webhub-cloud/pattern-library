@@ -107,7 +107,6 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
 
-    // eslint-disable-next-line no-undef
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
   }
 
@@ -609,7 +608,6 @@ class AXAFileUpload extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAFileUpload], __VERSION_INFO__);
 
 export default AXAFileUpload;

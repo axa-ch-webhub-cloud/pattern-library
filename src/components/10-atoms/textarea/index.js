@@ -292,7 +292,6 @@ class AXATextarea extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXATextarea], __VERSION_INFO__);
 
 export default AXATextarea;

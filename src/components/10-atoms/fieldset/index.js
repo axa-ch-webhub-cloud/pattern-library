@@ -28,7 +28,6 @@ class AXAFieldset extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAFieldset], __VERSION_INFO__);
 
 export default AXAFieldset;

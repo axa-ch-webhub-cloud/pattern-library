@@ -284,7 +284,6 @@ class AXARadio extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXARadio], __VERSION_INFO__);
 
 export default AXARadio;

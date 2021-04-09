@@ -24,7 +24,6 @@ class AXAContainer extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAContainer], __VERSION_INFO__);
 
 export default AXAContainer;

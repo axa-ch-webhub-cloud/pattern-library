@@ -85,7 +85,6 @@ class AXAText extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAText], __VERSION_INFO__);
 
 export default AXAText;

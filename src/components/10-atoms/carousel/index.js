@@ -285,7 +285,6 @@ class AXACarousel extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXACarousel], __VERSION_INFO__);
 
 export default AXACarousel;

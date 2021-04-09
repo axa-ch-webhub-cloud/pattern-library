@@ -33,9 +33,7 @@ class AXACommercialHeroBanner extends InlineStyles {
     super();
     applyDefaults(this);
 
-    /* eslint-disable no-undef */
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   // Parent class InlineStyles needs a static method to retrive styles
@@ -92,7 +90,6 @@ class AXACommercialHeroBanner extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXACommercialHeroBanner], __VERSION_INFO__);
 
 export default AXACommercialHeroBanner;

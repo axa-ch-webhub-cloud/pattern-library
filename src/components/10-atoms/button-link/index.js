@@ -49,9 +49,8 @@ class AXAButtonLink extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
-    /* eslint-disable no-undef */
+
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   get showIcon() {
@@ -123,7 +122,6 @@ class AXAButtonLink extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAButtonLink], __VERSION_INFO__);
 
 export default AXAButtonLink;

@@ -57,7 +57,6 @@ class AXATable extends NoShadowDOM {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXATable], __VERSION_INFO__);
 
 export default AXATable;

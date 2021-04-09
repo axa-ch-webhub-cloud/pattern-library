@@ -60,9 +60,7 @@ class AXAFooter extends InlineStyles {
     this._accordionActiveIndex = -1;
     this.slotsNotPrepared = true;
 
-    /* eslint-disable no-undef */
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   firstUpdated() {
@@ -387,7 +385,6 @@ class AXAFooter extends InlineStyles {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAFooter], __VERSION_INFO__);
 
 export default AXAFooter;

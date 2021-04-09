@@ -327,9 +327,7 @@ describe('${compTitle}', () => {
         this.onClick = () => {};
         // if you depend on *other* axa-XXX components and imported them above,
         // then you declare them as versioned here like this:
-        /* eslint-disable no-undef */
         // defineVersioned([myDependentComponent1, myDependentComponent2, ...], __VERSION_INFO__, this);
-        /* eslint-enable no-undef */
       }
 
       firstUpdated() {
@@ -356,7 +354,6 @@ describe('${compTitle}', () => {
       }
     }
 
-    /* eslint-disable no-undef */
     defineVersioned([${className}], __VERSION_INFO__);
 
     export default ${className};

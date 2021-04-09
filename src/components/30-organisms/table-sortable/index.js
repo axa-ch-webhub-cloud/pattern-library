@@ -43,9 +43,8 @@ class AXATableSortable extends LitElement {
       sensitivity: 'variant',
     });
     this.lastIndex = -1;
-    /* eslint-disable no-undef */
+
     defineVersioned([AXATable], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
   }
 
   static get tagName() {
@@ -353,7 +352,6 @@ class AXATableSortable extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXATableSortable], __VERSION_INFO__);
 
 export default AXATableSortable;

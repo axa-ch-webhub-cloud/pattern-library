@@ -60,7 +60,6 @@ class AXAHeading extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAHeading], __VERSION_INFO__);
 
 export default AXAHeading;

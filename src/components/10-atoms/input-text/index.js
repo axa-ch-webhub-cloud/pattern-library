@@ -80,7 +80,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.isPlaceholderInCounter = false;
     this.invalidFormat = false;
 
-    /* eslint-disable no-undef */
     const enrichedVersionInfo = __VERSION_INFO__; // This object is different at webpack and rollup build!
     const commonPopupVersion =
       enrichedVersionInfo['axa-input-text']['axa-popup'];
@@ -95,7 +94,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       enrichedVersionInfo,
       this
     );
-    /* eslint-enable no-undef */
   }
 
   get charsLeft() {
@@ -472,7 +470,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAInputText], __VERSION_INFO__);
 
 export default AXAInputText;

@@ -16,9 +16,9 @@ storiesOf('Examples/Input text/Pure HTML', module)
       ev.preventDefault();
       document.getElementById('form-data-details').open = true;
       const $inputDemoForm = document.getElementById('input-demo-form');
-      /* eslint-disable no-undef */
+      // eslint-disable-next-line
       const formData = new FormData($inputDemoForm);
-      /* eslint-disable no-restricted-syntax */
+      // eslint-disable-next-line no-restricted-syntax
       for (const pair of formData.entries()) {
         const container = document.createElement('span');
         container.textContent = `${pair[0]}: ${pair[1]}`;

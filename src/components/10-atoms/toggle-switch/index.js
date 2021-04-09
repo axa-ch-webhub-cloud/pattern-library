@@ -91,6 +91,5 @@ class AXAToggleSwitch extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXAToggleSwitch], __VERSION_INFO__);
 export default AXAToggleSwitch;
