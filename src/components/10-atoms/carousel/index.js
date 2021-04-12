@@ -123,9 +123,9 @@ class AXACarousel extends InlineStyles {
   }
 
   _nextSlide(increment = 1) {
-    let numSlides = this.slides.length;
+    const numSlides = this.slides.length;
     // wrap around after last slide...
-    let nextSlideIndex = (this.visible + increment) % numSlides;
+    const nextSlideIndex = (this.visible + increment) % numSlides;
     this._setSlideVisibleWithAnimation(
       nextSlideIndex < 0 ? numSlides - 1 : nextSlideIndex, // ... and before first slide
       increment > 0 ? ANIMATION_RIGHT_CLASS : ANIMATION_LEFT_CLASS
@@ -145,6 +145,7 @@ class AXACarousel extends InlineStyles {
       for (let nodes = this.slides, i = 0, n = nodes.length, node; i < n; i++) {
         this.visible = i;
         node = nodes[i];
+        // eslint-disable-next-line no-await-in-loop
         await sleep(0); // force event-loop
         this._carouselMinHeight = Math.max(
           node.clientHeight, // forces repaint

@@ -4,14 +4,13 @@ import { html } from 'lit-html';
 // This is a simple Custom-Element variant of the technique described in https://ivopetkov.com/b/lazy-load-responsive-images/.
 // Remark: In production, the following ES6 code would go into a minified inline <script type="module"> in the document <head>
 (w => {
-  let dpr = 1; // w.devicePixelRatio;
-  let thresholds = [],
-    images = { '0': [] };
-  let wa = w.addEventListener;
+  const dpr = 1; // w.devicePixelRatio;
+  const thresholds = [];
+  const images = { '0': [] };
+  const wa = w.addEventListener;
 
-  let loadImage = img => loadMatchingImages(img);
-
-  let largest = width => {
+  /* eslint-disable no-continue */
+  const largest = width => {
     for (let i = 0, n = thresholds.length; i < n; i++) {
       if (width < thresholds[i]) continue;
       return thresholds[i];
@@ -19,13 +18,13 @@ import { html } from 'lit-html';
     return 0;
   };
 
-  let loadMatchingImages = focussedImage => {
-    let width = document.body.clientWidth;
-    let matchingThreshold = largest(width);
-    let _images = images[matchingThreshold] || [];
-    for (let i = 0, n = _images.length, image, img; i < n; i++) {
+  const loadMatchingImages = focussedImage => {
+    const width = document.body.clientWidth;
+    const matchingThreshold = largest(width);
+    const _images = images[matchingThreshold] || [];
+    for (let i = 0, n = _images.length, image; i < n; i++) {
       image = _images[i];
-      img = image.img;
+      const { img } = image;
       if (img.hasAttribute('srcset')) {
         if (img !== focussedImage) continue;
         const tmp = new Image();
@@ -40,17 +39,19 @@ import { html } from 'lit-html';
     }
   };
 
+  const loadImage = img => loadMatchingImages(img);
+
   // monitor page load and resizes
   wa('load', loadMatchingImages);
   wa('resize', loadMatchingImages);
 
   // observe an <img>'s visibility:
-  let imgVisibilityObserver = new IntersectionObserver(entries => {
+  const imgVisibilityObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       // not visible?
       if (!entry.isIntersecting) return; // no, so early exit
       // <img> visible, remove srcset attribute from <img> to make it load
-      let img = entry.target;
+      const img = entry.target;
       loadImage(img);
       // and unobserve it
       imgVisibilityObserver.unobserve(img);
@@ -60,16 +61,16 @@ import { html } from 'lit-html';
   class AXAPicture extends HTMLElement {
     connectedCallback() {
       // get <img> child and make its 'src' the default
-      let img = this.querySelector('img');
-      images[0].push({ src: img.src, img: img });
+      const img = this.querySelector('img');
+      images[0].push({ src: img.src, img });
       // parse 'srcset'
-      let specs = (this.getAttribute('srcset') || '').split(',');
+      const specs = (this.getAttribute('srcset') || '').split(',');
       specs.forEach(spec => {
-        let parts = spec.trim().split(/\s+/);
-        let width = dpr * (parseInt(parts[1], 10) || 0);
+        const parts = spec.trim().split(/\s+/);
+        const width = dpr * (parseInt(parts[1], 10) || 0);
         thresholds.push(width);
         images[width] = images[width] || [];
-        images[width].push({ src: parts[0], img: img });
+        images[width].push({ src: parts[0], img });
       });
       // sort width thresholds in descending order
       thresholds.sort().reverse();

@@ -66,6 +66,8 @@
     "history": true,
     "CustomEvent": true,
     "MutationObserver": true,
+    "IntersectionObserver": true,
+    "Image": true,
     "customElements": true,
     "document": true,
     "navigator": true,
