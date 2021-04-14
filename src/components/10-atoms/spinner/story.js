@@ -1,4 +1,4 @@
-import { radios, withKnobs } from '@storybook/addon-knobs';
+import { boolean, radios, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import readme from './README.md';
@@ -16,20 +16,15 @@ export default {
   },
 };
 
-const sizeOptions = {
-  default: 'default',
-  small: 'small',
-};
-
 const invertedBgs = {
-  default: 'inverted-blue-ocean',
+  'ocean blue (default)': 'inverted-blue-ocean',
   'dark grey': 'inverted-dark-grey',
   white: 'inverted-white',
 };
 
 export const Spinner = () => {
-  const sizes = radios('size', sizeOptions, 'default');
-  const colors = radios('color', invertedBgs, 'inverted-blue-ocean');
+  const sizes = boolean('small', false);
+  const colors = radios('color', invertedBgs, '');
 
   const wrapper = document.createElement('div');
 
@@ -39,9 +34,8 @@ export const Spinner = () => {
         background-color: ${colors === 'inverted-white' ? '#ccc' : '#fff'};
       }
     </style>
-    <axa-spinner size="${sizes}" color="${colors}"></axa-spinner>
+    <axa-spinner ?size="${sizes}" color="${colors}"></axa-spinner>
   `;
-
   render(template, wrapper);
   return wrapper;
 };

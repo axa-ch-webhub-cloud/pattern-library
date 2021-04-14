@@ -16,7 +16,7 @@ class AXASpinner extends LitElement {
 
   static get properties() {
     return {
-      size: { type: String, defaultValue: 'default' },
+      size: { type: Boolean, defaultValue: false },
       color: { type: String, defaultValue: 'inverted-blue-ocean' },
     };
   }
@@ -24,32 +24,26 @@ class AXASpinner extends LitElement {
   render() {
     const { size = '', color = '' } = this;
     const classes = {
-      'a-spinner--default': true,
-      'a-spinner--small': size === 'small',
-      'a-spinner--inverted-blue-ocean': true,
-      'a-spinner--inverted-dark-grey': color === 'inverted-dark-grey',
-      'a-spinner--inverted-white': color === 'inverted-white',
+      'a-spinner--small': size,
+      'a-spinner__dot--inverted-dark-grey': color === 'inverted-dark-grey',
+      'a-spinner__dot--inverted-white': color === 'inverted-white',
     };
 
     return html`
       <article class="a-spinner">
         <div class="a-spinner-container">
           <span
-            class="${classMap(classes)} a-spinner__dot a-spinner__dot-1"
+            class="a-spinner__dot a-spinner__dot-1 ${classMap(classes)}"
           ></span>
           <span
-            class="${classMap(classes)} a-spinner__dot a-spinner__dot-2"
+            class="a-spinner__dot a-spinner__dot-2 ${classMap(classes)}"
           ></span>
           <span
-            class="${classMap(classes)} a-spinner__dot a-spinner__dot-3"
+            class="a-spinner__dot a-spinner__dot-3 ${classMap(classes)}"
           ></span>
         </div>
       </article>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
   }
 }
 

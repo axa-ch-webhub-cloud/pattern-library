@@ -1,6 +1,6 @@
 # Spinner
 
-Adds a loading spinner
+Adds a loading spinner that can be used while something is loading
 
 ```bash
 npm install @axa-ch/spinner

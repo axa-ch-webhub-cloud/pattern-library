@@ -5,20 +5,25 @@
     display: flex;
     align-items: center;
   }
-
-  &--inverted-blue-ocean {
-    background-color: $color-ocean-blue;
-  }
-  &--inverted-dark-grey {
-    background-color: $color-dark-grey;
-  }
-  &--inverted-white {
-    background-color: $color-prim-white;
-  }
-
+  
   &__dot {
     animation: opacityFade 1.5s linear infinite;
-
+    display: inline-block;
+    top: 0%;
+    bottom: 0%;
+    margin: 8px;
+    height: 16px;
+    width: 16px;  
+    border-radius: 50%;
+    background-color: $color-ocean-blue;
+    
+    &--inverted-dark-grey {
+      background-color: $color-dark-grey;
+    }
+    &--inverted-white {
+      background-color: $color-prim-white;
+    }
+    
     &-1 {
       animation-delay: 0s;
     }
@@ -37,16 +42,6 @@
     16.5% {
       opacity: 0;
     }
-  }
-
-  &--default {
-    display: inline-block;
-    top: 0%;
-    bottom: 0%;
-    margin: 8px;
-    height: 16px;
-    width: 16px;  
-    border-radius: 50%;
   }
 
   &--small {
