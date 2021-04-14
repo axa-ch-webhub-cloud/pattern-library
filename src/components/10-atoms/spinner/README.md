@@ -1,6 +1,6 @@
 # Spinner
 
-Adds a loading spinner that can be used while something is loading
+Adds a loading spinner that can be used while something is loading.
 
 ```bash
 npm install @axa-ch/spinner
@@ -18,13 +18,13 @@ import '@axa-ch/spinner';
 
 | Attribute                   | Details              |
 | --------------------------- | -------------------- |
-| `size=default`              | Size of the spinner  |
+| `size=false`                | Size of the spinner  |
 | `color=inverted-blue-ocean` | Color of the spinner |
 
 ### Size
 
-Declaires the size of the spinner.
+Declaires the size of the spinner. If `size` is not set or is false (default), it has the normal size. If `size` is set to true, it has the small size
 
 ### Color
 
-Sets the color of the spinner. If `color` is set to `default`, it has the color ocean blue.
+Sets the color of the spinner. If `color` is not set, it has the color ocean blue.
