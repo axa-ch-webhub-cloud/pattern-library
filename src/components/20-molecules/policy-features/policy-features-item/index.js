@@ -60,5 +60,9 @@ class AXAPolicyFeaturesItem extends LitElement {
 
 // needed, because unversioned `policy-feature-item` will not be rendered otherwise
 defineOnce(AXAPolicyFeaturesItem.tagName, AXAPolicyFeaturesItem);
+// defineVersioned(
+//   [AXAPolicyFeaturesItem],
+//   __VERSION_INFO__['axa-policy-features']['axa-policy-features']
+// );
 
 export default AXAPolicyFeaturesItem;
