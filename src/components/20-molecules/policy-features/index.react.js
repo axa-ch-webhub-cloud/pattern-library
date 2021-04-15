@@ -5,5 +5,5 @@ import AXAPolicyFeaturesItem from './policy-features-item';
 export default (createElement, version) =>
   withReact(createElement, AXAPolicyFeatures, version);
 
-export const createAXAPolicyFeaturesItemReact = createElement =>
-  withReact(createElement, AXAPolicyFeaturesItem);
+export const createAXAPolicyFeaturesItemReact = (createElement, version) =>
+  withReact(createElement, AXAPolicyFeaturesItem, version);
