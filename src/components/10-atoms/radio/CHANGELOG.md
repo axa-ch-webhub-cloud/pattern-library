@@ -1,3 +1,7 @@
+## 3.1.10
+
+- Fix: The text of the radiobuttons now wraps. #2125
+
 ## 3.1.6
 
 - Fix: Iconified radio buttons no longer have the attribute value `fill="currentColor"`. (#1942)
