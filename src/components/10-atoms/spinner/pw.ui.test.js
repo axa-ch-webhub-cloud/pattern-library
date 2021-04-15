@@ -17,8 +17,10 @@ describe('Spinner', () => {
     await openSpinner();
     await page.waitForSelector(tag);
 
-    await page.evaluate(tag => {
-      document.querySelector(tag).setAttribute('color', 'inverted-white');
+    await page.evaluate(evaluateTag => {
+      document
+        .querySelector(evaluateTag)
+        .setAttribute('color', 'inverted-white');
     }, tag);
 
     const axaSpinner = await page.$(tag);
