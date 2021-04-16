@@ -16,15 +16,15 @@ class AXASpinner extends LitElement {
 
   static get properties() {
     return {
-      size: { type: Boolean, defaultValue: false },
-      color: { type: String, defaultValue: 'inverted-blue-ocean' },
+      small: { type: Boolean, defaultValue: false },
+      color: { type: String },
     };
   }
 
   render() {
-    const { size = '', color = '' } = this;
+    const { small = false, color = '' } = this;
     const classes = {
-      'a-spinner--small': size,
+      'a-spinner--small': small,
       'a-spinner__dot--inverted-dark-grey': color === 'inverted-dark-grey',
       'a-spinner__dot--inverted-white': color === 'inverted-white',
     };
@@ -47,7 +47,6 @@ class AXASpinner extends LitElement {
   }
 }
 
-/* eslint-disable no-undef */
 defineVersioned([AXASpinner], __VERSION_INFO__);
 
 export default AXASpinner;

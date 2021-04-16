@@ -16,14 +16,14 @@ import '@axa-ch/spinner';
 
 ### Variant
 
-| Attribute                   | Details              |
-| --------------------------- | -------------------- |
-| `size=false`                | Size of the spinner  |
-| `color=inverted-blue-ocean` | Color of the spinner |
+| Attribute     | Details                   |
+| ------------- | ------------------------- |
+| `small=false` | Sets the spinner to small |
+| `color`       | Sets the color            |
 
-### Size
+### small
 
-Declaires the size of the spinner. If `size` is not set or is false (default), it has the normal size. If `size` is set to true, it has the small size
+If `small` is set to true, it has the small size.
 
 ### Color
 

@@ -16,7 +16,7 @@ export default {
   },
 };
 
-const invertedBgs = {
+const invertedColors = {
   'ocean blue (default)': 'inverted-blue-ocean',
   'dark grey': 'inverted-dark-grey',
   white: 'inverted-white',
@@ -24,7 +24,7 @@ const invertedBgs = {
 
 export const Spinner = () => {
   const sizes = boolean('small', false);
-  const colors = radios('color', invertedBgs, '');
+  const colors = radios('color', invertedColors, '');
 
   const wrapper = document.createElement('div');
 
@@ -34,7 +34,7 @@ export const Spinner = () => {
         background-color: ${colors === 'inverted-white' ? '#ccc' : '#fff'};
       }
     </style>
-    <axa-spinner ?size="${sizes}" color="${colors}"></axa-spinner>
+    <axa-spinner ?small="${sizes}" color="${colors}"></axa-spinner>
   `;
   render(template, wrapper);
   return wrapper;
