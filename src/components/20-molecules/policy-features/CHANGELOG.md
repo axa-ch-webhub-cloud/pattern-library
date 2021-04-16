@@ -1,3 +1,7 @@
+## 3.3.0
+
+- Make versioning possible, also for child elements.
+
 ## 3.2.1
 
 - Fix: prevent duplicate style attachment. (#1727)
