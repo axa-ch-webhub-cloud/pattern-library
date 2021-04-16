@@ -1,8 +1,7 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import defineOnce from '../../../../utils/define-once';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
+import defineOnce from '../../../../utils/define-once';
 
 class AXAPolicyFeaturesItem extends LitElement {
   static get tagName() {

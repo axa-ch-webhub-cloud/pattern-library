@@ -2,6 +2,20 @@
 
 With this component you can highlight as much `features` as you want. You can set a main title and put `features` items as childs to it.
 
+## Versioning
+
+You can version both, the `axa-policy-features` and the `axa-policy-features-item` tag.
+
+To do so, use it like this:
+
+```js
+import createAXAPolicyFeatures from '@axa-ch/policy-features/lib/index.react';
+import { createAXAPolicyFeaturesItem } from '@axa-ch/policy-features/lib/index.react';
+
+createAXAPolicyFeatures(null, 'myteam'); // Enables tag `axa-policy-features-myteam`
+createAXAPolicyFeaturesItem(null, 'myteam'); // Enables tag `axa-policy-features-item-myteam`
+```
+
 ## Properties
 
 ### variant
@@ -41,7 +55,3 @@ The size of the svg will be set to:
 
 - Tablet and bigger (`md-up`): 96x96 px
 - All smaller devices: 42x42 px
-
-### description
-
-A text that describes your feature.
