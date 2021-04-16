@@ -12,8 +12,6 @@ const radioButtonGroup = {};
 const selectedRadioButton = {};
 const maxWidth = {};
 
-const WIDTH_SLACK = 5; // px
-
 // CE
 class AXARadio extends NoShadowDOM {
   static get tagName() {
@@ -223,7 +221,7 @@ class AXARadio extends NoShadowDOM {
           // (suppresses length changes .a.k.a 'pumping effect' between
           // selected/unselected state due to font-weight changes)
           if (noAutoWidth && radioButton !== ourButton) return;
-          radioButton.style.minWidth = `${width + WIDTH_SLACK}px`;
+          radioButton.style.minWidth = `${width}px`;
         });
       });
     }

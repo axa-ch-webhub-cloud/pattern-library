@@ -100,6 +100,7 @@ axa-radio {
   }
 
   &[button] {
+    position: relative;
     max-width: 100%;
 
     .a-radio__wrapper {
