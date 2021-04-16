@@ -1,6 +1,6 @@
 axa-radio {
   @include text(t4);
-  display: table;
+  display: block;
   flex: none;
   box-sizing: border-box;
   border: 1px solid transparent;
@@ -100,8 +100,6 @@ axa-radio {
   }
 
   &[button] {
-    position: relative;
-    display: inline-flex;
     max-width: 100%;
 
     .a-radio__wrapper {
