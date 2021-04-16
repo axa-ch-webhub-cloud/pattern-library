@@ -7,5 +7,3 @@ export default (createElement, version) =>
 
 export const createAXAPolicyFeaturesItem = (createElement, version) =>
   withReact(createElement, AXAPolicyFeaturesItem, version);
-
-// TESTE DIE NEUE IMPLMENTATION MIT DEM COOLEN NPM FEATURE
