@@ -5,5 +5,7 @@ import AXAPolicyFeaturesItem from './policy-features-item';
 export default (createElement, version) =>
   withReact(createElement, AXAPolicyFeatures, version);
 
-export const createAXAPolicyFeaturesItemReact = (createElement, version) =>
+export const createAXAPolicyFeaturesItem = (createElement, version) =>
   withReact(createElement, AXAPolicyFeaturesItem, version);
+
+// TESTE DIE NEUE IMPLMENTATION MIT DEM COOLEN NPM FEATURE
