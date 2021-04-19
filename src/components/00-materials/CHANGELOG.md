@@ -1,3 +1,7 @@
+## 14.1.0
+
+- Added scss variables for `spacing` and `box-shadow`.
+
 ## 14.0.0
 
 BREAKING CHANGES:
