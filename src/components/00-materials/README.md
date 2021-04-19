@@ -48,6 +48,55 @@ npm install @svgr/webpack --save-dev
 }
 ```
 
+## Styles - Scss Mixins and Variables
+
+### Colors
+
+```scss
+@import '@axa-ch/materials/styles/00-colors.scss';
+
+body {
+  background-color: $color-axa-blue;
+}
+```
+
+### Breakpoints
+
+```scss
+@import '@axa-ch/materials/styles/30-layout.scss';
+
+body {
+  // Rules for devices bigger than portrail mobile
+  @include breakpoint($mediaquery-xs-up) {
+    margin: 8px;
+  }
+}
+```
+
+### Typography
+
+```scss
+@import '@axa-ch/materials/styles/typography.scss';
+
+body {
+  font-family: $font-family-primary;
+}
+```
+
+### Variables
+
+```scss
+@import '@axa-ch/materials/styles/variables.scss';
+
+body {
+  margin: $spacing-1;
+}
+
+.box {
+  box-shadow: $box-shadow-1;
+}
+```
+
 ## Icon/Image set
 
 ### SVGs
@@ -123,3 +172,7 @@ All our icons in the "icons" section are the material icons from google (and not
 1. Replace all occurences with `<circle fill="currentColor"` (whitespace at the end).
 
 Done. This seems to be the fastest and most efficient approach with the current importer script.
+
+```
+
+```
