@@ -172,7 +172,3 @@ All our icons in the "icons" section are the material icons from google (and not
 1. Replace all occurences with `<circle fill="currentColor"` (whitespace at the end).
 
 Done. This seems to be the fastest and most efficient approach with the current importer script.
-
-```
-
-```
