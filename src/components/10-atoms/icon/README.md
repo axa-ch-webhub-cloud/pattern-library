@@ -35,7 +35,7 @@ You can load your own SVG and set its html string. The string must contain `<svg
 
 ### Size
 
-The default behavior set the size of the svgs to 24x24 px. To use original size on the svg use `auto`.
+The default behavior set the size of the svgs to 24x24 px. To use original size on the svg use `original`.
 
 | Attribute         | description                           |
 | ----------------- | ------------------------------------- |
