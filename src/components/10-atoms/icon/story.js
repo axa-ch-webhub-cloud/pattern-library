@@ -30,7 +30,7 @@ export const Icon = () => {
   const showAll = boolean('Show list of available icons', false);
   const noIcon = boolean('Do not set icon on component', false);
 
-  const size = select('size', ['small', '', 'large', 'auto'], '');
+  const size = select('size', ['small', '', 'large', 'original'], '');
 
   const loadIconType = radios(
     'Load icon this way (Fill values below):',

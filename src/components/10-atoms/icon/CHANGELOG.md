@@ -1,6 +1,7 @@
 ## 6.0.0
 
 - BREAKING CHANGE: The new default for `size` of icons loaded by URL or SVG string is now 24x24 px instead of `auto`.
+- BREAKING CHANGE: We renamed the size value `auto` to `original`.
 - Functional icons should have only 3 sizes. You can now set these dimensions via `size` property. #2110
 
 ## 5.1.10
