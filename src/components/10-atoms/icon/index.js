@@ -55,7 +55,7 @@ class AXAIcon extends LitElement {
   static get properties() {
     return {
       icon: { type: String },
-      size: { type: String, reflect: true, defaultValue: 'medium' },
+      size: { type: String, reflect: true },
       _loadedSvg: { type: String },
     };
   }
@@ -63,7 +63,6 @@ class AXAIcon extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-    this.size = 'medium';
   }
 
   updated() {
