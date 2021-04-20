@@ -1,4 +1,17 @@
-:host(:not([size=auto])) svg {
+:host([size=small]) svg {
+  width: 20px;
+  height: 20px;
+}
+
+:host(:not([size])) svg, :host([size=medium]) svg {
   width: 24px;
   height: 24px;
 }
+
+:host([size=large]) svg {
+  width: 32px;
+  height: 32px;
+}
+
+
+

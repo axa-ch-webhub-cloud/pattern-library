@@ -1,3 +1,7 @@
+## 5.2.0
+
+- Functional icons should have only 3 sizes. You can now set these dimensions via `size` property. #2110 
+
 ## 5.1.10
 
 - The new material icons were added.

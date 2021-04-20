@@ -55,7 +55,7 @@ class AXAIcon extends LitElement {
   static get properties() {
     return {
       icon: { type: String },
-      size: { type: String, reflect: true },
+      size: { type: String, reflect: true, defaultValue: 'medium' },
       _loadedSvg: { type: String },
     };
   }
@@ -63,6 +63,7 @@ class AXAIcon extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    this.size = 'medium';
   }
 
   updated() {
@@ -70,11 +71,9 @@ class AXAIcon extends LitElement {
 
     if (/\.svg/.test(icon)) {
       xhrCall(icon).then(result => {
-        this.size = 'auto';
         this._loadedSvg = result;
       });
     } else if (/<svg/.test(icon)) {
-      this.size = 'auto';
       this._loadedSvg = icon;
     } else {
       this._loadedSvg = AXAIcon.iconsMapping[icon] || '';
