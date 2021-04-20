@@ -11,7 +11,6 @@ describe('Icon', () => {
     AXAIcon.prototype.updated();
 
     expect(AXAIcon.prototype._loadedSvg).toBe(mySvgString);
-    expect(AXAIcon.prototype.size).toBe('auto');
   });
   test('firstUpdated() should map icon correctly', () => {
     AXAIcon.prototype.icon = 'download';
