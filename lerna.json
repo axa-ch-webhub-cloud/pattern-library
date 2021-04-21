@@ -13,6 +13,7 @@
     "src/components/10-atoms/input-text",
     "src/components/10-atoms/link",
     "src/components/10-atoms/radio",
+    "src/components/10-atoms/spinner",
     "src/components/10-atoms/text",
     "src/components/10-atoms/textarea",
     "src/components/10-atoms/toggle-switch",
