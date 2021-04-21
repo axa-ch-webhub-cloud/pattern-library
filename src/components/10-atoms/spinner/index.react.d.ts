@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface AXASpinnerProps {
   className?: string;
-  size?: string;
+  size?: Boolean;
   color?: string;
 }
 
