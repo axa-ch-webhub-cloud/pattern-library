@@ -16,10 +16,10 @@ import '@axa-ch/spinner';
 
 ### Variant
 
-| Attribute | Details                                                          |
-| --------- | ---------------------------------------------------------------- |
-| `small`   | Boolean. Sets the spinner to small, the default value is `false` |
-| `color`   | Sets the color                                                   |
+| Attribute | Details                                                  |
+| --------- | -------------------------------------------------------- |
+| `small`   | Smaller version of the spinner (boolean, default: false) |
+| `color`   | Sets the color                                           |
 
 ### small
 
@@ -28,4 +28,4 @@ If `small` is set to true, it has the small size.
 ### Color
 
 Sets the color of the spinner. If `color` is not set, it has the color ocean blue.
-The other color options are: dark-grey and white.
+The other color options are: `dark-grey` and `white`.
