@@ -40,6 +40,6 @@ The default behavior set the size of the svgs to 24x24 px. To use original size 
 | Attribute         | description                           |
 | ----------------- | ------------------------------------- |
 | `size="small"`    | 20x20 px                              |
-| `size=""`         | default. 24x24 px                     |
+| `size="medium"`   | default. 24x24 px                     |
 | `size="large"`    | 32x32 px                              |
 | `size="original"` | use original size of svg file you use |

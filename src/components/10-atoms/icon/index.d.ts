@@ -1,3 +1,3 @@
 export type Icon = String;
 
-export type Size = '' | 'small' | 'large' | 'original';
+export type Size = 'small' | 'medium' | 'large' | 'original';
