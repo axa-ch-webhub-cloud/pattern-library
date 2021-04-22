@@ -99,7 +99,7 @@ body {
 
 ## Icon/Image set
 
-### Size classes
+### Sizes
 
 Please note the size classes of `icons` and `images` [here](https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A57). Please just use these dimensions.
 
