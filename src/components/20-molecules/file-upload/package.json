@@ -33,6 +33,5 @@
     "blueimp-canvas-to-blob": "^3.15.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
-  },
-  "main": "lib/index.js"
+  }
 }
