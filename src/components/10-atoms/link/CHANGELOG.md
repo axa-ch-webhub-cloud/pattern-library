@@ -1,6 +1,6 @@
-## 4.2.26
+## 5.0.0
 
-- Use `display: inline` if no icon is present. #2076
+- BREAKING CHANGE: Use `display: inline` if no icon is present. #2076
 
 ## 4.2.23
 
