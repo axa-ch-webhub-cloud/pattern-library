@@ -63,7 +63,6 @@ class AXAIcon extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-    this.size = 'medium';
   }
 
   updated() {
