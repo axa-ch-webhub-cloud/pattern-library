@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoLink from './DemoLink';
+import DemoLinkInsideText from './DemoLinkInsideText';
 
 storiesOf('Examples/Link/React', module)
   .addParameters({
@@ -15,5 +16,10 @@ storiesOf('Examples/Link/React', module)
   .add('Variable icons', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoLink />, div);
+    return div;
+  })
+  .add('Link inside of text', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoLinkInsideText />, div);
     return div;
   });
