@@ -28,7 +28,14 @@ export default {
 
 export const Icon = () => {
   const showAll = boolean('Show list of available icons', false);
-  const noIcon = boolean('Do not set icon on component', false);
+  const noIcon = boolean('Do not set attribute "icon"', false);
+  const noSize = boolean('Do not set attribute "size"', false);
+
+  const size = select(
+    'size',
+    ['small', 'medium', 'large', 'original'],
+    'medium'
+  );
 
   const loadIconType = radios(
     'Load icon this way (Fill values below):',
@@ -82,7 +89,16 @@ export const Icon = () => {
                 <axa-icon></axa-icon>
               `
             : html`
-                <axa-icon icon="${getIconValue(loadIconType)}"></axa-icon>
+                ${noSize
+                  ? html`
+                      <axa-icon icon="${getIconValue(loadIconType)}"></axa-icon>
+                    `
+                  : html`
+                      <axa-icon
+                        icon="${getIconValue(loadIconType)}"
+                        size="${size}"
+                      ></axa-icon>
+                    `}
               `}
         `}
   `;

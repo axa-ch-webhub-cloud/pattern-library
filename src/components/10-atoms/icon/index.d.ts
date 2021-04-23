@@ -1,9 +1,3 @@
-/**
- * Either one of enumerated string literals, or:
- *
- * - a string containing ".svg", will be loaded as URL
- * - a string containing "<svg", will be inlined
- */
 export type Icon =
   | 'add'
   | 'arrow-left'
@@ -21,3 +15,5 @@ export type Icon =
   | 'axa-logo'
   | 'axa-logo-open'
   | String;
+
+export type Size = 'small' | 'medium' | 'large' | 'original';
