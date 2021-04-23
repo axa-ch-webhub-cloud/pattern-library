@@ -23,6 +23,7 @@
   &__icon {
     display: flex;
     margin-left: 10px;
+    min-width: 24px; // just for IE
 
     &--left {
       margin-left: 0;
