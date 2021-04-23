@@ -1,5 +1,5 @@
 .a-link {
-  display: inline-flex;
+  display: inline;
   text-decoration: none;
   color: $color-axa-blue;
   align-items: center;
@@ -14,6 +14,7 @@
 
   // Simple Link == Everything except the normal hyperlinks
   &--simple {
+    display: inline-flex;
     @include text(t4, bold);
     text-transform: uppercase;
     letter-spacing: 0.4px;
