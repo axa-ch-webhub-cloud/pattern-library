@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/cookie-disclaimer",
-  "version": "4.0.15",
+  "version": "4.0.16",
   "description": "The cookie-disclaimer component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/20-molecules/cookie-disclaimer#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch/patterns-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "6.0.14",
+    "@axa-ch/button": "6.0.15",
     "@axa-ch/container": "3.0.11",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
