@@ -14,6 +14,11 @@ class AXASpinner extends LitElement {
     `;
   }
 
+  constructor() {
+    super();
+    applyDefaults(this);
+  }
+
   static get properties() {
     return {
       small: { type: Boolean, defaultValue: false },
