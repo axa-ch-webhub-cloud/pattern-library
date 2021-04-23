@@ -1,4 +1,8 @@
-## next
+## 5.0.0
+
+- BREAKING CHANGE: Use `display: inline` if no icon is present. #2076
+
+## 4.2.23
 
 - Publish mouse event to onClick handler. This allows the consumer to stopPropagation() of the event.
   This may be a BREAKING CHANGE if consumer relies on onClick() being called with NO argument.
