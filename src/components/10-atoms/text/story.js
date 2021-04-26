@@ -8,6 +8,7 @@ const variantOptions = {
   '[none]': '',
   'size-2': 'size-2',
   'size-3': 'size-3',
+  'size-4': 'size-4',
   semibold: 'semibold',
   bold: 'bold',
 };
