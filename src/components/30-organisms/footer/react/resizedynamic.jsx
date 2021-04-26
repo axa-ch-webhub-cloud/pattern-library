@@ -19,10 +19,7 @@ export const Footer = ({ col1ItemsCount }) => {
       </a>
       );
       <h2 slot="social-title">Col 3</h2>
-      <a
-        slot="social-item"
-        href="https://www.facebook.com/axach/"
-      >
+      <a slot="social-item" href="https://www.facebook.com/axach/">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -30,7 +27,7 @@ export const Footer = ({ col1ItemsCount }) => {
           viewBox="0 0 25 25"
         >
           <path
-            {/* eslint-disable-next-line max-len */}
+            /* eslint-disable-next-line max-len */
             d="M8.865 9.043H6.213v3.473h2.652v10.42h4.452v-10.42h3.274l.31-3.473h-3.584V7.634c0-.832.164-1.152.982-1.152h2.57V2.096h-3.388c-3.274 0-4.616 1.377-4.616 4.002v2.945z"
             fill="#FFFFFF"
           />
