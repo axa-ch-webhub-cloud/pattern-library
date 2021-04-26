@@ -32,8 +32,9 @@ describe('toggle-switch', () => {
         .setAttribute('error', 'Error Message');
     }, tag);
 
-    const axaToggleSwitch = await page.$(tag);
-    expect(await axaToggleSwitch.getAttribute('error')).toBe('Error Message');
+    expect(
+      await page.textContent('.a-toggle-switch__error-message-active')
+    ).toBe('Error Message');
   });
 });
 
