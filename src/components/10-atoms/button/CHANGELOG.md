@@ -1,3 +1,7 @@
+## 6.0.16
+
+- Add the event to the typescript interface. #2136
+
 ## 6.0.10
 
 - Now its possible to submit a form with keyboard events. (#2078)
