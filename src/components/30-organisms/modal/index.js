@@ -7,8 +7,6 @@ import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
-const johannes = 'joh';
-
 class AXAModal extends LitElement {
   static get tagName() {
     return 'axa-modal';
@@ -50,7 +48,11 @@ class AXAModal extends LitElement {
               </div>
             `
           : ''}
-        <div class="o-modal__content">
+        <div
+          class="o-modal__content ${this.forced
+            ? 'o-modal__content--forced'
+            : ''}"
+        >
           <slot></slot>
         </div>
       </article>
