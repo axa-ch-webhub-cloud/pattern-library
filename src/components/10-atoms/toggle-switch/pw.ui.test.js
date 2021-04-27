@@ -23,14 +23,10 @@ describe('toggle-switch', () => {
   });
 
   it('should write error message', async () => {
-    await openToggleSwitch();
+    await page.goto(
+      `${host}/iframe.html?id=components-toggle-switch--toggle-switch&knob-error=Error%20Message&knob-disabled=true&viewMode=story`
+    );
     await page.waitForSelector(tag);
-
-    await page.evaluate(evaluateTag => {
-      document
-        .querySelector(evaluateTag)
-        .setAttribute('error', 'Error Message');
-    }, tag);
 
     expect(
       await page.textContent('.a-toggle-switch__error-message-active')
