@@ -18,9 +18,9 @@ class AXAProgressBar extends LitElement {
   static get properties() {
     return {
       small: { type: Boolean, defaultValue: false },
-      progressValue: { type: String, defaultValue: '32' },
-      progressMaxValue: { type: String, defaultValue: '100' },
-      progressLabelText: { type: String, defaultValue: '' },
+      fullWidth: { type: Boolean, defaultValue: false },
+      value: { type: String, defaultValue: '32' },
+      text: { type: String, defaultValue: '' },
     };
   }
 
@@ -29,20 +29,45 @@ class AXAProgressBar extends LitElement {
     applyDefaults(this);
   }
 
+  firstUpdated() {
+    //checks if the value is over 100
+    if (this.value > 100) {
+      this.value = 100;
+    } else if (this.value === '') {
+      this.value = 0;
+    }
+  }
+
   render() {
-    const classes = {
+    const classesBorder = {
       'a-progress-bar--small': this.small,
+      'a-progress-bar--full-width': this.fullWidth,
+    };
+
+    const classesLoader = {
+      'a-progress-bar--small': this.small,
+      'a-progress-bar--full-width-loader': this.fullWidth,
+      'a-progress-bar--full-width-loader-max':
+        this.fullWidth && this.value >= 100,
     };
 
     return html`
-      <article class="a-progress-bar ${classMap(classes)}">
-        <progress
-          value="${this.progressValue}"
-          max="${this.progressMaxValue}"
-        ></progress>
-        <label>
-          ${this.progressLabelText}
-        </label>
+      <article>
+        <div class="a-progress-bar--border ${classMap(classesBorder)}">
+          <div
+            class="a-progress-bar ${classMap(classesLoader)}"
+            style="width: ${this.value}%"
+          ></div>
+        </div>
+        <div
+          class="${this.text === ''
+            ? 'a-progress-bar--label-disabled'
+            : 'a-progress-bar--label'}"
+        >
+          <axa-text variant="${this.small === true ? 'size-3' : 'size-2'}"
+            >${this.text}</axa-text
+          >
+        </div>
       </article>
     `;
   }

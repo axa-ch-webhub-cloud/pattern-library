@@ -1,11 +1,11 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXAProgressBarProps {
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
+  small?: boolean;
+  fullWidth?: boolean;
+  value?: string;
+  text?: string;
 }
 
 declare function createAXAProgressBar(

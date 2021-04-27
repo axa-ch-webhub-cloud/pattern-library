@@ -1,3 +1,37 @@
 .a-progress-bar {
   display: block;
+  border-radius: 10px;
+  background-color: $color-ocean-blue;
+  height: 12px;
+
+  &--small {
+    height: 8px;
+  }
+
+  &--border {
+    width: 100%;
+    border-radius: 10px;
+    background-color: $color-mercury;
+  }
+
+  &--full-width {
+    border-radius: 0px;
+
+    &-loader {
+      border-radius: 0px 10px 10px 0px;
+
+      &-max {
+        border-radius: 0px;
+      }
+    }
+  }
+
+  &--label {
+    display: flex;
+    justify-content: center;
+
+    &-disabled {
+      display: none;
+    }
+  }
 }

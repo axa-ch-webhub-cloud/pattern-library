@@ -9,17 +9,17 @@ export default {
 
 export const ProgressBar = () => {
   const small = boolean('small', false);
-  const progressValue = text('progressValue', '32');
-  const progressMaxValue = text('progressMaxValue', '100');
-  const progressLabelText = text('progressLabelText', 'label text');
+  const fullWidth = boolean('fullWidth', false);
+  const value = text('value', '32');
+  const progressText = text('text', 'label text');
 
   const wrapper = document.createElement('div');
   const template = html`
     <axa-progress-bar
       ?small=${small}
-      progressValue=${progressValue}
-      progressMaxValue=${progressMaxValue}
-      progressLabelText=${progressLabelText}
+      ?fullWidth=${fullWidth}
+      value=${value}
+      text=${progressText}
     ></axa-progress-bar>
   `;
 
