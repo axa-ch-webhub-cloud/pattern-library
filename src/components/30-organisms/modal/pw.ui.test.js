@@ -42,10 +42,28 @@ describe('Modal', () => {
       )
     ).toBe('Liability insurance');
   });
+
+  it('should not close modal in forced mode by pressing escape on keyboard', async () => {
+    await openForcedModal();
+  });
+
+  it('should not close by pressing outside the modal', async () => {
+    await openForcedModal();
+  });
+
+  it('should not display top-bar with close icon', async () => {
+    await openForcedModal();
+  });
 });
 
 async function openModal() {
   await page.goto(
     `${host}/iframe.html?id=components-modal--modal&viewMode=story`
+  );
+}
+
+async function openForcedModal() {
+  await page.goto(
+    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`
   );
 }
