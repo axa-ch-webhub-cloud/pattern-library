@@ -17,10 +17,15 @@ import '@axa-ch/modal';
 
 ### Variant
 
-| Attribute   | Details                   |
-| ----------- | ------------------------- |
-| `open=true` | State of modal visibility |
+| Attribute | Details                                                 |
+| --------- | ------------------------------------------------------- |
+| `open`    | State of modal visibility (boolean)                     |
+| `forced`  | Forced disables the internal close mechanisms (boolean) |
 
 ### open
 
 If `open` is set to `true`, then the modal will be displayed to the user.
+
+### forced
+
+If `forced` is set to `true`, closing functionality has to be manually implemented. This is useful for legal text displayed to the user, where the user has to explicitly "approve" to click the modal away.
