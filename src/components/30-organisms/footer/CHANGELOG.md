@@ -1,3 +1,7 @@
+## 4.1.27
+
+- Fix: Now the height adapts automatically to the number of elements. #2142
+
 ## 4.1.7
 
 - Fix: change rendering to requestAnimationFrame timing, s.t. browsers have more time to attach children to DOM. (#1890)
