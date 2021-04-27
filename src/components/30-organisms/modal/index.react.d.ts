@@ -3,6 +3,7 @@ import React from 'react';
 export interface AXAModalProps {
   className?: string;
   open?: boolean;
+  forced?: boolean;
 }
 
 declare function createAXAModal(
