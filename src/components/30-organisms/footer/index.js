@@ -58,7 +58,6 @@ class AXAFooter extends InlineStyles {
     super();
     applyDefaults(this);
     this._accordionActiveIndex = -1;
-    this.slotsNotPrepared = true;
 
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
   }
@@ -146,6 +145,7 @@ class AXAFooter extends InlineStyles {
       // only accepts those slots that are columns
       filter('column-')
     );
+
     const onlySocials = childrenArray.filter(
       // only accepts those slots that are social columns
       noHeaderFilter('social-')
@@ -167,13 +167,10 @@ class AXAFooter extends InlineStyles {
       } else {
         // -1 because TITLE is always first of dom index -> see * in big comment above
         const actualIndex = index - totalAmountPreviousColumns - 1;
-        const slotName = `${child
-          .getAttribute('slot')
-          .replace(
-            'column-item',
-            `column-${currentColumnIndex}-item`
-          )}-${actualIndex}`;
-        child.setAttribute('slot', slotName);
+        child.setAttribute(
+          'slot',
+          `column-${currentColumnIndex}-item-${actualIndex}`
+        );
       }
     });
 
@@ -232,10 +229,7 @@ class AXAFooter extends InlineStyles {
 
     this._addListenersToLinks();
 
-    if (this.slotsNotPrepared) {
-      this._prepareSlotsWithIndexes();
-      this.slotsNotPrepared = false;
-    }
+    this._prepareSlotsWithIndexes();
 
     /* eslint-disable indent */
     return versionedHtml(this)`

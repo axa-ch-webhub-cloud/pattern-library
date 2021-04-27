@@ -16,6 +16,7 @@ describe('Footer', () => {
     expect((await footer.boundingBox()).height).toBe(275);
 
     await button.click();
+    await page.waitForSelector('[slot=column-0-item-9]');
 
     expect((await footer.boundingBox()).height).toBe(310);
   });
