@@ -17,9 +17,9 @@ export interface AXATextareaProps {
   counterError?: string;
   maxLength?: number;
   className?: string;
-  onFocus?: () => void;
-  onBlur?: () => void;
-  onChange?: () => void;
+  onFocus?: (e?: FocusEvent) => void;
+  onBlur?: (e?: FocusEvent) => void;
+  onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;
 }
 
 declare function createAXATextarea(
