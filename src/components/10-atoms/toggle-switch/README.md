@@ -16,7 +16,7 @@ The Boolean attribute `disabled`, when true, disables the toggle switch natively
 
 ### error
 
-The String attribute `error` sets an error text. Leave `error` empty, if you don't want an error text.
+The string attribute `error` sets an error text. Leave `error` empty, if you do not want an error text.
 
 ### onChange
 

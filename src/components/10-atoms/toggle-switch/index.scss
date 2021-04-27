@@ -68,7 +68,7 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
       display: block;
       @include text(t4);
       color: $color-shy-tomato;
-      margin: 8px 0px 0px;
+      margin: 8px 0 0;
     }
   }
 }
