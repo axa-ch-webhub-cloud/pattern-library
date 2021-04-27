@@ -1,6 +1,6 @@
 ## 6.0.16
 
-- Add the event to the typescript interface. #2136
+- Add `event` to the `onClick` typescript interface. #2136
 
 ## 6.0.10
 
