@@ -19,10 +19,10 @@ import '@axa-ch/modal';
 
 ### Variant
 
-| Attribute | Details                                                 |
-| --------- | ------------------------------------------------------- |
-| `open`    | State of modal visibility (boolean)                     |
-| `forced`  | Forced disables the internal close mechanisms (boolean) |
+| Attribute | Details                                          |
+| --------- | ------------------------------------------------ |
+| `open`    | State of modal visibility (boolean)              |
+| `forced`  | Disables the internal close mechanisms (boolean) |
 
 ### open
 
