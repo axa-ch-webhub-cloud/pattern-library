@@ -175,7 +175,7 @@ class AXAFooter extends InlineStyles {
     });
 
     onlySocials.forEach((child, index) => {
-      const slotName = `${child.getAttribute('slot')}-${index}`;
+      const slotName = `social-item-${index}`;
       child.setAttribute('slot', slotName);
     });
   }
