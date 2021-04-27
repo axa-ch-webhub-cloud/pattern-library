@@ -208,7 +208,7 @@ storiesOf('Examples/Footer/React', module)
       return (
         <div className="App">
           <h1>Footer col1 items count: {col1ItemsCount}</h1>
-          <button onClick={onItemsChangeClick}>
+          <button onClick={onItemsChangeClick} id="footerTestButton">
             Click to change footer items
           </button>
           <br />
