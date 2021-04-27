@@ -66,13 +66,8 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
     
     &-active {
       display: block;
-      font-family: Source Sans Pro;
-      font-style: normal;
-      font-weight: normal;
+      @include text(t4);
       color: $color-shy-tomato;
-      size: 14px;
-      line-height: 17px;
-      letter-spacing: 0.0175px;
       margin: 8px 0px 0px;
     }
   }

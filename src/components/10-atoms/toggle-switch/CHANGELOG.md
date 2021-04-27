@@ -1,6 +1,6 @@
 ## 2.1.0
 
-- You can now add an error text to the spinner (#2074)
+- You can now add an error text to the toggle switch (#2074)
 
 ## 2.0.0
 
