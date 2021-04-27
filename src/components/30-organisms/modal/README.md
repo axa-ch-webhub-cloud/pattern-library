@@ -9,8 +9,10 @@ npm install @axa-ch/modal
 
 ```js
 import '@axa-ch/modal';
-...
-<axa-modal></axa-modal>
+
+// ...
+
+<axa-modal></axa-modal>;
 ```
 
 ## Properties
