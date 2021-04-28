@@ -34,11 +34,6 @@
     "src/components/30-organisms/table-sortable",
     "src/components/30-organisms/testimonials"
   ],
-  "command": {
-    "version": {
-      "allowBranch": "develop"
-    }
-  },
   "ignoreChanges": [
     "**/*.test.js",
     "**/node_modules/**",
