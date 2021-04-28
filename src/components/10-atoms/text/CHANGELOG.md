@@ -1,3 +1,7 @@
+## 4.4.0
+
+- Added a 4th size. (#2143)
+
 ## 4.3.1
 
 - Fix: prevent duplicate style attachment. (#1727)

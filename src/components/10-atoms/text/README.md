@@ -12,5 +12,6 @@ It accepts simple text strings as children or top-level HTML tags like `<p>` or 
 | -------------------- | ---------------- |
 | `variant="size-2"`   | Bigger Text Size |
 | `variant="size-3"`   | Large Text Size  |
+| `variant="size-4"`   | Small Text Size  |
 | `variant="bold"`     | Bold Text        |
 | `variant="semibold"` | Semi-Bold Text   |
