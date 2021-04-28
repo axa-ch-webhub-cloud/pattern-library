@@ -1,3 +1,7 @@
+## 4.1.27
+
+- Fix: If you use React, the footer height automatically adapts to the number of child elements. #2142
+
 ## 4.1.7
 
 - Fix: change rendering to requestAnimationFrame timing, s.t. browsers have more time to attach children to DOM. (#1890)

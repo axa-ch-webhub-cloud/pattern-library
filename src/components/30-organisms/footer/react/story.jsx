@@ -5,6 +5,7 @@ import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAFooterReact from './Footer';
+import { Footer } from './resizedynamic';
 
 storiesOf('Examples/Footer/React', module)
   .addDecorator(withNoBorder)
@@ -192,5 +193,31 @@ storiesOf('Examples/Footer/React', module)
     };
 
     ReactDOM.render(<CallbacksExample />, div);
+    return div;
+  })
+  .add('Resize dynamic', () => {
+    const div = document.createElement('div');
+
+    const ResizeExample = () => {
+      const [col1ItemsCount, setCol1ItemsCount] = useState(10);
+
+      const onItemsChangeClick = () => {
+        setCol1ItemsCount(col1ItemsCount === 10 ? 8 : 10);
+      };
+
+      return (
+        <div className="App">
+          <h1>Footer col1 items count: {col1ItemsCount}</h1>
+          <button onClick={onItemsChangeClick} id="footerTestButton">
+            Click to change footer items
+          </button>
+          <br />
+          <br />
+          <Footer col1ItemsCount={col1ItemsCount} />
+        </div>
+      );
+    };
+
+    ReactDOM.render(<ResizeExample />, div);
     return div;
   });
