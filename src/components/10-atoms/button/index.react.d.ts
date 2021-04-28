@@ -20,7 +20,7 @@ export interface AXAButtonProps {
   size?: Size;
   motionOff?: boolean;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   className?: string;
   slot?: string;
 }
