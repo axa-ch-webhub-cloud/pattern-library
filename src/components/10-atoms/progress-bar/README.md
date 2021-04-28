@@ -11,6 +11,7 @@ A progress bar that can be used for when something is loading and when you can d
 | `small`     | Smaller version of the progress bar (boolean, default: false)                 |
 | `fullWidth` | Removes the `border-radius`so it can fit to an edge (boolean, default: false) |
 | `value`     | Sets the value (or progress) of the loader.                                   |
+| `max`       | Sets the max value of the progress bar (default: 100).                        |
 | `text`      | Sets the text below the progress bar.                                         |
 
 ### small
@@ -24,6 +25,10 @@ Removes the `border-radius`so it can fit to an edge (boolean, default: false)
 ### value
 
 Sets the value (or progress) of the loader. The `value` can't get over 100
+
+### max
+
+Sets the max value of the progress bar. If `max` is not set, the _default value is 100_.
 
 ### text
 

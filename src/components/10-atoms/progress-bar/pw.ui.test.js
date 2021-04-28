@@ -22,6 +22,29 @@ describe('Progress Bar', () => {
       )
     ).toBe('hi I am a text');
   });
+
+  it('should calculate the percantage correctly', async () => {
+    await page.goto(
+      `http://localhost:6006/iframe.html?id=components-progress-bar--progress-bar&knob-value=60&knob-max=300&knob-text=&knob-fullWidth=true&knob-small=true&viewMode=story`
+    );
+    await page.waitForSelector(tag);
+
+    const progressBar = await page.$(
+      'article > div.a-progress-bar--border > div'
+    );
+    expect(await progressBar.getAttribute('style')).toBe('width: 20%');
+  });
+
+  it('should check if full width is activated', async () => {
+    await openProgressBar();
+
+    const borderRadius = await page.$eval(
+      'article > div.a-progress-bar--border.a-progress-bar--small.a-progress-bar--full-width',
+      el => window.getComputedStyle(el).borderRadius
+    );
+
+    expect(borderRadius).toBe('0px');
+  });
 });
 
 async function openProgressBar() {

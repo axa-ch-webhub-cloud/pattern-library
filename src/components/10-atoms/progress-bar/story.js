@@ -20,7 +20,8 @@ export const ProgressBar = () => {
   const small = boolean('small', false);
   const fullWidth = boolean('fullWidth', false);
   const value = text('value', '32');
-  const progressText = text('text', 'loading...');
+  const max = text('max', '');
+  const progressText = text('text', '');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -28,6 +29,7 @@ export const ProgressBar = () => {
       ?small=${small}
       ?fullWidth=${fullWidth}
       value=${value}
+      max=${max}
       text=${progressText}
     ></axa-progress-bar>
   `;

@@ -19,8 +19,9 @@ class AXAProgressBar extends LitElement {
     return {
       small: { type: Boolean, defaultValue: false },
       fullWidth: { type: Boolean, defaultValue: false },
-      value: { type: String, defaultValue: '32' },
-      text: { type: String, defaultValue: '' },
+      value: { type: String },
+      max: { type: String },
+      text: { type: String },
     };
   }
 
@@ -29,11 +30,26 @@ class AXAProgressBar extends LitElement {
     applyDefaults(this);
   }
 
-  firstUpdated() {
-    if (this.value > 100) {
-      this.value = 100;
+  calculatePercantage() {
+    //checks if the max value is empty or if its not a number
+    if (this.max != '') {
+      //makes sure that the value is not bigger than the max value
+      if (Number(this.value) > Number(this.max)) {
+        return 100;
+      } else {
+        //calculates the percantage
+        return (this.value / this.max) * 100;
+      }
+      //checks if the value is blank (not defined)
     } else if (this.value === '') {
-      this.value = 0;
+      return 0;
+    } else {
+      //checks if the value is over 100 when there is no max value
+      if (Number(this.value) > 100) {
+        return 100;
+      } else {
+        return this.value;
+      }
     }
   }
 
@@ -55,7 +71,7 @@ class AXAProgressBar extends LitElement {
         <div class="a-progress-bar--border ${classMap(classesBorder)}">
           <div
             class="a-progress-bar ${classMap(classesLoader)}"
-            style="width: ${this.value}%"
+            style="width: ${this.calculatePercantage()}%"
           ></div>
         </div>
         <div
