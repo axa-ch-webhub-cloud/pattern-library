@@ -1,5 +1,5 @@
 /* global document */
-import { boolean, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -21,10 +21,12 @@ export default {
 export const ToggleSwitch = () => {
   const active = boolean('active', false);
   const disabled = boolean('disabled', false);
+  const error = text('error', '');
   const wrapper = document.createElement('div');
 
   const template = html`
     <axa-toggle-switch
+      error=${error}
       ?active=${active}
       ?disabled=${disabled}
     ></axa-toggle-switch>

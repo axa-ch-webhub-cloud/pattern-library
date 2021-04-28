@@ -4,7 +4,7 @@
   "description": "The toggle-switch component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/toggle-switch#readme",
-  "license": "Copyright 2019 AXA Versicherungen AG",
+  "license": "Copyright 2021 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
