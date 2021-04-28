@@ -18,10 +18,23 @@ export default {
 
 export const Modal = () => {
   const open = boolean('open', true);
+  const forced = boolean('forced', false);
 
   const wrapper = document.createElement('div');
+
+  setTimeout(() =>
+    document.querySelector('axa-button').addEventListener('click', () => {
+      document.querySelector('axa-modal').removeAttribute('open');
+    })
+  );
+
   const template = html`
-    <axa-modal ?open="${open}">
+    <style>
+      .modal-story__close-modal-child-button {
+        margin-top: 20px;
+      }
+    </style>
+    <axa-modal ?open="${open}" ?forced="${forced}">
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial
@@ -56,6 +69,9 @@ export const Modal = () => {
         days, their intelligence quotient begins to decline. After three weeks
         hospitalization, it can already be 20% lower than usual.
       </axa-text>
+      <axa-button class="modal-story__close-modal-child-button">
+        I accept the terms and conditions
+      </axa-button>
     </axa-modal>
 
     <button

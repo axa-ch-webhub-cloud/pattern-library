@@ -21,6 +21,7 @@ class AXAModal extends LitElement {
   static get properties() {
     return {
       open: { type: Boolean },
+      forced: { type: Boolean },
     };
   }
 
@@ -35,15 +36,23 @@ class AXAModal extends LitElement {
     };
     return html`
       <article class="o-modal ${classMap(classes)}">
-        <div class="o-modal__upper-close-container">
-          <button
-            class="o-modal__upper-close-container-button"
-            @click="${this.closeModal}"
-          >
-            ${svg([closeIcon])}
-          </button>
-        </div>
-        <div class="o-modal__content">
+        ${!this.forced
+          ? html`
+              <div class="o-modal__upper-close-container">
+                <button
+                  class="o-modal__upper-close-container-button"
+                  @click="${this.closeModal}"
+                >
+                  ${svg([closeIcon])}
+                </button>
+              </div>
+            `
+          : ''}
+        <div
+          class="o-modal__content ${this.forced
+            ? 'o-modal__content--forced'
+            : ''}"
+        >
           <slot></slot>
         </div>
       </article>
@@ -67,6 +76,7 @@ class AXAModal extends LitElement {
 
   mouseCloseHandler(e) {
     if (
+      !this.forced &&
       e.composedPath()?.[0] === this.shadowRoot.querySelector('.o-modal--open')
     ) {
       this.closeModal();
@@ -74,7 +84,10 @@ class AXAModal extends LitElement {
   }
 
   keyboardEscapeCloseHandler(e) {
-    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+    if (
+      !this.forced &&
+      (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
+    ) {
       this.closeModal();
     }
   }

@@ -42,10 +42,46 @@ describe('Modal', () => {
       )
     ).toBe('Liability insurance');
   });
+
+  it('should not close modal in forced mode by pressing escape on keyboard', async () => {
+    await openForcedModal();
+
+    await page.waitForSelector('.o-modal--open');
+    await page.keyboard.press('Escape');
+
+    expect(await page.isVisible('.o-modal__content')).toBe(true);
+  });
+
+  it('should not close by pressing outside the modal', async () => {
+    await openForcedModal();
+
+    await page.evaluate(() => {
+      document
+        .querySelector('axa-modal')
+        .shadowRoot.querySelector('.o-modal--open')
+        .click();
+    });
+
+    expect(await page.isVisible('.o-modal__content')).toBe(true);
+  });
+
+  it('should not display top-bar with close icon', async () => {
+    await openForcedModal();
+
+    expect(await page.isVisible('.o-modal__upper-close-container-button')).toBe(
+      false
+    );
+  });
 });
 
 async function openModal() {
   await page.goto(
     `${host}/iframe.html?id=components-modal--modal&viewMode=story`
+  );
+}
+
+async function openForcedModal() {
+  await page.goto(
+    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`
   );
 }
