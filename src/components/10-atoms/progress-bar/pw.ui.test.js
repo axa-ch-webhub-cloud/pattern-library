@@ -5,11 +5,12 @@ describe('Progress Bar', () => {
   it('should render small', async () => {
     await openProgressBar();
 
-    const textFontSize = await page.evaluate(() => {
-      return getComputedStyle(document.querySelector('p')).fontSize;
-    });
+    const fontSize = await page.$eval(
+      'p',
+      el => window.getComputedStyle(el).fontSize
+    );
 
-    expect(textFontSize).toBe('16px');
+    expect(fontSize).toBe('16px');
   });
 
   it('should write text correctly', async () => {
@@ -25,7 +26,7 @@ describe('Progress Bar', () => {
 
 async function openProgressBar() {
   await page.goto(
-    `${host}/iframe.html?id=components--progress-bar&knob-value=14&knob-text=hi%20I%20am%20a%20text&knob-fullWidth=true&knob-small=true&viewMode=story`
+    `${host}/iframe.html?id=components-progress-bar--progress-bar&knob-value=32&knob-text=hi%20I%20am%20a%20text&knob-fullWidth=true&knob-small=true&viewMode=story`
   );
   await page.waitForSelector(tag);
 }
