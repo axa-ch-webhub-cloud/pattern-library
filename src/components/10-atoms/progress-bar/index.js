@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { classMap } from 'lit-html/directives/class-map';
 import styles from './index.scss';
 
 class AXAProgressBar extends LitElement {
@@ -30,7 +30,6 @@ class AXAProgressBar extends LitElement {
   }
 
   firstUpdated() {
-    //checks if the value is over 100
     if (this.value > 100) {
       this.value = 100;
     } else if (this.value === '') {
@@ -70,12 +69,6 @@ class AXAProgressBar extends LitElement {
         </div>
       </article>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 
