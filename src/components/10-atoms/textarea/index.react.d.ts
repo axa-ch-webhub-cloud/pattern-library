@@ -17,9 +17,9 @@ export interface AXATextareaProps {
   counterError?: string;
   maxLength?: number;
   className?: string;
-  onFocus?: (e?: FocusEvent) => void;
-  onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e: { target: HTMLTextAreaElement }) => void;
+  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 declare function createAXATextarea(
