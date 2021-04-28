@@ -8,12 +8,11 @@ describe('Text', () => {
     );
     await page.waitForSelector(tag);
 
-    const textFontSize = await page.evaluate(() => {
-      return getComputedStyle(
-        document.querySelector('#root > div > axa-text > p')
-      ).fontSize;
-    });
+    const fontSize = await page.$eval(
+      '#root > div > axa-text > p',
+      el => window.getComputedStyle(el).fontSize
+    );
 
-    expect(textFontSize).toBe('14px');
+    expect(fontSize).toBe('14px');
   });
 });
