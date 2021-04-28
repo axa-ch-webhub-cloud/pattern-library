@@ -1,6 +1,6 @@
 ## 4.1.27
 
-- Fix: If you use React the height adapts automatically to the number of elements. #2142
+- Fix: If you use React, the footer height automatically adapts to the number of child elements. #2142
 
 ## 4.1.7
 
