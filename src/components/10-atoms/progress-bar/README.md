@@ -24,7 +24,7 @@ Removes the `border-radius`so it can fit to an edge (boolean, default: false)
 
 ### value
 
-Sets the value (or progress) of the loader. The `value` can't get over 100
+Sets the value (or progress) of the loader. The `value` can not get over 100
 
 ### max
 
@@ -32,4 +32,4 @@ Sets the max value of the progress bar. If `max` is not set, the _default value 
 
 ### text
 
-Sets the text below the progress bar. This `text` is optional and it won't get displayed if empty
+Sets the text below the progress bar. This `text` is optional and it will not get displayed if empty
