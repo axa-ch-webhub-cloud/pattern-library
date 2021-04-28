@@ -1,3 +1,7 @@
+## 3.1.2
+
+- Add `event` to the `onClick`, `onBlur` and `onFocus` typescript interface. (#2151)
+
 ## 3.1.1
 
 - Fix: prevent duplicate style attachment. (#1727)
