@@ -21,7 +21,7 @@ describe('Progress Bar', () => {
 
   it('should calculate the percantage correctly', async () => {
     await page.goto(
-      `http://localhost:6006/iframe.html?id=components-progress-bar--progress-bar&knob-value=60&knob-max=300&knob-text=&knob-fullWidth=true&knob-small=true&viewMode=story`
+      `${host}/iframe.html?id=components-progress-bar--progress-bar&knob-value=60&knob-max=300&knob-text=&knob-fullWidth=true&knob-small=true&viewMode=story`
     );
     await page.waitForSelector(tag);
 
