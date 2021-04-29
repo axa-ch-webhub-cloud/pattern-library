@@ -327,6 +327,4 @@ export const IconsAndImages = () => {
   return wrapper;
 };
 
-IconsAndImages.story = {
-  name: 'Icons and Images',
-};
+IconsAndImages.storyName = 'Icons and Images';

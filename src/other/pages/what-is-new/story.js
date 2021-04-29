@@ -96,6 +96,4 @@ export const WhatsNew = () => {
   return wrapper;
 };
 
-WhatsNew.story = {
-  name: "What's new",
-};
+WhatsNew.storyName = "What's new";

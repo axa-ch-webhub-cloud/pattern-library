@@ -10,6 +10,7 @@ import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
 import AXAIcon from './index';
 import readme from './README.md';
+import { Checkbox } from '../checkbox/story';
 
 export default {
   title: 'Components/Icon',
@@ -107,10 +108,8 @@ export const Icon = () => {
   return wrapper;
 };
 
-Icon.story = {
-  parameters: {
-    knobs: {
-      escapeHTML: false,
-    },
+Icon.parameters = {
+  knobs: {
+    escapeHTML: false,
   },
 };

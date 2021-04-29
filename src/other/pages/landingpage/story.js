@@ -82,6 +82,4 @@ export const ToPatternLibrary = () => {
   return wrapper;
 };
 
-ToPatternLibrary.story = {
-  name: 'to Pattern Library',
-};
+ToPatternLibrary.storyName = 'to Pattern Library';
