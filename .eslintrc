@@ -76,7 +76,8 @@
     "fixture": true,
     "test": true,
     "page": true,
-    "__VERSION_INFO__": true
+    "__VERSION_INFO__": true,
+    "__COLORS_SCSS_AS_STRING__": true
   },
   "parser": "babel-eslint",
   "parserOptions": {

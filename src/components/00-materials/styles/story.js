@@ -6,55 +6,7 @@ import '../../10-atoms/heading';
 import '../../10-atoms/text';
 import styles from '../story.scss';
 
-/*
- * Just copy & paste 00-colors.scss to const colors below
- */
-
-const colors = `
-// Colors as specified at
-// @link https://design.axa.com/web-guidelines/color
-
-/// Core AXA Colors
-$color-axa-blue: #00008f !default;
-$color-axa-red: #ff1721 !default;
-
-/// UI Design
-$color-burnt-sienna: #f07662 !default;
-$color-black: #000 !default;
-$color-dark-grey: #333 !default;
-$color-medium-grey: #5f5f5f !default;
-$color-grey: #7f7f7f !default;
-$color-light-grey: #999 !default;
-$color-silver: #ccc !default;
-$color-mercury: #e5e5e5 !default;
-$color-wild-sand: #f5f5f5 !default;
-$color-alabaster: #fafafa !default;
-$color-prim-white: #fff !default;
-
-/// Background and Illustration
-$color-deep-sapphire: #00005b !default;
-$color-azure: #3032c1 !default;
-$color-dark-indigo: #3b3fd8 !default;
-$color-ocean-blue: #4976ba !default;
-$color-teal: #027180 !default;
-$color-viridian-green: #668980 !default;
-$color-pacific: #00adc6 !default;
-$color-greyjoy: #9fbeaf !default;
-$color-aqua-green: #9fd9b4 !default;
-$color-flamingo: #ec4d33 !default;
-$color-tosca: #914146 !default;
-$color-azalea: #e196aa !default;
-$color-cotton-candy: #fad6de !default;
-$color-apache: #ddbe65 !default;
-$color-dune: #fcd385 !default;
-$color-acid: #f0ff93 !default;
-$color-logan: #9190ac !default;
-$color-igloo: #b5d0ee !default;
-
-/// Status-indicating Colors
-$color-malachite: #1cc54e !default;
-$color-shy-tomato: #c91432 !default;
-`;
+const colors = __COLORS_SCSS_AS_STRING__;
 
 export default {
   title: 'Brand Elements/Colors',
