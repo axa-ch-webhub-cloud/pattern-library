@@ -10,7 +10,6 @@ import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
 import AXAIcon from './index';
 import readme from './README.md';
-import { Checkbox } from '../checkbox/story';
 
 export default {
   title: 'Components/Icon',
