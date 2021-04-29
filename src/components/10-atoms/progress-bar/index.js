@@ -18,7 +18,7 @@ class AXAProgressBar extends LitElement {
   static get properties() {
     return {
       small: { type: Boolean, defaultValue: false },
-      fullWidth: { type: Boolean, defaultValue: false },
+      noBorderRadius: { type: Boolean, defaultValue: false },
       value: { type: Number },
       max: { type: Number },
       text: { type: String },
@@ -45,14 +45,14 @@ class AXAProgressBar extends LitElement {
   render() {
     const classesBorder = {
       'a-progress-bar__small': this.small,
-      'a-progress-bar__full-width': this.fullWidth,
+      'a-progress-bar__no-border-radius': this.noBorderRadius,
     };
 
     const classesLoader = {
       'a-progress-bar__small': this.small,
-      'a-progress-bar__full-width-loader': this.fullWidth,
-      'a-progress-bar__full-width-loader-max':
-        this.fullWidth && this.value >= 100,
+      'a-progress-bar__no-border-radius-loader': this.noBorderRadius,
+      'a-progress-bar__no-border-radius-loader-max':
+        this.noBorderRadius && this.value >= 100,
     };
 
     return html`
