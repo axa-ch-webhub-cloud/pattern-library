@@ -4,8 +4,8 @@ export interface AXAProgressBarProps {
   className?: string;
   small?: boolean;
   fullWidth?: boolean;
-  value?: string;
-  max?: string;
+  value?: number;
+  max?: number;
   text?: string;
 }
 

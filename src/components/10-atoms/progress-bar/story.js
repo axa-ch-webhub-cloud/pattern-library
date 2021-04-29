@@ -15,7 +15,6 @@ export default {
     changelog,
   },
 };
-
 export const ProgressBar = () => {
   const small = boolean('small', false);
   const fullWidth = boolean('fullWidth', false);

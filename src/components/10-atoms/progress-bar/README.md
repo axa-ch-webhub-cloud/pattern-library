@@ -1,35 +1,35 @@
 # Progress Bar
 
-A progress bar that can be used for when something is loading and when you can determind the progress.
+Deterministically displays the progress of an action/process
 
 ## Properties
 
 ### Variant
 
-| Attribute   | Details                                                                       |
-| ----------- | ----------------------------------------------------------------------------- |
-| `small`     | Smaller version of the progress bar (boolean, default: false)                 |
-| `fullWidth` | Removes the `border-radius`so it can fit to an edge (boolean, default: false) |
-| `value`     | Sets the value (or progress) of the loader.                                   |
-| `max`       | Sets the max value of the progress bar (default: 100).                        |
-| `text`      | Sets the text below the progress bar.                                         |
+| Attribute    | Details                                                                       |
+| ------------ | ----------------------------------------------------------------------------- |
+| `small`      | Smaller version of the progress bar (boolean, default: false)                 |
+| `full-width` | Removes the `border-radius`so it can fit to an edge (boolean, default: false) |
+| `value`      | Sets the value (or progress) of the loader.                                   |
+| `max`        | Sets the max value of the progress bar (default: 100).                        |
+| `text`       | Sets the text below the progress bar.                                         |
 
 ### small
 
 Smaller version of the progress bar (boolean, default: false)
 
-### fullWidth
+### full-width
 
-Removes the `border-radius`so it can fit to an edge (boolean, default: false)
+Removes the `border-radius`so it can fit edge to edge (boolean, default: false)
 
 ### value
 
-Sets the value (or progress) of the loader. The `value` can not get over 100
+Sets the value (or progress) of the loader. `value` can not surpass the value of `max`.
 
 ### max
 
-Sets the max value of the progress bar. If `max` is not set, the _default value is 100_.
+Sets the max value of the progress bar. _default: 100_.
 
 ### text
 
-Sets the text below the progress bar. This `text` is optional and it will not get displayed if empty
+Sets the text below the progress bar. Leave empty if no text is required.

@@ -4,17 +4,17 @@
   background-color: $color-ocean-blue;
   height: 12px;
 
-  &--small {
+  &__small {
     height: 8px;
   }
 
-  &--border {
+  &__border {
     width: 100%;
     border-radius: 10px;
     background-color: $color-mercury;
   }
 
-  &--full-width {
+  &__full-width {
     border-radius: 0px;
 
     &-loader {
@@ -26,11 +26,11 @@
     }
   }
 
-  &--label {
+  &__label {
     display: flex;
     justify-content: center;
 
-    &-disabled {
+    &-hide {
       display: none;
     }
   }

@@ -19,8 +19,8 @@ class AXAProgressBar extends LitElement {
     return {
       small: { type: Boolean, defaultValue: false },
       fullWidth: { type: Boolean, defaultValue: false },
-      value: { type: String },
-      max: { type: String },
+      value: { type: Number },
+      max: { type: Number },
       text: { type: String },
     };
   }
@@ -31,44 +31,36 @@ class AXAProgressBar extends LitElement {
   }
 
   calculatePercantage() {
-    //checks if the max value is empty or if its not a number
-    if (this.max != '') {
-      //makes sure that the value is not bigger than the max value
-      if (Number(this.value) > Number(this.max)) {
+    debugger;
+    if (this.max !== 0) {
+      if (this.value > this.max) {
         return 100;
       } else {
-        //calculates the percantage
         return (this.value / this.max) * 100;
       }
-      //checks if the value is blank (not defined)
-    } else if (this.value === '') {
-      return 0;
+    } else if (this.value > 100) {
+      return 100;
     } else {
-      //checks if the value is over 100 when there is no max value
-      if (Number(this.value) > 100) {
-        return 100;
-      } else {
-        return this.value;
-      }
+      return this.value;
     }
   }
 
   render() {
     const classesBorder = {
-      'a-progress-bar--small': this.small,
-      'a-progress-bar--full-width': this.fullWidth,
+      'a-progress-bar__small': this.small,
+      'a-progress-bar__full-width': this.fullWidth,
     };
 
     const classesLoader = {
-      'a-progress-bar--small': this.small,
-      'a-progress-bar--full-width-loader': this.fullWidth,
-      'a-progress-bar--full-width-loader-max':
+      'a-progress-bar__small': this.small,
+      'a-progress-bar__full-width-loader': this.fullWidth,
+      'a-progress-bar__full-width-loader-max':
         this.fullWidth && this.value >= 100,
     };
 
     return html`
       <article>
-        <div class="a-progress-bar--border ${classMap(classesBorder)}">
+        <div class="a-progress-bar__border ${classMap(classesBorder)}">
           <div
             class="a-progress-bar ${classMap(classesLoader)}"
             style="width: ${this.calculatePercantage()}%"
@@ -76,10 +68,10 @@ class AXAProgressBar extends LitElement {
         </div>
         <div
           class="${this.text === ''
-            ? 'a-progress-bar--label-disabled'
-            : 'a-progress-bar--label'}"
+            ? 'a-progress-bar__label-hide'
+            : 'a-progress-bar__label'}"
         >
-          <axa-text variant="${this.small === true ? 'size-3' : 'size-2'}"
+          <axa-text variant="${this.small ? 'size-3' : 'size-2'}"
             >${this.text}</axa-text
           >
         </div>
