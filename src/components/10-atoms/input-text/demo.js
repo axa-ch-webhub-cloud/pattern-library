@@ -8,7 +8,7 @@ import readme from './README.md';
 storiesOf('Examples/Input text/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('In a form', () => {

@@ -11,7 +11,7 @@ const storyTextarea = storiesOf('Examples/Textarea/React', module);
 storyTextarea.addDecorator(withKnobs);
 storyTextarea.addParameters({
   readme,
-  usage: { disabled: true },
+  usage: { disable: true },
   changelog,
 });
 

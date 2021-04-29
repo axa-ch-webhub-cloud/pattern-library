@@ -7,7 +7,7 @@ import readme from './README.md';
 storiesOf('Examples/Button Link/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add(

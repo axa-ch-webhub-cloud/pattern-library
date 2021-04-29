@@ -18,7 +18,7 @@ storiesOf('Examples/Top Content Bar/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   /* Default */

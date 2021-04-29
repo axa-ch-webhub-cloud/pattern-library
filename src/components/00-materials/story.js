@@ -61,7 +61,7 @@ export default {
   parameters: {
     readme,
     changelog,
-    a11y: { disabled: true },
+    a11y: { disable: true },
     options: { showPanel: true },
     layout: 'fullscreen',
   },

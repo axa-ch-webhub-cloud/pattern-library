@@ -18,7 +18,7 @@ storiesOf('Examples/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Story', () => {

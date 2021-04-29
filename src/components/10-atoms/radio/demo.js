@@ -10,7 +10,7 @@ import readme from './README.md';
 storiesOf('Examples/Radio/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Default', () => {

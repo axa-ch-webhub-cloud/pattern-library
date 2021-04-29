@@ -9,7 +9,7 @@ import DemoContUncontTextarea from './DemoContUncontTextarea';
 storiesOf('Examples/Textarea/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   /* Default */

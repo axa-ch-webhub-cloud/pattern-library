@@ -10,7 +10,7 @@ storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Dynamic (Story is invisible after click on ok button)', () => {

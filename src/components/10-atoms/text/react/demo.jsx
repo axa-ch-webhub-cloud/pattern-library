@@ -10,9 +10,9 @@ import DemoTextReactVersioned from './DemoTextReactVersioned';
 storiesOf('Examples/Text/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
-    knobs: { disabled: true },
+    knobs: { disable: true },
   })
   /* Default */
   .add('Dynamic children under React', () => {

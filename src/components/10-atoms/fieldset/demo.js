@@ -8,7 +8,7 @@ import readme from './README.md';
 storiesOf('Examples/Fieldset/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Responsive stretch', () => {
