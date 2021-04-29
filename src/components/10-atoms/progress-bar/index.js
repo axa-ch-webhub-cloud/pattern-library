@@ -31,18 +31,15 @@ class AXAProgressBar extends LitElement {
   }
 
   calculatePercantage() {
-    debugger;
     if (this.max !== 0) {
       if (this.value > this.max) {
         return 100;
-      } else {
-        return (this.value / this.max) * 100;
       }
+      return (this.value / this.max) * 100;
     } else if (this.value > 100) {
       return 100;
-    } else {
-      return this.value;
     }
+    return this.value;
   }
 
   render() {
