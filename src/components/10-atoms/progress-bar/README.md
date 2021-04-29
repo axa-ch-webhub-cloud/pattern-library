@@ -1,6 +1,6 @@
 # Progress Bar
 
-Deterministically displays the progress of an action/process
+Deterministically displays the progress of an action/process.
 
 ## Properties
 

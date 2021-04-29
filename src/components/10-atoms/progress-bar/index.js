@@ -59,7 +59,7 @@ class AXAProgressBar extends LitElement {
       <article>
         <div class="a-progress-bar__border ${classMap(classesBorder)}">
           <div
-            class="a-progress-bar ${classMap(classesLoader)}"
+            class="a-progress-bar__progress-bar ${classMap(classesLoader)}"
             style="width: ${this.calculatePercantage()}%"
           ></div>
         </div>

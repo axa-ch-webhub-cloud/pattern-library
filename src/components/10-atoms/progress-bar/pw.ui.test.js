@@ -16,7 +16,7 @@ describe('Progress Bar', () => {
   it('should write text correctly', async () => {
     await openProgressBar();
 
-    expect(await page.textContent('axa-text > p')).toBe('hi I am a text');
+    expect(await page.textContent('axa-text')).toBe('hi I am a text');
   });
 
   it('should calculate the percantage correctly', async () => {
@@ -25,9 +25,7 @@ describe('Progress Bar', () => {
     );
     await page.waitForSelector(tag);
 
-    const progressBar = await page.$(
-      'article > div.a-progress-bar__border > div'
-    );
+    const progressBar = await page.$('.a-progress-bar__progress-bar');
     expect(await progressBar.getAttribute('style')).toBe('width: 20%');
   });
 
@@ -35,7 +33,7 @@ describe('Progress Bar', () => {
     await openProgressBar();
 
     const borderRadius = await page.$eval(
-      'article > div.a-progress-bar__border',
+      '.a-progress-bar__border',
       el => window.getComputedStyle(el).borderRadius
     );
 

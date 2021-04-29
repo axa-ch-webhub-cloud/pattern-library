@@ -1,17 +1,20 @@
 .a-progress-bar {
   display: block;
-  border-radius: 10px;
-  background-color: $color-ocean-blue;
-  height: 12px;
-
-  &__small {
-    height: 8px;
+  
+  &__progress-bar {
+    border-radius: 10px;
+    background-color: $color-ocean-blue;
+    height: 12px;
   }
 
   &__border {
     width: 100%;
     border-radius: 10px;
     background-color: $color-mercury;
+  }
+
+  &__small {
+    height: 8px;
   }
 
   &__full-width {
@@ -29,6 +32,7 @@
   &__label {
     display: flex;
     justify-content: center;
+    margin-top: 12px;
 
     &-hide {
       display: none;
