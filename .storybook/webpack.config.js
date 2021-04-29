@@ -41,7 +41,9 @@ module.exports = ({ config }) => {
         {
           loader: 'postcss-loader',
           options: {
-            plugins: () => [autoprefixer({ grid: 'autoplace' })]
+            'postcssOptions': {
+              plugins: () => [autoprefixer({ grid: 'autoplace' })]
+            }
           },
         },
         {
