@@ -17,6 +17,28 @@ A component used for uploading files in forms.
 - All images are compressed and .png are converted to .jpeg.
 - There will be a thumbnail for all images selected. For other types (for now only .pdf) an icon will represent the file.
 
+## Request uploaded files:
+
+```js
+const { files } = document.querySelector('axa-file-upload');
+
+if (files.length > 0) {
+  files.map(file => {
+    const reader = new FileReader();
+
+    reader.onload = file => {
+      // success
+    };
+
+    reader.onerror = evt => {
+      // error
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+```
+
 ## Properties
 
 ### Variant
