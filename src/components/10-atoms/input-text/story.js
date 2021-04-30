@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'input-text',
       propsReact: 'onChange={handleChange}',
     },
     changelog,

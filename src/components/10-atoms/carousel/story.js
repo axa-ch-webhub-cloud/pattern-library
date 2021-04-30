@@ -12,7 +12,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'carousel',
       propsPureHTML: 'keysenabled=""',
       propsReact: 'keysenabled',
     },

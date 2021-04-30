@@ -12,7 +12,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'cookie-disclaimer',
       propsReact: 'title="Any Title"',
     },
     changelog,

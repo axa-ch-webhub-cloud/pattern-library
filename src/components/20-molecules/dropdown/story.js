@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'dropdown',
       propsPureHTML: `items='[{"name": "Item A", "value": "Item 1" }]'`,
       propsReact: `items={[{ name: 'Item 1', value: 'Item 1' }]}`,
     },

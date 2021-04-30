@@ -12,7 +12,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'heading',
       innerHTML: 'H1 Heading',
       propsPureHTML: 'rank="1"',
       propsReact: 'rank="1"',
