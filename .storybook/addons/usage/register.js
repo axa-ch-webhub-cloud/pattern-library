@@ -1,5 +1,5 @@
 import { addons, types } from '@storybook/addons';
-import { useParameter } from '@storybook/api';
+import { useParameter, useStorybookState } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
 import 'github-markdown-css/github-markdown.css';
 import React from 'react';
@@ -7,59 +7,25 @@ import React from 'react';
 const ADDON_ID = 'axa-ch/usage';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
-const formatComponentName = componentName => {
-  if (componentName === undefined) {
-    return {};
-  }
-
-  const pureHTML = componentName.toLowerCase();
-  const formatReactTag = componentName => {
-    let result = componentName.substring(0, 1).toUpperCase();
-
-    for (let index = 1; index < componentName.length; index++) {
-      const char = componentName.charAt(index);
-
-      if (char === '-') {
-        index++;
-        result = result + componentName.charAt(index).toUpperCase();
-      } else {
-        result = result + char;
-      }
-    }
-
-    return result;
-  };
-
-  return {
-    PURE_HTML_TAG: pureHTML,
-    REACT_TAG: formatReactTag(pureHTML),
-  };
-};
-
-const beginsWithVowel = (componentName = '') => {
-  const vowels = ['a', 'e', 'i', 'o', 'u'];
-  const firstLetter = componentName.substr(0, 1);
-  let beginsWithVowel = false;
-
-  for (let index = 0; index < vowels.length; index++) {
-    if (firstLetter === vowels[index]) {
-      beginsWithVowel = true;
-      break;
-    }
-  }
-
-  return beginsWithVowel;
+const formatComponentNameReact = (componentName) => componentName && componentName.replace(/\s/g, '');
+const formatComponentNameHtml = (componentName) => {
+  return componentName && formatComponentNameReact(componentName)
+    .replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`) // uppercase to lowercase and add "-"
+    .replace(/^-/, ''); // remove the "-" from the beginning of string
 };
 
 const MyPanel = () => {
   const param = useParameter('usage', {});
+  const {storyId, storiesHash} = useStorybookState();
+  const componentName = storiesHash[storyId]?.name; // "name" is the const at story.js, f.a. "export const CommercialHeroBanner"
 
-  const { PURE_HTML_TAG, REACT_TAG } = formatComponentName(param.componentName);
+  const PURE_HTML_TAG = formatComponentNameHtml(componentName);
+  const REACT_TAG = formatComponentNameReact(componentName);
   const { innerHTML, propsPureHTML, propsReact, usageReact } = param;
 
   return (
     <div className="markdown-body" style={{ margin: '15px' }}>
-      <h2 id="usage">Usage</h2>
+      <h2 id="usage">{componentName}</h2>
       <p>
         <strong>Important:</strong> If this component needs to run in Internet
         Explorer 11,{' '}
@@ -126,8 +92,7 @@ const MyPanel = () => {
       )}
       <h3 id="pure-html-pages">Pure HTML pages</h3>
       <p>
-        Import the {PURE_HTML_TAG}-defining script and use{' '}
-        {beginsWithVowel(PURE_HTML_TAG) ? 'an' : 'a'} {PURE_HTML_TAG} like this:
+        Import the {PURE_HTML_TAG}-defining script and use it like this:
       </p>
       <pre>
         <code className="language-html">
@@ -170,6 +135,7 @@ const MyPanel = () => {
 
 addons.register(ADDON_ID, () => {
   const render = ({ active, key }) => (
+
     <AddonPanel active={active} key={key}>
       <MyPanel />
     </AddonPanel>
