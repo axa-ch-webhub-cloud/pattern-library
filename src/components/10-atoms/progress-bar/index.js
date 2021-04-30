@@ -18,7 +18,7 @@ class AXAProgressBar extends LitElement {
   static get properties() {
     return {
       small: { type: Boolean, defaultValue: false },
-      noBorderRadius: { type: Boolean, defaultValue: false },
+      noBorderRadius: { type: Boolean },
       value: { type: Number },
       max: { type: Number },
       text: { type: String },

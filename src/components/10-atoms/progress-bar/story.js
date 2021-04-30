@@ -26,7 +26,7 @@ export const ProgressBar = () => {
   const template = html`
     <axa-progress-bar
       ?small=${small}
-      ?noBorderRadius=${noBorderRadius}
+      ?noborderradius=${noBorderRadius}
       value=${value}
       max=${max}
       text=${progressText}
