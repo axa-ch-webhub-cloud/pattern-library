@@ -11,7 +11,7 @@ import AXATextReact from './AXATextReact';
 storiesOf('Examples/Checkbox/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .addDecorator(withKnobs)

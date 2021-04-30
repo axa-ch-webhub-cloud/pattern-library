@@ -12,7 +12,7 @@ import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 storiesOf('Examples/Dropdown/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Focussable', () => {

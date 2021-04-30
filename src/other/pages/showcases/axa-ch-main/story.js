@@ -12,10 +12,10 @@ export default {
   title: 'Pages/AXA',
   decorators: [withKnobs],
   parameters: {
-    readme: { disabled: true },
-    usage: { disabled: true },
-    changelog: { disabled: true },
-    a11y: { disabled: true },
+    readme: { disable: true },
+    usage: { disable: true },
+    changelog: { disable: true },
+    a11y: { disable: true },
   },
 };
 

@@ -9,7 +9,7 @@ import DemoButtonClick from './DemoButtonLinkClick';
 storiesOf('Examples/Button Link/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Clickable', () => {

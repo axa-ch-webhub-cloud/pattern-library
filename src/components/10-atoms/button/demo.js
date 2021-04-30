@@ -8,9 +8,9 @@ import readme from './README.md';
 storiesOf('Examples/Button/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
-    knobs: { disabled: true },
+    knobs: { disable: true },
   })
   .add(
     'Icon visible',

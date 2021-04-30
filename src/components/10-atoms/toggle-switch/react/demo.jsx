@@ -12,7 +12,7 @@ import ControlledWithConstantActiveProperty from './ControlledWithConstantActive
 storiesOf('Examples/Toggle Switch/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Controlled without onChange', () => {

@@ -19,7 +19,7 @@ storiesOf('Examples/Input File/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Story', () => {

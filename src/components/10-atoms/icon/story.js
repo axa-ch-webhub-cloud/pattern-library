@@ -107,10 +107,8 @@ export const Icon = () => {
   return wrapper;
 };
 
-Icon.story = {
-  parameters: {
-    knobs: {
-      escapeHTML: false,
-    },
+Icon.parameters = {
+  knobs: {
+    escapeHTML: false,
   },
 };

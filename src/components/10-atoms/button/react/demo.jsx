@@ -10,7 +10,7 @@ import DemoButtonForm from './DemoButtonForm';
 storiesOf('Examples/Button/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Clickable', () => {

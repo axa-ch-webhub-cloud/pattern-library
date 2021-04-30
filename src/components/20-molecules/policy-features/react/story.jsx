@@ -18,7 +18,7 @@ story.addDecorator(withKnobs);
 story
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   /* Default */

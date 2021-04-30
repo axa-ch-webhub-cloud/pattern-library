@@ -10,7 +10,7 @@ import DemoLinkInsideText from './DemoLinkInsideText';
 storiesOf('Examples/Link/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Variable icons', () => {

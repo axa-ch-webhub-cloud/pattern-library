@@ -10,7 +10,7 @@ import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 storiesOf('Examples/Input Text/React', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   /* Default */

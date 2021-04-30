@@ -8,7 +8,7 @@ import readme from './README.md';
 storiesOf('Examples/Datepicker/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('In a form', () => {

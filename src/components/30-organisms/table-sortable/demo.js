@@ -68,7 +68,7 @@ const model = {
 storiesOf('Examples/Table Sortable/Pure HTML', module)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('On row click', () => {

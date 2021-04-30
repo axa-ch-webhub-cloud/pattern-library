@@ -31,11 +31,11 @@ export default {
   title: 'Welcome',
   decorators: [],
   parameters: {
-    knobs: { disabled: true },
-    readme: { disabled: true },
-    usage: { disabled: true },
-    changelog: { disabled: true },
-    a11y: { disabled: true },
+    knobs: { disable: true },
+    readme: { disable: true },
+    usage: { disable: true },
+    changelog: { disable: true },
+    a11y: { disable: true },
     options: { showPanel: false },
     layout: 'fullscreen',
   },
@@ -96,6 +96,4 @@ export const WhatsNew = () => {
   return wrapper;
 };
 
-WhatsNew.story = {
-  name: "What's new",
-};
+WhatsNew.storyName = "What's new";

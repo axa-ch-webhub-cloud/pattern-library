@@ -8,11 +8,11 @@ export default {
   title: 'Welcome',
   decorators: [],
   parameters: {
-    knobs: { disabled: true },
-    readme: { disabled: true },
-    usage: { disabled: true },
-    changelog: { disabled: true },
-    a11y: { disabled: true },
+    knobs: { disable: true },
+    readme: { disable: true },
+    usage: { disable: true },
+    changelog: { disable: true },
+    a11y: { disable: true },
     options: { showPanel: false },
     layout: 'fullscreen',
   },
@@ -82,6 +82,4 @@ export const ToPatternLibrary = () => {
   return wrapper;
 };
 
-ToPatternLibrary.story = {
-  name: 'to Pattern Library',
-};
+ToPatternLibrary.storyName = 'to Pattern Library';

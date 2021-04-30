@@ -9,7 +9,7 @@ storiesOf('Examples/Footer/Pure HTML', module)
   .addDecorator(withNoBorder)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
 

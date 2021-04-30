@@ -12,7 +12,7 @@ story.addDecorator(withKnobs);
 story.addDecorator(withNoBorder);
 story.addParameters({
   readme,
-  usage: { disabled: true },
+  usage: { disable: true },
   changelog,
 });
 

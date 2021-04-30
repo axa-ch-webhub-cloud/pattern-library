@@ -13,7 +13,7 @@ storiesOf('Examples/Footer Small/React', module)
   .addDecorator(withKnobs)
   .addParameters({
     readme,
-    usage: { disabled: true },
+    usage: { disable: true },
     changelog,
   })
   .add('Callbacks on language', () => {
