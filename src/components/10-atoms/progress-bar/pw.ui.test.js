@@ -25,7 +25,7 @@ describe('Progress Bar', () => {
     );
     await page.waitForSelector(tag);
 
-    const progressBar = await page.$('.a-progress-bar__progress-bar');
+    const progressBar = await page.$('.a-progress-bar__loader');
     expect(await progressBar.getAttribute('style')).toBe('width: 20%');
   });
 
