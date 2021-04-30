@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+.a-progress-bar {
+  display: block;
+  
+  &__loader {
+    border-radius: 10px;
+    background-color: $color-ocean-blue;
+    height: 12px;
+
+    &--no-border-radius {
+      border-radius: 0px 10px 10px 0px;
+
+      &-max {
+        border-radius: 0px;
+      } 
+    }
+  }
+
+  &__border {
+    width: 100%;
+    border-radius: 10px;
+    background-color: $color-mercury;
+
+    &--no-border-radius {
+      border-radius: 0px;
+    }
+  }
+
+  &__small {
+    height: 8px;
+  }
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+
+    &--hidden {
+      display: none;
+    }
+  }
+}
