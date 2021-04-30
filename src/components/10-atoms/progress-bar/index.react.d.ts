@@ -3,7 +3,7 @@ import React from 'react';
 export interface AXAProgressBarProps {
   className?: string;
   small?: boolean;
-  fullWidth?: boolean;
+  noBorderRadius?: boolean;
   value?: number;
   max?: number;
   text?: string;

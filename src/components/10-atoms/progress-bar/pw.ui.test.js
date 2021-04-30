@@ -29,7 +29,7 @@ describe('Progress Bar', () => {
     expect(await progressBar.getAttribute('style')).toBe('width: 20%');
   });
 
-  it('should check if full width is activated', async () => {
+  it('should check if bar has no border radius', async () => {
     await openProgressBar();
 
     const borderRadius = await page.$eval(

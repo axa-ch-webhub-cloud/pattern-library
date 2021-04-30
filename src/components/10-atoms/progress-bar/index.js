@@ -45,14 +45,14 @@ class AXAProgressBar extends LitElement {
   render() {
     const classesBorder = {
       'a-progress-bar__small': this.small,
-      'a-progress-bar__no-border-radius': this.noBorderRadius,
+      'a-progress-bar__border--no-border-radius': this.noBorderRadius,
     };
 
     const classesLoader = {
       'a-progress-bar__small': this.small,
-      'a-progress-bar__no-border-radius-loader': this.noBorderRadius,
-      'a-progress-bar__no-border-radius-loader-max':
-        this.noBorderRadius && this.value >= 100,
+      'a-progress-bar__loader--no-border-radius': this.noBorderRadius,
+      'a-progress-bar__loader--no-border-radius-max':
+        this.noBorderRadius && this.value >= (this.max === 0 ? 100 : this.max),
     };
 
     return html`
@@ -65,7 +65,7 @@ class AXAProgressBar extends LitElement {
         </div>
         <div
           class="${this.text === ''
-            ? 'a-progress-bar__label-hide'
+            ? 'a-progress-bar__label--hidden'
             : 'a-progress-bar__label'}"
         >
           <axa-text variant="${this.small ? 'size-3' : 'size-2'}"

@@ -21,24 +21,25 @@
     height: 8px;
   }
 
-  &__no-border-radius {
+  &__border--no-border-radius {
     border-radius: 0px;
-
-    &-loader {
-      border-radius: 0px 10px 10px 0px;
-
-      &-max {
-        border-radius: 0px;
-      }
-    }
   }
+
+  &__loader--no-border-radius {
+    border-radius: 0px 10px 10px 0px;
+
+    &-max {
+      border-radius: 0px;
+    } 
+  }
+  
 
   &__label {
     display: flex;
     justify-content: center;
     margin-top: 12px;
 
-    &-hide {
+    &--hidden {
       display: none;
     }
   }
