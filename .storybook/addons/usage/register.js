@@ -135,7 +135,6 @@ const MyPanel = () => {
 
 addons.register(ADDON_ID, () => {
   const render = ({ active, key }) => (
-
     <AddonPanel active={active} key={key}>
       <MyPanel />
     </AddonPanel>
