@@ -11,7 +11,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'toggle-switch',
       propsReact: 'onChange={handler}',
     },
     changelog,

@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'textarea',
       propsReact: 'onChange={handleChange}',
     },
     changelog,

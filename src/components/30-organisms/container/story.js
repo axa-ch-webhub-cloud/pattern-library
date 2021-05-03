@@ -11,7 +11,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'container',
       innerHTML: '...children',
     },
     changelog,

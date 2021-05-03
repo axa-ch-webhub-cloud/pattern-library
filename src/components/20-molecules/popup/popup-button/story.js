@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'popup',
       propsReact: 'onClick={handler}',
     },
     changelog,

@@ -11,7 +11,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'footer-small',
       innerHTML: '...children',
     },
     changelog,

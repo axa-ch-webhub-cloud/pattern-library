@@ -10,7 +10,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'fieldset',
       innerHTML: '...children',
       propsPureHTML: 'horizontal',
       propsReact: 'horizontal',

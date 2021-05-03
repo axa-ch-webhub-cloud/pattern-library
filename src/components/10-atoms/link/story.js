@@ -36,7 +36,6 @@ export default {
   parameters: {
     readme,
     usage: {
-      componentName: 'link',
       innerHTML: 'I am a link',
       propsPureHTML: 'href="https://axa.ch/en/private-customers.html"',
       propsReact: 'href="https://axa.ch/en/private-customers.html"',
