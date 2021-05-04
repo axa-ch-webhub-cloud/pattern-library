@@ -22,7 +22,7 @@ class AXAModal extends LitElement {
     return {
       open: { type: Boolean },
       forced: { type: Boolean },
-z       small: { type: Boolean },
+      small: { type: Boolean },
     };
   }
 
@@ -40,30 +40,32 @@ z       small: { type: Boolean },
 
     const contentClasses = {
       'o-modal__content--large': !this.small,
-      'o-modal__content--small': this.small,
+      'o-modal__container--small': this.small,
       'o-modal__content--forced': this.forced,
       'o-modal__content--forced-small': this.small && this.forced,
     };
     return html`
       <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
-        ${!this.forced
-          ? html`
-              <div
-                class="o-modal__upper-close-container ${classMap(
-                  upperCloseContainerClasses
-                )}"
-              >
-                <button
-                  class="o-modal__upper-close-container-button"
-                  @click="${this.closeModal}"
+        <div class="o-modal__container">
+          ${!this.forced
+            ? html`
+                <div
+                  class="o-modal__upper-close-container ${classMap(
+                    upperCloseContainerClasses
+                  )}"
                 >
-                  ${svg([closeIcon])}
-                </button>
-              </div>
-            `
-          : ''}
-        <div class="o-modal__content ${classMap(contentClasses)}">
-          <slot></slot>
+                  <button
+                    class="o-modal__upper-close-container-button"
+                    @click="${this.closeModal}"
+                  >
+                    ${svg([closeIcon])}
+                  </button>
+                </div>
+              `
+            : ''}
+          <div class="o-modal__content ${classMap(contentClasses)}">
+            <slot></slot>
+          </div>
         </div>
       </article>
     `;

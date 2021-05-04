@@ -24,6 +24,20 @@
     }
   }
 
+  &__container {
+    @include breakpoint($mediaquery-xs-up) {
+      max-width: 780px;
+      margin: 0;
+    }
+
+    &--small {
+      @include breakpoint($mediaquery-xs-up) {
+        max-width: 500px;
+        margin: 0;
+      }
+    }
+  }
+
   &__upper-close-container {
     display: flex;
     z-index: 1;
@@ -35,18 +49,6 @@
 
     &--forced {
       display: none;
-    }
-
-    @include breakpoint($mediaquery-xs-up) {
-      max-width: 780px;
-      margin: 0;
-    }
-
-    &--small {
-      @include breakpoint($mediaquery-xs-up) {
-        max-width: 500px;
-        margin: 0;
-      }
     }
 
     &-button {
@@ -69,7 +71,6 @@
   }
 
   &__content {
-    position: relative;
     overflow: auto;
     padding: 0 28px 28px;
     margin: 0 10px 10px;
@@ -80,10 +81,6 @@
       max-height: 70%;
       max-width: 780px;
     } 
-
-    &--small {
-      max-width: 500px;
-    }
 
     &--forced {
       border-radius: 8px;
