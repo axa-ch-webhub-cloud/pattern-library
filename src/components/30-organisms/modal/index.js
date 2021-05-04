@@ -22,6 +22,7 @@ class AXAModal extends LitElement {
     return {
       open: { type: Boolean },
       forced: { type: Boolean },
+z       small: { type: Boolean },
     };
   }
 
@@ -31,14 +32,27 @@ class AXAModal extends LitElement {
   }
 
   render() {
-    const classes = {
-      'o-modal--open': this.open,
+    const upperCloseContainerClasses = {
+      'o-modal__upper-close-container--large': !this.small,
+      'o-modal__upper-close-container--small': this.small,
+      'o-modal__upper-close-container--forced': this.forced,
+    };
+
+    const contentClasses = {
+      'o-modal__content--large': !this.small,
+      'o-modal__content--small': this.small,
+      'o-modal__content--forced': this.forced,
+      'o-modal__content--forced-small': this.small && this.forced,
     };
     return html`
-      <article class="o-modal ${classMap(classes)}">
+      <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
         ${!this.forced
           ? html`
-              <div class="o-modal__upper-close-container">
+              <div
+                class="o-modal__upper-close-container ${classMap(
+                  upperCloseContainerClasses
+                )}"
+              >
                 <button
                   class="o-modal__upper-close-container-button"
                   @click="${this.closeModal}"
@@ -48,11 +62,7 @@ class AXAModal extends LitElement {
               </div>
             `
           : ''}
-        <div
-          class="o-modal__content ${this.forced
-            ? 'o-modal__content--forced'
-            : ''}"
-        >
+        <div class="o-modal__content ${classMap(contentClasses)}">
           <slot></slot>
         </div>
       </article>

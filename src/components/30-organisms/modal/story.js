@@ -19,40 +19,46 @@ export default {
 export const Modal = () => {
   const open = boolean('open', true);
   const forced = boolean('forced', false);
+  const small = boolean('small', false);
 
   const wrapper = document.createElement('div');
 
-  setTimeout(() =>
-    document.querySelector('axa-button').addEventListener('click', () => {
-      document.querySelector('axa-modal').removeAttribute('open');
-    })
-  );
+  setTimeout(() => {
+    // document.querySelector('axa-button').addEventListener('click', () => {
+    //   document.querySelector('axa-modal').removeAttribute('open');
+    // });
+  });
 
   const template = html`
     <style>
-      .modal-story__close-modal-child-button {
+      s .modal-story__close-modal-child-button {
         margin-top: 20px;
       }
     </style>
-    <axa-modal ?open="${open}" ?forced="${forced}">
+    <axa-modal ?open="${open}" ?forced="${forced}" ?small="${small}">
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial
         consequences of personal injury and property damage caused by the
         company to others. others.
       </axa-text>
-      <axa-heading rank="3">Damage example</axa-heading>
-      <axa-text>
-        An aerosol can sold by the insured company explodes on the customer's
-        customer and injures him.
-      </axa-text>
-      <axa-heading rank="3">For who is this insurance suitable?</axa-heading>
-      <axa-text>
-        For all companies, as claims for damages can often threaten the
-        existence of a company. can be threatening to the company's existence.
-      </axa-text>
+    </axa-modal>
 
-      <axa-text>
+    <button
+      type="button"
+      class="js-modal-story__button"
+      onClick="document.getElementsByTagName('axa-modal')[0].setAttribute('open', '');"
+    >
+      Open modal
+    </button>
+  `;
+
+  render(template, wrapper);
+  return wrapper;
+};
+
+{
+  /* <axa-text>
         Many people train their body. But who also trains their brain? "The
         brain needs to be trained just as much as the body," says Professor
         Siegfried Lehrl of the University of Erlangen-Nuremberg. Because
@@ -68,21 +74,5 @@ export const Modal = () => {
         everyday life. One example is hospital patients: After just a few days
         days, their intelligence quotient begins to decline. After three weeks
         hospitalization, it can already be 20% lower than usual.
-      </axa-text>
-      <axa-button class="modal-story__close-modal-child-button">
-        I accept the terms and conditions
-      </axa-button>
-    </axa-modal>
-
-    <button
-      type="button"
-      class="js-modal-story__button"
-      onClick="document.getElementsByTagName('axa-modal')[0].setAttribute('open', '');"
-    >
-      Open modal
-    </button>
-  `;
-
-  render(template, wrapper);
-  return wrapper;
-};
+      </axa-text> */
+}
