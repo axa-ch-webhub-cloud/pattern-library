@@ -40,9 +40,9 @@
 
   &__upper-close-container {
     display: flex;
-    z-index: 1;
+    position: relative;
     margin: 10px 10px 0;
-    box-shadow: 0 1px 10px 0px rgba($color-black, 0.15);
+    box-shadow: 0 1px 10px 0px rgba($color-black, 0.15) !important;
     justify-content: flex-end;
     border-radius: 8px 8px 0 0;
     background-color: $color-prim-white;
