@@ -32,7 +32,7 @@
     outline: 0;
   }
 
-  &[aria-disabled="true"] {
+  &[aria-disabled='true'] {
     color: $color-light-grey;
     background-color: $color-mercury;
     border-color: $color-mercury;
@@ -96,7 +96,7 @@
     // zero width is considered hidden
     width: 0.001px;
     height: 100vw;
-    content: "";
+    content: '';
 
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transition: width $button__motion-duration $button__motion-easing 0s;

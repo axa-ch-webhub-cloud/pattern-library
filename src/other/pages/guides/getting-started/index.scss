@@ -9,52 +9,51 @@
 @include accessory-story-wrapper;
 
 .getting-started__subtitle {
-    @include text(t4, semibold);
-    text-transform: uppercase;
-    margin-bottom: -20px;
-    margin-top: 2.5rem;
+  @include text(t4, semibold);
+  text-transform: uppercase;
+  margin-bottom: -20px;
+  margin-top: 2.5rem;
 }
 
 .getting-started__last-text {
-    @include last-text();
+  @include last-text();
 }
 
 .getting-started__header {
-    margin-top: 18px;
+  margin-top: 18px;
 }
 
 .getting-started__dependency-wrapper {
-    @include text(t2);
+  @include text(t2);
 }
 
 .getting-started__dependency {
-    background-color: #fef4f7;
-    box-shadow: 0 0 0 1px #f3a0bb;
-    color: #a71545;
-    border-radius: 2px;
-    font-size: 90%;
-    font-weight: 500;
-    padding: 2px 4px;
+  background-color: #fef4f7;
+  box-shadow: 0 0 0 1px #f3a0bb;
+  color: #a71545;
+  border-radius: 2px;
+  font-size: 90%;
+  font-weight: 500;
+  padding: 2px 4px;
 }
 
 .getting-started__text {
-    @include text(t2);
+  @include text(t2);
 }
 
 .getting-started__text--important {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-
 .getting-started__text--bold {
-    @include text(t2, bold);
+  @include text(t2, bold);
 }
 
 .getting-started__callout-first {
-    display: block;
-    margin-top: 2rem;
+  display: block;
+  margin-top: 2rem;
 }
 
 pre {
-    margin: 3rem 0;
+  margin: 3rem 0;
 }

@@ -10,16 +10,14 @@
     // Find which is number
     @if type-of(nth($resolution, 1)) == 'number' {
       $value: nth($resolution, 1);
-    }
-    @else {
+    } @else {
       $value: nth($resolution, 2);
     }
 
     // Determine min/max/standard
     @if index($resolution, 'min-resolution') {
       $feature: 'min-';
-    }
-    @else if index($resolution, 'max-resolution') {
+    } @else if index($resolution, 'max-resolution') {
       $feature: 'max-';
     }
 
@@ -40,8 +38,7 @@
       $output: append($output, $standard, space);
       $output: append($output, $webkit, space);
       $output: append($output, $moz, space);
-    }
-    @else {
+    } @else {
       $webkit: '';
       $moz: '';
       $webkit: '(-webkit-#{$feature}device-pixel-ratio: #{$value / 1dppx})';
@@ -53,7 +50,6 @@
       $output: append($output, $moz, space);
       $output: append($output, $fallback, space);
     }
-
   }
 
   @return $output;

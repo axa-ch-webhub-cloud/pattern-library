@@ -1,5 +1,4 @@
 axa-footer {
-
   * {
     box-sizing: content-box;
 
@@ -9,7 +8,12 @@ axa-footer {
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @include text(t4, bold);
 
     color: $color-prim-white;
@@ -25,7 +29,7 @@ axa-footer {
       line-height: 1.5;
     }
 
-    &[slot="social-title"] {
+    &[slot='social-title'] {
       display: none;
 
       @include breakpoint($mediaquery-md-up) {
@@ -46,7 +50,7 @@ axa-footer {
       display: inline;
     }
 
-    &[slot^="social-item"] {
+    &[slot^='social-item'] {
       display: block;
       width: 25px;
       height: 25px;

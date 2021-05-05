@@ -11,8 +11,7 @@ $private-breakpoint-query-count: 0 !default;
 @function breakpoint-has-context() {
   @if length($private-breakpoint-query-count) {
     @return true;
-  }
-  @else {
+  } @else {
     @return false;
   }
 }
@@ -26,17 +25,16 @@ $private-breakpoint-query-count: 0 !default;
     $get: map-get($private-breakpoint-context-holder, $feature);
     // Special handling of no-query from get side so /false/ prepends aren't returned
     @if $feature == 'no-query' {
-      @if type-of($get) == 'list' and length($get) > 1 and nth($get, 1) == false {
+      @if type-of($get) == 'list' and length($get) > 1 and nth($get, 1) == false
+      {
         $get: nth($get, length($get));
       }
     }
     @return $get;
-  }
-  @else {
+  } @else {
     @if breakpoint-has-context() and $feature == 'media' {
       @return breakpoint-get('default media');
-    }
-    @else {
+    } @else {
       @return false;
     }
   }
@@ -60,27 +58,34 @@ $private-breakpoint-query-count: 0 !default;
     @for $i from 1 to $private-breakpoint-query-count {
       @if $feature == 'media' {
         $v-holder: append($v-holder, breakpoint-get('default media'));
-      }
-      @else {
+      } @else {
         $v-holder: append($v-holder, false);
       }
     }
     $v-holder: append($v-holder, $value);
-    $private-breakpoint-context-holder: map-merge($private-breakpoint-context-holder, ($feature: $v-holder)) !global;
-  }
-  @else {
+    $private-breakpoint-context-holder: map-merge(
+      $private-breakpoint-context-holder,
+      (
+        $feature: $v-holder,
+      )
+    ) !global;
+  } @else {
     $v-holder: map-get($private-breakpoint-context-holder, $feature);
     $length: length($v-holder);
     @for $i from $length to $private-breakpoint-query-count - 1 {
       @if $feature == 'media' {
         $v-holder: append($v-holder, breakpoint-get('default media'));
-      }
-      @else {
+      } @else {
         $v-holder: append($v-holder, false);
       }
     }
     $v-holder: append($v-holder, $value);
-    $private-breakpoint-context-holder: map-merge($private-breakpoint-context-holder, ($feature: $v-holder)) !global;
+    $private-breakpoint-context-holder: map-merge(
+      $private-breakpoint-context-holder,
+      (
+        $feature: $v-holder,
+      )
+    ) !global;
   }
 
   @return true;

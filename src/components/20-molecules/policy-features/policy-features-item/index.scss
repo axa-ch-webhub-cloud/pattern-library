@@ -43,7 +43,7 @@
     &__title {
       @include text(t2, bold);
     }
-  
+
     &__description {
       @include text(t2);
     }
