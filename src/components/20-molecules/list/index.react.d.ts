@@ -1,11 +1,10 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
+export type Variant = 'ordered' | 'unstyled' | 'icon';
 
 export interface AXAListProps {
   className?: string;
   variant?: Variant;
-  onClick?: () => void;
 }
 
 declare function createAXAList(

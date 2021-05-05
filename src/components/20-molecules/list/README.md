@@ -1,6 +1,6 @@
 # List
 
-TODO Description
+List in various variants. Standardizes the use of `ol` and `ul` tags.
 
 ## Usage
 
@@ -30,8 +30,7 @@ export default AXAListReact;
 ```
 
 ```js
-<AXAListReact onClick={handler}>
-</AXAListReact>
+<AXAListReact></AXAListReact>
 ```
 
 ### Pure HTML pages
@@ -58,14 +57,15 @@ Import the list-defining script and use a list like this:
 
 ### Variant
 
-| Attribute             | Details                 |
-| --------------------- | ----------------------- |
-| `variant="foo"`       | Desc of Variant         |
+| Attribute           | Details                |
+| ------------------- | ---------------------- |
+| `variant="ordered"` | Variants (default: ul) |
 
-### Bar
+### variant
 
-The attribute `bar` specifies...
+This defines, which tag is being used internally (`ol` and `ul`) and also gives certain possibilies like adding icons or go completely without styling.
 
-### onClick
-
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+default: Unordered list, with bullet-points
+`ordered`: Ordered list, with numbers
+`unstyles`: Unordered list, without bullet-points
+`icon`: Unordered list, with icons as replacement for bullet-points
