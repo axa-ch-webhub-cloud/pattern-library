@@ -32,29 +32,19 @@ class AXAModal extends LitElement {
   }
 
   render() {
-    const containerClasses = {
-      'o-modal__container--small': this.small,
-    };
-
-    const upperCloseContainerClasses = {
-      'o-modal__upper-close-container--forced': this.forced,
-    };
-
-    const contentClasses = {
-      'o-modal__content--large': !this.small,
-      'o-modal__content--forced': this.forced,
-      'o-modal__content--forced-small': this.small && this.forced,
-    };
-
     return html`
       <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
-        <div class="o-modal__container ${classMap(containerClasses)}">
+        <div
+          class="o-modal__container ${this.small
+            ? 'o-modal__container--small'
+            : ''}"
+        >
           ${!this.forced
             ? html`
                 <div
-                  class="o-modal__upper-close-container ${classMap(
-                    upperCloseContainerClasses
-                  )}"
+                  class="o-modal__upper-close-container ${this.forced
+                    ? 'o-modal__upper-close-container--forced'
+                    : ''}"
                 >
                   <button
                     class="o-modal__upper-close-container-button"
@@ -65,7 +55,11 @@ class AXAModal extends LitElement {
                 </div>
               `
             : ''}
-          <div class="o-modal__content ${classMap(contentClasses)}">
+          <div
+            class="o-modal__content ${this.forced
+              ? 'o-modal__content--forced'
+              : ''}"
+          >
             <slot></slot>
           </div>
         </div>

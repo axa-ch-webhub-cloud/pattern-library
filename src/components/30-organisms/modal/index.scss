@@ -9,8 +9,6 @@
   left: 0;
   top: 0;
 
-  background-color: rgba($color-black, 0.5);
-
   @include breakpoint($mediaquery-xs-up) {
     align-items: center;
   }
@@ -19,12 +17,35 @@
     display: flex;
     justify-content: flex-end;
     flex-flow: column;
+
+    animation: fade 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
+    
+    @keyframes fade {
+      0% {
+        background-color: rgba($color-black, 0);
+      }
+      100% {
+        background-color: rgba($color-black, 0.5);
+      }
+    }
+
     @include breakpoint($mediaquery-xs-up) {
       justify-content: center;
     }
   }
 
   &__container {
+    animation: slide-in 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
+
+    @keyframes slide-in {
+      0% {
+        transform: translateY(100vh);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
     @include breakpoint($mediaquery-xs-up) {
       max-width: 780px;
       margin: 0;
@@ -78,7 +99,7 @@
     border-radius: 0 0 8px 8px;
 
     @include breakpoint($mediaquery-xs-up) {
-      max-height: 70%;
+      max-height: 70vh;
       max-width: 780px;
     } 
 
