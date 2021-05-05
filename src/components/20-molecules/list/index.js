@@ -1,4 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 import {
   defineVersioned,
@@ -30,10 +31,16 @@ class AXAList extends LitElement {
   }
 
   render() {
-    return html`
-      <article class="m-list">
+    const listTag = this.variant === 'ordered' ? 'ol' : 'ul';
+
+    const template = `
+      <${listTag}>
         <slot></slot>
-      </article>
+      </${listTag}>
+    `;
+
+    return html`
+      ${unsafeHTML(template)}
     `;
   }
 }
