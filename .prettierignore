@@ -2,9 +2,6 @@
 /*
 !/src
 
-# We decided in the team to not format scss files
-*.scss
-
 src/static
 *.svg
 *.jpg
