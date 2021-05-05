@@ -92,6 +92,7 @@
   }
 
   &__content {
+    max-height: 80vh;
     overflow: auto;
     padding: 0 28px 28px;
     margin: 0 10px 10px;
@@ -110,6 +111,38 @@
       @include breakpoint($mediaquery-xs-up) {
         padding: 40px;
       } 
+    }
+  }
+  
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    
+    &--background {
+      animation: fadeOut 200ms cubic-bezier(0.4, 0.0, 1, 1);
+        
+        @keyframes fadeOut {
+          0% {
+            background-color: rgba($color-black, 0.5);
+          }
+          100% {
+            background-color: transparent;
+          }
+        }
+    }
+  
+    &--container {
+      animation: close 200ms cubic-bezier(0.4, 0.0, 1, 1);
+    
+      @keyframes close {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        } 
+      }
     }
   }
 }

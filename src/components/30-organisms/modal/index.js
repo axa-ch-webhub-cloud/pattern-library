@@ -68,7 +68,16 @@ class AXAModal extends LitElement {
   }
 
   closeModal() {
-    this.removeAttribute('open');
+    const container = this.shadowRoot.querySelector('article > div').classList;
+    const article = this.shadowRoot.querySelector('article').classList;
+
+    container.add('o-modal__close--container');
+    article.add('o-modal__close--background');
+    setTimeout(() => {
+      container.remove('o-modal__close--container');
+      article.remove('o-modal__close--background');
+      this.removeAttribute('open');
+    }, 200);
   }
 
   firstUpdated() {
