@@ -1,14 +1,15 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-
 import {
   defineVersioned,
   /* versionedHtml, */
 } from '../../../utils/component-versioning';
+import InlineStyles from '../../../utils/inline-styles';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import childStyles from './child.scss';
 
-class AXAList extends LitElement {
+class AXAList extends InlineStyles {
   static get tagName() {
     return 'axa-list';
   }
@@ -25,6 +26,10 @@ class AXAList extends LitElement {
     };
   }
 
+  static get resetHeadingCss() {
+    return childStyles;
+  }
+
   constructor() {
     super();
     applyDefaults(this);
@@ -34,7 +39,7 @@ class AXAList extends LitElement {
     const listTag = this.variant === 'ordered' ? 'ol' : 'ul';
 
     const template = `
-      <${listTag}>
+      <${listTag} class="m-list">
         <slot></slot>
       </${listTag}>
     `;
@@ -42,6 +47,10 @@ class AXAList extends LitElement {
     return html`
       ${unsafeHTML(template)}
     `;
+  }
+
+  firstUpdated() {
+    this.inlineStyles('resetHeadingCss');
   }
 }
 
