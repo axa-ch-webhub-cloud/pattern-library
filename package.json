@@ -25,7 +25,8 @@
     "new": "node scripts/create-a-m-o/index.js",
     "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
-    "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --"
+    "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --",
+    "prettify": "prettier --write './src/**/*'"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
