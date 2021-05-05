@@ -9,12 +9,30 @@ export default {
 
 export const List = () => {
   const textknob = text('This is a knob', 'Value of text knob');
-  
+
   const wrapper = document.createElement('div');
+  // const template = html`
+  //   <axa-list>${html([textknob])}</axa-list>
+  // `;
   const template = html`
-    <axa-list>${textknob}</axa-list>
+    <axa-list>
+      <li>hello</li>
+      <li>world</li>
+    </axa-list>
+    <axa-list variant="ordered">
+      <li>hello</li>
+      <li>world</li>
+    </axa-list>
+    <axa-list variant="icon">
+      <li>hello</li>
+      <li>world</li>
+    </axa-list>
+    <axa-list variant="unstyled">
+      <li>hello</li>
+      <li>world</li>
+    </axa-list>
   `;
-  
+
   render(template, wrapper);
   return wrapper;
-}
+};
