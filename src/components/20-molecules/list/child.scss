@@ -7,7 +7,7 @@ axa-list {
         background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><rect width="4" height="4" rx="2" fill="black"/></svg>');
         background-position: 0 8px;
         background-repeat: no-repeat;
-        padding-left: 32px;
+        padding-left: 36px;
     }
     
     &[variant="unstyled"] > li {
@@ -19,12 +19,16 @@ axa-list {
     &[variant="ordered"] > li {
         background-image: none;
         background-position: 0;
-        // padding-left: 0;
+        padding-left: 0;
+        counter-increment: number;
+        display: flex;
 
-        // &::before {
-        //     counter-increment: number;
-        //     content: counter(number)"\a0";
-        // }
+        &::before {
+            display: block;
+            min-width: 34px;
+            margin-right: 2px;
+            content: counter(number);
+        }
     }
 
     &[variant="icon"] > * {
