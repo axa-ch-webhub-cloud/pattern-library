@@ -4,6 +4,7 @@ axa-list {
     line-height: 24px;
 
     & > li {
+        // This SVG renders a bullet point for unordered lists.
         background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><rect width="4" height="4" rx="2" fill="black"/></svg>');
         background-position: 0 8px;
         background-repeat: no-repeat;
@@ -31,7 +32,7 @@ axa-list {
         }
     }
 
-    &[variant="icon"] > * {
-        color: yellow;
+    &[variant="icon"] > li {
+        
     }
 }
