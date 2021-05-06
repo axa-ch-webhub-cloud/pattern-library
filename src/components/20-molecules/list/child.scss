@@ -1,18 +1,33 @@
 axa-list {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
 
-    &[variant="unstyled"] > * {
-        color: yellow;
+    & > li {
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><rect width="4" height="4" rx="2" fill="black"/></svg>');
+        background-position: 0 8px;
+        background-repeat: no-repeat;
+        padding-left: 32px;
+    }
+    
+    &[variant="unstyled"] > li {
+        background-image: none;
+        background-position: 0;
+        padding-left: 0;
+    }
+    
+    &[variant="ordered"] > li {
+        background-image: none;
+        background-position: 0;
+        // padding-left: 0;
+
+        // &::before {
+        //     counter-increment: number;
+        //     content: counter(number)"\a0";
+        // }
     }
 
-    &[variant="unstyled"] > * {
-        color: yellow;
-    }
-
-    &[variant="unstyled"] > * {
-        color: yellow;
-    }
-
-    &[variant="unstyled"] > * {
+    &[variant="icon"] > * {
         color: yellow;
     }
 }

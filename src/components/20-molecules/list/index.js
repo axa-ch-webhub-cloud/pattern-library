@@ -9,6 +9,18 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
 
+const variantClass = variant => {
+  if (variant === 'ordered') {
+    return 'm-list--ordered';
+  }
+  if (variant === 'icon') {
+    return 'm-list--iconified';
+  }
+  if (variant === 'unstyled') {
+    return 'm-list--unstyled';
+  }
+  return '';
+};
 class AXAList extends InlineStyles {
   static get tagName() {
     return 'axa-list';
@@ -39,7 +51,7 @@ class AXAList extends InlineStyles {
     const listTag = this.variant === 'ordered' ? 'ol' : 'ul';
 
     const template = `
-      <${listTag} class="m-list">
+      <${listTag} class="m-list ${variantClass(this.variant)}">
         <slot></slot>
       </${listTag}>
     `;

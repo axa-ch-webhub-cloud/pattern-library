@@ -16,12 +16,25 @@ export const List = () => {
   // `;
   const template = html`
     <axa-list>
-      <li>hello</li>
+      <li>
+        hello hello hello hello hello hello hello hello hello hello hello hello
+        hello hello hello hello hello hello hello hello hello hello hello hello
+        hello hello hello hello hello hello hello hello hello hello hello hello
+        hello hello hello hello hello hello hello hello hello hello hello hello
+        hello hello hello hello hello hello hello hello hello hello hello hello
+        hello hello
+      </li>
       <li>world</li>
     </axa-list>
     <axa-list variant="ordered">
       <li>hello</li>
-      <li>world</li>
+      <li>
+        world world world world world world world world world world world world
+        world world world world world world world world world world world world
+        world world world world world world world world world world world world
+        world world world world world world world world world world world world
+        world world world world world
+      </li>
     </axa-list>
     <axa-list variant="icon">
       <li>hello</li>
