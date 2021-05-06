@@ -1,5 +1,5 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
-//Delay is needed because of the close animation (animation duration: 200ms + 100ms "extra time") !!!
+// Delay is needed because of the close animation (animation duration: 200ms + 100ms "extra time") !!!
 
 describe('Modal', () => {
   it('should open modal', async () => {

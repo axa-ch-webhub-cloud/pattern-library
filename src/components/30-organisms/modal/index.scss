@@ -15,8 +15,8 @@
 
   &--open {
     display: flex;
-    justify-content: flex-end;
-    flex-flow: column;
+    justify-content: center;
+    // flex-flow: column;
 
     animation: fade 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
     
@@ -35,6 +35,11 @@
   }
 
   &__container {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    width: 100%;
+
     animation: slide-in 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
 
     @keyframes slide-in {
@@ -61,12 +66,18 @@
 
   &__upper-close-container {
     display: flex;
+    justify-content: flex-end;
     position: relative;
+    //prevents a weird bug with flex-box
+    min-height: 56px;
     margin: 10px 10px 0;
     box-shadow: $box-shadow-1;
-    justify-content: flex-end;
     border-radius: 8px 8px 0 0;
     background-color: $color-prim-white;
+
+    @include breakpoint($mediaquery-xs-up) {
+      height: auto;
+    }
 
     &--forced {
       display: none;
@@ -93,7 +104,7 @@
   }
 
   &__content {
-    max-height: 80vh;
+    max-height: 100%;
     overflow: auto;
     padding: 0 28px 28px;
     margin: 0 10px 10px;

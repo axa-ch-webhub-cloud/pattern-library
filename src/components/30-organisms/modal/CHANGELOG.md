@@ -1,3 +1,8 @@
+## 2.0.0
+
+- Changed the modal size and added a `small` size option.
+- Added open & close animations.
+
 ## 1.1.0
 
 - Added `forced` possibility. This removes the default close functionality.
