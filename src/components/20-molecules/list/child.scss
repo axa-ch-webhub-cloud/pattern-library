@@ -33,6 +33,10 @@ axa-list {
     }
 
     &[variant="icon"] > li {
-        
+        background-image: none;
+
+        background-position: 0 center;
+        background-repeat: no-repeat;
+        padding-left: 36px;
     }
 }

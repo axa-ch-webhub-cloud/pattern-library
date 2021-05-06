@@ -35,6 +35,7 @@ class AXAList extends InlineStyles {
   static get properties() {
     return {
       variant: { type: String },
+      icon: { type: String },
     };
   }
 
@@ -63,6 +64,14 @@ class AXAList extends InlineStyles {
 
   firstUpdated() {
     this.inlineStyles('resetHeadingCss');
+  }
+
+  updated() {
+    if (this.variant === 'icon' && this.icon) {
+      [...this.querySelectorAll('li')].forEach(li => {
+        li.style.backgroundImage = `url('data:image/svg+xml;charset=UTF-8,${this.icon}')`;
+      });
+    }
   }
 }
 
