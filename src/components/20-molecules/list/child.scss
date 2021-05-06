@@ -34,9 +34,6 @@ axa-list {
 
     &[variant="icon"] > li {
         background-image: none;
-
-        background-position: 0 center;
-        background-repeat: no-repeat;
-        padding-left: 36px;
+        background-position: 0 center; // TODO Use 8px instead of center if Kai is against it
     }
 }
