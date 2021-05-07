@@ -57,9 +57,10 @@ Import the list-defining script and use a list like this:
 
 ### Variant
 
-| Attribute           | Details                |
-| ------------------- | ---------------------- |
-| `variant="ordered"` | Variants (default: ul) |
+| Attribute           | Details                                                   |
+| ------------------- | --------------------------------------------------------- |
+| `variant="ordered"` | Variants (default: ul)                                    |
+| `icon=""`           | If `variant` is set to `icon`, add the SVG here as string |
 
 ### variant
 
@@ -69,3 +70,7 @@ default: Unordered list, with bullet-points
 `ordered`: Ordered list, with numbers
 `unstyles`: Unordered list, without bullet-points
 `icon`: Unordered list, with icons as replacement for bullet-points
+
+# icon
+
+Add an SVG as string, if you need an icon instead of a bullet point or number preceding each list item.
