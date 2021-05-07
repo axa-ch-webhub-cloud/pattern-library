@@ -24,9 +24,9 @@ export const Modal = () => {
   const wrapper = document.createElement('div');
 
   setTimeout(() => {
-    // document.querySelector('axa-button').addEventListener('click', () => {
-    //   document.querySelector('axa-modal').removeAttribute('open');
-    // });
+    document.querySelector('axa-button').addEventListener('click', () => {
+      document.querySelector('axa-modal').removeAttribute('open');
+    });
   });
 
   const template = html`

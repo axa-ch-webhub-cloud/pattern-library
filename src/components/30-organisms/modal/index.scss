@@ -18,7 +18,7 @@
     justify-content: flex-end;
     flex-flow: column;
 
-    animation: fade 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
+    animation: fade $transition-large-expanding $decelerated-easing 1 forwards;
     
     @keyframes fade {
       0% {
@@ -40,7 +40,7 @@
     flex-flow: column;
     width: 100%;
 
-    animation: slide-in 300ms cubic-bezier(0.0, 0.0, 0.2, 1) 1 forwards;
+    animation: slide-in $transition-large-expanding $decelerated-easing 1 forwards;
 
     @keyframes slide-in {
       0% {
@@ -70,9 +70,9 @@
     position: relative;
     //prevents a weird bug with flex-box
     min-height: 56px;
-    margin: 10px 10px 0;
-    box-shadow: $box-shadow-1;
-    border-radius: 8px 8px 0 0;
+    margin: $spacing-2 $spacing-2 0;
+    box-shadow: $box-shadow-default;
+    border-radius: $spacing-2 $spacing-2 0 0;
     background-color: $color-prim-white;
 
     @include breakpoint($mediaquery-xs-up) {
@@ -91,9 +91,9 @@
       color: inherit;
       font: inherit;
       line-height: normal;
-      margin: 8px;
-      height: 40px;
-      padding: 8px;
+      margin: $spacing-2;
+      height: $spacing-7;
+      padding: $spacing-2;
       
       svg {
         color: $color-axa-blue;
@@ -106,22 +106,22 @@
   &__content {
     max-height: 100%;
     overflow: auto;
-    padding: 0 28px 28px;
-    margin: 0 10px 10px;
+    padding: 0 $spacing-6 $spacing-6;
+    margin: 0 $spacing-2 $spacing-2;
     background-color: $color-prim-white;
-    border-radius: 0 0 8px 8px;
-    box-shadow: $box-shadow-2;
+    border-radius: 0 0 $spacing-2 $spacing-2;
+    box-shadow: $box-shadow-high;
 
     @include breakpoint($mediaquery-xs-up) {
       max-height: 70vh;
     } 
 
     &--forced {
-      border-radius: 8px;
-      padding: 0 28px;
-      margin-top: 10px;
+      border-radius: $spacing-2;
+      padding: 0 $spacing-6;
+      margin-top: $spacing-2;
       @include breakpoint($mediaquery-xs-up) {
-        padding: 40px;
+        padding: 0 $spacing-7;
       } 
     }
   }
@@ -132,7 +132,7 @@
     flex-flow: column;
     
     &--background {
-      animation: fadeOut 200ms cubic-bezier(0.4, 0.0, 1, 1);
+      animation: fadeOut $transition-large-colapsing $accelerated-easing;
         
       @keyframes fadeOut {
         0% {
@@ -145,7 +145,7 @@
     }
   
     &--container {
-      animation: close 200ms cubic-bezier(0.4, 0.0, 1, 1);
+      animation: close $transition-large-colapsing $accelerated-easing;
     
       @keyframes close {
         0% {

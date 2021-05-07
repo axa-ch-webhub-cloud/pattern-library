@@ -1,3 +1,8 @@
+## 14.2.0
+
+- Added a new scss file `20-animations.scss` with transition and easing variables.
+- Added a new `box-shadow` variable and renamed them.
+
 ## 14.1.0
 
 - Added scss variables for `spacing` and `box-shadow`.

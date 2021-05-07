@@ -1,4 +1,4 @@
-## 2.0.0
+## 1.2.0
 
 - Changed the modal size and added a `small` size option.
 - Added open & close animations.

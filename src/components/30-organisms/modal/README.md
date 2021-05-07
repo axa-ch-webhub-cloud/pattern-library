@@ -35,4 +35,4 @@ If `forced` is set to `true`, closing functionality has to be manually implement
 
 ### small
 
-if `small`is set to true, it has the `small` size.
+if `small`is set to true, it has the `small` size and sets the `max-width` attribute to 500px.

@@ -1,0 +1,12 @@
+// transition area
+$transition-small-expanding: 100ms;
+$transition-small-colapsing: 100ms;
+$transition-medium-expanding: 250ms;
+$transition-medium-colapsing: 200ms;
+$transition-large-expanding: 300ms;
+$transition-large-colapsing: 200ms;
+
+// easing
+$standard-easing: cubic-bezier(0.4, 0.0, 0.2, 1);
+$decelerated-easing: cubic-bezier(0.0, 0.0, 0.2, 1);
+$accelerated-easing: cubic-bezier(0.4, 0.0, 1, 1);
