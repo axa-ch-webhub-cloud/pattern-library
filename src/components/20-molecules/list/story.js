@@ -3,7 +3,7 @@ import { html, render } from 'lit-html';
 import './index';
 
 export default {
-  title: 'Components',
+  title: 'Components/List',
   decorators: [withKnobs],
 };
 
