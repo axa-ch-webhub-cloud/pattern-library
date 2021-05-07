@@ -3,6 +3,8 @@ import React from 'react';
 export type Variant = 'ordered' | 'unstyled' | 'icon';
 
 export interface AXAListProps {
+  variant?: string;
+  icon?: string;
   className?: string;
   variant?: Variant;
 }
