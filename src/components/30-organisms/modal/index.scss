@@ -118,10 +118,10 @@
 
     &--forced {
       border-radius: $spacing-2;
-      padding: 0 $spacing-6;
+      padding: $spacing-6;
       margin-top: $spacing-2;
       @include breakpoint($mediaquery-xs-up) {
-        padding: 0 $spacing-7;
+        padding: $spacing-7;
       } 
     }
   }
