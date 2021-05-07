@@ -4,11 +4,12 @@ axa-list {
     line-height: 24px;
 
     & > li {
+        margin: 8px 0;
+        padding-left: 36px;
         // This SVG renders a bullet point for unordered lists.
         background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><rect width="4" height="4" rx="2" fill="black"/></svg>');
-        background-position: 0 8px;
+        background-position: 0 10px;
         background-repeat: no-repeat;
-        padding-left: 36px;
     }
     
     &[variant="unstyled"] > li {
@@ -34,6 +35,6 @@ axa-list {
 
     &[variant="icon"] > li {
         background-image: none;
-        background-position: 0 center; // TODO Use 8px instead of center if Kai is against it
+        background-position: 0 0;
     }
 }
