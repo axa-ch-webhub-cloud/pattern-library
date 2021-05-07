@@ -1,6 +1,5 @@
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
-import checkmark from '../../../../node_modules/@axa-ch/materials/icons/material-design/check.svg';
 import './index';
 
 export default {
@@ -15,7 +14,10 @@ export const List = () => {
     unstyled: 'unstyled',
     icon: 'icon',
   });
-  const icon = text('icon', `${checkmark}`);
+  const icon = text(
+    'icon',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%231cc54e" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+  );
 
   const wrapper = document.createElement('div');
   const template = html`
