@@ -1,17 +1,21 @@
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
+import changelog from './CHANGELOG.md';
+import readme from './README.md';
 import './index';
 
 export default {
   title: 'Components/List',
   decorators: [withKnobs],
   parameters: {
+    readme,
     usage: {
       innerHTML: `
       <li>Hello</li>
       <li>World</li>
-`,
+      `,
     },
+    changelog,
   },
 };
 
