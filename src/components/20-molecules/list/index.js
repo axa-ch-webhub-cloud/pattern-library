@@ -1,9 +1,6 @@
 import { html, css, unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import {
-  defineVersioned,
-  /* versionedHtml, */
-} from '../../../utils/component-versioning';
+import { defineVersioned } from '../../../utils/component-versioning';
 import InlineStyles from '../../../utils/inline-styles';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
@@ -21,6 +18,7 @@ const variantClass = variant => {
   }
   return '';
 };
+
 class AXAList extends InlineStyles {
   static get tagName() {
     return 'axa-list';
