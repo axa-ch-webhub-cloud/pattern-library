@@ -5,11 +5,19 @@ import './index';
 export default {
   title: 'Components/List',
   decorators: [withKnobs],
+  parameters: {
+    usage: {
+      innerHTML: `
+      <li>Hello</li>
+      <li>World</li>
+`,
+    },
+  },
 };
 
 export const List = () => {
   const variant = select('variant', {
-    '[default]': '',
+    unordered: '',
     ordered: 'ordered',
     unstyled: 'unstyled',
     icon: 'icon',

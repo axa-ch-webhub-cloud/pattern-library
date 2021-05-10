@@ -6,7 +6,6 @@ export interface AXAListProps {
   variant?: string;
   icon?: string;
   className?: string;
-  variant?: Variant;
 }
 
 declare function createAXAList(
