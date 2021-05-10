@@ -60,6 +60,12 @@ body {
 }
 ```
 
+### animations
+
+```scss
+@import '@axa-ch/materials/styles/20-animations.scss';
+```
+
 ### Breakpoints
 
 ```scss

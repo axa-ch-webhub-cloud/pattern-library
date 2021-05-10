@@ -1,5 +1,4 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
@@ -22,6 +21,7 @@ class AXAModal extends LitElement {
     return {
       open: { type: Boolean },
       forced: { type: Boolean },
+      small: { type: Boolean },
     };
   }
 
@@ -31,36 +31,52 @@ class AXAModal extends LitElement {
   }
 
   render() {
-    const classes = {
-      'o-modal--open': this.open,
-    };
     return html`
-      <article class="o-modal ${classMap(classes)}">
-        ${!this.forced
-          ? html`
-              <div class="o-modal__upper-close-container">
-                <button
-                  class="o-modal__upper-close-container-button"
-                  @click="${this.closeModal}"
-                >
-                  ${svg([closeIcon])}
-                </button>
-              </div>
-            `
-          : ''}
+      <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
         <div
-          class="o-modal__content ${this.forced
-            ? 'o-modal__content--forced'
+          class="o-modal__container ${this.small
+            ? 'o-modal__container--small'
             : ''}"
         >
-          <slot></slot>
+          ${!this.forced
+            ? html`
+                <div
+                  class="o-modal__upper-close-container ${this.forced
+                    ? 'o-modal__upper-close-container--forced'
+                    : ''}"
+                >
+                  <button
+                    class="o-modal__upper-close-container-button"
+                    @click="${this.closeModal}"
+                  >
+                    ${svg([closeIcon])}
+                  </button>
+                </div>
+              `
+            : ''}
+          <div
+            class="o-modal__content ${this.forced
+              ? 'o-modal__content--forced'
+              : ''}"
+          >
+            <slot></slot>
+          </div>
         </div>
       </article>
     `;
   }
 
   closeModal() {
-    this.removeAttribute('open');
+    const container = this.shadowRoot.querySelector('article > div').classList;
+    const article = this.shadowRoot.querySelector('article').classList;
+
+    container.add('o-modal__close--container');
+    article.add('o-modal__close--background');
+    setTimeout(() => {
+      container.remove('o-modal__close--container');
+      article.remove('o-modal__close--background');
+      this.removeAttribute('open');
+    }, 200);
   }
 
   firstUpdated() {

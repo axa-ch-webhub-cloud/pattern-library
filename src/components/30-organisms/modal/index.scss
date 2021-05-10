@@ -9,32 +9,78 @@
   left: 0;
   top: 0;
 
-  background-color: rgba($color-black, 0.5);
-
   @include breakpoint($mediaquery-xs-up) {
     align-items: center;
   }
 
   &--open {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-flow: column;
+
+    animation: fade $transition-large-expanding $decelerated-easing 1 forwards;
+    
+    @keyframes fade {
+      0% {
+        background-color: rgba($color-black, 0);
+      }
+      100% {
+        background-color: rgba($color-black, 0.5);
+      }
+    }
+
+    @include breakpoint($mediaquery-xs-up) {
+      justify-content: center;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    width: 100%;
+
+    animation: slide-in $transition-large-expanding $decelerated-easing 1 forwards;
+
+    @keyframes slide-in {
+      0% {
+        transform: translateY(100vh);
+      }
+      100% {
+        transform: translateY(0%);
+      }
+    }
+
+    @include breakpoint($mediaquery-xs-up) {
+      max-width: 780px;
+      margin: 0;
+    }
+
+    &--small {
+      @include breakpoint($mediaquery-xs-up) {
+        max-width: 500px;
+        margin: 0;
+      }
+    }
   }
 
   &__upper-close-container {
     display: flex;
-    z-index: 1;
-    margin: 10px 10px 0px;
-    box-shadow: 0px 1px 10px 0px rgba($color-black, 0.15);
     justify-content: flex-end;
-    border-radius: 8px 8px 0 0;
+    position: relative;
+    //prevents a weird bug with flex-box
+    min-height: 56px;
+    margin: $spacing-2 $spacing-2 0;
+    box-shadow: $box-shadow-default;
+    border-radius: $spacing-2 $spacing-2 0 0;
     background-color: $color-prim-white;
 
     @include breakpoint($mediaquery-xs-up) {
-      width: 60%;
-      padding: 0px;
-      margin: 0px;
-      background-color: $color-prim-white;
+      height: auto;
+    }
+
+    &--forced {
+      display: none;
     }
 
     &-button {
@@ -45,11 +91,12 @@
       color: inherit;
       font: inherit;
       line-height: normal;
-      margin: 8px;
-      height: 40px;
-      padding: 8px;
+      margin: $spacing-2;
+      height: $spacing-7;
+      padding: $spacing-2;
       
       svg {
+        color: $color-axa-blue;
         height: 24px;
         width: 24px;
       }
@@ -57,25 +104,57 @@
   }
 
   &__content {
-    position: relative;
+    max-height: 100%;
     overflow: auto;
-    padding: 0px 28px 28px;
-    margin: 0px 10px 10px;
-    height: 100%;
+    padding: 0 $spacing-6 $spacing-6;
+    margin: 0 $spacing-2 $spacing-2;
     background-color: $color-prim-white;
-    border-radius: 0 0 8px 8px;
-
-    &--forced {
-      border-radius: 8px;
-    }
+    border-radius: 0 0 $spacing-2 $spacing-2;
+    box-shadow: $box-shadow-high;
 
     @include breakpoint($mediaquery-xs-up) {
-      box-sizing: border-box;
-      padding: 0px 40px 40px;
-      width: 60%;
-      margin: 0px;
-      max-height: 50%;
+      max-height: 70vh;
+    } 
 
+    &--forced {
+      border-radius: $spacing-2;
+      padding: $spacing-6;
+      margin-top: $spacing-2;
+      @include breakpoint($mediaquery-xs-up) {
+        padding: $spacing-7;
+      } 
+    }
+  }
+
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: column;
+    
+    &--background {
+      animation: fadeOut $transition-large-colapsing $accelerated-easing;
+        
+      @keyframes fadeOut {
+        0% {
+          background-color: rgba($color-black, 0.5);
+        }
+        100% {
+          background-color: transparent;
+        }
+      }
+    }
+  
+    &--container {
+      animation: close $transition-large-colapsing $accelerated-easing;
+    
+      @keyframes close {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        } 
+      }
     }
   }
 }

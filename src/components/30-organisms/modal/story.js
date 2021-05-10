@@ -16,14 +16,15 @@ export default {
 export const Modal = () => {
   const open = boolean('open', true);
   const forced = boolean('forced', false);
+  const small = boolean('small', false);
 
   const wrapper = document.createElement('div');
 
-  setTimeout(() =>
+  setTimeout(() => {
     document.querySelector('axa-button').addEventListener('click', () => {
       document.querySelector('axa-modal').removeAttribute('open');
-    })
-  );
+    });
+  });
 
   const template = html`
     <style>
@@ -31,12 +32,12 @@ export const Modal = () => {
         margin-top: 20px;
       }
     </style>
-    <axa-modal ?open="${open}" ?forced="${forced}">
+    <axa-modal ?open="${open}" ?forced="${forced}" ?small="${small}">
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial
-        consequences of personal injury and property damage caused by the
-        company to others. others.
+        consequences of personal injury and property damage caused by thecompany
+        to others.
       </axa-text>
       <axa-heading rank="3">Damage example</axa-heading>
       <axa-text>

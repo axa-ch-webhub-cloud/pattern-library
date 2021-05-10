@@ -1,4 +1,12 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
+// Delay that waits for the close animation to finish
+const delayTimeAnimation = 300;
+
+function delay(time) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, time);
+  });
+}
 
 describe('Modal', () => {
   it('should open modal', async () => {
@@ -11,6 +19,7 @@ describe('Modal', () => {
     await openModal();
     await page.click('.o-modal__upper-close-container-button');
 
+    await delay(delayTimeAnimation);
     expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
@@ -23,6 +32,7 @@ describe('Modal', () => {
         .click();
     });
 
+    await delay(delayTimeAnimation);
     expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
@@ -30,6 +40,7 @@ describe('Modal', () => {
     await openModal();
     await page.keyboard.press('Escape');
 
+    await delay(delayTimeAnimation);
     expect(await page.isVisible('.o-modal__content')).toBe(false);
   });
 
@@ -71,6 +82,19 @@ describe('Modal', () => {
     expect(await page.isVisible('.o-modal__upper-close-container-button')).toBe(
       false
     );
+  });
+
+  it('should check if modal is set to small', async () => {
+    await page.goto(
+      `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-small=true&viewMode=story`
+    );
+
+    const modalMaxWidth = await page.$eval(
+      '.o-modal__container',
+      el => window.getComputedStyle(el).maxWidth
+    );
+
+    expect(modalMaxWidth).toBe('500px');
   });
 });
 

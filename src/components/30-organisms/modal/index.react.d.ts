@@ -4,6 +4,7 @@ export interface AXAModalProps {
   className?: string;
   open?: boolean;
   forced?: boolean;
+  small?: boolean;
 }
 
 declare function createAXAModal(
