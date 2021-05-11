@@ -249,7 +249,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const tag = 'axa-${fileName}';
 
 describe('${compTitle}', () => {
-  it('should render', async () => {
+  it('should render component', async () => {
     await page.goto(
       \`\${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story\`
     );
