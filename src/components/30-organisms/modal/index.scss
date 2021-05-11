@@ -38,6 +38,7 @@
     display: flex;
     justify-content: flex-end;
     flex-flow: column;
+    max-height: 100vh;
     width: 100%;
 
     animation: slide-in $transition-large-expanding $decelerated-easing 1 forwards;
@@ -52,6 +53,7 @@
     }
 
     @include breakpoint($mediaquery-xs-up) {
+      max-height: none;
       max-width: 780px;
       margin: 0;
     }
