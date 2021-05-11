@@ -1,0 +1,42 @@
+axa-list {
+    @include text(t3);
+
+    & > li {
+        margin: 0 0 12px 0;
+        padding-left: 32px;
+        // This SVG renders a bullet point for unordered lists.
+        background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4" fill="none"><rect width="4" height="4" rx="2" fill="black"/></svg>');
+        background-position: 0 10px;
+        background-repeat: no-repeat;
+    }
+
+    & > li:last-child {
+        margin: 0;
+    }
+    
+    &[variant="unstyled"] > li {
+        background-image: none;
+        background-position: 0;
+        padding-left: 0;
+    }
+    
+    &[variant="ordered"] > li {
+        background-image: none;
+        background-position: 0;
+        padding-left: 0;
+        counter-increment: number;
+        display: flex;
+
+        &::before {
+            display: block;
+            min-width: 30px;
+            margin-right: 2px;
+            content: counter(number);
+        }
+    }
+
+    &[variant="icon"] > li {
+        background-image: none;
+        background-position: 0 0;
+    }
+}
