@@ -1,12 +1,14 @@
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { html, css, unsafeCSS, svg } from 'lit-element';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import InlineStyles from '../../../utils/inline-styles';
+import childStyles from './child.scss';
 
-class AXAModal extends LitElement {
+class AXAModal extends InlineStyles {
   static get tagName() {
     return 'axa-modal';
   }
@@ -23,6 +25,10 @@ class AXAModal extends LitElement {
       forced: { type: Boolean },
       small: { type: Boolean },
     };
+  }
+
+  static get resetHeadingCss() {
+    return childStyles;
   }
 
   constructor() {
@@ -80,6 +86,8 @@ class AXAModal extends LitElement {
   }
 
   firstUpdated() {
+    this.inlineStyles('resetHeadingCss');
+
     // add eventListener to close modal when pressing outside the modal
     document.body.addEventListener('click', ev => {
       this.mouseCloseHandler(ev);

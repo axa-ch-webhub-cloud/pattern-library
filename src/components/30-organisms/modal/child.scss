@@ -1,0 +1,19 @@
+axa-modal > * {
+  &:first-child {
+    // !important reason: An axa-heading child element sets margins on the host
+    // element. This can only be overridden by !important.
+    // This is harmless because: There is no scenario where it would make sense
+    // for the first element to have any margin-top, except if they work with
+    // negative margins, which is an anti-pattern.
+    margin-top: 0 !important;
+  }
+
+  &:last-child {
+    // !important reason: An axa-heading child element sets margins on the host
+    // element. This can only be overridden by !important.
+    // This is harmless because: There is no scenario where it would make sense
+    // for the first element to have any margin-top, except if they work with
+    // negative margins, which is an anti-pattern.
+    margin-bottom: 0 !important;
+  }
+}
