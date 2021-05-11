@@ -19,9 +19,9 @@ describe('List', () => {
     const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
-    expect(computedStyle.paddingLeft).toBe('36px');
+    expect(computedStyle.paddingLeft).toBe('32px');
     expect(computedStyle.backgroundPosition).toBe('0px 10px');
-    expect(computedStyle.margin).toBe('8px 0px');
+    expect(computedStyle.margin).toBe('0px 0px 12px');
 
     const listStyleType = await page.$eval(
       'ul.m-list',
@@ -40,7 +40,7 @@ describe('List', () => {
     );
     expect(computedStyle.paddingLeft).toBe('0px');
     expect(computedStyle.backgroundImage).toBe('none');
-    expect(computedStyle.margin).toBe('8px 0px');
+    expect(computedStyle.margin).toBe('0px 0px 12px');
 
     const listStyleType = await page.$eval(
       'ol.m-list',
@@ -59,7 +59,7 @@ describe('List', () => {
     );
     expect(computedStyle.paddingLeft).toBe('0px');
     expect(computedStyle.backgroundImage).toBe('none');
-    expect(computedStyle.margin).toBe('8px 0px');
+    expect(computedStyle.margin).toBe('0px 0px 12px');
 
     const listStyleType = await page.$eval(
       'ul.m-list',
@@ -76,12 +76,12 @@ describe('List', () => {
     const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
-    expect(computedStyle.paddingLeft).toBe('36px');
+    expect(computedStyle.paddingLeft).toBe('32px');
     expect(computedStyle.backgroundImage).toContain(
       'data:image/svg+xml;charset=UTF-8,<svg xmlns'
     );
     expect(computedStyle.backgroundPosition).toBe('0px 0px');
-    expect(computedStyle.margin).toBe('8px 0px');
+    expect(computedStyle.margin).toBe('0px 0px 12px');
 
     const listStyleType = await page.$eval(
       'ul.m-list',
