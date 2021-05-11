@@ -2,16 +2,6 @@
 
 List in various variants. Standardizes the use of `ol` and `ul` tags.
 
-## Usage
-
-```html
-<axa-list>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-</axa-list>
-```
-
 ## Properties
 
 ### Variant

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export type Variant = 'ordered' | 'unstyled' | 'icon';
+export type Variant = 'ordered' | 'unstyled' | 'icon' | 'unordered' | '';
 
 export interface AXAListProps {
-  variant?: string;
+  variant?: Variant;
   icon?: string;
   className?: string;
 }
