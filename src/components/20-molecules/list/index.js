@@ -81,7 +81,7 @@ class AXAList extends InlineStyles {
       if (this.variant === 'ordered') {
         this.shadowRoot.querySelector('.m-list').style.listStyleType =
           'decimal';
-        this.shadowRoot.querySelector('.m-list').style.marginLeft = '8px';
+        this.shadowRoot.querySelector('.m-list').style.marginLeft = '16px';
       } else {
         this.shadowRoot.querySelector('.m-list').style.listStyleType = 'disc';
       }
