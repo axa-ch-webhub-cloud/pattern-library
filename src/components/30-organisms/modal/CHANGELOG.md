@@ -1,6 +1,6 @@
 ## 2.0.0
 
-- Breaking: Removed margin-top from first child element and margin-bottom from last child element.
+- Breaking: Removed margin-top from first child element and margin-bottom from last child element (only if attribute `forced` is being used).
 
 ## 1.2.0
 

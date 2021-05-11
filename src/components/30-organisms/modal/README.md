@@ -4,8 +4,8 @@ A modal component for custom child elements.
 **Important:**
 
 - `z-index` for the modal is 3000.
-- `margin-top` will automatically be set to `0` for the _first_ child element.
-- `margin-bottom` will automatically be set to `0` for the _last_ child element.
+- `margin-top` will automatically be set to `0` for the _first_ child element in `forced` mode.
+- `margin-bottom` will automatically be set to `0` for the _last_ child element in `forced` mode.
 
 ```bash
 npm install @axa-ch/modal
