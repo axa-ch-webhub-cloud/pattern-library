@@ -96,6 +96,25 @@ describe('Modal', () => {
 
     expect(modalMaxWidth).toBe('500px');
   });
+
+  it('should remove margin-top from first child and margin-bottom from last child', async () => {
+    await openForcedModal();
+
+    const firstChildElementMargins = await page.$eval(
+      'axa-heading[rank="2"]',
+      el => window.getComputedStyle(el).margin
+    );
+
+    const lastChildElementMargins = await page.$eval(
+      'axa-button',
+      el => window.getComputedStyle(el).margin
+    );
+
+    const noMarginTop = '0px 0px 18px';
+    const noMarginBottom = '20px 0px 0px';
+    expect(firstChildElementMargins).toBe(noMarginTop);
+    expect(lastChildElementMargins).toBe(noMarginBottom);
+  });
 });
 
 async function openModal() {
