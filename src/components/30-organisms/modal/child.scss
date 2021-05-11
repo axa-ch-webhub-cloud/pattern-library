@@ -1,4 +1,4 @@
-axa-modal > * {
+axa-modal[forced] > * {
   &:first-child {
     // !important reason: An axa-heading child element sets margins on the host
     // element. This can only be overridden by !important.
