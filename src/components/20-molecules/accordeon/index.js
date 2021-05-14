@@ -1,17 +1,13 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
+import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
 /* eslint-disable import/no-extraneous-dependencies */
 import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg';
-/* eslint-disable import/no-extraneous-dependencies */
-import fireHouse from '@axa-ch/materials/images/fire-house.svg';
 
-import {
-  defineVersioned,
-  /* versionedHtml, */
-} from '../../../utils/component-versioning';
+import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import { boolean } from '@storybook/addon-knobs';
@@ -57,6 +53,8 @@ class AXAAccordeon extends LitElement {
       'm-accordeon__title--disabled': this.disabled,
     };
 
+    const { icon } = this;
+
     return html`
       <article class="m-accordeon">
         <div class="m-accordeon__container">
@@ -65,13 +63,14 @@ class AXAAccordeon extends LitElement {
             @click="${this.expandAccordeon}"
           >
             <div class="m-accordeon__title--container-title">
+              ${unsafeSVG(icon)}
               <axa-text variant="${this.size === 'small' ? 'size-3' : ''}"
                 >${this.title}</axa-text
               >
             </div>
-            <button class="m-accordeon__title--close">
+            <div class="m-accordeon__title--close">
               ${this.isOpen ? svg([expandLess]) : svg([expandMore])}
-            </button>
+            </div>
           </div>
           <div
             class="${this.isOpen
@@ -83,6 +82,10 @@ class AXAAccordeon extends LitElement {
         </div>
       </article>
     `;
+  }
+
+  updated() {
+    console.log(this.icon);
   }
 
   disconnectedCallback() {

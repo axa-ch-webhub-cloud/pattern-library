@@ -14,30 +14,9 @@
     color: $color-axa-blue;
 
     &--close {
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      outline: none;
-      color: inherit;
-      font: inherit;
-      line-height: normal;
-      padding: 0;
-      // margin: 0 -2px 0 6px;
+      width: 24px;
+      height: 24px;
 
-    }
-
-    &--container-title {
-      display: flex;
-
-      &-icon {
-        display: none;
-  
-        &-show {
-          display: block;
-          width: 40px;
-          height: 40px;
-        }
-      }
     }
 
     &:hover {
