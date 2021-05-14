@@ -1,6 +1,5 @@
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import { unsafeSVG } from 'lit-html/directives/unsafe-svg';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
@@ -38,54 +37,47 @@ class AXAAccordeon extends LitElement {
     applyDefaults(this);
   }
 
-  expandAccordeon() {
-    if (this.isOpen) {
-      this.isOpen = false;
-    } else {
-      this.isOpen = true;
-    }
+  toggleAccordion() {
+    this.isOpen = !this.isOpen;
   }
 
   render() {
+    const { isOpen, title, size, disabled, icon } = this;
     const titleClasses = {
-      'm-accordeon__title--small': this.size === 'small',
-      'm-accordeon__title--large': this.size === 'large',
-      'm-accordeon__title--disabled': this.disabled,
+      'm-accordeon__title': true,
+      'm-accordeon__title--small': size === 'small',
+      'm-accordeon__title--large': size === 'large',
+      'm-accordeon__title--disabled': disabled,
     };
+    const openClasses = {
+      'm-accordeon__content--open': isOpen,
+      'm-accordeon__content': !isOpen,
+    };
+    const variant = size === 'small' ? 'size-3' : '';
+    const statusIcon = svg([isOpen ? expandLess : expandMore]);
 
-    const { icon } = this;
-
+    const iconHTML = icon ? svg([icon]) : html``;
+    // prettier-ignore
     return html`
       <article class="m-accordeon">
         <div class="m-accordeon__container">
-          <div
-            class="m-accordeon__title ${classMap(titleClasses)}"
-            @click="${this.expandAccordeon}"
-          >
+          <div class="${classMap(titleClasses)}" @click="${this.toggleAccordion}">
+            ${iconHTML}
             <div class="m-accordeon__title--container-title">
-              ${unsafeSVG(icon)}
-              <axa-text variant="${this.size === 'small' ? 'size-3' : ''}"
-                >${this.title}</axa-text
-              >
+              <axa-text variant="${variant}">
+                ${title}
+              </axa-text>
             </div>
             <div class="m-accordeon__title--close">
-              ${this.isOpen ? svg([expandLess]) : svg([expandMore])}
+            ${statusIcon}
             </div>
           </div>
-          <div
-            class="${this.isOpen
-              ? 'm-accordeon__content--open'
-              : 'm-accordeon__content'}"
-          >
+          <div class="${classMap(openClasses)}">
             <slot></slot>
           </div>
         </div>
       </article>
     `;
-  }
-
-  updated() {
-    console.log(this.icon);
   }
 
   disconnectedCallback() {

@@ -27,7 +27,7 @@ export const Accordeon = () => {
   const size = select('size', options);
   const icon = text(
     'icon',
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%231cc54e" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#1cc54e" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>'
   );
 
   const wrapper = document.createElement('div');
@@ -50,4 +50,10 @@ export const Accordeon = () => {
 
   render(template, wrapper);
   return wrapper;
+};
+
+Accordeon.parameters = {
+  knobs: {
+    escapeHTML: false,
+  },
 };
