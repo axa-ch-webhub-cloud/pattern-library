@@ -1,10 +1,4 @@
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -17,8 +11,7 @@ export default {
   parameters: {
     usage: {
       propsPureHTML: 'icon="arrow-right"',
-      usageReact:
-        'You can use this component directly in your JSX without further React-ification (see Usage above).',
+      usageReact: 'You can use this component directly in your JSX without further React-ification (see Usage above).',
     },
     readme,
     changelog,
@@ -30,17 +23,9 @@ export const Icon = () => {
   const noIcon = boolean('Do not set attribute "icon"', false);
   const noSize = boolean('Do not set attribute "size"', false);
 
-  const size = select(
-    'size',
-    ['small', 'medium', 'large', 'original'],
-    'medium'
-  );
+  const size = select('size', ['small', 'medium', 'large', 'original'], 'medium');
 
-  const loadIconType = radios(
-    'Load icon this way (Fill values below):',
-    { 'Named property': 'prop', URL: 'url', 'SVG string': 'string' },
-    'prop'
-  );
+  const loadIconType = radios('Load icon this way (Fill values below):', { 'Named property': 'prop', URL: 'url', 'SVG string': 'string' }, 'prop');
   const icon = select('Value for "Named property"', iconList, 'download');
   const itemIconUrl = text('Value for "URL"', './svg/logo-axa.svg');
   const itemIconString = text(
@@ -93,10 +78,7 @@ export const Icon = () => {
                       <axa-icon icon="${getIconValue(loadIconType)}"></axa-icon>
                     `
                   : html`
-                      <axa-icon
-                        icon="${getIconValue(loadIconType)}"
-                        size="${size}"
-                      ></axa-icon>
+                      <axa-icon icon="${getIconValue(loadIconType)}" size="${size}"></axa-icon>
                     `}
               `}
         `}

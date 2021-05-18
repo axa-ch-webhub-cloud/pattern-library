@@ -3,9 +3,7 @@ import AXADatepickerReact from './AXADatepickerReact';
 
 const DemoDatepickerOnDateChange = () => {
   const startDateString = '2019-07-29';
-  const [selectedDateString, setSelectedDateString] = React.useState(
-    startDateString
-  );
+  const [selectedDateString, setSelectedDateString] = React.useState(startDateString);
   const locale = 'de-CH';
 
   const localizedDateString = date =>
@@ -29,18 +27,7 @@ const DemoDatepickerOnDateChange = () => {
   return (
     <div>
       <p>Selected date: {selectedDateString}</p>
-      <AXADatepickerReact
-        style={style}
-        inputfield
-        id="datepicker-react-inputfield-on-date-change"
-        data-test-id="datepicker-react-inputfield-on-date-change"
-        locale={locale}
-        defaultValue={defaultValue}
-        onDateChange={newDate => setSelectedDateString(formatDate(newDate))}
-        onBlur={undefined}
-        placeholder="Wählen Sie ein Datum"
-        allowedyears={[2019, 2020]}
-      />
+      <AXADatepickerReact style={style} inputfield id="datepicker-react-inputfield-on-date-change" data-test-id="datepicker-react-inputfield-on-date-change" locale={locale} defaultValue={defaultValue} onDateChange={newDate => setSelectedDateString(formatDate(newDate))} onBlur={undefined} placeholder="Wählen Sie ein Datum" allowedyears={[2019, 2020]} />
     </div>
   );
 };

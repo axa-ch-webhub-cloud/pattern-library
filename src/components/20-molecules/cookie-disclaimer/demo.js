@@ -33,9 +33,7 @@ storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
     divWrapper.appendChild(cookieDisclaimer);
 
     setTimeout(() => {
-      const time = window.localStorage.getItem(
-        'axa-ch-cookie-disclaimer-accepted'
-      );
+      const time = window.localStorage.getItem('axa-ch-cookie-disclaimer-accepted');
 
       document.querySelector('.js-only-for-demo-local-storage').innerHTML = time
         ? `Accepted the disclaimer at: <b>

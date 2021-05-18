@@ -6,9 +6,7 @@ const DemoDatepickerNoInputfield = () => {
   const [showDatepicker, setShowDatepicker] = useState(true);
   return (
     <div>
-      <button onClick={() => setShowDatepicker(!showDatepicker)}>
-        Toggle Datepicker
-      </button>
+      <button onClick={() => setShowDatepicker(!showDatepicker)}>Toggle Datepicker</button>
       <hr />
       {showDatepicker && (
         <>
@@ -19,11 +17,7 @@ const DemoDatepickerNoInputfield = () => {
             month={1}
             day={1}
             // eslint-disable-next-line no-console
-            onDateChange={date =>
-              (document.getElementById(
-                'checkbox-output'
-              ).innerHTML = `Date changed to: ${date}`)
-            }
+            onDateChange={date => (document.getElementById('checkbox-output').innerHTML = `Date changed to: ${date}`)}
           />
           <AXATextReact id="checkbox-output">Date changed to:</AXATextReact>
         </>

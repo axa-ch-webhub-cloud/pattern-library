@@ -22,19 +22,20 @@ $check-mark-animated-size: 26px;
     height: 12%;
     background: $check-mark-bg;
     border-radius: 6px;
-    animation: short .3s ease-in forwards;
+    animation: short 0.3s ease-in forwards;
   }
 
   &:after {
     content: '';
     position: absolute;
-    top: 80%; left: 55%;
+    top: 80%;
+    left: 55%;
     height: 12%;
     background: $check-mark-bg;
     border-radius: 6px;
     transform: rotate(-90deg);
-    transform-origin:0 0;
-    animation: long .3s ease-out .3s forwards;
+    transform-origin: 0 0;
+    animation: long 0.3s ease-out 0.3s forwards;
   }
 
   @keyframes short {
@@ -47,7 +48,7 @@ $check-mark-animated-size: 26px;
   }
 
   @keyframes long {
-    0%   {
+    0% {
       width: 0;
     }
     100% {

@@ -15,12 +15,7 @@ Model example:
 
 ```js
 const model = {
-  thead: [
-    { html: 'Title 0', sort: 'ASC' },
-    { html: 'Title 1', sort: 'ASC' },
-    { html: 'Title 3', sort: 'DESC' },
-    { html: 'Title 2' },
-  ],
+  thead: [{ html: 'Title 0', sort: 'ASC' }, { html: 'Title 1', sort: 'ASC' }, { html: 'Title 3', sort: 'DESC' }, { html: 'Title 2' }],
   tbody: [
     [
       // Use 'html' to insert html to the table.
@@ -30,18 +25,8 @@ const model = {
       { html: '<span>Cell 2</span>' },
       { html: 'A' },
     ],
-    [
-      { html: '<span>1 Test</span>' },
-      { html: '<span>Z Hello 2</span>' },
-      { html: '<span>Cell 2</span>' },
-      { html: 'B' },
-    ],
-    [
-      { html: '<span>2 Test</span>' },
-      { html: '<span>A Hello 3</span>' },
-      { html: '<span>Cell 2</span>' },
-      { html: 'C' },
-    ],
+    [{ html: '<span>1 Test</span>' }, { html: '<span>Z Hello 2</span>' }, { html: '<span>Cell 2</span>' }, { html: 'B' }],
+    [{ html: '<span>2 Test</span>' }, { html: '<span>A Hello 3</span>' }, { html: '<span>Cell 2</span>' }, { html: 'C' }],
   ],
 };
 ```

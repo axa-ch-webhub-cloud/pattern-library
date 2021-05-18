@@ -6,11 +6,7 @@ describe('Spinner', () => {
     await openSpinner();
     await page.waitForSelector(tag);
 
-    expect(
-      (await page.isVisible('.a-spinner__dot-1')) &&
-        (await page.isVisible('.a-spinner__dot-2')) &&
-        (await page.isVisible('.a-spinner__dot-3'))
-    ).toBeTruthy();
+    expect((await page.isVisible('.a-spinner__dot-1')) && (await page.isVisible('.a-spinner__dot-2')) && (await page.isVisible('.a-spinner__dot-3'))).toBeTruthy();
   });
 
   it('should change the spinner color correctly', async () => {
@@ -18,9 +14,7 @@ describe('Spinner', () => {
     await page.waitForSelector(tag);
 
     await page.evaluate(evaluateTag => {
-      document
-        .querySelector(evaluateTag)
-        .setAttribute('color', 'inverted-white');
+      document.querySelector(evaluateTag).setAttribute('color', 'inverted-white');
     }, tag);
 
     const axaSpinner = await page.$(tag);
@@ -29,7 +23,5 @@ describe('Spinner', () => {
 });
 
 async function openSpinner() {
-  await page.goto(
-    `${host}/iframe.html?id=components-spinner--spinner&viewMode=story`
-  );
+  await page.goto(`${host}/iframe.html?id=components-spinner--spinner&viewMode=story`);
 }

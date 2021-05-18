@@ -1,12 +1,5 @@
 /* global document */
-import {
-  boolean,
-  number,
-  object,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -45,12 +38,7 @@ storiesOf('Examples/Datepicker/React', module)
     const placeholder = text('placeholder', 'Please select a date');
     const defaultValue = text('defaultValue', '');
     const inlineWidth = text('width (not an attribute)', '');
-    const allowedYears = object('allowedyears', [
-      '1971-2000',
-      2012,
-      2014,
-      '2018-2022',
-    ]);
+    const allowedYears = object('allowedyears', ['1971-2000', 2012, 2014, '2018-2022']);
 
     const div = document.createElement('div');
     const style = {
@@ -82,9 +70,7 @@ storiesOf('Examples/Datepicker/React', module)
         data-display-name={AXADatepickerReact.displayName}
         className="my-special-class"
         onDateChange={newDate => {
-          document.querySelector(
-            'axa-datepicker[data-test-id="datepicker-react"]'
-          ).title = newDate;
+          document.querySelector('axa-datepicker[data-test-id="datepicker-react"]').title = newDate;
         }}
       />,
       div

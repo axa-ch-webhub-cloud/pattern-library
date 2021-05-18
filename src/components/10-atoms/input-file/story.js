@@ -1,11 +1,5 @@
 /* global document */
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -44,31 +38,14 @@ export const InputFile = () => {
   const motionOff = boolean('motionOff', false);
   const disabled = boolean('disabled', false);
 
-  const accept = text(
-    'accept',
-    'image/jpg, image/jpeg, application/pdf, image/png'
-  );
+  const accept = text('accept', 'image/jpg, image/jpeg, application/pdf, image/png');
 
   const capture = boolean('capture', false);
   const multiple = boolean('multiple', false);
 
   const template = html`
-    <div
-      style="${variant.includes('inverted')
-        ? `background-color: #00008f; padding: 10px;`
-        : ''}"
-    >
-      <axa-input-file
-        variant="${variant}"
-        icon="${icon}"
-        ?large="${large}"
-        ?motionOff="${motionOff}"
-        ?disabled="${disabled}"
-        accept="${accept}"
-        text="${_text}"
-        ?capture="${capture}"
-        ?multiple="${multiple}"
-      ></axa-input-file>
+    <div style="${variant.includes('inverted') ? `background-color: #00008f; padding: 10px;` : ''}">
+      <axa-input-file variant="${variant}" icon="${icon}" ?large="${large}" ?motionOff="${motionOff}" ?disabled="${disabled}" accept="${accept}" text="${_text}" ?capture="${capture}" ?multiple="${multiple}"></axa-input-file>
     </div>
   `;
 

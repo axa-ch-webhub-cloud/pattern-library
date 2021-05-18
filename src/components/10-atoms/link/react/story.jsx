@@ -42,19 +42,12 @@ storiesOf('Examples/Link/React', module)
     changelog,
   })
   .add('Story', () => {
-    const link = text(
-      'link',
-      'https://www.axa.ch/en/information/data-protection.html'
-    );
+    const link = text('link', 'https://www.axa.ch/en/information/data-protection.html');
     const linkText = text('Link text', 'Data protection statement');
     const external = boolean('external', false);
     const variant = select('variant', variantOptions, '');
     const icon = select('icon', iconList);
-    const backgrounds = select(
-      'Background color',
-      ['red', 'blue', 'white', 'black'],
-      'white'
-    );
+    const backgrounds = select('Background color', ['red', 'blue', 'white', 'black'], 'white');
     const css = `
         body {
             background-color: ${backgrounds};

@@ -1,11 +1,4 @@
-import {
-  boolean,
-  number,
-  object,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, number, object, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -40,12 +33,7 @@ export const Datepicker = () => {
   const year = number('year', 2020);
   const month = number('month', 4);
   const day = number('day', 22);
-  const allowedYears = object('allowedyears', [
-    '1971-2000',
-    2012,
-    2014,
-    '2018-2022',
-  ]);
+  const allowedYears = object('allowedyears', ['1971-2000', 2012, 2014, '2018-2022']);
   const disabled = boolean('disabled', false);
   const autofocus = boolean('autofocus', false);
   const checkMark = boolean('checkMark', false);
@@ -61,32 +49,9 @@ export const Datepicker = () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <div
-      style="background-color: lightgrey;margin-top: ${marginTop}px; width: 500px"
-    >
-      <axa-datepicker
-        locale="${locale}"
-        style="width:${width}"
-        ?inputfield="${inputfield}"
-        ?autofocus="${autofocus}"
-        ?checkMark="${checkMark}"
-        ?disabled="${disabled}"
-        .allowedyears="${allowedYears}"
-        year="${year}"
-        month="${month}"
-        day="${day}"
-        placeholder="${placeholder}"
-        ?invalid="${invalid}"
-        invaliddatetext="${invaliddatetext}"
-        label="${label}"
-        monthtitle="${monthtitle}"
-        yeartitle="${yeartitle}"
-        data-test-id="datepicker"
-      ></axa-datepicker>
-      <span
-        >This is a simple text next to datepicker element. You can check
-        datapickers width with me.</span
-      >
+    <div style="background-color: lightgrey;margin-top: ${marginTop}px; width: 500px">
+      <axa-datepicker locale="${locale}" style="width:${width}" ?inputfield="${inputfield}" ?autofocus="${autofocus}" ?checkMark="${checkMark}" ?disabled="${disabled}" .allowedyears="${allowedYears}" year="${year}" month="${month}" day="${day}" placeholder="${placeholder}" ?invalid="${invalid}" invaliddatetext="${invaliddatetext}" label="${label}" monthtitle="${monthtitle}" yeartitle="${yeartitle}" data-test-id="datepicker"></axa-datepicker>
+      <span>This is a simple text next to datepicker element. You can check datapickers width with me.</span>
     </div>
   `;
 

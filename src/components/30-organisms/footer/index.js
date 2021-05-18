@@ -5,10 +5,7 @@ import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import AXAContainer from '@axa-ch/container';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -93,9 +90,7 @@ class AXAFooter extends InlineStyles {
   _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
     let currentNode = nestedChild;
     const domTree = [currentNode];
-    while (
-      AXAFooter.tagName.toUpperCase() !== currentNode.tagName.toUpperCase()
-    ) {
+    while (AXAFooter.tagName.toUpperCase() !== currentNode.tagName.toUpperCase()) {
       currentNode = currentNode.parentNode;
       domTree.push(currentNode);
     }
@@ -123,22 +118,15 @@ class AXAFooter extends InlineStyles {
    * ITEM -> add item to column 1
    */
   _prepareSlotsWithIndexes() {
-    const slotElements = Array.prototype.slice.call(
-      this.querySelectorAll('[slot]')
-    );
+    const slotElements = Array.prototype.slice.call(this.querySelectorAll('[slot]'));
 
-    const childrenArray = slotElements.map(c =>
-      this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c)
-    );
+    const childrenArray = slotElements.map(c => this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c));
 
-    const filter = criteria => child =>
-      child.getAttribute('slot').includes(criteria);
+    const filter = criteria => child => child.getAttribute('slot').includes(criteria);
 
     const noHeaderFilter = criteria => child => {
       const { nodeName } = child;
-      return (
-        filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
-      );
+      return filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase());
     };
 
     const onlyColumns = childrenArray.filter(
@@ -158,19 +146,11 @@ class AXAFooter extends InlineStyles {
       if (HEADINGS.includes(nodeName.toLowerCase())) {
         currentColumnIndex += 1;
         totalAmountPreviousColumns = index;
-        child.setAttribute(
-          'slot',
-          child
-            .getAttribute('slot')
-            .replace('column-title', `column-${currentColumnIndex}-title`)
-        );
+        child.setAttribute('slot', child.getAttribute('slot').replace('column-title', `column-${currentColumnIndex}-title`));
       } else {
         // -1 because TITLE is always first of dom index -> see * in big comment above
         const actualIndex = index - totalAmountPreviousColumns - 1;
-        child.setAttribute(
-          'slot',
-          `column-${currentColumnIndex}-item-${actualIndex}`
-        );
+        child.setAttribute('slot', `column-${currentColumnIndex}-item-${actualIndex}`);
       }
     });
 
@@ -184,23 +164,17 @@ class AXAFooter extends InlineStyles {
     const links = [...this.querySelectorAll('a')];
     if (remove) {
       // clean up listeners
-      links.forEach(link =>
-        link.removeEventListener('click', this._handleLinkClick)
-      );
+      links.forEach(link => link.removeEventListener('click', this._handleLinkClick));
       return;
     }
     // add event listener to each link/<a> tag, which is inside a slot element,
     // hence cannot use @click, as it resides in light DOM
-    links.forEach(link =>
-      link.addEventListener('click', this._handleLinkClick)
-    );
+    links.forEach(link => link.addEventListener('click', this._handleLinkClick));
   }
 
   // throttle re-rendering to once per frame (so that children added late by browser HTML parsers are defined)
   performUpdate() {
-    new Promise(resolve =>
-      window.requestAnimationFrame(() => resolve())
-    ).then(() => super.performUpdate());
+    new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(() => super.performUpdate());
   }
 
   render() {
@@ -220,8 +194,7 @@ class AXAFooter extends InlineStyles {
     const accordionCaretState = index => {
       return {
         'o-footer__accordion-button-caret': true,
-        'o-footer__accordion-button-caret--open':
-          this._accordionActiveIndex === index,
+        'o-footer__accordion-button-caret--open': this._accordionActiveIndex === index,
       };
     };
 
@@ -241,27 +214,14 @@ class AXAFooter extends InlineStyles {
                 ${
                   this.querySelectorAll('[slot^="column-0-item-"]').length
                     ? html`
-                        <button
-                          class="o-footer__accordion-button"
-                          @click="${ev => this._handleAccordionClick(0, ev)}"
-                        >
-                          <slot
-                            name="column-0-title"
-                            class="o-footer__title"
-                          ></slot>
+                        <button class="o-footer__accordion-button" @click="${ev => this._handleAccordionClick(0, ev)}">
+                          <slot name="column-0-title" class="o-footer__title"></slot>
                           <span class="${classMap(accordionCaretState(0))}">
                             ${showCaret}
                           </span>
                         </button>
                         <ul class="${classMap(accordionContent)}">
-                          ${repeat(
-                            new Array(
-                              this.querySelectorAll(
-                                '[slot^="column-0-item-"]'
-                              ).length
-                            ),
-                            (item, index) => _renderFooterLinks(0, index)
-                          )}
+                          ${repeat(new Array(this.querySelectorAll('[slot^="column-0-item-"]').length), (item, index) => _renderFooterLinks(0, index))}
                         </ul>
                       `
                     : ''
@@ -272,27 +232,14 @@ class AXAFooter extends InlineStyles {
                 ${
                   this.querySelectorAll('[slot^="column-1-item-"]').length
                     ? html`
-                        <button
-                          class="o-footer__accordion-button"
-                          @click="${ev => this._handleAccordionClick(1, ev)}"
-                        >
-                          <slot
-                            name="column-1-title"
-                            class="o-footer__title"
-                          ></slot>
+                        <button class="o-footer__accordion-button" @click="${ev => this._handleAccordionClick(1, ev)}">
+                          <slot name="column-1-title" class="o-footer__title"></slot>
                           <span class="${classMap(accordionCaretState(1))}">
                             ${showCaret}
                           </span>
                         </button>
                         <ul class="${classMap(shortAccordionContent)}">
-                          ${repeat(
-                            new Array(
-                              this.querySelectorAll(
-                                '[slot^="column-1-item-"]'
-                              ).length
-                            ),
-                            (item, index) => _renderFooterLinks(1, index)
-                          )}
+                          ${repeat(new Array(this.querySelectorAll('[slot^="column-1-item-"]').length), (item, index) => _renderFooterLinks(1, index))}
                         </ul>
                       `
                     : ''
@@ -307,9 +254,7 @@ class AXAFooter extends InlineStyles {
               ></slot>
               <ul class="o-footer__social-media-list">
                 ${repeat(
-                  new Array(
-                    this.querySelectorAll('[slot^="social-item-"]').length
-                  ),
+                  new Array(this.querySelectorAll('[slot^="social-item-"]').length),
                   (item, index) => html`
                     <li class="o-footer__social-media-item">
                       <slot name="social-item-${index}"></slot>
@@ -326,21 +271,16 @@ class AXAFooter extends InlineStyles {
 
   _handleAccordionClick = (index, ev) => {
     // toggle opening of correct accordion
-    this._accordionActiveIndex =
-      index === this._accordionActiveIndex ? -1 : index;
+    this._accordionActiveIndex = index === this._accordionActiveIndex ? -1 : index;
     this.requestUpdate();
 
-    const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
-      '.js-footer__main-content-panel'
-    );
+    const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll('.js-footer__main-content-panel');
 
     [].forEach.call(panels, panel => {
       _setMaxHeightToZero(panel);
     });
 
-    const panel = ev.currentTarget.parentNode.querySelector(
-      '.js-footer__main-content-panel'
-    );
+    const panel = ev.currentTarget.parentNode.querySelector('.js-footer__main-content-panel');
     if (this._accordionActiveIndex > -1) {
       const {
         parentNode: { offsetHeight },

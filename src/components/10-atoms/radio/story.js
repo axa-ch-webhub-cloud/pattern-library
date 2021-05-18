@@ -42,38 +42,9 @@ export const Radio = () => {
     </axa-text>
     <br />
     <axa-fieldset ?horizontal=${button}>
-      <axa-radio
-        name="contract"
-        label="${label}"
-        ?focus="${focus}"
-        ?checked="${checked}"
-        icon="${icon ? CarSvg : ''}"
-        ?nogap="${noGap}"
-        ?button="${button}"
-        ?disabled="${disabled}"
-        ?noautowidth="${noAutoWidth}"
-        value="1"
-      ></axa-radio>
-      <axa-radio
-        name="contract"
-        icon="${icon ? PlaneSvg : ''}"
-        ?nogap="${noGap}"
-        ?button="${button}"
-        ?disabled="${disabled}"
-        ?noautowidth="${noAutoWidth}"
-        label="plane"
-        value="2"
-      ></axa-radio>
-      <axa-radio
-        name="contract"
-        icon="${icon ? SailBoatSvg : ''}"
-        ?nogap="${noGap}"
-        ?button="${button}"
-        ?disabled="${disabled}"
-        ?noautowidth="${noAutoWidth}"
-        label="sailboat"
-        value="3"
-      ></axa-radio>
+      <axa-radio name="contract" label="${label}" ?focus="${focus}" ?checked="${checked}" icon="${icon ? CarSvg : ''}" ?nogap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noautowidth="${noAutoWidth}" value="1"></axa-radio>
+      <axa-radio name="contract" icon="${icon ? PlaneSvg : ''}" ?nogap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noautowidth="${noAutoWidth}" label="plane" value="2"></axa-radio>
+      <axa-radio name="contract" icon="${icon ? SailBoatSvg : ''}" ?nogap="${noGap}" ?button="${button}" ?disabled="${disabled}" ?noautowidth="${noAutoWidth}" label="sailboat" value="3"></axa-radio>
     </axa-fieldset>
   `;
 

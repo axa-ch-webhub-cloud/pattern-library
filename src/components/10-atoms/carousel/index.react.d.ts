@@ -7,9 +7,6 @@ export interface AXACarouselProps {
   className?: string;
 }
 
-declare function createAXACarousel(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXACarouselProps>;
+declare function createAXACarousel(createElement: typeof React.createElement, version?: string): React.ComponentType<AXACarouselProps>;
 
 export default createAXACarousel;

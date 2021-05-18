@@ -24,11 +24,7 @@ export const ToggleSwitch = () => {
   const wrapper = document.createElement('div');
 
   const template = html`
-    <axa-toggle-switch
-      error=${error}
-      ?active=${active}
-      ?disabled=${disabled}
-    ></axa-toggle-switch>
+    <axa-toggle-switch error=${error} ?active=${active} ?disabled=${disabled}></axa-toggle-switch>
   `;
 
   render(template, wrapper);

@@ -15,18 +15,13 @@ const DemoDropdown = () => {
   const [error, setError] = useState('');
   const [native, setNative] = useState(false);
 
-  const findName = val =>
-    (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
+  const findName = val => (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
 
   const handleChange = event => {
     setValue(frozen ? value : event.target.value);
     const oldName = findName(value);
     const newName = event.target.name;
-    setError(
-      frozen
-        ? `invariant '${oldName}' despite user change to '${newName}'!`
-        : ''
-    );
+    setError(frozen ? `invariant '${oldName}' despite user change to '${newName}'!` : '');
   };
 
   const handleValueFreeze = () => {
@@ -39,32 +34,11 @@ const DemoDropdown = () => {
 
   return (
     <div>
-      <p>
-        With the React wrapper - controlled &lt;axa-dropdown&gt; component with
-        callback prop, valid checkmark and error message!
-      </p>
-      <AXACheckboxReact
-        className="freeze-checkbox"
-        onChange={handleValueFreeze}
-        label="freeze value"
-      />
-      <AXACheckboxReact
-        className="native-checkbox"
-        onChange={handleNative}
-        label="native"
-      />
+      <p>With the React wrapper - controlled &lt;axa-dropdown&gt; component with callback prop, valid checkmark and error message!</p>
+      <AXACheckboxReact className="freeze-checkbox" onChange={handleValueFreeze} label="freeze value" />
+      <AXACheckboxReact className="native-checkbox" onChange={handleNative} label="native" />
       <br />
-      <AXADropdownReact
-        native={native}
-        data-test-id="dropdown-react"
-        items={items}
-        onChange={handleChange}
-        value={value}
-        invalid={frozen}
-        checkMark={!frozen}
-        error={error}
-        defaultTitle="Please Select"
-      />
+      <AXADropdownReact native={native} data-test-id="dropdown-react" items={items} onChange={handleChange} value={value} invalid={frozen} checkMark={!frozen} error={error} defaultTitle="Please Select" />
       <br />
       <p>
         Controlled value &quot;

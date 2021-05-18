@@ -41,9 +41,7 @@ class AXATextarea extends NoShadowDOM {
          */
         converter: value =>
           // eslint-disable-next-line no-restricted-globals
-          !isNaN(parseFloat(value)) && isFinite(value)
-            ? Number(value)
-            : undefined,
+          !isNaN(parseFloat(value)) && isFinite(value) ? Number(value) : undefined,
       },
       isReact: { type: Boolean },
       modelCounter: { type: String },
@@ -128,9 +126,7 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get showCounter() {
-    return (
-      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
-    );
+    return this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled;
   }
 
   get showError() {
@@ -138,12 +134,7 @@ class AXATextarea extends NoShadowDOM {
   }
 
   get showCounterMax() {
-    return (
-      this.maxLength > 0 &&
-      this.counterMax &&
-      !this.areCharsLeft &&
-      !this.disabled
-    );
+    return this.maxLength > 0 && this.counterMax && !this.areCharsLeft && !this.disabled;
   }
 
   get showMessages() {
@@ -202,26 +193,7 @@ class AXATextarea extends NoShadowDOM {
   }
 
   render() {
-    const {
-      name,
-      value,
-      required,
-      label = '',
-      error = '',
-      modelCounter = '',
-      counterMax = '',
-      maxLength = '',
-      placeholder,
-      disabled,
-      isReact,
-      isControlled,
-      refId,
-      invalid,
-      checkMark,
-      showError,
-      showCounter,
-      showCounterMax,
-    } = this;
+    const { name, value, required, label = '', error = '', modelCounter = '', counterMax = '', maxLength = '', placeholder, disabled, isReact, isControlled, refId, invalid, checkMark, showError, showCounter, showCounterMax } = this;
 
     this.isControlled = isControlled && isReact;
 
@@ -250,20 +222,7 @@ class AXATextarea extends NoShadowDOM {
           >
         `}
       <div class="a-textarea__textarea-wrapper">
-        <textarea
-          @input="${this.handleInput}"
-          @focus="${this.handleFocus}"
-          @blur="${this.handleBlur}"
-          id="${refId}"
-          maxlength="${maxLength}"
-          class="${classMap(textareaClasses)}"
-          autocomplete="off"
-          .value="${value}"
-          name="${name}"
-          placeholder="${placeholder}"
-          ?disabled="${disabled}"
-          aria-required="${required}"
-        ></textarea>
+        <textarea @input="${this.handleInput}" @focus="${this.handleFocus}" @blur="${this.handleBlur}" id="${refId}" maxlength="${maxLength}" class="${classMap(textareaClasses)}" autocomplete="off" .value="${value}" name="${name}" placeholder="${placeholder}" ?disabled="${disabled}" aria-required="${required}"></textarea>
 
         ${checkMark && !showCounterMax
           ? html`

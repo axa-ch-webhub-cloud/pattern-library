@@ -61,9 +61,7 @@ class AXAStepper extends LitElement {
       }
 
       return html`
-        <div class="m-stepper__step m-stepper__step--${state} js-stepper__step">
-          ${symbol}<span class="m-stepper__text js-stepper__text">${text}</span>
-        </div>
+        <div class="m-stepper__step m-stepper__step--${state} js-stepper__step">${symbol}<span class="m-stepper__text js-stepper__text">${text}</span></div>
       `;
     });
 
@@ -76,10 +74,7 @@ class AXAStepper extends LitElement {
           ${steps}
         </div>
         <div class="m-stepper__progressbar">
-          <div
-            class="m-stepper__progress js-stepper__progress"
-            style="width: ${progress}%"
-          ></div>
+          <div class="m-stepper__progress js-stepper__progress" style="width: ${progress}%"></div>
         </div>
       </div>
     `;

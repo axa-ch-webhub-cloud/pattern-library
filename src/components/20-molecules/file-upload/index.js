@@ -3,21 +3,13 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
 
-import {
-  AddSvg,
-  Delete_foreverSvg,
-  ClearSvg,
-  Attach_fileSvg,
-} from '@axa-ch/materials/icons/material-design';
+import { AddSvg, Delete_foreverSvg, ClearSvg, Attach_fileSvg } from '@axa-ch/materials/icons/material-design';
 import AXAInputFile from '@axa-ch/input-file';
 
 // icon isolated from others, because it's a component specific icon
 import { FileUploadGroupSvg } from './icons';
 
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import compressImages from './utils/imageCompressor';
@@ -30,9 +22,7 @@ const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
 const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
-const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
-  type => type.indexOf('image') === -1
-);
+const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(type => type.indexOf('image') === -1);
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
@@ -76,8 +66,7 @@ class AXAFileUpload extends LitElement {
       },
       wrongFileTypeStatusText: {
         type: String,
-        defaultValue:
-          'Your file does not correspond with our allowed file-types',
+        defaultValue: 'Your file does not correspond with our allowed file-types',
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
@@ -125,10 +114,7 @@ class AXAFileUpload extends LitElement {
   handleDropZoneDragover(e) {
     // prevent default browser behavior of following the link that triggered the event
     e.preventDefault();
-    if (
-      !this.isFileMaxReached &&
-      !this.dropZone.classList.contains('m-file-upload__dropzone_dragover')
-    ) {
+    if (!this.isFileMaxReached && !this.dropZone.classList.contains('m-file-upload__dropzone_dragover')) {
       e.dataTransfer.dropEffect = 'copy';
       this.dropZone.classList.add('m-file-upload__dropzone_dragover');
     }
@@ -140,9 +126,7 @@ class AXAFileUpload extends LitElement {
 
   filterAndAddFiles(files) {
     // filter out files with wrong MIME type
-    const validFileTypesFiles = [...files].filter(
-      file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
-    );
+    const validFileTypesFiles = [...files].filter(file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1);
 
     // we have at least one wrong-MIME-type file?
     let removeGlobalMessage = true;
@@ -175,36 +159,18 @@ class AXAFileUpload extends LitElement {
     let spliceStart = 0;
     this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
-    const allOriginalFiles = this.validOriginalFiles.concat(
-      this.faultyOriginalFiles
-    );
+    const allOriginalFiles = this.validOriginalFiles.concat(this.faultyOriginalFiles);
 
     if (index >= this.files.length) {
       spliceStart = index - this.validOriginalFiles.length;
-      this.faultyOriginalFiles = this.removeValidOrFaultyFileFromArray(
-        index,
-        this.faultyOriginalFiles,
-        spliceStart
-      );
+      this.faultyOriginalFiles = this.removeValidOrFaultyFileFromArray(index, this.faultyOriginalFiles, spliceStart);
 
-      this.faultyCompressedFiles = this.removeValidOrFaultyFileFromArray(
-        index,
-        this.faultyCompressedFiles,
-        spliceStart
-      );
+      this.faultyCompressedFiles = this.removeValidOrFaultyFileFromArray(index, this.faultyCompressedFiles, spliceStart);
     } else {
       spliceStart = index;
-      this.validOriginalFiles = this.removeValidOrFaultyFileFromArray(
-        index,
-        this.validOriginalFiles,
-        spliceStart
-      );
+      this.validOriginalFiles = this.removeValidOrFaultyFileFromArray(index, this.validOriginalFiles, spliceStart);
 
-      this.validCompressedFiles = this.removeValidOrFaultyFileFromArray(
-        index,
-        this.validCompressedFiles,
-        spliceStart
-      );
+      this.validCompressedFiles = this.removeValidOrFaultyFileFromArray(index, this.validCompressedFiles, spliceStart);
 
       if (this.validOriginalFiles.length + 1 === this.maxNumberOfFiles) {
         this.showAddMoreInputFile = true;
@@ -265,23 +231,14 @@ class AXAFileUpload extends LitElement {
 
     this.numberOfDroppedFiles += droppedFilesWithID.length;
 
-    const notImagesFiles = [...droppedFilesWithID].filter(
-      file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
-    );
+    const notImagesFiles = [...droppedFilesWithID].filter(file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1);
 
     // compress all images. pngs will become jpeg's and unrecognised files will be deleted. (all pfd's were removed)
     const compressedImagesWithID = await compressImages(droppedFilesWithID);
 
-    this.validateFiles(
-      compressedImagesWithID,
-      notImagesFiles,
-      droppedFilesWithID
-    );
+    this.validateFiles(compressedImagesWithID, notImagesFiles, droppedFilesWithID);
 
-    if (
-      (this.files.length > 0 || this.faultyFiles.length > 0) &&
-      droppedFilesWithID.length > 0
-    ) {
+    if ((this.files.length > 0 || this.faultyFiles.length > 0) && droppedFilesWithID.length > 0) {
       this.showFileOverview = true;
     }
     if (this.files.length >= this.maxNumberOfFiles) {
@@ -293,24 +250,15 @@ class AXAFileUpload extends LitElement {
   }
 
   validateOverallSize(fileSize = 0) {
-    const {
-      sizeOfAllFilesInBytes,
-      maxSizeOfAllFilesKB,
-      filesTooBigStatusText,
-    } = this;
+    const { sizeOfAllFilesInBytes, maxSizeOfAllFilesKB, filesTooBigStatusText } = this;
 
     const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
-    this.globalErrorMessage =
-      sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
-        ? filesTooBigStatusText
-        : '';
+    this.globalErrorMessage = sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes ? filesTooBigStatusText : '';
   }
 
   validateFiles(compressedImages, notImagesFiles, droppedFilesWithID) {
     const { maxSizeOfSingleFileKB } = this;
-    const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(
-      maxSizeOfSingleFileKB
-    );
+    const maxSizeOfSingleFileInBytes = getBytesFromKilobyte(maxSizeOfSingleFileKB);
 
     const faultyCompressedFiles = [];
     const validCompressedFiles = [];
@@ -326,27 +274,18 @@ class AXAFileUpload extends LitElement {
       if (fileSize > maxSizeOfSingleFileInBytes) {
         faultyOriginalFiles.push(file);
 
-        faultyCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        faultyCompressedFiles.push(this.findCompromisedFileWithMatchingID(newCompressedFiles, file));
       } else {
         validOriginalFiles.push(file);
 
-        validCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        validCompressedFiles.push(this.findCompromisedFileWithMatchingID(newCompressedFiles, file));
       }
 
       this.sizeOfAllFilesInBytes += fileSize;
       this.validateOverallSize(fileSize);
     }
 
-    this.addFilesToSpecificArray(
-      validOriginalFiles,
-      validCompressedFiles,
-      faultyOriginalFiles,
-      faultyCompressedFiles
-    );
+    this.addFilesToSpecificArray(validOriginalFiles, validCompressedFiles, faultyOriginalFiles, faultyCompressedFiles);
   }
 
   findCompromisedFileWithMatchingID(newCompressedFiles, file) {
@@ -358,25 +297,11 @@ class AXAFileUpload extends LitElement {
     return undefined;
   }
 
-  addFilesToSpecificArray(
-    validOriginalFiles,
-    validCompressedFiles,
-    faultyOriginalFiles,
-    faultyCompressedFiles
-  ) {
+  addFilesToSpecificArray(validOriginalFiles, validCompressedFiles, faultyOriginalFiles, faultyCompressedFiles) {
     const { maxNumberOfFiles } = this;
-    const numberOfFilesLeftover = Math.max(
-      maxNumberOfFiles - this.validOriginalFiles.length,
-      0
-    );
-    const originalFilesLeftover = validOriginalFiles.slice(
-      0,
-      numberOfFilesLeftover
-    );
-    const compressedFilesLeftover = validCompressedFiles.slice(
-      0,
-      numberOfFilesLeftover
-    );
+    const numberOfFilesLeftover = Math.max(maxNumberOfFiles - this.validOriginalFiles.length, 0);
+    const originalFilesLeftover = validOriginalFiles.slice(0, numberOfFilesLeftover);
+    const compressedFilesLeftover = validCompressedFiles.slice(0, numberOfFilesLeftover);
 
     if (this.preventFileCompression) {
       this.files = this.files.concat(originalFilesLeftover);
@@ -389,36 +314,19 @@ class AXAFileUpload extends LitElement {
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
     // Used for previws
-    this.validCompressedFiles = this.validCompressedFiles.concat(
-      compressedFilesLeftover
-    );
+    this.validCompressedFiles = this.validCompressedFiles.concat(compressedFilesLeftover);
     // Used for previws
-    this.faultyCompressedFiles = this.faultyCompressedFiles.concat(
-      faultyCompressedFiles
-    );
+    this.faultyCompressedFiles = this.faultyCompressedFiles.concat(faultyCompressedFiles);
 
-    this.validOriginalFiles = this.validOriginalFiles.concat(
-      originalFilesLeftover
-    );
+    this.validOriginalFiles = this.validOriginalFiles.concat(originalFilesLeftover);
 
-    this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
-      faultyOriginalFiles
-    );
+    this.faultyOriginalFiles = this.faultyOriginalFiles.concat(faultyOriginalFiles);
   }
 
   handleMaxNumberOfFiles() {
-    const {
-      numberOfDroppedFiles,
-      faultyFiles,
-      maxNumberOfFiles,
-      tooManyFilesStatusText,
-      files,
-    } = this;
+    const { numberOfDroppedFiles, faultyFiles, maxNumberOfFiles, tooManyFilesStatusText, files } = this;
 
-    if (
-      numberOfDroppedFiles - faultyFiles.length > maxNumberOfFiles &&
-      faultyFiles.length + files.length >= maxNumberOfFiles
-    ) {
+    if (numberOfDroppedFiles - faultyFiles.length > maxNumberOfFiles && faultyFiles.length + files.length >= maxNumberOfFiles) {
       this.globalErrorMessage = tooManyFilesStatusText;
     }
 
@@ -426,17 +334,10 @@ class AXAFileUpload extends LitElement {
   }
 
   fileOverviewMapping(allCompressedFiles) {
-    const {
-      deleteStatusText,
-      fileTooBigStatusText,
-      faultyCompressedFiles,
-      preventFileCompression,
-    } = this;
+    const { deleteStatusText, fileTooBigStatusText, faultyCompressedFiles, preventFileCompression } = this;
     const urlCreator = window.URL || window.webkitURL;
 
-    const allOriginalFiles = this.validOriginalFiles.concat(
-      this.faultyOriginalFiles
-    );
+    const allOriginalFiles = this.validOriginalFiles.concat(this.faultyOriginalFiles);
 
     return allCompressedFiles.map((file, index) => {
       let isfaultyFile = false;
@@ -451,55 +352,29 @@ class AXAFileUpload extends LitElement {
           break;
         }
       }
-      const fileName = preventFileCompression
-        ? allOriginalFiles[index].name
-        : file.name;
+      const fileName = preventFileCompression ? allOriginalFiles[index].name : file.name;
       const isNonImageFile = file.type.indexOf('application') > -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
         <figure class="m-file-upload__img-figure js-file-upload__img-figure">
-          <div
-            class="m-file-upload__icon-hover-area"
-            @click=${() => this.handleFileDeletion(index)}
-          >
+          <div class="m-file-upload__icon-hover-area" @click=${() => this.handleFileDeletion(index)}>
             ${isNonImageFile
               ? html`
-                  <span class="m-file-upload__file-element">
-                    ${ATTACH_FILE_ICON}</span
-                  >
+                  <span class="m-file-upload__file-element"> ${ATTACH_FILE_ICON}</span>
                 `
               : html`
-                  <img
-                    class="m-file-upload__img-element"
-                    src="${imageUrl}"
-                    alt="${fileName}"
-                  />
+                  <img class="m-file-upload__img-element" src="${imageUrl}" alt="${fileName}" />
                 `}
             <div class="m-file-upload__icon-layer">
-              <span class="m-file-upload__icon-error"
-                >${isfaultyFile ? CLEAR_ICON : ''}</span
-              >
-              <span class="m-file-upload__icon-delete"
-                >${DELETE_FOREVER_ICON}</span
-              >
+              <span class="m-file-upload__icon-error">${isfaultyFile ? CLEAR_ICON : ''}</span>
+              <span class="m-file-upload__icon-delete">${DELETE_FOREVER_ICON}</span>
             </div>
           </div>
-          <figcaption
-            class="m-file-upload__img-caption js-file-upload__img-caption"
-            data-status="${deleteStatusText}"
-          >
-            <span
-              class="m-file-upload__filename js-file-upload__filename"
-              title="${fileName}"
-              >${fileName}</span
-            >
+          <figcaption class="m-file-upload__img-caption js-file-upload__img-caption" data-status="${deleteStatusText}">
+            <span class="m-file-upload__filename js-file-upload__filename" title="${fileName}">${fileName}</span>
             ${isfaultyFile
               ? html`
-                  <span
-                    class="m-file-upload__error js-file-upload__error"
-                    title="${fileTooBigStatusText}"
-                    >${fileTooBigStatusText}</span
-                  >
+                  <span class="m-file-upload__error js-file-upload__error" title="${fileTooBigStatusText}">${fileTooBigStatusText}</span>
                 `
               : html``}
           </figcaption>
@@ -511,21 +386,13 @@ class AXAFileUpload extends LitElement {
   generateAddMoreInputFile() {
     const { addStatusText } = this;
     return html`
-      <figure
-        class="m-file-upload__img-figure js-file-upload__img-figure m-file-upload__add-more js-file-upload__add-more"
-      >
-        <div
-          class="m-file-upload__icon-wrapper"
-          @click=${this.handleAddMoreInputClick}
-        >
+      <figure class="m-file-upload__img-figure js-file-upload__img-figure m-file-upload__add-more js-file-upload__add-more">
+        <div class="m-file-upload__icon-wrapper" @click=${this.handleAddMoreInputClick}>
           <div class="m-file-upload__icon-layer">
             ${ADD_ICON}
           </div>
         </div>
-        <figcaption
-          class="m-file-upload__img-caption js-file-upload__img-caption"
-          title="${addStatusText}"
-        >
+        <figcaption class="m-file-upload__img-caption js-file-upload__img-caption" title="${addStatusText}">
           ${addStatusText}
         </figcaption>
       </figure>
@@ -533,16 +400,7 @@ class AXAFileUpload extends LitElement {
   }
 
   render() {
-    const {
-      faultyCompressedFiles,
-      validCompressedFiles,
-      infoText,
-      orText,
-      icon,
-      inputFileText,
-      showAddMoreInputFile,
-      globalErrorMessage,
-    } = this;
+    const { faultyCompressedFiles, validCompressedFiles, infoText, orText, icon, inputFileText, showAddMoreInputFile, globalErrorMessage } = this;
     const fileOverviewClasses = {
       'm-file-upload__dropzone': true,
       'js-file-upload__dropzone': true,
@@ -551,20 +409,13 @@ class AXAFileUpload extends LitElement {
     };
 
     // displaying files with errors (e.g. too big) after valid ones
-    const allCompressedFiles = validCompressedFiles.concat(
-      faultyCompressedFiles
-    );
+    const allCompressedFiles = validCompressedFiles.concat(faultyCompressedFiles);
     const fileOverview = this.fileOverviewMapping(allCompressedFiles);
 
     return html`
       <article class="m-file-upload">
         <h1><slot></slot></h1>
-        <section
-          @dragover="${this.handleDropZoneDragover}"
-          @dragleave="${this.handleDropZoneDragleave}"
-          @drop="${this.handleDropZoneDrop}"
-          class="${classMap(fileOverviewClasses)}"
-        >
+        <section @dragover="${this.handleDropZoneDragover}" @dragleave="${this.handleDropZoneDragleave}" @drop="${this.handleDropZoneDrop}" class="${classMap(fileOverviewClasses)}">
           ${!this.showFileOverview
             ? versionedHtml(this)`
                 <div>
@@ -583,8 +434,7 @@ class AXAFileUpload extends LitElement {
                 ></axa-input-file>
               `
             : html`
-                ${fileOverview}
-                ${showAddMoreInputFile ? this.generateAddMoreInputFile() : ``}
+                ${fileOverview} ${showAddMoreInputFile ? this.generateAddMoreInputFile() : ``}
               `}
         </section>
 
@@ -598,9 +448,7 @@ class AXAFileUpload extends LitElement {
   firstUpdated() {
     this.dropZone = this.shadowRoot.querySelector('.js-file-upload__dropzone');
     this.inputFile = this.shadowRoot.querySelector('.js-file-upload__input');
-    this.errorWrapper = this.shadowRoot.querySelector(
-      '.js-file-upload__error-wrapper'
-    );
+    this.errorWrapper = this.shadowRoot.querySelector('.js-file-upload__error-wrapper');
   }
 
   querySelector(selector) {

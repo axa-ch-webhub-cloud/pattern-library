@@ -24,13 +24,7 @@ export const ProgressBar = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-progress-bar
-      ?small=${small}
-      ?noborderradius=${noBorderRadius}
-      value=${value}
-      max=${max}
-      text=${progressText}
-    ></axa-progress-bar>
+    <axa-progress-bar ?small=${small} ?noborderradius=${noBorderRadius} value=${value} max=${max} text=${progressText}></axa-progress-bar>
   `;
 
   render(template, wrapper);

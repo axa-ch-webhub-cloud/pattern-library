@@ -12,10 +12,7 @@ storiesOf('Examples/Button/Pure HTML', module)
     changelog,
     knobs: { disable: true },
   })
-  .add(
-    'Icon visible',
-    () => '<axa-button icon="arrow-right">Next step</axa-button>'
-  )
+  .add('Icon visible', () => '<axa-button icon="arrow-right">Next step</axa-button>')
   .add('Clickable', () => {
     const btn = document.createElement('axa-button');
     let counter = 0;
@@ -46,8 +43,7 @@ storiesOf('Examples/Button/Pure HTML', module)
           <axa-button type="submit">Click me, I send you to Nirvana</axa-button>
         </form>
         <p>
-          I&apos;m type submit Button in a form, on click I stop submit event
-          for you for example you can validate me
+          I&apos;m type submit Button in a form, on click I stop submit event for you for example you can validate me
         </p>
         <form @click="${handleSubmit}">
           <axa-button class="js-submit-prevent" type="submit">
@@ -56,8 +52,7 @@ storiesOf('Examples/Button/Pure HTML', module)
         </form>
         <form>
           <p>
-            I&apos;m type reset Button in a form, if you type something - on
-            click I should reset the input
+            I&apos;m type reset Button in a form, if you type something - on click I should reset the input
           </p>
           <input type="text" />
           <axa-button type="reset">Reset Input</axa-button>
@@ -69,12 +64,7 @@ storiesOf('Examples/Button/Pure HTML', module)
     render(template, wrapper);
     return wrapper;
   })
-  .add(
-    'Css width',
-    () =>
-      '<axa-button variant="red" style="width: 100%">This red button has "width: 100%"</axa-button>' +
-      '<axa-text>You can simply set width by setting css width.</axa-text>'
-  )
+  .add('Css width', () => '<axa-button variant="red" style="width: 100%">This red button has "width: 100%"</axa-button>' + '<axa-text>You can simply set width by setting css width.</axa-text>')
   .add('Side by side', () => {
     const template = html`
       <div style="display: flex">

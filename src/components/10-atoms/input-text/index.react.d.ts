@@ -29,9 +29,6 @@ export interface AXAInputTextProps {
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-declare function createAXAInputText(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAInputTextProps>;
+declare function createAXAInputText(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAInputTextProps>;
 
 export default createAXAInputText;

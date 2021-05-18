@@ -45,27 +45,7 @@ export const InputText = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-input-text
-      refid="${refId}"
-      name="${name}"
-      label="${label}"
-      placeholder="${placeholder}"
-      counter="${counter}"
-      countermax="${counterMax}"
-      value="${value}"
-      type="${types}"
-      error="${error}"
-      info="${info}"
-      maxlength="${maxLength}"
-      pattern="${pattern}"
-      inputmode="${inputmode}"
-      currency="${currency}"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
-      ?autofocus="${autofocus}"
-    ></axa-input-text>
+    <axa-input-text refid="${refId}" name="${name}" label="${label}" placeholder="${placeholder}" counter="${counter}" countermax="${counterMax}" value="${value}" type="${types}" error="${error}" info="${info}" maxlength="${maxLength}" pattern="${pattern}" inputmode="${inputmode}" currency="${currency}" ?checkmark="${checkMark}" ?disabled="${disabled}" ?required="${required}" ?invalid="${invalid}" ?autofocus="${autofocus}"></axa-input-text>
   `;
 
   render(template, wrapper);

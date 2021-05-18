@@ -42,8 +42,7 @@ class AXAHeading extends LitElement {
   }
 
   render() {
-    const secondaryVariant =
-      this.variant === 'secondary' ? 'a-heading--secondary' : '';
+    const secondaryVariant = this.variant === 'secondary' ? 'a-heading--secondary' : '';
 
     this.style.marginTop = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];
     this.style.marginBottom = TOP_BOTTOM_MARGINS_BY_RANK[this.rank];

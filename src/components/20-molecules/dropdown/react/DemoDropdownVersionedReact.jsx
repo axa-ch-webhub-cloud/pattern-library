@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import AXADropdownVersionedReact, {
-  numericalVersion,
-} from './AXADropdownVersionedReact';
+import AXADropdownVersionedReact, { numericalVersion } from './AXADropdownVersionedReact';
 import AXATextReact from './AXATextReact';
 
 const DemoVersionedDropdown = () => {
@@ -35,16 +33,12 @@ const DemoVersionedDropdown = () => {
         disabled={props.disabled}
         // eslint-disable-next-line no-console
         onChange={value =>
-          (document.getElementById(
-            'checkbox-output'
-          ).innerHTML = `axa-dropdown version ${numericalVersion} 
+          (document.getElementById('checkbox-output').innerHTML = `axa-dropdown version ${numericalVersion} 
           new value: ${JSON.stringify(value)}`)
         }
       />
       <br />
-      <AXATextReact id="checkbox-output">
-        axa-dropdown version {numericalVersion} new value:
-      </AXATextReact>
+      <AXATextReact id="checkbox-output">axa-dropdown version {numericalVersion} new value:</AXATextReact>
     </>
   );
 };

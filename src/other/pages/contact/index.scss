@@ -4,53 +4,52 @@
 @include content-padding;
 
 .contact-grid {
-    @include breakpoint($mediaquery-xs-up) {
+  @include breakpoint($mediaquery-xs-up) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     grid-gap: 2.5rem;
     margin-top: 3rem;
-    }
+  }
 }
 
 .contact-support-visuals {
+  &__paragraph {
+    @include text(t2);
+  }
+  &__kicker {
+    @include text(t2, semibold);
+    text-transform: uppercase;
+  }
+  img {
+    margin-top: 2.5rem;
+    width: 100%;
+    height: auto;
+  }
+  @include breakpoint($mediaquery-sm-up) {
+    display: flex;
+    margin-bottom: 2.5rem;
+    align-items: center;
+    margin-top: 10px;
+
     &__paragraph {
-        @include text(t2);
-    } 
+      @include text(t3);
+    }
+
     &__kicker {
-        @include text(t2, semibold);
-        text-transform: uppercase;
+      @include text(t4, semibold);
+      text-transform: uppercase;
     }
+
     img {
-        margin-top: 2.5rem;
-        width: 100%;
-        height: auto;
+      width: auto;
+      height: 215px;
+      margin-right: 15px;
     }
-    @include breakpoint($mediaquery-sm-up) {
-        display: flex;
-        margin-bottom: 2.5rem;
-        align-items: center;
-        margin-top: 10px;
-
-        &__paragraph {
-            @include text(t3);
-        }
-
-        &__kicker {
-            @include text(t4, semibold);
-            text-transform: uppercase;
-        }
-
-        img {
-            width: auto;
-            height: 215px;
-            margin-right: 15px;
-        }
-    }
+  }
 }
 
 .contact-col-wrapper {
-    flex: 1;
-    box-sizing: border-box;
+  flex: 1;
+  box-sizing: border-box;
 }
-

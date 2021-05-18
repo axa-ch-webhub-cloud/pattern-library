@@ -8,9 +8,6 @@ export interface AXAFooterSmallProps {
   dynamic?: boolean;
 }
 
-declare function createAXAFooterSmall(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAFooterSmallProps>;
+declare function createAXAFooterSmall(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAFooterSmallProps>;
 
 export default createAXAFooterSmall;

@@ -6,9 +6,6 @@ export interface AXATextProps {
   variant?: Variant;
 }
 
-declare function createAXAText(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXATextProps>;
+declare function createAXAText(createElement: typeof React.createElement, version?: string): React.ComponentType<AXATextProps>;
 
 export default createAXAText;

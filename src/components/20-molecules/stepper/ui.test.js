@@ -2,9 +2,7 @@ import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Stepper - basic functionality').page(
-  `${host}/iframe.html?id=components-stepper--stepper`
-);
+fixture('Stepper - basic functionality').page(`${host}/iframe.html?id=components-stepper--stepper`);
 
 const TAG = 'axa-stepper';
 const CLASS = '.m-stepper';
@@ -13,10 +11,7 @@ test('should render stepper', async t => {
   const $axaElem = Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
-  const $axaElemShadow = Selector(
-    () => document.querySelector(TAG).shadowRoot,
-    { dependencies: { TAG } }
-  );
+  const $axaElemShadow = Selector(() => document.querySelector(TAG).shadowRoot, { dependencies: { TAG } });
 
   const $axaElemShadowEl = $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -78,9 +73,7 @@ test('should display correct step state', async t => {
       }
 
       const circle = step.querySelector('.js-stepper__circle');
-      const circleBackground = window
-        .getComputedStyle(circle)
-        .getPropertyValue('background-color');
+      const circleBackground = window.getComputedStyle(circle).getPropertyValue('background-color');
 
       if (circleBackground === 'rgb(0, 0, 143)') {
         return 1;
@@ -159,9 +152,7 @@ test('should treat stepActive=0 like stepActive=1', async t => {
       const shadow = document.querySelector(TAG).shadowRoot;
       const circle = shadow.querySelectorAll('.js-stepper__circle')[0];
 
-      const circleBackground = window
-        .getComputedStyle(circle)
-        .getPropertyValue('background-color');
+      const circleBackground = window.getComputedStyle(circle).getPropertyValue('background-color');
 
       return circleBackground === 'rgb(0, 0, 143)';
     },

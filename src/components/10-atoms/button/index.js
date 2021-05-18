@@ -5,10 +5,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAIcon from '@axa-ch/icon';
 
 import { applyDefaults } from '../../../utils/with-react';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import buttonCSS from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -16,9 +13,7 @@ import InlineStyles from '../../../utils/inline-styles';
 const ARROW_RIGHT = 'arrow-right';
 
 /* eslint-disable no-undef */
-const isNativeShadowDOM = (window || global).ShadowRoot
-  ? ShadowRoot.toString().indexOf('native code') > -1
-  : false;
+const isNativeShadowDOM = (window || global).ShadowRoot ? ShadowRoot.toString().indexOf('native code') > -1 : false;
 /* eslint-enable no-undef */
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
@@ -147,13 +142,8 @@ class AXAButton extends InlineStyles {
     // bubbles out of ShadowDOM, hence the stop propagation trick
 
     // TODO: remove all the IE stuff if support drops
-    const isIESubmitResetEvent =
-      document.documentMode &&
-      eventIsTrusted(e) &&
-      isNativeShadowDOM &&
-      this.isTypeSubmitOrReset;
-    const isSubmitResetEvent =
-      e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset;
+    const isIESubmitResetEvent = document.documentMode && eventIsTrusted(e) && isNativeShadowDOM && this.isTypeSubmitOrReset;
+    const isSubmitResetEvent = e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset;
 
     if (isIESubmitResetEvent || isSubmitResetEvent) {
       e.stopPropagation();
@@ -172,14 +162,7 @@ class AXAButton extends InlineStyles {
   };
 
   render() {
-    const {
-      type,
-      motionOff,
-      disabled,
-      variant = '',
-      icon = '',
-      size = '',
-    } = this;
+    const { type, motionOff, disabled, variant = '', icon = '', size = '' } = this;
 
     const classes = {
       'a-button': true,
@@ -192,18 +175,12 @@ class AXAButton extends InlineStyles {
       'a-button--inverted-blue-ocean': variant === 'inverted-blue-ocean',
       'a-button--inverted-red-tosca': variant === 'inverted-red-tosca',
       'a-button--inverted-purple-logan': variant === 'inverted-purple-logan',
-      'a-button--inverted-green-viridian':
-        variant === 'inverted-green-viridian',
+      'a-button--inverted-green-viridian': variant === 'inverted-green-viridian',
       'a-button--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
 
     return html`
-      <button
-        type="${type}"
-        class="${classMap(classes)}"
-        ?disabled="${disabled}"
-        @click="${this.handleClick}"
-      >
+      <button type="${type}" class="${classMap(classes)}" ?disabled="${disabled}" @click="${this.handleClick}">
         <span class="a-button__flex-wrapper">
           ${this.showIcon
             ? versionedHtml(this)`

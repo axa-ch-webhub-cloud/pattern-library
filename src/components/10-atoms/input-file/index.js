@@ -2,10 +2,7 @@
 import AXAIcon from '@axa-ch/icon';
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
@@ -50,17 +47,7 @@ class AXAInputFile extends NoShadowDOM {
   }
 
   render() {
-    const {
-      text = '',
-      large,
-      motionOff,
-      disabled,
-      variant = '',
-      icon = '',
-      accept,
-      capture,
-      multiple,
-    } = this;
+    const { text = '', large, motionOff, disabled, variant = '', icon = '', accept, capture, multiple } = this;
 
     const classes = {
       'a-input-file--secondary': variant === 'secondary',
@@ -81,15 +68,7 @@ class AXAInputFile extends NoShadowDOM {
           ${text}
         </span>
       </label>
-      <input
-        type="${TYPE}"
-        accept="${accept}"
-        ?multiple="${multiple}"
-        ?capture="${capture}"
-        @change="${this.onChange}"
-        class="a-input-file__input js-input-file__input"
-        id="${this.refId}"
-      />
+      <input type="${TYPE}" accept="${accept}" ?multiple="${multiple}" ?capture="${capture}" @change="${this.onChange}" class="a-input-file__input js-input-file__input" id="${this.refId}" />
     `;
   }
 }

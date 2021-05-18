@@ -27,23 +27,15 @@ storiesOf('Examples/Cookie Disclaimer/React', module)
       // eslint-disable-next-line max-len
       'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:'
     );
-    const dataProtection = text(
-      'Link text (not an attribute)',
-      'Data protection'
-    );
-    const link = text(
-      'Link address (not an attribute)',
-      'https://axa.ch/de/informationen/datenschutz.html'
-    );
+    const dataProtection = text('Link text (not an attribute)', 'Data protection');
+    const link = text('Link address (not an attribute)', 'https://axa.ch/de/informationen/datenschutz.html');
 
     const div = document.createElement('div');
     ReactDOM.render(
       <>
         <AXACookieDisclaimerReact
           onClick={() => {
-            document.getElementById(
-              'checkbox-output'
-            ).innerHTML = `Clicked on: ${Date.now()}`;
+            document.getElementById('checkbox-output').innerHTML = `Clicked on: ${Date.now()}`;
           }}
           title={title}
           buttonname={buttonname}

@@ -9,10 +9,7 @@ import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';
 
-const storyAXACommercialHeroBanner = storiesOf(
-  'Examples/Commercial Hero Banner/Pure HTML',
-  module
-);
+const storyAXACommercialHeroBanner = storiesOf('Examples/Commercial Hero Banner/Pure HTML', module);
 
 storyAXACommercialHeroBanner.addDecorator(withNoBorder);
 storyAXACommercialHeroBanner.addDecorator(withKnobs);
@@ -32,10 +29,7 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
     'light'
   );
 
-  const imageSource = text(
-    'Image Source',
-    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
-  );
+  const imageSource = text('Image Source', 'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -115,26 +109,14 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
         }
       }
     </style>
-    <axa-commercial-hero-banner
-      variant="${variant}"
-      imagesource="${imageSource}"
-    >
+    <axa-commercial-hero-banner variant="${variant}" imagesource="${imageSource}">
       <h2 slot="category">This example shows specific picture classes</h2>
       <h1 slot="title">Drive with peace of mind</h1>
       <p slot="content">
-        Whether you need to insure your first car or renew your existing car
-        insurance, AXA can provide a range of car insurance policies to suit
-        your requirements and offer great product benefits at a price you can
-        afford
+        Whether you need to insure your first car or renew your existing car insurance, AXA can provide a range of car insurance policies to suit your requirements and offer great product benefits at a price you can afford
       </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
-      <axa-button-link
-        href="https://axa.ch"
-        slot="button"
-        variant="red"
-        size="large"
-        >GET A QUOTE</axa-button-link
-      >
+      <axa-button-link href="https://axa.ch" slot="button" variant="red" size="large">GET A QUOTE</axa-button-link>
       <div slot="addon-section">
         <div class="o-commercial-hero-banner-demo__badge-wrapper">
           <p class="o-commercial-hero-banner-demo__badge-content">

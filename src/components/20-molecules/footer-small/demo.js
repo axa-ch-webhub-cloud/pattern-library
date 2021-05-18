@@ -54,8 +54,7 @@ storiesOf('Examples/Footer Small/Pure HTML', module)
 
     const dataProtectionLink = document.createElement('a');
     dataProtectionLink.slot = 'disclaimer-item';
-    dataProtectionLink.href =
-      'https://axa.ch/en/information/data-protection.html';
+    dataProtectionLink.href = 'https://axa.ch/en/information/data-protection.html';
     dataProtectionLink.textContent = 'Data protection';
 
     const copyRightText = document.createElement('span');

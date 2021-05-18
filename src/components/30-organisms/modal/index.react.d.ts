@@ -6,9 +6,6 @@ export interface AXAModalProps {
   forced?: boolean;
 }
 
-declare function createAXAModal(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAModalProps>;
+declare function createAXAModal(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAModalProps>;
 
 export default createAXAModal;

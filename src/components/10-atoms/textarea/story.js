@@ -32,20 +32,7 @@ export const Textarea = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-textarea
-      refid="${refId}"
-      name="${name}"
-      label="${label}"
-      placeholder="${placeholder}"
-      error="${error}"
-      counter="${counter}"
-      countermax="${counterMax}"
-      maxlength="${maxLength}"
-      ?checkmark="${checkMark}"
-      ?disabled="${disabled}"
-      ?required="${required}"
-      ?invalid="${invalid}"
-    ></axa-textarea>
+    <axa-textarea refid="${refId}" name="${name}" label="${label}" placeholder="${placeholder}" error="${error}" counter="${counter}" countermax="${counterMax}" maxlength="${maxLength}" ?checkmark="${checkMark}" ?disabled="${disabled}" ?required="${required}" ?invalid="${invalid}"></axa-textarea>
   `;
 
   render(template, wrapper);

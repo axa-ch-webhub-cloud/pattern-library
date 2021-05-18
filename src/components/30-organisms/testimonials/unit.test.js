@@ -6,8 +6,6 @@ describe('Testimonials', () => {
 
     AXATestimonials.prototype.firstUpdated();
 
-    expect(AXATestimonials.prototype.inlineStyles).toHaveBeenCalledWith(
-      'childStyles'
-    );
+    expect(AXATestimonials.prototype.inlineStyles).toHaveBeenCalledWith('childStyles');
   });
 });

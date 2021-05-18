@@ -16,26 +16,14 @@ const DemoTextReact = () => {
   return (
     <div>
       <label className="js-pure-text">
-        <span style={{ fontFamily: 'sans-serif', fontSize: '12px' }}>
-          pure, non-HTML text
-        </span>
+        <span style={{ fontFamily: 'sans-serif', fontSize: '12px' }}>pure, non-HTML text</span>
         <input type="checkbox" onChange={handleChange} checked={text} />
       </label>
-      <button
-        className="js-update"
-        onClick={handleCounter}
-        style={{ fontFamily: 'sans-serif', marginLeft: '4rem' }}
-      >
+      <button className="js-update" onClick={handleCounter} style={{ fontFamily: 'sans-serif', marginLeft: '4rem' }}>
         update text
       </button>
       <hr />
-      <AXAText>
-        {text ? (
-          `This is example pure text no. ${counter}`
-        ) : (
-          <span>{`This is example HTML text no. ${counter}`}</span>
-        )}
-      </AXAText>
+      <AXAText>{text ? `This is example pure text no. ${counter}` : <span>{`This is example HTML text no. ${counter}`}</span>}</AXAText>
     </div>
   );
 };

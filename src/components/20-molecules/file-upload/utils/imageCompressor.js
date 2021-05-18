@@ -122,17 +122,7 @@ const onResultCanvas = (res, _image, _options, file) => {
   }
   if (_result) {
     // Returns original file if the _result is greater than it and without size related options
-    if (
-      _result.size > file.size &&
-      !(
-        options.width > 0 ||
-        options.height > 0 ||
-        options.maxWidth < Infinity ||
-        options.maxHeight < Infinity ||
-        options.minWidth > 0 ||
-        options.minHeight > 0
-      )
-    ) {
+    if (_result.size > file.size && !(options.width > 0 || options.height > 0 || options.maxWidth < Infinity || options.maxHeight < Infinity || options.minWidth > 0 || options.minHeight > 0)) {
       _result = file;
     } else {
       const date = new Date();
@@ -143,10 +133,7 @@ const onResultCanvas = (res, _image, _options, file) => {
 
       // Convert the extension to match its type
       if (_result.name && _result.type !== file.type) {
-        _result.name = _result.name.replace(
-          REGEXP_EXTENSION,
-          imageTypeToExtension(_result.type)
-        );
+        _result.name = _result.name.replace(REGEXP_EXTENSION, imageTypeToExtension(_result.type));
       }
     }
   } else {
@@ -166,8 +153,7 @@ const isBlob = input => {
 
   return (
     /* global Blob */ // otherwise Blob would be marked as undefined
-    input instanceof Blob ||
-    Object.prototype.toString.call(input) === '[object Blob]'
+    input instanceof Blob || Object.prototype.toString.call(input) === '[object Blob]'
   );
 };
 
@@ -197,9 +183,7 @@ const createPromise = (file, _options) => {
     }
   })
     .then(url => createImage(url, file, image))
-    .then(({ width, height }) =>
-      appendToCanvas(width, height, _options, file, image)
-    )
+    .then(({ width, height }) => appendToCanvas(width, height, _options, file, image))
     .then(res => onResultCanvas(res, image, options, file))
     .catch(err => {
       if (!options.error) {

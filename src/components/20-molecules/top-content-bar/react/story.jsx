@@ -26,10 +26,7 @@ storiesOf('Examples/Top Content Bar/React', module)
     const ctatext = text('ctatext', '');
     const variant = select('variant', variantOptions, '');
     const href = text('href', '');
-    const textValue = text(
-      'Text',
-      'Undefined flighting object detected in your region. People are paniking. Stay calm'
-    );
+    const textValue = text('Text', 'Undefined flighting object detected in your region. People are paniking. Stay calm');
     const link = text('Add axa-link', '');
 
     return wrap(

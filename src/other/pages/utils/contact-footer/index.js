@@ -3,10 +3,7 @@ import defineOnce from '../../../../utils/define-once';
 import NoShadowDOM from '../../../../utils/no-shadow';
 import styles from './index.scss';
 
-const INTERNAL_LINK = `${window.location.href.replace(
-  /\/[^/]*$/,
-  ''
-)}/?path=/story/others-contact--contact`;
+const INTERNAL_LINK = `${window.location.href.replace(/\/[^/]*$/, '')}/?path=/story/others-contact--contact`;
 
 class PLContactFooter extends NoShadowDOM {
   static get tagName() {

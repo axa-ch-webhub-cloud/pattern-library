@@ -10,9 +10,6 @@ export interface AXATopContentBarProps {
   onClick?: () => void;
 }
 
-declare function createAXATopContentBar(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXATopContentBarProps>;
+declare function createAXATopContentBar(createElement: typeof React.createElement, version?: string): React.ComponentType<AXATopContentBarProps>;
 
 export default createAXATopContentBar;

@@ -5,10 +5,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAIcon from '@axa-ch/icon';
 
 import { applyDefaults } from '../../../utils/with-react';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import buttonLinkCSS from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -62,15 +59,7 @@ class AXAButtonLink extends InlineStyles {
   }
 
   render() {
-    const {
-      href,
-      external,
-      size = '',
-      motionOff,
-      disabled,
-      variant = '',
-      icon = '',
-    } = this;
+    const { href, external, size = '', motionOff, disabled, variant = '', icon = '' } = this;
 
     const classes = {
       'a-button-link': true,
@@ -82,22 +71,13 @@ class AXAButtonLink extends InlineStyles {
       'a-button-link--inverted': variant.includes('inverted'),
       'a-button-link--inverted-blue-ocean': variant === 'inverted-blue-ocean',
       'a-button-link--inverted-red-tosca': variant === 'inverted-red-tosca',
-      'a-button-link--inverted-purple-logan':
-        variant === 'inverted-purple-logan',
-      'a-button-link--inverted-green-viridian':
-        variant === 'inverted-green-viridian',
+      'a-button-link--inverted-purple-logan': variant === 'inverted-purple-logan',
+      'a-button-link--inverted-green-viridian': variant === 'inverted-green-viridian',
       'a-button-link--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
 
     return html`
-      <a
-        class="${classMap(classes)}"
-        href="${href}"
-        target="${external ? '_blank' : '_top'}"
-        rel="${external ? 'noreferrer noopener' : ''}"
-        aria-disabled="${disabled}"
-        @click="${this.onClick}"
-      >
+      <a class="${classMap(classes)}" href="${href}" target="${external ? '_blank' : '_top'}" rel="${external ? 'noreferrer noopener' : ''}" aria-disabled="${disabled}" @click="${this.onClick}">
         <span class="a-button-link__flex-wrapper">
           ${this.showIcon
             ? versionedHtml(this)`

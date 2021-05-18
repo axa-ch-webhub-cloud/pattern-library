@@ -2,9 +2,7 @@ import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Textarea - basic functionality').page(
-  `${host}/iframe.html?id=components-textarea--textarea`
-);
+fixture('Textarea - basic functionality').page(`${host}/iframe.html?id=components-textarea--textarea`);
 
 const TAG = 'axa-textarea';
 const CLASS = '.a-textarea__textarea';
@@ -24,10 +22,7 @@ test('should type something in textarea', async t => {
     document.getElementById('root').appendChild(textarea);
   });
   await setupTextarea();
-  const [textarea, nativeTextarea] = [
-    await Selector('.my-textarea'),
-    await Selector(`.my-textarea ${CLASS}`),
-  ];
+  const [textarea, nativeTextarea] = [await Selector('.my-textarea'), await Selector(`.my-textarea ${CLASS}`)];
   await t.expect(textarea.exists).ok();
   await t.expect(nativeTextarea.exists).ok();
   await t.typeText(nativeTextarea, 'Pattern Warriors');
@@ -40,13 +35,9 @@ test('should show error message and have the right color', async t => {
     document.querySelector('axa-textarea').error = 'error';
   });
   await setInvalid();
-  const $messages = await Selector(() =>
-    document.querySelector('.a-textarea__messages')
-  );
+  const $messages = await Selector(() => document.querySelector('.a-textarea__messages'));
   await t.expect($messages.innerText).contains('error');
-  await t
-    .expect(await $messages.getStyleProperty('color'))
-    .eql('rgb(201, 20, 50)');
+  await t.expect(await $messages.getStyleProperty('color')).eql('rgb(201, 20, 50)');
 });
 
 test('should show counter', async t => {
@@ -76,15 +67,9 @@ test('should show counterMax', async t => {
   await setCounterMax();
 
   const $messages = await Selector(() => document.querySelector('.counter'));
-  const $textarea = await Selector(() =>
-    document.querySelector('.counter .a-textarea__textarea')
-  );
-  const $checkmark = await Selector(() =>
-    document.querySelector('.counter .a-textarea__check')
-  );
-  const $counterMaxMessage = await Selector(() =>
-    document.querySelector('.counter .a-textarea__messages--error')
-  );
+  const $textarea = await Selector(() => document.querySelector('.counter .a-textarea__textarea'));
+  const $checkmark = await Selector(() => document.querySelector('.counter .a-textarea__check'));
+  const $counterMaxMessage = await Selector(() => document.querySelector('.counter .a-textarea__messages--error'));
 
   await t.typeText($textarea, '12');
 

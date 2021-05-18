@@ -6,9 +6,6 @@ export interface AXASpinnerProps {
   color?: string;
 }
 
-declare function createAXASpinner(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXASpinnerProps>;
+declare function createAXASpinner(createElement: typeof React.createElement, version?: string): React.ComponentType<AXASpinnerProps>;
 
 export default createAXASpinner;

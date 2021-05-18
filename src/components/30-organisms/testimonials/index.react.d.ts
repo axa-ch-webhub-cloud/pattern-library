@@ -9,9 +9,6 @@ export interface AXATestimonialsProps {
   keysenabled?: boolean;
 }
 
-declare function createAXATestimonials(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXATestimonialsProps>;
+declare function createAXATestimonials(createElement: typeof React.createElement, version?: string): React.ComponentType<AXATestimonialsProps>;
 
 export default createAXATestimonials;

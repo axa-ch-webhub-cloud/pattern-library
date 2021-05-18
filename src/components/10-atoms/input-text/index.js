@@ -3,10 +3,7 @@ import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
@@ -47,9 +44,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
          */
         converter: value =>
           // eslint-disable-next-line no-restricted-globals
-          !isNaN(parseFloat(value)) && isFinite(value)
-            ? Number(value)
-            : undefined,
+          !isNaN(parseFloat(value)) && isFinite(value) ? Number(value) : undefined,
       },
       inputmode: { type: String },
       currency: { type: String },
@@ -81,19 +76,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.invalidFormat = false;
 
     const enrichedVersionInfo = __VERSION_INFO__; // This object is different at webpack and rollup build!
-    const commonPopupVersion =
-      enrichedVersionInfo['axa-input-text']['axa-popup'];
+    const commonPopupVersion = enrichedVersionInfo['axa-input-text']['axa-popup'];
     enrichedVersionInfo[AXAPopupButton.tagName] = {
       [AXAPopupButton.tagName]: commonPopupVersion,
     };
     enrichedVersionInfo[AXAPopupContent.tagName] = {
       [AXAPopupContent.tagName]: commonPopupVersion,
     };
-    defineVersioned(
-      [AXAPopupButton, AXAPopupContent],
-      enrichedVersionInfo,
-      this
-    );
+    defineVersioned([AXAPopupButton, AXAPopupContent], enrichedVersionInfo, this);
   }
 
   get charsLeft() {
@@ -114,23 +104,11 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   get showCounter() {
-    return (
-      this.maxLength > 0 &&
-      !(this.invalid || this.invalidFormat) &&
-      this.areCharsLeft &&
-      this.counter &&
-      !this.disabled
-    );
+    return this.maxLength > 0 && !(this.invalid || this.invalidFormat) && this.areCharsLeft && this.counter && !this.disabled;
   }
 
   get showCounterMax() {
-    return (
-      this.maxLength > 0 &&
-      this.counterMax &&
-      !this.showError &&
-      !this.areCharsLeft &&
-      !this.disabled
-    );
+    return this.maxLength > 0 && this.counterMax && !this.showError && !this.areCharsLeft && !this.disabled;
   }
 
   get showMessages() {
@@ -178,12 +156,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   get showError() {
-    return (
-      this.error &&
-      (this.invalid || this.invalidFormat) &&
-      !this.disabled &&
-      !this._open
-    );
+    return this.error && (this.invalid || this.invalidFormat) && !this.disabled && !this._open;
   }
 
   get showCheckMark() {
@@ -228,10 +201,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     // autocomplete instead is decreased all at once, therefore truncate it
     if (this.charsLeft < 0 && this.maxLength) {
       const { nativeInput } = this;
-      const valueCutToMaxLength = nativeInput.value.substring(
-        0,
-        this.maxLength - 1
-      );
+      const valueCutToMaxLength = nativeInput.value.substring(0, this.maxLength - 1);
 
       // set value of native input element
       nativeInput.value = valueCutToMaxLength;
@@ -247,12 +217,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   };
 
   _isSafari() {
-    return (
-      navigator &&
-      navigator.vendor &&
-      navigator.vendor.includes &&
-      navigator.vendor.includes('Apple Computer')
-    );
+    return navigator && navigator.vendor && navigator.vendor.includes && navigator.vendor.includes('Apple Computer');
   }
 
   _setNativeInput() {
@@ -342,10 +307,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
-      'a-input-text__input--error':
-        ((invalid || invalidFormat) && !disabled) || this.showCounterMax,
-      'a-input-text__input--check':
-        checkMark && !this.showCounterMax && !disabled,
+      'a-input-text__input--error': ((invalid || invalidFormat) && !disabled) || this.showCounterMax,
+      'a-input-text__input--check': checkMark && !this.showCounterMax && !disabled,
     };
 
     return html`
@@ -369,44 +332,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           // be updated anymore by javascript (safari only).
           this._isSafari()
             ? html`
-                <input
-                  id="${refId}"
-                  type="${type}"
-                  class="${classMap(inputClasses)}"
-                  autocomplete="off"
-                  name="${name}"
-                  value="${formattedValue}"
-                  placeholder="${placeholder}"
-                  aria-required="${required}"
-                  maxlength="${maxLength}"
-                  pattern="${pattern}"
-                  inputmode="${inputmode}"
-                  ?disabled="${disabled}"
-                  @input="${this.handleInput}"
-                  @focus="${this.handleFocus}"
-                  @blur="${this.handleBlur}"
-                  @keyup="${this.onKeyUp}"
-                />
+                <input id="${refId}" type="${type}" class="${classMap(inputClasses)}" autocomplete="off" name="${name}" value="${formattedValue}" placeholder="${placeholder}" aria-required="${required}" maxlength="${maxLength}" pattern="${pattern}" inputmode="${inputmode}" ?disabled="${disabled}" @input="${this.handleInput}" @focus="${this.handleFocus}" @blur="${this.handleBlur}" @keyup="${this.onKeyUp}" />
               `
             : html`
-                <input
-                  id="${refId}"
-                  type="${type}"
-                  class="${classMap(inputClasses)}"
-                  autocomplete="off"
-                  name="${name}"
-                  .value="${formattedValue}"
-                  placeholder="${placeholder}"
-                  aria-required="${required}"
-                  maxlength="${maxLength}"
-                  pattern="${pattern}"
-                  inputmode="${inputmode}"
-                  ?disabled="${disabled}"
-                  @input="${this.handleInput}"
-                  @focus="${this.handleFocus}"
-                  @blur="${this.handleBlur}"
-                  @keyup="${this.onKeyUp}"
-                />
+                <input id="${refId}" type="${type}" class="${classMap(inputClasses)}" autocomplete="off" name="${name}" .value="${formattedValue}" placeholder="${placeholder}" aria-required="${required}" maxlength="${maxLength}" pattern="${pattern}" inputmode="${inputmode}" ?disabled="${disabled}" @input="${this.handleInput}" @focus="${this.handleFocus}" @blur="${this.handleBlur}" @keyup="${this.onKeyUp}" />
               `
         }
           ${
@@ -445,9 +374,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         ${
           this.showCounterMax
             ? html`
-                <div
-                  class="a-input-text__counter-info a-input-text__character-overflow-error"
-                >
+                <div class="a-input-text__counter-info a-input-text__character-overflow-error">
                   ${this.counterMax}
                 </div>
               `

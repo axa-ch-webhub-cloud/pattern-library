@@ -9,10 +9,8 @@ const camelise = str =>
     return index === 0 ? match.toLowerCase() : match.toUpperCase();
   });
 const componentName = name => name.trim().replace(/\s+/g, '-');
-const camelCase = _camelCase =>
-  camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
-const toClassName = _className =>
-  camelCase(_className).replace(/^\w/, c => c.toUpperCase());
+const camelCase = _camelCase => camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
+const toClassName = _className => camelCase(_className).replace(/^\w/, c => c.toUpperCase());
 const cleanFileName = _fileName => {
   return _fileName
     .replace(/ /g, '-')
@@ -41,9 +39,7 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
     items.forEach(icon => {
       if (/\.svg/.test(icon)) {
         const iconPath = path.resolve(importPath, icon);
-        const contents = fs
-          .readFileSync(iconPath, 'utf8')
-          .replace(/(\r\n|\n|\r)/gm, '');
+        const contents = fs.readFileSync(iconPath, 'utf8').replace(/(\r\n|\n|\r)/gm, '');
 
         let fileName = path.basename(icon);
         fileName = cleanFileName(fileName);
@@ -53,11 +49,7 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
           recursive: true,
         });
         // Generate a js file forEach svg file found
-        fs.writeFileSync(
-          path.resolve(exportPath, `${fileName}.js`),
-          outdent`export default '${contents}';`,
-          'utf8'
-        );
+        fs.writeFileSync(path.resolve(exportPath, `${fileName}.js`), outdent`export default '${contents}';`, 'utf8');
 
         namedExports += outdent`export { default as ${className} } from './${fileName}.js';`;
       }
@@ -94,10 +86,7 @@ fs.readdir(importImagesPath, { withFileTypes: true }, (err, dirents) => {
   // check directories
   dirents.forEach(dirent => {
     if (dirent.isDirectory() && dirent.name !== '.tmp') {
-      readdirAndSaveSvgToJs(
-        `${importImagesPath}/${dirent.name}`,
-        exportImagesPath
-      );
+      readdirAndSaveSvgToJs(`${importImagesPath}/${dirent.name}`, exportImagesPath);
     }
   });
 

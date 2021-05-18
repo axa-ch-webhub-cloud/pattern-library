@@ -1,11 +1,5 @@
 /* global document */
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -41,10 +35,7 @@ storiesOf('Examples/Input File/React', module)
     const motionOff = boolean('motionOff', false);
     const disabled = boolean('disabled', false);
 
-    const accept = text(
-      'accept',
-      'image/jpg, image/jpeg, application/pdf, image/png'
-    );
+    const accept = text('accept', 'image/jpg, image/jpeg, application/pdf, image/png');
 
     const capture = boolean('capture', false);
     const multiple = boolean('multiple', false);
@@ -65,9 +56,7 @@ storiesOf('Examples/Input File/React', module)
             const allFileNames = [];
             [...e.target.files].forEach(i => allFileNames.push(i.name));
 
-            document.getElementById(
-              'checkbox-output'
-            ).innerHTML = `Files selected: ${allFileNames.toString()}`;
+            document.getElementById('checkbox-output').innerHTML = `Files selected: ${allFileNames.toString()}`;
           }}
           className="myCssClass"
           icon={icon}

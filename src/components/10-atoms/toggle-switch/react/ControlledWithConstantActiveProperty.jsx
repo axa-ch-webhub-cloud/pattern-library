@@ -26,9 +26,7 @@ export default class example extends React.Component {
         <AXAToggleSwitchReact active={active} onChange={this.change} />
         <p>
           Received onChange event:
-          <span className="axa-toggle-switch-demo__event-info">
-            {receivedEvent}
-          </span>
+          <span className="axa-toggle-switch-demo__event-info">{receivedEvent}</span>
         </p>
       </div>
     );

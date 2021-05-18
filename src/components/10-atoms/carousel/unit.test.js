@@ -204,9 +204,7 @@ describe('AXACarousel', () => {
         querySelector: mockedQuerySelector,
       };
 
-      const returnedFunction = AXACarousel.prototype._addEventListenerAnimationEnd(
-        mockedShadowRoot
-      );
+      const returnedFunction = AXACarousel.prototype._addEventListenerAnimationEnd(mockedShadowRoot);
       returnedFunction();
 
       expect(mockedRemoveEventListener).toHaveBeenCalled();
@@ -216,28 +214,18 @@ describe('AXACarousel', () => {
       const givenAnimationClass = 'myclass';
       AXACarousel.prototype.slides = [{ style: {} }];
 
-      AXACarousel.prototype._setSlideVisibleWithAnimation(
-        0,
-        givenAnimationClass
-      );
+      AXACarousel.prototype._setSlideVisibleWithAnimation(0, givenAnimationClass);
 
-      expect(AXACarousel.prototype._animationWrapperClass).toBe(
-        givenAnimationClass
-      );
+      expect(AXACarousel.prototype._animationWrapperClass).toBe(givenAnimationClass);
     });
     test('_setSlideVisibleWithAnimation() should set block style and visibleSlideIndex', () => {
       const activeSlideNumber = 0;
       AXACarousel.prototype.visibleSlideIndex = null;
       AXACarousel.prototype.slides = [{ style: {} }];
 
-      AXACarousel.prototype._setSlideVisibleWithAnimation(
-        activeSlideNumber,
-        ''
-      );
+      AXACarousel.prototype._setSlideVisibleWithAnimation(activeSlideNumber, '');
 
-      expect(
-        AXACarousel.prototype.slides[activeSlideNumber].style.display
-      ).toBe('block');
+      expect(AXACarousel.prototype.slides[activeSlideNumber].style.display).toBe('block');
       expect(AXACarousel.prototype.visibleSlideIndex).toBe(activeSlideNumber);
     });
 
@@ -252,9 +240,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._nextSlide();
 
       // The first arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(
-        expectedNextSlideIndex
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(expectedNextSlideIndex);
     });
     test('_nextSlide() should call method with nextSlideIndex = 0', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
@@ -267,9 +253,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._nextSlide();
 
       // The first arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(
-        expectedNextSlideIndex
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(expectedNextSlideIndex);
     });
     test('_nextSlide() should call method with correct second argument', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
@@ -281,9 +265,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._nextSlide();
 
       // The second arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][1]).toBe(
-        ANIMATION_RIGHT_CLASS
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][1]).toBe(ANIMATION_RIGHT_CLASS);
     });
 
     test('_previousSlide() should call method with nextSlideIndex = thePreviousIndexInArray', () => {
@@ -297,9 +279,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._previousSlide();
 
       // The first arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(
-        expectedPreviousSlideIndex
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(expectedPreviousSlideIndex);
     });
     test('_previousSlide() should call method with nextSlideIndex = theLastIndexInArray', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
@@ -312,9 +292,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._previousSlide();
 
       // The first arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(
-        expectedPreviousSlideIndex
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][0]).toBe(expectedPreviousSlideIndex);
     });
     test('_previousSlide() should call method with correct second argument', () => {
       const mockedSetSlideVisibleWithAnimation = jest.fn();
@@ -326,9 +304,7 @@ describe('AXACarousel', () => {
       AXACarousel.prototype._previousSlide();
 
       // The second arg of the first call to the function
-      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][1]).toBe(
-        ANIMATION_LEFT_CLASS
-      );
+      expect(mockedSetSlideVisibleWithAnimation.mock.calls[0][1]).toBe(ANIMATION_LEFT_CLASS);
     });
 
     test('_setSlideVisibleAndAllOthersNone() should set correct node to visible', () => {
@@ -340,9 +316,7 @@ describe('AXACarousel', () => {
       const node3 = { style: { display: '' }, clientHeight: 3 };
       AXACarousel.prototype.slides = [nodeWithExpectedVisibility, node2, node3];
 
-      AXACarousel.prototype._setSlideVisibleAndAllOthersNone(
-        nodeWithExpectedVisibility
-      );
+      AXACarousel.prototype._setSlideVisibleAndAllOthersNone(nodeWithExpectedVisibility);
 
       expect(nodeWithExpectedVisibility.style.display).toBe('block');
       expect(node2.style.display).toBe('none');
@@ -375,15 +349,11 @@ describe('AXACarousel', () => {
     });
     test('_calculateContainerMinHeight() should call _setSlideVisibleAndAllOthersNone() twice', () => {
       AXACarousel.prototype._setSlideVisibleAndAllOthersNone = jest.fn();
-      AXACarousel.prototype.slides = [
-        { style: { display: '' }, clientHeight: 1 },
-      ];
+      AXACarousel.prototype.slides = [{ style: { display: '' }, clientHeight: 1 }];
 
       AXACarousel.prototype._calculateContainerMinHeight();
 
-      expect(
-        AXACarousel.prototype._setSlideVisibleAndAllOthersNone
-      ).toHaveBeenCalledTimes(2);
+      expect(AXACarousel.prototype._setSlideVisibleAndAllOthersNone).toHaveBeenCalledTimes(2);
     });
   });
 
@@ -424,9 +394,7 @@ describe('AXACarousel', () => {
 
     test('_stopAutoRotate() should call clearInterval with correct argument', () => {
       AXACarousel.prototype._stopAutoRotate();
-      expect(clearInterval).toHaveBeenCalledWith(
-        AXACarousel.prototype.autoRotateTimerID
-      );
+      expect(clearInterval).toHaveBeenCalledWith(AXACarousel.prototype.autoRotateTimerID);
     });
   });
 
@@ -499,26 +467,15 @@ describe('AXACarousel', () => {
 
       AXACarousel.prototype.firstUpdated();
 
-      expect(AXACarousel.prototype.inlineStyles).toHaveBeenCalledWith(
-        'childStyles'
-      );
+      expect(AXACarousel.prototype.inlineStyles).toHaveBeenCalledWith('childStyles');
       expect(AXACarousel.prototype._getSlides).toHaveBeenCalled();
-      expect(
-        AXACarousel.prototype._calculateContainerMinHeight
-      ).toHaveBeenCalled();
-      expect(
-        AXACarousel.prototype._setSlideVisibleWithAnimation
-      ).toHaveBeenCalledWith(0);
+      expect(AXACarousel.prototype._calculateContainerMinHeight).toHaveBeenCalled();
+      expect(AXACarousel.prototype._setSlideVisibleWithAnimation).toHaveBeenCalledWith(0);
       expect(AXACarousel.prototype._initSwipe).toHaveBeenCalled();
       expect(AXACarousel.prototype._initKeyNavigation).toHaveBeenCalled();
       expect(AXACarousel.prototype._startAutoRotate).toHaveBeenCalled();
-      expect(
-        AXACarousel.prototype._addEventListenerAnimationEnd
-      ).toHaveBeenCalled();
-      expect(global.addEventListener).toHaveBeenCalledWith(
-        'resize',
-        'thisIsACallback'
-      );
+      expect(AXACarousel.prototype._addEventListenerAnimationEnd).toHaveBeenCalled();
+      expect(global.addEventListener).toHaveBeenCalledWith('resize', 'thisIsACallback');
     });
   });
 });

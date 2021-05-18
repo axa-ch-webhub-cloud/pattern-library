@@ -76,9 +76,7 @@ class AXACarousel extends InlineStyles {
     let slots = [];
 
     if (slotsSelectedWithoutShadowRoot) {
-      slotsSelectedWithoutShadowRootFiltered = slotsSelectedWithoutShadowRoot
-        .assignedNodes({ flatten: true })
-        .filter(node => node.nodeType === ELEMENT_NODE);
+      slotsSelectedWithoutShadowRootFiltered = slotsSelectedWithoutShadowRoot.assignedNodes({ flatten: true }).filter(node => node.nodeType === ELEMENT_NODE);
     }
 
     // IE: slotsSelectedByShadowRootFiltered is []
@@ -98,9 +96,7 @@ class AXACarousel extends InlineStyles {
     const onAnimationEnd = () => {
       this._animationWrapperClass = '';
     };
-    const elementWithAnimationEvent = usedShadowRoot.querySelector(
-      '.js-carousel__wrapper'
-    );
+    const elementWithAnimationEvent = usedShadowRoot.querySelector('.js-carousel__wrapper');
     elementWithAnimationEvent.addEventListener(eventName, onAnimationEnd);
 
     return () => {
@@ -198,11 +194,7 @@ class AXACarousel extends InlineStyles {
 
   _initSwipe(usedElement = this) {
     // usedElement as a property to encapsulate for unit tests
-    this.swiper = new Swipe(
-      usedElement,
-      usedElement._onSwipeLeft,
-      usedElement._onSwipeRight
-    );
+    this.swiper = new Swipe(usedElement, usedElement._onSwipeLeft, usedElement._onSwipeRight);
     this.swiper.run();
   }
 
@@ -250,26 +242,12 @@ class AXACarousel extends InlineStyles {
 
   render() {
     return html`
-      <article
-        class="a-carousel"
-        style="min-height: ${this._carouselMinHeight}px;"
-      >
-        <button
-          type="button"
-          class="a-carousel__arrow a-carousel__arrow-left"
-          @click="${this.handlePreviousButtonClick}"
-        ></button>
-        <div
-          class="a-carousel__wrapper js-carousel__wrapper ${this
-            ._animationWrapperClass}"
-        >
+      <article class="a-carousel" style="min-height: ${this._carouselMinHeight}px;">
+        <button type="button" class="a-carousel__arrow a-carousel__arrow-left" @click="${this.handlePreviousButtonClick}"></button>
+        <div class="a-carousel__wrapper js-carousel__wrapper ${this._animationWrapperClass}">
           <slot></slot>
         </div>
-        <button
-          type="button"
-          class="a-carousel__arrow a-carousel__arrow-right"
-          @click="${this.handleNextButtonClick}"
-        ></button>
+        <button type="button" class="a-carousel__arrow a-carousel__arrow-right" @click="${this.handleNextButtonClick}"></button>
       </article>
     `;
   }

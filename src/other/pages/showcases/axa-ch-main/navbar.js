@@ -94,11 +94,7 @@ export default html`
             <li><axa-link href="#">Contact & Services</axa-link></li>
             <li><axa-link href="#">Blog</axa-link></li>
           </ul>
-          <axa-icon
-            icon="search"
-            class="pages-axa-main-page__navbar-navigation-search-icon"
-            size="auto"
-          ></axa-icon>
+          <axa-icon icon="search" class="pages-axa-main-page__navbar-navigation-search-icon" size="auto"></axa-icon>
         </div>
       </div>
     </axa-container>

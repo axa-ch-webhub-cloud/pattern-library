@@ -10,9 +10,6 @@ export interface AXACookieDisclaimerProps {
   onClick?: () => void;
 }
 
-declare function createAXACookieDisclaimer(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXACookieDisclaimerProps>;
+declare function createAXACookieDisclaimer(createElement: typeof React.createElement, version?: string): React.ComponentType<AXACookieDisclaimerProps>;
 
 export default createAXACookieDisclaimer;

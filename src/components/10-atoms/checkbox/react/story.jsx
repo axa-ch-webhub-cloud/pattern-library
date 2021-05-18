@@ -18,11 +18,7 @@ storiesOf('Examples/Checkbox/React', module)
   .add('Story - uncontrolled', () => {
     const label = text('label', 'I agree to conditions of data protection.');
     const name = text('name', 'my-checkbox');
-    const variant = select('variant', [
-      'square',
-      'checkmark',
-      'checkmark-inverted',
-    ]);
+    const variant = select('variant', ['square', 'checkmark', 'checkmark-inverted']);
     boolean('checked (no effect, uncontrolled mode!)', false);
     const disabled = boolean('disabled', false);
     const errortext = boolean('error', false);
@@ -38,23 +34,8 @@ storiesOf('Examples/Checkbox/React', module)
 
     ReactDOM.render(
       <>
-        <AXACheckboxReact
-          name={name}
-          label={label}
-          disabled={disabled}
-          variant={variant}
-          required={required}
-          styled={styled}
-          onChange={e =>
-            (document.getElementById(
-              'checkbox-output'
-            ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)
-          }
-          error={errortext ? 'Please accept our terms and conditions.' : ''}
-        />
-        <AXATextReact id="checkbox-output">
-          checkbox {name} state changed to:
-        </AXATextReact>
+        <AXACheckboxReact name={name} label={label} disabled={disabled} variant={variant} required={required} styled={styled} onChange={e => (document.getElementById('checkbox-output').innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)} error={errortext ? 'Please accept our terms and conditions.' : ''} />
+        <AXATextReact id="checkbox-output">checkbox {name} state changed to:</AXATextReact>
       </>,
       div
     );

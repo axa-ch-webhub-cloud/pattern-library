@@ -9,9 +9,6 @@ export interface AXAProgressBarProps {
   text?: string;
 }
 
-declare function createAXAProgressBar(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAProgressBarProps>;
+declare function createAXAProgressBar(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAProgressBarProps>;
 
 export default createAXAProgressBar;

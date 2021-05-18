@@ -36,9 +36,7 @@
     cursor: pointer;
   }
 
-  th[aria-sort='none']
-    > div.o-table-sortable__th__flexcontainer
-    > div.o-table-sortable__th__arrow-wrapper {
+  th[aria-sort='none'] > div.o-table-sortable__th__flexcontainer > div.o-table-sortable__th__arrow-wrapper {
     display: none;
   }
 

@@ -19,9 +19,6 @@ export interface AXAFileUploadProps {
   onFileRemove?: () => void;
 }
 
-declare function createAXAFileUpload(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAFileUploadProps>;
+declare function createAXAFileUpload(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAFileUploadProps>;
 
 export default createAXAFileUpload;

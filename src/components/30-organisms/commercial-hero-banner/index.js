@@ -2,10 +2,7 @@
 import { css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '@axa-ch/container';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
@@ -67,9 +64,7 @@ class AXACommercialHeroBanner extends InlineStyles {
         <div class="${classMap(containerClasses)}">
           <div
             class="o-commercial-hero-banner__picture-container"
-            style="background: url('${
-              this.imageSource
-            }') no-repeat center center;background-size: cover;"
+            style="background: url('${this.imageSource}') no-repeat center center;background-size: cover;"
           ></div>
           <axa-container>
             <div class="${classMap(contentClasses)}">

@@ -12,8 +12,7 @@ const DemoRadiobuttonsControlled = () => {
   const [focus, setFocus] = useState([false, false]);
   const [blur, setBlur] = useState([false, false]);
 
-  const handleRadioButtonChange = () =>
-    setChecked(frozen ? checked : checked.map(check => !check));
+  const handleRadioButtonChange = () => setChecked(frozen ? checked : checked.map(check => !check));
 
   const handleRadioButtonBlur = index => () => {
     setBlur(blur.map((b, i) => (i === index ? !b : b)));
@@ -37,76 +36,27 @@ const DemoRadiobuttonsControlled = () => {
     <fieldset>
       <legend>RadioButton Callback Props</legend>
       <label htmlFor="freeze">
-        <input
-          id="freeze"
-          type="checkbox"
-          checked={frozen}
-          onChange={handleFreeze}
-          style={{ margin: 0 }}
-        />
+        <input id="freeze" type="checkbox" checked={frozen} onChange={handleFreeze} style={{ margin: 0 }} />
         &nbsp;freeze&nbsp;
       </label>
       <label htmlFor="button">
-        <input
-          id="button"
-          type="checkbox"
-          checked={button}
-          onChange={handleButton}
-        />
+        <input id="button" type="checkbox" checked={button} onChange={handleButton} />
         &nbsp;button&nbsp;
       </label>
       <label htmlFor="error">
-        <input
-          id="error"
-          type="checkbox"
-          checked={!!error}
-          onChange={handleError}
-        />
+        <input id="error" type="checkbox" checked={!!error} onChange={handleError} />
         &nbsp;error&nbsp;
       </label>
       <label htmlFor="visible">
-        <input
-          id="visible"
-          type="checkbox"
-          checked={!!visible}
-          onChange={handleVisible}
-        />
+        <input id="visible" type="checkbox" checked={!!visible} onChange={handleVisible} />
         &nbsp;visible&nbsp;
       </label>
-      <hr
-        style={{ borderWidth: '.5rem', borderColor: 'transparent', margin: 0 }}
-      />
+      <hr style={{ borderWidth: '.5rem', borderColor: 'transparent', margin: 0 }} />
       <AXAFieldset horizontal={button} error={error}>
-        {visible && (
-          <AXARadioButton
-            id="radio1"
-            label="No, thanks"
-            name="insurance"
-            checked={checked[0]}
-            onFocus={handleRadioButtonFocus(0)}
-            onBlur={handleRadioButtonBlur(0)}
-            onChange={handleRadioButtonChange}
-            button={button}
-            noGap
-          />
-        )}
-        {visible && (
-          <AXARadioButton
-            id="radio2"
-            label="Yes, I want insurance"
-            name="insurance"
-            checked={checked[1]}
-            onFocus={handleRadioButtonFocus(1)}
-            onBlur={handleRadioButtonBlur(1)}
-            onChange={handleRadioButtonChange}
-            button={button}
-            noGap
-          />
-        )}
+        {visible && <AXARadioButton id="radio1" label="No, thanks" name="insurance" checked={checked[0]} onFocus={handleRadioButtonFocus(0)} onBlur={handleRadioButtonBlur(0)} onChange={handleRadioButtonChange} button={button} noGap />}
+        {visible && <AXARadioButton id="radio2" label="Yes, I want insurance" name="insurance" checked={checked[1]} onFocus={handleRadioButtonFocus(1)} onBlur={handleRadioButtonBlur(1)} onChange={handleRadioButtonChange} button={button} noGap />}
       </AXAFieldset>
-      <div
-        style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}
-      >
+      <div style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}>
         <span id="checked">
           checked: ⟨{String(checked[0])}, {String(checked[1])}⟩
         </span>

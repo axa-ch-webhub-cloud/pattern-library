@@ -22,23 +22,7 @@ const DemoDatepickerExternalValidation = () => {
       <span style={{ padding: '5px' }}>{localizedDateString(start)}</span> and
       <span style={{ padding: '5px' }}>{localizedDateString(end)}:</span>
       <hr style={{ borderWidth: '0' }} />
-      <AXADatepickerReact
-        inputfield
-        id="datepicker-react-inputfield-external-validation"
-        data-test-id="datepicker-react-external-validation"
-        locale={locale}
-        onDateChange={newDate =>
-          setOutsideDateRange(checkOutsideDateRange(newDate))
-        }
-        placeholder="Choose a date"
-        invalid={outsideDateRange}
-        invaliddatetext={
-          outsideDateRange
-            ? 'Date is outside allowed range'
-            : 'Date is improper'
-        }
-        allowedyears={[2019, 2020]}
-      />
+      <AXADatepickerReact inputfield id="datepicker-react-inputfield-external-validation" data-test-id="datepicker-react-external-validation" locale={locale} onDateChange={newDate => setOutsideDateRange(checkOutsideDateRange(newDate))} placeholder="Choose a date" invalid={outsideDateRange} invaliddatetext={outsideDateRange ? 'Date is outside allowed range' : 'Date is improper'} allowedyears={[2019, 2020]} />
     </div>
   );
 };

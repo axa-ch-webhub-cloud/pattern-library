@@ -32,9 +32,7 @@ let openDropdownInstance;
 // helper functions
 const shouldMove = elem => {
   const boundingBox = elem.getBoundingClientRect();
-  const bottomIsInViewport =
-    boundingBox.bottom <=
-    (window.innerHeight || document.documentElement.clientHeight);
+  const bottomIsInViewport = boundingBox.bottom <= (window.innerHeight || document.documentElement.clientHeight);
   const enoughSpaceToMove = boundingBox.top > boundingBox.height;
   return !bottomIsInViewport && enoughSpaceToMove;
 };
@@ -53,21 +51,10 @@ const forEach = (array, callback, scope) => {
 
 const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
   html`
-    <option
-      class="m-dropdown__option"
-      value="${value}"
-      data-index="${index}"
-      data-value="${value}"
-      ?selected="${selected}"
-      ?disabled="${_disabled}"
-      >${name}</option
-    >
+    <option class="m-dropdown__option" value="${value}" data-index="${index}" data-value="${value}" ?selected="${selected}" ?disabled="${_disabled}">${name}</option>
   `;
 
-const contentItemsMapper = (clickHandler, defaultTitle) => (
-  { name, value, selected, _disabled },
-  index
-) => {
+const contentItemsMapper = (clickHandler, defaultTitle) => ({ name, value, selected, _disabled }, index) => {
   const classes = {
     'm-dropdown__item': true,
     'm-dropdown__item--is-selected': selected,
@@ -76,24 +63,14 @@ const contentItemsMapper = (clickHandler, defaultTitle) => (
     ? html``
     : html`
         <li class="${classMap(classes)}">
-          <button
-            type="button"
-            @click="${clickHandler}"
-            tabindex="-1"
-            class="m-dropdown__button js-dropdown__button"
-            data-index="${index + (defaultTitle ? 1 : 0)}"
-            data-value="${value}"
-          >
+          <button type="button" @click="${clickHandler}" tabindex="-1" class="m-dropdown__button js-dropdown__button" data-index="${index + (defaultTitle ? 1 : 0)}" data-value="${value}">
             ${name}
           </button>
         </li>
       `;
 };
 
-const defaultTitleIfNeeded = (title, anotherSelection) =>
-  title
-    ? [{ name: title, _disable: true, selected: !anotherSelection, value: '' }]
-    : [];
+const defaultTitleIfNeeded = (title, anotherSelection) => (title ? [{ name: title, _disable: true, selected: !anotherSelection, value: '' }] : []);
 
 // CE
 class AXADropdown extends NoShadowDOM {
@@ -168,28 +145,20 @@ class AXADropdown extends NoShadowDOM {
     this.handleWindowClick = this.handleWindowClick.bind(this);
     this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
     this.handleDropdownClick = this.handleDropdownClick.bind(this);
-    this.handleResize = debounce(
-      () => handleViewportCheck(this.dropdown),
-      DEBOUNCE_DELAY
-    );
+    this.handleResize = debounce(() => handleViewportCheck(this.dropdown), DEBOUNCE_DELAY);
   }
 
   openDropdown(open) {
     this.open = open;
     const links = this.querySelectorAll('.js-dropdown__button');
-    forEach(links, (_, link) =>
-      link.setAttribute('tabindex', open ? '0' : '-1')
-    );
+    forEach(links, (_, link) => link.setAttribute('tabindex', open ? '0' : '-1'));
     if (open) {
       // close any other open instance in the same document
       if (openDropdownInstance) {
         openDropdownInstance.open = false;
       }
       // focus on selected item s.t. enhanced-mode keyboard navigation works like native
-      this.focusOnButton(
-        this.selectedIndex,
-        /* already includes default-title offset */ true
-      );
+      this.focusOnButton(this.selectedIndex, /* already includes default-title offset */ true);
     }
     openDropdownInstance = open ? this : /* help GC */ null;
   }
@@ -204,11 +173,7 @@ class AXADropdown extends NoShadowDOM {
     if (typeof index === 'number') {
       const { defaultTitle, dropdown } = this;
       const defaultTitleOffset = defaultTitle && !includesOffset ? 1 : 0;
-      dropdown
-        .querySelector(
-          `.js-dropdown__button[data-index="${index + defaultTitleOffset}"]`
-        )
-        .focus();
+      dropdown.querySelector(`.js-dropdown__button[data-index="${index + defaultTitleOffset}"]`).focus();
     }
   }
 
@@ -218,16 +183,12 @@ class AXADropdown extends NoShadowDOM {
     const defaultTitleOffset = defaultTitle ? 1 : 0;
 
     // don't get involved if preexisting focus outside enhanced-mode DOM
-    if (
-      !this.contains(activeElement) ||
-      !/(?:BUTTON|LI)/.test(activeElement.tagName)
-    ) {
+    if (!this.contains(activeElement) || !/(?:BUTTON|LI)/.test(activeElement.tagName)) {
       return;
     }
 
     // get selected item's index
-    let focussedIndex =
-      parseInt(activeElement.dataset.index || '0', 10) - defaultTitleOffset;
+    let focussedIndex = parseInt(activeElement.dataset.index || '0', 10) - defaultTitleOffset;
 
     // move in the direction of the arrow key
     focussedIndex += direction;
@@ -285,12 +246,8 @@ class AXADropdown extends NoShadowDOM {
       const match = _autosuggestDictionary.indexOf(INDEX_END + _typedSoFar);
       if (match > -1) {
         // we have a match, determine the corresponding item ...
-        const matchIndexPos =
-          _autosuggestDictionary.indexOf(WORD_END, match) + 1;
-        const firstSelectedItem = parseInt(
-          _autosuggestDictionary.slice(matchIndexPos),
-          10
-        );
+        const matchIndexPos = _autosuggestDictionary.indexOf(WORD_END, match) + 1;
+        const firstSelectedItem = parseInt(_autosuggestDictionary.slice(matchIndexPos), 10);
         // ... and its value
         const { value } = items[firstSelectedItem];
         // re-render to visually select matched item
@@ -321,10 +278,7 @@ class AXADropdown extends NoShadowDOM {
 
     // if click 'lands' on native <select> (narrow window widths or 'native' mode),
     // use DOM-API 'selectedIndex' to find out which option the click targeted
-    const realTarget =
-      target instanceof HTMLSelectElement
-        ? target.children[target.selectedIndex]
-        : target;
+    const realTarget = target instanceof HTMLSelectElement ? target.children[target.selectedIndex] : target;
 
     const { value, index } = realTarget.dataset;
     const { onChange, selectedIndex, name } = this;
@@ -364,11 +318,7 @@ class AXADropdown extends NoShadowDOM {
 
   findByValue(value, indexOnly) {
     const { items = [], defaultTitle } = this;
-    const itemIndex = findIndex(items, ({ selected, value: selectedValue }) =>
-      value === null
-        ? selected
-        : selectedValue === value || selectedValue === parseInt(value, 10)
-    );
+    const itemIndex = findIndex(items, ({ selected, value: selectedValue }) => (value === null ? selected : selectedValue === value || selectedValue === parseInt(value, 10)));
     if (indexOnly) {
       return itemIndex;
     }
@@ -382,11 +332,8 @@ class AXADropdown extends NoShadowDOM {
   }
 
   scrollIntoView(index) {
-    const realIndex =
-      typeof index === 'number' ? index : this.select.selectedIndex;
-    const itemNode = this.querySelector(
-      `.js-dropdown__button[data-index="${realIndex}"]`
-    );
+    const realIndex = typeof index === 'number' ? index : this.select.selectedIndex;
+    const itemNode = this.querySelector(`.js-dropdown__button[data-index="${realIndex}"]`);
     if (itemNode) {
       // note: IE does not interpret scrollIntoView options, therefore
       // that the selected item might not be centered there.
@@ -421,11 +368,7 @@ class AXADropdown extends NoShadowDOM {
   shouldUpdate(changedProperties) {
     typecheck(this, { items: [] });
     // implicit change of value via newly selected item?
-    if (
-      !this.isControlled &&
-      changedProperties.has('items') &&
-      changedProperties.size === 1
-    ) {
+    if (!this.isControlled && changedProperties.has('items') && changedProperties.size === 1) {
       // make change explicit
       const selectedItem = this.items.find(item => item.selected);
       if (selectedItem) {
@@ -437,22 +380,7 @@ class AXADropdown extends NoShadowDOM {
   }
 
   render() {
-    const {
-      items = [],
-      name = '',
-      label = '',
-      refId = '',
-      defaultTitle = '',
-      checkMark,
-      invalid,
-      error,
-      required,
-      disabled,
-      handleDropdownItemClick,
-      handleDropdownClick,
-      handleKeyUp,
-      maxHeight,
-    } = this;
+    const { items = [], name = '', label = '', refId = '', defaultTitle = '', checkMark, invalid, error, required, disabled, handleDropdownItemClick, handleDropdownClick, handleKeyUp, maxHeight } = this;
 
     const [selectedItem] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
@@ -473,16 +401,7 @@ class AXADropdown extends NoShadowDOM {
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
           <div class="m-dropdown__select-wrapper">
-            <select
-              id="${refId}"
-              class="m-dropdown__select js-dropdown__select"
-              name="${name}"
-              aria-required="${required}"
-              ?disabled="${disabled}"
-              @focus="${this.onFocus}"
-              @blur="${this.onBlur}"
-              @change="${handleDropdownItemClick}"
-            >
+            <select id="${refId}" class="m-dropdown__select js-dropdown__select" name="${name}" aria-required="${required}" ?disabled="${disabled}" @focus="${this.onFocus}" @blur="${this.onBlur}" @change="${handleDropdownItemClick}">
               ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
                 .map(nativeItemsMapper)}
@@ -494,29 +413,15 @@ class AXADropdown extends NoShadowDOM {
           <!-- NATIVE END -->
 
           <!-- ENHANCED -->
-          <button
-            type="button"
-            class="m-dropdown__toggle js-dropdown__toggle"
-            aria-disabled="${disabled}"
-            @focus="${this.onFocus}"
-            @blur="${this.onBlur}"
-            @click="${handleDropdownClick}"
-          >
+          <button type="button" class="m-dropdown__toggle js-dropdown__toggle" aria-disabled="${disabled}" @focus="${this.onFocus}" @blur="${this.onBlur}" @click="${handleDropdownClick}">
             <span class="m-dropdown__flex-wrapper">
               <span class="js-dropdown__title">${this.title}</span>
               <span class="m-dropdown__select-icon">${ARROW_ICON}</span>
             </span>
           </button>
 
-          <ul
-            class="m-dropdown__content js-dropdown__content"
-            style="${maxHeight && !isNaN(maxHeight)
-              ? `max-height:${maxHeight}px;`
-              : ''}"
-          >
-            ${items.map(
-              contentItemsMapper(handleDropdownItemClick, defaultTitle)
-            )}
+          <ul class="m-dropdown__content js-dropdown__content" style="${maxHeight && !isNaN(maxHeight) ? `max-height:${maxHeight}px;` : ''}">
+            ${items.map(contentItemsMapper(handleDropdownItemClick, defaultTitle))}
           </ul>
           <!-- ENHANCED END -->
         </div>
@@ -571,8 +476,7 @@ class AXADropdown extends NoShadowDOM {
   updated(changedProperties) {
     const { select, defaultTitle } = this;
     // adjust native <select>
-    select.selectedIndex =
-      this.findByValue(null, true) + (defaultTitle ? 1 : 0);
+    select.selectedIndex = this.findByValue(null, true) + (defaultTitle ? 1 : 0);
     if (changedProperties.has('items')) {
       // rebuild keyboard-autosuggestion data structures
       this.buildAutosuggestDictionary();

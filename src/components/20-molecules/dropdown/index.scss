@@ -40,7 +40,7 @@ axa-dropdown {
   display: block;
 
   .m-dropdown__label {
-    @include text(t3);;
+    @include text(t3);
     display: block;
     font-weight: 600;
     color: $color-dark-grey;

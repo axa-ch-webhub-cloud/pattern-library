@@ -8,13 +8,8 @@ const getFormattedGitCommitMessage = answerJson => {
   const keyword = 'Publish\n\n - ';
   const seperator = '<br>';
 
-  if (
-    answerJson.items.length > 0 &&
-    answerJson.items[0].commit.message.startsWith(keyword)
-  ) {
-    const formattedMessage = answerJson.items[0].commit.message
-      .replace(keyword, '')
-      .replace(/ - /g, seperator);
+  if (answerJson.items.length > 0 && answerJson.items[0].commit.message.startsWith(keyword)) {
+    const formattedMessage = answerJson.items[0].commit.message.replace(keyword, '').replace(/ - /g, seperator);
 
     return formattedMessage;
   }
@@ -50,19 +45,11 @@ export const WhatsNew = () => {
   xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
-      document.querySelector(
-        '#what-is-new__github-response'
-      ).innerHTML = getFormattedGitCommitMessage(responseJson);
-      document.querySelector(
-        '#what-is-new__github-response-date'
-      ).innerHTML = getDateFromGitCommit(responseJson);
+      document.querySelector('#what-is-new__github-response').innerHTML = getFormattedGitCommitMessage(responseJson);
+      document.querySelector('#what-is-new__github-response-date').innerHTML = getDateFromGitCommit(responseJson);
     }
   };
-  xhttp.open(
-    'GET',
-    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
-    true
-  );
+  xhttp.open('GET', 'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc', true);
   xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
   xhttp.send();
 

@@ -50,28 +50,7 @@ storyInputText.add('Story', () => {
     }
 
     render() {
-      return (
-        <AXAInputText
-          refId={refId}
-          name={name}
-          label={label}
-          placeholder={placeholder}
-          checkMark={checkMark}
-          disabled={disabled}
-          required={required}
-          invalid={invalid}
-          defaultValue={defaultValue}
-          value={this.state.value}
-          type={types}
-          error={error}
-          info={info}
-          pattern={pattern}
-          inputmode={inputmode}
-          autofocus={autofocus}
-          currency={currency}
-          onChange={evt => this.setState({ value: evt.target.value })}
-        />
-      );
+      return <AXAInputText refId={refId} name={name} label={label} placeholder={placeholder} checkMark={checkMark} disabled={disabled} required={required} invalid={invalid} defaultValue={defaultValue} value={this.state.value} type={types} error={error} info={info} pattern={pattern} inputmode={inputmode} autofocus={autofocus} currency={currency} onChange={evt => this.setState({ value: evt.target.value })} />;
     }
   }
 
@@ -100,23 +79,7 @@ storyInputText.add('Story - Simulate autocomplete', () => {
   ReactDOM.render(
     <form>
       <AXAInputText refid="fix-id-fake" name="Name" />
-      <AXAInputText
-        refid="fix-id-86452623"
-        name="Adresse"
-        label={label}
-        placeholder={placeholder}
-        checkMark={checkMark}
-        disabled={disabled}
-        required={required}
-        invalid={invalid}
-        type="text"
-        counter={counter}
-        counterMax={counterMax}
-        maxlength="5"
-        error={error}
-        info={info}
-        autofocus={autofocus}
-      />
+      <AXAInputText refid="fix-id-86452623" name="Adresse" label={label} placeholder={placeholder} checkMark={checkMark} disabled={disabled} required={required} invalid={invalid} type="text" counter={counter} counterMax={counterMax} maxlength="5" error={error} info={info} autofocus={autofocus} />
     </form>,
     wrapper
   );

@@ -1,10 +1,4 @@
-import {
-  number,
-  select,
-  text,
-  boolean,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { number, select, text, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../../10-atoms/icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -44,58 +38,23 @@ export const FileUpload = () => {
     max: 30000,
     step: 10,
   });
-  const maxNumberOfFiles = number(
-    'maxNumberOfFiles',
-    10,
-    numberOfFilesSliderOptions
-  );
+  const maxNumberOfFiles = number('maxNumberOfFiles', 10, numberOfFilesSliderOptions);
   const deleteStatusText = text('deleteStatusText', 'Delete');
   const addStatusText = text('addStatusText', 'Add more');
-  const fileTooBigStatusText = text(
-    'fileTooBigStatusText',
-    `File size exceeds maximum size`
-  );
-  const filesTooBigStatusText = text(
-    'filesTooBigStatusText',
-    `File sizes exceed maximum size`
-  );
-  const tooManyFilesStatusText = text(
-    'tooManyFilesStatusText',
-    `You exceeded the maximum number of files`
-  );
+  const fileTooBigStatusText = text('fileTooBigStatusText', `File size exceeds maximum size`);
+  const filesTooBigStatusText = text('filesTooBigStatusText', `File sizes exceed maximum size`);
+  const tooManyFilesStatusText = text('tooManyFilesStatusText', `You exceeded the maximum number of files`);
   const orText = text('orText', 'or');
   const infoText = text('infoText', 'Drag and drop to upload your file');
-  const wrongFileTypeStatusText = text(
-    'wrongFileTypeText',
-    'Your file does not correspond with our allowed file-types'
-  );
+  const wrongFileTypeStatusText = text('wrongFileTypeText', 'Your file does not correspond with our allowed file-types');
   const icon = select('icon', iconList, 'cloud-upload');
-  const headerText = text(
-    'headerText',
-    'The following files are being transferred:'
-  );
+  const headerText = text('headerText', 'The following files are being transferred:');
   const preventFileCompression = boolean('preventFileCompression', false);
   const wrapper = document.createElement('div');
 
   const template = html`
     <div style="width:${wrapperWidth};">
-      <axa-file-upload
-        inputFileText="${inputFileText}"
-        maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"
-        maxSizeOfAllFilesKB="${maxSizeOfAllFilesKB}"
-        maxNumberOfFiles="${maxNumberOfFiles}"
-        deleteStatusText="${deleteStatusText}"
-        addStatusText="${addStatusText}"
-        fileTooBigStatusText="${fileTooBigStatusText}"
-        ?preventFileCompression="${preventFileCompression}"
-        filesTooBigStatusText="${filesTooBigStatusText}"
-        tooManyFilesStatusText="${tooManyFilesStatusText}"
-        orText="${orText}"
-        infoText="${infoText}"
-        wrongFileTypeStatusText="${wrongFileTypeStatusText}"
-        icon="${icon}"
-        >${headerText}</axa-file-upload
-      >
+      <axa-file-upload inputFileText="${inputFileText}" maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}" maxSizeOfAllFilesKB="${maxSizeOfAllFilesKB}" maxNumberOfFiles="${maxNumberOfFiles}" deleteStatusText="${deleteStatusText}" addStatusText="${addStatusText}" fileTooBigStatusText="${fileTooBigStatusText}" ?preventFileCompression="${preventFileCompression}" filesTooBigStatusText="${filesTooBigStatusText}" tooManyFilesStatusText="${tooManyFilesStatusText}" orText="${orText}" infoText="${infoText}" wrongFileTypeStatusText="${wrongFileTypeStatusText}" icon="${icon}">${headerText}</axa-file-upload>
     </div>
   `;
 

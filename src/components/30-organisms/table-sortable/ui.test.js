@@ -11,9 +11,7 @@ fixture('Table Sortable - basic functionality')
 test('should render sortable table', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
-  const $elShadow = await Selector(
-    () => document.querySelector('axa-table-sortable').shadowRoot
-  );
+  const $elShadow = await Selector(() => document.querySelector('axa-table-sortable').shadowRoot);
   const $elShadowEl = await $elShadow.find('.o-table-sortable');
   await t.expect($elShadowEl.exists).ok();
 });
@@ -202,22 +200,14 @@ test('should sort dates', async t => {
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('ascending');
-  await t
-    .expect($columnFourFirstRow.innerHTML)
-    .contains('<span>02.05.2013</span>');
-  await t
-    .expect($columnFourLastRow.innerHTML)
-    .contains('<span>01.01.2020</span>');
+  await t.expect($columnFourFirstRow.innerHTML).contains('<span>02.05.2013</span>');
+  await t.expect($columnFourLastRow.innerHTML).contains('<span>01.01.2020</span>');
   await t
     .click($columnOne)
     .expect($columnOne.getAttribute('aria-sort'))
     .eql('descending');
-  await t
-    .expect($columnFourFirstRow.innerHTML)
-    .contains('<span>01.01.2020</span>');
-  await t
-    .expect($columnFourLastRow.innerHTML)
-    .contains('<span>02.05.2013</span>');
+  await t.expect($columnFourFirstRow.innerHTML).contains('<span>01.01.2020</span>');
+  await t.expect($columnFourLastRow.innerHTML).contains('<span>02.05.2013</span>');
 });
 
 test('should add a fix css class when sorted is clicked', async t => {
@@ -248,12 +238,8 @@ test('should render two arrows', async t => {
     return firstRow.querySelectorAll('th')[0];
   });
 
-  const $arrowUp = await $columnOneHeaderRow.find(
-    '.o-table-sortable__th__arrowup'
-  );
-  const $arrowDown = await $columnOneHeaderRow.find(
-    '.o-table-sortable__th__arrowdown'
-  );
+  const $arrowUp = await $columnOneHeaderRow.find('.o-table-sortable__th__arrowup');
+  const $arrowDown = await $columnOneHeaderRow.find('.o-table-sortable__th__arrowdown');
 
   await t.expect($arrowUp.getStyleProperty('display')).notEql('none');
   await t.expect($arrowDown.getStyleProperty('display')).notEql('none');
@@ -267,12 +253,8 @@ test('should render only arrowdown and with right color', async t => {
     return firstRow.querySelectorAll('th')[0];
   });
 
-  const $arrowUp = await $columnOneHeaderRow.find(
-    '.o-table-sortable__th__arrowup'
-  );
-  const $arrowDown = await $columnOneHeaderRow.find(
-    '.o-table-sortable__th__arrowdown'
-  );
+  const $arrowUp = await $columnOneHeaderRow.find('.o-table-sortable__th__arrowup');
+  const $arrowDown = await $columnOneHeaderRow.find('.o-table-sortable__th__arrowdown');
 
   await t
     .click($columnOneHeaderRow)
@@ -280,9 +262,7 @@ test('should render only arrowdown and with right color', async t => {
     .eql('o-table-sortable__th--selected');
 
   await t.expect($arrowUp.getStyleProperty('display')).eql('none');
-  await t
-    .expect($arrowDown.getStyleProperty('border-top-color'))
-    .eql(expectedColor);
+  await t.expect($arrowDown.getStyleProperty('border-top-color')).eql(expectedColor);
 });
 
 test('should render only arrowup and with right color', async t => {
@@ -293,21 +273,15 @@ test('should render only arrowup and with right color', async t => {
     return firstRow.querySelectorAll('th')[2];
   });
 
-  const $arrowUp = await $columnThreeHeaderRow.find(
-    '.o-table-sortable__th__arrowup'
-  );
-  const $arrowDown = await $columnThreeHeaderRow.find(
-    '.o-table-sortable__th__arrowdown'
-  );
+  const $arrowUp = await $columnThreeHeaderRow.find('.o-table-sortable__th__arrowup');
+  const $arrowDown = await $columnThreeHeaderRow.find('.o-table-sortable__th__arrowdown');
 
   await t
     .click($columnThreeHeaderRow)
     .expect($columnThreeHeaderRow.getAttribute('class'))
     .eql('o-table-sortable__th--selected');
 
-  await t
-    .expect($arrowUp.getStyleProperty('border-bottom-color'))
-    .eql(expectedColor);
+  await t.expect($arrowUp.getStyleProperty('border-bottom-color')).eql(expectedColor);
   await t.expect($arrowDown.getStyleProperty('display')).eql('none');
 });
 
@@ -318,16 +292,12 @@ test('should not render arrows', async t => {
     return firstRow.querySelectorAll('th')[5];
   });
 
-  const $arrowWrapper = await $columnFourHeaderRow.find(
-    '.o-table-sortable__th__arrow-wrapper'
-  );
+  const $arrowWrapper = await $columnFourHeaderRow.find('.o-table-sortable__th__arrow-wrapper');
 
   await t.expect($arrowWrapper.getStyleProperty('display')).eql('none');
 });
 
-fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=650`
-);
+fixture('Table Sortable - innerscroll functionality').page(`${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=650`);
 
 test('should sort also when innerscroll is set ', async t => {
   await t.resizeWindow(300, 1000);
@@ -371,18 +341,12 @@ test('should sort also when innerscroll is set ', async t => {
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('width'), 10))
-    .within(innerscroll - 1, innerscroll + 1);
+  await t.expect(parseInt(await $elChild.getStyleProperty('width'), 10)).within(innerscroll - 1, innerscroll + 1);
 
-  await t
-    .expect(parseInt(await $el.getStyleProperty('width'), 10))
-    .within(250, 305);
+  await t.expect(parseInt(await $el.getStyleProperty('width'), 10)).within(250, 305);
 });
 
-fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
-);
+fixture('Table Sortable - maxheight functionality').page(`${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`);
 
 test('should sort also when maxheight is set ', async t => {
   await t.resizeWindow(300, 400);
@@ -431,18 +395,12 @@ test('should sort also when maxheight is set ', async t => {
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('height'), 10))
-    .within(innerscroll - 60, innerscroll + 60);
+  await t.expect(parseInt(await $elChild.getStyleProperty('height'), 10)).within(innerscroll - 60, innerscroll + 60);
 
-  await t
-    .expect(parseInt(await $el.getStyleProperty('height'), 10))
-    .within(200, 250);
+  await t.expect(parseInt(await $el.getStyleProperty('height'), 10)).within(200, 250);
 });
 
-fixture('Table Sortable - on row click').page(
-  `${host}/iframe.html?id=examples-table-sortable-pure-html--on-row-click`
-);
+fixture('Table Sortable - on row click').page(`${host}/iframe.html?id=examples-table-sortable-pure-html--on-row-click`);
 
 test('should react to click on row', async t => {
   await t.resizeWindow(800, 600);
@@ -460,16 +418,10 @@ test('should react to click on row', async t => {
 
   const text = await $elTableRenderArea.innerText;
 
-  await t
-    .expect(text.replace(/\s+/g, ' '))
-    .eql(
-      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
-    );
+  await t.expect(text.replace(/\s+/g, ' ')).eql('Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]');
 });
 
-fixture('Table Sortable - react').page(
-  `${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`
-);
+fixture('Table Sortable - react').page(`${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`);
 
 test('should display HTML as text if desired', async t => {
   const $rowOneDate = await Selector(() => {

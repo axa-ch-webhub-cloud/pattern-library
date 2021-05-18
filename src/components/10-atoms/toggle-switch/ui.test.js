@@ -4,18 +4,13 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-toggle-switch';
 const CLASS = '.a-toggle-switch';
 
-fixture('Toggle Switch - basic functionality').page(
-  `${host}/iframe.html?id=components-toggle-switch--toggle-switch`
-);
+fixture('Toggle Switch - basic functionality').page(`${host}/iframe.html?id=components-toggle-switch--toggle-switch`);
 
 test('should render toggle-switch', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
-  const $axaElemShadow = await Selector(
-    () => document.querySelector(TAG).shadowRoot,
-    { dependencies: { TAG } }
-  );
+  const $axaElemShadow = await Selector(() => document.querySelector(TAG).shadowRoot, { dependencies: { TAG } });
 
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -26,13 +21,9 @@ test('should set correct background-color to inactive toggle-switch-slider', asy
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchSlider = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__slider'
-    );
+    const toggleSwitchSlider = toggleSwitchShadow.querySelector('.a-toggle-switch__slider');
 
-    return window
-      .getComputedStyle(toggleSwitchSlider)
-      .getPropertyValue('background-color');
+    return window.getComputedStyle(toggleSwitchSlider).getPropertyValue('background-color');
   });
 
   await t.expect(await getBackgroundColor()).eql('rgb(153, 153, 153)');
@@ -48,13 +39,9 @@ test('should set correct background-color to active toggle-switch-slider', async
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchSlider = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__slider'
-    );
+    const toggleSwitchSlider = toggleSwitchShadow.querySelector('.a-toggle-switch__slider');
 
-    return window
-      .getComputedStyle(toggleSwitchSlider)
-      .getPropertyValue('background-color');
+    return window.getComputedStyle(toggleSwitchSlider).getPropertyValue('background-color');
   });
 
   await setProperties();
@@ -73,13 +60,9 @@ test('should set correct background-color to inactive disabled toggle-switch-sli
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchSlider = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__slider'
-    );
+    const toggleSwitchSlider = toggleSwitchShadow.querySelector('.a-toggle-switch__slider');
 
-    return window
-      .getComputedStyle(toggleSwitchSlider)
-      .getPropertyValue('background-color');
+    return window.getComputedStyle(toggleSwitchSlider).getPropertyValue('background-color');
   });
 
   await setProperties();
@@ -100,13 +83,9 @@ test('should set correct background-color to active disabled toggle-switch-slide
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchSlider = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__slider'
-    );
+    const toggleSwitchSlider = toggleSwitchShadow.querySelector('.a-toggle-switch__slider');
 
-    return window
-      .getComputedStyle(toggleSwitchSlider)
-      .getPropertyValue('background-color');
+    return window.getComputedStyle(toggleSwitchSlider).getPropertyValue('background-color');
   });
 
   await setProperties();
@@ -127,9 +106,7 @@ test('should add attributes checked and disabled to input if needed', async t =>
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute(attributeName);
   });
@@ -145,9 +122,7 @@ test('should not add attributes checked and disabled to input if not needed', as
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute(attributeName);
   });
@@ -158,11 +133,7 @@ test('should not add attributes checked and disabled to input if not needed', as
 
 test('should change state when clicked and not disabled', async t => {
   const performClick = async () => {
-    const toggleSwitch = Selector(() =>
-      document
-        .querySelector('axa-toggle-switch')
-        .shadowRoot.querySelector('.a-toggle-switch')
-    );
+    const toggleSwitch = Selector(() => document.querySelector('axa-toggle-switch').shadowRoot.querySelector('.a-toggle-switch'));
 
     await t.click(toggleSwitch);
   };
@@ -171,9 +142,7 @@ test('should change state when clicked and not disabled', async t => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute('checked');
   });
@@ -189,11 +158,7 @@ test('should not change state when clicked and disabled', async t => {
   });
 
   const performClick = async () => {
-    const toggleSwitch = Selector(() =>
-      document
-        .querySelector('axa-toggle-switch')
-        .shadowRoot.querySelector('.a-toggle-switch')
-    );
+    const toggleSwitch = Selector(() => document.querySelector('axa-toggle-switch').shadowRoot.querySelector('.a-toggle-switch'));
 
     await t.click(toggleSwitch);
   };
@@ -202,9 +167,7 @@ test('should not change state when clicked and disabled', async t => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute('checked');
   });
@@ -215,17 +178,11 @@ test('should not change state when clicked and disabled', async t => {
   await t.expect(await isChecked()).notOk();
 });
 
-fixture('Toggle Switch - controlled mode without onChange (active=false)').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`
-);
+fixture('Toggle Switch - controlled mode without onChange (active=false)').page(`${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`);
 
 test('should stay inactive when clicked', async t => {
   const performClick = async () => {
-    const toggleSwitch = Selector(() =>
-      document
-        .querySelector('axa-toggle-switch')
-        .shadowRoot.querySelector('.a-toggle-switch')
-    );
+    const toggleSwitch = Selector(() => document.querySelector('axa-toggle-switch').shadowRoot.querySelector('.a-toggle-switch'));
 
     await t.click(toggleSwitch);
   };
@@ -234,9 +191,7 @@ test('should stay inactive when clicked', async t => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute('checked');
   });
@@ -245,17 +200,11 @@ test('should stay inactive when clicked', async t => {
   await t.expect(await isChecked()).notOk();
 });
 
-fixture('Toggle Switch - controlled mode without onChange (active=true)').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`
-);
+fixture('Toggle Switch - controlled mode without onChange (active=true)').page(`${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`);
 
 test('should stay active when clicked', async t => {
   const performClick = async () => {
-    const toggleSwitch = Selector(() =>
-      document
-        .querySelector('axa-toggle-switch')
-        .shadowRoot.querySelector('.a-toggle-switch')
-    );
+    const toggleSwitch = Selector(() => document.querySelector('axa-toggle-switch').shadowRoot.querySelector('.a-toggle-switch'));
 
     await t.click(toggleSwitch);
   };
@@ -264,9 +213,7 @@ test('should stay active when clicked', async t => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute('checked');
   });
@@ -275,17 +222,11 @@ test('should stay active when clicked', async t => {
   await t.expect(await isChecked()).ok();
 });
 
-fixture('Toggle Switch - controlled mode with onChange').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-onchange&viewMode=story`
-);
+fixture('Toggle Switch - controlled mode with onChange').page(`${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-onchange&viewMode=story`);
 
 test('should change state when clicked', async t => {
   const performClick = async () => {
-    const toggleSwitch = Selector(() =>
-      document
-        .querySelector('axa-toggle-switch')
-        .shadowRoot.querySelector('.a-toggle-switch')
-    );
+    const toggleSwitch = Selector(() => document.querySelector('axa-toggle-switch').shadowRoot.querySelector('.a-toggle-switch'));
 
     await t.click(toggleSwitch);
   };
@@ -294,9 +235,7 @@ test('should change state when clicked', async t => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
-    const toggleSwitchInput = toggleSwitchShadow.querySelector(
-      '.a-toggle-switch__input'
-    );
+    const toggleSwitchInput = toggleSwitchShadow.querySelector('.a-toggle-switch__input');
 
     return toggleSwitchInput.hasAttribute('checked');
   });

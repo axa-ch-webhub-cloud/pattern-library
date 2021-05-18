@@ -6,8 +6,7 @@ const RESERVED_CHARACTER = '{'; // not allowed in HTML tags or their attributes 
 // and also not part of static template strings due to ${...} syntax!
 
 // helper functions
-const toKebabCase = dottedVersionString =>
-  `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
+const toKebabCase = dottedVersionString => `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
 
 const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
@@ -23,8 +22,7 @@ const extractDependencies = componentClass => {
   return [dependencies, dependencies.map(_tagName => versions[_tagName])];
 };
 
-const oldTag = (tagName, closing = '', openingBracket = '<') =>
-  `${openingBracket}${closing}${tagName}`;
+const oldTag = (tagName, closing = '', openingBracket = '<') => `${openingBracket}${closing}${tagName}`;
 
 // How to make a new tag? It's tempting to just append the version info.
 // However, we don't want to rewrite tags more than once: given axa-button-link in version 6.3.4
@@ -36,8 +34,7 @@ const oldTag = (tagName, closing = '', openingBracket = '<') =>
 // <axa-button-link =1> {axa-button-link-6-3-4. Then the erroneous rewriting step =2> can no longer match.
 
 // Of course, in the end we need a bulk replacement of the '{'s by their original '<'s, which is simple.
-const newTag = (tagName, aVersion, closing) =>
-  oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
+const newTag = (tagName, aVersion, closing) => oldTag(versionedTag(tagName, aVersion), closing, RESERVED_CHARACTER);
 
 // Example: someStrings = ['<div><axa-dropdown .items="','" </axa-dropdown></div>']
 //          aTagname = 'axa-dropdown', aVersion = '7.0.2'
@@ -70,8 +67,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
   let versionedTagName = '';
   // process all dependant components that it lists...
   dependencies.forEach(dependency => {
-    const componentClass =
-      dependency instanceof HTMLElement ? dependency.constructor : dependency;
+    const componentClass = dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
     const { tagName } = componentClass;
     const externalVersion = !customVersion && versionInfo[tagName];
@@ -81,9 +77,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
       // contains a PL-reserved 'versions' property?
       if (!window.customElements.get(tagName) && componentClass.versions) {
         // yes, this class is wrongly implemented - premature exit
-        throw Error(
-          `'versions' is a reserved class property, but was found in ${tagName}'s class`
-        );
+        throw Error(`'versions' is a reserved class property, but was found in ${tagName}'s class`);
       }
       // inject version info into component-defining class - this helps for live debugging
       componentClass.versions = externalVersion;

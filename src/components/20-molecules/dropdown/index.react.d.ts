@@ -36,9 +36,6 @@ export interface AXADropdownProps {
   maxHeight?: string;
 }
 
-declare function createAXADropdown(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXADropdownProps>;
+declare function createAXADropdown(createElement: typeof React.createElement, version?: string): React.ComponentType<AXADropdownProps>;
 
 export default createAXADropdown;

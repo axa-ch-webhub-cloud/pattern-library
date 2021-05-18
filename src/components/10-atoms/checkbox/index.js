@@ -119,9 +119,7 @@ class AXACheckbox extends NoShadowDOM {
   // (like <axa-checkbox><span>my label</span></axa-checkbox>),
   // where those children (here, <span>) may not be DOM-constructed yet when using lit-element's default microtask timing!)
   performUpdate() {
-    new Promise(resolve =>
-      window.requestAnimationFrame(() => resolve())
-    ).then(() => super.performUpdate());
+    new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(() => super.performUpdate());
   }
 
   render() {
@@ -167,20 +165,7 @@ class AXACheckbox extends NoShadowDOM {
     }
 
     const inputElements = html`
-      <input
-        id="${refId}"
-        class="a-checkbox__input"
-        type="checkbox"
-        name="${name}"
-        value="${value}"
-        aria-required="${required}"
-        ?checked="${checked}"
-        ?disabled="${disabled}"
-        ?error="${!!error}"
-        @focus="${this.onFocus}"
-        @blur="${this.onBlur}"
-        @change=${this.handleChange}
-      />
+      <input id="${refId}" class="a-checkbox__input" type="checkbox" name="${name}" value="${value}" aria-required="${required}" ?checked="${checked}" ?disabled="${disabled}" ?error="${!!error}" @focus="${this.onFocus}" @blur="${this.onBlur}" @change=${this.handleChange} />
       <span class="${classes}">
         ${isVariantCheckmark
           ? html`

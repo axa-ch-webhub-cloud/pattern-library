@@ -23,9 +23,7 @@ function getFirstChildOfEachAxaCustomElement() {
   return Array.prototype.slice
     .call(document.querySelectorAll('*'))
     .filter(el => el.tagName.toUpperCase().startsWith('AXA-'))
-    .map(el =>
-      el.shadowRoot ? el.shadowRoot.querySelector('*') : el.querySelector('*')
-    );
+    .map(el => (el.shadowRoot ? el.shadowRoot.querySelector('*') : el.querySelector('*')));
 }
 
 function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
@@ -48,10 +46,7 @@ export const AXA = () => {
   // end of the event loop.
   setTimeout(() => {
     const allChildrenOfWebcomponents = getFirstChildOfEachAxaCustomElement();
-    drawOrRemoveBorderAroundElements(
-      markWebcomponents,
-      allChildrenOfWebcomponents
-    );
+    drawOrRemoveBorderAroundElements(markWebcomponents, allChildrenOfWebcomponents);
   });
 
   const resetBrowserDefaultStyles = html`
@@ -89,8 +84,7 @@ export const AXA = () => {
     ${resetBrowserDefaultStyles} ${style}
 
     <div class="pages-axa-main-page">
-      ${navbar} ${commercialHeroBanner} ${policyFeatures} ${footer}
-      ${footerSmall}
+      ${navbar} ${commercialHeroBanner} ${policyFeatures} ${footer} ${footerSmall}
     </div>
   `;
 

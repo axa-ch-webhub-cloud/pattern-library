@@ -11,9 +11,7 @@ export default class example extends React.Component {
   }
 
   render() {
-    return (
-      <AXAToggleSwitchReact active={this.state.active} onChange={this.change} />
-    );
+    return <AXAToggleSwitchReact active={this.state.active} onChange={this.change} />;
   }
 
   change = () => {

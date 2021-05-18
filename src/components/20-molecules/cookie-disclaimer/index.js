@@ -4,10 +4,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAButton from '@axa-ch/button';
 import AXAContainer from '@axa-ch/container';
 
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -63,10 +60,7 @@ class AXACookieDisclaimer extends LitElement {
     const { localStorage } = _global;
     if (localStorage) {
       this.selfDestruction();
-      localStorage.setItem(
-        'axa-ch-cookie-disclaimer-accepted',
-        new Date().getTime()
-      );
+      localStorage.setItem('axa-ch-cookie-disclaimer-accepted', new Date().getTime());
     }
     this.onClick(ev);
   }
@@ -96,9 +90,7 @@ class AXACookieDisclaimer extends LitElement {
               <slot></slot>
             </div>
             <div class="m-cookie-disclaimer__container--rx">
-              <axa-button class="js-button" @click="${
-                this.handleButtonClick
-              }" variant="inverted">
+              <axa-button class="js-button" @click="${this.handleButtonClick}" variant="inverted">
                 ${buttonname}
               </axa-button>
             </div>

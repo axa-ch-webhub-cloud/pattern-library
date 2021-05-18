@@ -15,34 +15,11 @@ const DemoContUncontTextarea = () => {
 
   return (
     <div>
-      <AXATextarea
-        required
-        label="Message controlled"
-        name="message"
-        value={message}
-        maxLength
-        onChange={handleChange}
-      />
-      <AXATextarea
-        required
-        label="Message controlled freeze"
-        name="message"
-        value="freeze"
-      />
+      <AXATextarea required label="Message controlled" name="message" value={message} maxLength onChange={handleChange} />
+      <AXATextarea required label="Message controlled freeze" name="message" value="freeze" />
       <AXATextarea required label="Message uncontrolled" name="message_2" />
-      <AXATextarea
-        required
-        label="Message uncontrolled default value"
-        name="message_3"
-        defaultValue="prefilled value"
-      />
-      <AXATextarea
-        label="type checkmark or error"
-        checkMark={name === 'checkmark'}
-        invalid={name === 'error'}
-        error="Error Message"
-        onChange={handleNameChange}
-      />
+      <AXATextarea required label="Message uncontrolled default value" name="message_3" defaultValue="prefilled value" />
+      <AXATextarea label="type checkmark or error" checkMark={name === 'checkmark'} invalid={name === 'error'} error="Error Message" onChange={handleNameChange} />
     </div>
   );
 };

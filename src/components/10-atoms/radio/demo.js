@@ -19,14 +19,8 @@ storiesOf('Examples/Radio/Pure HTML', module)
 
     const handleClick = () => {
       setTimeout(() => {
-        const atLeastOneChecked = [
-          ...document.querySelectorAll('axa-radio[name="contract"]'),
-        ]
-          .map(radio => radio.checked)
-          .reduce((acc, curr) => acc | curr, 0);
-        document.querySelector('axa-fieldset').error = atLeastOneChecked
-          ? ''
-          : error;
+        const atLeastOneChecked = [...document.querySelectorAll('axa-radio[name="contract"]')].map(radio => radio.checked).reduce((acc, curr) => acc | curr, 0);
+        document.querySelector('axa-fieldset').error = atLeastOneChecked ? '' : error;
       }, 0);
     };
 
@@ -72,32 +66,10 @@ storiesOf('Examples/Radio/Pure HTML', module)
     const root = document.createElement('div');
     const template = html`
       <axa-fieldset horizontal>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 1"
-          .icon="${CarSvg}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 2"
-          .icon="${CarSvg}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 3"
-          checked
-          .icon="${CarSvg}"
-        ></axa-radio>
-        <axa-radio
-          button
-          name="insurance"
-          label="Option 4"
-          disabled
-          .icon="${CarSvg}"
-        ></axa-radio>
+        <axa-radio button name="insurance" label="Option 1" .icon="${CarSvg}"></axa-radio>
+        <axa-radio button name="insurance" label="Option 2" .icon="${CarSvg}"></axa-radio>
+        <axa-radio button name="insurance" label="Option 3" checked .icon="${CarSvg}"></axa-radio>
+        <axa-radio button name="insurance" label="Option 4" disabled .icon="${CarSvg}"></axa-radio>
       </axa-fieldset>
     `;
 

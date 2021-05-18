@@ -3,10 +3,7 @@ import { html, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';
 import AXACarousel from '@axa-ch/carousel';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
 import { applyDefaults } from '../../../utils/with-react';
@@ -53,14 +50,7 @@ class AXATestimonials extends InlineStyles {
 
   /* eslint-disable indent */
   render() {
-    const {
-      title,
-      subtitle,
-      showallinline,
-      autorotatetime,
-      autorotatedisabled,
-      keysenabled,
-    } = this;
+    const { title, subtitle, showallinline, autorotatetime, autorotatedisabled, keysenabled } = this;
 
     return versionedHtml(this)`
       <article class="o-testimonials">

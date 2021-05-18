@@ -98,16 +98,11 @@ export const Colors = () => {
               ${getColors(group.value).map(color => {
                 return html`
                   <div class="colorwrapper">
-                    <div
-                      class="colorvisualisation"
-                      style="background-color: ${color.code};"
-                    ></div>
+                    <div class="colorvisualisation" style="background-color: ${color.code};"></div>
                     <axa-text>
                       ${color.name /* TODO: change to axa-text if bug is fixed */}
                     </axa-text>
-                    <axa-text variant="size-2"
-                      >${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text
-                    >
+                    <axa-text variant="size-2">${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text>
                   </div>
                 `;
               })}

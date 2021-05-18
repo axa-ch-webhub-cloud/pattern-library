@@ -29,11 +29,7 @@ export const FooterSmall = () => {
 
   const template = html`
     <axa-footer-small>
-      <a
-        slot="language-item"
-        href="https://axa.ch/de/privatkunden.html"
-        class="m-footer-small__link--active"
-      >
+      <a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">
         ${language1}
       </a>
       <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
@@ -45,16 +41,10 @@ export const FooterSmall = () => {
       <a slot="language-item" href="https://axa.ch/en/private-customers.html">
         ${language4}
       </a>
-      <a
-        slot="disclaimer-item"
-        href="https://axa.ch/en/information/terms-of-use.html"
-      >
+      <a slot="disclaimer-item" href="https://axa.ch/en/information/terms-of-use.html">
         ${termsOfUse}
       </a>
-      <a
-        slot="disclaimer-item"
-        href="https://axa.ch/en/information/data-protection.html"
-      >
+      <a slot="disclaimer-item" href="https://axa.ch/en/information/data-protection.html">
         ${dataProtection}
       </a>
       <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>

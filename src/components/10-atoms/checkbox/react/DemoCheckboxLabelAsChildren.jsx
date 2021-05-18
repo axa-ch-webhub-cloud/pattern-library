@@ -12,11 +12,7 @@ const DemoCheckboxLabelAsChildren = () => {
     <AXACheckbox checked={checked} onChange={handleCheckboxChange}>
       <p>
         I agree to{' '}
-        <a
-          href="https://www.google.ch"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="https://www.google.ch" target="_blank" rel="noopener noreferrer">
           conditions of data protection.
         </a>
       </p>

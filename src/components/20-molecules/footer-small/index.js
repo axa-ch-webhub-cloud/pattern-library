@@ -5,10 +5,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '@axa-ch/container';
 import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import InlineStyles from '../../../utils/inline-styles';
 import fireCustomEvent from '../../../utils/custom-event';
@@ -50,15 +47,13 @@ class AXAFooterSmall extends InlineStyles {
   handleLanguageClick = (ev, languageIndex) => {
     if (this.dynamic) {
       ev.preventDefault();
-      [...this.querySelectorAll('[slot="language-item"]')].forEach(
-        (link, i) => {
-          if (i === languageIndex) {
-            link.classList.add(ACTIVE_LINK_CLASS);
-          } else {
-            link.classList.remove(ACTIVE_LINK_CLASS);
-          }
+      [...this.querySelectorAll('[slot="language-item"]')].forEach((link, i) => {
+        if (i === languageIndex) {
+          link.classList.add(ACTIVE_LINK_CLASS);
+        } else {
+          link.classList.remove(ACTIVE_LINK_CLASS);
         }
-      );
+      });
       this.onLanguageClick(languageIndex);
       fireCustomEvent('axa-language-click', languageIndex, this);
       this.requestUpdate();
@@ -99,30 +94,20 @@ class AXAFooterSmall extends InlineStyles {
         <axa-container>
           <div class="m-footer-small__container">
             <ul class="m-footer-small__list">
-              ${repeat(
-                this.querySelectorAll('[slot="language-item"]'),
-                (languageItem, index) => {
-                  // copy the active class from the light-DOM child
-                  const isActive = languageItem.classList.contains(
-                    ACTIVE_LINK_CLASS
-                  );
-                  const classes = {
-                    'm-footer-small__link--bold': true,
-                    [`js-footer-small__link-${index}`]: true,
-                    [ACTIVE_LINK_CLASS]: isActive,
-                  };
-                  return html`
-                    <li class="m-footer-small__list-item">
-                      <a
-                        href="${languageItem.href}"
-                        class="${classMap(classes)}"
-                        @click=${ev => this.handleLanguageClick(ev, index)}
-                        >${languageItem.textContent}</a
-                      >
-                    </li>
-                  `;
-                }
-              )}
+              ${repeat(this.querySelectorAll('[slot="language-item"]'), (languageItem, index) => {
+                // copy the active class from the light-DOM child
+                const isActive = languageItem.classList.contains(ACTIVE_LINK_CLASS);
+                const classes = {
+                  'm-footer-small__link--bold': true,
+                  [`js-footer-small__link-${index}`]: true,
+                  [ACTIVE_LINK_CLASS]: isActive,
+                };
+                return html`
+                  <li class="m-footer-small__list-item">
+                    <a href="${languageItem.href}" class="${classMap(classes)}" @click=${ev => this.handleLanguageClick(ev, index)}>${languageItem.textContent}</a>
+                  </li>
+                `;
+              })}
             </ul>
 
             <div class="m-footer-small__disclaimer">
@@ -131,11 +116,7 @@ class AXAFooterSmall extends InlineStyles {
                   this.querySelectorAll('[slot="disclaimer-item"]'),
                   (disclaimerItem, index) => html`
                     <li class="m-footer-small__list-item">
-                      <a
-                        href="${disclaimerItem.href}"
-                        @click=${ev => this.handleDisclaimerClick(ev, index)}
-                        >${disclaimerItem.textContent}</a
-                      >
+                      <a href="${disclaimerItem.href}" @click=${ev => this.handleDisclaimerClick(ev, index)}>${disclaimerItem.textContent}</a>
                     </li>
                   `
                 )}

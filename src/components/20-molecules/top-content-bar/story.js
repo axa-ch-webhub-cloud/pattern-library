@@ -30,18 +30,11 @@ export const TopContentBar = () => {
   const ctatext = text('ctatext', '');
   const variant = select('variant', variantOptions, '');
   const href = text('href', '');
-  const textValue = text(
-    'Text',
-    'Unidentified flying object detected in your region. People are panicking. Stay calm!'
-  );
+  const textValue = text('Text', 'Unidentified flying object detected in your region. People are panicking. Stay calm!');
   const link = text('Add axa-link', '');
 
   const template = html`
-    <axa-top-content-bar
-      variant="${variant}"
-      href="${href}"
-      ctatext="${ctatext}"
-    >
+    <axa-top-content-bar variant="${variant}" href="${href}" ctatext="${ctatext}">
       ${textValue}
       ${link
         ? html`

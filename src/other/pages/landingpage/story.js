@@ -22,10 +22,7 @@ export const ToPatternLibrary = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('accessory-story-wrapper');
 
-  const internalLink = `${window.location.href.replace(
-    /\/[^/]*$/,
-    ''
-  )}/?path=/story/guides-getting-started--getting-started`;
+  const internalLink = `${window.location.href.replace(/\/[^/]*$/, '')}/?path=/story/guides-getting-started--getting-started`;
 
   const template = html`
     <style>

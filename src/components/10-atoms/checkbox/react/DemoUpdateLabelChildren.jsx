@@ -12,10 +12,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <button
-        className="js-checkbox__demo-button-rerender-children"
-        onClick={updateLabel}
-      >
+      <button className="js-checkbox__demo-button-rerender-children" onClick={updateLabel}>
         Rerender Children
       </button>
       <h1>Test label prop</h1>

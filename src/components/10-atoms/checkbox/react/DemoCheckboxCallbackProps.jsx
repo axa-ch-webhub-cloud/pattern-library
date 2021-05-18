@@ -31,16 +31,8 @@ const DemoCheckboxCallbackProps = () => {
         Checkbox Callback Props: frozen
         <input type="checkbox" data-test-id="frozen" onChange={handleFreeze} />
       </legend>
-      <AXACheckbox
-        label="I'm a checkbox that is controlled"
-        checked={checked}
-        onFocus={handleCheckboxFocus}
-        onBlur={handleCheckboxBlur}
-        onChange={handleCheckboxChange}
-      />
-      <div
-        style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}
-      >
+      <AXACheckbox label="I'm a checkbox that is controlled" checked={checked} onFocus={handleCheckboxFocus} onBlur={handleCheckboxBlur} onChange={handleCheckboxChange} />
+      <div style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem' }}>
         <span>checked: {String(checked)}</span>
         <span>focus: {String(focus)}</span>
         <span>blur: {String(blur)}</span>

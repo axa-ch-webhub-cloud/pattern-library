@@ -21,8 +21,7 @@ export default class InlineStyles extends LitElement {
     // with WeakMap(). WeakMap (supported by IE11) acts as defense-in-depth
     // against memory leaks if disconnectedCallback is never called
     // (allowed by the spec).
-    const referenceCounts =
-      crossTagReferenceCounts[this.tagName] || new WeakMap();
+    const referenceCounts = crossTagReferenceCounts[this.tagName] || new WeakMap();
     // one more reference, caused by this instance
     const info = referenceCounts.get(root) || {};
     const referenceCount = (info.referenceCount || 0) + 1;
@@ -50,9 +49,7 @@ export default class InlineStyles extends LitElement {
         // is the component name itself, serving as a poor-man's rule scoping construct.
         // E.g. datepicker rules are assumed to look like this:
         // axa-datepicker .class1 .... classN { ... }
-        cssAsString = cssAsString
-          .split(genericComponentName)
-          .join(versionedComponentName);
+        cssAsString = cssAsString.split(genericComponentName).join(versionedComponentName);
         // now, after the above string-to-string transformation they look like this:
         // axa-datepicker-7-0-2 .class1 .... classN { ... }
       }

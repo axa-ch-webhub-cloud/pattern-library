@@ -3,10 +3,7 @@
 import AXATable from '@axa-ch/table';
 import { css, html, LitElement, unsafeCSS } from 'lit-element';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import { applyDefaults } from '../../../utils/with-react';
 import tableCss from './index.scss';
@@ -158,12 +155,10 @@ class AXATableSortable extends LitElement {
   sort(arr, index, sortAs) {
     // Declaration of dateColumnsCustomSort had to be moved from the constructor, because
     // the value of this.dateSortColumnIndex wasn't available
-    const dateColumnsCustomSort = this.dateSortColumnIndex
-      .split(',')
-      .map(cellIndex => {
-        const parsed = parseInt(cellIndex, 10);
-        return isNaN(parsed) ? undefined : parsed;
-      });
+    const dateColumnsCustomSort = this.dateSortColumnIndex.split(',').map(cellIndex => {
+      const parsed = parseInt(cellIndex, 10);
+      return isNaN(parsed) ? undefined : parsed;
+    });
 
     return arr.sort((rowLx, rowRx) => {
       const cleanCell = (cell = '') => cell.replace(/<[^>]*>/g, '').trim();
@@ -204,12 +199,7 @@ class AXATableSortable extends LitElement {
       return `${leadingZeroesString}${number}`;
     };
 
-    return Date.parse(
-      `${addLeadingZeroes(parts[2], 4)}-${addLeadingZeroes(
-        parts[1],
-        2
-      )}-${addLeadingZeroes(parts[0], 2)}T00:00:00`
-    );
+    return Date.parse(`${addLeadingZeroes(parts[2], 4)}-${addLeadingZeroes(parts[1], 2)}-${addLeadingZeroes(parts[0], 2)}T00:00:00`);
   }
 
   shouldUpdate(...args) {
@@ -265,9 +255,7 @@ class AXATableSortable extends LitElement {
                 thead.map(
                   (config, index) => html`
                     <th
-                      class="${this.lastIndex === index
-                        ? 'o-table-sortable__th--selected'
-                        : ''}"
+                      class="${this.lastIndex === index ? 'o-table-sortable__th--selected' : ''}"
                       @click="${() => {
                         const sortingAria = this.getSortingAria(config);
                         if (sortingAria !== 'none') {
@@ -279,12 +267,8 @@ class AXATableSortable extends LitElement {
                       <div class="o-table-sortable__th__flexcontainer">
                         <span>${config.html}</span>
                         <div class="o-table-sortable__th__arrow-wrapper">
-                          <div
-                            class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"
-                          ></div>
-                          <div
-                            class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"
-                          ></div>
+                          <div class="o-table-sortable__th__arrow o-table-sortable__th__arrowup"></div>
+                          <div class="o-table-sortable__th__arrow o-table-sortable__th__arrowdown"></div>
                         </div>
                       </div>
                     </th>

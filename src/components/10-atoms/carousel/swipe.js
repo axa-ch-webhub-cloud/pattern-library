@@ -41,10 +41,7 @@ class Swipe {
   handleTouchEnd() {
     const timeDiff = Date.now() - this.timeDown;
     if (Math.abs(this.xDiff) > Math.abs(this.yDiff)) {
-      if (
-        Math.abs(this.xDiff) > this.DIFF_THRESHOLD &&
-        timeDiff < this.TIME_THRESHOLD
-      ) {
+      if (Math.abs(this.xDiff) > this.DIFF_THRESHOLD && timeDiff < this.TIME_THRESHOLD) {
         if (this.xDiff > 0) {
           this.onLeft();
         } else {
@@ -53,10 +50,7 @@ class Swipe {
       } else {
         // threshold limit not passed.
       }
-    } else if (
-      Math.abs(this.yDiff) > this.DIFF_THRESHOLD &&
-      timeDiff < this.TIME_THRESHOLD
-    ) {
+    } else if (Math.abs(this.yDiff) > this.DIFF_THRESHOLD && timeDiff < this.TIME_THRESHOLD) {
       // eslint-disable-line
       if (this.yDiff > 0) {
         this.onUp();

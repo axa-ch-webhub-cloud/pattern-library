@@ -46,19 +46,7 @@ storiesOf('Examples/Dropdown/Pure HTML', module)
 
     const wrapper = document.createElement('div');
     const template = html`
-      <axa-dropdown
-        value="${value}"
-        label="${label}"
-        name="${name}"
-        datatestid="${dataTestId}"
-        defaulttitle="${defaultTitle}"
-        error="${error}"
-        ?invalid="${invalid}"
-        ?checkmark="${checkMark}"
-        ?disabled="${disabled}"
-        ?required="${required}"
-        ?native="${native}"
-      ></axa-dropdown>
+      <axa-dropdown value="${value}" label="${label}" name="${name}" datatestid="${dataTestId}" defaulttitle="${defaultTitle}" error="${error}" ?invalid="${invalid}" ?checkmark="${checkMark}" ?disabled="${disabled}" ?required="${required}" ?native="${native}"></axa-dropdown>
     `;
 
     setTimeout(() => {
@@ -330,14 +318,7 @@ storiesOf('Examples/Dropdown/Pure HTML', module)
     ];
 
     const template = html`
-      <axa-dropdown
-        data-test-id="dropdown-many"
-        label="Country"
-        required
-        defaulttitle="Select country..."
-        maxheight
-        .items="${items}"
-      ></axa-dropdown>
+      <axa-dropdown data-test-id="dropdown-many" label="Country" required defaulttitle="Select country..." maxheight .items="${items}"></axa-dropdown>
     `;
     render(template, wrapper);
     return wrapper;

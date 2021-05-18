@@ -36,23 +36,8 @@ export const Checkbox = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <div
-      style="${variant && variant.includes('inverted')
-        ? `background-color: #027180; padding: 10px;`
-        : ''}"
-    >
-      <axa-checkbox
-        refId="${refId}"
-        class="hover"
-        name="${name}"
-        variant="${variant}"
-        label="${label}"
-        ?disabled="${disabled}"
-        ?checked="${checked}"
-        ?required="${required}"
-        ?styled="${styled}"
-        error="${errortext ? 'Please accept our terms and conditions.' : ''}"
-      ></axa-checkbox>
+    <div style="${variant && variant.includes('inverted') ? `background-color: #027180; padding: 10px;` : ''}">
+      <axa-checkbox refId="${refId}" class="hover" name="${name}" variant="${variant}" label="${label}" ?disabled="${disabled}" ?checked="${checked}" ?required="${required}" ?styled="${styled}" error="${errortext ? 'Please accept our terms and conditions.' : ''}"></axa-checkbox>
     </div>
   `;
 

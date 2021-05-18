@@ -37,7 +37,8 @@ axa-table > table {
   width: 100%;
   border-collapse: collapse;
 
-  th, td {
+  th,
+  td {
     display: block;
     font-size: 14px;
     font-weight: 400;
@@ -78,7 +79,7 @@ axa-table > table {
     display: block;
     box-sizing: border-box;
 
-    &:nth-child(n+2) {
+    &:nth-child(n + 2) {
       &:last-child {
         border-bottom: 1px solid $color-mercury;
       }
@@ -117,7 +118,7 @@ axa-table > table {
   }
 }
 
-axa-table[innerscroll]:not([innerscroll="0"]) {
+axa-table[innerscroll]:not([innerscroll='0']) {
   width: 100%;
   overflow-x: auto;
   display: block;
@@ -125,7 +126,8 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
   padding-bottom: 20px;
 
   > table {
-    th, td {
+    th,
+    td {
       &:first-child {
         @include firstChild_TDMQ;
       }
@@ -158,17 +160,18 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
     }
   }
 
-  &[maxheight]:not([maxheight="0"]) {
+  &[maxheight]:not([maxheight='0']) {
     tbody {
       display: block;
       max-height: 160px;
       overflow-y: auto;
     }
 
-    thead, tbody tr {
-      display:table;
-      width:100%;
-      table-layout:fixed;
+    thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
     }
   }
 }
@@ -176,7 +179,6 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
 td.o-table--light {
   color: $color-grey;
 }
-
 
 td.o-table--bold {
   font-weight: bold;

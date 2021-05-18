@@ -4,10 +4,7 @@ import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import linkCSS from './index.scss';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 
 class AXALink extends LitElement {
@@ -42,15 +39,9 @@ class AXALink extends LitElement {
   render() {
     const { variant } = this;
 
-    const isSimple =
-      variant &&
-      variant !== 'hyperlink-white' &&
-      variant !== 'hyperlink-white-underline';
+    const isSimple = variant && variant !== 'hyperlink-white' && variant !== 'hyperlink-white-underline';
 
-    const isIcon =
-      variant.includes('arrowleft') ||
-      variant.includes('arrowright') ||
-      variant.includes('icon');
+    const isIcon = variant.includes('arrowleft') || variant.includes('arrowright') || variant.includes('icon');
 
     const isRed = variant.includes('red') && !variant.includes('white');
 
@@ -58,14 +49,9 @@ class AXALink extends LitElement {
 
     const islinkWhiteUnderline = variant === 'hyperlink-white-underline';
 
-    const isWhite =
-      variant.includes('white') &&
-      !variant.includes('red') &&
-      !variant.includes('hyperlink');
+    const isWhite = variant.includes('white') && !variant.includes('red') && !variant.includes('hyperlink');
 
-    const isMotion =
-      variant.includes('arrowleft-animated') ||
-      variant.includes('arrowright-animated');
+    const isMotion = variant.includes('arrowleft-animated') || variant.includes('arrowright-animated');
 
     const classes = {
       'a-link--simple': isSimple,

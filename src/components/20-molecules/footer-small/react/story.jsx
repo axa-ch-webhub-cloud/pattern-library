@@ -26,17 +26,7 @@ storiesOf('Examples/Footer Small/React', module)
 
     const div = document.createElement('div');
     div.id = 'footer-small';
-    ReactDOM.render(
-      <DemoFooterSmall
-        language1={language1}
-        language2={language2}
-        language3={language3}
-        language4={language4}
-        termsOfUse={termsOfUse}
-        dataProtection={dataProtection}
-      />,
-      div
-    );
+    ReactDOM.render(<DemoFooterSmall language1={language1} language2={language2} language3={language3} language4={language4} termsOfUse={termsOfUse} dataProtection={dataProtection} />, div);
     return div;
   })
   .add('Dynamic change of children upon language change', () => {

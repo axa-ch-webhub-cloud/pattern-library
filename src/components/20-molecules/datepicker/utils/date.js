@@ -1,17 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  addDays,
-  startOfWeek,
-  eachWeekOfInterval,
-  eachDayOfInterval,
-  startOfMonth,
-  endOfMonth,
-  isSameMonth,
-  isSameDay,
-  startOfISOWeek,
-  endOfISOWeek,
-  formatISO,
-} from 'date-fns';
+import { addDays, startOfWeek, eachWeekOfInterval, eachDayOfInterval, startOfMonth, endOfMonth, isSameMonth, isSameDay, startOfISOWeek, endOfISOWeek, formatISO } from 'date-fns';
 
 const WEEK_STARTS_ON = 1; // Monday, hardcoded on purpose! Cf. https://stackoverflow.com/questions/53382465 for adaptive solutions
 
@@ -51,25 +39,19 @@ const getMonthMatrix = (date, allowedYears = [], selectedDate) => {
   const cells = [];
   const today = new Date();
   // build week ranges
-  const weekRanges = eachWeekOfInterval(
-    { start: startOfMonth(date), end: endOfMonth(date) },
-    { weekStartsOn: WEEK_STARTS_ON }
-  );
+  const weekRanges = eachWeekOfInterval({ start: startOfMonth(date), end: endOfMonth(date) }, { weekStartsOn: WEEK_STARTS_ON });
   // enumerate days within week ranges
   weekRanges.forEach(weekDay =>
     eachDayOfInterval({
       start: startOfISOWeek(weekDay),
       end: endOfISOWeek(weekDay),
-    }).forEach(day =>
-      cells.push(dayToCell(day, date, selectedDate, today, allowedYears))
-    )
+    }).forEach(day => cells.push(dayToCell(day, date, selectedDate, today, allowedYears)))
   );
 
   return cells;
 };
 
-const clearStringFromIEGeneratedCharacters = string =>
-  typeof string === 'string' ? string.replace(/[^\x00-\x7F]/g, '') : ''; // eslint-disable-line no-control-regex
+const clearStringFromIEGeneratedCharacters = string => (typeof string === 'string' ? string.replace(/[^\x00-\x7F]/g, '') : ''); // eslint-disable-line no-control-regex
 
 const addLeadingZeroes = (rawNumber, numDigits) => {
   const number = Math.abs(parseInt(rawNumber, 10)); // coerce number to integer >= 0
@@ -87,27 +69,18 @@ const parseLocalisedDateIfValid = (inputValue = '', options = {}) => {
     const month = inputValue.getMonth() + 1;
     const day = inputValue.getDate();
     // combine with appropriate separator to format date
-    const dateParts = options.formatted
-      ? [addLeadingZeroes(day, 2), addLeadingZeroes(month, 2), year]
-      : [day, month, year];
+    const dateParts = options.formatted ? [addLeadingZeroes(day, 2), addLeadingZeroes(month, 2), year] : [day, month, year];
     return dateParts.join(DATE_SEPARATOR);
   }
 
   // parsing proper: split date string into parts using appropriate separator
-  const [day, month, year] = clearStringFromIEGeneratedCharacters(
-    inputValue
-  ).split(DATE_SEPARATOR);
+  const [day, month, year] = clearStringFromIEGeneratedCharacters(inputValue).split(DATE_SEPARATOR);
 
   // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,
   // cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#Using_Date.parse()
 
-  const dateAsUnixEpochInteger = Date.parse(
-    `${addLeadingZeroes(year, 4)}-${addLeadingZeroes(
-      month,
-      2
-    )}-${addLeadingZeroes(day, 2)}T00:00:00`
-  );
+  const dateAsUnixEpochInteger = Date.parse(`${addLeadingZeroes(year, 4)}-${addLeadingZeroes(month, 2)}-${addLeadingZeroes(day, 2)}T00:00:00`);
 
   const isValid =
     typeof dateAsUnixEpochInteger === 'number' &&
@@ -131,13 +104,6 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
   return finalArray;
 };
 
-const range = (start, end) =>
-  new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
+const range = (start, end) => new Array(end - start + 1).fill(undefined).map((_, i) => i + start);
 
-export {
-  getWeekdays,
-  getMonthMatrix,
-  getAllLocaleMonthsArray,
-  parseLocalisedDateIfValid,
-  range,
-};
+export { getWeekdays, getMonthMatrix, getAllLocaleMonthsArray, parseLocalisedDateIfValid, range };

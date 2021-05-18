@@ -24,9 +24,7 @@ test('should render default table on mobile', async t => {
   await t.expect(await $el.getStyleProperty('display')).eql('none');
 });
 
-fixture('Table - maxheight functionality').page(
-  `${host}/iframe.html?id=components-table--table&knob-innerscroll=600&knob-maxheight=160`
-);
+fixture('Table - maxheight functionality').page(`${host}/iframe.html?id=components-table--table&knob-innerscroll=600&knob-maxheight=160`);
 
 test('should render maxheight table on mobile', async t => {
   await t.resizeWindow(300, 400);
@@ -37,18 +35,12 @@ test('should render maxheight table on mobile', async t => {
   await t.expect(await $elTh.getStyleProperty('display')).eql('table-cell');
   await t.expect(await $elBody.getStyleProperty('overflow-y')).eql('auto');
   const maxheight = parseInt(await $el.getAttribute('maxheight'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('height'), 10))
-    .within(maxheight - 60, maxheight + 60);
+  await t.expect(parseInt(await $elChild.getStyleProperty('height'), 10)).within(maxheight - 60, maxheight + 60);
 
-  await t
-    .expect(parseInt(await $el.getStyleProperty('height'), 10))
-    .within(200, 250);
+  await t.expect(parseInt(await $el.getStyleProperty('height'), 10)).within(200, 250);
 });
 
-fixture('Table - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-table--table&knob-innerscroll=500`
-);
+fixture('Table - innerscroll functionality').page(`${host}/iframe.html?id=components-table--table&knob-innerscroll=500`);
 
 test('should render innerscroll table on mobile', async t => {
   await t.resizeWindow(300, 1000);
@@ -58,11 +50,7 @@ test('should render innerscroll table on mobile', async t => {
   await t.expect(await $elTh.getStyleProperty('display')).eql('table-cell');
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
   const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('width'), 10))
-    .within(innerscroll - 1, innerscroll + 1);
+  await t.expect(parseInt(await $elChild.getStyleProperty('width'), 10)).within(innerscroll - 1, innerscroll + 1);
 
-  await t
-    .expect(parseInt(await $el.getStyleProperty('width'), 10))
-    .within(250, 305);
+  await t.expect(parseInt(await $el.getStyleProperty('width'), 10)).within(250, 305);
 });

@@ -21,22 +21,13 @@ export default {
 export const Stepper = () => {
   const wrapper = document.createElement('div');
 
-  const steps = object('steps', [
-    'Angaben',
-    'Leistungen',
-    'Übersicht',
-    'Fertig',
-  ]);
+  const steps = object('steps', ['Angaben', 'Leistungen', 'Übersicht', 'Fertig']);
 
   const stepActive = number('stepActive', 2);
   const stepProgress = number('stepProgress', 0.5);
 
   const template = html`
-    <axa-stepper
-      .steps=${steps}
-      .stepActive=${stepActive || 0}
-      .stepProgress=${stepProgress || 0}
-    ></axa-stepper>
+    <axa-stepper .steps=${steps} .stepActive=${stepActive || 0} .stepProgress=${stepProgress || 0}></axa-stepper>
   `;
 
   render(template, wrapper);

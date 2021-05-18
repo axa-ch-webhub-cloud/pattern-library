@@ -33,24 +33,6 @@ storiesOf('Examples/Dropdown/React', module)
     const disabled = boolean('disabled', false);
     const maxHeight = text('max-height', '');
 
-    ReactDOM.render(
-      <DemoUncontrolledDropdownReact
-        item1={item1}
-        item2={item2}
-        item3={item3}
-        label={label}
-        value={value}
-        defaultTitle={defaultTitle}
-        name={name}
-        invalid={invalid}
-        error={error}
-        native={native}
-        required={required}
-        checkMark={checkMark}
-        disabled={disabled}
-        maxHeight={maxHeight}
-      />,
-      div
-    );
+    ReactDOM.render(<DemoUncontrolledDropdownReact item1={item1} item2={item2} item3={item3} label={label} value={value} defaultTitle={defaultTitle} name={name} invalid={invalid} error={error} native={native} required={required} checkMark={checkMark} disabled={disabled} maxHeight={maxHeight} />, div);
     return div;
   });

@@ -36,11 +36,7 @@ describe('Modal', () => {
   it('should check if children are rendered', async () => {
     await openModal();
 
-    expect(
-      await page.textContent(
-        '#root > div > axa-modal > axa-heading:nth-child(1)'
-      )
-    ).toBe('Liability insurance');
+    expect(await page.textContent('#root > div > axa-modal > axa-heading:nth-child(1)')).toBe('Liability insurance');
   });
 
   it('should not close modal in forced mode by pressing escape on keyboard', async () => {
@@ -68,20 +64,14 @@ describe('Modal', () => {
   it('should not display top-bar with close icon', async () => {
     await openForcedModal();
 
-    expect(await page.isVisible('.o-modal__upper-close-container-button')).toBe(
-      false
-    );
+    expect(await page.isVisible('.o-modal__upper-close-container-button')).toBe(false);
   });
 });
 
 async function openModal() {
-  await page.goto(
-    `${host}/iframe.html?id=components-modal--modal&viewMode=story`
-  );
+  await page.goto(`${host}/iframe.html?id=components-modal--modal&viewMode=story`);
 }
 
 async function openForcedModal() {
-  await page.goto(
-    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`
-  );
+  await page.goto(`${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`);
 }

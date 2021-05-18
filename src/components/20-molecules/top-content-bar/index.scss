@@ -19,10 +19,11 @@
 
     &-component {
       min-height: 40px;
-      display:flex;
-      align-items:center;
+      display: flex;
+      align-items: center;
 
-      .m-top-content-bar__button, .m-top-content-bar__button-link {
+      .m-top-content-bar__button,
+      .m-top-content-bar__button-link {
         margin-left: 10px;
       }
 
@@ -57,7 +58,6 @@
     }
   }
 }
-
 
 .m-top-content-bar__container--warning {
   background-color: $color-shy-tomato;

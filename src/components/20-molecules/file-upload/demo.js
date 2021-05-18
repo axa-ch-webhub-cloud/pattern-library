@@ -37,9 +37,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
 
     const template = html`
       <div style="width:455px;">
-        <axa-file-upload class="js-file-upload__file-upload"
-          >These files are going to be uploaded</axa-file-upload
-        >
+        <axa-file-upload class="js-file-upload__file-upload">These files are going to be uploaded</axa-file-upload>
       </div>
       <form @click="${handleSubmit}" style="margin-top:40px;">
         <axa-button type="submit">Submit</axa-button>

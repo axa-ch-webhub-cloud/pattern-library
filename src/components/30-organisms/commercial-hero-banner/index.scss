@@ -26,22 +26,12 @@
     position: relative;
 
     @include breakpoint($mediaquery-md-up) {
-      background: linear-gradient(
-        270deg,
-        rgba(255, 255, 255, 0) 30%,
-        rgba(255, 255, 255, 0.9) 60%,
-        #fff 100%
-      );
+      background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.9) 60%, #fff 100%);
     }
 
     &--dark {
       @include breakpoint($mediaquery-md-up) {
-        background: linear-gradient(
-          270deg,
-          rgba(0, 0, 0, 0) 30%,
-          rgba(0, 0, 0, 0.8) 60%,
-          #000 100%
-        );
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.8) 60%, #000 100%);
       }
     }
   }

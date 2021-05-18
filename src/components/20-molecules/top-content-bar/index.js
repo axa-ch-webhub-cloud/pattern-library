@@ -7,10 +7,7 @@ import AXAButtonLink from '@axa-ch/button-link';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
 
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
@@ -46,11 +43,7 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
-    defineVersioned(
-      [AXAButton, AXAButtonLink, AXAContainer],
-      __VERSION_INFO__,
-      this
-    );
+    defineVersioned([AXAButton, AXAButtonLink, AXAContainer], __VERSION_INFO__, this);
   }
 
   firstUpdated() {

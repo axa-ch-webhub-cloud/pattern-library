@@ -54,9 +54,7 @@ const applyDefaults = ceInst => {
 
     if (!type) {
       if (!converter) {
-        throw new Error(
-          `<${ceInst.nodeName}> property "${property}" is missing a type!`
-        );
+        throw new Error(`<${ceInst.nodeName}> property "${property}" is missing a type!`);
       }
       return;
     }
@@ -69,10 +67,7 @@ const applyDefaults = ceInst => {
     }
     // Boolean attributes in HTML are true if present, false otherwise.
     // For all other types, get their value as string...
-    value =
-      type === Boolean
-        ? ceInst.hasAttribute(property)
-        : ceInst.getAttribute(property);
+    value = type === Boolean ? ceInst.hasAttribute(property) : ceInst.getAttribute(property);
 
     // .. and if defined
     if (isDefined(value)) {
@@ -128,9 +123,7 @@ const distributeProperties = (properties, componentClass) => {
     let type;
     const declaredProperty = componentClass.properties[name] || {};
     const { type: declaredType } = declaredProperty;
-    const looksLikeAnEventHandler =
-      name.indexOf('on') === 0 && // starts with on...
-      name.charAt(2) === name.charAt(2).toUpperCase(); // continues with uppercase-letter, i.e. camelCase
+    const looksLikeAnEventHandler = name.indexOf('on') === 0 && name.charAt(2) === name.charAt(2).toUpperCase(); // starts with on... // continues with uppercase-letter, i.e. camelCase
 
     if (looksLikeAnEventHandler) {
       type = Function;
@@ -166,18 +159,12 @@ const distributeProperties = (properties, componentClass) => {
 
 export default (createElement, componentClass, version) => {
   const { tagName } = componentClass;
-  const finalTagName = version
-    ? defineVersioned([componentClass], version)
-    : tagName;
+  const finalTagName = version ? defineVersioned([componentClass], version) : tagName;
   const displayName = pascalCase(finalTagName);
 
   const reactStatelessComponent = ({ children, ...properties }) => {
     const { attrs, props } = distributeProperties(properties, componentClass);
-    return val(createElement)(
-      finalTagName,
-      { isReact: true, attrs, ...props },
-      children
-    );
+    return val(createElement)(finalTagName, { isReact: true, attrs, ...props }, children);
   };
 
   // displayName is important for React testing (e.g. enzyme) and Chrome DevTools plugins

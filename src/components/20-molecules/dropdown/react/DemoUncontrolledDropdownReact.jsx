@@ -25,11 +25,7 @@ const DemoUncontrolledDropdown = props => {
         checkMark={props.checkMark}
         disabled={props.disabled}
         // eslint-disable-next-line no-console
-        onChange={value =>
-          (document.getElementById(
-            'checkbox-output'
-          ).innerHTML = `Value: ${JSON.stringify(value)}`)
-        }
+        onChange={value => (document.getElementById('checkbox-output').innerHTML = `Value: ${JSON.stringify(value)}`)}
       />
       <br />
       <AXATextReact id="checkbox-output">Value:</AXATextReact>

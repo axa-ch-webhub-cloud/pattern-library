@@ -23,11 +23,7 @@ const DemoLink = () => {
     <>
       <span>Dynamic icon change via onClick:</span>
       <hr style={{ height: '1rem', border: '0' }} />
-      <AXALink
-        onClick={toggleExpand}
-        variant="icon"
-        icon={expanded ? 'collapse' : 'expand'}
-      >
+      <AXALink onClick={toggleExpand} variant="icon" icon={expanded ? 'collapse' : 'expand'}>
         {expanded ? t('todo', 'Less Filter') : t('todo', 'More Filter')}
       </AXALink>
     </>

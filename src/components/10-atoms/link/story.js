@@ -45,19 +45,12 @@ export default {
 };
 
 export const Link = () => {
-  const link = text(
-    'link',
-    'https://www.axa.ch/en/information/data-protection.html'
-  );
+  const link = text('link', 'https://www.axa.ch/en/information/data-protection.html');
   const linkText = text('Link text', 'Data protection statement');
   const external = boolean('external', false);
   const variant = select('variant', variantOptions, '');
   const icon = select('icon', iconList, '');
-  const backgrounds = select(
-    'Background color',
-    ['red', 'blue', 'white', 'black'],
-    'white'
-  );
+  const backgrounds = select('Background color', ['red', 'blue', 'white', 'black'], 'white');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -66,13 +59,7 @@ export const Link = () => {
         background-color: ${backgrounds};
       }
     </style>
-    <axa-link
-      href="${link}"
-      ?external="${external}"
-      variant="${variant}"
-      icon="${icon}"
-      >${linkText}</axa-link
-    >
+    <axa-link href="${link}" ?external="${external}" variant="${variant}" icon="${icon}">${linkText}</axa-link>
   `;
 
   render(template, wrapper);

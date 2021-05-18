@@ -1,10 +1,4 @@
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
@@ -68,20 +62,8 @@ export const Button = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <div
-      style="${variants.includes('inverted')
-        ? `background-color: ${invertedBgs[variants]}; padding: 10px;`
-        : ''}"
-    >
-      <axa-button
-        type="${types}"
-        variant="${variants}"
-        size="${sizes}"
-        icon="${icons}"
-        ?disabled="${disabled}"
-        ?motionoff="${motionOff}"
-        >${buttonText}
-      </axa-button>
+    <div style="${variants.includes('inverted') ? `background-color: ${invertedBgs[variants]}; padding: 10px;` : ''}">
+      <axa-button type="${types}" variant="${variants}" size="${sizes}" icon="${icons}" ?disabled="${disabled}" ?motionoff="${motionOff}">${buttonText} </axa-button>
     </div>
   `;
   render(template, wrapper);

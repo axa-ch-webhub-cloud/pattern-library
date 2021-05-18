@@ -2,9 +2,7 @@ import { Selector, ClientFunction } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
-fixture('Top content bar - basic functionality').page(
-  `${host}/iframe.html?id=components-top-content-bar--top-content-bar`
-);
+fixture('Top content bar - basic functionality').page(`${host}/iframe.html?id=components-top-content-bar--top-content-bar`);
 
 const TAG = 'axa-top-content-bar';
 const CLASS = '.m-top-content-bar';
@@ -12,9 +10,7 @@ const CLASS = '.m-top-content-bar';
 test('should render top-content-bar', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-top-content-bar').shadowRoot
-  );
+  const $axaElemShadow = await Selector(() => document.querySelector('axa-top-content-bar').shadowRoot);
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
 });
@@ -26,14 +22,8 @@ test('should render warning top-content-bar', async t => {
   await setWarning();
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemShadow = await Selector(() =>
-    document
-      .querySelector('axa-top-content-bar')
-      .shadowRoot.querySelector('.m-top-content-bar__container')
-  );
-  await t
-    .expect(await $axaElemShadow.getStyleProperty('background-color'))
-    .eql('rgb(201, 20, 50)');
+  const $axaElemShadow = await Selector(() => document.querySelector('axa-top-content-bar').shadowRoot.querySelector('.m-top-content-bar__container'));
+  await t.expect(await $axaElemShadow.getStyleProperty('background-color')).eql('rgb(201, 20, 50)');
 });
 
 test('should render axa-button top-content-bar', async t => {
@@ -43,11 +33,7 @@ test('should render axa-button top-content-bar', async t => {
   await setButton();
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemBtn = await Selector(() =>
-    document
-      .querySelector('axa-top-content-bar')
-      .shadowRoot.querySelector('.js-button')
-  );
+  const $axaElemBtn = await Selector(() => document.querySelector('axa-top-content-bar').shadowRoot.querySelector('.js-button'));
   await t.expect($axaElemBtn.exists).ok();
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
 });
@@ -60,28 +46,18 @@ test('should render axa-button-link top-content-bar', async t => {
   await setButton();
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemBtn = await Selector(() =>
-    document
-      .querySelector('axa-top-content-bar')
-      .shadowRoot.querySelector('.js-button-link')
-  );
+  const $axaElemBtn = await Selector(() => document.querySelector('axa-top-content-bar').shadowRoot.querySelector('.js-button-link'));
   await t.expect($axaElemBtn.exists).ok();
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
   await t.expect($axaElemBtn.getAttribute('href')).eql('http://www.axa.ch');
 });
 
-fixture('Top content bar - inline link').page(
-  `${host}/iframe.html?id=components-top-content-bar--top-content-bar&knob-Text=Undefined%20flighting%20object%20detected%20in%20your%20region.%20People%20are%20paniking.%20Stay%20calm&knob-Add%20axa-link=Test`
-);
+fixture('Top content bar - inline link').page(`${host}/iframe.html?id=components-top-content-bar--top-content-bar&knob-Text=Undefined%20flighting%20object%20detected%20in%20your%20region.%20People%20are%20paniking.%20Stay%20calm&knob-Add%20axa-link=Test`);
 
 test('should render link as hyperlink and underline in top-content-bar', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
-  const $axaElemLink = await Selector(() =>
-    document.querySelector('axa-top-content-bar').querySelector('axa-link')
-  );
+  const $axaElemLink = await Selector(() => document.querySelector('axa-top-content-bar').querySelector('axa-link'));
   await t.expect($axaElemLink.exists).ok();
-  await t
-    .expect($axaElemLink.getAttribute('variant'))
-    .eql('hyperlink-white-underline');
+  await t.expect($axaElemLink.getAttribute('variant')).eql('hyperlink-white-underline');
 });

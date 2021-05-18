@@ -15,9 +15,6 @@ export interface AXATableSortableProps {
   onClick?: (e?: any) => void;
 }
 
-declare function createAXATableSortable(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXATableSortableProps>;
+declare function createAXATableSortable(createElement: typeof React.createElement, version?: string): React.ComponentType<AXATableSortableProps>;
 
 export default createAXATableSortable;

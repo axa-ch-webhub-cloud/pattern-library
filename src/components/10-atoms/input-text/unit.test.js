@@ -36,9 +36,7 @@ describe('InputText', () => {
       const inputValue = 'this is my input';
       AXAInputText.prototype.currency = null;
 
-      expect(AXAInputText.prototype._formatCurrency(inputValue)).toBe(
-        inputValue
-      );
+      expect(AXAInputText.prototype._formatCurrency(inputValue)).toBe(inputValue);
     });
 
     // false positive tests
@@ -53,9 +51,7 @@ describe('InputText', () => {
       AXAInputText.prototype.currencyFormatter = alreadyExistingNumberFormatObject;
       AXAInputText.prototype._formatCurrency('1');
 
-      expect(AXAInputText.prototype.currencyFormatter).toBe(
-        alreadyExistingNumberFormatObject
-      );
+      expect(AXAInputText.prototype.currencyFormatter).toBe(alreadyExistingNumberFormatObject);
     });
     it('should not create a NumberFormat object (no currency set)', () => {
       AXAInputText.prototype.currency = '';

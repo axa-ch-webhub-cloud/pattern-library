@@ -38,8 +38,7 @@ const images = filepathsImages.map(path => {
 });
 
 const hideLoadMoreButton = () => {
-  document.querySelector('.js-materials__load-more-button').style.display =
-    'none';
+  document.querySelector('.js-materials__load-more-button').style.display = 'none';
 };
 
 const mapToIconItem = (icon, ...cssClasses) => {
@@ -74,9 +73,7 @@ const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
   }
   for (let i = assetsLoadedAlready / 2; i < assetsToRenderNext / 2; ++i) {
     if (i >= images.length) break;
-    imageGroup.appendChild(
-      mapToIconItemNode(images[i], 'image-container', 'materials__single-image')
-    );
+    imageGroup.appendChild(mapToIconItemNode(images[i], 'image-container', 'materials__single-image'));
   }
 };
 
@@ -90,18 +87,13 @@ export const IconsAndImages = () => {
       hideLoadMoreButton();
     }
 
-    const renderAreaIcons = document.querySelector(
-      '.materials__icon-container'
-    );
-    const renderAreaImages = document.querySelector(
-      '.materials__images-container'
-    );
+    const renderAreaIcons = document.querySelector('.materials__icon-container');
+    const renderAreaImages = document.querySelector('.materials__images-container');
     const iconHeader = document.querySelector('.icon-header');
     const imageHeader = document.querySelector('.image-header');
 
     if (!value) {
-      document.querySelector('.js-materials__load-more-button').style.display =
-        'block';
+      document.querySelector('.js-materials__load-more-button').style.display = 'block';
 
       assetsLoadedAlready = 0;
       assetsToRenderNext = 50;
@@ -129,23 +121,13 @@ export const IconsAndImages = () => {
       return foundSearchTerm ? image : '';
     });
 
-    renderAreaIcons.innerHTML = filteredIcons
-      .map(i => mapToIconItem(i))
-      .join('');
+    renderAreaIcons.innerHTML = filteredIcons.map(i => mapToIconItem(i)).join('');
 
-    iconHeader.innerHTML =
-      filteredIcons.length === 1
-        ? `${filteredIcons.length} Icon:`
-        : `${filteredIcons.length} Icons:`;
+    iconHeader.innerHTML = filteredIcons.length === 1 ? `${filteredIcons.length} Icon:` : `${filteredIcons.length} Icons:`;
 
-    renderAreaImages.innerHTML = filteredImages
-      .map(i => mapToIconItem(i, 'materials__single-image'))
-      .join('');
+    renderAreaImages.innerHTML = filteredImages.map(i => mapToIconItem(i, 'materials__single-image')).join('');
 
-    imageHeader.innerHTML =
-      filteredImages.length === 1
-        ? `${filteredImages.length} Image:`
-        : `${filteredImages.length} Images:`;
+    imageHeader.innerHTML = filteredImages.length === 1 ? `${filteredImages.length} Image:` : `${filteredImages.length} Images:`;
   };
 
   setTimeout(() => {
@@ -158,10 +140,7 @@ export const IconsAndImages = () => {
 
       renderMoreIconsAndImages(iconGroup, imageGroup);
 
-      if (
-        assetsToRenderNext >= icons.length &&
-        assetsToRenderNext >= images.length
-      ) {
+      if (assetsToRenderNext >= icons.length && assetsToRenderNext >= images.length) {
         hideLoadMoreButton();
       }
     });
@@ -276,12 +255,7 @@ export const IconsAndImages = () => {
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">Icons and Images</axa-heading>
       <div class="materials__controls">
-        <input
-          class="materials__input-field"
-          type="text"
-          placeholder="Find icon / image"
-          oninput="onCallbackInput(arguments[0])"
-        />
+        <input class="materials__input-field" type="text" placeholder="Find icon / image" oninput="onCallbackInput(arguments[0])" />
         <axa-text variant="size-2" class="note-text">
           Note: The green borders reveal the dimensions of the SVGs.
         </axa-text>
@@ -294,9 +268,7 @@ export const IconsAndImages = () => {
               ${icons.length} Icons:
             </axa-text>
             <div class="materials__icon-container">
-              ${repeat(icons.slice(0, assetsToRenderNext), i =>
-                html([mapToIconItem(i)])
-              )}
+              ${repeat(icons.slice(0, assetsToRenderNext), i => html([mapToIconItem(i)]))}
             </div>
           </div>
 
@@ -305,15 +277,11 @@ export const IconsAndImages = () => {
               ${images.length} Images:
             </axa-text>
             <div class="materials__images-container">
-              ${repeat(images.slice(0, assetsToRenderNext / 2), i =>
-                html([mapToIconItem(i, 'materials__single-image')])
-              )}
+              ${repeat(images.slice(0, assetsToRenderNext / 2), i => html([mapToIconItem(i, 'materials__single-image')]))}
             </div>
           </div>
         </div>
-        <axa-button
-          class="js-materials__load-more-button materials__load-more-button"
-        >
+        <axa-button class="js-materials__load-more-button materials__load-more-button">
           Load More...
         </axa-button>
       </div>

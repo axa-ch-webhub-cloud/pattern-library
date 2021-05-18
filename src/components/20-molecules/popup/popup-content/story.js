@@ -19,8 +19,7 @@ export default {
 const children = html`
   <h4 style="margin-top: 0">Time until retirement</h4>
   <p>
-    To calculate your monthly income in old age the time span until you retire
-    is decisive.
+    To calculate your monthly income in old age the time span until you retire is decisive.
   </p>
 `;
 

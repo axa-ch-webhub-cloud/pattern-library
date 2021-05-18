@@ -40,9 +40,6 @@ export interface AXADatepickerProps {
   className?: string;
 }
 
-declare function createAXADatepicker(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXADatepickerProps>;
+declare function createAXADatepicker(createElement: typeof React.createElement, version?: string): React.ComponentType<AXADatepickerProps>;
 
 export default createAXADatepicker;

@@ -2,15 +2,7 @@ import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
 export type Size = 'small' | 'large';
-export type Variant =
-  | 'secondary'
-  | 'red'
-  | 'inverted'
-  | 'inverted-blue-ocean'
-  | 'inverted-red-tosca'
-  | 'inverted-purple-logan'
-  | 'inverted-green-viridian'
-  | 'inverted-blue-teal';
+export type Variant = 'secondary' | 'red' | 'inverted' | 'inverted-blue-ocean' | 'inverted-red-tosca' | 'inverted-purple-logan' | 'inverted-green-viridian' | 'inverted-blue-teal';
 
 export interface AXAButtonLinkProps {
   href?: string;
@@ -26,9 +18,6 @@ export interface AXAButtonLinkProps {
   slot?: string;
 }
 
-declare function createAXAButtonLink(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAButtonLinkProps>;
+declare function createAXAButtonLink(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAButtonLinkProps>;
 
 export default createAXAButtonLink;

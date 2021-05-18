@@ -30,9 +30,6 @@ export interface AXARadioProps {
   onBlur?: (e?: FocusEvent) => {};
 }
 
-declare function createAXARadio(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXARadioProps>;
+declare function createAXARadio(createElement: typeof React.createElement, version?: string): React.ComponentType<AXARadioProps>;
 
 export default createAXARadio;

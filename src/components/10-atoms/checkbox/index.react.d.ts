@@ -18,9 +18,6 @@ export interface AXACheckboxProps {
   onBlur?: (e?: FocusEvent) => void;
 }
 
-declare function createAXACheckbox(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXACheckboxProps>;
+declare function createAXACheckbox(createElement: typeof React.createElement, version?: string): React.ComponentType<AXACheckboxProps>;
 
 export default createAXACheckbox;

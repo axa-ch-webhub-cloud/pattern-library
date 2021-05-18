@@ -1,11 +1,5 @@
 /* global document */
-import {
-  number,
-  select,
-  text,
-  boolean,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { number, select, text, boolean, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -36,46 +30,19 @@ storiesOf('Examples/File Upload/React', module)
       step: 1,
     };
     const inputFileText = text('inputFileText', 'Upload file');
-    const maxSizeOfSingleFileKB = number(
-      'maxSizeOfSingleFileKB',
-      100,
-      sizeSliderOptions
-    );
-    const maxSizeOfAllFilesKB = number(
-      'maxSizeOfAllFilesKB',
-      500,
-      sizeSliderOptions
-    );
-    const maxNumberOfFiles = number(
-      'maxNumberOfFiles',
-      10,
-      numberOfFilesSliderOptions
-    );
+    const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 100, sizeSliderOptions);
+    const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 500, sizeSliderOptions);
+    const maxNumberOfFiles = number('maxNumberOfFiles', 10, numberOfFilesSliderOptions);
     const deleteStatusText = text('deleteStatusText', 'Delete');
     const addStatusText = text('addStatusText', 'Add more');
-    const fileTooBigStatusText = text(
-      'fileTooBigStatusText',
-      `File size exceeds maximum size`
-    );
-    const filesTooBigStatusText = text(
-      'filesTooBigStatusText',
-      `File sizes exceed maximum size`
-    );
-    const tooManyFilesStatusText = text(
-      'tooManyFilesStatusText',
-      `You exceeded the maximum number of files`
-    );
+    const fileTooBigStatusText = text('fileTooBigStatusText', `File size exceeds maximum size`);
+    const filesTooBigStatusText = text('filesTooBigStatusText', `File sizes exceed maximum size`);
+    const tooManyFilesStatusText = text('tooManyFilesStatusText', `You exceeded the maximum number of files`);
     const orText = text('orText', 'or');
     const infoText = text('infoText', 'Drag and drop to upload your file');
-    const wrongFileTypeStatusText = text(
-      'wrongFileTypeText',
-      'Your file does not correspond with our allowed file-types'
-    );
+    const wrongFileTypeStatusText = text('wrongFileTypeText', 'Your file does not correspond with our allowed file-types');
     const icon = select('icon', iconList, 'cloud-upload');
-    const headerText = text(
-      'headerText',
-      'The following files are being transferred:'
-    );
+    const headerText = text('headerText', 'The following files are being transferred:');
     const preventFileCompression = boolean('preventFileCompression', false);
 
     const div = document.createElement('div');
@@ -97,14 +64,10 @@ storiesOf('Examples/File Upload/React', module)
           wrongFileTypeStatusText={wrongFileTypeStatusText}
           icon={icon}
           onFileDrop={() => {
-            document.querySelector(
-              '#m-fileupload-story__events'
-            ).textContent = `File dropped on ${new Date()}`;
+            document.querySelector('#m-fileupload-story__events').textContent = `File dropped on ${new Date()}`;
           }}
           onFileRemove={() => {
-            document.querySelector(
-              '#m-fileupload-story__events'
-            ).textContent = `File removed on ${new Date()}`;
+            document.querySelector('#m-fileupload-story__events').textContent = `File removed on ${new Date()}`;
           }}
         >
           {headerText}

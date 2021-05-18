@@ -39,7 +39,8 @@ axa-textarea {
       border: $border-width $border-type $color-axa-blue;
     }
 
-    &:focus, &.focus {
+    &:focus,
+    &.focus {
       border: $border-width $border-type $color-axa-blue;
       outline: $border-width $border-type $color-axa-blue;
       outline-offset: -2px;
@@ -52,10 +53,10 @@ axa-textarea {
       &:active,
       &:focus {
         border: $border-width $border-type $color-shy-tomato;
-
       }
 
-      &:focus, &.focus {
+      &:focus,
+      &.focus {
         outline: $border-width $border-type $color-shy-tomato;
         outline-offset: -2px;
       }

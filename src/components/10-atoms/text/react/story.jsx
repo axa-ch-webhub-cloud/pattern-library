@@ -27,11 +27,6 @@ storiesOf('Examples/Text/React', module)
     const variant = select('variant', variantOptions, '');
     const addSpanTag = boolean('Add <span> tag', false);
     const text = `Is your car your pride and joy, or just a means of getting from A to B ? Whichever applies to you, it'll certainly have the best insurance with us. Calculate your premium online – You keep your advisor even when you purchase from us online.`;
-    ReactDOM.render(
-      <AXAText variant={variant}>
-        {addSpanTag ? <span>{text}</span> : text}
-      </AXAText>,
-      div
-    );
+    ReactDOM.render(<AXAText variant={variant}>{addSpanTag ? <span>{text}</span> : text}</AXAText>, div);
     return div;
   });

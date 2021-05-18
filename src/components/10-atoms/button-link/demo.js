@@ -10,10 +10,7 @@ storiesOf('Examples/Button Link/Pure HTML', module)
     usage: { disable: true },
     changelog,
   })
-  .add(
-    'Icon visible',
-    () => '<axa-button-link icon="arrow-right">Next step</axa-button-link>'
-  )
+  .add('Icon visible', () => '<axa-button-link icon="arrow-right">Next step</axa-button-link>')
   .add('Clickable', () => {
     const btn = document.createElement('axa-button-link');
     let counter = 0;

@@ -65,13 +65,7 @@ class AXAToggleSwitch extends LitElement {
     };
 
     const inputElement = html`
-      <input
-        class="a-toggle-switch__input"
-        type="checkbox"
-        ?checked="${active}"
-        ?disabled="${disabled}"
-        @change=${handleChange}
-      />
+      <input class="a-toggle-switch__input" type="checkbox" ?checked="${active}" ?disabled="${disabled}" @change=${handleChange} />
     `;
 
     return html`
@@ -79,9 +73,7 @@ class AXAToggleSwitch extends LitElement {
         ${inputElement}
         <div class="a-toggle-switch__slider"></div>
       </label>
-      <span class="a-toggle-switch__error-message ${classMap(classes)}"
-        >${error}</span
-      >
+      <span class="a-toggle-switch__error-message ${classMap(classes)}">${error}</span>
     `;
   }
 

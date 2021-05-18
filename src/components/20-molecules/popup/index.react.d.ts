@@ -8,9 +8,6 @@ export interface AXAPopupProps {
   onClick?: () => void;
 }
 
-declare function createAXAPopup(
-  createElement: typeof React.createElement,
-  version?: string
-): React.ComponentType<AXAPopupProps>;
+declare function createAXAPopup(createElement: typeof React.createElement, version?: string): React.ComponentType<AXAPopupProps>;
 
 export default createAXAPopup;

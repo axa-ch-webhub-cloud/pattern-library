@@ -11,8 +11,7 @@ const DemoInputTextonKeyUp = () => {
       <AXAInputText
         id="inputtext-react-inputfield-on-key-pressed"
         onKeyUp={e => {
-          document.querySelector('#inputtext-react-testoutput').innerHTML =
-            e.key;
+          document.querySelector('#inputtext-react-testoutput').innerHTML = e.key;
         }}
       />
     </div>

@@ -1,11 +1,5 @@
 /* global document */
-import {
-  boolean,
-  radios,
-  select,
-  text,
-  withKnobs,
-} from '@storybook/addon-knobs';
+import { boolean, radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -62,15 +56,7 @@ storyButton.add('Story', () => {
   const wrapper = document.createElement('div');
   ReactDOM.render(
     <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
-      <AXAButtonLink
-        href={href}
-        external={external}
-        variant={variants}
-        size={sizes}
-        icon={icons}
-        disabled={disabled}
-        motionOff={motionOff}
-      >
+      <AXAButtonLink href={href} external={external} variant={variants} size={sizes} icon={icons} disabled={disabled} motionOff={motionOff}>
         {buttonText}
       </AXAButtonLink>
     </div>,

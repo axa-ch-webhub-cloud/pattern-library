@@ -19,8 +19,7 @@ const typecheck = (self, mode) => {
         typeViolation = !Array.isArray(value);
         break;
       case 'Object':
-        typeViolation =
-          value === null || valueType !== 'object' || Array.isArray(value);
+        typeViolation = value === null || valueType !== 'object' || Array.isArray(value);
         break;
       case 'String':
         typeViolation = valueType !== 'string';
@@ -31,17 +30,13 @@ const typecheck = (self, mode) => {
     }
 
     if (typeViolation) {
-      typeErrors[
-        key
-      ] = `expected ${typeSpec} value, got value of type '${valueType}'`;
+      typeErrors[key] = `expected ${typeSpec} value, got value of type '${valueType}'`;
 
       if (fixErrors) {
         const defaultValue = mode[key];
         self[key] = defaultValue;
 
-        typeErrors[key] += ` (fixed via default value ${JSON.stringify(
-          defaultValue
-        )})`;
+        typeErrors[key] += ` (fixed via default value ${JSON.stringify(defaultValue)})`;
       }
     }
   });
@@ -50,12 +45,9 @@ const typecheck = (self, mode) => {
   let errorString = '';
 
   if (errors.length) {
-    const format = keys =>
-      keys.map(property => `"${property}": ${typeErrors[property]}`).join('\n');
+    const format = keys => keys.map(property => `"${property}": ${typeErrors[property]}`).join('\n');
 
-    errorString = `<${tagName}> properties type violations detected - ${format(
-      errors
-    )}`;
+    errorString = `<${tagName}> properties type violations detected - ${format(errors)}`;
 
     if (mode === 'throw') {
       throw new Error(errorString);

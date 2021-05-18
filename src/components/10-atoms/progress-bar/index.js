@@ -51,26 +51,16 @@ class AXAProgressBar extends LitElement {
     const classesLoader = {
       'a-progress-bar__small': this.small,
       'a-progress-bar__loader--no-border-radius': this.noBorderRadius,
-      'a-progress-bar__loader--no-border-radius-max':
-        this.noBorderRadius && this.value >= (this.max === 0 ? 100 : this.max),
+      'a-progress-bar__loader--no-border-radius-max': this.noBorderRadius && this.value >= (this.max === 0 ? 100 : this.max),
     };
 
     return html`
       <article>
         <div class="a-progress-bar__border ${classMap(classesBorder)}">
-          <div
-            class="a-progress-bar__loader ${classMap(classesLoader)}"
-            style="width: ${this.calculatePercantage()}%"
-          ></div>
+          <div class="a-progress-bar__loader ${classMap(classesLoader)}" style="width: ${this.calculatePercantage()}%"></div>
         </div>
-        <div
-          class="${this.text === ''
-            ? 'a-progress-bar__label--hidden'
-            : 'a-progress-bar__label'}"
-        >
-          <axa-text variant="${this.small ? 'size-3' : 'size-2'}"
-            >${this.text}</axa-text
-          >
+        <div class="${this.text === '' ? 'a-progress-bar__label--hidden' : 'a-progress-bar__label'}">
+          <axa-text variant="${this.small ? 'size-3' : 'size-2'}">${this.text}</axa-text>
         </div>
       </article>
     `;

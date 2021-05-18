@@ -37,10 +37,7 @@ storiesOf('Examples/Textarea/Pure HTML', module)
         ></axa-textarea>
       </div>`
   )
-  .add(
-    'Children (default Value)',
-    () => `<axa-textarea>prefilled value</axa-textarea>`
-  )
+  .add('Children (default Value)', () => `<axa-textarea>prefilled value</axa-textarea>`)
   .add('MaxLength added later', () => {
     const label = text('label*', '');
     const name = text('name*', '');
@@ -54,27 +51,13 @@ storiesOf('Examples/Textarea/Pure HTML', module)
 
     const wrapper = document.createElement('div');
     const template = html`
-      <axa-textarea
-        refid="${refId}"
-        name="${name}"
-        label="${label}"
-        placeholder="${placeholder}"
-        error="${error}"
-        ?checkmark="${checkMark}"
-        ?disabled="${disabled}"
-        ?required="${required}"
-        ?invalid="${invalid}"
-      ></axa-textarea>
+      <axa-textarea refid="${refId}" name="${name}" label="${label}" placeholder="${placeholder}" error="${error}" ?checkmark="${checkMark}" ?disabled="${disabled}" ?required="${required}" ?invalid="${invalid}"></axa-textarea>
     `;
 
     setTimeout(() => {
-      document
-        .querySelector('axa-textarea')
-        .setAttribute('counter', 'Still ##counter## left');
+      document.querySelector('axa-textarea').setAttribute('counter', 'Still ##counter## left');
       document.querySelector('axa-textarea').setAttribute('maxLength', 100);
-      document
-        .querySelector('axa-textarea')
-        .setAttribute('countermax', 'Max maxLength reached');
+      document.querySelector('axa-textarea').setAttribute('countermax', 'Max maxLength reached');
     }, 2000);
 
     render(template, wrapper);

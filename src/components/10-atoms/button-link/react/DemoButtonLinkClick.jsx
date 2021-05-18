@@ -12,9 +12,7 @@ const DemoButtonLinkClick = () => {
   return (
     <div>
       <p>With the react wrapper - callback props are possible!</p>
-      <AXAButtonLink onClick={handleAXAButtonClick}>
-        You clicked me: {count} times!
-      </AXAButtonLink>
+      <AXAButtonLink onClick={handleAXAButtonClick}>You clicked me: {count} times!</AXAButtonLink>
     </div>
   );
 };

@@ -12,8 +12,7 @@ const DemoDatepickerOnInputfieldKeyUp = () => {
         inputfield
         id="datepicker-react-inputfield-on-date-change"
         onInputfieldKeyUp={e => {
-          document.querySelector('#datepicker-react-testoutput').innerHTML =
-            e.key;
+          document.querySelector('#datepicker-react-testoutput').innerHTML = e.key;
         }}
         allowedyears={[2019, 2020]}
       />

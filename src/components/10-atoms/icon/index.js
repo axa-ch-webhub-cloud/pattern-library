@@ -1,19 +1,7 @@
 /* eslint-disable camelcase */
 import { LitElement, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
-import {
-  Expand_lessSvg,
-  Insert_drive_fileSvg,
-  File_downloadSvg,
-  EmailSvg,
-  Expand_moreSvg,
-  Phone_iphoneSvg,
-  Local_phoneSvg,
-  AddSvg,
-  SearchSvg,
-  File_uploadSvg,
-  Cloud_uploadSvg,
-} from '@axa-ch/materials/icons/material-design';
+import { Expand_lessSvg, Insert_drive_fileSvg, File_downloadSvg, EmailSvg, Expand_moreSvg, Phone_iphoneSvg, Local_phoneSvg, AddSvg, SearchSvg, File_uploadSvg, Cloud_uploadSvg } from '@axa-ch/materials/icons/material-design';
 import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';

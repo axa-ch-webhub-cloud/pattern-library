@@ -14,35 +14,25 @@ describe('Datepicker utils', () => {
       expect(parseLocalisedDateIfValid(inputDateObject)).toBe('1.2.1999');
     });
     it('should return formatted date (if input date is a string)', () => {
-      expect(parseLocalisedDateIfValid(inputDateString)).toStrictEqual(
-        new Date('1999-02-01T00:00')
-      );
+      expect(parseLocalisedDateIfValid(inputDateString)).toStrictEqual(new Date('1999-02-01T00:00'));
     });
 
     it('should return formatted date if date is older than unix epoch', () => {
       const inputDateObjectVeryOld = new Date('1900-02-01T12:30');
-      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe(
-        '1.2.1900'
-      );
+      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe('1.2.1900');
     });
     it('should return formatted date if date is older than unix epoch (if input date is a string)', () => {
       const inputDateStringVeryOld = '1.2.1900';
-      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(
-        new Date('1900-02-01T00:00')
-      );
+      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(new Date('1900-02-01T00:00'));
     });
 
     it('should work far far in the future', () => {
       const inputDateObjectVeryOld = new Date('9999-02-01T12:30');
-      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe(
-        '1.2.9999'
-      );
+      expect(parseLocalisedDateIfValid(inputDateObjectVeryOld)).toBe('1.2.9999');
     });
     it('should work far far in the future (if input date is a string)', () => {
       const inputDateStringVeryOld = '01.02.9999';
-      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(
-        new Date('9999-02-01T00:00')
-      );
+      expect(parseLocalisedDateIfValid(inputDateStringVeryOld)).toStrictEqual(new Date('9999-02-01T00:00'));
     });
 
     it('should return null if date is not given', () => {

@@ -26,26 +26,13 @@ export const CookieDisclaimer = () => {
     // eslint-disable-next-line max-len
     'We use cookies and analysis tools to improve the user friendliness of the Internet website and personalise the advertising of AXA and advertising partners. More details:'
   );
-  const dataProtection = text(
-    'Link text (not an attribute)',
-    'Data protection'
-  );
-  const link = text(
-    'Link address (not an attribute)',
-    'https://axa.ch/de/informationen/datenschutz.html'
-  );
-  const fixed = boolean(
-    'fixed position (Drag your browser smaller to see text behind it)',
-    false
-  );
+  const dataProtection = text('Link text (not an attribute)', 'Data protection');
+  const link = text('Link address (not an attribute)', 'https://axa.ch/de/informationen/datenschutz.html');
+  const fixed = boolean('fixed position (Drag your browser smaller to see text behind it)', false);
 
   const wrapper = document.createElement('div');
   const template = html`
-    <axa-cookie-disclaimer
-      buttonname="${buttonname}"
-      title="${title}"
-      variant="${fixed ? 'fixed' : ''}"
-    >
+    <axa-cookie-disclaimer buttonname="${buttonname}" title="${title}" variant="${fixed ? 'fixed' : ''}">
       <p>${description}</p>
       <axa-link variant="arrowright-animated-white" href="${link}">
         ${dataProtection}
@@ -56,9 +43,7 @@ export const CookieDisclaimer = () => {
     <br />
     <div style="border: 1px solid red; padding: 10px;">
       <h1>
-        This is not rendered by the component. This story disappears after click
-        (Empty your cache and/or localStorage if this page is only showing this
-        message)
+        This is not rendered by the component. This story disappears after click (Empty your cache and/or localStorage if this page is only showing this message)
       </h1>
     </div>
   `;

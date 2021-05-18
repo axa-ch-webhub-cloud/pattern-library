@@ -1,30 +1,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import AXADropdown from '@axa-ch/dropdown';
-import {
-  Date_rangeSvg,
-  Keyboard_arrow_leftSvg,
-  Keyboard_arrow_rightSvg,
-} from '@axa-ch/materials/icons/material-design';
+import { Date_rangeSvg, Keyboard_arrow_leftSvg, Keyboard_arrow_rightSvg } from '@axa-ch/materials/icons/material-design';
 import { html, svg } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
-import {
-  defineVersioned,
-  versionedHtml,
-} from '../../../utils/component-versioning';
+import { defineVersioned, versionedHtml } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import fireCustomEvent from '../../../utils/custom-event';
 import debounce from '../../../utils/debounce';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
-import {
-  getAllLocaleMonthsArray,
-  getMonthMatrix,
-  getWeekdays,
-  parseLocalisedDateIfValid,
-  range,
-} from './utils/date';
+import { getAllLocaleMonthsArray, getMonthMatrix, getWeekdays, parseLocalisedDateIfValid, range } from './utils/date';
 
 // module constants
 const dateRangeIcon = svg([Date_rangeSvg]);
@@ -38,8 +25,7 @@ let openDatepickerInstance;
 // helper functions
 const shouldMove = elem => {
   const element = elem.getBoundingClientRect();
-  const moreSpaceOnTopThanBottom =
-    element.top > window.innerHeight - element.bottom;
+  const moreSpaceOnTopThanBottom = element.top > window.innerHeight - element.bottom;
   return moreSpaceOnTopThanBottom;
 };
 
@@ -54,10 +40,7 @@ const applyEffect = self =>
       const effect = 'm-datepicker__wrap-effect';
       const hasEffect = datepickerWrapper.classList.contains(effect);
       datepickerWrapper.classList[hasEffect ? 'remove' : 'add'](effect);
-      setTimeout(
-        () => resolve(),
-        250 /* effect duration - keep in sync with CSS */
-      );
+      setTimeout(() => resolve(), 250 /* effect duration - keep in sync with CSS */);
     }, 0 /* execute after render() */);
   });
 
@@ -280,13 +263,11 @@ class AXADatepicker extends NoShadowDOM {
     const _month = typeof month === 'number' ? month : this.month;
     const _year = typeof year === 'number' ? year : this.year;
 
-    this.monthitems = getAllLocaleMonthsArray(this.locale).map(
-      (item, index) => ({
-        selected: index === _month,
-        name: item.toString(),
-        value: index.toString(),
-      })
-    );
+    this.monthitems = getAllLocaleMonthsArray(this.locale).map((item, index) => ({
+      selected: index === _month,
+      name: item.toString(),
+      value: index.toString(),
+    }));
 
     this.yearitems = this.allowedyears.map(item => ({
       selected: item === _year,
@@ -307,10 +288,7 @@ class AXADatepicker extends NoShadowDOM {
     this.handleWindowKeyDown = this.handleWindowKeyDown.bind(this);
     this.handleBodyClick = this.handleBodyClick.bind(this);
 
-    this.debouncedHandleViewportCheck = debounce(
-      () => this.handleViewportCheck(this.input),
-      250
-    );
+    this.debouncedHandleViewportCheck = debounce(() => this.handleViewportCheck(this.input), 250);
 
     // ensure we use the versioned variant of axa-dropdown internally
 
@@ -319,17 +297,12 @@ class AXADatepicker extends NoShadowDOM {
 
   // throttle re-rendering to once per frame (too many updates with default microtask timing before...)
   performUpdate() {
-    new Promise(resolve =>
-      window.requestAnimationFrame(() => resolve())
-    ).then(() => super.performUpdate());
+    new Promise(resolve => window.requestAnimationFrame(() => resolve())).then(() => super.performUpdate());
   }
 
   shouldUpdate(changedProperties) {
     if (changedProperties.has('allowedyears')) {
-      this.allowedyears = parseAndFormatAllowedYears(
-        this.allowedyears,
-        this.year
-      );
+      this.allowedyears = parseAndFormatAllowedYears(this.allowedyears, this.year);
     }
     if (changedProperties.has('value')) {
       this.validate(this.value);
@@ -338,20 +311,9 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   render() {
-    const {
-      _date,
-      state,
-      refId = '',
-      label,
-      required,
-      disabled,
-      checkMark,
-    } = this;
+    const { _date, state, refId = '', label, required, disabled, checkMark } = this;
 
-    const [month, year] = [
-      _date ? _date.getMonth() : this.month,
-      _date ? _date.getFullYear() : this.year,
-    ];
+    const [month, year] = [_date ? _date.getMonth() : this.month, _date ? _date.getFullYear() : this.year];
 
     this.setMonthAndYearItems(month, year);
 
@@ -413,25 +375,8 @@ class AXADatepicker extends NoShadowDOM {
           ? ''
           : html`
               <div class="m-datepicker__input-wrap">
-                <input
-                  id="${refId}"
-                  @input="${this.handleInputChange}"
-                  @blur="${this.handleBlur}"
-                  @focus="${this.onFocus}"
-                  @change="${e => e.stopPropagation()}"
-                  @keyup="${this.onInputfieldKeyUp}"
-                  class="m-datepicker__input js-datepicker__input"
-                  type="text"
-                  name="${this.name}"
-                  placeholder="${this.placeholder}"
-                  .value="${this.isControlled ? state.value : this.outputdate}"
-                  ?disabled="${disabled}"
-                />
-                <button
-                  type="button"
-                  class="m-datepicker__input-button js-datepicker__input-button"
-                  @click="${this.handleInputButtonClick}"
-                >
+                <input id="${refId}" @input="${this.handleInputChange}" @blur="${this.handleBlur}" @focus="${this.onFocus}" @change="${e => e.stopPropagation()}" @keyup="${this.onInputfieldKeyUp}" class="m-datepicker__input js-datepicker__input" type="text" name="${this.name}" placeholder="${this.placeholder}" .value="${this.isControlled ? state.value : this.outputdate}" ?disabled="${disabled}" />
+                <button type="button" class="m-datepicker__input-button js-datepicker__input-button" @click="${this.handleInputButtonClick}">
                   ${dateRangeIcon}
                 </button>
                 ${checkMark
@@ -457,9 +402,7 @@ class AXADatepicker extends NoShadowDOM {
                         this.weekdays.map(
                           day =>
                             html`
-                              <span class="m-datepicker__weekdays-day"
-                                >${day}</span
-                              >
+                              <span class="m-datepicker__weekdays-day">${day}</span>
                             `
                         )}
                     </div>
@@ -470,35 +413,17 @@ class AXADatepicker extends NoShadowDOM {
                       this.cells.map(
                         (cell, index) =>
                           html`
-                            <button
-                              @click="${this.handleDatepickerCalendarCellClick}"
-                              type="button"
-                              tabindex="0"
-                              data-index="${index}"
-                              data-value="${cell.value}"
-                              data-day="${cell.text}"
-                              class="${cellClasses(cell)}"
-                            >
+                            <button @click="${this.handleDatepickerCalendarCellClick}" type="button" tabindex="0" data-index="${index}" data-value="${cell.value}" data-day="${cell.text}" class="${cellClasses(cell)}">
                               ${cell.text}
                             </button>
                           `
                       )}
                   </div>
                 </div>
-                <button
-                  type="button"
-                  class="m-datepicker__button m-datepicker__button-prev js-datepicker__button-prev"
-                  @click=${this.handleNavigateToPrevMonth}
-                  ?disabled=${noPreviousAllowedYear}
-                >
+                <button type="button" class="m-datepicker__button m-datepicker__button-prev js-datepicker__button-prev" @click=${this.handleNavigateToPrevMonth} ?disabled=${noPreviousAllowedYear}>
                   ${keyboardArrowLeftIcon}
                 </button>
-                <button
-                  type="button"
-                  class="m-datepicker__button m-datepicker__button-next js-datepicker__button-next"
-                  @click=${this.handleNavigateToNextMonth}
-                  ?disabled=${noNextAllowedYear}
-                >
+                <button type="button" class="m-datepicker__button m-datepicker__button-next js-datepicker__button-next" @click=${this.handleNavigateToNextMonth} ?disabled=${noNextAllowedYear}>
                   ${keyboardArrowRightIcon}
                 </button>
               </div>
@@ -519,16 +444,7 @@ class AXADatepicker extends NoShadowDOM {
     window.addEventListener('keydown', this.handleWindowKeyDown);
     window.addEventListener('click', this.handleBodyClick);
 
-    const {
-      input,
-      isReact,
-      defaultValue,
-      day,
-      month,
-      year,
-      autofocus,
-      startDate,
-    } = this;
+    const { input, isReact, defaultValue, day, month, year, autofocus, startDate } = this;
 
     if (input) {
       if (autofocus) {
@@ -586,26 +502,14 @@ class AXADatepicker extends NoShadowDOM {
     }
 
     // does the range of allowed years exclude the starting year?
-    if (
-      this.allowedyears &&
-      this.year &&
-      !this.allowedyears.includes(this.year)
-    ) {
+    if (this.allowedyears && this.year && !this.allowedyears.includes(this.year)) {
       // yes, so in order to prevent the datepicker from showing an "empty" month sheet
       // without any days to select, force-pick the starting year as the first of the range of allowed years
       const [newStartYear] = this.allowedyears;
       this.year = newStartYear;
     }
 
-    const {
-      _year,
-      _month,
-      _day,
-      allowedyears,
-      locale,
-      startDate,
-      isControlled,
-    } = this;
+    const { _year, _month, _day, allowedyears, locale, startDate, isControlled } = this;
     const { output, tentative, preset, canonicalFormat } = options;
     this._date = overrideDate(_year, _month, _day, startDate);
     const { _date } = this;
@@ -651,8 +555,7 @@ class AXADatepicker extends NoShadowDOM {
     const calendarRectangle = calendar.getBoundingClientRect();
     const calendarBelowPage = calendarRectangle.bottom > bodyRectangle.bottom;
     const calendarAbovePage = calendarRectangle.top < bodyRectangle.top;
-    const newInverted =
-      calendarBelowPage || (shouldMove(baseElem) && !calendarAbovePage);
+    const newInverted = calendarBelowPage || (shouldMove(baseElem) && !calendarAbovePage);
     if (newInverted !== this.inverted) {
       this.inverted = newInverted;
     }
@@ -745,20 +648,10 @@ class AXADatepicker extends NoShadowDOM {
   }
 
   handleInputChange(e) {
-    const {
-      onChange = EMPTY_FUNCTION,
-      input,
-      state,
-      name,
-      onDateChange = EMPTY_FUNCTION,
-    } = this;
+    const { onChange = EMPTY_FUNCTION, input, state, name, onDateChange = EMPTY_FUNCTION } = this;
     onChange(e);
     const validDate = this.validate(input.value, true);
-    fireCustomEvent(
-      'axa-input',
-      { value: input.value, date: validDate, name },
-      this
-    );
+    fireCustomEvent('axa-input', { value: input.value, date: validDate, name }, this);
     if (validDate) {
       onDateChange(validDate);
     }

@@ -7,25 +7,25 @@
 @include accessory-story-content;
 @include accessory-story-wrapper;
 .landingpage-image {
-    height: 396px;
+  height: 396px;
 }
 
 .landingpage__commercial-hero-banner-button-wrapper {
-    display: flex;
+  display: flex;
 }
 
 .landingpage__commercial-hero-banner-image {
-    display: none;
-    @include breakpoint($mediaquery-md-up) {
-        display: block;
-        position: absolute;
-        top: 345px;
-        right: 30px;
-        height: 360px;
-    }
-    @include breakpoint($mediaquery-xl-up) {
-        right: 6%;
-        top: 325px;
-        height: 420px;
-    }
+  display: none;
+  @include breakpoint($mediaquery-md-up) {
+    display: block;
+    position: absolute;
+    top: 345px;
+    right: 30px;
+    height: 360px;
+  }
+  @include breakpoint($mediaquery-xl-up) {
+    right: 6%;
+    top: 325px;
+    height: 420px;
+  }
 }

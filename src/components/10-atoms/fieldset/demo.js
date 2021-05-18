@@ -15,10 +15,7 @@ storiesOf('Examples/Fieldset/Pure HTML', module)
     const root = document.createElement('div');
 
     const template = html`
-      <axa-text variant="size-3">
-        Resize your browser to a tablet or mobile width to see the effect of
-        'horizontal="stretch"'</axa-text
-      >
+      <axa-text variant="size-3"> Resize your browser to a tablet or mobile width to see the effect of 'horizontal="stretch"'</axa-text>
       <br />
       <axa-text>How old are you?</axa-text>
       <br />

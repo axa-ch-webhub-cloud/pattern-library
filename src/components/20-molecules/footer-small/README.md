@@ -43,16 +43,8 @@ const DemoFooterSmall = () => {
     <div>
       <p>Language - Index Clicked: {activeLanguage}</p>
       <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
-      <AXAFooterSmallReact
-        onLanguageClick={handleAXAFooterLanguageClicked}
-        onDisclaimerClick={handleAXAFooterDisclaimerClicked}
-        dynamic
-      >
-        <a
-          slot="language-item"
-          className="m-footer-small__link--active"
-          href="https://axa.ch/de/privatkunden.html"
-        >
+      <AXAFooterSmallReact onLanguageClick={handleAXAFooterLanguageClicked} onDisclaimerClick={handleAXAFooterDisclaimerClicked} dynamic>
+        <a slot="language-item" className="m-footer-small__link--active" href="https://axa.ch/de/privatkunden.html">
           DE
         </a>
         <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
@@ -64,16 +56,10 @@ const DemoFooterSmall = () => {
         <a slot="language-item" href="https://axa.ch/en/private-customers.html">
           EN
         </a>
-        <a
-          slot="disclaimer-item"
-          href="https://axa.ch/en/information/terms-of-use.html"
-        >
+        <a slot="disclaimer-item" href="https://axa.ch/en/information/terms-of-use.html">
           Terms of use
         </a>
-        <a
-          slot="disclaimer-item"
-          href="https://axa.ch/en/information/data-protection.html"
-        >
+        <a slot="disclaimer-item" href="https://axa.ch/en/information/data-protection.html">
           Data protection
         </a>
         <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
@@ -100,11 +86,7 @@ If you want a footer with static links, that will automatically route to whereve
   </head>
   <body>
     <axa-footer-small>
-      <a
-        slot="language-item"
-        href="https://axa.ch/de/privatkunden.html"
-        class="m-footer-small__link--active"
-      >
+      <a slot="language-item" href="https://axa.ch/de/privatkunden.html" class="m-footer-small__link--active">
         DE
       </a>
       <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
@@ -116,16 +98,10 @@ If you want a footer with static links, that will automatically route to whereve
       <a slot="language-item" href="https://axa.ch/en/private-customers.html">
         EN
       </a>
-      <a
-        slot="disclaimer-item"
-        href="https://axa.ch/en/information/terms-of-use.html"
-      >
+      <a slot="disclaimer-item" href="https://axa.ch/en/information/terms-of-use.html">
         Terms of use
       </a>
-      <a
-        slot="disclaimer-item"
-        href="https://axa.ch/en/information/data-protection.html"
-      >
+      <a slot="disclaimer-item" href="https://axa.ch/en/information/data-protection.html">
         Data protection
       </a>
       <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
@@ -190,8 +166,7 @@ This approach will not redirect the user automatically, if he/she clicks on a li
 
       const dataProtectionLink = document.createElement('a');
       dataProtectionLink.slot = 'disclaimer-item';
-      dataProtectionLink.href =
-        'https://axa.ch/en/information/data-protection.html';
+      dataProtectionLink.href = 'https://axa.ch/en/information/data-protection.html';
       dataProtectionLink.textContent = 'Data protection';
 
       const copyRightText = document.createElement('span');
@@ -216,9 +191,7 @@ This approach will not redirect the user automatically, if he/she clicks on a li
       });
 
       footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
-        const clickedDisclaimers = document.getElementById(
-          'clicked-disclaimer'
-        );
+        const clickedDisclaimers = document.getElementById('clicked-disclaimer');
         clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${disclaimerEvent.detail}`;
       });
 

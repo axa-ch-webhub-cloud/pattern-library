@@ -4,12 +4,7 @@ import createAXAFooterSmallReact from '../index.react';
 
 const AXAFooterSmall = createAXAFooterSmallReact(createElement);
 
-const languageOptions = [
-  { name: 'DE', isActive: true },
-  { name: 'EN' },
-  { name: 'FR' },
-  { name: 'IT' },
-];
+const languageOptions = [{ name: 'DE', isActive: true }, { name: 'EN' }, { name: 'FR' }, { name: 'IT' }];
 
 const LEGALS = [
   [
@@ -30,12 +25,7 @@ const LEGALS = [
   ],
 ];
 
-const COPYRIGHT = [
-  '© 2020 AXA Versicherungen AG',
-  '© 2020 AXA Insurance Ltd.',
-  '© 2020 AXA Assurances SA',
-  '© 2020 AXA Assicurazioni SA',
-];
+const COPYRIGHT = ['© 2020 AXA Versicherungen AG', '© 2020 AXA Insurance Ltd.', '© 2020 AXA Assurances SA', '© 2020 AXA Assicurazioni SA'];
 
 const DemoFooterSmallDynamicChildren = props => {
   const [activeLanguage, setActiveLanguageIndex] = useState(0);
@@ -60,18 +50,9 @@ const DemoFooterSmallDynamicChildren = props => {
     <div>
       <p>Language - Index Clicked: {activeLanguage}</p>
       <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
-      <AXAFooterSmall
-        onLanguageClick={handleLanguageClick}
-        onDisclaimerClick={handleLegalClick}
-        dynamic
-      >
+      <AXAFooterSmall onLanguageClick={handleLanguageClick} onDisclaimerClick={handleLegalClick} dynamic>
         {languageOptions.map(l => (
-          <a
-            key={l.name}
-            slot="language-item"
-            className={l.isActive ? 'm-footer-small__link--active' : undefined}
-            href="#"
-          >
+          <a key={l.name} slot="language-item" className={l.isActive ? 'm-footer-small__link--active' : undefined} href="#">
             {l.name.toUpperCase()}
           </a>
         ))}

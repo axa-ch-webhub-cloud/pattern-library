@@ -157,18 +157,7 @@ class AXARadio extends NoShadowDOM {
     // controlledness is a React-only notion
     this.state.isControlled = isControlled && isReact;
     const inputElement = html`
-      <input
-        id="${refId}"
-        class="a-radio__input"
-        type="radio"
-        name="${name}"
-        value="${value}"
-        ?checked="${checked}"
-        ?disabled="${disabled}"
-        @change="${this.handleChange}"
-        @focus="${this.handleFocus}"
-        @blur="${this.handleBlur}"
-      />
+      <input id="${refId}" class="a-radio__input" type="radio" name="${name}" value="${value}" ?checked="${checked}" ?disabled="${disabled}" @change="${this.handleChange}" @focus="${this.handleFocus}" @blur="${this.handleBlur}" />
       ${button
         ? html``
         : html`
@@ -210,9 +199,7 @@ class AXARadio extends NoShadowDOM {
         if (!this || !this.isConnected || !radioButtonGroup[name]) {
           return;
         }
-        const { width: labelTextWidth } = this.querySelector(
-          '.js-radio__content'
-        ).getBoundingClientRect();
+        const { width: labelTextWidth } = this.querySelector('.js-radio__content').getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
         const width = noAutoWidth ? labelTextWidth : maxWidth[name];

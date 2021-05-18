@@ -13,11 +13,7 @@ const DemoFocussableDropdown = () => {
 
   return (
     <Fragment>
-      <input
-        type="text"
-        placeholder="focus before dropdown"
-        style={{ marginBottom: '24px' }}
-      />
+      <input type="text" placeholder="focus before dropdown" style={{ marginBottom: '24px' }} />
       <AXADropdownReact
         data-test-id="focussable-dropdown-react"
         defaultTitle="Please Select"

@@ -3,15 +3,7 @@ import { getWeekdays } from './utils/date';
 
 describe('Datepicker unit tests', () => {
   it('should return correct month names with English abreviations', () => {
-    expect(getWeekdays(new Date(), 'en-GB')).toEqual([
-      'Mo',
-      'Tu',
-      'We',
-      'Th',
-      'Fr',
-      'Sa',
-      'Su',
-    ]);
+    expect(getWeekdays(new Date(), 'en-GB')).toEqual(['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']);
   });
 
   describe('parseAndFormatAllowedYears()', () => {
@@ -25,10 +17,7 @@ describe('Datepicker unit tests', () => {
       expect(parseAndFormatAllowedYears(['1999-2000'])).toEqual([1999, 2000]);
     });
     it('should return array with allowed years if value is a string (without setting setYear)', () => {
-      expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([
-        1999,
-        2000,
-      ]);
+      expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([1999, 2000]);
     });
     it('should return array with allowed years without setting setYear', () => {
       expect(parseAndFormatAllowedYears([1999], 2000)).toEqual([1999]);
@@ -44,9 +33,7 @@ describe('Datepicker unit tests', () => {
   describe('initDate()', () => {
     it('should return undefined', () => {
       AXADatepicker.prototype.state = {};
-      expect(AXADatepicker.prototype.initDate(new Date(), {})).toEqual(
-        undefined
-      );
+      expect(AXADatepicker.prototype.initDate(new Date(), {})).toEqual(undefined);
     });
     it('should set class variables', () => {
       // init values
