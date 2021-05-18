@@ -9,7 +9,7 @@ axa-fieldset {
     margin-bottom: $fieldset-vertical-margin;
   }
 
-  &[horizontal] {
+  &[horizontal]  {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -29,18 +29,20 @@ axa-fieldset {
     }
   }
 
-  &[horizontal='stretch'] {
+  &[horizontal="stretch"]{
     @include breakpoint($mediaquery-xs) {
       > *,
       > * > * {
         margin-right: 0;
         width: 100%;
       }
+      
     }
   }
 
-  &[error]:not([error='']) {
+  &[error]:not([error=""]) {
     axa-radio:not(:hover):not([disabled]):not([checked]) {
+
       &[button] .a-radio__wrapper {
         border-color: $color-shy-tomato;
       }

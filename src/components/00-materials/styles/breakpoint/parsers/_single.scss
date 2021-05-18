@@ -1,13 +1,13 @@
 //////////////////////////////
 // Import Pieces
 //////////////////////////////
-@import 'single/default';
+@import "single/default";
 
 @function breakpoint-parse-single($feature, $empty-media, $first) {
   $parsed: '';
   $leader: '';
   // If we're forcing
-  @if not($empty-media) or not ($first) {
+  @if not ($empty-media) or not ($first) {
     $leader: 'and ';
   }
 

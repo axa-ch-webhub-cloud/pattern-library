@@ -1,9 +1,10 @@
 .a-spinner {
+
   &-container {
     display: flex;
     align-items: center;
   }
-
+  
   &__dot {
     animation: opacityFade 1.5s linear infinite;
     display: inline-block;
@@ -11,17 +12,17 @@
     bottom: 0%;
     margin: 8px;
     height: 16px;
-    width: 16px;
+    width: 16px;  
     border-radius: 50%;
     background-color: $color-ocean-blue;
-
+    
     &--inverted-dark-grey {
       background-color: $color-dark-grey;
     }
     &--inverted-white {
       background-color: $color-prim-white;
     }
-
+    
     &-1 {
       animation-delay: 0s;
     }
@@ -34,9 +35,7 @@
   }
 
   @keyframes opacityFade {
-    0%,
-    33%,
-    100% {
+    0%, 33%, 100% {
       opacity: 1;
     }
     16.5% {
@@ -49,7 +48,8 @@
     bottom: 0%;
     margin: 4px;
     height: 8px;
-    width: 8px;
+    width: 8px;  
     border-radius: 50%;
   }
 }
+ 

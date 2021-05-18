@@ -5,7 +5,8 @@
   @if type-of($first) == 'string' {
     $feature: $first;
     $value: $second;
-  } @else {
+  }
+  @else {
     $feature: $second;
     $value: $first;
   }
@@ -17,5 +18,5 @@
     $value: breakpoint-to-base-em($value);
   }
 
-  @return '(#{$feature}: #{$value})';
+  @return '(#{$feature}: #{$value})'
 }

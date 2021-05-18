@@ -4,22 +4,22 @@ axa-text > * {
   margin: 0;
 }
 
-axa-text[variant='size-2'] > * {
+axa-text[variant="size-2"] > * {
   @include text(t2);
 }
 
-axa-text[variant='size-3'] > * {
+axa-text[variant="size-3"] > * {
   @include text(t3);
 }
 
-axa-text[variant='size-4'] > * {
+axa-text[variant="size-4"] > * {
   @include text(t4);
 }
 
-axa-text[variant='semibold'] > * {
+axa-text[variant="semibold"] > * {
   @include text(t1, semibold);
 }
 
-axa-text[variant='bold'] > * {
+axa-text[variant="bold"] > * {
   @include text(t1, bold);
 }

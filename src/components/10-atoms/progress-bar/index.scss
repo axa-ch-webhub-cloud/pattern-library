@@ -4,7 +4,7 @@
 
 .a-progress-bar {
   display: block;
-
+  
   &__loader {
     border-radius: 10px;
     background-color: $color-ocean-blue;
@@ -15,7 +15,7 @@
 
       &-max {
         border-radius: 0px;
-      }
+      } 
     }
   }
 

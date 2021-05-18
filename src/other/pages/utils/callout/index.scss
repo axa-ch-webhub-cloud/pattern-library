@@ -1,38 +1,38 @@
 .callout {
-  background-color: $color-prim-white;
-  padding: 0.5rem 2.5rem;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.35), 0 0 8px rgba(0, 0, 0, 0.25);
-  display: flex;
-  margin-bottom: 2.5rem;
-  margin-top: 1rem;
-  align-items: center;
-
-  &__image {
-    max-width: 3rem;
-    margin-right: 1rem;
-
-    img {
-      max-width: 100%;
+    background-color: $color-prim-white;
+    padding: 0.5rem 2.5rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.35), 0 0 8px rgba(0,0,0,.25);
+    display: flex;
+    margin-bottom: 2.5rem;
+    margin-top: 1rem;
+    align-items: center;
+    
+    &__image {
+        max-width: 3rem;
+        margin-right: 1rem;
+        
+        img {
+            max-width: 100%;
+        }
     }
-  }
-
-  &__col {
-    flex: 1;
-  }
-
-  &__col-padding {
-    padding-right: 35px;
-    padding-left: 35px;
-    flex: 2 1 0%;
-  }
-
-  &__header {
-    @include text(t3, bold);
-    margin-bottom: 0;
-  }
-
-  &__text {
-    @include text(t3);
-    margin-top: 0;
-  }
+    
+    &__col {
+        flex: 1;
+    }
+    
+    &__col-padding {
+        padding-right: 35px; 
+        padding-left: 35px; 
+        flex: 2 1 0%;
+    }
+    
+    &__header {
+        @include text(t3, bold);
+        margin-bottom: 0;
+    }
+    
+    &__text {
+        @include text(t3);
+        margin-top: 0;
+    }
 }

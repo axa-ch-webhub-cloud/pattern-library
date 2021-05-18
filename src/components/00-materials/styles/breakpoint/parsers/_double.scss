@@ -1,15 +1,15 @@
 //////////////////////////////
 // Import Pieces
 //////////////////////////////
-@import 'double/default-pair';
-@import 'double/double-string';
-@import 'double/default';
+@import "double/default-pair";
+@import "double/double-string";
+@import "double/default";
 
 @function breakpoint-parse-double($feature, $empty-media, $first) {
   $parsed: '';
   $leader: '';
   // If we're forcing
-  @if not($empty-media) or not ($first) {
+  @if not ($empty-media) or not ($first) {
     $leader: 'and ';
   }
 

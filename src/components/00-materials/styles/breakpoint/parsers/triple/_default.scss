@@ -1,4 +1,5 @@
 @function breakpoint-parse-triple-default($feature, $first, $second) {
+
   // Sort into min and max
   $min: min($first, $second);
   $max: max($first, $second);

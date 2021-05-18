@@ -6,10 +6,12 @@
   @if (breakpoint-string-value($first) == true) {
     $feature: $first;
     $value: $second;
-  } @else if (breakpoint-string-value($second) == true) {
+  }
+  @else if (breakpoint-string-value($second) == true) {
     $feature: $second;
     $value: $first;
-  } @else {
+  }
+  @else {
     @warn "Neither #{$first} nor #{$second} is a valid media query name.";
   }
 

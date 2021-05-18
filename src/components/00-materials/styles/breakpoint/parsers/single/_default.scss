@@ -6,7 +6,8 @@
 
   @if (breakpoint-get('to ems') == true) and (type-of($feature) == 'number') {
     @return '#{$default}: #{breakpoint-to-base-em($feature)}';
-  } @else {
+  }
+  @else {
     @return '#{$default}: #{$feature}';
   }
 }

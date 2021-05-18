@@ -8,13 +8,13 @@
 @include accessory-story-wrapper;
 
 .what-is-new {
-  &__text-with-link {
-    @include text(t2);
-    max-width: 750px;
-  }
+    &__text-with-link {
+        @include text(t2);
+        max-width: 750px;
+    }
 
-  &__response-date {
-    // The important flag is needed, because the component iself sets its styles to the host element internally.
-    margin-bottom: 20px !important;
-  }
+    &__response-date {
+        // The important flag is needed, because the component iself sets its styles to the host element internally.
+        margin-bottom: 20px !important;
+    }
 }
