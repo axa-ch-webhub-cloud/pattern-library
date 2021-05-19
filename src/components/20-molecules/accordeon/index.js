@@ -25,7 +25,7 @@ class AXAAccordeon extends LitElement {
   static get properties() {
     return {
       disabled: { type: Boolean },
-      size: { type: String, defaultValue: 'small' },
+      small: { type: Boolean, defaultValue: false },
       title: { type: String },
       icon: { type: String },
       isOpen: { type: boolean, defaultValue: false },
@@ -42,34 +42,35 @@ class AXAAccordeon extends LitElement {
   }
 
   render() {
-    const { isOpen, title, size, disabled, icon } = this;
+    const { isOpen, title, small, disabled, icon } = this;
     const titleClasses = {
-      'm-accordeon__title': true,
-      'm-accordeon__title--small': size === 'small',
-      'm-accordeon__title--large': size === 'large',
-      'm-accordeon__title--disabled': disabled,
+      'm-accordeon__title-container--small': small,
+      'm-accordeon__title-container--large': !small,
+      'm-accordeon__title-container--disabled': disabled,
     };
     const openClasses = {
       'm-accordeon__content--open': isOpen,
       'm-accordeon__content': !isOpen,
     };
-    const variant = size === 'small' ? 'size-3' : '';
+    const variant = small ? 'size-3' : '';
     const statusIcon = svg([isOpen ? expandLess : expandMore]);
 
     const iconHTML = icon ? svg([icon]) : html``;
-    // prettier-ignore
     return html`
       <article class="m-accordeon">
         <div class="m-accordeon__container">
-          <div class="${classMap(titleClasses)}" @click="${this.toggleAccordion}">
-            ${iconHTML}
-            <div class="m-accordeon__title--container-title">
+          <div
+            class="m-accordeon__title-container ${classMap(titleClasses)}"
+            @click="${this.toggleAccordion}"
+          >
+            <div class="m-accordeon__title-container--title">
+              ${iconHTML}
               <axa-text variant="${variant}">
                 ${title}
               </axa-text>
             </div>
-            <div class="m-accordeon__title--close">
-            ${statusIcon}
+            <div class="m-accordeon__title-container--close">
+              ${statusIcon}
             </div>
           </div>
           <div class="${classMap(openClasses)}">
@@ -78,6 +79,11 @@ class AXAAccordeon extends LitElement {
         </div>
       </article>
     `;
+  }
+
+  updated() {
+    //temporary, needed to see the value of the icon
+    console.log(this.icon);
   }
 
   disconnectedCallback() {
