@@ -7,16 +7,39 @@
     border-bottom: solid 1px $color-silver;
   }
 
-  &__title {
+  &__title-container {
     display: flex;
     justify-content: space-between;
     padding: 16px 4px;
     color: $color-axa-blue;
 
     &--close {
+      margin: auto 0;
       width: 24px;
       height: 24px;
+    }
 
+    &--title {
+      display: flex;
+
+      axa-text {
+        margin: auto 0;
+      }
+
+      &-icon {
+        margin: auto 16px auto 0;
+        width: 48px;
+        height: 48px;
+
+        svg {
+          width: 48px;
+          height: 48px;
+        } 
+
+        &-hidden {
+          display: none;
+        }
+      }
     }
 
     &:hover {

@@ -52,6 +52,11 @@ class AXAAccordeon extends LitElement {
       'm-accordeon__content--open': isOpen,
       'm-accordeon__content': !isOpen,
     };
+
+    const iconClass = icon
+      ? 'm-accordeon__title-container--title-icon'
+      : 'm-accordeon__title-container--title-icon-hidden';
+
     const variant = small ? 'size-3' : '';
     const statusIcon = svg([isOpen ? expandLess : expandMore]);
 
@@ -64,7 +69,9 @@ class AXAAccordeon extends LitElement {
             @click="${this.toggleAccordion}"
           >
             <div class="m-accordeon__title-container--title">
-              ${iconHTML}
+              <div class="${iconClass}">
+                ${iconHTML}
+              </div>
               <axa-text variant="${variant}">
                 ${title}
               </axa-text>
@@ -79,11 +86,6 @@ class AXAAccordeon extends LitElement {
         </div>
       </article>
     `;
-  }
-
-  updated() {
-    //temporary, needed to see the value of the icon
-    console.log(this.icon);
   }
 
   disconnectedCallback() {
