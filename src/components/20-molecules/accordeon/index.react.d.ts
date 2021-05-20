@@ -1,11 +1,12 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXAAccordeonProps {
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
+  disabled?: boolean;
+  open?: boolean;
+  small?: boolean;
+  title?: string;
+  icon?: string;
 }
 
 declare function createAXAAccordeon(
