@@ -1,6 +1,6 @@
 .m-accordeon {
   display: block;
-  width: 450px; //temporary
+  max-width: 450px; //temporary
 
   &__container {
     border-top: solid 1px $color-silver;
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     padding: 16px 4px;
+    cursor: pointer;
     color: $color-axa-blue;
 
     &--close {
@@ -56,19 +57,30 @@
     }
 
     &--disabled {
+      cursor: not-allowed;
       color: $color-silver;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        border: none;
+      }
     }
   }
 
   &__content {
-    display: none;
-    opacity: 0;
+    overflow: hidden;
+    max-height: 0;
+    margin: auto;
+
+    color: $color-dark-grey;
+    transition: max-height $transition-medium-colapsing $standard-easing;
 
     &--open {
-      display: flex;
-      color: $color-dark-grey;
       margin: 0 4px 16px;
-    
+      transition: max-height $transition-medium-expanding $standard-easing;
     }
   }
 }

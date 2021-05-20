@@ -1,4 +1,4 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
+import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import readme from './README.md';
@@ -18,6 +18,7 @@ export default {
 
 export const Accordeon = () => {
   const disabled = boolean('disabled', false);
+  const open = boolean('open', false);
   const title = text('title', 'This is the title of the accordeon');
   const small = boolean('small', false);
   const icon = text(
@@ -30,9 +31,10 @@ export const Accordeon = () => {
   const template = html`
     <axa-accordeon
       ?small="${small}"
+      ?open="${open}"
+      ?disabled="${disabled}"
       .icon="${icon}"
       title="${title}"
-      ?disabled="${disabled}"
     >
       <axa-text variant="size-3"
         >Welcome to the website. If you're here, you're likely looking to find

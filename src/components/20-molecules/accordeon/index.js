@@ -1,15 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
-
-/* eslint-disable import/no-extraneous-dependencies */
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
-/* eslint-disable import/no-extraneous-dependencies */
 import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg';
 
+import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
-import { boolean } from '@storybook/addon-knobs';
 
 class AXAAccordeon extends LitElement {
   static get tagName() {
@@ -24,11 +21,11 @@ class AXAAccordeon extends LitElement {
 
   static get properties() {
     return {
-      disabled: { type: Boolean },
       small: { type: Boolean, defaultValue: false },
-      title: { type: String },
+      open: { type: Boolean },
+      disabled: { type: Boolean },
       icon: { type: String },
-      isOpen: { type: boolean, defaultValue: false },
+      title: { type: String },
     };
   }
 
@@ -38,19 +35,34 @@ class AXAAccordeon extends LitElement {
   }
 
   toggleAccordion() {
-    this.isOpen = !this.isOpen;
+    if (!this.disabled) {
+      this.open = !this.open;
+      this.toggleAnimation();
+    }
+  }
+
+  firstUpdated() {
+    this.toggleAnimation();
+  }
+
+  toggleAnimation() {
+    const accordeonContent = this.shadowRoot.querySelector(
+      '.m-accordeon__content'
+    );
+
+    if (this.open) {
+      accordeonContent.style.maxHeight = `${accordeonContent.scrollHeight}px`;
+    } else {
+      accordeonContent.style.maxHeight = 0;
+    }
   }
 
   render() {
-    const { isOpen, title, small, disabled, icon } = this;
+    const { open, title, small, disabled, icon } = this;
     const titleClasses = {
       'm-accordeon__title-container--small': small,
       'm-accordeon__title-container--large': !small,
       'm-accordeon__title-container--disabled': disabled,
-    };
-    const openClasses = {
-      'm-accordeon__content--open': isOpen,
-      'm-accordeon__content': !isOpen,
     };
 
     const iconClass = icon
@@ -58,7 +70,7 @@ class AXAAccordeon extends LitElement {
       : 'm-accordeon__title-container--title-icon-hidden';
 
     const variant = small ? 'size-3' : '';
-    const statusIcon = svg([isOpen ? expandLess : expandMore]);
+    const statusIcon = svg([open ? expandLess : expandMore]);
 
     const iconHTML = icon ? svg([icon]) : html``;
     return html`
@@ -80,7 +92,11 @@ class AXAAccordeon extends LitElement {
               ${statusIcon}
             </div>
           </div>
-          <div class="${classMap(openClasses)}">
+          <div
+            class="m-accordeon__content ${open
+              ? 'm-accordeon__content--open'
+              : ''}"
+          >
             <slot></slot>
           </div>
         </div>
