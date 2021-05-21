@@ -16,7 +16,7 @@ describe('Accordeon', () => {
       )
     ).toBeTruthy();
 
-    expect(accordeonContentMaxHeight).toBe('120px');
+    expect(accordeonContentMaxHeight !== 0);
   });
 
   it('should check if svg is rendered', async () => {
@@ -29,7 +29,7 @@ describe('Accordeon', () => {
     await openAccordeon();
 
     const axaText = await page.$(
-      '.m-accordeon__title-container--title > axa-text'
+      '.m-accordeon__title-container-title > axa-text'
     );
     expect(await axaText.getAttribute('variant')).toBe('size-3');
   });
