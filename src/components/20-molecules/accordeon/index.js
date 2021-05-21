@@ -21,7 +21,7 @@ class AXAAccordeon extends LitElement {
 
   static get properties() {
     return {
-      small: { type: Boolean, defaultValue: false },
+      small: { type: Boolean },
       open: { type: Boolean },
       disabled: { type: Boolean },
       icon: { type: String },
@@ -60,16 +60,13 @@ class AXAAccordeon extends LitElement {
   render() {
     const { open, title, small, disabled, icon } = this;
     const titleClasses = {
-      'm-accordeon__title-container--small': small,
-      'm-accordeon__title-container--large': !small,
       'm-accordeon__title-container--disabled': disabled,
     };
 
     const iconClass = icon
-      ? 'm-accordeon__title-container--title-icon'
-      : 'm-accordeon__title-container--title-icon-hidden';
+      ? 'm-accordeon__title-container-title-icon'
+      : 'm-accordeon__title-container-title-icon--hidden';
 
-    const variant = small ? 'size-3' : '';
     const statusIcon = svg([open ? expandLess : expandMore]);
 
     const iconHTML = icon ? svg([icon]) : html``;
@@ -80,15 +77,15 @@ class AXAAccordeon extends LitElement {
             class="m-accordeon__title-container ${classMap(titleClasses)}"
             @click="${this.toggleAccordion}"
           >
-            <div class="m-accordeon__title-container--title">
+            <div class="m-accordeon__title-container-title">
               <div class="${iconClass}">
                 ${iconHTML}
               </div>
-              <axa-text variant="${variant}">
+              <axa-text variant="${small ? 'size-3' : ''}">
                 ${title}
               </axa-text>
             </div>
-            <div class="m-accordeon__title-container--close">
+            <div class="m-accordeon__title-container--closed">
               ${statusIcon}
             </div>
           </div>

@@ -2,14 +2,21 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const tag = 'axa-accordeon';
 
 describe('Accordeon', () => {
-  it('Should check if accordeon is open', async () => {
+  it('should check if accordeon is open', async () => {
     await openAccordeon();
+
+    const accordeonContentMaxHeight = await page.$eval(
+      '.m-accordeon__content',
+      el => window.getComputedStyle(el).maxHeight
+    );
 
     expect(
       await page.$eval('.m-accordeon__content', el =>
         el.classList.contains('m-accordeon__content--open')
       )
     ).toBeTruthy();
+
+    expect(accordeonContentMaxHeight).toBe('120px');
   });
 
   it('should check if svg is rendered', async () => {
@@ -18,7 +25,7 @@ describe('Accordeon', () => {
     expect(await page.$$('svg')).toBeTruthy();
   });
 
-  it('Checks if accordeon is small', async () => {
+  it('checks if accordeon is small', async () => {
     await openAccordeon();
 
     const axaText = await page.$(
@@ -27,7 +34,7 @@ describe('Accordeon', () => {
     expect(await axaText.getAttribute('variant')).toBe('size-3');
   });
 
-  it('Checks if accordeon is disabled', async () => {
+  it('checks if accordeon is disabled', async () => {
     await openAccordeonDisabled();
 
     const accordeonContainerColor = await page.$eval(
