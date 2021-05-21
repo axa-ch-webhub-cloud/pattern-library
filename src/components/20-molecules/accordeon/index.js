@@ -42,6 +42,10 @@ class AXAAccordeon extends LitElement {
   }
 
   firstUpdated() {
+    this.getAllTagMatches().shadowRoot.querySelector(
+      '.m-accordeon__container'
+    ).style.borderTop = 'solid 1px #ccc';
+
     this.toggleAnimation();
   }
 
@@ -99,6 +103,14 @@ class AXAAccordeon extends LitElement {
         </div>
       </article>
     `;
+  }
+
+  getAllTagMatches() {
+    return Array.prototype.slice
+      .call(this.parentNode.querySelectorAll('*'))
+      .find(function(el) {
+        return el.tagName.toLowerCase().includes('axa-accordeon');
+      });
   }
 
   disconnectedCallback() {
