@@ -16,7 +16,7 @@ describe('Accordeon', () => {
       )
     ).toBeTruthy();
 
-    expect(accordeonContentMaxHeight !== 0);
+    expect(accordeonContentMaxHeight !== 0).toBeTruthy();
   });
 
   it('should check if svg is rendered', async () => {
