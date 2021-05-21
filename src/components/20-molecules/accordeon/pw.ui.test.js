@@ -14,7 +14,7 @@ describe('Accordeon', () => {
       await page.$eval('.m-accordeon__content', el =>
         el.classList.contains('m-accordeon__content--open')
       )
-    ).toBeVisible;
+    ).toBeTruthy();
 
     expect(accordeonContentMaxHeight !== 0).toBeTruthy();
   });
