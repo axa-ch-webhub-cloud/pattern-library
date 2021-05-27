@@ -42,11 +42,18 @@ class AXAAccordeon extends LitElement {
   }
 
   firstUpdated() {
-    this.addBorderTopToFirstElement().shadowRoot.querySelector(
+    this.getFirstChild().shadowRoot.querySelector(
       '.m-accordeon__container'
     ).style.borderTop = 'solid 1px #ccc';
 
-    this.toggleAnimation();
+    // slot-content is not available on IE 11 at this time
+    if (window.document.documentMode) {
+      setTimeout(() => {
+        this.toggleAnimation();
+      });
+    } else {
+      this.toggleAnimation();
+    }
   }
 
   toggleAnimation() {
@@ -105,7 +112,7 @@ class AXAAccordeon extends LitElement {
     `;
   }
 
-  addBorderTopToFirstElement() {
+  getFirstChild() {
     return Array.prototype.slice
       .call(this.parentNode.querySelectorAll('*'))
       .find(function(el) {

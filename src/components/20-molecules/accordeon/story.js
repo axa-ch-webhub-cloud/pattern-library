@@ -51,6 +51,8 @@ export const Accordeon = () => {
     <axa-accordeon
       title="This is the title of the second accordeon"
       icon="${exampleIcon1}"
+      ?small="${small}"
+      ?disabled="${disabled}"
     >
       <axa-text variant="size-3"
         >Residence certainly elsewhere something she preferred cordially law.
@@ -66,6 +68,8 @@ export const Accordeon = () => {
     <axa-accordeon
       title="This is the title of the third accordeon"
       icon="${exampleIcon2}"
+      ?small="${small}"
+      ?disabled="${disabled}"
     >
       <axa-text variant="size-3">
         Luckily friends do ashamed to do suppose. Tried meant mr smile so.
