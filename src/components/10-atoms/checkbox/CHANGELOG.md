@@ -39,11 +39,11 @@
 
 ## 2.1.2
 
-- Fixes minor issue [#1595](https://github.com/axa-ch/patterns-library/issues/1595).
+- Fixes minor issue [#1595](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1595).
 
 ## 2.1.1
 
-- Fixes bug when no label is set and `variant="checkmark"` [#1598](https://github.com/axa-ch/patterns-library/issues/1598).
+- Fixes bug when no label is set and `variant="checkmark"` [#1598](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1598).
 
 ## 2.1.0
 
@@ -51,7 +51,7 @@
 
 ## 2.0.2
 
-- Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch/patterns-library/issues/1572).
+- Adjust error state to styleguide requirements [#1572](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1572).
 
 ## 2.0.0
 
@@ -65,6 +65,6 @@
   values at this time. This may amount to a breaking change if the
   component consumer had previously assumed undefined or uninitialized
   behaviour.
-- Add `refId` [#1528](https://github.com/axa-ch/patterns-library/pull/1528)
-- Prevent doubled labels when `label` attribute isn't set [#1535](https://github.com/axa-ch/patterns-library/pull/1535)
+- Add `refId` [#1528](https://github.com/axa-ch-webhub-cloud/pattern-library/pull/1528)
+- Prevent doubled labels when `label` attribute isn't set [#1535](https://github.com/axa-ch-webhub-cloud/pattern-library/pull/1535)
 - Allow setting a label through children of the component

@@ -84,7 +84,8 @@ export const Contact = () => {
           <axa-text variant="size-2">
             Bug reports, small change requests, "wishes":
           </axa-text>
-          <axa-link href="https://github.com/axa-ch/patterns-library/issues"
+          <axa-link
+            href="https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
             >Go to GitHub</axa-link
           >
         </div>

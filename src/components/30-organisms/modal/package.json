@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "The modal component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/modal#readme",
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/modal#readme",
   "license": "Copyright 2021 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
     "@axa-ch/materials": "14.2.0",

@@ -3,7 +3,7 @@
   "version": "5.2.11",
   "description": "The footer-small component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/blob/develop/src/components/20-molecules/footer-small/README.md",
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/20-molecules/footer-small/README.md",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
     "@axa-ch/container": "3.0.11",

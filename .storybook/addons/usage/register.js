@@ -29,7 +29,7 @@ const MyPanel = () => {
       <p>
         <strong>Important:</strong> If this component needs to run in Internet
         Explorer 11,{' '}
-        <a href="https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill">
+        <a href="https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill">
           you need to use our polyfill
         </a>
         .

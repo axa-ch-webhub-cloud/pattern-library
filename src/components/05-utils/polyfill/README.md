@@ -67,4 +67,4 @@ import '@axa-ch/patterns-library-polyfill/index.webcomponents';
 
 ## Polyfills used:
 
-https://github.com/axa-ch/patterns-library/blob/develop/src/components/05-utils/polyfill/index.js
+https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/05-utils/polyfill/index.js

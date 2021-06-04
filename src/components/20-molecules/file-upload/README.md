@@ -62,7 +62,7 @@ if (files.length > 0) {
 
 ### inputFileText
 
-The attribute `inputFileText` specifies the text witch appears next to the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md).
+The attribute `inputFileText` specifies the text witch appears next to the icon in the [axa-input-file](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/input-file/README.md).
 
 ### maxSizeOfSingleFileKB
 
@@ -78,7 +78,7 @@ The attribute `maxNumberOfFiles` specifies the maximum number of files. Every Fi
 
 ### icon
 
-The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
+The attribute `icon` specifies the icon in the [axa-input-file](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/input-file/README.md). Default is "cloud-upload".
 
 ### fileTooBigStatusText
 

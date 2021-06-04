@@ -17,10 +17,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",

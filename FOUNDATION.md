@@ -66,7 +66,7 @@ hood](https://lit-html.polymer-project.org/guide/concepts#html-template-elements
 
 #### IH by Axa
 * bus factor 1-2. 
-* Stability unclear, not yet production-ready because of [major issues](https://github.com/axa-ch/patterns-library/issues).
+* Stability unclear, not yet production-ready because of [major issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues).
 * Only used inhouse by AXA teams (18 github stars). 
 * Devs not close to any major browser vendor. 
 * Quality of code variable, not typed JS.

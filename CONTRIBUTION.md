@@ -82,7 +82,7 @@ it('should sum numbers', () => {
 
 - Never calculate *derived properties* (in the UML sense, cf. [/property](https://www.uml-diagrams.org/derived-property.html)) inside the `firstUpdated` lifecycle method of a component. This method is only executed once, after first render. If properties are expected to change dynamically over time, those derived properties would not be recalculated and therefore could lead to bugs. Instead, either calculate such derived properties in the `updated` (preferred) or `attributeChanged` method or implement them directly inside the `render` method of a component.
 - Never use `child.scss` without scoped selectors. DO: `axa-footer-small { span { ... } }` DON'T: `span { ... }`.
-- Never use axa- component tags in selectors to refer to _dependent components_, since these tags are [versioned](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md). Use classes instead. DO: `axa-top-content-bar .m-top-content-bar__button { ... }` DON'T: `axa-top-content-bar axa-button { ... }`
+- Never use axa- component tags in selectors to refer to _dependent components_, since these tags are [versioned](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md). Use classes instead. DO: `axa-top-content-bar .m-top-content-bar__button { ... }` DON'T: `axa-top-content-bar axa-button { ... }`
 - Do not use console logs in the DEMOs because we cannot expect our user to have DEV Tools open
 - Never and in any circumstances use bitwise operators
 - Never and in any circumstances use `==` over `===`

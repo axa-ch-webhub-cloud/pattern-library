@@ -5,7 +5,7 @@ One may label them with text to explain the semantics of the selected choice to 
 
 Radio buttons can be used in HTML forms as well as [React controlled components](https://reactjs.org/docs/forms.html#controlled-components).
 
-For grouping multiple related radio buttons in a style-guide-conformant fashion see [&lt;axa-fieldset&gt;](https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/fieldset).
+For grouping multiple related radio buttons in a style-guide-conformant fashion see [&lt;axa-fieldset&gt;](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/fieldset).
 
 ## Properties
 

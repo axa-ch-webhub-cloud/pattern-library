@@ -1,7 +1,7 @@
 # AXA Button Link
 
 Button links provide link functionality, but in the style of a button. They may display text, icons, or both. Button links can be styled via several properties to change their look-and-feel.
-If you need a semantically correct button, use [axa-button](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button/README.md) instead.
+If you need a semantically correct button, use [axa-button](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/button/README.md) instead.
 
 ## Properties
 
@@ -39,7 +39,7 @@ The Boolean attribute `disabled` disables the button natively.
 
 ### icon
 
-Using the attribute `icon`'s string value as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+Using the attribute `icon`'s string value as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/icon/README.md) README.
 
 ### onClick
 

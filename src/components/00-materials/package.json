@@ -3,7 +3,7 @@
   "version": "14.2.0",
   "description": "The materials component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/#readme",
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/00-materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "build-icons": "rm -rf ./icons-raw/.tmp && svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "devDependencies": {
     "svgo": "^1.2.0"

@@ -132,28 +132,28 @@ export default AXAButtonReact;`}
           icon="github-mark.png"
           header="README"
           text="You have a question or just want to see what it's all about? The README is the best way to start."
-          link="https://github.com/axa-ch/patterns-library/blob/develop/README.md"
+          link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/README.md"
           linkText="READ MORE"
         />
         <PLCallout
           icon="github-mark.png"
           header="Contribute"
           text="You want to contribute? Nice! Here you'll find out how."
-          link="https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md"
+          link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md"
           linkText="READ MORE"
         />
         <PLCallout
           icon="github-mark.png"
           header="Architecture"
           text="Read more about the big picture and how we got here. This includes framework choices and much more."
-          link="https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md"
+          link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/ARCHITECTURE.md"
           linkText="READ MORE"
         />
         <PLCallout
           icon="github-mark.png"
           header="Code of Conduct"
           text="We as the Pattern Library Team commited ourselves to a set of rules, responsibilities and prudent practices."
-          link="https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md"
+          link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CODE_OF_CONDUCT.md"
           linkText="READ MORE"
         />
         <header className="getting-started__header">

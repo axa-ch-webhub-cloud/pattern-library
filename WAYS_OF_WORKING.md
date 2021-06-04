@@ -23,7 +23,7 @@ and development tasks in our work pipeline.
 
 See this picture for an example:
 
-<img src="https://raw.githubusercontent.com/axa-ch/patterns-library/develop/assets/kanban_board.jpg" width="400">
+<img src="https://raw.githubusercontent.com/axa-ch-webhub-cloud/pattern-library/develop/assets/kanban_board.jpg" width="400">
 
 ## Dailies
 
@@ -72,7 +72,7 @@ request.
 
 ## Code of Conduct
 
-We adhere to our [Code of Conduct](https://raw.githubusercontent.com/axa-ch/patterns-library/develop/CODE_OF_CONDUCT.md).
+We adhere to our [Code of Conduct](https://raw.githubusercontent.com/axa-ch-webhub-cloud/pattern-library/develop/CODE_OF_CONDUCT.md).
 
 ## Release Policies
 

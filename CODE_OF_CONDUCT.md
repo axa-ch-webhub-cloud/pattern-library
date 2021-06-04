@@ -17,7 +17,7 @@ We make sure that our code respects **Prettier, ESlint, StyleLint and EditorConf
 
 You are allowed to breake those rules if the ESLint gets unnecessarily complex or if you cannot do it otherwise.
 
-Respect our [best practices](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#best-practices)
+Respect our [best practices](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#best-practices)
 
 ## Our Pull Request culture
 We love to give and receive feedbacks on our pull requests (short: PRs). Every feedback is *per se* legitimate.
@@ -42,7 +42,7 @@ An example of what a constructive conversation should (not) look like:
 **We will always make a PR, unless there is no chance for errors**. Code changes and documentation changes **always** require a PR, for example, since the PR owner may make mistakes in program code changes or introduce grammatical errors.
 
 ## Our issues agreement
-We are free to create issues on [GitHub](https://github.com/axa-ch/patterns-library/issues) labeled with **feature-request** whenever we want, but we won't start working on them before the team approves them with democratic majority (50% + 1 vote). With creating a feature request we also add it to the Github [project board](https://github.com/axa-ch/patterns-library/projects/3). Ideally, we discuss such a feature request in an after-daily meeting, where we decide if it makes sense or not to implement it. Once the team approves, we label the issue **Accepted** and also add it to the **Accepted** column in our project board. **Only feature requests labeled as "Accepted" may be implemented**. Issues that are in progress have to be moved to the **In progress** column of the project board.
+We are free to create issues on [GitHub](https://github.com/axa-ch-webhub-cloud/pattern-library/issues) labeled with **feature-request** whenever we want, but we won't start working on them before the team approves them with democratic majority (50% + 1 vote). With creating a feature request we also add it to the Github [project board](https://github.com/axa-ch-webhub-cloud/pattern-library/projects/3). Ideally, we discuss such a feature request in an after-daily meeting, where we decide if it makes sense or not to implement it. Once the team approves, we label the issue **Accepted** and also add it to the **Accepted** column in our project board. **Only feature requests labeled as "Accepted" may be implemented**. Issues that are in progress have to be moved to the **In progress** column of the project board.
 
 Issues which are about differences in functionality compared to documentation and/or expected behaviour of components will receive the **bug** label. **Issues labeled as "bug" always have higher priority**. Once **one of the** core developers is able to reproduce the issue, it will receive the label **Accepted**. **Only bugs labeled as "Accepted" may be fixed**.
 

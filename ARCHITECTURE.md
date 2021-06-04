@@ -31,7 +31,7 @@ Elements](https://developers.google.com/web/fundamentals/web-components/customel
 (short: **CE**), a browser-native technology supported by [web
 standards](https://html.spec.whatwg.org/multipage/custom-elements.html) and poly-fillable for older browsers.
 
-[Here](https://raw.githubusercontent.com/axa-ch/patterns-library/develop/FOUNDATION.md) you can read how we arrived at this choice.
+[Here](https://raw.githubusercontent.com/axa-ch-/patterns-library/develop/FOUNDATION.md) you can read how we arrived at this choice.
 
 By default, and in contrast to v1, we use [Shadow
 DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
@@ -57,7 +57,7 @@ ourselves on what to do better in v2:
 
 1. Look at v1 code and identify shortcomings as well as good parts.
 2. Look at
-[issues](https://github.com/axa-ch/patterns-library/issues/) filed by
+[issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/) filed by
 v1 users. Then generalize to distill fewer *fundamental issues* from these, to be
 addressed in v2.
 3. Within the v2 foundation, conduct targeted experiments guided by the
@@ -90,7 +90,7 @@ sketching *how* it can be adressed.
 
 1. **Excessive complexity of v1 foundation**.
    - **Source:** v1 code inspection, sheer number of
-   [issues](https://github.com/axa-ch/patterns-library/issues).
+   [issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues).
    - **Why:** Reasonable to assume v1 complexity is a root cause of
    unsolved fundamental issues and edge cases.
    - **How:** use new foundation as simplicity *enabler*, pay attention
@@ -99,8 +99,8 @@ sketching *how* it can be adressed.
    
 1. **Dynamic children**.
    - **Source:**
-   e.g. [#778](https://github.com/axa-ch/patterns-library/issues/778),
-   [#859](https://github.com/axa-ch/patterns-library/issues/859).
+   e.g. [#778](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/778),
+   [#859](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/859).
    - **Why:** Idiomatic to specify children of a custom component as
    function of props or state and expect re-render if function inputs
    change, esp. given desiderata 1, 4.
@@ -123,8 +123,8 @@ sketching *how* it can be adressed.
 
 1. **Controlled Inputs**.
    - **Source:**
-   [#439](https://github.com/axa-ch/patterns-library/issues/439),
-   [#793](https://github.com/axa-ch/patterns-library/issues/793)
+   [#439](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/439),
+   [#793](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/793)
    - **Why:** In React, it is quite idiomatic (though not mandatory) to
    control the ``value`` or ``checked`` properties of ``<input>,
    <select>``, overriding built-in native behaviour.
@@ -139,7 +139,7 @@ sketching *how* it can be adressed.
 
 1. **Component Nesting**.
    - **Source:**
-   [#778](https://github.com/axa-ch/patterns-library/issues/778).
+   [#778](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/778).
    - **Why:** Ease of authoring without fear of breaking things. We need to be able to reason locally that
    each CE is correct, and have assurance they stay correct when
    put together in arbitrary ways, including
@@ -151,7 +151,7 @@ sketching *how* it can be adressed.
    - **How:** By not disturbing the natural compositionality of HTML, see 2.
 
 1. **Deduplicated Styles**.
-   - **Source:** [#492](https://github.com/axa-ch/patterns-library/issues/492).
+   - **Source:** [#492](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/492).
    - **Why:** DOM weight increases proportional to the number of CE
    instances per page, which matters on mobile &mdash; if each instance redundantly includes
    styling, the increase is more dramatic.
@@ -166,7 +166,7 @@ sketching *how* it can be adressed.
    exploiting this is already a built-in feature of lit-element).
 
 1. **Concise HTML templates**.
-   - **Source:** [#583](https://github.com/axa-ch/patterns-library/issues/583).
+   - **Source:** [#583](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/583).
    - **Why:** CE implementors need a *concise*, developer-friendly way of specifying *parametric* HTML
    content to be rendered, since many CEs need to be built and since
    they would normally react to properties/attributes.
@@ -177,7 +177,7 @@ sketching *how* it can be adressed.
    this: <br> ``render() { return html `<p>${this.myProp}</p>`; }``.
 
 1. **Inherited CSS Properties**.
-   - **Source:** [#524](https://github.com/axa-ch/patterns-library/issues/524).
+   - **Source:** [#524](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/524).
    - **Why:** CE users need assurance that page CSS
    cannot fundamentally destroy CE-intrinsic styling, otherwise
    styleguide conformance needs to be checked on a case-by-case basis.
@@ -191,7 +191,7 @@ sketching *how* it can be adressed.
    ``text-align: center`` from external styling.
 
 1. **Name Clashes With Built-in DOM Properties**.
-   - **Source:** [#451](https://github.com/axa-ch/patterns-library/issues/451).
+   - **Source:** [#451](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/451).
    - **Why:** CE implementors and users alike are interested in natural
    naming for CE properties &mdash; allowing a property like
    ``prefix`` despite a built-in property with the same name aids the
@@ -202,7 +202,7 @@ sketching *how* it can be adressed.
    will no longer clash internally under v2.
    
 1. **Real Properties**.
-   - **Source:** [#397](https://github.com/axa-ch/patterns-library/issues/397).
+   - **Source:** [#397](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/397).
    - **Why:** CE users expect to be able to use real properties with any permitted
    JS value type &mdash; constant (de-)serialization to and from the
    ``String`` data type is cumbersome and inefficient.
@@ -213,7 +213,7 @@ sketching *how* it can be adressed.
    is supported as well.
    
 1. **CSS Specificity**.
-   - **Source:** [#383](https://github.com/axa-ch/patterns-library/issues/383).
+   - **Source:** [#383](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/383).
    - **Why:** CE consumers expect not have to fight CSS specificity issues
    originating from the pattern library itself.
    - **How:** For v2 CEs using Shadow DOM, intrinsic styling is both
@@ -226,7 +226,7 @@ sketching *how* it can be adressed.
    internal class name).
 
 1. **Minimal Rerendering**.
-   - **Source:** e.g. [#408](https://github.com/axa-ch/patterns-library/issues/).
+   - **Source:** e.g. [#408](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/).
    - **Why:** Re-rendering can not only lead to expensive browser paint
    operations, but might also produce unwanted side effects (like losing focus
    on an ``<input>``).
@@ -239,7 +239,7 @@ sketching *how* it can be adressed.
    issues like focus loss, since it is guaranteed to be called after ``render()``.
 
 1. **React refs**.
-   - **Source:** [#778](https://github.com/axa-ch/patterns-library/issues/778).
+   - **Source:** [#778](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/778).
    - **Why:** React users expect to be able to place [`ref`](https://reactjs.org/docs/refs-and-the-dom.html)
    pseudo-properties on CEs, especially in the idiomatic callback
    style. In the latter style, they expect to be called back on both
@@ -257,7 +257,7 @@ sketching *how* it can be adressed.
     been [deprecated in Strict Mode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).*
 
 1. **FOUC**.
-   - **Source:** [#365](https://github.com/axa-ch/patterns-library/issues/365).
+   - **Source:** [#365](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/365).
    - **Why:** CE users expect to be able to suppress or at least
    minimize the F(lash)O(f)U(nstyled)C(ontent) that results from using
    CEs before their JS definitions have been loaded e.g. over a slow network.
@@ -276,7 +276,7 @@ sketching *how* it can be adressed.
    compensation is the goal.*
 
 1. **Events**.
-   - **Source:** [#846](https://github.com/axa-ch/patterns-library/issues/846),[#778](https://github.com/axa-ch/patterns-library/issues/778).
+   - **Source:** [#846](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/846),[#778](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/778).
    - **Why:** CE users expect to register event callbacks on a CE
    using simple mechanisms that feel idiomatic to the framework within which
    they work (see e.g. desideratum 1). They furthermore expect to be called back *reliably*
@@ -301,7 +301,7 @@ sketching *how* it can be adressed.
    - **How:** to be filled.
 
 1. **React Router**.
-   - **Source:** [#859](https://github.com/axa-ch/patterns-library/issues/859)
+   - **Source:** [#859](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/859)
    - **Why:** CE users expect to use CEs in scenarios controlled by [React Router](https://reacttraining.com/react-router/web/api/). In particular, they expect no surprises with respect to child updateability when routes change.
    - **Experiment:** [lit-element-and-react-router](https://github.com/axa-ch/lit-element-and-react-router).
    - **How:** The most critical case of instantiating and updating
@@ -317,7 +317,7 @@ sketching *how* it can be adressed.
    works, since we're back to the case of dynamic children under 2. above.
 
 1. **Unit Testing**.
-   - **Source:** [#786](https://github.com/axa-ch/patterns-library/issues/786)
+   - **Source:** [#786](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/786)
    - **Why:** CE users hope to write unit tests involving CEs,
    including indirect scenarios like React components using CEs as
    leaf nodes. In particular, they want to write these unit tests in [jest](https://jestjs.io/).

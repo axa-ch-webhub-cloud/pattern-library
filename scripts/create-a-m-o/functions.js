@@ -70,7 +70,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
   templateJson.name = `@axa-ch/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
-  templateJson.homepage = `https://github.com/axa-ch/patterns-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
+  templateJson.homepage = `https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
   templateJson.description = `The ${fileName} component for the AXA Pattern Library`;
 
   fs.writeFileSync(
@@ -100,7 +100,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     ## Usage
 
-    **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+    **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
 
     \`\`\`bash
     npm install @axa-ch/${fileName}

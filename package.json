@@ -1,7 +1,7 @@
 {
-  "name": "@axa-ch/patterns-library",
+  "name": "@axa-ch/pattern-library",
   "version": "2.0.0",
-  "description": "[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
+  "description": "[Check out our Contribution File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
     "build": "NODE_ENV=production npm run build-components",
@@ -105,12 +105,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "author": "Pattern Warriors",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
-  "homepage": "https://github.com/axa-ch/patterns-library#readme"
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library#readme"
 }
