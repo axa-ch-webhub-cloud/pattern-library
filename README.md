@@ -100,7 +100,7 @@ Different versions of our web components can coexist on the same web page! Here 
 
 ## Design Guidelines
 
-[Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
+[Link to Styleguide](https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit)
 
 ## How to contribute
 
