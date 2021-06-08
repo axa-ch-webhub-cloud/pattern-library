@@ -31,7 +31,7 @@ Elements](https://developers.google.com/web/fundamentals/web-components/customel
 (short: **CE**), a browser-native technology supported by [web
 standards](https://html.spec.whatwg.org/multipage/custom-elements.html) and poly-fillable for older browsers.
 
-[Here](https://raw.githubusercontent.com/axa-ch-/patterns-library/develop/FOUNDATION.md) you can read how we arrived at this choice.
+[Here](https://raw.githubusercontent.com/axa-ch-webhub-cloud/pattern-library/develop/FOUNDATION.md) you can read how we arrived at this choice.
 
 By default, and in contrast to v1, we use [Shadow
 DOM](https://developers.google.com/web/fundamentals/web-components/shadowdom)
