@@ -1,4 +1,3 @@
-@use "sass:math";
 
 @import '../../00-materials/styles/mixins/check-mark-animated';
 
@@ -105,7 +104,7 @@ axa-dropdown {
   .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;
     position: absolute; // needed for native select: icon should be "behind" the select
-    top: math.div($dropdown-height, 2) - math.div(24px, 2); // dropdown height / 2 = vertical centered; 24px = height of SVG; 24px / 2 = center of SVG should be center of dropdown
+    top: divide($dropdown-height, 2) - divide(24px, 2); // dropdown height / 2 = vertical centered; 24px = height of SVG; 24px / 2 = center of SVG should be center of dropdown
     right: 10px; // like padding-right
     pointer-events: none;
     height: auto;

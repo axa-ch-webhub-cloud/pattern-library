@@ -1,5 +1,3 @@
-@use "sass:math";
-
 $checkbox-dimension: 20px;
 $checkbox-border-width: 1px;
 $checkbox-icon-dimension: 8px;
@@ -119,8 +117,8 @@ axa-checkbox {
         content: '';
         display: block;
         position: absolute;
-        top: math.div($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
-        left: math.div($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
+        top: divide($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
+        left: divide($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
         width: $checkbox-icon-dimension;
         height: $checkbox-icon-dimension;
         border: 1px solid;
