@@ -1,0 +1,5 @@
+@use "sass:math";
+
+@function divide($dividen, $divisor) {
+    @return math.div($dividen, $divisor);
+}
