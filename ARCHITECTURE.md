@@ -2,16 +2,16 @@
 
 ## Summary
 
-This is a living document for the architecture of the Patterns Library
+This is a living document for the architecture of the Pattern Library
 version 2 (short: **v2**). We strive to describe the big picture here,
 but also document how we got there. This includes the forces that
 shape the architecture, such as choice of framework or self-imposed
 desiderata and external real-world constraints, but also the rational
 process by which we evolve it.
 
-## What is the Patterns Library?
+## What is the Pattern Library?
 
-The Patterns Library is a custom components library developed by [AXA
+The Pattern Library is a custom components library developed by [AXA
 Winterthur](https://axa.ch) with the intent of harmonizing UI
 components across its web sites.
 
@@ -68,7 +68,7 @@ implementing custom components.
 
 ## Desiderata
 
-The outcome of Patterns Library v2 is a foundation on which to build
+The outcome of Pattern Library v2 is a foundation on which to build
 custom components, plus a set of actual custom
 components which evolves over time. We desire that:
 

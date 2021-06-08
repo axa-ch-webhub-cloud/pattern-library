@@ -29,7 +29,7 @@ Open your code editor of choice and edit your desired component/package in
 
 ### JS Rules
 
-We reuse the Patterns Lib v1 JavaScript linting settings.
+We reuse the Pattern Lib v1 JavaScript linting settings.
 
 ### Git Commit Message Rules
 

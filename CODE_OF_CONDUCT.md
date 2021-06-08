@@ -1,4 +1,4 @@
-# Code of Conduct (BETA) @ Patterns Library
+# Code of Conduct (BETA) @ Pattern Library
 
 ## How we communicate with each other
 If we speak about something, we should all share a common understanding of the terms we use. If in doubt, we'll enlist the help of dictionaries and semantic studies for clear and effective communication.

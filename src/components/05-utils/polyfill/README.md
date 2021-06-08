@@ -1,4 +1,4 @@
-# AXA Patterns Library Polyfill
+# AXA Pattern Library Polyfill
 
 This package includes polyfills for all AXA B2C Browsers. It includes 2 types of bundles:
 
