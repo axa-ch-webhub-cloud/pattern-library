@@ -89,7 +89,7 @@ it('should sum numbers', () => {
 - Enumerate as many falsy values in your Boolean checks as possible and be aware that `0` and `""` are also falsy.
 - The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is a very important principle. But even more important is to know exactly when to break it. Sometimes a super DRY climate can lead to over-engineered solutions that end up being unmaintainable :grinning:. There is no rule here, just be careful to not implement a system that is too complex. Lots of options in interfaces or configuration possibilities could be one indicator that the system gets too complex.
 - If you have side effects outside of your component (e.g. global event listeners, added DOM nodes) you have to undo those side effects in disconnectedCallback
-- Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Click [here (pod-havarie)](https://github.com/axa-ch/pod-havarie#other-refactorings-from-wtf-code-to-normal-code) to see an example where the DEV wanted to be cool in not using a for loop and made ugly, hardly readable hacks.
+- Do not write overly complex code. Sometimes the rule: "If everything fits on one line of code, my code is smarter" does not apply. Is never about being cool, rather being clear. Click [here (pod-havarie)](https://github.com/axa-ch-webhub-cloud/pod-havarie#other-refactorings-from-wtf-code-to-normal-code) to see an example where the DEV wanted to be cool in not using a for loop and made ugly, hardly readable hacks.
 
 Here are some example DO'S and DONT'S:
 ```js

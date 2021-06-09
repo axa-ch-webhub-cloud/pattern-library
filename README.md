@@ -117,12 +117,6 @@ We are dedicated to building a welcoming, diverse, and safe community. We expect
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
 
-### Testing in create react app v3+
-
-If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https://github.com/facebook/create-react-app/) here an example on how we added them: [commit link to pattern library examples](https://github.com/axa-ch/patterns-library-examples/commit/870f94420239e9c99cd25a6050e078375d64a815). Keep in mind that this is just an example and some configs might not be needed for your case.
-
-Refering to the commit diff: cleaner would be to have, instead of the `.babelrc` that adds the babel preset `"@babel/react"`, the preset directly inside `config/jest/jestPreprocess.js`
-
 ### Testing with Selenium, Testcafe and other UI testing tools
 
 By default, pattern-library web components make use of [ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). To trigger interactions inside such web component you need to access the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Schematically,  this works like this: **UI Testtool -> Driver -> native DOM selector -> ShadowRoot -> querySelector**

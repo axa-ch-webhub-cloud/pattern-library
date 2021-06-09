@@ -105,7 +105,7 @@ sketching *how* it can be adressed.
    function of props or state and expect re-render if function inputs
    change, esp. given desiderata 1, 4.
    - **Experiment:**
-   [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children)
+   [lit-element-and-dynamic-children](https://github.com/axa-ch-webhub-cloud/lit-element-and-dynamic-children)
    &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--dynamic-children-react))
    - **How:** If by default we don't transform children in any
    way, simple HTML composition ensures that both the static and the dynamic case
@@ -129,7 +129,7 @@ sketching *how* it can be adressed.
    control the ``value`` or ``checked`` properties of ``<input>,
    <select>``, overriding built-in native behaviour.
    - **Experiment:**
-   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element) &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--controlled-inputs-react))
+   [react-with-lit-element](https://github.com/axa-ch-webhub-cloud/react-with-lit-element) &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--controlled-inputs-react))
    - **How:** Looking at ``value,checked`` we can  determine whether a CE should be controlled.
     We then monitor UI-state-changing events via [lit-element event
     listeners](https://lit-element.polymer-project.org/guide/events) and
@@ -146,7 +146,7 @@ sketching *how* it can be adressed.
    nested 'components-in-components'. This presumes a [principle of
    compositionality](https://en.wikipedia.org/wiki/Principle_of_compositionality).
    - **Experiment:**
-   [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children),
+   [lit-element-and-dynamic-children](https://github.com/axa-ch-webhub-cloud/lit-element-and-dynamic-children),
    specifically its custom-tables-in-custom-tables aspect.
    - **How:** By not disturbing the natural compositionality of HTML, see 2.
 
@@ -155,7 +155,7 @@ sketching *how* it can be adressed.
    - **Why:** DOM weight increases proportional to the number of CE
    instances per page, which matters on mobile &mdash; if each instance redundantly includes
    styling, the increase is more dramatic.
-   - **Experiment:** [lit-element-and-dynamic-children](https://github.com/axa-ch/lit-element-and-dynamic-children).
+   - **Experiment:** [lit-element-and-dynamic-children](https://github.com/axa-ch-webhub-cloud/lit-element-and-dynamic-children).
    - **How:** Store a reference to the document that each instance
    belongs to in a global ``WeakMap``,
    render inline ``<style>`` only if reference count is 1. *Benefit:
@@ -182,7 +182,7 @@ sketching *how* it can be adressed.
    cannot fundamentally destroy CE-intrinsic styling, otherwise
    styleguide conformance needs to be checked on a case-by-case basis.
    - **Experiment:** 
-   [lit-element-and-dynamic-children, commit 107c26e](https://github.com/axa-ch/lit-element-and-dynamic-children/commit/107c26e3e9d58bd112399f9035aaa3082fe25924).
+   [lit-element-and-dynamic-children, commit 107c26e](https://github.com/axa-ch-webhub-cloud/lit-element-and-dynamic-children/commit/107c26e3e9d58bd112399f9035aaa3082fe25924).
    - **How:** While inherited CSS properties like ``text-align`` can
    indeed even pierce a Shadow DOM boundary,  it is easy for an CE
    implementor to prevent this by declaring fixed values for the
@@ -230,7 +230,7 @@ sketching *how* it can be adressed.
    - **Why:** Re-rendering can not only lead to expensive browser paint
    operations, but might also produce unwanted side effects (like losing focus
    on an ``<input>``).
-   - **Experiment:** [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element).
+   - **Experiment:** [react-with-lit-element](https://github.com/axa-ch-webhub-cloud/react-with-lit-element).
    - **How:** lit-element is *extremely good* at avoiding unnecessary
    re-rendering *and* minimizing the amount of DOM subject to
    re-rendering thanks to [lit-html](https://docs.google.com/presentation/d/1KVYiupSAoFyECDwJwxQlJTk8RvSzhg-UKGpZ8-nFm3I/edit#slide=id.g4dceb8c29b_3_221). Our particular strategy for controlled inputs
@@ -244,7 +244,7 @@ sketching *how* it can be adressed.
    pseudo-properties on CEs, especially in the idiomatic callback
    style. In the latter style, they expect to be called back on both
    mounting and unmounting of a CE.
-   - **Experiment:** [react-with-lit-element, commit 8888048](https://github.com/axa-ch/react-with-lit-element/commit/88880489c644f6637a73d58a58c2b7dc8ad99616)
+   - **Experiment:** [react-with-lit-element, commit 8888048](https://github.com/axa-ch-webhub-cloud/react-with-lit-element/commit/88880489c644f6637a73d58a58c2b7dc8ad99616)
    - **How:** When exporting a CE to React, we use a wrapper around React's [``createElement``](https://reactjs.org/docs/react-api.html#createElement) called
    [skatejs/val](https://github.com/skatejs/val). It comes with
    built-in ``ref`` support. Unfortunately, wrapped CEs are seen by React as
@@ -261,7 +261,7 @@ sketching *how* it can be adressed.
    - **Why:** CE users expect to be able to suppress or at least
    minimize the F(lash)O(f)U(nstyled)C(ontent) that results from using
    CEs before their JS definitions have been loaded e.g. over a slow network.
-   - **Experiment:** [lit-element-and-fouc](https://github.com/axa-ch/lit-element-and-fouc)
+   - **Experiment:** [lit-element-and-fouc](https://github.com/axa-ch-webhub-cloud/lit-element-and-fouc)
    - **How:** Place a short critical inline CSS style in a page's
    ``<head>`` that uses ``:not(:defined) {...}`` to regulate how
    undefined CEs are rendered in general. This does not cover Internet
@@ -282,7 +282,7 @@ sketching *how* it can be adressed.
    they work (see e.g. desideratum 1). They furthermore expect to be called back *reliably*
    on event occurrence.
    - **Experiment:**
-   [react-with-lit-element](https://github.com/axa-ch/react-with-lit-element),
+   [react-with-lit-element](https://github.com/axa-ch-webhub-cloud/react-with-lit-element),
    cf. App.js under React.
    - **How:** We use lit-html's built-in [``@event``](https://lit-element.polymer-project.org/guide/events) notation
    inside CEs built with lit-element. The [skatejs/val](https://github.com/skatejs/val)
@@ -303,7 +303,7 @@ sketching *how* it can be adressed.
 1. **React Router**.
    - **Source:** [#859](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/859)
    - **Why:** CE users expect to use CEs in scenarios controlled by [React Router](https://reacttraining.com/react-router/web/api/). In particular, they expect no surprises with respect to child updateability when routes change.
-   - **Experiment:** [lit-element-and-react-router](https://github.com/axa-ch/lit-element-and-react-router).
+   - **Experiment:** [lit-element-and-react-router](https://github.com/axa-ch-webhub-cloud/lit-element-and-react-router).
    - **How:** The most critical case of instantiating and updating
    components under React Router appears to be ``<Route component>``,
    since the
