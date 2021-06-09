@@ -115,7 +115,7 @@ export const Contact = () => {
           <axa-text variant="size-2">
             Questions and requests for help regarding design issues:
           </axa-text>
-          <axa-link href="mailto:interactiondesign@axa.ch"
+          <axa-link href="mailto:webstyleguide@axa.ch"
             >Email the design team</axa-link
           >
         </div>
