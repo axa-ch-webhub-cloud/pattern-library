@@ -60,7 +60,7 @@ export const WhatsNew = () => {
   };
   xhttp.open(
     'GET',
-    'https://api.github.com/search/commits?q=repo:axa-ch/patterns-library+Publish&sort=author-date&order=desc',
+    'https://api.github.com/search/commits?q=repo:axa-ch-webhub-cloud/pattern-library+Publish&sort=author-date&order=desc',
     true
   );
   xhttp.setRequestHeader('Accept', 'application/vnd.github.cloak-preview');
@@ -82,7 +82,7 @@ export const WhatsNew = () => {
         We are happy to announce that we now support component versioning!
         Our solution automatically injects package.json version information into component code at build time. Additionally, by making components version-aware at runtime, we can dynamically name custom element to include version information.
         For more information check out
-        <axa-link href="https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>.
+        <axa-link href="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>.
       </p>
       
       <axa-heading rank="2" variant="secondary">Last releases</axa-heading>

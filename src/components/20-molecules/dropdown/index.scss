@@ -99,7 +99,7 @@ axa-dropdown {
     }
   }
 
-  /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
+  /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1343 */
   .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;
     position: absolute; // needed for native select: icon should be "behind" the select
@@ -324,7 +324,7 @@ axa-dropdown {
       background-color: $color-alabaster;
     }
 
-    /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch/patterns-library/issues/1343 */
+    /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1343 */
     .m-dropdown__select-icon.m-dropdown__select-icon {
       svg {
         color: $color-light-grey;

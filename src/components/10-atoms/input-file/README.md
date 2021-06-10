@@ -1,6 +1,6 @@
 # Input file
 
-Input-File provides a clickable element, which can be used in forms to upload files. The upload function can be restricted with several attributes. They may display text, icons, or both. Input-File can be styled via properties like the [axa-button](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button/README.md) or [axa-button-link](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/button-link/README.md).
+Input-File provides a clickable element, which can be used in forms to upload files. The upload function can be restricted with several attributes. They may display text, icons, or both. Input-File can be styled via properties like the [axa-button](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/button/README.md) or [axa-button-link](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/button-link/README.md).
 
 ## Properties
 
@@ -18,7 +18,7 @@ The String attribute `text` sets the text of the component.
 
 ### icon
 
-Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch/patterns-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/icon/README.md) README.
 
 ### large
 

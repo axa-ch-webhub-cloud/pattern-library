@@ -3,7 +3,7 @@
   "version": "4.5.15",
   "description": "The input-text component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/10-atoms/input-text#readme",
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/input-text#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "directories": {
     "lib": "lib"
@@ -24,10 +24,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
     "@axa-ch/popup": "3.1.23",

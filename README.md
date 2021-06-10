@@ -5,17 +5,17 @@
 
 ## [>> Pattern Library Demo](https://patterns.axa.ch)
 
-[Check out our Contribution File](https://github.com/axa-ch/patterns-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
+[Check out our Contribution File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
 
-[Check out our Architecture File](https://github.com/axa-ch/patterns-library/blob/develop/ARCHITECTURE.md)
+[Check out our Architecture File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/ARCHITECTURE.md)
 
-[Check out our Code of Conduct](https://github.com/axa-ch/patterns-library/blob/develop/CODE_OF_CONDUCT.md)
+[Check out our Code of Conduct](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CODE_OF_CONDUCT.md)
 
 ## Communication
 
 Use the following channels for different kinds of requests/reports:
 
-- Bug reports, small change requests, "wishes": https://github.com/axa-ch/patterns-library/issues
+- Bug reports, small change requests, "wishes": https://github.com/axa-ch-webhub-cloud/pattern-library/issues
 - Questions, requests for help, requests for product presentations, etc: Slack #patterns-lib-devs
 - Feature requests (Components, etc): Slack @martin.stuedle
 
@@ -55,11 +55,11 @@ If you need to support Internet Explorer (11) in your application, you therefore
 
 ## Component versioning
 
-Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch/patterns-library/blob/develop/COMPONENT_VERSIONING.md).
+Different versions of our web components can coexist on the same web page! Here you can [read more about component versioning](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md).
 
 ## Released Polyfills
 
-- [Pattern Library Polyfill (IE11)](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill)
+- [Pattern Library Polyfill (IE11)](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill)
 
 ## Released Components
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
@@ -100,28 +100,22 @@ Different versions of our web components can coexist on the same web page! Here 
 
 ## Design Guidelines
 
-[Link to Pattern Library Styleguide](https://github.com/axa-ch/patterns-library-styleguide)
+[Link to Styleguide](https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit)
 
 ## How to contribute
 
 Whether you are helping us to fix bugs, or you are more into creating components,
 we would love to have you as contributor of the AXA Pattern Library!
 
-Check out our [Contributing Guide](https://github.com/axa-ch/patterns-library/tree/develop/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
+Check out our [Contributing Guide](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/CONTRIBUTION.md) for ideas on contributing and setup steps for getting the repository up and running on your local machine.
 
 ## Code of Conduct
 
-We are dedicated to building a welcoming, diverse, and safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch/patterns-library/tree/develop/CODE_OF_CONDUCT.md)
+We are dedicated to building a welcoming, diverse, and safe community. We expect everyone participating in the AXA community to read and accept our [Code of Conduct](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/CODE_OF_CONDUCT.md)
 
 ## Version Control
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
-
-### Testing in create react app v3+
-
-If you want to have [Jest](https://jestjs.io/) tests in [Create React App](https://github.com/facebook/create-react-app/) here an example on how we added them: [commit link to patterns library examples](https://github.com/axa-ch/patterns-library-examples/commit/870f94420239e9c99cd25a6050e078375d64a815). Keep in mind that this is just an example and some configs might not be needed for your case.
-
-Refering to the commit diff: cleaner would be to have, instead of the `.babelrc` that adds the babel preset `"@babel/react"`, the preset directly inside `config/jest/jestPreprocess.js`
 
 ### Testing with Selenium, Testcafe and other UI testing tools
 
@@ -144,7 +138,7 @@ Calling this method gives you the `ShadowRoot` in your Selenium environment. **B
 
 ## Dealing with F(lash) O(f) U(nstyled) C(ontent)
 
-As described in [ARCHITECTURE.md](https://github.com/axa-ch/patterns-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this is fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
+As described in [ARCHITECTURE.md](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/ARCHITECTURE.md), FOUC can be mitigated by using the CSSpseudo selector: `:not(:defined)`. Below please find an example of how we can show to the user that the `<axa-footer>` is not yet defined (pulsating blocks). The selector `:not(:defined)` won't work in **IE11** and therefore there won't have any effect on it. Following the principle of graceful degradation, this is fine, since the only downside in **IE11** is that it doesn't look as good as the other browsers while no real functionality has been lost.
 
 ```html
 <style>

@@ -4,7 +4,7 @@ Materials provides common used icons and images in the SVG format. In addition m
 
 ## Usage
 
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch/patterns-library/tree/develop/src/components/05-utils/polyfill).
+**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
 
 ```bash
 npm install @axa-ch/materials
@@ -111,7 +111,7 @@ Please note the size classes of `icons` and `images` [here](https://www.figma.co
 
 ### SVGs
 
-(Complete list is visible [here](https://github.com/axa-ch/patterns-library/tree/develop/src/components/00-materials/icons-raw))
+(Complete list is visible [here](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/00-materials/icons-raw))
 
 | icons            |
 | ---------------- |

@@ -3,7 +3,7 @@
   "version": "3.2.11",
   "description": "The testimonials component for the AXA Pattern Library",
   "author": "Pattern Warriors",
-  "homepage": "https://github.com/axa-ch/patterns-library/tree/develop/src/components/30-organisms/testimonials#readme",
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/testimonials#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch/patterns-library.git"
+    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
-    "url": "https://github.com/axa-ch/patterns-library/issues"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
     "@axa-ch/carousel": "3.2.9",

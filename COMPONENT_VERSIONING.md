@@ -9,7 +9,7 @@ Micro Frontends are an emerging new paradigm on how to decompose a web page or w
 
 Think of a micro frontend as an application written in SPA style that suddenly finds itself having to coexist with other SPAs on the same webpage. Furthermore, imagine each of these SPAs being developed by an independent team of software developers, who each chose different versions of UI components for their SPA. How can all these UI components in their different versions coexist on the same webpage without giving up team independence? That's the versioning dilemma in a nutshell.
 
-Have a look [here](https://github.com/axa-ch/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning) for more details.
+Have a look [here](https://github.com/axa-ch-webhub-cloud/midgard/blob/develop/DOCUMENTATION.md#pattern-library-versioning) for more details.
 
 ## Constraints
 

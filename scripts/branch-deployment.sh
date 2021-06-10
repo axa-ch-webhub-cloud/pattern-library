@@ -29,7 +29,7 @@ echo "Branch name that will be deployed:  $BRANCH_NAME"
 rm -rf ./dist
 
 mkdir ./dist
-git clone https://$GITHUB_TOKEN@github.com/axa-ch/plib-feature.git --depth 1 ./dist
+git clone https://$GITHUB_TOKEN@github.com/axa-ch-webhub-cloud/plib-feature.git --depth 1 ./dist
 
 rm -rf ./dist/$BRANCH_NAME/
 mkdir -p ./dist/$BRANCH_NAME

@@ -45,16 +45,16 @@
 
   // animations
   .animation-left {
-    animation: patternslibCarouselFromLeft 0.8s;
+    animation: patternlibCarouselFromLeft 0.8s;
   }
 
   .animation-right {
-    animation: patternslibCarouselFromRight 0.8s;
+    animation: patternlibCarouselFromRight 0.8s;
   }
 }
 
 // sass put keyframes always to root level - do not nest them into sass classes
-@keyframes patternslibCarouselFromRight {
+@keyframes patternlibCarouselFromRight {
   from {
     opacity: 0;
     transform: translate(100%, 0);
@@ -66,7 +66,7 @@
   }
 }
 
-@keyframes patternslibCarouselFromLeft {
+@keyframes patternlibCarouselFromLeft {
   from {
     opacity: 0;
     transform: translate(-100%, 0);
