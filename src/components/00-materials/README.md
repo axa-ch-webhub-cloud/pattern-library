@@ -105,7 +105,7 @@ body {
 
 ### Divide
 
-We integrated a Sass module for dividing operations because new the Sass interpreter treats slashes only as a separator.
+We integrated a Sass module for dividing operations because new the Sass interpreter treats slashes only as a separator. (for internal use only)
 
 #### Before
 
