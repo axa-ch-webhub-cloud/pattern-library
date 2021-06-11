@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/input-file",
-  "version": "5.0.19",
+  "version": "5.0.18",
   "description": "The input-file component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/input-file#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "6.0.3",
+    "@axa-ch/icon": "6.0.2",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
