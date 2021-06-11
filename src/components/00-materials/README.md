@@ -103,6 +103,28 @@ body {
 }
 ```
 
+### Divide
+
+We integrated a Sass module for dividing operations because new the Sass interpreter treats slashes only as a separator.
+
+#### Before
+
+```scss
+@import '@axa-ch/materials/styles/sass-modules.scss';
+.your-class {
+  top: ($dropdown-height / 2) - (24px / 2);
+}
+```
+
+#### Now
+
+```scss
+@import '@axa-ch/materials/styles/sass-modules.scss';
+.your-class {
+  top: divide($dropdown-height, 2) - divide(24px, 2);
+}
+```
+
 ## Icon/Image set
 
 ### Sizes

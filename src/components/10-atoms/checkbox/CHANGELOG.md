@@ -1,3 +1,7 @@
+## 5.1.13
+
+- Use Sass module for division operations. #2177
+
 ## 5.1.5
 
 - The checkbox was not able to click if no label was set (#1929)

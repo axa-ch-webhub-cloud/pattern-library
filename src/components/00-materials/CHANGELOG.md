@@ -1,3 +1,7 @@
+## 14.3.0
+
+- Added a Sass module for division operations. It must be used from now because the new Sass interpreter treats slashes only as a separator.
+
 ## 14.2.0
 
 - Added a new scss file `20-animations.scss` with transition and easing variables.
