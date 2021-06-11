@@ -1,3 +1,7 @@
+## 9.1.16
+
+- Use Sass module for division operations. #2177
+
 ## 9.1.1
 
 - Bugfix: Nullpointer in `item.name.toLowerCase()`.

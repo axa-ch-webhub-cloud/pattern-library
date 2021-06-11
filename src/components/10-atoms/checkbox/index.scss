@@ -117,8 +117,8 @@ axa-checkbox {
         content: '';
         display: block;
         position: absolute;
-        top: ($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width) / 2;
-        left: ($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width) / 2;
+        top: divide($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
+        left: divide($checkbox-dimension - $checkbox-icon-dimension - 2 * $checkbox-border-width, 2);
         width: $checkbox-icon-dimension;
         height: $checkbox-icon-dimension;
         border: 1px solid;
