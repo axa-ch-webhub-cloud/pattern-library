@@ -2,6 +2,8 @@
 
 _WARNING: For mobile use, currently the innerscroll property must be set. This restriction will be lifted in the future._
 
+**Attention: <TableSortable/> is for people that need a Plug&Play component, which renders out of a Model. <TableSortable/> includes functionalities like "sortable". The <Table/> component, instead, is for whoever needs full control of its children (React's VDOM collides with native DOM if both try to manipulate the same children).**
+
 ## Properties
 
 | Attribute                   | Details                                                                                                                                                                                                                                                                                                                              |
