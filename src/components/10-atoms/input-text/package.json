@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/input-text",
-  "version": "4.5.16",
+  "version": "4.5.17",
   "description": "The input-text component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/input-text#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/popup": "3.1.24",
+    "@axa-ch/popup": "3.1.25",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
