@@ -1,3 +1,7 @@
+## 5.1.14
+
+- Removed hover effect on checkbox. #2165
+
 ## 5.1.13
 
 - Use Sass module for division operations. #2177
