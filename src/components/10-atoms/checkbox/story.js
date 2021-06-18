@@ -12,7 +12,7 @@ export default {
     readme,
     usage: {
       propsPureHTML: `label="I'm a checkbox"`,
-      propsReact: `onChange={handler} label="I'm a checkbox" defaultChecked`,
+      propsReact: `onChange={() => alert("you interacted with me")} label="I'm a checkbox" defaultChecked`,
     },
     changelog,
   },
