@@ -29,10 +29,8 @@ const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
-const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
-  type => type.indexOf('image') === -1
-);
+let ACCEPTED_FILE_TYPES;
+let NOT_IMAGE_FILE_TYPES;
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
@@ -49,6 +47,10 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
+      acceptedFileTypes: {
+        type: String,
+        defaultValue: '',
+      },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
@@ -87,6 +89,14 @@ class AXAFileUpload extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+
+    ACCEPTED_FILE_TYPES = this.acceptedFileTypes;
+    NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
+      type => type.indexOf('image') === -1
+    );
+
+    console.log(ACCEPTED_FILE_TYPES);
+    console.log(NOT_IMAGE_FILE_TYPES);
 
     // User gets access to the files over these. The output varies if preventFileCompression is set
     this.files = [];
@@ -144,6 +154,8 @@ class AXAFileUpload extends LitElement {
       file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
     );
 
+    console.log(files + ', ' + validFileTypesFiles + ' -- ' + [...files]);
+
     // we have at least one wrong-MIME-type file?
     let removeGlobalMessage = true;
     if (validFileTypesFiles.length < files.length) {
@@ -164,7 +176,11 @@ class AXAFileUpload extends LitElement {
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
-    this.filterAndAddFiles(files);
+    if (ACCEPTED_FILE_TYPES === '') {
+      this.addFiles([...files], true);
+    } else {
+      this.filterAndAddFiles(files);
+    }
 
     if (typeof this.onFileDrop === 'function') {
       this.onFileDrop(e);
