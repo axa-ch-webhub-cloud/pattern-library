@@ -122,7 +122,7 @@ export default AXAButtonReact;`}
           language="html"
           style={String.prototype.trimRight ? style : undefined}
         >
-          {`<AXAButtonReact motionOff onClick={() => console.log("you clicked me")}>
+          {`<AXAButtonReact motionOff onClick={() => alert("you clicked me")}>
   I am a Button
 </AXAButtonReact>`}
         </ReactSyntaxHighlighter>

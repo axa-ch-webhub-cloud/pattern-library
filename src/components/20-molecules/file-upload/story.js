@@ -17,7 +17,7 @@ export default {
   parameters: {
     readme,
     usage: {
-      propsReact: 'onClick={handler}',
+      propsReact: 'onClick={() => alert("you clicked me")}',
     },
     changelog,
   },
