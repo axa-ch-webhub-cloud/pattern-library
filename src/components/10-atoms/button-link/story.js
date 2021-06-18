@@ -46,7 +46,7 @@ export default {
     usage: {
       innerHTML: 'I am a button-link',
       propsReact:
-        'href="#axa" motionOff onClick={() => alert("you interacted with me")}',
+        'href="#axa" motionOff onClick={() => alert("you clicked me")}',
     },
     changelog,
   },
