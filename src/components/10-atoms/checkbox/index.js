@@ -114,6 +114,14 @@ class AXACheckbox extends NoShadowDOM {
     onChange(event);
   }
 
+  handleSpacebar(e) {
+    // Key: Space
+    if (e.keyCode === 32) {
+      this.checked = !this.checked;
+      this.state.native = this.checked;
+    }
+  }
+
   // throttle re-rendering to once per animation frame
   // (helps e.g. with static websites using this component together with static children
   // (like <axa-checkbox><span>my label</span></axa-checkbox>),
@@ -173,6 +181,7 @@ class AXACheckbox extends NoShadowDOM {
         type="checkbox"
         name="${name}"
         value="${value}"
+        tabindex="-1"
         aria-required="${required}"
         ?checked="${checked}"
         ?disabled="${disabled}"
@@ -209,7 +218,12 @@ class AXACheckbox extends NoShadowDOM {
 
     return renderLabel
       ? html`
-          <label for="${refId}" class="a-checkbox__wrapper">
+          <label
+            for="${refId}"
+            class="a-checkbox__wrapper"
+            tabindex="0"
+            @keydown="${this.handleSpacebar}"
+          >
             ${inputElements}
             <span class="${checkboxContentClasses}">
               ${renderLabel} ${required ? REQUIRED_SYMBOL : ''}
@@ -218,7 +232,12 @@ class AXACheckbox extends NoShadowDOM {
           </label>
         `
       : html`
-          <label for="${refId}" class="a-checkbox__wrapper">
+          <label
+            for="${refId}"
+            class="a-checkbox__wrapper"
+            tabindex="0"
+            @keydown="${this.handleSpacebar}"
+          >
             ${inputElements} ${errorElement}
           </label>
         `;
