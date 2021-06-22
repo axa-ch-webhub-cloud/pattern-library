@@ -169,6 +169,7 @@ class AXAFileUpload extends LitElement {
     let changeEvent = document.createEvent('UIEvents');
     changeEvent.initUIEvent('change', true, true);
     this.onChange(changeEvent);
+    this.fileUpload.dispatchEvent(changeEvent);
   }
 
   handleDropZoneDrop(e) {
@@ -576,7 +577,7 @@ class AXAFileUpload extends LitElement {
     const fileOverview = this.fileOverviewMapping(allCompressedFiles);
 
     return html`
-      <article class="m-file-upload">
+      <article class="m-file-upload js-file-upload">
         <h1><slot></slot></h1>
         <section
           @dragover="${this.handleDropZoneDragover}"
@@ -620,6 +621,7 @@ class AXAFileUpload extends LitElement {
     this.errorWrapper = this.shadowRoot.querySelector(
       '.js-file-upload__error-wrapper'
     );
+    this.fileUpload = this.shadowRoot.querySelector('.js-file-upload');
   }
 
   querySelector(selector) {
