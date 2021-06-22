@@ -79,6 +79,7 @@ class AXAFileUpload extends LitElement {
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
+      onChange: { type: Function, attribute: false },
     };
   }
 
@@ -114,10 +115,12 @@ class AXAFileUpload extends LitElement {
   }
 
   handleInputFileChange(e) {
+    console.log('change', e);
     const {
       target: { files },
     } = e;
     this.filterAndAddFiles(files);
+    this.onChange(e, { detail: { value: this.files } });
   }
 
   handleDropZoneDragover(e) {
@@ -162,6 +165,12 @@ class AXAFileUpload extends LitElement {
     }
   }
 
+  fireSyntheticChangeEvent() {
+    let changeEvent = document.createEvent('UIEvents');
+    changeEvent.initUIEvent('change', true, true);
+    this.onChange(changeEvent);
+  }
+
   handleDropZoneDrop(e) {
     // prevent browser from displaying the file fullscreen
     e.preventDefault();
@@ -170,6 +179,8 @@ class AXAFileUpload extends LitElement {
     const { files } = e.dataTransfer;
 
     this.filterAndAddFiles(files);
+
+    this.fireSyntheticChangeEvent();
 
     if (typeof this.onFileDrop === 'function') {
       this.onFileDrop(e);
@@ -245,6 +256,8 @@ class AXAFileUpload extends LitElement {
 
     if (typeof this.onFileRemove === 'function') {
       this.onFileRemove();
+
+      this.fireSyntheticChangeEvent();
     }
 
     this.requestUpdate();
