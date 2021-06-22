@@ -120,8 +120,6 @@ class AXAFileUpload extends LitElement {
       target: { files },
     } = e;
     this.filterAndAddFiles(files);
-    this.onChange(e, { detail: this.files });
-    fireCustomEvent('change', this.files, this);
   }
 
   handleDropZoneDragover(e) {
@@ -166,8 +164,10 @@ class AXAFileUpload extends LitElement {
     }
   }
 
-  fireSyntheticChangeEvent() {
-    this.onChange('change', { detail: this.files });
+  fireCustomChangeEvent() {
+    this.onChange({
+      detail: this.files,
+    });
     fireCustomEvent('change', this.files, this);
   }
 
@@ -179,8 +179,6 @@ class AXAFileUpload extends LitElement {
     const { files } = e.dataTransfer;
 
     this.filterAndAddFiles(files);
-
-    this.fireSyntheticChangeEvent();
 
     if (typeof this.onFileDrop === 'function') {
       this.onFileDrop(e);
@@ -256,8 +254,7 @@ class AXAFileUpload extends LitElement {
 
     if (typeof this.onFileRemove === 'function') {
       this.onFileRemove();
-
-      this.fireSyntheticChangeEvent();
+      this.fireCustomChangeEvent();
     }
 
     this.requestUpdate();
@@ -406,7 +403,6 @@ class AXAFileUpload extends LitElement {
       // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
-
     // Used for previws
     this.validCompressedFiles = this.validCompressedFiles.concat(
       compressedFilesLeftover
@@ -423,6 +419,8 @@ class AXAFileUpload extends LitElement {
     this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
       faultyOriginalFiles
     );
+
+    this.fireCustomChangeEvent();
   }
 
   handleMaxNumberOfFiles() {
