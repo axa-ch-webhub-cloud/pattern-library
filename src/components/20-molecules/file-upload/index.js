@@ -2,6 +2,7 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
+import fireCustomEvent from '../../../utils/custom-event';
 
 import {
   AddSvg,
@@ -115,12 +116,12 @@ class AXAFileUpload extends LitElement {
   }
 
   handleInputFileChange(e) {
-    console.log('change', e);
     const {
       target: { files },
     } = e;
     this.filterAndAddFiles(files);
-    this.onChange(e, { detail: { value: this.files } });
+    this.onChange(e, { detail: this.files });
+    fireCustomEvent('change', this.files, this);
   }
 
   handleDropZoneDragover(e) {
@@ -166,10 +167,8 @@ class AXAFileUpload extends LitElement {
   }
 
   fireSyntheticChangeEvent() {
-    let changeEvent = document.createEvent('UIEvents');
-    changeEvent.initUIEvent('change', true, true);
-    this.onChange(changeEvent);
-    this.fileUpload.dispatchEvent(changeEvent);
+    this.onChange('change', { detail: this.files });
+    fireCustomEvent('change', this.files, this);
   }
 
   handleDropZoneDrop(e) {
