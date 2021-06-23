@@ -29,7 +29,7 @@ const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-let NOT_IMAGE_FILE_TYPES;
+const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
@@ -85,12 +85,6 @@ class AXAFileUpload extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-
-    console.log('file filter: ' + this.acceptedFileTypes);
-
-    NOT_IMAGE_FILE_TYPES = this.acceptedFileTypes
-      .split(', ')
-      .filter(type => type.indexOf('image') === -1);
 
     // User gets access to the files over these. The output varies if preventFileCompression is set
     this.files = [];
@@ -167,7 +161,6 @@ class AXAFileUpload extends LitElement {
       this.globalErrorMessage = 'error';
       this.requestUpdate();
     }
-    debugger;
   }
 
   handleDropZoneDrop(e) {
@@ -279,10 +272,10 @@ class AXAFileUpload extends LitElement {
     this.numberOfDroppedFiles += droppedFilesWithID.length;
 
     const notImagesFiles = [...droppedFilesWithID].filter(
-      file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
+      file => IMAGE_FILE_TYPES.indexOf(file.type) === -1
     );
 
-    // compress all images. pngs will become jpeg's and unrecognised files will be deleted. (all pfd's were removed)
+    // compress all images. png's will become jpeg's and unrecognised files will be deleted. (all pdf's were removed)
     const compressedImagesWithID = await compressImages(droppedFilesWithID);
 
     this.validateFiles(
@@ -401,6 +394,7 @@ class AXAFileUpload extends LitElement {
       // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
+
     // Used for previws
     this.validCompressedFiles = this.validCompressedFiles.concat(
       compressedFilesLeftover

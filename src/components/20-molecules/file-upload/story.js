@@ -32,13 +32,13 @@ export const FileUpload = () => {
     step: 1,
   };
   const inputFileText = text('inputFileText', 'Upload file');
-  const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 2000, {
+  const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 100, {
     range: true,
     min: 1,
     max: 5000,
     step: 10,
   });
-  const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 10000, {
+  const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 500, {
     range: true,
     min: 1,
     max: 30000,
@@ -52,9 +52,8 @@ export const FileUpload = () => {
   const deleteStatusText = text('deleteStatusText', 'Delete');
   const addStatusText = text('addStatusText', 'Add more');
   const acceptedFileTypes = text(
-    'add forbidden file types',
-    ''
-    // 'image/jpg, image/jpeg, application/pdf, image/png'
+    'allowedFileTypes',
+    'image/jpg, image/jpeg, application/pdf, image/png'
   );
   const fileTooBigStatusText = text(
     'fileTooBigStatusText',
