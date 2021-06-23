@@ -13,7 +13,7 @@ axa-checkbox {
     height: 18px;
     color: $color;
   }
-
+  
   @include text(t4);
   display: block;
 
@@ -56,7 +56,6 @@ axa-checkbox {
     &:checked + .a-checkbox__icon--checkmark {
       border-color: $color-axa-blue;
       background-color: $color-axa-blue;
-
       .a-checkbox__icon-checkmark {
         @include show-checkmark($color-prim-white);
       }
@@ -65,7 +64,6 @@ axa-checkbox {
     &:checked + .a-checkbox__icon--inverted {
       border-color: $color-prim-white;
       background-color: $color-prim-white;
-
       .a-checkbox__icon-checkmark {
         @include show-checkmark($color-axa-blue);
       }
@@ -74,7 +72,6 @@ axa-checkbox {
     &:disabled + .a-checkbox__icon {
       cursor: default;
       border-color: $color-silver;
-
       &::after {
         border-color: transparent;
       }
@@ -82,7 +79,6 @@ axa-checkbox {
 
     &:disabled + .a-checkbox__icon--checkmark {
       background-color: $color-prim-white;
-
       .a-checkbox__icon-checkmark {
         color: $color-silver;
       }
@@ -91,7 +87,6 @@ axa-checkbox {
     &:disabled + .a-checkbox__icon--inverted {
       background-color: transparent;
       border-color: $color-disabled-inverted;
-
       .a-checkbox__icon-checkmark {
         color: $color-disabled-inverted;
       }
@@ -137,7 +132,6 @@ axa-checkbox {
     margin: -19px 0 0 30px;
     line-height: 1.37;
     color: $color-dark-grey;
-
     &--inverted {
       color: $color-prim-white;
     }
@@ -158,12 +152,10 @@ axa-checkbox {
   &[disabled] {
     .a-checkbox__content {
       color: $color-light-grey;
-
       &--inverted {
         color: $color-disabled-inverted;
       }
     }
-
     .a-checkbox__input:checked + .a-checkbox__icon::after {
       border-color: $color-silver;
       background-color: $color-silver;
@@ -172,7 +164,6 @@ axa-checkbox {
 
   &[error] {
     color: $color-shy-tomato;
-
     &:not([checked]) .a-checkbox__icon {
       border-color: $color-shy-tomato;
     }
@@ -183,38 +174,24 @@ axa-checkbox {
   .a-checkbox__children-inline * {
       display: inline;
       @include text(t4);
+      line-height: 1;
 
       @include breakpoint($mediaquery-sm-up) {
          @include text(t3);
          line-height: 1;
       }
-      line-height: 1;
+      
   }
 
   &:hover[data-axa-checkbox-no-touch] {
-      &:not([disabled]) {
-        .a-checkbox__icon {
-          border-color: $color-axa-blue;
-
-          &::after {
-            border-color: $color-axa-blue;
-          }
-
-          &--inverted {
-            border-color: $color-prim-white;
-
-            &::after {
-              border-color: $color-prim-white; // just needed for undocumented variant "inverted-square"
-            }
-          }
+    &:not([disabled]) {
+      .a-checkbox__icon {
+        border-color: $color-axa-blue;
+        
+        &--inverted {
+          border-color: $color-prim-white;
         }
       }
-
-      .a-checkbox__icon-checkmark {
-        @include show-checkmark($color-axa-blue);
-      }
-      .a-checkbox__icon--inverted .a-checkbox__icon-checkmark {
-        @include show-checkmark($color-prim-white);
-      }
+    }
   }
 }

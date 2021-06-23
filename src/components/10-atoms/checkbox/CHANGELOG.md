@@ -1,3 +1,7 @@
+## 5.2.1
+
+- Removed hover effect on checkbox. #2165
+
 ## 5.2.0
 
 - Added outline for accessibility reasons. #2080
