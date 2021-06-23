@@ -40,7 +40,6 @@ storiesOf('Examples/File Upload/Pure HTML', module)
         <axa-file-upload
           maxSizeOfSingleFileKB="500"
           class="js-file-upload__file-upload"
-          @change="${e => console.log('change 123')}"
           >These files are going to be uploaded</axa-file-upload
         >
       </div>
