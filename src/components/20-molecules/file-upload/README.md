@@ -132,4 +132,4 @@ In the `allowedFileTypes` attribute, you can declare the allowed file types that
 
 ### onChange
 
-The attribute `onChange` function executes, as soon as the user removes or adds new files. Adding new files include files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.
+The attribute `onChange` function executes, as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.
