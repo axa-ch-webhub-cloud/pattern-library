@@ -4,6 +4,7 @@ $checkbox-icon-dimension: 8px;
 $checkbox-label-left-margin: 11px;
 $checkbox-error-top-margin: 10px;
 $color-disabled-inverted: #4d9ba6; // The designer has given approval for this color only for component's background "blue-teal".
+
 axa-checkbox {
   @mixin show-checkmark($color: currentColor) {
     display: flex;
@@ -12,16 +13,20 @@ axa-checkbox {
     height: 18px;
     color: $color;
   }
+  
   @include text(t4);
   display: block;
+
   .a-checkbox__wrapper {
     position: relative;
     display: inline-block;
     cursor: pointer;
   }
+
   &[disabled] .a-checkbox__wrapper {
     cursor: default;
   }
+
   .a-checkbox__input {
     position: absolute;
     width: 1px;
@@ -30,17 +35,20 @@ axa-checkbox {
     margin: -1px;
     overflow: hidden;
   }
+
   .a-checkbox__input.a-checkbox__input {
     &:checked + .a-checkbox__icon {
       &::after {
         border-color: $color-axa-blue;
         background-color: $color-axa-blue;
       }
+
       &--inverted::after {
         border-color: $color-axa-blue; // just needed for yet unsupportet variant "inverted-square"
         background-color: $color-axa-blue; // just needed for yet unsupportet variant "inverted-square"
       }
     }
+
     &:checked + .a-checkbox__icon--checkmark {
       border-color: $color-axa-blue;
       background-color: $color-axa-blue;
@@ -48,6 +56,7 @@ axa-checkbox {
         @include show-checkmark($color-prim-white);
       }
     }
+
     &:checked + .a-checkbox__icon--inverted {
       border-color: $color-prim-white;
       background-color: $color-prim-white;
@@ -55,6 +64,7 @@ axa-checkbox {
         @include show-checkmark($color-axa-blue);
       }
     }
+
     &:disabled + .a-checkbox__icon {
       cursor: default;
       border-color: $color-silver;
@@ -62,12 +72,14 @@ axa-checkbox {
         border-color: transparent;
       }
     }
+
     &:disabled + .a-checkbox__icon--checkmark {
       background-color: $color-prim-white;
       .a-checkbox__icon-checkmark {
         color: $color-silver;
       }
     }
+
     &:disabled + .a-checkbox__icon--inverted {
       background-color: transparent;
       border-color: $color-disabled-inverted;
@@ -76,6 +88,7 @@ axa-checkbox {
       }
     }
   }
+
   .a-checkbox__icon {
     display: block;
     position: relative;
@@ -85,12 +98,15 @@ axa-checkbox {
     border: $checkbox-border-width solid;
     border-color: $color-light-grey;
     box-sizing: border-box;
+
     &-checkmark {
       display: none;
     }
+
     &--inverted {
       border-color: $color-prim-white;
     }
+
     &:not(.a-checkbox__icon--checkmark) {
       &::after {
         content: '';
@@ -106,6 +122,7 @@ axa-checkbox {
       }
     }
   }
+
   .a-checkbox__content {
     display: block;
     margin: -19px 0 0 30px;
@@ -115,16 +132,19 @@ axa-checkbox {
       color: $color-prim-white;
     }
   }
+
   .a-checkbox__error {
     display: block;
     margin: $checkbox-error-top-margin 0 0 0;
     line-height: 1.37;
   }
+
   &[label]:not([label=""]) { // if label is set and is not empty the error text should have some margin-left
     .a-checkbox__error {
       margin: $checkbox-error-top-margin 0 0 ($checkbox-dimension + $checkbox-label-left-margin);
     }
   }
+
   &[disabled] {
     .a-checkbox__content {
       color: $color-light-grey;
@@ -137,27 +157,33 @@ axa-checkbox {
       background-color: $color-silver;
     }
   }
+
   &[error] {
     color: $color-shy-tomato;
     &:not([checked]) .a-checkbox__icon {
       border-color: $color-shy-tomato;
     }
   }
+
   &[styled] .a-checkbox__content *,
   .a-checkbox__children-inline,
   .a-checkbox__children-inline * {
       display: inline;
       @include text(t4);
+      line-height: 1;
+
       @include breakpoint($mediaquery-sm-up) {
          @include text(t3);
          line-height: 1;
       }
-      line-height: 1;
+      
   }
+
   &:hover[data-axa-checkbox-no-touch] {
     &:not([disabled]) {
       .a-checkbox__icon {
         border-color: $color-axa-blue;
+        
         &--inverted {
           border-color: $color-prim-white;
         }
