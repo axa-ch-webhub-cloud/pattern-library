@@ -15,10 +15,7 @@ import readme from '../README.md';
 import AXAFileUploadReact from './AXAFileUploadReact';
 
 function getTime(date) {
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-  return `${hours}:${minutes}:${seconds}`;
+  return `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
 function logEvent(eventName) {
