@@ -158,7 +158,6 @@ class AXAFileUpload extends LitElement {
     } else if (files.length > 0) {
       this.addFiles([...files], true);
     } else {
-      this.globalErrorMessage = 'error';
       this.requestUpdate();
     }
   }
