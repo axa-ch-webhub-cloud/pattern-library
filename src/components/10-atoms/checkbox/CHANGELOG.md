@@ -1,3 +1,7 @@
+## 5.2.0
+
+- Added outline for accessibility reasons. #2080
+
 ## 5.1.13
 
 - Use Sass module for division operations. #2177
