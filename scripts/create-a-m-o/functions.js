@@ -126,7 +126,7 @@ const createFiles = (store, a, m, o, done) => () => {
     \`\`\`
 
     \`\`\`js
-    <${className}React onClick={handler}>
+    <${className}React onClick={() => alert("you clicked me")}>
     </${className}React>
     \`\`\`
 

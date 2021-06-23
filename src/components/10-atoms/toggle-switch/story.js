@@ -11,7 +11,7 @@ export default {
   parameters: {
     readme,
     usage: {
-      propsReact: 'onChange={handler}',
+      propsReact: 'onChange={() => alert("you interacted with me")}',
     },
     changelog,
   },
