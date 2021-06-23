@@ -267,7 +267,7 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles, removeGlobalMessage) {
-    // generate id to match orignal files with compressed one if this.preventFileCompression is set
+    // generate id to match original files with compressed one if this.preventFileCompression is set
     const droppedFilesWithID = droppedFiles.map(file => {
       file.id = createRefId();
       return file;
@@ -403,11 +403,12 @@ class AXAFileUpload extends LitElement {
       // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
-    // Used for previws
+
+    // Used for previews
     this.validCompressedFiles = this.validCompressedFiles.concat(
       compressedFilesLeftover
     );
-    // Used for previws
+    // Used for previews
     this.faultyCompressedFiles = this.faultyCompressedFiles.concat(
       faultyCompressedFiles
     );
