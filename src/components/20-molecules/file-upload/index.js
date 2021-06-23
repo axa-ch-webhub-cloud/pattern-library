@@ -29,7 +29,6 @@ const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-let ACCEPTED_FILE_TYPES;
 let NOT_IMAGE_FILE_TYPES;
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
@@ -47,10 +46,7 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
-      acceptedFileTypes: {
-        type: String,
-        defaultValue: '',
-      },
+      acceptedFileTypes: { type: String, defaultValue: '' },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
@@ -90,13 +86,11 @@ class AXAFileUpload extends LitElement {
     super();
     applyDefaults(this);
 
-    ACCEPTED_FILE_TYPES = this.acceptedFileTypes;
-    NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
-      type => type.indexOf('image') === -1
-    );
+    console.log('file filter: ' + this.acceptedFileTypes);
 
-    console.log(ACCEPTED_FILE_TYPES);
-    console.log(NOT_IMAGE_FILE_TYPES);
+    NOT_IMAGE_FILE_TYPES = this.acceptedFileTypes
+      .split(', ')
+      .filter(type => type.indexOf('image') === -1);
 
     // User gets access to the files over these. The output varies if preventFileCompression is set
     this.files = [];
@@ -149,25 +143,31 @@ class AXAFileUpload extends LitElement {
   }
 
   filterAndAddFiles(files) {
-    // filter out files with wrong MIME type
-    const validFileTypesFiles = [...files].filter(
-      file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
-    );
+    if (this.acceptedFileTypes !== '') {
+      // filter out files with wrong MIME type
+      const validFileTypesFiles = [...files].filter(
+        file => file.type && this.acceptedFileTypes.indexOf(file.type) > -1
+      );
 
-    console.log(files + ', ' + validFileTypesFiles + ' -- ' + [...files]);
+      // we have at least one wrong-MIME-type file?
+      let removeGlobalMessage = true;
+      if (validFileTypesFiles.length < files.length) {
+        removeGlobalMessage = false;
+        this.globalErrorMessage = this.wrongFileTypeStatusText;
+        this.requestUpdate();
+      }
 
-    // we have at least one wrong-MIME-type file?
-    let removeGlobalMessage = true;
-    if (validFileTypesFiles.length < files.length) {
-      removeGlobalMessage = false;
-      this.globalErrorMessage = this.wrongFileTypeStatusText;
+      // we didn't filter out all the incoming files?
+      if (validFileTypesFiles.length > 0) {
+        this.addFiles(validFileTypesFiles, removeGlobalMessage);
+      }
+    } else if (files.length > 0) {
+      this.addFiles([...files], true);
+    } else {
+      this.globalErrorMessage = 'error';
       this.requestUpdate();
     }
-
-    // we didn't filter out all the incoming files?
-    if (validFileTypesFiles.length > 0) {
-      this.addFiles(validFileTypesFiles, removeGlobalMessage);
-    }
+    debugger;
   }
 
   handleDropZoneDrop(e) {
@@ -176,11 +176,8 @@ class AXAFileUpload extends LitElement {
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
-    if (ACCEPTED_FILE_TYPES === '') {
-      this.addFiles([...files], true);
-    } else {
-      this.filterAndAddFiles(files);
-    }
+
+    this.filterAndAddFiles(files);
 
     if (typeof this.onFileDrop === 'function') {
       this.onFileDrop(e);
@@ -590,7 +587,7 @@ class AXAFileUpload extends LitElement {
                 <p class="m-file-upload__or">${orText}</p>
                 <axa-input-file
                   class="m-file-upload__input js-file-upload__input"
-                  accept="${ACCEPTED_FILE_TYPES}"
+                  accept="${this.acceptedFileTypes}"
                   icon="${icon}"
                   multiple
                   @change=${this.handleInputFileChange}

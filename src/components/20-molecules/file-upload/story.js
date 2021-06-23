@@ -32,13 +32,13 @@ export const FileUpload = () => {
     step: 1,
   };
   const inputFileText = text('inputFileText', 'Upload file');
-  const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 100, {
+  const maxSizeOfSingleFileKB = number('maxSizeOfSingleFileKB', 2000, {
     range: true,
     min: 1,
     max: 5000,
     step: 10,
   });
-  const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 500, {
+  const maxSizeOfAllFilesKB = number('maxSizeOfAllFilesKB', 10000, {
     range: true,
     min: 1,
     max: 30000,
@@ -51,6 +51,11 @@ export const FileUpload = () => {
   );
   const deleteStatusText = text('deleteStatusText', 'Delete');
   const addStatusText = text('addStatusText', 'Add more');
+  const acceptedFileTypes = text(
+    'add forbidden file types',
+    ''
+    // 'image/jpg, image/jpeg, application/pdf, image/png'
+  );
   const fileTooBigStatusText = text(
     'fileTooBigStatusText',
     `File size exceeds maximum size`
@@ -94,6 +99,7 @@ export const FileUpload = () => {
         infoText="${infoText}"
         wrongFileTypeStatusText="${wrongFileTypeStatusText}"
         icon="${icon}"
+        acceptedFileTypes="${acceptedFileTypes}"
         >${headerText}</axa-file-upload
       >
     </div>
