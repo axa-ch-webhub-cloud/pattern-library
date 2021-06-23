@@ -19,7 +19,7 @@ export default {
     readme,
     usage: {
       innerHTML: 'I am a upload',
-      propsReact: 'onChange={handler}',
+      propsReact: 'onChange={() => alert("you interacted with me")}',
     },
     changelog,
   },

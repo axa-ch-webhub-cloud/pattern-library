@@ -85,7 +85,7 @@ const MyPanel = () => {
                   <br />
                 </>
               )}
-              &lt;/Axa{REACT_TAG}React&gt;
+              &lt;/AXA{REACT_TAG}React&gt;
             </code>
           </pre>
         </>

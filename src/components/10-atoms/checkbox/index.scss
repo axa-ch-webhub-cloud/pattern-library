@@ -18,6 +18,10 @@ axa-checkbox {
     position: relative;
     display: inline-block;
     cursor: pointer;
+
+    &:focus {
+      outline: 1px solid $color-axa-blue;
+    }
   }
   &[disabled] .a-checkbox__wrapper {
     cursor: default;

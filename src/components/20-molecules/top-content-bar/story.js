@@ -18,7 +18,7 @@ export default {
     usage: {
       innerHTML: 'Some Text',
       propsPureHTML: 'ctatext="Click Me"',
-      propsReact: 'onClick={handler} ctatext="Click Me"',
+      propsReact: 'onClick={() => alert("you clicked me")} ctatext="Click Me"',
     },
     changelog,
   },

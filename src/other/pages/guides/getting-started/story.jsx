@@ -122,9 +122,9 @@ export default AXAButtonReact;`}
           language="html"
           style={String.prototype.trimRight ? style : undefined}
         >
-          {`<AXAButtonReact motionOff onClick={handler}>
+          {`<AXAButtonReact motionOff onClick={() => alert("you clicked me")}>
   I am a Button
-</AxaButtonReact>`}
+</AXAButtonReact>`}
         </ReactSyntaxHighlighter>
         <AXAHeading rank="3">Read more about the Pattern Library</AXAHeading>
         <PLCallout

@@ -18,7 +18,7 @@ export default {
     readme,
     usage: {
       innerHTML: 'I am a button',
-      propsReact: 'motionOff onClick={handler}',
+      propsReact: 'motionOff onClick={() => alert("you clicked me")}',
     },
     changelog,
   },

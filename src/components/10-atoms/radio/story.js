@@ -14,7 +14,8 @@ export default {
     readme,
     usage: {
       propsPureHTML: 'checked',
-      propsReact: 'checked={checked} onChange={handler}',
+      propsReact:
+        'checked={checked} onChange={() => alert("you interacted with me")}',
     },
     changelog,
   },
