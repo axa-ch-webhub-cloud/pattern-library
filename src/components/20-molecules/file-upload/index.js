@@ -3,14 +3,14 @@ import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
 import AXAInputFile from '@axa-ch/input-file';
-import fireCustomEvent from '../../../utils/custom-event';
-
 import {
   AddSvg,
   Delete_foreverSvg,
   ClearSvg,
   Attach_fileSvg,
 } from '@axa-ch/materials/icons/material-design';
+
+import fireCustomEvent from '../../../utils/custom-event';
 
 // icon isolated from others, because it's a component specific icon
 import { FileUploadGroupSvg } from './icons';
