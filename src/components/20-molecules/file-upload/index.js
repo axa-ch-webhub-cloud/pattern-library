@@ -137,7 +137,10 @@ class AXAFileUpload extends LitElement {
   }
 
   filterAndAddFiles(files) {
+    console.log(this.allowedFileTypes);
     if (this.allowedFileTypes !== '') {
+      console.log('with filter');
+
       // filter out files with wrong MIME type
       const validFileTypesFiles = [...files].filter(
         file => file.type && this.allowedFileTypes.indexOf(file.type) > -1
@@ -155,7 +158,8 @@ class AXAFileUpload extends LitElement {
       if (validFileTypesFiles.length > 0) {
         this.addFiles(validFileTypesFiles, removeGlobalMessage);
       }
-    } else if (files.length > 0) {
+    } else if (files.length > 0 && this.allowedFileTypes === '') {
+      console.log('without filter');
       this.addFiles([...files], true);
     } else {
       this.requestUpdate();
