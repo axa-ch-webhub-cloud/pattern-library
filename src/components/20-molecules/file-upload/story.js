@@ -51,7 +51,7 @@ export const FileUpload = () => {
   );
   const deleteStatusText = text('deleteStatusText', 'Delete');
   const addStatusText = text('addStatusText', 'Add more');
-  const acceptedFileTypes = text(
+  const allowedFileTypes = text(
     'allowedFileTypes',
     'image/jpg, image/jpeg, application/pdf, image/png'
   );
@@ -98,7 +98,7 @@ export const FileUpload = () => {
         infoText="${infoText}"
         wrongFileTypeStatusText="${wrongFileTypeStatusText}"
         icon="${icon}"
-        acceptedFileTypes="${acceptedFileTypes}"
+        allowedFileTypes="${allowedFileTypes}"
         >${headerText}</axa-file-upload
       >
     </div>

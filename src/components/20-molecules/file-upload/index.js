@@ -46,7 +46,7 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
-      acceptedFileTypes: { type: String, defaultValue: '' },
+      allowedFileTypes: { type: String, defaultValue: '' },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
@@ -137,10 +137,10 @@ class AXAFileUpload extends LitElement {
   }
 
   filterAndAddFiles(files) {
-    if (this.acceptedFileTypes !== '') {
+    if (this.allowedFileTypes !== '') {
       // filter out files with wrong MIME type
       const validFileTypesFiles = [...files].filter(
-        file => file.type && this.acceptedFileTypes.indexOf(file.type) > -1
+        file => file.type && this.allowedFileTypes.indexOf(file.type) > -1
       );
 
       // we have at least one wrong-MIME-type file?
@@ -580,7 +580,7 @@ class AXAFileUpload extends LitElement {
                 <p class="m-file-upload__or">${orText}</p>
                 <axa-input-file
                   class="m-file-upload__input js-file-upload__input"
-                  accept="${this.acceptedFileTypes}"
+                  accept="${this.allowedFileTypes}"
                   icon="${icon}"
                   multiple
                   @change=${this.handleInputFileChange}
