@@ -19,11 +19,23 @@ function getTime(date) {
 }
 
 function logEvent(eventName) {
-  let item = document.createElement('li');
+  const item = document.createElement('li');
   item.innerHTML = `${eventName} triggered on ${getTime(new Date())}`;
   document.querySelector('#m-fileupload-story__events').appendChild(item);
 }
 
+function logFiles(e) {
+  const files = e.detail;
+
+  document.querySelector('#m-fileupload-story__files').innerHTML = '';
+  if (files.length > 0) {
+    files.forEach(file => {
+      const item = document.createElement('li');
+      item.innerHTML = file.name;
+      document.querySelector('#m-fileupload-story__files').appendChild(item);
+    });
+  }
+}
 storiesOf('Examples/File Upload/React', module)
   .addDecorator(withKnobs)
   .addParameters({
@@ -120,7 +132,26 @@ storiesOf('Examples/File Upload/React', module)
         </AXAFileUploadReact>
         <div>
           <p>Events:</p>
-          <ul id="m-fileupload-story__events"></ul>
+          <ul id="m-fileupload-story__events" />
+        </div>
+      </div>,
+      div
+    );
+    return div;
+  })
+  .add('Get files from onChange event', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <div>
+        <AXAFileUploadReact
+          maxSizeOfSingleFileKB="500"
+          onChange={e => {
+            logFiles(e);
+          }}
+        />
+        <div>
+          <p>Files:</p>
+          <ol id="m-fileupload-story__files" />
         </div>
       </div>,
       div

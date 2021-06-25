@@ -30,6 +30,8 @@ storiesOf('Examples/File Upload/Pure HTML', module)
         `;
 
         render(listWrapper, document.getElementById('listWrapper'));
+      } else {
+        render('', document.getElementById('listWrapper'));
       }
     };
 
