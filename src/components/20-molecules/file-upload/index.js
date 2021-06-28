@@ -164,6 +164,7 @@ class AXAFileUpload extends LitElement {
     }
   }
 
+  // <input-file> won't be triggered on drag & drop or deleting files so we create a custom event here
   fireCustomChangeEvent() {
     this.onChange({
       detail: this.files,
