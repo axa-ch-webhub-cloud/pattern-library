@@ -1,3 +1,7 @@
+## 14.3.2
+
+Revert to state from version 14.2.0 because it is not possible for use to use @use methods in scss.
+
 ## 14.3.1
 
 - Added missing import that caused an Error
