@@ -10,5 +10,5 @@ module.exports = {
     ],
     '@babel/preset-react',
   ],
-  plugins: [['@babel/plugin-proposal-private-property-in-object', { loose: true }]],
+  plugins: [['@babel/plugin-proposal-class-properties', { loose: true }]],
 };
