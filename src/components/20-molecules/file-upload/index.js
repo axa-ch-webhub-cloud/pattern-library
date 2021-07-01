@@ -46,6 +46,7 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
+      invalid: { type: Boolean, reflect: true },
       allowedFileTypes: { type: String, defaultValue: '' },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
@@ -148,6 +149,7 @@ class AXAFileUpload extends LitElement {
       if (validFileTypesFiles.length < files.length) {
         removeGlobalMessage = false;
         this.globalErrorMessage = this.wrongFileTypeStatusText;
+        this.invalid = true;
         this.requestUpdate();
       }
 
@@ -158,6 +160,7 @@ class AXAFileUpload extends LitElement {
     } else if (files.length > 0 && this.allowedFileTypes === '') {
       this.addFiles([...files], true);
     } else {
+      this.invalid = false;
       this.requestUpdate();
     }
   }
@@ -305,10 +308,13 @@ class AXAFileUpload extends LitElement {
     } = this;
 
     const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
-    this.globalErrorMessage =
-      sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes
-        ? filesTooBigStatusText
-        : '';
+    if (sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes) {
+      this.globalErrorMessage = filesTooBigStatusText;
+      this.invalid = true;
+    } else {
+      this.globalErrorMessage = '';
+      this.invalid = false;
+    }
   }
 
   validateFiles(compressedImages, notImagesFiles, droppedFilesWithID) {
@@ -426,6 +432,7 @@ class AXAFileUpload extends LitElement {
       faultyFiles.length + files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
+      this.invalid = true;
     }
 
     this.isFileMaxReached = files.length === maxNumberOfFiles;
@@ -607,6 +614,8 @@ class AXAFileUpload extends LitElement {
     this.errorWrapper = this.shadowRoot.querySelector(
       '.js-file-upload__error-wrapper'
     );
+
+    console.log(this.querySelector('axa-file-upload'));
   }
 
   querySelector(selector) {

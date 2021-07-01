@@ -79,6 +79,7 @@ export const FileUpload = () => {
     'The following files are being transferred:'
   );
   const preventFileCompression = boolean('preventFileCompression', false);
+  const invalid = boolean('invalid', false);
   const wrapper = document.createElement('div');
 
   const template = html`
@@ -99,6 +100,7 @@ export const FileUpload = () => {
         wrongFileTypeStatusText="${wrongFileTypeStatusText}"
         icon="${icon}"
         allowedFileTypes="${allowedFileTypes}"
+        ?invalid="${invalid}"
         >${headerText}</axa-file-upload
       >
     </div>
