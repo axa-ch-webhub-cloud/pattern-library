@@ -51,6 +51,10 @@ export const FileUpload = () => {
   );
   const deleteStatusText = text('deleteStatusText', 'Delete');
   const addStatusText = text('addStatusText', 'Add more');
+  const allowedFileTypes = text(
+    'allowedFileTypes',
+    'image/jpg, image/jpeg, application/pdf, image/png'
+  );
   const fileTooBigStatusText = text(
     'fileTooBigStatusText',
     `File size exceeds maximum size`
@@ -94,6 +98,7 @@ export const FileUpload = () => {
         infoText="${infoText}"
         wrongFileTypeStatusText="${wrongFileTypeStatusText}"
         icon="${icon}"
+        allowedFileTypes="${allowedFileTypes}"
         >${headerText}</axa-file-upload
       >
     </div>

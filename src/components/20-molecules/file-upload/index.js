@@ -29,10 +29,7 @@ const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
 const CLEAR_ICON = svg([ClearSvg]);
 const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
-const ACCEPTED_FILE_TYPES = 'image/jpg, image/jpeg, application/pdf, image/png';
-const NOT_IMAGE_FILE_TYPES = ACCEPTED_FILE_TYPES.split(', ').filter(
-  type => type.indexOf('image') === -1
-);
+const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
@@ -49,6 +46,7 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
+      allowedFileTypes: { type: String, defaultValue: '' },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
       maxSizeOfAllFilesKB: { type: Number, defaultValue: 500 },
@@ -139,22 +137,28 @@ class AXAFileUpload extends LitElement {
   }
 
   filterAndAddFiles(files) {
-    // filter out files with wrong MIME type
-    const validFileTypesFiles = [...files].filter(
-      file => file.type && ACCEPTED_FILE_TYPES.indexOf(file.type) > -1
-    );
+    if (this.allowedFileTypes !== '') {
+      // filter out files with wrong MIME type
+      const validFileTypesFiles = [...files].filter(
+        file => file.type && this.allowedFileTypes.indexOf(file.type) > -1
+      );
 
-    // we have at least one wrong-MIME-type file?
-    let removeGlobalMessage = true;
-    if (validFileTypesFiles.length < files.length) {
-      removeGlobalMessage = false;
-      this.globalErrorMessage = this.wrongFileTypeStatusText;
+      // we have at least one wrong-MIME-type file?
+      let removeGlobalMessage = true;
+      if (validFileTypesFiles.length < files.length) {
+        removeGlobalMessage = false;
+        this.globalErrorMessage = this.wrongFileTypeStatusText;
+        this.requestUpdate();
+      }
+
+      // we didn't filter out all the incoming files?
+      if (validFileTypesFiles.length > 0) {
+        this.addFiles(validFileTypesFiles, removeGlobalMessage);
+      }
+    } else if (files.length > 0 && this.allowedFileTypes === '') {
+      this.addFiles([...files], true);
+    } else {
       this.requestUpdate();
-    }
-
-    // we didn't filter out all the incoming files?
-    if (validFileTypesFiles.length > 0) {
-      this.addFiles(validFileTypesFiles, removeGlobalMessage);
     }
   }
 
@@ -164,6 +168,7 @@ class AXAFileUpload extends LitElement {
 
     this.dropZone.classList.remove('m-file-upload__dropzone_dragover');
     const { files } = e.dataTransfer;
+
     this.filterAndAddFiles(files);
 
     if (typeof this.onFileDrop === 'function') {
@@ -266,10 +271,10 @@ class AXAFileUpload extends LitElement {
     this.numberOfDroppedFiles += droppedFilesWithID.length;
 
     const notImagesFiles = [...droppedFilesWithID].filter(
-      file => NOT_IMAGE_FILE_TYPES.indexOf(file.type) > -1
+      file => IMAGE_FILE_TYPES.indexOf(file.type) === -1
     );
 
-    // compress all images. pngs will become jpeg's and unrecognised files will be deleted. (all pfd's were removed)
+    // compress all images. png's will become jpeg's and unrecognised files will be deleted. (all pdf's were removed)
     const compressedImagesWithID = await compressImages(droppedFilesWithID);
 
     this.validateFiles(
@@ -388,6 +393,7 @@ class AXAFileUpload extends LitElement {
       // Concat the latest faulty files from a file-upload to the existing ones
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
+
     // Used for previws
     this.validCompressedFiles = this.validCompressedFiles.concat(
       compressedFilesLeftover
@@ -574,7 +580,7 @@ class AXAFileUpload extends LitElement {
                 <p class="m-file-upload__or">${orText}</p>
                 <axa-input-file
                   class="m-file-upload__input js-file-upload__input"
-                  accept="${ACCEPTED_FILE_TYPES}"
+                  accept="${this.allowedFileTypes}"
                   icon="${icon}"
                   multiple
                   @change=${this.handleInputFileChange}

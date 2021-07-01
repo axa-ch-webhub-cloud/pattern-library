@@ -1,3 +1,8 @@
+## 5.1.0
+
+- Added an `allowedFileTypes` attribute.
+- Now, every file type can be uploaded.
+
 ## 5.0.1
 
 - Fixes jumps in the UI, when the user hovers over a file to delete it.
