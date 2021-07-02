@@ -60,6 +60,7 @@ if (files.length > 0) {
 | `orText="or"`                               | Specify the text on the start view box                                   |
 | `wrongFileTypeStatusText="Wrong file-type"` | Specify the error message for dropped files with wrong file-type         |
 | `allowedFileTypes="image/jpg"`              | Determindes the allowed file types. If empty, every file type is allowed |
+| `invalid`                                   | Checks if the file upload reports a "valid" state. (type: Boolean)       |
 
 ### inputFileText
 
@@ -129,3 +130,7 @@ The attribute `onFileRemove` function executes, as soon as the user removed a fi
 ### allowedFileTypes
 
 In the `allowedFileTypes` attribute, you can declare the allowed file types that a user can upload (ex: only pdf's are allowed). If the attribute is empty, every file type is allowed.
+
+### invalid
+
+Checks if the file upload reports a "valid" state. You can consider this state before making a submit possible.
