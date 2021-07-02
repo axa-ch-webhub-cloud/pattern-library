@@ -613,8 +613,6 @@ class AXAFileUpload extends LitElement {
     this.errorWrapper = this.shadowRoot.querySelector(
       '.js-file-upload__error-wrapper'
     );
-
-    console.log(this.querySelector('axa-file-upload'));
   }
 
   querySelector(selector) {
