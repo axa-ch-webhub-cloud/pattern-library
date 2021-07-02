@@ -46,7 +46,7 @@ class AXAFileUpload extends LitElement {
 
   static get properties() {
     return {
-      invalid: { type: Boolean, reflect: true },
+      invalid: { type: Boolean, reflect: true, defaultValue: false },
       allowedFileTypes: { type: String, defaultValue: '' },
       inputFileText: { type: String, defaultValue: 'Upload file' },
       maxSizeOfSingleFileKB: { type: Number, defaultValue: 100 },
