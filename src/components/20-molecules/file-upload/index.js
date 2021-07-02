@@ -149,7 +149,6 @@ class AXAFileUpload extends LitElement {
       if (validFileTypesFiles.length < files.length) {
         removeGlobalMessage = false;
         this.globalErrorMessage = this.wrongFileTypeStatusText;
-        this.invalid = true;
         this.requestUpdate();
       }
 
