@@ -1,10 +1,12 @@
-## 5.2.0
+## 5.1.0
+
+### onChange support
 
 - Added function callback for `onChange`.
 - Fire change event `change` for native HTML users when adding new files via `<axa-input-file>`, deleting or dropping in the dropzone.
 - Custom data (files) gets passed in both cases and can be accessed via `e.detail`.
 
-## 5.1.0
+### Allow all file types
 
 - Added an `allowedFileTypes` attribute.
 - Now, every file type can be uploaded.
