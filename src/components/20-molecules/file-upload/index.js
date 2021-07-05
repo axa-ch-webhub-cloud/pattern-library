@@ -2,14 +2,15 @@
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
-
+import AXAInputFile from '@axa-ch/input-file';
 import {
   AddSvg,
   Delete_foreverSvg,
   ClearSvg,
   Attach_fileSvg,
 } from '@axa-ch/materials/icons/material-design';
-import AXAInputFile from '@axa-ch/input-file';
+
+import fireCustomEvent from '../../../utils/custom-event';
 
 // icon isolated from others, because it's a component specific icon
 import { FileUploadGroupSvg } from './icons';
@@ -79,6 +80,7 @@ class AXAFileUpload extends LitElement {
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
+      onChange: { type: Function, attribute: false },
     };
   }
 
@@ -160,6 +162,14 @@ class AXAFileUpload extends LitElement {
     } else {
       this.requestUpdate();
     }
+  }
+
+  // <input-file> won't be triggered on drag & drop or deleting files so we create a custom event here
+  fireCustomChangeEvent() {
+    this.onChange({
+      detail: this.files,
+    });
+    fireCustomEvent('change', this.files, this);
   }
 
   handleDropZoneDrop(e) {
@@ -245,6 +255,7 @@ class AXAFileUpload extends LitElement {
 
     if (typeof this.onFileRemove === 'function') {
       this.onFileRemove();
+      this.fireCustomChangeEvent();
     }
 
     this.requestUpdate();
@@ -257,7 +268,7 @@ class AXAFileUpload extends LitElement {
   }
 
   async addFiles(droppedFiles, removeGlobalMessage) {
-    // generate id to match orignal files with compressed one if this.preventFileCompression is set
+    // generate id to match original files with compressed one if this.preventFileCompression is set
     const droppedFilesWithID = droppedFiles.map(file => {
       file.id = createRefId();
       return file;
@@ -394,11 +405,11 @@ class AXAFileUpload extends LitElement {
       this.faultyFiles = this.faultyFiles.concat(faultyCompressedFiles);
     }
 
-    // Used for previws
+    // Used for previews
     this.validCompressedFiles = this.validCompressedFiles.concat(
       compressedFilesLeftover
     );
-    // Used for previws
+    // Used for previews
     this.faultyCompressedFiles = this.faultyCompressedFiles.concat(
       faultyCompressedFiles
     );
@@ -410,6 +421,8 @@ class AXAFileUpload extends LitElement {
     this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
       faultyOriginalFiles
     );
+
+    this.fireCustomChangeEvent();
   }
 
   handleMaxNumberOfFiles() {
@@ -563,7 +576,7 @@ class AXAFileUpload extends LitElement {
     const fileOverview = this.fileOverviewMapping(allCompressedFiles);
 
     return html`
-      <article class="m-file-upload">
+      <article class="m-file-upload js-file-upload">
         <h1><slot></slot></h1>
         <section
           @dragover="${this.handleDropZoneDragover}"
@@ -607,6 +620,7 @@ class AXAFileUpload extends LitElement {
     this.errorWrapper = this.shadowRoot.querySelector(
       '.js-file-upload__error-wrapper'
     );
+    this.fileUpload = this.shadowRoot.querySelector('.js-file-upload');
   }
 
   querySelector(selector) {

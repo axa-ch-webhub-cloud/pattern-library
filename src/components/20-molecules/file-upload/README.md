@@ -129,3 +129,7 @@ The attribute `onFileRemove` function executes, as soon as the user removed a fi
 ### allowedFileTypes
 
 In the `allowedFileTypes` attribute, you can declare the allowed file types that a user can upload (ex: only pdf's are allowed). If the attribute is empty, every file type is allowed.
+
+### onChange
+
+The attribute `onChange` function executes as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.

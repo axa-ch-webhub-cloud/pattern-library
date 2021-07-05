@@ -252,11 +252,10 @@ fixture('File upload - Remove file event').page(
   `${host}/iframe.html?id=examples-file-upload-react--story&viewMode=story`
 );
 test('should throw an event if a file was removed from the list', async t => {
-  const $inputFileInputElem = await Selector(
-    () =>
-      document
-        .querySelector('axa-file-upload')
-        .shadowRoot.querySelector('.js-file-upload__input .a-input-file__input') // TODO change to .js-
+  const $inputFileInputElem = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelector('.js-file-upload__input .js-input-file__input')
   );
   await t.expect($inputFileInputElem.exists).ok();
 
@@ -277,11 +276,13 @@ test('should throw an event if a file was removed from the list', async t => {
   );
   const $eventElement = await Selector('#m-fileupload-story__events');
 
-  await t.expect($eventElement.textContent).eql('-');
+  await t.expect($eventElement.textContent).contains('onChange triggered on ');
 
   await t.click($firstFile);
 
-  await t.expect($eventElement.textContent).contains('File removed on');
+  await t
+    .expect($eventElement.textContent)
+    .contains('onFileRemove triggered on');
 });
 
 fixture('Access original Files').page(

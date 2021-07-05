@@ -11,6 +11,46 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     usage: { disable: true },
     changelog,
   })
+  .add('Get files from onChange event', () => {
+    const changeHandler = e => {
+      const files = e.detail;
+
+      if (files.length > 0) {
+        const listWrapper = html`
+          <div class="js-file-upload__list-wrapper">
+            <h3>The following files were selected:</h3>
+            <ol>
+              ${files.map(file => {
+                return html`
+                  <li>${file.name}</li>
+                `;
+              })}
+            </ol>
+          </div>
+        `;
+
+        render(listWrapper, document.getElementById('listWrapper'));
+      } else {
+        render('', document.getElementById('listWrapper'));
+      }
+    };
+
+    const template = html`
+      <div style="width:455px;">
+        <axa-file-upload
+          @change="${changeHandler}"
+          maxSizeOfSingleFileKB="500"
+          class="js-file-upload__file-upload"
+          >These files are going to be uploaded</axa-file-upload
+        >
+      </div>
+      <div id="listWrapper"></div>
+    `;
+
+    const wrapper = document.createElement('div');
+    render(template, wrapper);
+    return wrapper;
+  })
   .add('In a form', () => {
     const handleSubmit = e => {
       e.preventDefault();
@@ -37,7 +77,9 @@ storiesOf('Examples/File Upload/Pure HTML', module)
 
     const template = html`
       <div style="width:455px;">
-        <axa-file-upload class="js-file-upload__file-upload"
+        <axa-file-upload
+          maxSizeOfSingleFileKB="500"
+          class="js-file-upload__file-upload"
           >These files are going to be uploaded</axa-file-upload
         >
       </div>
