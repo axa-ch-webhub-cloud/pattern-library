@@ -1,3 +1,7 @@
+## 9.1.20
+
+- Revert using the Sass module for division operations. #2202
+
 ## 9.1.17
 
 - Use Sass module for division operations. #2177

@@ -1,9 +1,10 @@
-## 5.2.1
+## 5.1.15
+
+- Revert using the Sass module for division operations. #2202
+
+## 5.1.14
 
 - Removed hover effect on checkbox. #2165
-
-## 5.2.0
-
 - Added outline for accessibility reasons. #2080
 
 ## 5.1.13
