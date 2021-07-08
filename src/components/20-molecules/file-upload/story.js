@@ -81,20 +81,6 @@ export const FileUpload = () => {
   const preventFileCompression = boolean('preventFileCompression', false);
   const wrapper = document.createElement('div');
 
-  setTimeout(() => {
-    document.querySelector('axa-button').addEventListener('click', () => {
-      const textSelector = document.querySelector('axa-text');
-      if (document.querySelector('axa-file-upload').hasAttribute('invalid')) {
-        textSelector.innerHTML =
-          'could not submit because file-upload is invalid';
-        textSelector.style.color = '#c91432';
-      } else {
-        textSelector.innerHTML = 'submitted successfully';
-        textSelector.style.color = '#000000';
-      }
-    });
-  });
-
   const template = html`
     <div style="width:${wrapperWidth};">
       <axa-file-upload
@@ -116,13 +102,6 @@ export const FileUpload = () => {
         >${headerText}</axa-file-upload
       >
     </div>
-
-    <axa-button style="margin: 10px 0">
-      Submit
-    </axa-button>
-
-    <br />
-    <axa-text variant="size-2"></axa-text>
   `;
 
   render(template, wrapper);
