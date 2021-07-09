@@ -43,24 +43,24 @@ if (files.length > 0) {
 
 ### Variant
 
-| Attribute                                   | Details                                                                  |
-| ------------------------------------------- | ------------------------------------------------------------------------ |
-| `inputFileText="Upload file"`               | Text in the input-file component                                         |
-| `maxSizeOfSingleFileKB="10"`                | Maximal size of a single, already compromised file in KB                 |
-| `maxSizeOfAllFilesKB="15"`                  | Maximal size of all compromised files together in KB                     |
-| `maxNumberOfFiles="10"`                     | Maximal number of files                                                  |
-| `showFileOverview="false"`                  | Switch between normal view and file overview                             |
-| `icon="cloud-upload"`                       | Specify the upload icon in input-file component                          |
-| `fileTooBigStatusText="Error occurred"`     | Specify the error message for too big files                              |
-| `tooManyFilesStatusText="Error occurred"`   | Specify the error message for too many files                             |
-| `filesTooBigStatusText="Error occurred"`    | Specify the error message when maximum size of all files is exceeded     |
-| `deleteStatusText="Delete"`                 | Specify the caption when hovering over a file                            |
-| `addStatusText="Add more"`                  | Specify the caption of dashed box                                        |
-| `infoText="drag and drop your files here"`  | Specify the text on the start view                                       |
-| `orText="or"`                               | Specify the text on the start view box                                   |
-| `wrongFileTypeStatusText="Wrong file-type"` | Specify the error message for dropped files with wrong file-type         |
-| `allowedFileTypes="image/jpg"`              | Determindes the allowed file types. If empty, every file type is allowed |
-| `invalid`                                   | Checks if the file upload reports a "invalid" state. (type: Boolean, read only)       |
+| Attribute                                   | Details                                                                         |
+| ------------------------------------------- | ------------------------------------------------------------------------------- |
+| `inputFileText="Upload file"`               | Text in the input-file component                                                |
+| `maxSizeOfSingleFileKB="10"`                | Maximal size of a single, already compromised file in KB                        |
+| `maxSizeOfAllFilesKB="15"`                  | Maximal size of all compromised files together in KB                            |
+| `maxNumberOfFiles="10"`                     | Maximal number of files                                                         |
+| `showFileOverview="false"`                  | Switch between normal view and file overview                                    |
+| `icon="cloud-upload"`                       | Specify the upload icon in input-file component                                 |
+| `fileTooBigStatusText="Error occurred"`     | Specify the error message for too big files                                     |
+| `tooManyFilesStatusText="Error occurred"`   | Specify the error message for too many files                                    |
+| `filesTooBigStatusText="Error occurred"`    | Specify the error message when maximum size of all files is exceeded            |
+| `deleteStatusText="Delete"`                 | Specify the caption when hovering over a file                                   |
+| `addStatusText="Add more"`                  | Specify the caption of dashed box                                               |
+| `infoText="drag and drop your files here"`  | Specify the text on the start view                                              |
+| `orText="or"`                               | Specify the text on the start view box                                          |
+| `wrongFileTypeStatusText="Wrong file-type"` | Specify the error message for dropped files with wrong file-type                |
+| `allowedFileTypes="image/jpg"`              | Determindes the allowed file types. If empty, every file type is allowed        |
+| `invalid`                                   | Checks if the file upload reports a "invalid" state. (type: Boolean, read only) |
 
 ### inputFileText
 

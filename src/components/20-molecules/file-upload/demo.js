@@ -53,26 +53,6 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     return wrapper;
   })
   .add('invalid', () => {
-    const wrapperWidth = '455px';
-    const inputFileText = 'Upload file';
-    const maxSizeOfSingleFileKB = 100;
-    const maxSizeOfAllFilesKB = 500;
-    const maxNumberOfFiles = 10;
-    const deleteStatusText = 'Delete';
-    const addStatusText = 'Add more';
-    const allowedFileTypes =
-      'image/jpg, image/jpeg, application/pdf, image/png';
-    const fileTooBigStatusText = 'File size exceeds maximum size';
-    const filesTooBigStatusText = 'File sizes exceed maximum size';
-    const tooManyFilesStatusText = 'You exceeded the maximum number of files';
-    const orText = 'or';
-    const infoText = 'Drag and drop to upload your file';
-    const wrongFileTypeStatusText =
-      'Your file does not correspond with our allowed file-types';
-    const icon = iconList;
-    const headerText = 'The following files are being transferred:';
-    const preventFileCompression = false;
-
     const wrapper = document.createElement('div');
 
     setTimeout(() => {
@@ -90,24 +70,23 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     });
 
     const template = html`
-      <div style="width:${wrapperWidth};">
+      <div style="width: 455px">
         <axa-file-upload
-          inputFileText="${inputFileText}"
-          maxSizeOfSingleFileKB="${maxSizeOfSingleFileKB}"
-          maxSizeOfAllFilesKB="${maxSizeOfAllFilesKB}"
-          maxNumberOfFiles="${maxNumberOfFiles}"
-          deleteStatusText="${deleteStatusText}"
-          addStatusText="${addStatusText}"
-          fileTooBigStatusText="${fileTooBigStatusText}"
-          ?preventFileCompression="${preventFileCompression}"
-          filesTooBigStatusText="${filesTooBigStatusText}"
-          tooManyFilesStatusText="${tooManyFilesStatusText}"
-          orText="${orText}"
-          infoText="${infoText}"
-          wrongFileTypeStatusText="${wrongFileTypeStatusText}"
-          icon="${icon}"
-          allowedFileTypes="${allowedFileTypes}"
-          >${headerText}</axa-file-upload
+          inputFileText="Upload file"
+          maxSizeOfSingleFileKB="100"
+          maxSizeOfAllFilesKB="500"
+          maxNumberOfFiles="10"
+          deleteStatusText="Delete"
+          addStatusText="Add more"
+          fileTooBigStatusText="File size exceeds maximum size"
+          filesTooBigStatusText="File sizes exceed maximum size"
+          tooManyFilesStatusText="You exceeded the maximum number of files"
+          orText="or"
+          infoText="Drag and drop to upload your file"
+          wrongFileTypeStatusText="Your file does not correspond with our allowed file-types"
+          icon="${iconList}"
+          allowedFileTypes="image/jpg, image/jpeg, application/pdf, image/png"
+          >The following files are being transferred:</axa-file-upload
         >
       </div>
 
