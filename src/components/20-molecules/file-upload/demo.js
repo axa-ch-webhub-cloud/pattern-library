@@ -92,4 +92,39 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     const wrapper = document.createElement('div');
     render(template, wrapper);
     return wrapper;
+  })
+  .add('invalid', () => {
+    const wrapper = document.createElement('div');
+
+    function handleSubmit() {
+      const textSelector = document.querySelector('axa-text');
+      if (document.querySelector('axa-file-upload').hasAttribute('invalid')) {
+        textSelector.innerHTML =
+          'could not submit because file-upload is invalid';
+        textSelector.style.color = '#c91432';
+      } else {
+        textSelector.innerHTML = 'submitted successfully';
+        textSelector.style.color = '#000000';
+      }
+    }
+
+    const template = html`
+      <div style="width: 455px">
+        <axa-file-upload
+          allowedFileTypes="image/jpg, image/jpeg, application/pdf, image/png"
+        >
+          The following files are being transferred:
+        </axa-file-upload>
+      </div>
+
+      <axa-button style="margin: 10px 0" @click="${handleSubmit}">
+        Submit
+      </axa-button>
+
+      <br />
+      <axa-text variant="size-2"></axa-text>
+    `;
+
+    render(template, wrapper);
+    return wrapper;
   });

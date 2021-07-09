@@ -1,3 +1,7 @@
+## 5.2.0
+
+- Added an invalid attribute.
+
 ## 5.1.0
 
 ### onChange support
