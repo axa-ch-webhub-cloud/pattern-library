@@ -2,7 +2,6 @@
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit-html';
 import changelog from './CHANGELOG.md';
-import { iconList } from '../../10-atoms/icon/icon-list';
 import './index';
 import readme from './README.md';
 
