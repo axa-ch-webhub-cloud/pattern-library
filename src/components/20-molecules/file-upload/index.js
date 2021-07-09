@@ -473,6 +473,7 @@ class AXAFileUpload extends LitElement {
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
         if (faultyCompressedFiles[i] === file) {
           isfaultyFile = true;
+          this.invalid = true;
           break;
         }
       }

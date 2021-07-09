@@ -97,42 +97,28 @@ storiesOf('Examples/File Upload/Pure HTML', module)
   .add('invalid', () => {
     const wrapper = document.createElement('div');
 
-    setTimeout(() => {
-      document.querySelector('axa-button').addEventListener('click', () => {
-        const textSelector = document.querySelector('axa-text');
-        if (document.querySelector('axa-file-upload').hasAttribute('invalid')) {
-          textSelector.innerHTML =
-            'could not submit because file-upload is invalid';
-          textSelector.style.color = '#c91432';
-        } else {
-          textSelector.innerHTML = 'submitted successfully';
-          textSelector.style.color = '#000000';
-        }
-      });
-    });
+    function handleSubmit() {
+      const textSelector = document.querySelector('axa-text');
+      if (document.querySelector('axa-file-upload').hasAttribute('invalid')) {
+        textSelector.innerHTML =
+          'could not submit because file-upload is invalid';
+        textSelector.style.color = '#c91432';
+      } else {
+        textSelector.innerHTML = 'submitted successfully';
+        textSelector.style.color = '#000000';
+      }
+    }
 
     const template = html`
       <div style="width: 455px">
         <axa-file-upload
-          inputFileText="Upload file"
-          maxSizeOfSingleFileKB="100"
-          maxSizeOfAllFilesKB="500"
-          maxNumberOfFiles="10"
-          deleteStatusText="Delete"
-          addStatusText="Add more"
-          fileTooBigStatusText="File size exceeds maximum size"
-          filesTooBigStatusText="File sizes exceed maximum size"
-          tooManyFilesStatusText="You exceeded the maximum number of files"
-          orText="or"
-          infoText="Drag and drop to upload your file"
-          wrongFileTypeStatusText="Your file does not correspond with our allowed file-types"
-          icon="${iconList}"
           allowedFileTypes="image/jpg, image/jpeg, application/pdf, image/png"
-          >The following files are being transferred:</axa-file-upload
         >
+          The following files are being transferred:
+        </axa-file-upload>
       </div>
 
-      <axa-button style="margin: 10px 0">
+      <axa-button style="margin: 10px 0" @click="${handleSubmit}">
         Submit
       </axa-button>
 
