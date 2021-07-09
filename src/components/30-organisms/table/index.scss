@@ -44,12 +44,12 @@ axa-table > table {
     line-height: 1.5;
     letter-spacing: 0.02em;
     padding: 2px 10px;
-    border-left: 1px solid transparent;
+    border-left: none;
     color: $color-dark-grey;
     text-align: left;
 
     &:first-child {
-      border-left: 1px solid transparent;
+      border-left: none;
 
       @include breakpoint($mediaquery-sm-up) {
         @include firstChild_TDMQ;
@@ -97,7 +97,7 @@ axa-table > table {
       }
 
       @include breakpoint($mediaquery-sm-up) {
-        outline: 1px solid transparent;
+        outline: none;
       }
     }
 
@@ -139,8 +139,7 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
 
     tr {
       @include TR_MQ;
-
-      outline: 1px solid transparent;
+      outline: none;
 
       &:hover,
       &:active,
