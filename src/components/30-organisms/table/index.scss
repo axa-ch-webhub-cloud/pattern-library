@@ -73,6 +73,8 @@ axa-table > table {
   }
 
   tr {
+    border: 1px solid transparent;
+    
     border-top: 1px solid $color-mercury;
     padding: 20px 0;
     display: block;
@@ -87,17 +89,12 @@ axa-table > table {
     &:hover,
     &:active,
     &:focus {
-      outline: 1px solid $color-axa-blue;
-      outline-offset: -2px;
+      border: solid 1px $color-axa-blue;
 
       td {
         @include breakpoint($mediaquery-sm-up) {
           @include HOVER_TD_MQ;
         }
-      }
-
-      @include breakpoint($mediaquery-sm-up) {
-        outline: none;
       }
     }
 
@@ -139,7 +136,6 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
 
     tr {
       @include TR_MQ;
-      outline: none;
 
       &:hover,
       &:active,
