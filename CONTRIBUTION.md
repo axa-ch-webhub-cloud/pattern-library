@@ -26,7 +26,6 @@ Open your code editor of choice and edit your desired component/package in
 - We follow DRY, KISS, YAGNI principles when we write SCSS. This includes variables, mixins, etc.
 - We remove the linting of ordering and grouping of CSS properties. Only includes have to be at the beginning.
 - We won't have settings for vertical rhythm or global spacing.
-- Use the internal function `divide()` instead of a `/` for dividing operations in our `.scss` files.
 
 ### JS Rules
 
