@@ -1,3 +1,7 @@
+## 3.0.10
+
+- Fix: interrupted border. (#2204)
+
 ## 3.0.1
 
 - Fix: prevent duplicate style attachment. (#1727)

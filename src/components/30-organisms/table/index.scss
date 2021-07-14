@@ -44,12 +44,12 @@ axa-table > table {
     line-height: 1.5;
     letter-spacing: 0.02em;
     padding: 2px 10px;
-    border-left: 1px solid transparent;
+    border-left: none;
     color: $color-dark-grey;
     text-align: left;
 
     &:first-child {
-      border-left: 1px solid transparent;
+      border-left: none;
 
       @include breakpoint($mediaquery-sm-up) {
         @include firstChild_TDMQ;
@@ -73,6 +73,8 @@ axa-table > table {
   }
 
   tr {
+    border: 1px solid transparent;
+    
     border-top: 1px solid $color-mercury;
     padding: 20px 0;
     display: block;
@@ -87,17 +89,12 @@ axa-table > table {
     &:hover,
     &:active,
     &:focus {
-      outline: 1px solid $color-axa-blue;
-      outline-offset: -2px;
+      border: solid 1px $color-axa-blue;
 
       td {
         @include breakpoint($mediaquery-sm-up) {
           @include HOVER_TD_MQ;
         }
-      }
-
-      @include breakpoint($mediaquery-sm-up) {
-        outline: 1px solid transparent;
       }
     }
 
@@ -140,8 +137,6 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
     tr {
       @include TR_MQ;
 
-      outline: 1px solid transparent;
-
       &:hover,
       &:active,
       &:focus {
@@ -166,9 +161,9 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
     }
 
     thead, tbody tr {
-      display:table;
-      width:100%;
-      table-layout:fixed;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
     }
   }
 }
@@ -176,7 +171,6 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
 td.o-table--light {
   color: $color-grey;
 }
-
 
 td.o-table--bold {
   font-weight: bold;
