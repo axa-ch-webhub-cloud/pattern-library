@@ -3,7 +3,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const delayTimeAnimation = 300;
 
 function delay(time) {
-  return new Promise(function(resolve) {
+  return new Promise(resolve => {
     setTimeout(resolve, time);
   });
 }

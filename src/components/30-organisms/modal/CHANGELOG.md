@@ -1,3 +1,7 @@
+## 2.0.1
+
+- Fix: unnamed function
+
 ## 2.0.0
 
 - Breaking: Removed margin-top from first child element and margin-bottom from last child element (only if attribute `forced` is being used).
