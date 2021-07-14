@@ -4,9 +4,9 @@ At the moment the &lt;axa-popup-button&gt; is only used internally.
 
 ## Properties
 
-| Attribute | Details                                                |
-| --------- | ------------------------------------------------------ |
-| `open`    | State of popup-button (boolean)                        |
+| Attribute | Details                         |
+| --------- | ------------------------------- |
+| `open`    | State of popup-button (boolean) |
 
 ## open
 
