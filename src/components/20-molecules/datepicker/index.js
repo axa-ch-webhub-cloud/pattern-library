@@ -288,7 +288,7 @@ class AXADatepicker extends NoShadowDOM {
       })
     );
 
-    this.yearitems = this.allowedyears.map(item => ({
+    this.yearitems = this.allowedyears.reverse().map(item => ({
       selected: item === _year,
       name: item.toString(),
       value: item.toString(),
