@@ -315,7 +315,7 @@ test('should navigate to next allowed year', async t => {
 
   await navigateToNextMonth();
   await t.expect(await getYear()).eql(2012);
-  await t.expect(await getMonth()).eql(11);
+  await t.expect(await getMonth()).eql(0);
 });
 
 test('should navigate to previous allowed year', async t => {
@@ -351,7 +351,7 @@ test('should navigate to previous allowed year', async t => {
 
   await navigateToPrevMonth();
   await t.expect(await getYear()).eql(2000);
-  await t.expect(await getMonth()).eql(0);
+  await t.expect(await getMonth()).eql(11);
 });
 
 test('should highlight today', async t => {
