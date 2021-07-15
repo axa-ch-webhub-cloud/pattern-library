@@ -44,6 +44,7 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
   const expected = range(1971, 2000)
     .concat([2012, 2014])
     .concat(range(2018, 2022))
+    .reverse()
     .map(year => ({
       selected: year === 2020,
       name: `${year}`,
@@ -813,7 +814,7 @@ test('should allow year ranges', async t => {
   await t.expect(await setDatepicker('allowedyears', ['1920-2003'])).ok();
   await t
     .expect(await setDatepicker('allowedyears'))
-    .eql(JSON.stringify(range(2020 - 100, 2020 - 17)));
+    .eql(JSON.stringify(range(2020 - 100, 2020 - 17).reverse()));
 
   // now open calendar
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker-react');

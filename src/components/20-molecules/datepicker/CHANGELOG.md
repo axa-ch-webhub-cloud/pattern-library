@@ -1,3 +1,7 @@
+## 15.1.0
+
+- year dropdown reversed sorting, so that it goes from current year at first position down.
+
 ## 15.0.5
 
 - fix unscoped CSS. #2117

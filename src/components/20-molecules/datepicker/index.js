@@ -288,7 +288,7 @@ class AXADatepicker extends NoShadowDOM {
       })
     );
 
-    this.yearitems = this.allowedyears.map(item => ({
+    this.yearitems = this.allowedyears.reverse().map(item => ({
       selected: item === _year,
       name: item.toString(),
       value: item.toString(),
@@ -869,7 +869,7 @@ class AXADatepicker extends NoShadowDOM {
 
     let indexOfYear = this.allowedyears.findIndex(year => year === this.year);
 
-    indexOfYear += offset;
+    indexOfYear -= offset;
     indexOfYear = min(max(indexOfYear, MIN), MAX); // prevent out-of-bounds navigation
 
     return parseInt(this.allowedyears[indexOfYear], 10);
