@@ -314,7 +314,7 @@ test('should navigate to next allowed year', async t => {
   await t.expect(await getMonth()).eql(11);
 
   await navigateToNextMonth();
-  await t.expect(await getYear()).eql(2000);
+  await t.expect(await getYear()).eql(2012);
   await t.expect(await getMonth()).eql(11);
 });
 
@@ -350,7 +350,7 @@ test('should navigate to previous allowed year', async t => {
   await t.expect(await getMonth()).eql(0);
 
   await navigateToPrevMonth();
-  await t.expect(await getYear()).eql(2012);
+  await t.expect(await getYear()).eql(2000);
   await t.expect(await getMonth()).eql(0);
 });
 

@@ -288,13 +288,11 @@ class AXADatepicker extends NoShadowDOM {
       })
     );
 
-    this.yearitems = this.allowedyears
-      .sort((a, b) => b - a)
-      .map(item => ({
-        selected: item === _year,
-        name: item.toString(),
-        value: item.toString(),
-      }));
+    this.yearitems = this.allowedyears.reverse().map(item => ({
+      selected: item === _year,
+      name: item.toString(),
+      value: item.toString(),
+    }));
   }
 
   formatDate(date, options = {}) {
@@ -861,8 +859,8 @@ class AXADatepicker extends NoShadowDOM {
     });
   }
 
-  // Returns the next allowed year, when offset = 1.
-  // Returns the previous allowed year, when offset = -1.
+  // Returns the next allowed year, when offset = -1.
+  // Returns the previous allowed year, when offset = 1.
   // Returns the currently selected year, when there is no next/previous allowed year.
   navigateYear(offset = 1) {
     const MIN = 0;
