@@ -288,11 +288,13 @@ class AXADatepicker extends NoShadowDOM {
       })
     );
 
-    this.yearitems = this.allowedyears.reverse().map(item => ({
-      selected: item === _year,
-      name: item.toString(),
-      value: item.toString(),
-    }));
+    this.yearitems = this.allowedyears
+      .sort((a, b) => b - a)
+      .map(item => ({
+        selected: item === _year,
+        name: item.toString(),
+        value: item.toString(),
+      }));
   }
 
   formatDate(date, options = {}) {
@@ -393,8 +395,8 @@ class AXADatepicker extends NoShadowDOM {
     >
     </axa-dropdown>`;
 
-    const noPreviousAllowedYear = year === this.navigateYear(-1) && month === 0;
-    const noNextAllowedYear = year === this.navigateYear() && month === 11;
+    const noPreviousAllowedYear = year === this.navigateYear() && month === 0;
+    const noNextAllowedYear = year === this.navigateYear(-1) && month === 11;
 
     return html`
       <article class="m-datepicker" @click="${this.handleDatepickerClick}">
@@ -845,7 +847,7 @@ class AXADatepicker extends NoShadowDOM {
       month = min(max(month, MIN), MAX);
 
       // Try to adjust year (might fail if not an allowed year)
-      year = this.navigateYear(offset);
+      year = this.navigateYear(offset * -1);
 
       // Year adjustment succeeded?
       if (year !== this.year) {
