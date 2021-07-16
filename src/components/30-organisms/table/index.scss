@@ -79,10 +79,8 @@ axa-table > table {
     display: block;
     box-sizing: border-box;
 
-    &:nth-child(n+2) {
-      &:last-child {
-        border-bottom: 1px solid $color-mercury;
-      }
+    &:last-child {
+      border-bottom: 1px solid $color-mercury;
     }
 
     @include breakpoint($mediaquery-sm-up) {
@@ -139,6 +137,10 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
 
     tr {
       @include TR_MQ;
+
+      &:last-child {
+        border-bottom: 1px solid $color-mercury;
+      }
 
       &:hover,
       &:active,
