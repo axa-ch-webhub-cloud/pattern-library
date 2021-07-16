@@ -57,10 +57,6 @@ axa-table > table {
       }
     }
 
-    &:last-child { // Edge
-      border-right: none;
-    }
-
     @include breakpoint($mediaquery-sm-up) {
       @include TD_MQ;
     }
@@ -78,6 +74,7 @@ axa-table > table {
   }
 
   tr {
+    border-right: none; // Edge
     border: 1px solid transparent;
     border-top: 1px solid $color-mercury;
     padding: 20px 0;
