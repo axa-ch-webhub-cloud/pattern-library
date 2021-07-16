@@ -45,6 +45,7 @@ axa-table > table {
     letter-spacing: 0.02em;
     padding: 2px 10px;
     border-left: none;
+    border-right: none; // Edge
     color: $color-dark-grey;
     text-align: left;
 
@@ -54,6 +55,10 @@ axa-table > table {
       @include breakpoint($mediaquery-sm-up) {
         @include firstChild_TD_MQ;
       }
+    }
+
+    &:last-child { // Edge
+      border-right: none;
     }
 
     @include breakpoint($mediaquery-sm-up) {
