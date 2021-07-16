@@ -1,4 +1,4 @@
-@mixin firstChild_TDMQ {
+@mixin firstChild_TD_MQ {
   padding-left: 14px;
 }
 
@@ -52,7 +52,7 @@ axa-table > table {
       border-left: none;
 
       @include breakpoint($mediaquery-sm-up) {
-        @include firstChild_TDMQ;
+        @include firstChild_TD_MQ;
       }
     }
 
@@ -89,7 +89,7 @@ axa-table > table {
       @include TR_MQ;
     }
   }
-  
+
   tbody {
     tr {
       &:hover,
@@ -127,7 +127,7 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
   > table {
     th, td {
       &:first-child {
-        @include firstChild_TDMQ;
+        @include firstChild_TD_MQ;
       }
 
       @include TD_MQ;
