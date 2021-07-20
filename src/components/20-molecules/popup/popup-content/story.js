@@ -1,7 +1,7 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import changelog from '../CHANGELOG.md';
-import readme from '../README.md';
+import readme from './README.md';
 import './index';
 
 export default {

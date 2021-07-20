@@ -1,8 +1,12 @@
 # AXA Popup Button
 
-At the moment the &lt;axa-popup-button&gt; is only used internally.
+At the moment the axa-popup-button is only used internally.
 
 ## Properties
+
+| Attribute | Details                         |
+| --------- | ------------------------------- |
+| `open`    | State of popup-button (boolean) |
 
 ## open
 
