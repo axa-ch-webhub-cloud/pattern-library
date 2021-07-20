@@ -1,4 +1,4 @@
-## AXA Popup Content
+# AXA Popup Content
 
 At the moment the axa-popup-content is only used internally.
 

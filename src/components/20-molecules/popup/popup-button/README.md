@@ -1,4 +1,4 @@
-## AXA Popup Button
+# AXA Popup Button
 
 At the moment the axa-popup-button is only used internally.
 
