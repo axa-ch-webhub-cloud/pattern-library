@@ -21,14 +21,6 @@
 @mixin HOVER_TD_MQ {
   border-top: solid 1px $color-axa-blue;
   border-bottom: solid 1px $color-axa-blue;
-
-  &:first-child {
-    border-left: solid 1px $color-axa-blue;
-  }
-
-  &:last-child {
-    border-right: solid 1px $color-axa-blue;
-  }
 }
 
 axa-table > table {
@@ -47,16 +39,10 @@ axa-table > table {
     color: $color-dark-grey;
     text-align: left;
 
-    &:first-child {
-      border-left: none;
-
-      @include breakpoint($mediaquery-sm-up) {
+      &:first-child {
+        @include breakpoint($mediaquery-sm-up) {
         @include firstChild_TD_MQ;
       }
-    }
-
-    &:last-child {// Edge
-      border-right: none;
     }
 
     @include breakpoint($mediaquery-sm-up) {
@@ -150,6 +136,14 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
       &:focus {
         td {
           @include HOVER_TD_MQ;
+          
+          &:first-child {
+            border-left: solid 1px $color-axa-blue;
+          }
+        
+          &:last-child {
+            border-right: solid 1px $color-axa-blue;
+          }
         }
       }
     }
