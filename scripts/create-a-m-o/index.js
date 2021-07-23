@@ -2,7 +2,7 @@ const outdent = require('outdent');
 const chalk = require('chalk');
 const readline = require('readline');
 
-const { getAMOType, prepareName, createFiles } = require('./functions.js');
+const { getAMOType, prepareName, createFiles } = require('./functions');
 
 process.stdin.setEncoding('utf8');
 

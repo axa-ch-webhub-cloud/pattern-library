@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const outdent = require('outdent');
 const fs = require('fs');
+
 const { cwd } = process;
 const templateJson = require('./templates/template-package.json');
 
@@ -49,12 +50,6 @@ const createFiles = (store, a, m, o, done) => () => {
     [a]: '10-atoms',
     [m]: '20-molecules',
     [o]: '30-organisms',
-  };
-
-  const titleMap = {
-    [a]: 'Atoms',
-    [m]: 'Molecules',
-    [o]: 'Organisms',
   };
 
   const BASE_FOLDER = `./src/components/${folderMap[type]}/${fileName}`;

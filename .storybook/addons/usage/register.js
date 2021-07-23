@@ -90,7 +90,7 @@ const MyPanel = () => {
           </pre>
         </>
       )}
-      <h3 id="pure-html-pages">Pure HTML pages</h3>
+      <h3>Pure HTML pages</h3>
       <p>
         Import the {PURE_HTML_TAG}-defining script and use it like this:
       </p>
