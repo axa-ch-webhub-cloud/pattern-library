@@ -129,6 +129,72 @@ const MyPanel = () => {
           &lt;/html&gt;
         </code>
       </pre>
+      <h3>Component versioning</h3>
+      <p>
+        Different versions of our web components can coexist on the same web page!
+        Read more about component versioning&nbsp;
+        <a href="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md">
+        here
+        </a>.
+      </p>
+      <h4>Best practice</h4>
+      <p>Here is the recommended <strong>new way of including <i>user-versioned</i> components</strong>.</p>
+      <pre>
+        <code className="language-js">
+          import {'{ createElement }'} from 'react';
+          <br />
+          import createAXA{REACT_TAG}React from '@axa-ch/
+              {PURE_HTML_TAG}
+              /lib/index.react';
+          <br />
+          <br />
+          const podNameAsVersionSuffix = 'YOUR UNIQUE 
+              SPA SHORT-NAME HERE'; // e.g. 'rsv'
+          <br />
+          <br />
+          export const AXA{REACT_TAG}React = createAXA
+              {REACT_TAG}React(createElement, podNameAsVersionSuffix);
+        </code>
+      </pre>
+      <p>Apart from the best practice, <strong>other versioning schemes</strong> are possible.</p>
+      <h4>Numeric versioning</h4>
+      <pre>
+        <code className="language-js">
+          import {'{ createElement }'} from 'react';
+          <br />
+          import createAXA{REACT_TAG}React from '@axa-ch/
+              {PURE_HTML_TAG}
+              /lib/index.react';
+          <br />
+          <br />
+          const numericalVersion = '4.1.2'; 
+              // must match with SPA dependency @axa-ch/button's version
+          <br />
+          <br />
+          export const AXA{REACT_TAG}React = createAXA
+              {REACT_TAG}React(createElement, numericalVersion);
+          <br />
+          // In the DOM, the button would appear as &lt;axa-{PURE_HTML_TAG}-4-1-2&gt;
+        </code>
+      </pre>
+      <h4>Automatic npm versioning</h4>
+      <pre>
+        <code className="language-js">
+          import {'{ createElement }'} from 'react';
+          <br />
+          import createAXA{REACT_TAG}React from '@axa-ch/
+              {PURE_HTML_TAG}
+              /lib/index.react';
+          <br />
+          <br />
+          const automaticVersion = tagName =&gt; 
+              window.customElements.get(tagName).versions[tagName];
+          <br />
+          <br />
+          export const AXA{REACT_TAG}React = createAXA
+              {REACT_TAG}React(createElement, automaticVersion('{PURE_HTML_TAG}'));
+        </code>
+      </pre>
     </div>
   );
 };
