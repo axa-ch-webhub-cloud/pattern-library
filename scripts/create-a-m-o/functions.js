@@ -191,7 +191,7 @@ const createFiles = (store, a, m, o, done) => () => {
     `${BASE_FOLDER}/story.js`,
     outdent`
     import { text, withKnobs } from '@storybook/addon-knobs';
-    import { html, render } from 'lit-html';
+    import { html, render } from 'lit';
     import './index';
 
     export default {
