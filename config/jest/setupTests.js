@@ -1,6 +1,7 @@
 // polyfills etc
 import 'mutationobserver-shim';
 import '@webcomponents/webcomponentsjs';
+import 'lit/polyfill-support';
 import 'core-js/es6/reflect';
 import 'core-js/es6/promise';
 import 'core-js/fn/array/from';

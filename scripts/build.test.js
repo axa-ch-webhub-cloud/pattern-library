@@ -16,6 +16,7 @@ const ALLOWED_CATEGORIES = [
 const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
   '@webcomponents/webcomponentsjs',
+  'lit/polyfill-support',
   'lit-element',
   'lit-html'
 ];
