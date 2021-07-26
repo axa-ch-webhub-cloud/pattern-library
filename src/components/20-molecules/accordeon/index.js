@@ -3,7 +3,7 @@ import { LitElement, html, css, unsafeCSS, svg } from 'lit';
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
 import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg';
 
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';

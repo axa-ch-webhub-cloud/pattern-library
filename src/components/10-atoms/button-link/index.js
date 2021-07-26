@@ -1,5 +1,5 @@
 import { html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit/directives/class-map';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';

@@ -1,6 +1,6 @@
 import { html, svg } from 'lit';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { classMap } from 'lit-html/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { classMap } from 'lit/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { applyDefaults } from '../../../utils/with-react';
