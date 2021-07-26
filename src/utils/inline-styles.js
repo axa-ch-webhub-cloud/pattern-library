@@ -1,7 +1,7 @@
 /* base class for non-ShadowDom components */
 
 // IMPORTS
-import { LitElement } from 'lit-element';
+import { LitElement } from 'lit';
 
 // MODULE GLOBALS
 

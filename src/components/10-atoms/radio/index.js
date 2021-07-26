@@ -1,4 +1,4 @@
-import { html, svg } from 'lit-element';
+import { html, svg } from 'lit';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';

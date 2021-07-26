@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 /* eslint-disable import/no-extraneous-dependencies */

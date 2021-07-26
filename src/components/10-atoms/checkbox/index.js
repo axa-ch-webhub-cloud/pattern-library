@@ -1,4 +1,4 @@
-import { html, svg } from 'lit-element';
+import { html, svg } from 'lit';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { classMap } from 'lit-html/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';

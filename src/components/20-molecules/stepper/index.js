@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CheckSvg } from '@axa-ch/materials/icons/material-design';
-import { css, html, LitElement, svg, unsafeCSS } from 'lit-element';
+import { css, html, LitElement, svg, unsafeCSS } from 'lit';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';

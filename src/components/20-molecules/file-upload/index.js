@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, svg, css, unsafeCSS } from 'lit';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
 import AXAInputFile from '@axa-ch/input-file';

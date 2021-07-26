@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, css, unsafeCSS } from 'lit-element';
+import { LitElement, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit-html/directives/class-map';
 import AXAButton from '@axa-ch/button';
 import AXAContainer from '@axa-ch/container';
