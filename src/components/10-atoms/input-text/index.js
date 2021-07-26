@@ -158,7 +158,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
     const oldVal = this.modelValue;
     this.modelValue = val;
-    this.requestUpdate('value', oldVal);
+    this.updateComplete('value', oldVal);
   }
 
   get value() {
@@ -238,7 +238,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       // set model value
       this.modelValue = valueCutToMaxLength;
       // request update with the new value
-      this.requestUpdate('value', valueCutToMaxLength);
+      this.updateComplete('value', valueCutToMaxLength);
     }
 
     if (this.maxLength) {

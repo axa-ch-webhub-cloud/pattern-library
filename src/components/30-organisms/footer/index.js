@@ -328,7 +328,7 @@ class AXAFooter extends InlineStyles {
     // toggle opening of correct accordion
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
-    this.requestUpdate();
+    this.updateComplete();
 
     const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
       '.js-footer__main-content-panel'

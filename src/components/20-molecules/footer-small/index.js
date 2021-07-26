@@ -61,7 +61,7 @@ class AXAFooterSmall extends InlineStyles {
       );
       this.onLanguageClick(languageIndex);
       fireCustomEvent('axa-language-click', languageIndex, this);
-      this.requestUpdate();
+      this.updateComplete();
     }
   };
 
@@ -78,7 +78,7 @@ class AXAFooterSmall extends InlineStyles {
     this.inlineStyles('resetHeadingCss');
     // install observer to watch for changes in the component's children,
     // rerendering if any such change occurs
-    this._observer = new MutationObserver(() => this.requestUpdate());
+    this._observer = new MutationObserver(() => this.updateComplete());
     this._observer.observe(this, {
       attributes: true,
       childList: true,

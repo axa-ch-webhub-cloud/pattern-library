@@ -144,7 +144,7 @@ class AXADropdown extends NoShadowDOM {
     state.value = newValue;
     state.firstTime = false;
     // manual re-render, necessary for custom setters
-    this.requestUpdate('value', value);
+    this.updateComplete('value', value);
   }
 
   get value() {

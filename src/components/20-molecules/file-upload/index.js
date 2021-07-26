@@ -151,7 +151,7 @@ class AXAFileUpload extends LitElement {
       if (validFileTypesFiles.length < files.length) {
         removeGlobalMessage = false;
         this.globalErrorMessage = this.wrongFileTypeStatusText;
-        this.requestUpdate();
+        this.updateComplete();
       }
 
       // we didn't filter out all the incoming files?
@@ -162,7 +162,7 @@ class AXAFileUpload extends LitElement {
       this.addFiles([...files], true);
     } else {
       this.invalid = false;
-      this.requestUpdate();
+      this.updateComplete();
     }
   }
 
@@ -260,7 +260,7 @@ class AXAFileUpload extends LitElement {
       this.fireCustomChangeEvent();
     }
 
-    this.requestUpdate();
+    this.updateComplete();
   }
 
   removeValidOrFaultyFileFromArray(index, files, spliceStart) {
@@ -307,7 +307,7 @@ class AXAFileUpload extends LitElement {
     }
 
     this.handleMaxNumberOfFiles();
-    this.requestUpdate();
+    this.updateComplete();
   }
 
   validateOverallSize(fileSize = 0) {

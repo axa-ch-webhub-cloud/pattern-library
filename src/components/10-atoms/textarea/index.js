@@ -77,7 +77,7 @@ class AXATextarea extends NoShadowDOM {
     const oldVal = this.modelValue;
     this.modelValue = val;
 
-    this.requestUpdate('value', oldVal);
+    this.updateComplete('value', oldVal);
   }
 
   get value() {

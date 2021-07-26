@@ -50,7 +50,7 @@ class AXAToggleSwitch extends LitElement {
     }
 
     this.state.active = value;
-    this.requestUpdate('active', active);
+    this.updateComplete('active', active);
   }
 
   get active() {

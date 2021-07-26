@@ -72,7 +72,7 @@ class AXARadio extends NoShadowDOM {
     this.state.checked = value;
     this.state.native = value;
     // request re-render (custom setters need to do this themselves!)
-    this.requestUpdate('checked', oldValue);
+    this.updateComplete('checked', oldValue);
   }
 
   // custom getter

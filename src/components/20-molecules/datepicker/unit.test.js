@@ -55,7 +55,7 @@ describe('Datepicker unit tests', () => {
       AXADatepicker.prototype.allowedyears = [1900];
       AXADatepicker.prototype.cells = null;
       AXADatepicker.prototype.weekdays = null;
-      AXADatepicker.prototype.requestUpdate = () => {};
+      AXADatepicker.prototype.updateComplete = () => {};
 
       AXADatepicker.prototype.initDate(new Date(), {});
 

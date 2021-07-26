@@ -205,7 +205,7 @@ class AXADatepicker extends NoShadowDOM {
     // update state
     state.value = newValue;
     // manual re-render, necessary for custom setters
-    this.requestUpdate('value', value);
+    this.updateComplete('value', value);
   }
 
   get isControlled() {
@@ -229,7 +229,7 @@ class AXADatepicker extends NoShadowDOM {
       // tracking pre-set date-related property values is important to differentiate between
       // which dates are to be considered as selected-by-application-or-user.
       this.initDate(value, { preset: value.type !== 'default' });
-      this.requestUpdate('date', oldValue);
+      this.updateComplete('date', oldValue);
     }
   }
 
@@ -242,7 +242,7 @@ class AXADatepicker extends NoShadowDOM {
       const oldValue = this._day;
       this._day = value;
       this.initDate(null, { preset: true });
-      this.requestUpdate('day', oldValue);
+      this.updateComplete('day', oldValue);
     }
   }
 
@@ -255,7 +255,7 @@ class AXADatepicker extends NoShadowDOM {
       const oldValue = this._day;
       this._month = value;
       this.initDate(null, { preset: true });
-      this.requestUpdate('month', oldValue);
+      this.updateComplete('month', oldValue);
     }
   }
 
@@ -268,7 +268,7 @@ class AXADatepicker extends NoShadowDOM {
       const oldValue = this._day;
       this._year = value;
       this.initDate(null, { preset: true });
-      this.requestUpdate('year', oldValue);
+      this.updateComplete('year', oldValue);
     }
   }
 
