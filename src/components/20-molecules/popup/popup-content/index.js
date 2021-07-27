@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit/directives/class-map';
 import popupContentCSS from './index.scss';
 
 import { applyDefaults } from '../../../../utils/with-react';
