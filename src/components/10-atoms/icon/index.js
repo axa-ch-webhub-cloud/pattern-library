@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { LitElement, svg, css, unsafeCSS } from 'lit-element';
+import { LitElement, svg, css, unsafeCSS } from 'lit';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
   Expand_lessSvg,

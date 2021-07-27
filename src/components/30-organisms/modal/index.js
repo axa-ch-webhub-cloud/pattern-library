@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS, svg } from 'lit-element';
+import { html, css, unsafeCSS, svg } from 'lit';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 

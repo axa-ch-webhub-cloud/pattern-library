@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
-import { html } from 'lit-element';
+import { html } from 'lit';
 import { classMap } from 'lit-html/directives/class-map';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import {

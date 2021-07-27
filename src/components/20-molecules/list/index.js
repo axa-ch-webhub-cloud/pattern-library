@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { defineVersioned } from '../../../utils/component-versioning';
 import InlineStyles from '../../../utils/inline-styles';

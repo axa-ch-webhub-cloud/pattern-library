@@ -1,4 +1,4 @@
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { LitElement, html, css, unsafeCSS, svg } from 'lit';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
 import defineOnce from '../../../../utils/define-once';

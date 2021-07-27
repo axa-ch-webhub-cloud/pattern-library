@@ -279,7 +279,7 @@ describe('${compTitle}', () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/index.js`,
     outdent`
-    import { LitElement, html, css, unsafeCSS } from 'lit-element';
+    import { LitElement, html, css, unsafeCSS } from 'lit';
 
     /* eslint-disable import/no-extraneous-dependencies */
 

@@ -1,4 +1,4 @@
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, svg, css, unsafeCSS } from 'lit';
 /* eslint-disable import/no-extraneous-dependencies */
 import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons/material-design';
 import popupButtonCSS from './index.scss';

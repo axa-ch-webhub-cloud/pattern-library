@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit';
 import { repeat } from 'lit-html/directives/repeat';
 import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '@axa-ch/container';

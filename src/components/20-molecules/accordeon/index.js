@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { LitElement, html, css, unsafeCSS, svg } from 'lit';
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
 import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg';
 
