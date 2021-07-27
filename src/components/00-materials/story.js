@@ -1,5 +1,5 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import { repeat } from 'lit/directives/repeat';
 import '../10-atoms/heading';
 import '../10-atoms/text';

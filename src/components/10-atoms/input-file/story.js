@@ -6,7 +6,7 @@ import {
   text,
   withKnobs,
 } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import { iconList } from '../icon/icon-list';
 import changelog from './CHANGELOG.md';
 import './index';
