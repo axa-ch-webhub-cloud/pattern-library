@@ -1,4 +1,4 @@
-@mixin firstChild_TDMQ {
+@mixin firstChild_TD_MQ {
   padding-left: 14px;
 }
 
@@ -21,14 +21,6 @@
 @mixin HOVER_TD_MQ {
   border-top: solid 1px $color-axa-blue;
   border-bottom: solid 1px $color-axa-blue;
-
-  &:first-child {
-    border-left: solid 1px $color-axa-blue;
-  }
-
-  &:last-child {
-    border-right: solid 1px $color-axa-blue;
-  }
 }
 
 axa-table > table {
@@ -44,15 +36,12 @@ axa-table > table {
     line-height: 1.5;
     letter-spacing: 0.02em;
     padding: 2px 10px;
-    border-left: none;
     color: $color-dark-grey;
     text-align: left;
 
-    &:first-child {
-      border-left: none;
-
-      @include breakpoint($mediaquery-sm-up) {
-        @include firstChild_TDMQ;
+      &:first-child {
+        @include breakpoint($mediaquery-sm-up) {
+        @include firstChild_TD_MQ;
       }
     }
 
@@ -74,32 +63,33 @@ axa-table > table {
 
   tr {
     border: 1px solid transparent;
-    
     border-top: 1px solid $color-mercury;
     padding: 20px 0;
     display: block;
     box-sizing: border-box;
 
-    &:nth-child(n+2) {
-      &:last-child {
-        border-bottom: 1px solid $color-mercury;
-      }
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-      border: solid 1px $color-axa-blue;
-
-      td {
-        @include breakpoint($mediaquery-sm-up) {
-          @include HOVER_TD_MQ;
-        }
-      }
+    &:last-child {
+      border-bottom: 1px solid $color-mercury;
     }
 
     @include breakpoint($mediaquery-sm-up) {
       @include TR_MQ;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover,
+      &:active,
+      &:focus {
+        border: solid 1px $color-axa-blue;
+
+        td {
+          @include breakpoint($mediaquery-sm-up) {
+            @include HOVER_TD_MQ;
+          }
+        }
+      }
     }
   }
 
@@ -124,7 +114,7 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
   > table {
     th, td {
       &:first-child {
-        @include firstChild_TDMQ;
+        @include firstChild_TD_MQ;
       }
 
       @include TD_MQ;
@@ -137,11 +127,23 @@ axa-table[innerscroll]:not([innerscroll="0"]) {
     tr {
       @include TR_MQ;
 
+      &:last-child {
+        border-bottom: 1px solid $color-mercury;
+      }
+
       &:hover,
       &:active,
       &:focus {
         td {
           @include HOVER_TD_MQ;
+          
+          &:first-child {
+            border-left: solid 1px $color-axa-blue;
+          }
+        
+          &:last-child {
+            border-right: solid 1px $color-axa-blue;
+          }
         }
       }
     }

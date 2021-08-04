@@ -1,3 +1,8 @@
+## 3.0.11
+
+- Fix: No visual border when hovering over
+- Fix: No border-bottom in blue color when hovering over last element on small screen
+
 ## 3.0.10
 
 - Fix: interrupted border. (#2204)
