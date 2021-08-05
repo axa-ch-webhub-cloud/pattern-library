@@ -17,7 +17,9 @@ const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
   '@webcomponents/webcomponentsjs',
   '@ungap/global-this',
-  'lit'
+  'lit',
+  'lit-element', 
+  'lit-html'
 ];
 
 console.log(chalk.cyan(outdent`
@@ -28,7 +30,8 @@ console.log(chalk.cyan(outdent`
 const { length : found } = Object.keys(dependencies).filter(
   key => ALLOWED_DEPENDENCIES.indexOf(key) === -1
 );
-
+console.log('heho', Object.keys(dependencies).filter(
+  key => ALLOWED_DEPENDENCIES.indexOf(key) === -1))
 if (found) {
   throw new Error(`
     A new dependency has been added.
