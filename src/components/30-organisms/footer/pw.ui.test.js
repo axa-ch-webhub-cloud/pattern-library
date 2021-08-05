@@ -7,17 +7,18 @@ describe('Footer', () => {
     );
 
     const button = await page.$('#footerTestButton');
-    const footer = await page.$('footer');
+    let footer = await page.$('footer');
 
     expect((await footer.boundingBox()).height).toBe(310);
 
     await button.click();
 
+    footer = await page.$('footer');
     expect((await footer.boundingBox()).height).toBe(275);
 
     await button.click();
-    await page.waitForSelector('[slot=column-0-item-9]');
 
+    footer = await page.$('footer');
     expect((await footer.boundingBox()).height).toBe(310);
   });
 });
