@@ -58,13 +58,13 @@ module.exports = ({ config }) => {
     },
     {
       test: /\.js$/,
-      exclude: /node_modules\/(?!lit\-element|lit\-html|@axa\-ch)/,
+      exclude: /node_modules\/(?!lit|@axa\-ch)/,
       loader: 'babel-loader',
       options: babelOptions,
     },
     {
       test: /\.jsx/,
-      exclude: /node_modules\/(?!lit\-element|lit\-html|@axa\-ch)/,
+      exclude: /node_modules\/(?!lit|@axa\-ch)/,
       loader: 'babel-loader',
       options: {...babelOptions, presets: [...babelOptions.presets]},
     },

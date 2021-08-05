@@ -16,8 +16,8 @@ const ALLOWED_CATEGORIES = [
 const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
   '@webcomponents/webcomponentsjs',
-  'lit-element',
-  'lit-html'
+  '@ungap/global-this',
+  'lit'
 ];
 
 console.log(chalk.cyan(outdent`
