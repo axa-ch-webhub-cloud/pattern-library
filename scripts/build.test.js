@@ -28,8 +28,7 @@ console.log(chalk.cyan(outdent`
 const { length : found } = Object.keys(dependencies).filter(
   key => ALLOWED_DEPENDENCIES.indexOf(key) === -1
 );
-console.log('heho', Object.keys(dependencies).filter(
-  key => ALLOWED_DEPENDENCIES.indexOf(key) === -1))
+
 if (found) {
   throw new Error(`
     A new dependency has been added.
