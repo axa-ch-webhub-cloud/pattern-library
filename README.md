@@ -21,7 +21,7 @@ Use the following channels for different kinds of requests/reports:
 
 ## What we deliver
 
-We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://github.com/Polymer/lit-element) base class (maintained by Google).
+We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://lit.dev/docs/api/LitElement/) base class (maintained by Google).
 
 ## Pattern Library via community CDN
 
@@ -33,15 +33,14 @@ Pattern Library components are exported to npm with 2 types of build artifacts: 
 
 The de-facto standard in the frontend community is to render `/lib` exports as ESM, i.e. **ES5** + **import/export**. Due to the nature of web components and lit-element, however, we are forced to export in ES6. For more details, see the [custom element specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
 
-If you need to support Internet Explorer (11) in your application, you therefore need to **transpile** our component (/lib) artifacts in your build. To do so, you need to **include** the path to our components (@axa-ch) and their underlying framework (lit-element/html) in the section of your transpilation configuration that describes transpilation to ES5. Here is an example snippet of how this would look in a webpack config:
+If you need to support Internet Explorer (11) in your application, you therefore need to **transpile** our component (/lib) artifacts in your build. To do so, you need to **include** the path to our components (@axa-ch) and their underlying framework (lit) in the section of your transpilation configuration that describes transpilation to ES5. Here is an example snippet of how this would look in a webpack config:
 
 ```
 {
   test: /.js$/,
   include: [
     /src/,
-    new RegExp(`node_modules${sep}lit-html`),
-    new RegExp(`node_modules${sep}lit-element`),
+    new RegExp(`node_modules${sep}lit`),
     new RegExp(`node_modules${sep}@axa-ch(?!${sep}patterns-library-polyfill)`),
   ],
   use: {
