@@ -30,5 +30,8 @@
   },
   "devDependencies": {
     "svgo": "^1.2.0"
+  },
+  "dependencies": {
+    "lit": "^2.0.0-rc.2"
   }
 }

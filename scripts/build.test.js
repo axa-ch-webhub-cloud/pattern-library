@@ -18,8 +18,6 @@ const ALLOWED_DEPENDENCIES = [
   '@webcomponents/webcomponentsjs',
   '@ungap/global-this',
   'lit',
-  'lit-element', 
-  'lit-html'
 ];
 
 console.log(chalk.cyan(outdent`

@@ -31,9 +31,7 @@
     "@skatejs/val": "^0.4.0",
     "@ungap/global-this": "^0.4.4",
     "@webcomponents/webcomponentsjs": "2.2.10",
-    "lit": "^2.0.0-rc.2",
-    "lit-element": "^2.2.1",
-    "lit-html": "^1.1.0"
+    "lit": "^2.0.0-rc.2"
   },
   "devDependencies": {
     "@axa-ch/materials": "latest",
