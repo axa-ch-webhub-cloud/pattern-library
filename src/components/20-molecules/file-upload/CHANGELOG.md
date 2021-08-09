@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.2.0
 
 - Added an invalid attribute.

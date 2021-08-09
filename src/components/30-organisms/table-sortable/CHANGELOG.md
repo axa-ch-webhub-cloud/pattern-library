@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.2.0
 
 - It is now possible to display HTML as text. (#1959)

@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.1.2
 
 - Add `event` to the `onClick`, `onBlur` and `onFocus` typescript interface. (#2151)

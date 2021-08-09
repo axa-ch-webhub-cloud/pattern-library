@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.2.8
 
 - No console error if web component is destroyed/ disconnectedCallback is called.

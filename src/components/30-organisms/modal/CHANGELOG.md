@@ -1,3 +1,7 @@
+## 3.0.0
+
+Migrate to lit. #2207
+
 ## 2.0.5
 
 - Fix: unnamed function

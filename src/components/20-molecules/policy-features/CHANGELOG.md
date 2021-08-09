@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.3.0
 
 - Make versioning possible, also for child elements.

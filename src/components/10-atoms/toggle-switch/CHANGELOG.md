@@ -1,3 +1,7 @@
+## 3.0.0
+
+Migrate to lit. #2207
+
 ## 2.1.0
 
 - You can now add an error text to the toggle switch (#2074)

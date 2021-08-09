@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.0.7
 
 - Fixed vertical alignment, in case a button is being used. (#2039)
