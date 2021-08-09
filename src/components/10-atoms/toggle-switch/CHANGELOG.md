@@ -1,4 +1,4 @@
-## 2.1.0
+## 2.2.0
 
 - Added outline for accessibility reasons. (#2198)
 
