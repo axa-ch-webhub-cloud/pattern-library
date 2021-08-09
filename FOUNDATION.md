@@ -67,7 +67,7 @@ hood](https://lit.dev/docs/libraries/standalone-templates/#rendering-lit-html-te
 #### IH by Axa
 * bus factor 1-2. 
 * Stability unclear, not yet production-ready because of [major issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues).
-* Only used inhouse by AXA teams (18 github stars). 
+* Only used inhouse by AXA teams (72 github stars). 
 * Devs not close to any major browser vendor. 
 * Quality of code variable, not typed JS.
 * Quality of documentation low, too little, spotty.
@@ -76,7 +76,7 @@ hood](https://lit.dev/docs/libraries/standalone-templates/#rendering-lit-html-te
 #### lit-element by Google
 * bus factor [>= 2](https://github.com/lit/lit-element/graphs/contributors), [code owners](https://github.com/lit/lit-element/blob/master/.github/CODEOWNERS) are Google engineers that could be replaced by other Google engineers. 
 * Stability: [production-ready](https://www.polymer-project.org/blog/2019-02-05-lit-element-and-lit-html-release).
-* User base growing (8.6k Github stars) [lit](https://github.com/lit/lit)), anecdotal evidence via [retweets from Justin Fagnani](https://twitter.com/justinfagnani), growing tool support as evidence for growing eco system (ibid.).
+* User base growing (8.6k Github stars for [lit](https://github.com/lit/lit)), anecdotal evidence via [retweets from Justin Fagnani](https://twitter.com/justinfagnani), growing tool support as evidence for growing eco system (ibid.).
 [lit-element is officially recommended for new projects over
 Polymer](https://www.polymer-project.org/blog/2018-05-02-roadmap-faq#polymer-3.0-or-litelement).
 Additionally, [YouTube built on Polymer 1/CE version 0](https://react-etc.net/entry/youtube-is-being-rebuilt-on-web-components-and-polymer) throws deprecation warnings for removal of CE v.0 in March 2019 = a candidate for rewrite in lit-element?! 
