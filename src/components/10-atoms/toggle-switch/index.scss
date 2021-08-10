@@ -73,6 +73,6 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   }
   
   &:focus {
-    outline: 2px solid $color-dark-grey;
+    outline: 1px solid $color-dark-grey;
   }
 }
