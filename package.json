@@ -22,6 +22,7 @@
     "test-ui": "sh scripts/ui-test-runner.sh",
     "test-testcafe": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
     "test-testcafe-headless": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
+    "test:windows": "npm run test-lint && prettier --check \"./src/**/*\" && npm run test-jest&& concurrently \"npm run start\" \"wait-on http://localhost:9999 -t 120000 && jest --config=jest.ui.config.js && testcafe -c 4 'chrome:headless' -q ./**/ui.test.js\"",
     "new": "node scripts/create-a-m-o/index.js",
     "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
@@ -61,6 +62,7 @@
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "chalk": "^2.4.2",
     "clipboardy": "^2.0.0",
+    "concurrently": "^6.2.1",
     "copy-webpack-plugin": "^6.0.3",
     "core-js": "^2.6.5",
     "cp": "^0.2.0",
@@ -101,7 +103,8 @@
     "svgo": "^1.2.0",
     "testcafe": "1.9.2",
     "testcafe-browser-provider-browserstack": "1.12.0",
-    "to-string-loader": "^1.1.5"
+    "to-string-loader": "^1.1.5",
+    "wait-on": "^6.0.0"
   },
   "repository": {
     "type": "git",
