@@ -38,6 +38,13 @@ class AXAToggleSwitch extends LitElement {
     applyDefaults(this);
   }
 
+  handleSpacebar(e) {
+    // Key: Space
+    if (e.keyCode === 32) {
+      this.active = !this.active;
+    }
+  }
+
   set active(value) {
     const {
       active,
@@ -68,6 +75,7 @@ class AXAToggleSwitch extends LitElement {
       <input
         class="a-toggle-switch__input"
         type="checkbox"
+        tabindex="-1"
         ?checked="${active}"
         ?disabled="${disabled}"
         @change=${handleChange}
@@ -75,7 +83,11 @@ class AXAToggleSwitch extends LitElement {
     `;
 
     return html`
-      <label class="a-toggle-switch">
+      <label
+        class="a-toggle-switch"
+        tabindex="0"
+        @keydown="${this.handleSpacebar}"
+      >
         ${inputElement}
         <div class="a-toggle-switch__slider"></div>
       </label>
