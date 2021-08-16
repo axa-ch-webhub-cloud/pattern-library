@@ -1,5 +1,4 @@
-// import '@axa-ch/patterns-library-polyfill'; // TODO: undo
-import '../src/components/05-utils/polyfill/index.js';
+import '@axa-ch/patterns-library-polyfill';
 import { addParameters } from '@storybook/html';
 
 const customViewports = {
