@@ -27,12 +27,26 @@ function _mutation(nodes) {
   }
 }
 
-// do we need to polyfill?
+// do we need to polyfill Element.append?
 if (typeof window.Element.prototype.append !== 'function') {
   // cf. https://developer.mozilla.org/en-US/docs/Web/API/Element/append
   // Element.prototype.append
   window.Document.prototype.append = window.Element.prototype.append = function append() {
     this.appendChild(_mutation(arguments));
+  };
+}
+
+// do we need to polyfill Element.getAttributeNames?
+if (typeof window.Element.prototype.getAttributeNames !== 'function') {
+  // polyfill from https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttributeNames
+  window.Element.prototype.getAttributeNames = function() {
+    var attributes = this.attributes;
+    var length = attributes.length;
+    var result = new Array(length);
+    for (var i = 0; i < length; i++) {
+      result[i] = attributes[i].name;
+    }
+    return result;
   };
 }
 /* eslint-enable */
