@@ -49,4 +49,13 @@ if (typeof window.Element.prototype.getAttributeNames !== 'function') {
     return result;
   };
 }
+
+// do we need to polyfill Element.remove?
+if (typeof window.Element.prototype.remove !== 'function') {
+  window.Document.prototype.remove = window.Element.prototype.remove = function remove() {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
 /* eslint-enable */
