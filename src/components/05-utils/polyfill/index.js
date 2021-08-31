@@ -9,4 +9,3 @@ import 'core-js/fn/object/assign';
 import '@ungap/global-this';
 import 'lit/polyfill-support';
 import './index.webcomponents';
-import './ie11';
