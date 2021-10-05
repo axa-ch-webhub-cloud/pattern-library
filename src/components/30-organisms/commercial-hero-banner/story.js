@@ -33,64 +33,76 @@ export const CommercialHeroBanner = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <div>
-    <axa-commercial-hero-banner
-      variant="${variant}"
-      imagesource="${imageSource}"
-    >
-      <header slot="title">
-        <p>This example shows specific picture classes</p>
-        <h1>Drive with peace of mind</h1>
-      </header>
+      <axa-commercial-hero-banner
+        variant="${variant}"
+        imagesource="${imageSource}"
+      >
+        <header slot="title">
+          <p>This example shows specific picture classes</p>
+          <h1>Drive with peace of mind</h1>
+        </header>
 
-      <p slot="content">
-        Whether you need to insure your first car or renew your existing car
-        insurance, AXA can provide a range of car insurance policies to suit
-        your requirements and offer great product benefits at a price you can
-        afford
-      </p>
-      <small slot="disclaimer">Terms and Conditions apply.</small>
-      
-      <axa-button-link
-        href="https://axa.ch"
-        slot="button"
-        variant="red"
-        size="large"
-        >GET A QUOTE</axa-button-link
+        <p slot="content">
+          Whether you need to insure your first car or renew your existing car
+          insurance, AXA can provide a range of car insurance policies to suit
+          your requirements and offer great product benefits at a price you can
+          afford
+        </p>
+        <small slot="disclaimer">Terms and Conditions apply.</small>
+
+        <axa-button-link
+          href="https://axa.ch"
+          slot="button"
+          variant="red"
+          size="large"
+          >GET A QUOTE</axa-button-link
+        >
+      </axa-commercial-hero-banner>
+      <br />
+      <br />
+      <axa-commercial-hero-banner
+        variant="${variant}"
+        imagesource="${imageSource}"
       >
-    </axa-commercial-hero-banner>
-    <br />
-    <br />
-    <axa-commercial-hero-banner
-      variant="${variant}"
-      imagesource="${imageSource}"
-    >
-      <header slot="title">
-        <p>This example shows specific picture classes</p>
-        <h1>Drive with peace of mind</h1>
-      </header>
-      <div slot="content" class="checkmarks">
-        <div class="checkmark">
-          <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
-          <span class="checkmark-text">Extra Cookie</span>
+        <header slot="title">
+          <p>This example shows specific picture classes</p>
+          <h1>Drive with peace of mind</h1>
+        </header>
+        <div slot="content" class="checkmarks">
+          <div class="checkmark">
+            <axa-icon
+              class="checkmark-icon"
+              icon="check-circle"
+              size="auto"
+            ></axa-icon>
+            <span class="checkmark-text">Extra Cookie</span>
+          </div>
+          <div class="checkmark">
+            <axa-icon
+              class="checkmark-icon"
+              icon="check-circle"
+              size="auto"
+            ></axa-icon>
+            <span class="checkmark-text">Awesome People</span>
+          </div>
+          <div class="checkmark">
+            <axa-icon
+              class="checkmark-icon"
+              icon="check-circle"
+              size="auto"
+            ></axa-icon>
+            <span class="checkmark-text">Best in class Service</span>
+          </div>
         </div>
-        <div class="checkmark">
-          <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
-          <span class="checkmark-text">Awesome People</span>
-        </div>
-        <div class="checkmark">
-          <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
-          <span class="checkmark-text">Best in class Service</span>
-        </div>
-      </div>
-      
-      <axa-button-link
-        href="https://axa.ch"
-        slot="button"
-        variant="red"
-        size="large"
-        >GET A QUOTE</axa-button-link
-      >
-    </axa-commercial-hero-banner>      
+
+        <axa-button-link
+          href="https://axa.ch"
+          slot="button"
+          variant="red"
+          size="large"
+          >GET A QUOTE</axa-button-link
+        >
+      </axa-commercial-hero-banner>
     </div>
   `;
   render(template, wrapper);
