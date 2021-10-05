@@ -32,7 +32,7 @@ export const CommercialHeroBanner = () => {
 
   const wrapper = document.createElement('div');
   const template = html`
-    <div class="m-landingpage-keyvisual">
+    <div>
     <axa-commercial-hero-banner
       variant="${variant}"
       imagesource="${imageSource}"
