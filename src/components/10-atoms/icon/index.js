@@ -13,6 +13,7 @@ import {
   SearchSvg,
   File_uploadSvg,
   Cloud_uploadSvg,
+  Check_circleSvg,
 } from '@axa-ch/materials/icons/material-design';
 import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
@@ -49,6 +50,7 @@ class AXAIcon extends LitElement {
       'cloud-upload': Cloud_uploadSvg,
       'axa-logo': AxaLogoSvg,
       'axa-logo-open': AxaLogoOpenSvg,
+      'check-circle': Check_circleSvg,
     };
   }
 
