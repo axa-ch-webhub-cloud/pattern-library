@@ -108,6 +108,8 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
 
+    this.reset = this.reset.bind(this);
+
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
   }
 
@@ -261,6 +263,13 @@ class AXAFileUpload extends LitElement {
     }
 
     this.requestUpdate();
+  }
+
+  reset() {
+    // delete all added files (if any)
+    while (this.files.length || this.faultyFiles.length) {
+      this.handleFileDeletion(0);
+    }
   }
 
   removeValidOrFaultyFileFromArray(index, files, spliceStart) {
@@ -628,6 +637,12 @@ class AXAFileUpload extends LitElement {
       '.js-file-upload__error-wrapper'
     );
     this.fileUpload = this.shadowRoot.querySelector('.js-file-upload');
+    this.addEventListener('reset', this.reset);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('reset', this.reset);
   }
 
   querySelector(selector) {
