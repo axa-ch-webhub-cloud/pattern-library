@@ -22,6 +22,7 @@ axa-commercial-hero-banner {
 
   .checkmark {
     margin-bottom: 5px;
+    display: flex;
   }
 
   .checkmark-icon {
@@ -29,8 +30,6 @@ axa-commercial-hero-banner {
   }
 
   .checkmark-text {
-    position: relative;
-    top: -5px;
     margin-left: 10px;
   }
 

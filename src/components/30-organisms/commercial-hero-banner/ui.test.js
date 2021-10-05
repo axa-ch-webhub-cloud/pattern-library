@@ -93,13 +93,6 @@ test('should use correct typography for mobile view', async t => {
     .eql('"Source Sans Pro", Arial, sans-serif');
   await t.expect(content.getStyleProperty('font-size')).eql('14px');
   await t.expect(content.getStyleProperty('font-weight')).eql('400');
-
-  const disclaimer = await _getDisclaimerNode(t);
-  await t
-    .expect(disclaimer.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
-  await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
 test('should use correct typography for tablet view', async t => {
@@ -118,13 +111,6 @@ test('should use correct typography for tablet view', async t => {
     .eql('"Source Sans Pro", Arial, sans-serif');
   await t.expect(content.getStyleProperty('font-size')).eql('16px');
   await t.expect(content.getStyleProperty('font-weight')).eql('400');
-
-  const disclaimer = await _getDisclaimerNode(t);
-  await t
-    .expect(disclaimer.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
-  await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
 test('should use correct typography for desktop view', async t => {
@@ -143,13 +129,6 @@ test('should use correct typography for desktop view', async t => {
     .eql('"Source Sans Pro", Arial, sans-serif');
   await t.expect(content.getStyleProperty('font-size')).eql('16px');
   await t.expect(content.getStyleProperty('font-weight')).eql('400');
-
-  const disclaimer = await _getDisclaimerNode(t);
-  await t
-    .expect(disclaimer.getStyleProperty('font-family'))
-    .eql('"Source Sans Pro", Arial, sans-serif');
-  await t.expect(disclaimer.getStyleProperty('font-size')).eql('14px');
-  await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
 fixture('Commercial Hero Banner - Check addons')
@@ -187,12 +166,6 @@ async function _getContentNode(t) {
   const contentNode = await Selector(TAG).find('[slot="content"]');
   await t.expect(contentNode.exists).ok();
   return contentNode;
-}
-
-async function _getDisclaimerNode(t) {
-  const disclaimerNode = await Selector(TAG).find('[slot="disclaimer"]');
-  await t.expect(disclaimerNode.exists).ok();
-  return disclaimerNode;
 }
 
 test('should set correct width for button', async t => {
