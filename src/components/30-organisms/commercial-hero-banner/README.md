@@ -20,6 +20,7 @@ The commercial hero banner is a component to set something into the focus of the
     <p>...<p> // Subheading
   </header>
   <p slot="content">...</p> // You can put multiple <p> elements with the 'content' slot
+  <div slot="content" class="checkmarks">...</div> //  Either p[slot=content] or div[slot=content] can be added, not both
   <small slot="disclaimer">...</small> // Only one disclaimer
   <axa-button-link slot="button" /> // Can also be 'axa-button', meant as CTA (Call to Action)
   <slot name="addon-section"></slot> // Any DOM node, positioning and styling is the responsibility of the user
@@ -46,6 +47,16 @@ Here is a complete example of how you can make use of it, including the position
     insurance, AXA can provide a range of car insurance policies to suit your
     requirements and offer great product benefits at a price you can afford
   </p>
+  <div slot="content" class="checkmarks">
+    <div class="checkmark">
+      <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
+      <span class="checkmark-text">Extra Cookie</span>
+    </div>
+    <div class="checkmark">
+      <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
+      <span class="checkmark-text">Awesome People</span>
+    </div>
+  </div>  
   <small slot="disclaimer">Terms and Conditions apply.</small>
   <axa-button-link
     href="https://axa.ch"
@@ -68,7 +79,7 @@ Here is a complete example of how you can make use of it, including the position
   </div>
 </axa-commercial-hero-banner>
 ```
-
+NOTE: Text description in p[slot=content] and checkmarks in div.checkmarks[slot=content] are mutually exclusive elements i.e. they cannot be added at the same time.
 ```css
 .o-commercial-hero-banner-demo__badge-wrapper {
   position: absolute;
@@ -144,4 +155,25 @@ Here is a complete example of how you can make use of it, including the position
     right: 150px;
   }
 }
+
+.checkmarks {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  line-height: 24px;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+}
+
+.checkmark {
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.checkmark-icon {
+  color: #668980;
+}
+
+.checkmark-text {
+  margin-left: 10px;
+}
+
 ```
