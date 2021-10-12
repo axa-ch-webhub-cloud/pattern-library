@@ -49,14 +49,22 @@ Here is a complete example of how you can make use of it, including the position
   </p>
   <div slot="content" class="checkmarks">
     <div class="checkmark">
-      <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
+      <axa-icon
+        class="checkmark-icon"
+        icon="check-circle"
+        size="auto"
+      ></axa-icon>
       <span class="checkmark-text">Extra Cookie</span>
     </div>
     <div class="checkmark">
-      <axa-icon class="checkmark-icon" icon="check-circle" size="auto"></axa-icon>
+      <axa-icon
+        class="checkmark-icon"
+        icon="check-circle"
+        size="auto"
+      ></axa-icon>
       <span class="checkmark-text">Awesome People</span>
     </div>
-  </div>  
+  </div>
   <small slot="disclaimer">Terms and Conditions apply.</small>
   <axa-button-link
     href="https://axa.ch"
@@ -79,7 +87,9 @@ Here is a complete example of how you can make use of it, including the position
   </div>
 </axa-commercial-hero-banner>
 ```
+
 NOTE: Text description in p[slot=content] and checkmarks in div.checkmarks[slot=content] are mutually exclusive elements i.e. they cannot be added at the same time.
+
 ```css
 .o-commercial-hero-banner-demo__badge-wrapper {
   position: absolute;
@@ -160,7 +170,7 @@ NOTE: Text description in p[slot=content] and checkmarks in div.checkmarks[slot=
   font-size: 16px;
   letter-spacing: 0.02em;
   line-height: 24px;
-  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-family: 'Source Sans Pro', Arial, sans-serif;
 }
 
 .checkmark {
@@ -175,5 +185,4 @@ NOTE: Text description in p[slot=content] and checkmarks in div.checkmarks[slot=
 .checkmark-text {
   margin-left: 10px;
 }
-
 ```
