@@ -68,6 +68,8 @@ export const CommercialHeroBanner = () => {
           </div>
         </div>
 
+        <small slot="disclaimer">Terms and Conditions apply.</small>
+
         <axa-button-link
           href="https://axa.ch"
           slot="button"

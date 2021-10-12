@@ -64,7 +64,7 @@ $height-md-up: 440px;
 
     &-item {
       background-color: $color-prim-white;
-
+      width: 100%;
       word-wrap: break-word;
 
       @include breakpoint($mediaquery-md-up) {
