@@ -51,7 +51,7 @@ export const Icon = () => {
   const createListWithAllIcons = () => {
     const list = document.createElement('ul');
 
-    Object.keys(AXAIcon.iconsMapping).forEach(iconName => {
+    Object.keys(AXAIcon.iconsMapping).forEach((iconName) => {
       const listEl = document.createElement('li');
       listEl.innerHTML = `${iconName} `;
 
@@ -65,7 +65,7 @@ export const Icon = () => {
     return list;
   };
 
-  const getIconValue = iconType => {
+  const getIconValue = (iconType) => {
     switch (iconType) {
       case 'url':
         return itemIconUrl;
@@ -79,14 +79,10 @@ export const Icon = () => {
   const wrapper = document.createElement('div');
   const template = html`
     ${showAll
-      ? html`
-          ${createListWithAllIcons()}
-        `
+      ? html` ${createListWithAllIcons()} `
       : html`
           ${noIcon
-            ? html`
-                <axa-icon></axa-icon>
-              `
+            ? html` <axa-icon></axa-icon> `
             : html`
                 ${noSize
                   ? html`
