@@ -71,7 +71,7 @@ class AXAIcon extends LitElement {
     const { icon } = this;
 
     if (/\.svg/.test(icon)) {
-      xhrCall(icon).then((result) => {
+      xhrCall(icon).then(result => {
         this._loadedSvg = result;
       });
     } else if (/<svg/.test(icon)) {
