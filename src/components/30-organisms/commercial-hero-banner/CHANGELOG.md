@@ -1,3 +1,7 @@
+## 4.1.0
+
+- New: Checkmark icons to create a list in the component.
+
 ## 4.0.2
 
 - Fix: prevent duplicate style attachment. (#1727)
