@@ -1,3 +1,7 @@
+## 4.1.1
+
+- Fix: axa-icon was not a dependency of the component.
+
 ## 4.1.0
 
 - New: Checkmark icons to create a list in the component.
