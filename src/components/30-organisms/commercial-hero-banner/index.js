@@ -2,7 +2,6 @@
 import { css, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '@axa-ch/container';
-import AXAIcon from '@axa-ch/icon';
 import {
   defineVersioned,
   versionedHtml,
@@ -35,7 +34,6 @@ class AXACommercialHeroBanner extends InlineStyles {
     applyDefaults(this);
 
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
-    defineVersioned([AXAIcon], __VERSION_INFO__, this);
   }
 
   // Parent class InlineStyles needs a static method to retrive styles

@@ -1,6 +1,10 @@
+## 4.1.2
+
+- Fix: Undo version 4.1.1, as the import was not used internally.
+
 ## 4.1.1
 
-- Fix: axa-icon was not a dependency of the component.
+- Fix: `axa-icon` was not a dependency of the component.
 
 ## 4.1.0
 
