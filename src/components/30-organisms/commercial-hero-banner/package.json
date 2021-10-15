@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@axa-ch/container": "3.0.12",
-    "@axa-ch/icon": "6.0.6",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
