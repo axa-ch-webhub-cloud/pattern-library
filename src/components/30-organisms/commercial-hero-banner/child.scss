@@ -31,6 +31,13 @@ axa-commercial-hero-banner {
 
   .checkmark-text {
     margin-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 8px;
+
+    @include breakpoint($mediaquery-xs-up) {
+      padding-top: 0;
+      padding-bottom: 12px;
+    }
   }
 
   header > p {
