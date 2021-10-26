@@ -1,3 +1,7 @@
+## 5.3.0
+
+- Added reset method/event to clear any uploaded files. (#2223)
+
 ## 5.2.0
 
 - Added an invalid attribute.
