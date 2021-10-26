@@ -307,3 +307,36 @@ test(`shouldn't convert .png file to .jpg`, async t => {
 
   await t.expect($figcaptionElem.textContent).eql('test.png');
 });
+
+fixture('File upload - reset').page(
+  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=5&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
+);
+
+test('should upload and then reset all files', async t => {
+  const $inputFileInputElem = await Selector(
+    () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
+    { dependencies: { FILE_UPLOAD_TAG } }
+  ).find('.js-file-upload__input .a-input-file__input');
+
+  await t.expect($inputFileInputElem.exists).ok();
+
+  await t.setFilesToUpload($inputFileInputElem, validFiles);
+
+  const $figureElems = await Selector(
+    () => document.querySelector('axa-file-upload').shadowRoot
+  ).find('.js-file-upload__img-figure');
+
+  await $figureElems();
+  // expected number of files have been uploaded
+  await t.expect(await $figureElems.count).eql(4);
+
+  const performReset = await Selector(
+    () => document.querySelector('axa-file-upload').reset() || true
+  );
+  // reset proper
+  await t.expect(performReset).ok();
+
+  await $figureElems();
+  // no-files-have-been-uploaded state restored
+  await t.expect(await $figureElems.count).eql(0);
+});
