@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
@@ -330,11 +330,11 @@ test('should upload and then reset all files', async t => {
   // expected number of files have been uploaded
   await t.expect(await $figureElems.count).eql(5); // 4 files + addMoreInputFile
 
-  const performReset = await Selector(
-    () => document.querySelector('axa-file-upload').reset() || true
+  const performReset = ClientFunction(() =>
+    document.querySelector('axa-file-upload').reset()
   );
   // reset proper
-  await t.expect(performReset).ok();
+  await performReset();
 
   await $figureElems();
   // no-files-have-been-uploaded state restored
