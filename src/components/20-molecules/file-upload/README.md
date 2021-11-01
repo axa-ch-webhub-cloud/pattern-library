@@ -139,6 +139,8 @@ Checks if the file upload reports a "invalid" state (read-only). You can conside
 
 The attribute `onChange` function executes as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.
 
+## Events
+
 ### reset
 
 The `reset` event, when dispatched on `<axa-input-file>`, causes all added files to be removed in one go.
