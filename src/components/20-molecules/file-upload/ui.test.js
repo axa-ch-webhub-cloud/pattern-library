@@ -328,7 +328,7 @@ test('should upload and then reset all files', async t => {
 
   await $figureElems();
   // expected number of files have been uploaded
-  await t.expect(await $figureElems.count).eql(4);
+  await t.expect(await $figureElems.count).eql(5); // 4 files + addMoreInputFile
 
   const performReset = await Selector(
     () => document.querySelector('axa-file-upload').reset() || true
