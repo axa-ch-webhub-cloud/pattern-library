@@ -34,6 +34,14 @@ const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
 
+const findFileById = (files, file, indexOnly) => {
+  for (let i = 0, n = files.length; i < n; i++) {
+    if (files[i].id === file.id) {
+      return indexOnly ? i : files[i];
+    }
+  }
+  return undefined;
+};
 class AXAFileUpload extends LitElement {
   static get tagName() {
     return 'axa-file-upload';
@@ -356,15 +364,11 @@ class AXAFileUpload extends LitElement {
       if (fileSize > maxSizeOfSingleFileInBytes) {
         faultyOriginalFiles.push(file);
 
-        faultyCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        faultyCompressedFiles.push(findFileById(newCompressedFiles, file));
       } else {
         validOriginalFiles.push(file);
 
-        validCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        validCompressedFiles.push(findFileById(newCompressedFiles, file));
       }
 
       this.sizeOfAllFilesInBytes += fileSize;
@@ -377,15 +381,6 @@ class AXAFileUpload extends LitElement {
       faultyOriginalFiles,
       faultyCompressedFiles
     );
-  }
-
-  findCompromisedFileWithMatchingID(newCompressedFiles, file) {
-    for (let j = 0; newCompressedFiles.length > j; j++) {
-      if (newCompressedFiles[j].id === file.id) {
-        return newCompressedFiles[j];
-      }
-    }
-    return undefined;
   }
 
   addFilesToSpecificArray(
@@ -480,8 +475,8 @@ class AXAFileUpload extends LitElement {
       }
 
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
-        if (faultyCompressedFiles[i] === file) {
-          isfaultyFile = true;
+        if (faultyCompressedFiles[i].id === file.id) {
+          isfaultyFile = file;
           this.invalid = true;
           break;
         }
@@ -532,8 +527,8 @@ class AXAFileUpload extends LitElement {
               ? html`
                   <span
                     class="m-file-upload__error js-file-upload__error"
-                    title="${fileTooBigStatusText}"
-                    >${fileTooBigStatusText}</span
+                    title="${isfaultyFile.errorMessage || fileTooBigStatusText}"
+                    >${isfaultyFile.errorMessage || fileTooBigStatusText}</span
                   >
                 `
               : html``}
@@ -541,6 +536,54 @@ class AXAFileUpload extends LitElement {
         </figure>
       `;
     });
+  }
+
+  // invalidate an existing file by fiat. Uses file.id to match, and file.errorMessage for UI.
+  invalidate(file, clear, globalErrorMessage) {
+    // set up
+    const { faultyCompressedFiles, validCompressedFiles } = this;
+    // try to find file via its 'id'
+    let foundAt;
+    let where;
+    let isFound;
+    const sources = [faultyCompressedFiles, validCompressedFiles];
+    for (let i = 0; i < 2; i++) {
+      where = sources[i];
+      foundAt = findFileById(where, file, true);
+      isFound = foundAt !== undefined;
+      if (isFound) break;
+    }
+    // we found it?
+    if (isFound) {
+      // among the faulty ones?
+      if (where === faultyCompressedFiles) {
+        // yes, so if we are asked to clear a faulty file...
+        if (clear) {
+          // ... remove it
+          faultyCompressedFiles.splice(foundAt, 1);
+          // and re-add it to the valid ones
+          validCompressedFiles.push(file);
+          // clear invalidity status
+          this.invalid = false;
+          this.globalErrorMessage = '';
+        }
+      } else {
+        // no, we found it among the valid ones:
+        // make it faulty by fiat
+        faultyCompressedFiles.push(file);
+        // remove it from valid ones
+        validCompressedFiles.splice(foundAt, 1);
+        // set invalidity status
+        this.invalid = true;
+        this.globalErrorMessage =
+          typeof globalErrorMessage === 'string'
+            ? globalErrorMessage
+            : file.errorMessage;
+      }
+      // force rerender
+      this.requestUpdate();
+    }
+    return isFound;
   }
 
   generateAddMoreInputFile() {

@@ -139,6 +139,25 @@ Checks if the file upload reports a "invalid" state (read-only). You can conside
 
 The attribute `onChange` function executes as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.
 
+### invalidate
+
+This method has the signature `invalidate(file, clear, globalErrorMessage)`, where `file` is
+a [File]() object enriched with properties `id` (a string UUID) and `errorMessage` (a per-file string), `clear` returns a file to valid status when truthy (default: false), and `globalErrorMessage` sets the error-message string for the entire component (default: per-file `errorMessage`).
+
+Its intended use is for external validation of files, e.g. using server-side malware scanning:
+
+```js
+const ref = document.querySelector('axa-file-upload');
+// ... assume user uploads 3 files,
+// server identifies the 2nd file as invalid
+const file = ref.files[1];
+file.errorMessage = 'Malware detected.';
+// set UI into invalid state for 2nd file
+ref.invalidate(file, false, 'Attempt to upload file(s) containing malware');
+// declare file as valid again
+ref.invalidate(file, true);
+```
+
 ## Events
 
 ### reset
