@@ -364,11 +364,52 @@ test('should upload all files and then invalidate a single file', async t => {
   await t.expect(await $figureElems.count).eql(5); // 4 files + addMoreInputFile
 
   const invalidateSingleFile = ClientFunction(() => {
+    // get DOM reference
     const ref = document.querySelector('axa-file-upload');
-    // server identifies the 2nd file as invalid
+    // pretend 'server-side validation' identifies the 2nd file as invalid
     const file = ref.files[1];
     file.errorMessage = 'Malware detected.';
     // set UI into invalid state for 2nd file
     ref.invalidate(file, false, 'Attempt to upload file(s) containing malware');
   });
+
+  // simulate external invalidation
+  await invalidateSingleFile();
+
+  // verify UI state is as expected
+  const $errorWrapper = await Selector(() =>
+    document
+      .querySelector('axa-file-upload')
+      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
+  );
+  await t
+    .expect($errorWrapper.innerText)
+    .eql('Attempt to upload file(s) containing malware');
+
+  const $errorElems = await Selector(
+    () => document.querySelector('axa-file-upload').shadowRoot
+  ).find('.js-file-upload__error');
+
+  await $errorElems();
+  // expected number of erroneous files
+  await t.expect(await $errorElems.count).eql(1);
+  await t.expect(await $errorElems[0].textContent).eql('Malware detected.');
+
+  const revalidateSingleFile = ClientFunction(() => {
+    // get DOM reference
+    const ref = document.querySelector('axa-file-upload');
+    // pretend 'server-side validation' had identified the 2nd file as invalid
+    const file = ref.files[1];
+    // set UI into valid state again for 2nd file
+    ref.invalidate(file, true);
+  });
+
+  // undo external invalidation
+  await revalidateSingleFile();
+
+  // expected global error message
+  await t.expect($errorWrapper.innerText).eql('');
+  await $errorElems();
+  // expected number of erroneous files
+  await t.expect(await $errorElems.count).eql(0);
 });
