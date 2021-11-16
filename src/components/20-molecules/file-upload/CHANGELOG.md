@@ -1,3 +1,7 @@
+## 5.4.0
+
+- Added new method `invalidate(file, clear, globalErrorMessage)` (cf. README). (#2222)
+
 ## 5.3.0
 
 - Added reset method/event to clear any uploaded files. (#2223)
