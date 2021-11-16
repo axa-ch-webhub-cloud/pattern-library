@@ -391,9 +391,11 @@ test('should upload all files and then invalidate a single file', async t => {
   ).find('.js-file-upload__error');
 
   await $errorElems();
-  // expected number of erroneous files
+  // expected number of erroneous files and associated error messages
   await t.expect(await $errorElems.count).eql(1);
-  await t.expect(await $errorElems[0].textContent).eql('Malware detected.');
+  await t
+    .expect(await $errorElems.withExactText('Malware detected.').exists)
+    .ok();
 
   const revalidateSingleFile = ClientFunction(() => {
     // get DOM reference
