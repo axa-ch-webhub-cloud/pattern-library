@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, no-continue */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit-html/directives/class-map';
@@ -55,10 +55,11 @@ const findAndManipulate = (
   { once, record, removeFrom, appendTo }
 ) => {
   // set up
-  let where, foundAt;
+  let where;
+  let foundAt;
   const result = [];
-  const deletions = [],
-    appends = [];
+  const deletions = [];
+  const appends = [];
   const _remove = removeFrom && new Set(removeFrom);
   const _append = appendTo && new Set(appendTo);
   // for all sources a.k.a. file arrays:
@@ -82,8 +83,8 @@ const findAndManipulate = (
   }
   // execute queued actions for deletion or append cases (because of unique file ids
   // we can assume each source has <= 1 occurrence of file)
-  deletions.forEach(({ where, foundAt }) => where.splice(foundAt, 1)); // splice performs in-place modification!
-  appends.forEach(where => where.push(file));
+  deletions.forEach(({ where:_where, foundAt:_foundAt }) => _where.splice(_foundAt, 1)); // splice performs in-place modification!
+  appends.forEach(_where => _where.push(file));
   // return summary of record'ed cases
   return result;
 };
