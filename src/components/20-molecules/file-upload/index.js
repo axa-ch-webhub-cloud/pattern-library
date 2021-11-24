@@ -83,7 +83,9 @@ const findAndManipulate = (
   }
   // execute queued actions for deletion or append cases (because of unique file ids
   // we can assume each source has <= 1 occurrence of file)
-  deletions.forEach(({ where:_where, foundAt:_foundAt }) => _where.splice(_foundAt, 1)); // splice performs in-place modification!
+  deletions.forEach(({ where: _where, foundAt: _foundAt }) =>
+    _where.splice(_foundAt, 1)
+  ); // splice performs in-place modification!
   appends.forEach(_where => _where.push(file));
   // return summary of record'ed cases
   return result;
