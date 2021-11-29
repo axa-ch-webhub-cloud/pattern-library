@@ -458,6 +458,9 @@ class AXADropdown extends NoShadowDOM {
 
     const [selectedItem] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
+    if (selectedItem?.value) {
+      this.value = selectedItem.value;
+    }
 
     return html`
       ${label &&
