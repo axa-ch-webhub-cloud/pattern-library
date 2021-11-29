@@ -51,8 +51,8 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
-  html`
+const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
+  return html`
     <option
       class="m-dropdown__option"
       value="${value}"
@@ -63,6 +63,7 @@ const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
       >${name}</option
     >
   `;
+};
 
 const contentItemsMapper = (clickHandler, defaultTitle) => (
   { name, value, selected, _disabled },
@@ -122,6 +123,7 @@ class AXADropdown extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       disabled: { type: Boolean, reflect: true },
+      cropText: { type: Boolean, reflect: true },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
