@@ -2,6 +2,8 @@ import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import '@axa-ch/dropdown';
 import '@axa-ch/input-text';
 
+import { countries } from './country-items';
+
 import {
   defineVersioned,
   /* versionedHtml, */
@@ -39,9 +41,10 @@ class AXAInputPhone extends LitElement {
     // defineVersioned([myDependentComponent1, myDependentComponent2, ...], __VERSION_INFO__, this);
   }
 
-  firstUpdated() {
-    // Add DOM changes here
-    // This will be rendered when the component is connected to the DOM
+  updated() {
+    this.shadowRoot.querySelector(
+      '.m-input-phone__mobile-area-code-dropdown'
+    ).items = countries;
   }
 
   // if you use dependent components inside your html-tagged string templates below,
@@ -50,17 +53,17 @@ class AXAInputPhone extends LitElement {
   // versionedHTML(this)`<axa-XXX foo="bar"></axa-XXX>`
   render() {
     return html`
-      <article class="m-input-phone">
-        <axa-dropdown></axa-dropdown>
-        <axa-input-text></axa-input-text>
-      </article>
+      <div class="m-input-phone">
+        <axa-dropdown
+          class="m-input-phone__mobile-area-code-dropdown"
+        ></axa-dropdown>
+        <div>
+          <axa-input-text
+            class="m-input-phone__mobile-number-input"
+          ></axa-input-text>
+        </div>
+      </div>
     `;
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-
-    // Cleanup and reset (i.e event listeners)
   }
 }
 

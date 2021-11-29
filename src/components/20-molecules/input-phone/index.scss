@@ -1,3 +1,17 @@
 .m-input-phone {
-  display: block;
+display: flex;
+flex-direction: row;
+}
+
+.m-input-phone__mobile-area-code-dropdown {
+    // display: inline-block;
+    width: 120px;
+}
+
+axa-input-text {
+    // width: 200px;
+}
+
+.m-input-phone > div {
+// width: 200px;
 }
