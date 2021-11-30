@@ -1,8 +1,27 @@
 .m-input-phone {
-display: flex;
-flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.m-input-phone__container {
+    display: inline-flex;
+    flex-direction: row;
 }
 
 .m-input-phone__mobile-area-code-dropdown {
     width: 125px;
+}
+
+.m-input-phone--invalid {
+    border: 2px solid $color-shy-tomato;
+}
+
+.m-input-phone__error {
+    opacity: 0;
+}
+
+.m-input-phone__error--show {
+    color: $color-shy-tomato;
+    opacity: 1;
 }
