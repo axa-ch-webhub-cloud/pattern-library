@@ -6,6 +6,8 @@ describe('Input Phone', () => {
 
     AXAInputPhone.prototype.firstUpdated();
 
-    expect(AXAInputPhone.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
+    expect(
+      AXAInputPhone.prototype.methodThatShouldNotBeCalled
+    ).not.toHaveBeenCalled();
   });
 });
