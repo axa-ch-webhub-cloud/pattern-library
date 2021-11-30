@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS } from 'lit-element';
 import AXADropdown from '@axa-ch/dropdown';
 import AXAInputText from '@axa-ch/input-text';
@@ -21,7 +22,8 @@ class AXAInputPhone extends LitElement {
   static get properties() {
     return {
       invalid: { type: Boolean, reflect: true },
-      error: { type: String, reflect: true },
+      errorprefix: { type: String, reflect: true },
+      _errorText: { type: String, attribute: false },
     };
   }
 
@@ -62,14 +64,12 @@ class AXAInputPhone extends LitElement {
   onNumberChange(ev) {
     const userInput = ev.target?.value || '';
     this.value = `${this.areaCodeDropdown.value}${this.phoneInputText.value}`;
-    console.log('hello', this.isValid(userInput));
     if (this.isValid(userInput)) {
       this.phoneInputValue = userInput.match(/\d+/g)?.join('') || '';
       this.invalid = false;
     } else {
       this.invalid = true;
-      this.error = `Format: +41791001010, Current: ${this.value}`;
-      console.log(this.error);
+      this._errorText = `${this.errorprefix}: ${this.value}`;
     }
   }
 
@@ -108,7 +108,7 @@ class AXAInputPhone extends LitElement {
           class="m-input-phone__error ${this.invalid
             ? 'm-input-phone__error--show'
             : ''}"
-          >${this.error}</label
+          >${this._errorText}</label
         >
       </div>
     `;
