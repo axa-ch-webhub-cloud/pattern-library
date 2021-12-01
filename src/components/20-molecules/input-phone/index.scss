@@ -4,6 +4,17 @@
     width: 300px;
 }
 
+.m-input-phone__label {
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    line-height: 24px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
 .m-input-phone__container {
     display: inline-flex;
     flex-direction: row;
@@ -19,6 +30,7 @@
 
 .m-input-phone__error {
     opacity: 0;
+    margin-top: 10px;
 }
 
 .m-input-phone__error--show {

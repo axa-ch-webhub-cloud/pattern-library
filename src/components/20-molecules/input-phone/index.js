@@ -22,6 +22,7 @@ class AXAInputPhone extends LitElement {
   static get properties() {
     return {
       invalid: { type: Boolean, reflect: true },
+      label: { type: String, reflect: true },
       errorprefix: { type: String, reflect: true },
       _errorText: { type: String, attribute: false },
     };
@@ -54,7 +55,7 @@ class AXAInputPhone extends LitElement {
     // Longer than 15 character? See: https://en.wikipedia.org/wiki/E.164
     else if (
       this.areaCodeDropdown.value?.length + phoneNumberTypedByUser.length >=
-      15
+      16
     ) {
       return false;
     }
@@ -90,6 +91,7 @@ class AXAInputPhone extends LitElement {
   render() {
     return html`
       <div class="m-input-phone">
+        <label class="m-input-phone__label">${this.label}</label>
         <div
           class="m-input-phone__container ${this.invalid
             ? 'm-input-phone--invalid'
@@ -102,6 +104,7 @@ class AXAInputPhone extends LitElement {
           <axa-input-text
             class="m-input-phone__mobile-number-input"
             @input="${this.onNumberChange}"
+            placeholder="795002020"
           ></axa-input-text>
         </div>
         <label

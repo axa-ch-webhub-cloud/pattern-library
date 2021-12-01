@@ -11,7 +11,8 @@ export const InputPhone = () => {
   const wrapper = document.createElement('div');
   const template = html`
     <axa-input-phone
-      errorprefix="Format: +41795002010, Current"
+      label="Phone Number"
+      errorprefix="Invalid Phone Number"
     ></axa-input-phone>
   `;
 
