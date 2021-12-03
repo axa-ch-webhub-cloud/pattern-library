@@ -23,6 +23,7 @@ class AXAInputPhone extends LitElement {
     return {
       invalid: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
+      lang: { type: String, reflect: true },
       errorprefix: { type: String, reflect: true },
       _errorText: { type: String, attribute: false },
     };
@@ -75,9 +76,20 @@ class AXAInputPhone extends LitElement {
   }
 
   updated() {
-    this.shadowRoot.querySelector(
+    const mobileDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
-    ).items = countryItems;
+    );
+    mobileDropdown.items = countryItems.map(cItem => ({
+      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+      value: cItem.dialCode,
+    }));
+    mobileDropdown.addEventListener('change', ev => {
+      document
+        .querySelector('#root > div > axa-input-phone')
+        .shadowRoot.querySelector(
+          'div > div > axa-dropdown > div > div > button > span > span.js-dropdown__title'
+        ).textContent = ev.target.value;
+    });
 
     this.areaCodeDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
