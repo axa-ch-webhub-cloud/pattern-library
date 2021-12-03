@@ -6,7 +6,7 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countries } from './country-items';
+import { countryItems } from './country-items';
 
 class AXAInputPhone extends LitElement {
   static get tagName() {
@@ -55,7 +55,7 @@ class AXAInputPhone extends LitElement {
     // Longer than 15 character? See: https://en.wikipedia.org/wiki/E.164
     else if (
       this.areaCodeDropdown.value?.length + phoneNumberTypedByUser.length >=
-      16
+      15
     ) {
       return false;
     }
@@ -77,7 +77,7 @@ class AXAInputPhone extends LitElement {
   updated() {
     this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
-    ).items = countries;
+    ).items = countryItems;
 
     this.areaCodeDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
