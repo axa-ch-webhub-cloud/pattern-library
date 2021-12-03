@@ -13,7 +13,7 @@ export const countryItems = [
     en: 'Palestine',
     fr: 'Palestine',
     it: 'Palestina',
-    area: '',
+    area: '+970',
   },
   {
     short: 'PT',
@@ -69,7 +69,7 @@ export const countryItems = [
     en: 'Afghanistan',
     fr: 'Afghanistan',
     it: 'Afganistan',
-    area: '',
+    area: '+93',
   },
   {
     short: 'AG',
@@ -93,7 +93,7 @@ export const countryItems = [
     en: 'Albania',
     fr: 'Albanie',
     it: 'Albania',
-    area: '',
+    area: '+355',
   },
   {
     short: 'AM',
@@ -125,7 +125,7 @@ export const countryItems = [
     en: 'American Samoa',
     fr: 'Samoa, partie américaine',
     it: 'Samoa, parte statunitense',
-    area: '',
+    area: '+685',
   },
   {
     short: 'AT',
@@ -165,7 +165,7 @@ export const countryItems = [
     en: 'Åland',
     fr: 'Åland',
     it: 'Åland',
-    area: '',
+    area: '+358',
   },
   {
     short: 'AZ',
@@ -205,7 +205,7 @@ export const countryItems = [
     en: 'Serbia',
     fr: 'Serbie',
     it: 'Serbia',
-    area: '',
+    area: '+381',
   },
   {
     short: 'BD',
@@ -285,7 +285,7 @@ export const countryItems = [
     en: 'Saint-Barthélemy',
     fr: 'Saint-Barthélemy',
     it: 'Saint-Barthélemy',
-    area: '',
+    area: '+590',
   },
   {
     short: 'BM',
@@ -333,7 +333,7 @@ export const countryItems = [
     en: 'Bonaire, Sint Eustatius and Saba',
     fr: 'Bonaire, Saint-Eustache et Saba',
     it: 'Bonaire, Sint-Eustache e Saba',
-    area: '',
+    area: '+599',
   },
   {
     short: 'BR',
@@ -493,7 +493,7 @@ export const countryItems = [
     en: 'Cocos (Keeling) Island',
     fr: 'Cocos (Keeling), Ile des',
     it: 'Cocos, Isola',
-    area: '',
+    area: '+61',
   },
   {
     short: 'SS',
@@ -501,7 +501,7 @@ export const countryItems = [
     en: 'South Sudan',
     fr: 'Soudan du Sud',
     it: 'Sudan del Sud',
-    area: '',
+    area: '+211',
   },
   {
     short: 'CD',
@@ -509,7 +509,7 @@ export const countryItems = [
     en: 'Congo, Democratic Republic',
     fr: 'Congo, République démocratique',
     it: 'Congo, Repubblica Democratica',
-    area: '',
+    area: '+243',
   },
   {
     short: 'ST',
@@ -557,7 +557,7 @@ export const countryItems = [
     en: 'Sint Maarten (NL)',
     fr: 'Sint Maarten (NL)',
     it: 'Sint Maarten (NL)',
-    area: '',
+    area: '+721',
   },
   {
     short: 'CI',
@@ -565,7 +565,7 @@ export const countryItems = [
     en: 'Ivory Coast',
     fr: "Côte d'Ivoire",
     it: "Costa d'Avorio",
-    area: '',
+    area: '+225',
   },
   {
     short: 'SY',
@@ -573,7 +573,7 @@ export const countryItems = [
     en: 'Syria',
     fr: 'Syrie',
     it: 'Siria',
-    area: '',
+    area: '+963',
   },
   {
     short: 'SZ',
@@ -645,7 +645,7 @@ export const countryItems = [
     en: 'Chad',
     fr: 'Tchad',
     it: 'Ciad',
-    area: '',
+    area: '+235',
   },
   {
     short: 'CU',
@@ -661,7 +661,7 @@ export const countryItems = [
     en: 'French Southern and Antarctic Lands',
     fr: 'Terres australes et antarctiques françaises',
     it: 'Terre australi e antartiche francesi',
-    area: '',
+    area: '+672',
   },
   {
     short: 'CV',
@@ -693,7 +693,7 @@ export const countryItems = [
     en: 'Curaçao',
     fr: 'Curaçao',
     it: 'Curaçao',
-    area: '',
+    area: '+599',
   },
   {
     short: 'CX',
@@ -701,7 +701,7 @@ export const countryItems = [
     en: 'Christmas Island (Indian Ocean)',
     fr: 'Christmas, Ile (Océan indien)',
     it: 'Christmas, Isola (Oceano indiano)',
-    area: '',
+    area: '+61',
   },
   {
     short: 'CY',
@@ -733,7 +733,7 @@ export const countryItems = [
     en: 'Tokelau',
     fr: 'Tokélaou',
     it: 'Tokelau',
-    area: '',
+    area: '+690',
   },
   {
     short: 'TL',
@@ -741,7 +741,7 @@ export const countryItems = [
     en: 'Timor-Leste',
     fr: 'Timor-Leste',
     it: 'Timor-Leste',
-    area: '',
+    area: '+670',
   },
   {
     short: 'TM',
@@ -821,7 +821,7 @@ export const countryItems = [
     en: 'Tanzania',
     fr: 'Tanzanie',
     it: 'Tanzania',
-    area: '',
+    area: '+255',
   },
   {
     short: 'DK',
@@ -877,7 +877,7 @@ export const countryItems = [
     en: 'United States Minor Outlying Islands',
     fr: 'Iles mineures éloignées des Etats-Unis',
     it: 'Isole Minori (USA)',
-    area: '',
+    area: '+246',
   },
   {
     short: 'EC',
@@ -917,7 +917,7 @@ export const countryItems = [
     en: 'Western Sahara',
     fr: 'Sahara occidental',
     it: 'Sahara Occidentale',
-    area: '',
+    area: '+212',
   },
   {
     short: 'UY',
@@ -957,7 +957,7 @@ export const countryItems = [
     en: 'Saint Vincent and the Grenadines',
     fr: 'Saint-Vincent-et-les-Grenadines',
     it: 'Saint Vincent e Grenadine',
-    area: '',
+    area: '+1',
   },
   {
     short: 'ES',
@@ -1093,7 +1093,7 @@ export const countryItems = [
     en: 'Samoa',
     fr: 'Samoa',
     it: 'Samoa',
-    area: '',
+    area: '+685',
   },
   {
     short: 'GD',
@@ -1125,7 +1125,7 @@ export const countryItems = [
     en: 'Guernsey',
     fr: 'Guernsey',
     it: 'Guernsey',
-    area: '',
+    area: '+44',
   },
   {
     short: 'GH',
@@ -1197,7 +1197,7 @@ export const countryItems = [
     en: 'South Georgia and the south Sandwich Islands',
     fr: 'Géorgie du sud et les îles Sandwich du sud',
     it: 'Georgia australe e le isole Sandwich australe',
-    area: '',
+    area: '+500',
   },
   {
     short: 'GT',
@@ -1232,12 +1232,12 @@ export const countryItems = [
     area: '+592',
   },
   {
-    short: 'XK',
+    short: 'ZZ',
     de: 'Kosovo',
     en: 'Kosovo',
     fr: 'Kosovo',
     it: 'Kosovo',
-    area: '',
+    area: '+383',
   },
   {
     short: 'XY',
@@ -1333,7 +1333,7 @@ export const countryItems = [
     en: 'Isle of Man',
     fr: 'Man, Ile de',
     it: 'Man, Isola di',
-    area: '',
+    area: '+44',
   },
   {
     short: 'IN',
@@ -1349,7 +1349,7 @@ export const countryItems = [
     en: 'British Indian Ocean Territory',
     fr: "Territoire britannique de l'océan Indien",
     it: "Territorio britannico dell'Oceano Indiano",
-    area: '',
+    area: '+246',
   },
   {
     short: 'ZA',
@@ -1405,7 +1405,7 @@ export const countryItems = [
     en: 'Jersey',
     fr: 'Jersey',
     it: 'Jersey',
-    area: '',
+    area: '+44',
   },
   {
     short: 'ZW',
@@ -1549,7 +1549,7 @@ export const countryItems = [
     en: 'St. Lucia',
     fr: 'St. Lucie',
     it: 'St. Lucia',
-    area: '',
+    area: '+1',
   },
   {
     short: 'LI',
@@ -1645,7 +1645,7 @@ export const countryItems = [
     en: 'Montenegro',
     fr: 'Monténégro',
     it: 'Montenegro',
-    area: '',
+    area: '+382',
   },
   {
     short: 'MF',
@@ -1653,7 +1653,7 @@ export const countryItems = [
     en: 'Saint-Martin (FR)',
     fr: 'Saint-Martin (FR)',
     it: 'Saint-Martin (FR)',
-    area: '',
+    area: '+590',
   },
   {
     short: 'MG',
@@ -1693,7 +1693,7 @@ export const countryItems = [
     en: 'Myanmar (Union of)',
     fr: 'Myanmar (Union de)',
     it: 'Myanmar (Unione)',
-    area: '',
+    area: '+95',
   },
   {
     short: 'MN',
@@ -1717,7 +1717,7 @@ export const countryItems = [
     en: 'Mariana Islands',
     fr: 'Mariannes, Iles',
     it: 'Marianne, Isole',
-    area: '',
+    area: '+1',
   },
   {
     short: 'MQ',
@@ -1757,7 +1757,7 @@ export const countryItems = [
     en: 'Mauritius Island',
     fr: 'Maurice, Ile',
     it: 'Maurizio, Isola',
-    area: '',
+    area: '+230',
   },
   {
     short: 'MV',
@@ -1949,7 +1949,7 @@ export const countryItems = [
     en: 'Pakistan',
     fr: 'Pakistan',
     it: 'Pakistan',
-    area: '',
+    area: '+92',
   },
   {
     short: 'PL',
@@ -1965,7 +1965,7 @@ export const countryItems = [
     en: 'Saint Pierre and Miquelon',
     fr: 'Saint-Pierre-et-Miquelon',
     it: 'Saint-Pierre e Miquelon',
-    area: '',
+    area: '+508',
   },
   {
     short: 'PN',
@@ -1973,6 +1973,6 @@ export const countryItems = [
     en: 'Pitcairn Islands',
     fr: 'Pitcairn, Îles',
     it: 'Pitcairn, Isole',
-    area: '',
+    area: '+64',
   },
 ];
