@@ -1,7 +1,7 @@
 .m-input-phone {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 220px;
 }
 
 .m-input-phone__label {
@@ -32,10 +32,6 @@
 .m-input-phone__container {
     display: inline-flex;
     flex-direction: row;
-}
-
-.m-input-phone__mobile-area-code-dropdown {
-    width: 110px;
 }
 
 .m-input-phone--invalid {
