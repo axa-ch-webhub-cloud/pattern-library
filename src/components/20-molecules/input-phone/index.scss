@@ -15,6 +15,20 @@
     margin-bottom: 10px;
 }
 
+.m-input-phone__mobile-number-input {
+    width: 100%;
+}
+
+.m-input-phone__error {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    line-height: 17px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    display: block;
+    color: $color-shy-tomato;
+    margin-top: 10px;
+}
+
 .m-input-phone__container {
     display: inline-flex;
     flex-direction: row;
