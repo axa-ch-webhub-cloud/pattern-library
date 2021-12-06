@@ -24,6 +24,7 @@ class AXAInputPhone extends LitElement {
       invalid: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
       lang: { type: String, reflect: true },
+      defaultarea: { type: String, reflect: true, defaultValue: '+41' },
       errorprefix: { type: String, reflect: true },
       _errorText: { type: String, attribute: false },
     };
@@ -79,16 +80,26 @@ class AXAInputPhone extends LitElement {
     const mobileDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
     );
-    mobileDropdown.items = countryItems.map(cItem => ({
-      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
-      value: cItem.dialCode,
-    }));
+    mobileDropdown.items = countryItems
+      .map(cItem => ({
+        name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+        value: cItem.dialCode,
+        selected: cItem.dialCode === this.defaultarea ? true : false,
+      }))
+      // eslint-disable-next-line no-nested-ternary
+      .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+    const preselectedCountry =
+      mobileDropdown.items.filter(cItem => cItem.selected)?.[0] || '';
+
+    setTimeout(() => {
+      mobileDropdown.querySelector('.js-dropdown__title').textContent =
+        preselectedCountry.value;
+    });
+
     mobileDropdown.addEventListener('change', ev => {
-      document
-        .querySelector('#root > div > axa-input-phone')
-        .shadowRoot.querySelector(
-          'div > div > axa-dropdown > div > div > button > span > span.js-dropdown__title'
-        ).textContent = ev.target.value;
+      this.shadowRoot.querySelector(
+        '.m-input-phone__mobile-area-code-dropdown .js-dropdown__title'
+      ).textContent = ev.target.value;
     });
 
     this.areaCodeDropdown = this.shadowRoot.querySelector(
