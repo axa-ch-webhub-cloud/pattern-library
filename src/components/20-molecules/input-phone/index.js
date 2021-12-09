@@ -90,7 +90,7 @@ class AXAInputPhone extends LitElement {
     let adaptedCountryItems = countryItems.map(cItem => ({
       name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
       value: cItem.dialCode,
-      selected: cItem.dialCode === this.defaultarea ? true : false,
+      selected: cItem.dialCode === this.defaultarea,
     }));
     adaptedCountryItems.sort((a, b) =>
       // eslint-disable-next-line no-nested-ternary
