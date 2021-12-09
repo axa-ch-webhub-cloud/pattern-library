@@ -15,14 +15,11 @@
     margin-bottom: 10px;
 }
 
-
 .m-input-phone__mobile-area-code-dropdown {
     // Width is needed because of the native dropdown
     width: 150px;
-}
 
-@include breakpoint($mediaquery-md-up) {
-    .m-input-phone__mobile-area-code-dropdown {
+    @include breakpoint($mediaquery-sm-up) {
         // Reset mobile width in not-native mode
         width: auto;
     }
