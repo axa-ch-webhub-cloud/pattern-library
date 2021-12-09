@@ -76,26 +76,45 @@ class AXAInputPhone extends LitElement {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    const ccountryItems = countryItems.map(cItem => ({
+      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+      value: cItem.dialCode,
+      selected: cItem.dialCode === this.defaultarea ? true : false,
+    }));
+    ccountryItems.sort((a, b) =>
+      // eslint-disable-next-line no-nested-ternary
+      a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+    );
+    this.defaultCountry = ccountryItems.filter(
+      cItem => cItem.value === this.defaultarea
+    )[0];
+    ccountryItems.unshift(this.defaultCountry);
+    this.sortedCountryItems = ccountryItems;
+  }
+
   updated() {
     const mobileDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
     );
-    mobileDropdown.items = countryItems
-      .map(cItem => ({
-        name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
-        value: cItem.dialCode,
-        selected: cItem.dialCode === this.defaultarea ? true : false,
-      }))
-      // eslint-disable-next-line no-nested-ternary
-      .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
-    const preselectedCountry =
-      mobileDropdown.items.filter(cItem => cItem.selected)?.[0] || '';
+    // mobileDropdown.items = countryItems
+    //   .map(cItem => ({
+    //     name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+    //     value: cItem.dialCode,
+    //     selected: cItem.dialCode === this.defaultarea ? true : false,
+    //   }))
+    //   // eslint-disable-next-line no-nested-ternary
+    //   .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+    mobileDropdown.items = this.sortedCountryItems;
 
     setTimeout(() => {
-      mobileDropdown.querySelector('.js-dropdown__title').textContent =
-        preselectedCountry.value;
+      mobileDropdown.querySelector(
+        '.js-dropdown__title'
+      ).textContent = this.defaultCountry.value;
     });
 
+    // TODO also listen for change on the mobile dropdown!
     mobileDropdown.addEventListener('change', ev => {
       this.shadowRoot.querySelector(
         '.m-input-phone__mobile-area-code-dropdown .js-dropdown__title'
