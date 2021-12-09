@@ -40,6 +40,10 @@ axa-dropdown[cropText] .m-dropdown__flex-wrapper > span {
   text-overflow: inherit;
 }
 
+axa-dropdown[cropText] .m-dropdown__select {
+  padding: 0 32px 0 8px;
+}
+
 axa-dropdown {
   display: block;
 

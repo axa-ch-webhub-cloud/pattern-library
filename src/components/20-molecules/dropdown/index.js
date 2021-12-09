@@ -51,7 +51,11 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
+const nativeItemsMapper = (
+  { name, value, selected, _disabled },
+  index,
+  showValue
+) => {
   return html`
     <option
       class="m-dropdown__option"
@@ -60,7 +64,7 @@ const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${_disabled}"
-      >${name}</option
+      >${showValue && selected ? value : name}</option
     >
   `;
 };
@@ -124,6 +128,7 @@ class AXADropdown extends NoShadowDOM {
       error: { type: String, reflect: true },
       disabled: { type: Boolean, reflect: true },
       cropText: { type: Boolean, reflect: true },
+      showValue: { type: Boolean, reflect: true },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -490,7 +495,7 @@ class AXADropdown extends NoShadowDOM {
             >
               ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
-                .map(nativeItemsMapper)}
+                .map((item, i) => nativeItemsMapper(item, i, this.showValue))}
             </select>
             <span class="m-dropdown__select-icon">
               ${ARROW_ICON}
@@ -508,7 +513,9 @@ class AXADropdown extends NoShadowDOM {
             @click="${handleDropdownClick}"
           >
             <span class="m-dropdown__flex-wrapper">
-              <span class="js-dropdown__title">${this.title}</span>
+              <span class="js-dropdown__title"
+                >${this.showValue ? this.value : this.title}</span
+              >
               <span class="m-dropdown__select-icon">${ARROW_ICON}</span>
             </span>
           </button>

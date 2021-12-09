@@ -8,6 +8,15 @@ import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import { countryItems } from './country-items';
 
+const putDefaultCountryAtArrayStart = (countryArray, defaultarea) => {
+  const defaultCountry = countryArray.filter(
+    cItem => cItem.value === defaultarea
+  )[0];
+  const countries = countryArray.filter(cItem => cItem.value !== defaultarea);
+  if (defaultCountry) countries.unshift(defaultCountry);
+  return countries;
+};
+
 class AXAInputPhone extends LitElement {
   static get tagName() {
     return 'axa-input-phone';
@@ -78,48 +87,27 @@ class AXAInputPhone extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    const ccountryItems = countryItems.map(cItem => ({
+    let adaptedCountryItems = countryItems.map(cItem => ({
       name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
       value: cItem.dialCode,
       selected: cItem.dialCode === this.defaultarea ? true : false,
     }));
-    ccountryItems.sort((a, b) =>
+    adaptedCountryItems.sort((a, b) =>
       // eslint-disable-next-line no-nested-ternary
       a.name < b.name ? -1 : a.name > b.name ? 1 : 0
     );
-    this.defaultCountry = ccountryItems.filter(
-      cItem => cItem.value === this.defaultarea
-    )[0];
-    ccountryItems.unshift(this.defaultCountry);
-    this.sortedCountryItems = ccountryItems;
+    adaptedCountryItems = putDefaultCountryAtArrayStart(
+      adaptedCountryItems,
+      this.defaultarea
+    );
+    this.sortedCountryItems = adaptedCountryItems;
   }
 
   updated() {
     const mobileDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
     );
-    // mobileDropdown.items = countryItems
-    //   .map(cItem => ({
-    //     name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
-    //     value: cItem.dialCode,
-    //     selected: cItem.dialCode === this.defaultarea ? true : false,
-    //   }))
-    //   // eslint-disable-next-line no-nested-ternary
-    //   .sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
     mobileDropdown.items = this.sortedCountryItems;
-
-    setTimeout(() => {
-      mobileDropdown.querySelector(
-        '.js-dropdown__title'
-      ).textContent = this.defaultCountry.value;
-    });
-
-    // TODO also listen for change on the mobile dropdown!
-    mobileDropdown.addEventListener('change', ev => {
-      this.shadowRoot.querySelector(
-        '.m-input-phone__mobile-area-code-dropdown .js-dropdown__title'
-      ).textContent = ev.target.value;
-    });
 
     this.areaCodeDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
@@ -142,6 +130,7 @@ class AXAInputPhone extends LitElement {
           <axa-dropdown
             class="m-input-phone__mobile-area-code-dropdown"
             cropText=""
+            showValue=""
           ></axa-dropdown>
           <axa-input-text
             class="m-input-phone__mobile-number-input"
