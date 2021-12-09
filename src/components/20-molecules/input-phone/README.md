@@ -59,14 +59,31 @@ Import the input-phone-defining script and use a input-phone like this:
 
 ### Variant
 
-| Attribute       | Details         |
-| --------------- | --------------- |
-| `variant="foo"` | Desc of Variant |
+| Attribute     | Details                                 |
+| ------------- | --------------------------------------- |
+| `invalid`     | Invalid number indication               |
+| `label`       | Name of the element                     |
+| `lang`        | Language, one of `de`, `en`, `it`, `fr` |
+| `defaultarea` | Area Code, e.g. `+41` for Switzerland   |
+| `errorprefix` | Error Message                           |
 
-### Bar
+### invalid
 
-The attribute `bar` specifies...
+Will become true if the entered number does not meet certain phone number related requirements. At the moment, this will not prevent submitting a form.
 
-### onClick
+### label
 
-The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.
+The text on top of the input field.
+
+### lang
+
+The language, in which the countries should be displayed (and sorted).
+
+### defaultarea
+
+Has this format: `+41` (for Switzerland).
+Is used to pre-select from all available elements.
+
+### errorprefix
+
+The error message in case of a wrongly typed phone number. To display the following information: `Invalid Phone Number: +410795002020` you have to only provide `Invalid Phone Number` as `errorprefix` and the rest will be appended by the component.
