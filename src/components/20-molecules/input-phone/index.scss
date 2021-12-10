@@ -44,7 +44,11 @@
     flex-direction: row;
 }
 
-.m-input-phone--invalid {
+.m-input-phone__container  {
+    border: 2px solid transparent;
+}
+
+.m-input-phone__container.m-input-phone--invalid {
     border: 2px solid $color-shy-tomato;
 }
 
