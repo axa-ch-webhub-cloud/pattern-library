@@ -6,16 +6,7 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countryItems } from './country-items';
-
-const putDefaultCountryAtArrayStart = (countryArray, defaultarea) => {
-  const defaultCountry = countryArray.filter(
-    cItem => cItem.value === defaultarea
-  )[0];
-  const countries = countryArray.filter(cItem => cItem.value !== defaultarea);
-  if (defaultCountry) countries.unshift(defaultCountry);
-  return countries;
-};
+import { countries, nearCountries } from './country-items';
 
 class AXAInputPhone extends LitElement {
   static get tagName() {
@@ -91,7 +82,7 @@ class AXAInputPhone extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    let adaptedCountryItems = countryItems.map(cItem => ({
+    const adaptedCountryItems = countries.map(cItem => ({
       name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
       value: cItem.dialCode,
       selected: cItem.dialCode === this.defaultarea,
@@ -100,11 +91,15 @@ class AXAInputPhone extends LitElement {
       // eslint-disable-next-line no-nested-ternary
       a.name < b.name ? -1 : a.name > b.name ? 1 : 0
     );
-    adaptedCountryItems = putDefaultCountryAtArrayStart(
-      adaptedCountryItems,
-      this.defaultarea
+    const adaptedNearCountryItems = nearCountries.map(cItem => ({
+      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+      value: cItem.dialCode,
+      selected: cItem.dialCode === this.defaultarea,
+    }));
+
+    this.sortedCountryItems = adaptedNearCountryItems.concat(
+      adaptedCountryItems
     );
-    this.sortedCountryItems = adaptedCountryItems;
   }
 
   updated() {

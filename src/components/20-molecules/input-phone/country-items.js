@@ -1,4 +1,55 @@
-export const countryItems = [
+export const nearCountries = [
+  {
+    countryCode: 'CH',
+    dialCode: '+41',
+    de: 'Schweiz',
+    en: 'Switzerland',
+    fr: 'Suisse',
+    it: 'Svizzera',
+  },
+  {
+    countryCode: 'DE',
+    dialCode: '+49',
+    de: 'Deutschland',
+    en: 'Germany',
+    fr: 'Allemagne',
+    it: 'Germania',
+  },
+  {
+    countryCode: 'FR',
+    dialCode: '+33',
+    de: 'Frankreich',
+    en: 'France',
+    fr: 'France',
+    it: 'Francia',
+  },
+  {
+    countryCode: 'AT',
+    dialCode: '+43',
+    de: 'Österreich',
+    en: 'Austria',
+    fr: 'Autriche',
+    it: 'Austria',
+  },
+  {
+    countryCode: 'IT',
+    dialCode: '+39',
+    de: 'Italien',
+    en: 'Italy',
+    fr: 'Italie',
+    it: 'Italia',
+  },
+  {
+    countryCode: 'LI',
+    dialCode: '+417',
+    de: 'Liechtenstein',
+    en: 'Liechtenstein',
+    fr: 'Liechtenstein',
+    it: 'Liechtenstein',
+  },
+];
+
+export const countries = [
   {
     countryCode: 'PR',
     dialCode: '+1787',
@@ -126,14 +177,6 @@ export const countryItems = [
     en: 'American Samoa',
     fr: 'Samoa, partie américaine',
     it: 'Samoa, parte statunitense',
-  },
-  {
-    countryCode: 'AT',
-    dialCode: '+43',
-    de: 'Österreich',
-    en: 'Austria',
-    fr: 'Autriche',
-    it: 'Austria',
   },
   {
     countryCode: 'RE',
@@ -544,14 +587,6 @@ export const countryItems = [
     it: 'Congo (Repubblica)',
   },
   {
-    countryCode: 'CH',
-    dialCode: '+41',
-    de: 'Schweiz',
-    en: 'Switzerland',
-    fr: 'Suisse',
-    it: 'Svizzera',
-  },
-  {
     countryCode: 'SX',
     dialCode: '+721',
     de: 'Sint Maarten (NL)',
@@ -782,14 +817,6 @@ export const countryItems = [
     en: 'Trinidad and Tobago',
     fr: 'Trinité et Tobago',
     it: 'Trinidad e Tobago',
-  },
-  {
-    countryCode: 'DE',
-    dialCode: '+49',
-    de: 'Deutschland',
-    en: 'Germany',
-    fr: 'Allemagne',
-    it: 'Germania',
   },
   {
     countryCode: 'TV',
@@ -1054,14 +1081,6 @@ export const countryItems = [
     en: 'Faroe Islands',
     fr: 'Féroé, Iles',
     it: 'Faeröer, Isole',
-  },
-  {
-    countryCode: 'FR',
-    dialCode: '+33',
-    de: 'Frankreich',
-    en: 'France',
-    fr: 'France',
-    it: 'Francia',
   },
   {
     countryCode: 'WF',
@@ -1384,14 +1403,6 @@ export const countryItems = [
     it: 'Islanda',
   },
   {
-    countryCode: 'IT',
-    dialCode: '+39',
-    de: 'Italien',
-    en: 'Italy',
-    fr: 'Italie',
-    it: 'Italia',
-  },
-  {
     countryCode: 'ZM',
     dialCode: '+260',
     de: 'Sambia',
@@ -1550,14 +1561,6 @@ export const countryItems = [
     en: 'St. Lucia',
     fr: 'St. Lucie',
     it: 'St. Lucia',
-  },
-  {
-    countryCode: 'LI',
-    dialCode: '+417',
-    de: 'Liechtenstein',
-    en: 'Liechtenstein',
-    fr: 'Liechtenstein',
-    it: 'Liechtenstein',
   },
   {
     countryCode: 'LK',
