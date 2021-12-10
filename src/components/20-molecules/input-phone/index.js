@@ -65,7 +65,8 @@ class AXAInputPhone extends LitElement {
     }
     // Longer than 15 character? See: https://en.wikipedia.org/wiki/E.164
     else if (
-      this.areaCodeDropdown.value?.length + phoneNumberTypedByUser.length >=
+      this.areaCodeDropdown.value?.length +
+        phoneNumberTypedByUser?.replaceAll(' ', '').length >=
       15
     ) {
       return false;
@@ -77,11 +78,14 @@ class AXAInputPhone extends LitElement {
     const userInput = ev.target?.value || '';
     this.value = `${this.areaCodeDropdown.value}${this.phoneInputText.value}`;
     if (this.isValid(userInput)) {
-      this.phoneInputValue = userInput.match(/\d+/g)?.join('') || '';
+      // Generate a valid phonenumber by collecting all numbers and adding a + before.
+      this.phoneInputValue = `+${userInput.match(/\d+/g)?.join('')}` || '';
       this.invalid = false;
     } else {
       this.invalid = true;
-      this._errorText = `${this.errorprefix}: ${this.value}`;
+      this._errorText = `${
+        this.errorprefix
+      }: ${`${this.areaCodeDropdown.value} ${this.phoneInputText.value}`}`;
     }
   }
 
