@@ -38,10 +38,10 @@ describe('Input Phone', () => {
 
     await selectGermany();
     await writePhoneNumber(validPhoneNumber);
-    assertValidComponent();
+    await assertValidComponent();
 
     await writePhoneNumber('79 500 20 20');
-    assertValidComponent();
+    await assertValidComponent();
   });
 
   it('should deny invalid inserted phone numbers', async () => {
@@ -51,15 +51,15 @@ describe('Input Phone', () => {
     hostElement = await page.waitForSelector(tag);
 
     await writePhoneNumber('a');
-    assertInvalidAndErrorMessageShown();
+    await assertInvalidAndErrorMessageShown();
 
     await writePhoneNumber(validPhoneNumber);
-    assertValidComponent();
+    await assertValidComponent();
 
     await writePhoneNumber(`0${validPhoneNumber}`);
-    assertInvalidAndErrorMessageShown();
+    await assertInvalidAndErrorMessageShown();
 
     await writePhoneNumber(`${validPhoneNumber}123`);
-    assertInvalidAndErrorMessageShown();
+    await assertInvalidAndErrorMessageShown();
   });
 });
