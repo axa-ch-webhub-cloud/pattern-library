@@ -11,6 +11,7 @@ export const InputPhone = () => {
   const lang = select('lang', ['de', 'en', 'it', 'fr'], 'en');
   const label = text('label', 'Phone Number');
   const errorprefix = text('errorprefix', 'Invalid Phone Number');
+  const defaultarea = text('defaultarea', '+41');
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -18,6 +19,7 @@ export const InputPhone = () => {
       lang="${lang}"
       label="${label}"
       errorprefix="${errorprefix}"
+      defaultarea="${defaultarea}"
     ></axa-input-phone>
   `;
 

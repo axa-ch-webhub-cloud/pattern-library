@@ -4,6 +4,7 @@ export interface AXAInputPhoneProps {
   label: string;
   errorprefix: string;
   lang: string;
+  defaultarea?: string;
   className?: string;
 }
 
