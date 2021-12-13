@@ -1,11 +1,10 @@
 import React from 'react';
 
-export type Variant = 'foo' | 'bar';
-
 export interface AXAInputPhoneProps {
+  label: string;
+  errorprefix: string;
+  lang: string;
   className?: string;
-  variant?: Variant;
-  onClick?: () => void;
 }
 
 declare function createAXAInputPhone(
