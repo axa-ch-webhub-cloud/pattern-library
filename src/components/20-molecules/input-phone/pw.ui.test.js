@@ -35,9 +35,11 @@ describe('Input Phone', () => {
     hostElement = await page.waitForSelector(tag);
     await page.click('.js-dropdown__toggle');
     await page.waitForSelector('.m-dropdown__content');
+
     await selectGermany();
     await writePhoneNumber(validPhoneNumber);
     assertValidComponent();
+
     await writePhoneNumber('79 500 20 20');
     assertValidComponent();
   });
