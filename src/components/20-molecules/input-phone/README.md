@@ -59,13 +59,13 @@ Import the input-phone-defining script and use a input-phone like this:
 
 ### Variant
 
-| Attribute     | Details                                 |
-| ------------- | --------------------------------------- |
-| `invalid`     | Invalid number indication               |
-| `label`       | Name of the element                     |
-| `lang`        | Language, one of `de`, `en`, `it`, `fr` |
-| `defaultarea` | Area Code, e.g. `+41` for Switzerland   |
-| `errorprefix` | Error Message                           |
+| Attribute     | Details                                                |
+| ------------- | ------------------------------------------------------ |
+| `invalid`     | Invalid number indication                              |
+| `label`       | Name of the element                                    |
+| `lang`        | Language, one of `de`, `en`, `it`, `fr`, default: `de` |
+| `defaultarea` | Area Code, e.g. `+41` for Switzerland                  |
+| `errorprefix` | Error Message                                          |
 
 ### invalid
 

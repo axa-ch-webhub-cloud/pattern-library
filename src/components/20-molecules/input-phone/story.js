@@ -8,7 +8,7 @@ export default {
 };
 
 export const InputPhone = () => {
-  const lang = select('lang', ['de', 'en', 'it', 'fr'], 'en');
+  const lang = select('lang', ['de', 'en', 'it', 'fr'], 'de');
   const label = text('label', 'Phone Number');
   const errorprefix = text('errorprefix', 'Invalid Phone Number');
   const defaultarea = text('defaultarea', '+41');

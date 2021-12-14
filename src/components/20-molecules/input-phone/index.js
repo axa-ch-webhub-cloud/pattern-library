@@ -83,7 +83,7 @@ class AXAInputPhone extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     const adaptedCountryItems = countries.map(cItem => ({
-      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+      name: `${cItem[this.lang] || cItem.de} ${cItem.dialCode}`,
       value: cItem.dialCode,
       selected: cItem.dialCode === this.defaultarea,
     }));
@@ -92,7 +92,7 @@ class AXAInputPhone extends LitElement {
       a.name < b.name ? -1 : a.name > b.name ? 1 : 0
     );
     const adaptedNearCountryItems = nearCountries.map(cItem => ({
-      name: `${cItem[this.lang] || cItem.en} ${cItem.dialCode}`,
+      name: `${cItem[this.lang] || cItem.de} ${cItem.dialCode}`,
       value: cItem.dialCode,
       selected: cItem.dialCode === this.defaultarea,
     }));

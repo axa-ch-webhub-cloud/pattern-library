@@ -3,7 +3,7 @@ import React from 'react';
 export interface AXAInputPhoneProps {
   label: string;
   errorprefix: string;
-  lang: string;
+  lang?: string;
   defaultarea?: string;
   className?: string;
 }
