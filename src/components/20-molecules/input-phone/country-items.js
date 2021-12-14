@@ -49,6 +49,11 @@ export const nearCountries = [
   },
 ];
 
+/**
+ * Below array is sorted by the german translation, to make it faster for the
+ * bigger part of our users to have the array sorted in their respective
+ * language.
+ */
 export const countries = [
   {
     countryCode: 'AF',
