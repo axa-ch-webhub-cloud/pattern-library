@@ -34,6 +34,8 @@ export interface AXADropdownProps {
   dataTestId?: string;
   className?: string;
   maxHeight?: string;
+  cropText?: boolean;
+  showValue?: boolean;
 }
 
 declare function createAXADropdown(
