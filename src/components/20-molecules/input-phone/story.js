@@ -1,10 +1,16 @@
 import { text, select, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
+import changelog from './CHANGELOG.md';
+import readme from './README.md';
 
 export default {
   title: 'Components',
   decorators: [withKnobs],
+  parameters: {
+    readme,
+    changelog,
+  },
 };
 
 export const InputPhone = () => {
