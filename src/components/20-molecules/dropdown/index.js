@@ -75,7 +75,7 @@ const contentItemsMapper = (clickHandler, defaultTitle) => (
   return _disabled
     ? html``
     : html`
-        <li class="${classMap(classes)}">
+        <li class="${classMap(classes)}" title="${name}">
           <button
             type="button"
             @click="${clickHandler}"
