@@ -26,6 +26,7 @@ class AXAInputPhone extends LitElement {
       lang: { type: String, reflect: true },
       defaultarea: { type: String, reflect: true, defaultValue: '+41' },
       errorprefix: { type: String, reflect: true },
+      onChange: { type: Function, attribute: false },
       _errorText: { type: String, attribute: false },
     };
   }
@@ -80,6 +81,16 @@ class AXAInputPhone extends LitElement {
     }
   }
 
+  change(ev) {
+    ev.stopPropagation();
+
+    if (this.onChange) {
+      this.onChange({
+        detail: this.value,
+      });
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     const adaptedCountryItems = countries.map(cItem => ({
@@ -130,11 +141,13 @@ class AXAInputPhone extends LitElement {
             class="m-input-phone__mobile-area-code-dropdown"
             cropText=""
             showValue=""
+            @axa-change="${this.change}"
           ></axa-dropdown>
           <axa-input-text
             class="m-input-phone__mobile-number-input"
             @input="${this.onNumberChange}"
-            placeholder="795002020"
+            placeholder="79 500 20 20"
+            @change="${this.change}"
           ></axa-input-text>
         </div>
         <label
