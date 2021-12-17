@@ -26,6 +26,7 @@ class AXAInputPhone extends LitElement {
       lang: { type: String, reflect: true },
       defaultarea: { type: String, reflect: true, defaultValue: '+41' },
       errorprefix: { type: String, reflect: true },
+      value: { type: String, reflect: true },
       onChange: { type: Function, attribute: false },
       _errorText: { type: String, attribute: false },
     };
@@ -66,12 +67,16 @@ class AXAInputPhone extends LitElement {
     return true;
   }
 
-  onNumberChange(ev) {
+  onNumberChange(ev, areaCode) {
+    let areaCodeValid = true;
+    if (areaCode) {
+      areaCodeValid = this.sortedCountryItems.includes(
+        item => item.value === areaCode
+      );
+    }
     const userInput = ev.target?.value || '';
     this.value = `${this.areaCodeDropdown.value}${this.phoneInputText.value}`;
-    if (this.isValid(userInput)) {
-      // Generate a valid phonenumber by collecting all numbers and adding a + before.
-      this.phoneInputValue = `+${userInput.match(/\d+/g)?.join('')}` || '';
+    if (this.isValid(userInput) && areaCodeValid) {
       this.invalid = false;
     } else {
       this.invalid = true;
@@ -126,6 +131,17 @@ class AXAInputPhone extends LitElement {
     this.phoneInputText = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-number-input'
     );
+
+    if (typeof this.value === 'object') {
+      if (this.value.areaCode) {
+        this.areaCodeDropdown.value = this.value.areaCode;
+      }
+      this.phoneInputText.value = this.value.phoneNumber || '';
+      const syntheticEventWithInputValue = {
+        target: { value: this.phoneInputText.value },
+      };
+      this.onNumberChange(syntheticEventWithInputValue);
+    }
   }
 
   render() {
