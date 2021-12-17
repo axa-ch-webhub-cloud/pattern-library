@@ -64,6 +64,7 @@ Import the input-phone-defining script and use a input-phone like this:
 | `invalid`     | Invalid number indication                              |
 | `label`       | Name of the element                                    |
 | `lang`        | Language, one of `de`, `en`, `it`, `fr`, default: `de` |
+| `value`       | String based, but object based if manually overridden  |
 | `defaultarea` | Area Code, e.g. `+41` for Switzerland                  |
 | `errorprefix` | Error Message                                          |
 
@@ -78,6 +79,19 @@ The text on top of the input field.
 ### lang
 
 The language, in which the countries should be displayed (and sorted).
+
+### value
+
+This property is always a `string` when read. To override it manually, you need to provide an object though (which will be converted to a string directly after). This is needed to provide proper validation of the string. Example: `+1268771231212` would need to be split into areacode (for the selection in the dropdown and for the validation), but those can contain from 1 up to 5 digits.
+
+Example of a legitimate object to pass:
+
+```js
+{
+  areaCode: '+41',
+  phoneNumber: '795005050'
+}
+```
 
 ### defaultarea
 

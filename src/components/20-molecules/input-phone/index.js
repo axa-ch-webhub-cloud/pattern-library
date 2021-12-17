@@ -86,9 +86,26 @@ class AXAInputPhone extends LitElement {
     }
   }
 
+  /**
+   * If the user of this custom elements want's to set a value (pre-filling).
+   * This will still be checked for errors by the custom element.
+   */
+  applyManualValueOverride() {
+    if (typeof this.value === 'object') {
+      if (this.value.areaCode) {
+        this.areaCodeDropdown.value = this.value.areaCode;
+      }
+      this.phoneInputText.value = this.value.phoneNumber || '';
+      // To comply with the 'onNumberChange' method's contract, use a synthetic event.
+      const syntheticEventWithInputValue = {
+        target: { value: this.phoneInputText.value },
+      };
+      this.onNumberChange(syntheticEventWithInputValue);
+    }
+  }
+
   change(ev) {
     ev.stopPropagation();
-
     if (this.onChange) {
       this.onChange({
         detail: this.value,
@@ -132,16 +149,7 @@ class AXAInputPhone extends LitElement {
       '.m-input-phone__mobile-number-input'
     );
 
-    if (typeof this.value === 'object') {
-      if (this.value.areaCode) {
-        this.areaCodeDropdown.value = this.value.areaCode;
-      }
-      this.phoneInputText.value = this.value.phoneNumber || '';
-      const syntheticEventWithInputValue = {
-        target: { value: this.phoneInputText.value },
-      };
-      this.onNumberChange(syntheticEventWithInputValue);
-    }
+    this.applyManualValueOverride();
   }
 
   render() {
