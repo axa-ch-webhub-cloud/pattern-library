@@ -7,6 +7,7 @@ import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import { countries, nearCountries } from './country-items';
+import fireCustomEvent from '../../../utils/custom-event';
 
 class AXAInputPhone extends LitElement {
   static get tagName() {
@@ -111,6 +112,7 @@ class AXAInputPhone extends LitElement {
         detail: this.value,
       });
     }
+    fireCustomEvent('axa-change', this.value, this, { bubbles: false });
   }
 
   connectedCallback() {
@@ -148,6 +150,8 @@ class AXAInputPhone extends LitElement {
     this.phoneInputText = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-number-input'
     );
+    this.phoneInputText.removeEventListener('change', this.change);
+    this.phoneInputText.addEventListener('change', this.change);
 
     this.applyManualValueOverride();
   }
@@ -171,7 +175,6 @@ class AXAInputPhone extends LitElement {
             class="m-input-phone__mobile-number-input"
             @input="${this.onNumberChange}"
             placeholder="79 500 20 20"
-            @change="${this.change}"
           ></axa-input-text>
         </div>
         <label
