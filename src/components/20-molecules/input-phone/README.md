@@ -101,3 +101,21 @@ Is used to pre-select from all available elements.
 ### errorprefix
 
 The error message in case of a wrongly typed phone number. To display the following information: `Invalid Phone Number: +410795002020` you have to only provide `Invalid Phone Number` as `errorprefix` and the rest will be appended by the component.
+
+### onChange
+
+Will trigger onChange. The current value will be added as parameter.
+
+## Events
+
+### axa-change
+
+This event fires and contains a synthetic event Object containing the current value.
+
+Structure:
+
+```js
+{
+  detail: string; // Contains the value
+}
+```

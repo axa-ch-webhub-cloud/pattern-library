@@ -6,6 +6,7 @@ export interface AXAInputPhoneProps {
   lang?: string;
   defaultarea?: string;
   value?: Object;
+  onChange?: () => void;
   className?: string;
 }
 

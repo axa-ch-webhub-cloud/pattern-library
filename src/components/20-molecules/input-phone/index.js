@@ -108,9 +108,7 @@ class AXAInputPhone extends LitElement {
   change(ev) {
     ev.stopPropagation();
     if (this.onChange) {
-      this.onChange({
-        detail: this.value,
-      });
+      this.onChange(this.value);
     }
     fireCustomEvent('axa-change', this.value, this, { bubbles: false });
   }
