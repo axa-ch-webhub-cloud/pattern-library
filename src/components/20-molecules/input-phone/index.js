@@ -38,6 +38,7 @@ class AXAInputPhone extends LitElement {
     applyDefaults(this);
 
     defineVersioned([AXADropdown, AXAInputText], __VERSION_INFO__, this);
+    this.change = this.change.bind(this);
   }
 
   /**
@@ -148,6 +149,7 @@ class AXAInputPhone extends LitElement {
     this.phoneInputText = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-number-input'
     );
+
     this.phoneInputText.removeEventListener('change', this.change);
     this.phoneInputText.addEventListener('change', this.change);
 
