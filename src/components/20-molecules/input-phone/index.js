@@ -70,16 +70,9 @@ class AXAInputPhone extends LitElement {
     return true;
   }
 
-  onNumberChange(ev, areaCode) {
-    let areaCodeValid = true;
-    if (areaCode) {
-      areaCodeValid = this.sortedCountryItems.includes(
-        item => item.value === areaCode
-      );
-    }
-    const userInput = ev.target?.value || '';
+  setAndValidatePhoneNumber() {
     this.value = `${this.areaCodeDropdown.value}${this.phoneInputText.value}`;
-    if (this.isValid(userInput) && areaCodeValid) {
+    if (this.isValid(this.phoneInputText.value)) {
       this.invalid = false;
     } else {
       this.invalid = true;
@@ -103,12 +96,13 @@ class AXAInputPhone extends LitElement {
       const syntheticEventWithInputValue = {
         target: { value: this.phoneInputText.value },
       };
-      this.onNumberChange(syntheticEventWithInputValue);
+      this.setAndValidatePhoneNumber(syntheticEventWithInputValue);
     }
   }
 
   change(ev) {
     ev.stopPropagation();
+    this.setAndValidatePhoneNumber(ev);
     if (this.onChange) {
       this.onChange(this.value);
     }
@@ -173,7 +167,7 @@ class AXAInputPhone extends LitElement {
           ></axa-dropdown>
           <axa-input-text
             class="m-input-phone__mobile-number-input"
-            @input="${this.onNumberChange}"
+            @input="${this.change}"
             placeholder="79 500 20 20"
           ></axa-input-text>
         </div>
