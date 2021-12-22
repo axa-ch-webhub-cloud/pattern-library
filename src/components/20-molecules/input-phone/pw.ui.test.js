@@ -27,6 +27,12 @@ const assertValidComponent = async () => {
   expect(await page.isVisible('.m-input-phone__error--show')).not.toBeTruthy();
 };
 
+const assertChangeValue = async phoneNumber => {
+  expect(await page.textContent('#inputtext-react-testoutput')).toBe(
+    `Entered phone number (onChange): ${phoneNumber}`
+  );
+};
+
 describe('Input Phone', () => {
   it('should accept a valid phone number', async () => {
     await page.goto(
@@ -61,5 +67,19 @@ describe('Input Phone', () => {
 
     await writePhoneNumber(`${validPhoneNumber}123`);
     await assertInvalidAndErrorMessageShown();
+  });
+
+  it('should work with the onChange property', async () => {
+    await page.goto(
+      `${host}/iframe.html?id=examples-input-phone-react--controlled-uncontrolled&args=&viewMode=story`
+    );
+    hostElement = await page.waitForSelector(tag);
+
+    await assertChangeValue('-');
+
+    await writePhoneNumber(validPhoneNumber);
+    await assertValidComponent();
+
+    await assertChangeValue(`+43${validPhoneNumber}`);
   });
 });
