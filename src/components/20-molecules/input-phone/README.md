@@ -65,7 +65,8 @@ Import the input-phone-defining script and use a input-phone like this:
 | `label`       | Name of the element                                    |
 | `lang`        | Language, one of `de`, `en`, `it`, `fr`, default: `de` |
 | `value`       | String based, but object based if manually overridden  |
-| `defaultarea` | Area Code, e.g. `+41` for Switzerland                  |
+| `areavalue`   | Area Code, e.g. `+41` for Switzerland (default!)       |
+| `phonevalue`  | Phone number without area code, e.g. `795002020`       |
 | `errorprefix` | Error Message                                          |
 
 ### invalid
@@ -93,10 +94,15 @@ Example of a legitimate object to pass:
 }
 ```
 
-### defaultarea
+### areavalue
 
 Has this format: `+41` (for Switzerland).
-Is used to pre-select from all available elements.
+Is used to prefill the area-code dropdown.
+
+### phonevalue
+
+Has this format: `795002020`
+The phone number part can be prefilled by this attribute. Do not include the area code in here!
 
 ### errorprefix
 

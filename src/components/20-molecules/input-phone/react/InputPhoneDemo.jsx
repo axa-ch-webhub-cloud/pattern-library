@@ -17,7 +17,6 @@ const DemoInputPhone = () => {
         label="Input Phone"
         errorprefix="Invalid Number Format"
         lang="en"
-        defaultarea="+43"
         areavalue="+41"
         phonevalue="795002020"
         onChange={handleChange}

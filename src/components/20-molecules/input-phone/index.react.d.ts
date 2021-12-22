@@ -4,9 +4,10 @@ export interface AXAInputPhoneProps {
   label: string;
   errorprefix: string;
   lang?: string;
-  defaultarea?: string;
-  value?: Object;
+  areavalue?: string;
+  phonevalue?: string;
   onChange?: () => void;
+  value?: string; // read-only
   className?: string;
 }
 

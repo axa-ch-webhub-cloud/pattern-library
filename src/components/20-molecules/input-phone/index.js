@@ -25,9 +25,8 @@ class AXAInputPhone extends LitElement {
       invalid: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
       lang: { type: String, reflect: true },
-      defaultarea: { type: String, reflect: true, defaultValue: '+41' },
       errorprefix: { type: String, reflect: true },
-      areavalue: { type: String, reflect: true },
+      areavalue: { type: String, reflect: true, defaultValue: '+41' },
       phonevalue: { type: String, reflect: true },
       value: { type: String, reflect: true },
       onChange: { type: Function, attribute: false },
@@ -91,7 +90,7 @@ class AXAInputPhone extends LitElement {
   }
 
   /**
-   * If the user of this custom elements want's to set a value (pre-filling).
+   * If the number should be prefilled, we override it here.
    * This will still be checked for errors by the custom element.
    */
   applyManualValueOverride() {
@@ -116,22 +115,22 @@ class AXAInputPhone extends LitElement {
     fireCustomEvent('axa-change', this.value, this, { bubbles: false });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    const adaptedCountryItems = countries.map(cItem => ({
+  countryMapper(countryArray) {
+    return countryArray.map(cItem => ({
       name: `${cItem[this.lang] || cItem.de} ${cItem.dialCode}`,
       value: cItem.dialCode,
-      selected: cItem.dialCode === this.defaultarea,
+      selected: cItem.dialCode === this.areavalue,
     }));
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    const adaptedCountryItems = this.countryMapper(countries);
     adaptedCountryItems.sort((a, b) =>
       // eslint-disable-next-line no-nested-ternary
       a.name < b.name ? -1 : a.name > b.name ? 1 : 0
     );
-    const adaptedNearCountryItems = nearCountries.map(cItem => ({
-      name: `${cItem[this.lang] || cItem.de} ${cItem.dialCode}`,
-      value: cItem.dialCode,
-      selected: cItem.dialCode === this.defaultarea,
-    }));
+    const adaptedNearCountryItems = this.countryMapper(nearCountries);
 
     this.sortedCountryItems = adaptedNearCountryItems.concat(
       adaptedCountryItems
