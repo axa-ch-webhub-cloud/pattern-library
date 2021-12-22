@@ -27,6 +27,8 @@ class AXAInputPhone extends LitElement {
       lang: { type: String, reflect: true },
       defaultarea: { type: String, reflect: true, defaultValue: '+41' },
       errorprefix: { type: String, reflect: true },
+      areavalue: { type: String, reflect: true },
+      phonevalue: { type: String, reflect: true },
       value: { type: String, reflect: true },
       onChange: { type: Function, attribute: false },
       _errorText: { type: String, attribute: false },
@@ -93,11 +95,11 @@ class AXAInputPhone extends LitElement {
    * This will still be checked for errors by the custom element.
    */
   applyManualValueOverride() {
-    if (typeof this.value === 'object') {
-      if (this.value.areaCode) {
-        this.areaCodeDropdown.value = this.value.areaCode;
-      }
-      this.phoneInputText.value = this.value.phoneNumber || '';
+    if (this.areavalue) {
+      this.areaCodeDropdown.value = this.areavalue;
+    }
+    if (this.phonevalue) {
+      this.phoneInputText.value = this.phonevalue;
       // To comply with the 'onNumberChange' method's contract, use a synthetic event.
       const syntheticEventWithInputValue = {
         target: { value: this.phoneInputText.value },
@@ -136,7 +138,7 @@ class AXAInputPhone extends LitElement {
     );
   }
 
-  updated() {
+  firstUpdated() {
     const mobileDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
     );
@@ -149,7 +151,6 @@ class AXAInputPhone extends LitElement {
     this.phoneInputText = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-number-input'
     );
-
     this.phoneInputText.removeEventListener('change', this.change);
     this.phoneInputText.addEventListener('change', this.change);
 
