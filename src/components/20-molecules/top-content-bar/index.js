@@ -4,6 +4,7 @@ import { classMap } from 'lit-html/directives/class-map';
 import AXAContainer from '@axa-ch/container';
 import AXAButton from '@axa-ch/button';
 import AXAButtonLink from '@axa-ch/button-link';
+import AXAIcon from '@axa-ch/icon';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
 
@@ -13,13 +14,18 @@ import {
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import fireCustomEvent from '../../../utils/custom-event';
 
+const elTagName = 'axa-top-content-bar';
+const elRootSelector = '.m-top-content-bar';
+const hideClass = 'hide';
+let elementHidden = true;
 /**
  *  We need InlineStyles to give children some margins.
  */
 class AXATopContentBar extends InlineStyles {
   static get tagName() {
-    return 'axa-top-content-bar';
+    return elTagName;
   }
 
   static get styles() {
@@ -34,6 +40,9 @@ class AXATopContentBar extends InlineStyles {
       ctatext: { type: String },
       href: { type: String },
       variant: { type: String },
+      icon: { type: String },
+      stickymobile: { type: String },
+      overlaydesktop: { type: String },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -46,11 +55,29 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
+    window.addEventListener('axa-top-bar-open', () => {
+      const contBarEl = this.shadowRoot.querySelector(elRootSelector);
+      if (contBarEl) {
+        contBarEl.classList.remove(hideClass);
+      } else {
+        elementHidden = false;
+      }
+    });
+
     defineVersioned(
-      [AXAButton, AXAButtonLink, AXAContainer],
+      [AXAButton, AXAButtonLink, AXAContainer, AXAIcon],
       __VERSION_INFO__,
       this
     );
+  }
+
+  onClose() {
+    const contBarEl = this.shadowRoot.querySelector(elRootSelector);
+    contBarEl.style.maxHeight = 0;
+    setTimeout(() => {
+      contBarEl.classList.add(hideClass);
+      fireCustomEvent('axa-top-bar-close', null, window);
+    }, 300);
   }
 
   firstUpdated() {
@@ -103,23 +130,55 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const { variant } = this;
+    const { variant, icon, stickymobile, overlaydesktop } = this;
 
     const btnHtml = this.getButtonHtml();
 
-    const classes = {
+    const variantClasses = {
       'm-top-content-bar__container--warning': variant === 'warning',
+      'm-top-content-bar__container--success': variant === 'success',
+      'm-top-content-bar__container--attention': variant === 'attention',
+    };
+
+    const rootClasses = {
+      'm-top-content-bar__overlay-desktop': overlaydesktop === 'true',
+      'm-top-content-bar__bottom-mobile': stickymobile === 'true',
+      hide: elementHidden,
     };
 
     return versionedHtml(this)`
-      <article class="m-top-content-bar">
-        <div class="m-top-content-bar__container ${classMap(classes)}">
-          <axa-container class="m-top-content-bar__container-component">
-            <div class="m-top-content-bar__children">
-              <slot></slot>
-              ${btnHtml}
+      <article class="m-top-content-bar ${classMap(rootClasses)}">
+        <div class="m-top-content-bar__container ${classMap(variantClasses)}">
+          <div class="m-top-content-bar__container-flex">
+            <div class="m-top-content-bar-empty"></div>
+        
+            <div class="m-top-content-bar__container-component">
+            
+              <div class="m-top-content-bar__children">
+                <div class="m-top-content-bar__icon">
+                  <axa-icon icon="${icon}"></axa-icon>
+                </div>
+                
+                <div class="m-top-content-bar__content-text">
+                  <slot></slot>
+                </div>
+                <div class="m-top-content-bar__content-button">
+                  ${btnHtml}
+                </div>
+              </div>
+
             </div>
-          </axa-container>
+        
+            <div class="m-top-content-bar__close-button" @click="${
+              this.onClose
+            }">
+              <axa-icon icon="close"></axa-icon>
+            </div> 
+          </div>
+
+          <div class="m-top-content-bar__content-button-mobile">
+            ${btnHtml}
+          </div>
         </div>
       </article>
     `;

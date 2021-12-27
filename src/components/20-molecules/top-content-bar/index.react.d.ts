@@ -4,6 +4,9 @@ export type Variant = 'warning';
 
 export interface AXATopContentBarProps {
   variant?: Variant;
+  icon?: string;
+  stickymobile?: string;
+  overlaydesktop?: string;
   ctatext: string;
   href?: string;
   className?: string;

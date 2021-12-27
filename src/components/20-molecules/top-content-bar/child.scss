@@ -1,5 +1,17 @@
-axa-top-content-bar > axa-link {
-  padding: 5px;
+axa-top-content-bar {
+  axa-link {
+    padding: 5px;
+  }
+
+  a {
+    color: white;
+    text-decoration: underline;
+
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+  }
 }
 
 @include breakpoint($mediaquery-md-up) {

@@ -7,7 +7,27 @@ import readme from './README.md';
 
 const variantOptions = {
   none: '',
-  warning: 'warning',
+  success: 'success',
+  attention: 'attention',
+  'warning / error': 'warning',
+};
+
+const stickyMobileOptions = {
+  none: '',
+  'sticky bottom mobile': 'true',
+};
+
+const overlayDesktopOptions = {
+  none: '',
+  'overlay on desktop': 'true',
+};
+
+const iconOptions = {
+  None: '',
+  Success: 'check',
+  Informative: 'info-outline',
+  Attention: 'cloud-queue',
+  Error: 'warning',
 };
 
 export default {
@@ -29,6 +49,13 @@ export const TopContentBar = () => {
 
   const ctatext = text('ctatext', '');
   const variant = select('variant', variantOptions, '');
+  const stickyMobile = select('sticky on mobile', stickyMobileOptions, '');
+  const overlayDesktop = select(
+    'overlay on desktop',
+    overlayDesktopOptions,
+    ''
+  );
+  const icon = select('icon', iconOptions, '');
   const href = text('href', '');
   const textValue = text(
     'Text',
@@ -36,9 +63,22 @@ export const TopContentBar = () => {
   );
   const link = text('Add axa-link', '');
 
+  setTimeout(() => {
+    if (!window.sessionStorage.getItem('top-content-bar-closed')) {
+      window.dispatchEvent(new window.Event('axa-top-bar-open'));
+    }
+
+    window.addEventListener('axa-top-bar-close', () => {
+      window.sessionStorage.setItem('top-content-bar-closed', 'true');
+    });
+  });
+
   const template = html`
     <axa-top-content-bar
       variant="${variant}"
+      stickymobile="${stickyMobile}"
+      overlaydesktop="${overlayDesktop}"
+      icon="${icon}"
       href="${href}"
       ctatext="${ctatext}"
     >
