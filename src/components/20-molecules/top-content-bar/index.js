@@ -73,11 +73,8 @@ class AXATopContentBar extends InlineStyles {
 
   onClose() {
     const contBarEl = this.shadowRoot.querySelector(elRootSelector);
-    contBarEl.style.maxHeight = 0;
-    setTimeout(() => {
-      contBarEl.classList.add(hideClass);
-      fireCustomEvent('axa-top-bar-close', null, window);
-    }, 300);
+    contBarEl.classList.add(hideClass);
+    fireCustomEvent('axa-top-bar-close', null, window);
   }
 
   firstUpdated() {

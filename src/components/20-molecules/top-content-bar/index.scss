@@ -3,14 +3,10 @@ $mediaquery-tablet-up: 991px;
 
 .m-top-content-bar {
   display: block;
-
   line-height: 24px;
-  max-height: 500px;
-  transition: max-height 0.3s ease;
 
   .m-top-content-bar__container {
     line-height: 24px;
-
   }
 
   &.hide {
