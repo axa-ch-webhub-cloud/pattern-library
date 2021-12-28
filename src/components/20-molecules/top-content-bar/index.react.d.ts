@@ -7,7 +7,8 @@ export interface AXATopContentBarProps {
   icon?: string;
   stickymobile?: string;
   overlaydesktop?: string;
-  ctatext: string;
+  closeable?: string;
+  ctatext?: string;
   href?: string;
   className?: string;
   onClick?: () => void;

@@ -1,4 +1,4 @@
-import { css, unsafeCSS } from 'lit-element';
+import { css, html, unsafeCSS } from 'lit-element';
 import { classMap } from 'lit-html/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';
@@ -43,6 +43,7 @@ class AXATopContentBar extends InlineStyles {
       icon: { type: String },
       stickymobile: { type: String },
       overlaydesktop: { type: String },
+      closeable: { type: String },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -127,7 +128,7 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const { variant, icon, stickymobile, overlaydesktop } = this;
+    const { variant, icon, stickymobile, overlaydesktop, closeable } = this;
 
     const btnHtml = this.getButtonHtml();
 
@@ -143,6 +144,18 @@ class AXATopContentBar extends InlineStyles {
       hide: elementHidden,
     };
 
+    const iconClasses = {
+      'hide-icon': !icon,
+    };
+
+    const closeClasses = {
+      'hide-close': closeable !== 'true',
+    };
+
+    const buttonClasses = {
+      'hide-button': !btnHtml,
+    };
+
     return versionedHtml(this)`
       <article class="m-top-content-bar ${classMap(rootClasses)}">
         <div class="m-top-content-bar__container ${classMap(variantClasses)}">
@@ -152,25 +165,34 @@ class AXATopContentBar extends InlineStyles {
             <div class="m-top-content-bar__container-component">
             
               <div class="m-top-content-bar__children">
-                <div class="m-top-content-bar__icon">
+                <div class="m-top-content-bar__icon ${classMap(iconClasses)}">
                   <axa-icon icon="${icon}"></axa-icon>
                 </div>
                 
                 <div class="m-top-content-bar__content-text">
                   <slot></slot>
                 </div>
-                <div class="m-top-content-bar__content-button">
+                <div class="m-top-content-bar__content-button ${classMap(
+                  buttonClasses
+                )}">
                   ${btnHtml}
                 </div>
               </div>
 
             </div>
         
-            <div class="m-top-content-bar__close-button" @click="${
-              this.onClose
-            }">
+            <div class="m-top-content-bar__close-button ${classMap(
+              closeClasses
+            )}" @click="${this.onClose}">
               <axa-icon icon="close"></axa-icon>
-            </div> 
+            </div>
+            ${
+              closeable !== 'true'
+                ? html`
+                    <div class="m-top-content-bar-empty"></div>
+                  `
+                : null
+            }
           </div>
 
           <div class="m-top-content-bar__content-button-mobile">

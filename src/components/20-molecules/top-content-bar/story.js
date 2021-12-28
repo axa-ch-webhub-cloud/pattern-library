@@ -13,13 +13,18 @@ const variantOptions = {
 };
 
 const stickyMobileOptions = {
-  none: '',
-  'sticky bottom mobile': 'true',
+  no: '',
+  yes: 'true',
 };
 
 const overlayDesktopOptions = {
-  none: '',
-  'overlay on desktop': 'true',
+  no: '',
+  yes: 'true',
+};
+
+const closeableOptions = {
+  no: '',
+  yes: 'true',
 };
 
 const iconOptions = {
@@ -55,6 +60,7 @@ export const TopContentBar = () => {
     overlayDesktopOptions,
     ''
   );
+  const closeable = select('closeable', closeableOptions, '');
   const icon = select('icon', iconOptions, '');
   const href = text('href', '');
   const textValue = text(
@@ -78,6 +84,7 @@ export const TopContentBar = () => {
       variant="${variant}"
       stickymobile="${stickyMobile}"
       overlaydesktop="${overlayDesktop}"
+      closeable="${closeable}"
       icon="${icon}"
       href="${href}"
       ctatext="${ctatext}"
