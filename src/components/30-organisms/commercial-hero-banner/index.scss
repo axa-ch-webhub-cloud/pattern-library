@@ -1,6 +1,8 @@
+$height-md-up: 440px;
+
 .o-commercial-hero-banner {
   @include breakpoint($mediaquery-md-up) {
-    height: 560px;
+    height: $height-md-up;
   }
 
   &__picture-container {
@@ -12,7 +14,7 @@
     z-index: -10;
 
     @include breakpoint($mediaquery-md-up) {
-      height: 560px;
+      height: $height-md-up;
     }
   }
 
@@ -49,7 +51,7 @@
   &__content {
     display: flex;
     padding: 140px 10px 30px 10px;
-    max-height: 560px;
+    max-height: $height-md-up;
     overflow: hidden;
 
     @include breakpoint($mediaquery-md-up) {
@@ -57,12 +59,12 @@
       background-color: transparent;
 
       margin: 0;
-      height: 560px;
+      height: $height-md-up;
     }
 
     &-item {
       background-color: $color-prim-white;
-
+      width: 100%;
       word-wrap: break-word;
 
       @include breakpoint($mediaquery-md-up) {

@@ -13,10 +13,30 @@ axa-commercial-hero-banner {
     overflow-wrap: break-word;
   }
 
-  p {
+  p, .checkmarks {
     @include text(t4);
     @include breakpoint($mediaquery-xs-up) {
       @include text(t3);
+    }
+  }
+
+  .checkmark {
+    margin-bottom: 5px;
+    display: flex;
+  }
+
+  .checkmark-icon {
+    color: $color-viridian-green;
+  }
+
+  .checkmark-text {
+    margin-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 8px;
+
+    @include breakpoint($mediaquery-xs-up) {
+      padding-top: 0;
+      padding-bottom: 12px;
     }
   }
 

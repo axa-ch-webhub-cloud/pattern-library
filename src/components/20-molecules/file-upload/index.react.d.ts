@@ -19,6 +19,12 @@ export interface AXAFileUploadProps {
   onFileDrop?: () => void;
   onFileRemove?: () => void;
   onChange?: () => void;
+  reset?: () => void;
+  invalidate?: (
+    file: object,
+    clear?: boolean,
+    globalErrorMessage?: string
+  ) => void;
 }
 
 declare function createAXAFileUpload(

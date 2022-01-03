@@ -2,6 +2,18 @@
 
 Migrate to lit. #2207
 
+## 4.1.2
+
+- Fix: Undo version 4.1.1, as the import was not used internally.
+
+## 4.1.1
+
+- Fix: `axa-icon` was not a dependency of the component.
+
+## 4.1.0
+
+- New: Checkmark icons to create a list in the component.
+
 ## 4.0.2
 
 - Fix: prevent duplicate style attachment. (#1727)

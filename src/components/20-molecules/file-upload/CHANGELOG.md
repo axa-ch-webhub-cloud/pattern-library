@@ -2,6 +2,18 @@
 
 Migrate to lit. #2207
 
+## 5.4.1
+
+- Fixes a bug involving the interaction of UI-based file deletion with the new `invalidate` method. (#2239)
+
+## 5.4.0
+
+- Added new method `invalidate(file, clear, globalErrorMessage)` (cf. README). (#2222)
+
+## 5.3.0
+
+- Added reset method/event to clear any uploaded files. (#2223)
+
 ## 5.2.0
 
 - Added an invalid attribute.

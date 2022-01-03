@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable camelcase, no-continue */
 import { LitElement, html, svg, css, unsafeCSS } from 'lit';
 /* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit/directives/class-map';
@@ -24,6 +24,7 @@ import styles from './index.scss';
 import compressImages from './utils/imageCompressor';
 import createRefId from '../../../utils/create-ref-id';
 
+// constants
 const ADD_ICON = svg([AddSvg]);
 const ATTACH_FILE_ICON = svg([Attach_fileSvg]);
 const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
@@ -32,7 +33,63 @@ const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
 
 const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 
+// helper functions:
+
+// bytes from kBytes
 export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
+
+// find file in a list of files, returning a match (or its index) if found (undefined otherwise)
+const findFileById = (files, file, indexOnly) => {
+  for (let i = 0, n = files.length; i < n; i++) {
+    if (files[i].id === file.id) {
+      return indexOnly ? i : files[i];
+    }
+  }
+  return undefined;
+};
+
+// find file by .id in sources and manipulate sources upon file match according to cases requested
+const findAndManipulate = (
+  sources,
+  file,
+  { once, record, removeFrom, appendTo }
+) => {
+  // set up
+  let where;
+  let foundAt;
+  const result = [];
+  const deletions = [];
+  const appends = [];
+  const _remove = removeFrom && new Set(removeFrom);
+  const _append = appendTo && new Set(appendTo);
+  // for all sources a.k.a. file arrays:
+  for (let i = 0, n = sources.length; i < n; i++) {
+    // fix a current array where....
+    where = sources[i];
+    // ... to find the file (by comparing .id values)
+    foundAt = findFileById(where, file, true);
+    // process case 3. queue file to be appended later
+    // N.B. this is the only case that's *independent* of file-found status
+    if (_append && _append.has(where)) appends.push(where);
+    // file not found?
+    if (foundAt === undefined) continue; // no, skip this array
+    // yes, file found - process cases:
+    // 1. just record the facts
+    if (record) result.push({ where, foundAt });
+    // 2. queue file to be deleted later
+    if (_remove && _remove.has(where)) deletions.push({ where, foundAt });
+    // 4. stop at first file occurence found
+    if (once) break;
+  }
+  // execute queued actions for deletion or append cases (because of unique file ids
+  // we can assume each source has <= 1 occurrence of file)
+  deletions.forEach(({ where: _where, foundAt: _foundAt }) =>
+    _where.splice(_foundAt, 1)
+  ); // splice performs in-place modification!
+  appends.forEach(_where => _where.push(file));
+  // return summary of record'ed cases
+  return result;
+};
 
 class AXAFileUpload extends LitElement {
   static get tagName() {
@@ -107,6 +164,8 @@ class AXAFileUpload extends LitElement {
 
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
+
+    this.reset = this.reset.bind(this);
 
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
   }
@@ -189,7 +248,7 @@ class AXAFileUpload extends LitElement {
   }
 
   handleFileDeletion(index) {
-    let spliceStart = 0;
+    let deletionstart = 0;
     this.numberOfDroppedFiles = this.files.length + this.faultyFiles.length - 1;
 
     const allOriginalFiles = this.validOriginalFiles.concat(
@@ -197,30 +256,30 @@ class AXAFileUpload extends LitElement {
     );
 
     if (index >= this.files.length) {
-      spliceStart = index - this.validOriginalFiles.length;
+      deletionstart = index - this.validOriginalFiles.length;
       this.faultyOriginalFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.faultyOriginalFiles,
-        spliceStart
+        deletionstart
       );
 
       this.faultyCompressedFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.faultyCompressedFiles,
-        spliceStart
+        deletionstart
       );
     } else {
-      spliceStart = index;
+      deletionstart = index;
       this.validOriginalFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.validOriginalFiles,
-        spliceStart
+        deletionstart
       );
 
       this.validCompressedFiles = this.removeValidOrFaultyFileFromArray(
         index,
         this.validCompressedFiles,
-        spliceStart
+        deletionstart
       );
 
       if (this.validOriginalFiles.length + 1 === this.maxNumberOfFiles) {
@@ -263,9 +322,16 @@ class AXAFileUpload extends LitElement {
     this.requestUpdate();
   }
 
-  removeValidOrFaultyFileFromArray(index, files, spliceStart) {
+  reset() {
+    // delete all added files (if any)
+    while (this.files.length || this.faultyFiles.length) {
+      this.handleFileDeletion(0);
+    }
+  }
+
+  removeValidOrFaultyFileFromArray(index, files, deletionstart) {
     const clonedFile = [...files];
-    clonedFile.splice(spliceStart, 1);
+    clonedFile.splice(deletionstart, 1);
     return clonedFile;
   }
 
@@ -347,15 +413,11 @@ class AXAFileUpload extends LitElement {
       if (fileSize > maxSizeOfSingleFileInBytes) {
         faultyOriginalFiles.push(file);
 
-        faultyCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        faultyCompressedFiles.push(findFileById(newCompressedFiles, file));
       } else {
         validOriginalFiles.push(file);
 
-        validCompressedFiles.push(
-          this.findCompromisedFileWithMatchingID(newCompressedFiles, file)
-        );
+        validCompressedFiles.push(findFileById(newCompressedFiles, file));
       }
 
       this.sizeOfAllFilesInBytes += fileSize;
@@ -368,15 +430,6 @@ class AXAFileUpload extends LitElement {
       faultyOriginalFiles,
       faultyCompressedFiles
     );
-  }
-
-  findCompromisedFileWithMatchingID(newCompressedFiles, file) {
-    for (let j = 0; newCompressedFiles.length > j; j++) {
-      if (newCompressedFiles[j].id === file.id) {
-        return newCompressedFiles[j];
-      }
-    }
-    return undefined;
   }
 
   addFilesToSpecificArray(
@@ -471,8 +524,8 @@ class AXAFileUpload extends LitElement {
       }
 
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
-        if (faultyCompressedFiles[i] === file) {
-          isfaultyFile = true;
+        if (faultyCompressedFiles[i].id === file.id) {
+          isfaultyFile = file;
           this.invalid = true;
           break;
         }
@@ -523,8 +576,8 @@ class AXAFileUpload extends LitElement {
               ? html`
                   <span
                     class="m-file-upload__error js-file-upload__error"
-                    title="${fileTooBigStatusText}"
-                    >${fileTooBigStatusText}</span
+                    title="${isfaultyFile.errorMessage || fileTooBigStatusText}"
+                    >${isfaultyFile.errorMessage || fileTooBigStatusText}</span
                   >
                 `
               : html``}
@@ -532,6 +585,75 @@ class AXAFileUpload extends LitElement {
         </figure>
       `;
     });
+  }
+
+  // invalidate an existing file by fiat. Uses file.id to match, and file.errorMessage for UI.
+  invalidate(file, clear, globalErrorMessage) {
+    // set up
+    const {
+      faultyOriginalFiles,
+      faultyCompressedFiles,
+      validOriginalFiles,
+      validCompressedFiles,
+      files,
+      faultyFiles,
+    } = this;
+    const allFileLists = [
+      faultyOriginalFiles,
+      faultyCompressedFiles,
+      validOriginalFiles,
+      validCompressedFiles,
+      files,
+      faultyFiles,
+    ];
+    // try to find file via its 'id'
+    const result = findAndManipulate(
+      [faultyOriginalFiles, validOriginalFiles],
+      file,
+      { once: true, record: true }
+    );
+    const isFound = !!result.length;
+    // we found it?
+    if (isFound) {
+      // yes, set up
+      const { where } = result[0];
+      const faulties = [
+        faultyOriginalFiles,
+        faultyCompressedFiles,
+        faultyFiles,
+      ];
+      const valids = [validOriginalFiles, validCompressedFiles, files];
+      // did we find the file among the faulty ones?
+      if (where === faultyOriginalFiles) {
+        // yes, so if we are asked to clear a faulty file...
+        if (clear) {
+          // clear it everywhere
+          findAndManipulate(allFileLists, file, {
+            removeFrom: faulties,
+            appendTo: valids,
+          });
+          // clear invalidity status
+          this.invalid = false;
+          this.globalErrorMessage = '';
+        }
+      } else {
+        // we found the file among the valid ones.
+        // Hence we are asked to mark the file everywhere as faulty
+        findAndManipulate(allFileLists, file, {
+          removeFrom: valids,
+          appendTo: faulties,
+        });
+        // set invalidity status
+        this.invalid = true;
+        this.globalErrorMessage =
+          typeof globalErrorMessage === 'string'
+            ? globalErrorMessage
+            : file.errorMessage;
+      }
+      // force rerender
+      this.requestUpdate();
+    }
+    return isFound;
   }
 
   generateAddMoreInputFile() {
@@ -628,6 +750,12 @@ class AXAFileUpload extends LitElement {
       '.js-file-upload__error-wrapper'
     );
     this.fileUpload = this.shadowRoot.querySelector('.js-file-upload');
+    this.addEventListener('reset', this.reset);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('reset', this.reset);
   }
 
   querySelector(selector) {

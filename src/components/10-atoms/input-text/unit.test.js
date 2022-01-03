@@ -29,7 +29,7 @@ describe('InputText', () => {
 
     it('should return formatted number', () => {
       const returnValue = AXAInputText.prototype._formatCurrency('1000');
-      expect(returnValue).toBe('CHF 1,000.00'); // be aware: there is no simple empty-space between CHF and 1! Its a HTML entity NBSP.
+      expect(returnValue).toBe('CHF 1’000.00'); // be aware: there is no simple empty-space between CHF and 1! Its a HTML entity NBSP.
     });
 
     it('should return inputted value', () => {

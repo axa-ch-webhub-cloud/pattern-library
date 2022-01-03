@@ -2,6 +2,8 @@ import React from 'react';
 
 export interface AXATableProps {
   className?: string;
+  innerscroll?: number;
+  maxheight?: number;
 }
 
 declare function createAXATable(
