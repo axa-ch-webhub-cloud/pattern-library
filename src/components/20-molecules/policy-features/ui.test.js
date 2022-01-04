@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { ClientFunction, Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-policy-features';
@@ -95,9 +95,18 @@ test('should set default style if variant string is not in whitelist', async t =
     .expect(
       await $axaPolicyFeaturesArticleEl.getStyleProperty('background-color')
     )
-    .eql(DEFAULT_BACKGROUND_RGB)
-    .expect(await $axaPolicyFeaturesArticleEl.getAttribute('class'))
-    .eql('m-policy-features');
+    .eql(DEFAULT_BACKGROUND_RGB);
+
+  const getTrimmedClassName = ClientFunction(
+    () =>
+      document
+        .querySelector(TAG)
+        .shadowRoot.querySelector('article')
+        .className.trim(),
+    { dependencies: { TAG } }
+  );
+
+  await t.expect(await getTrimmedClassName()).eql('m-policy-features');
 });
 
 fixture('Policy features - attribute variant: is in whitelist').page(
