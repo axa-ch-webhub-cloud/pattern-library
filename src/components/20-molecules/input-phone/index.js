@@ -25,7 +25,7 @@ class AXAInputPhone extends LitElement {
       invalid: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
       lang: { type: String, reflect: true },
-      errorprefix: { type: String, reflect: true },
+      errorprefix: { type: String, reflect: true, defaultValue: 'Error' },
       areavalue: { type: String, reflect: true, defaultValue: '+41' },
       phonevalue: { type: String, reflect: true },
       value: { type: String, reflect: true },
