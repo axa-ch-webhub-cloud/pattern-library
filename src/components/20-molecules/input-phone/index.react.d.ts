@@ -1,14 +1,17 @@
 import React from 'react';
 
 export interface AXAInputPhoneProps {
-  label: string;
-  errorprefix: string;
+  label?: string;
+  errorprefix?: string;
   lang?: string;
   areavalue?: string;
   phonevalue?: string;
-  onChange?: () => void;
   value?: string; // read-only
   className?: string;
+  onFocus?: (e?: FocusEvent) => void;
+  onBlur?: (e?: FocusEvent) => void;
+  onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;
+  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 declare function createAXAInputPhone(
