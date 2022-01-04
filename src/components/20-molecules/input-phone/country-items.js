@@ -1944,14 +1944,6 @@ export const countries = [
     it: 'Cipro',
   },
   {
-    countryCode: 'XY',
-    dialCode: '',
-    de: 'unbekannt',
-    en: 'unknown',
-    fr: 'inconnu',
-    it: 'sconosciuto',
-  },
-  {
     countryCode: 'EG',
     dialCode: '+20',
     de: 'Ägypten',
