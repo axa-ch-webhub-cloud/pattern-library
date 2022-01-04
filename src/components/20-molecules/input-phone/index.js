@@ -46,13 +46,10 @@ class AXAInputPhone extends LitElement {
    * The phone number typed by the user. Must not contain no area-code information.
    * @param {string} phoneNumberTypedByUser e.g. '795121821'
    */
+
   isValid(phoneNumberTypedByUser) {
-    // Contains letters?
-    if (phoneNumberTypedByUser.match(/[a-z][A-Z]*/g)) {
-      return false;
-    }
-    // Contains '+' character?
-    else if (phoneNumberTypedByUser.includes('+')) {
+    // only accept numbers
+    if (!phoneNumberTypedByUser.match(/^[0-9]*$/g)) {
       return false;
     }
     // Contains zero at the beginning?
