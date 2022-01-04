@@ -8,9 +8,9 @@ export interface AXAInputPhoneProps {
   phonevalue?: string;
   value?: string; // read-only
   className?: string;
-  onFocus?: (e?: FocusEvent) => void;
-  onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;
+  onFocus?: (e?: React.FocusEvent) => void;
+  onBlur?: (e?: React.FocusEvent) => void;
+  onChange?: (e: { target: HTMLInputElement }) => void;
   onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
