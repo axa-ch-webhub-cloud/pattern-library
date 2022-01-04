@@ -30,6 +30,6 @@
     "@axa-ch/carousel": "3.2.10",
     "@axa-ch/container": "3.0.12",
     "@skatejs/val": "^0.4.0",
-    "lit": "^2.0.0-rc.2"
+    "lit": "^2.0.2"
   }
 }
