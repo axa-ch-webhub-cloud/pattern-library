@@ -63,7 +63,7 @@ Is an array of objects to set the options of the dropdown. The objects must have
 
 ### cropText
 
-This removes the three dots when the value becomes too long to fully display on the dropdown element. It also reduces the paddings within the dropdown, for a more minified look.
+This removes the ellipsis dots when the value becomes too long to fully display on the dropdown element. It also reduces the paddings within the dropdown, for a more minified look.
 
 Example: `+41 Switzer...` => `+41 Switzerla`
 
