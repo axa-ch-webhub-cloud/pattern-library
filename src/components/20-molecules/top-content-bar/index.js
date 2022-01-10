@@ -54,19 +54,6 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
-    this.addEventListener('axa-top-content-bar-open', () => {
-      if (this.initiallyclosed) {
-        this.closed = false;
-        this.initiallyclosed = false;
-      }
-    });
-
-    this.addEventListener('axa-top-content-bar-close', () => {
-      if (!this.initiallyclosed) {
-        this.closed = true;
-      }
-    });
-
     defineVersioned(
       [AXAButton, AXAButtonLink, AXAContainer, AXAIcon],
       __VERSION_INFO__,
@@ -81,9 +68,6 @@ class AXATopContentBar extends InlineStyles {
     // sessionStorage can be used only in the core module, so the event will be
     // fired here and handled in core module by adding the 'top-content-bar-closed'
     // item to sessionStorage.
-    // The similar counts for the event 'axa-top-content-bar-open', we check the
-    // sessionStorage in core module and then fire the event to open the bar
-    // if it's initially closed.
     fireCustomEvent('axa-top-content-bar-close', null, this);
   }
 
@@ -144,10 +128,13 @@ class AXATopContentBar extends InlineStyles {
       overlaydesktop,
       closable,
       closed,
-      initiallyclosed,
     } = this;
 
-    if (closed || initiallyclosed) return html``;
+    if (!closed) {
+      this.initiallyclosed = false;
+    }
+
+    if (closed || this.initiallyclosed) return html``;
 
     const btnHtml = this.getButtonHtml();
 

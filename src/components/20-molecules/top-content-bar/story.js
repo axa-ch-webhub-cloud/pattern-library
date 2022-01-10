@@ -50,16 +50,12 @@ export const TopContentBar = () => {
     'Unidentified flying object detected in your region. People are panicking. Stay calm!'
   );
   const link = text('Add axa-link', '');
+  const barClosed = !!window.sessionStorage.getItem('top-content-bar-closed');
 
   setTimeout(() => {
     const el = document.querySelector('axa-top-content-bar');
     if (!el) {
       return;
-    }
-    if (window.sessionStorage.getItem('top-content-bar-closed')) {
-      el.dispatchEvent(new window.Event('axa-top-content-bar-close'));
-    } else {
-      el.dispatchEvent(new window.Event('axa-top-content-bar-open'));
     }
 
     el.addEventListener('axa-top-content-bar-close', () => {
@@ -94,5 +90,6 @@ export const TopContentBar = () => {
   `;
 
   render(template, wrapper);
+  wrapper.querySelector('axa-top-content-bar').closed = barClosed;
   return wrapper;
 };
