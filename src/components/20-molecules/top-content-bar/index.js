@@ -54,14 +54,14 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
-    window.addEventListener('axa-top-content-bar-open', () => {
+    this.addEventListener('axa-top-content-bar-open', () => {
       if (this.initiallyclosed) {
         this.closed = false;
         this.initiallyclosed = false;
       }
     });
 
-    window.addEventListener('axa-top-content-bar-close', () => {
+    this.addEventListener('axa-top-content-bar-close', () => {
       if (!this.initiallyclosed) {
         this.closed = true;
       }
@@ -83,9 +83,8 @@ class AXATopContentBar extends InlineStyles {
     // item to sessionStorage.
     // The similar counts for the event 'axa-top-content-bar-open', we check the
     // sessionStorage in core module and then fire the event to open the bar
-    // if it's initially closed. Since we cannot read the elements in shadow dom,
-    // we have to use the window object as a target for the events.
-    fireCustomEvent('axa-top-content-bar-close', null, window);
+    // if it's initially closed.
+    fireCustomEvent('axa-top-content-bar-close', null, this);
   }
 
   firstUpdated() {

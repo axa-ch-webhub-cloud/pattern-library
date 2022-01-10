@@ -52,16 +52,20 @@ export const TopContentBar = () => {
   const link = text('Add axa-link', '');
 
   setTimeout(() => {
+    const el = document.querySelector('axa-top-content-bar');
+    if (!el) {
+      return;
+    }
     if (window.sessionStorage.getItem('top-content-bar-closed')) {
-      window.dispatchEvent(new window.Event('axa-top-content-bar-close'));
+      el.dispatchEvent(new window.Event('axa-top-content-bar-close'));
     } else {
-      window.dispatchEvent(new window.Event('axa-top-content-bar-open'));
+      el.dispatchEvent(new window.Event('axa-top-content-bar-open'));
     }
 
-    window.addEventListener('axa-top-content-bar-close', () => {
+    el.addEventListener('axa-top-content-bar-close', () => {
       window.sessionStorage.setItem('top-content-bar-closed', 'true');
     });
-  }, 2000);
+  });
 
   const template = html`
     <h1>HEADER</h1>
