@@ -1,36 +1,16 @@
 $mediaquery-mobile-up: 411px;
-$mediaquery-tablet-up: 991px;
 
 .m-top-content-bar {
   display: block;
-  line-height: 24px;
-
-  .m-top-content-bar__container {
-    line-height: 24px;
-  }
-
-  &.hide {
-    display: none;
-  }
 
   &.m-top-content-bar__overlay-desktop,
   &.m-top-content-bar__overlay-desktop.m-top-content-bar__bottom-mobile {
     @include breakpoint($mediaquery-mobile-up) {
-      position: relative;
-      top: 60px;
-      max-height: 0px;
+      position: absolute;
+      height: 0;
       width: 100%;
-      width: -moz-available;
-      width: -webkit-fill-available;
-      width: stretch;
     }
     z-index: 2;
-  }
-
-  &.m-top-content-bar__bottom-mobile:not(.m-top-content-bar__overlay-desktop) {
-    @include breakpoint($mediaquery-mobile-up) {
-      position: static;
-    }
   }
 
   &.m-top-content-bar__bottom-mobile {
@@ -42,13 +22,15 @@ $mediaquery-tablet-up: 991px;
 
     @include breakpoint($mediaquery-mobile-up) {
       position: unset;
-      top: 0;
       bottom: unset;
     }
   }
 
   .m-top-content-bar__content-text {
-    margin: 1em 0px;
+    margin: 0;
+    @include breakpoint($mediaquery-mobile-up) {
+      margin: 1em 0;
+    }
   }
 
   .m-top-content-bar__icon,
@@ -99,12 +81,12 @@ $mediaquery-tablet-up: 991px;
 
     min-height: 50px;
     vertical-align: middle;
-    padding: 16px 16px;
+    padding: 16px;
 
     box-sizing: border-box;
 
     @include breakpoint($mediaquery-mobile-up) {
-      padding: 5px 16px;
+      padding: 1px 16px;
     }
 
     &-component {
@@ -112,7 +94,8 @@ $mediaquery-tablet-up: 991px;
       display:flex;
       align-items:center;
       flex-wrap: nowrap;
-      font-size: 15px;
+      line-height: 27px;
+      font-size: 18px;
 
       .m-top-content-bar__button, .m-top-content-bar__button-link {
         margin-left: 10px;
@@ -157,7 +140,7 @@ $mediaquery-tablet-up: 991px;
     }
   }
 
-  @include breakpoint($mediaquery-tablet-up) {
+  @include breakpoint($mediaquery-md) {
     div.m-top-content-bar__icon,
     div.m-top-content-bar__close-button {
       justify-content: center;
@@ -203,5 +186,5 @@ $mediaquery-tablet-up: 991px;
   background-color: $color-malachite;
 }
 .m-top-content-bar__container--attention {
-  background-color: #BC9D45;
+  background-color: $color-underbrush;
 }

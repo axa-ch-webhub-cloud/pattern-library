@@ -1,4 +1,4 @@
-import { select, text, withKnobs } from '@storybook/addon-knobs';
+import {boolean, select, text, withKnobs} from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -9,22 +9,7 @@ const variantOptions = {
   none: '',
   success: 'success',
   attention: 'attention',
-  'warning / error': 'warning',
-};
-
-const stickyMobileOptions = {
-  no: '',
-  yes: 'true',
-};
-
-const overlayDesktopOptions = {
-  no: '',
-  yes: 'true',
-};
-
-const closeableOptions = {
-  no: '',
-  yes: 'true',
+  warning: 'warning',
 };
 
 const iconOptions = {
@@ -52,39 +37,41 @@ export default {
 export const TopContentBar = () => {
   const wrapper = document.createElement('div');
 
-  const ctatext = text('ctatext', '');
-  const variant = select('variant', variantOptions, '');
-  const stickyMobile = select('sticky on mobile', stickyMobileOptions, '');
-  const overlayDesktop = select(
-    'overlay on desktop',
-    overlayDesktopOptions,
-    ''
-  );
-  const closeable = select('closeable', closeableOptions, '');
-  const icon = select('icon', iconOptions, '');
-  const href = text('href', '');
+  const ctatext = text('Cta text', '');
+  const variant = select('Variant', variantOptions, '');
+  const stickyMobile = boolean('Sticky on mobile', false);
+  const overlayDesktop = boolean('Overlay on desktop', false);
+  const closable = boolean('Closable', false);
+  const initiallyClosed = boolean('Initially closed', false);
+  const icon = select('Icon', iconOptions, '');
+  const href = text('Href', '');
   const textValue = text(
     'Text',
     'Unidentified flying object detected in your region. People are panicking. Stay calm!'
   );
   const link = text('Add axa-link', '');
+  const sessionItemClosed = window.sessionStorage.getItem('top-content-bar-closed');
 
   setTimeout(() => {
-    if (!window.sessionStorage.getItem('top-content-bar-closed')) {
-      window.dispatchEvent(new window.Event('axa-top-bar-open'));
+    if (window.sessionStorage.getItem('top-content-bar-closed')) {
+      window.dispatchEvent(new window.Event('axa-top-content-bar-close'));
+    } else {
+      window.dispatchEvent(new window.Event('axa-top-content-bar-open'));
     }
 
-    window.addEventListener('axa-top-bar-close', () => {
+    window.addEventListener('axa-top-content-bar-close', () => {
       window.sessionStorage.setItem('top-content-bar-closed', 'true');
     });
-  });
+  }, 2000);
 
   const template = html`
+    <h1>HEADER</h1>
     <axa-top-content-bar
       variant="${variant}"
-      stickymobile="${stickyMobile}"
-      overlaydesktop="${overlayDesktop}"
-      closeable="${closeable}"
+      ?stickymobile="${stickyMobile}"
+      ?overlaydesktop="${overlayDesktop}"
+      ?closable="${closable}"
+      ?initiallyclosed="${initiallyClosed}"
       icon="${icon}"
       href="${href}"
       ctatext="${ctatext}"
@@ -96,6 +83,11 @@ export const TopContentBar = () => {
           `
         : ''}
     </axa-top-content-bar>
+    <h2>Subheader</h2>
+    <h3>Text 1</h3>
+    <h3>Text 2</h3>
+    <h3>Text 3</h3>
+    <h3>Text 4</h3>
   `;
 
   render(template, wrapper);

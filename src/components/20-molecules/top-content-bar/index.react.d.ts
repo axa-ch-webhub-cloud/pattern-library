@@ -5,9 +5,10 @@ export type Variant = 'warning';
 export interface AXATopContentBarProps {
   variant?: Variant;
   icon?: string;
-  stickymobile?: string;
-  overlaydesktop?: string;
-  closeable?: string;
+  stickymobile?: boolean;
+  overlaydesktop?: boolean;
+  closable?: boolean;
+  initiallyclosed?: boolean;
   ctatext?: string;
   href?: string;
   className?: string;

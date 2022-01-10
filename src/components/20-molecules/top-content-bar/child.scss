@@ -1,14 +1,14 @@
 axa-top-content-bar {
-  axa-link {
+  > axa-link {
     padding: 5px;
   }
 
   a {
-    color: white;
+    color: $color-prim-white;
     text-decoration: underline;
 
     &:hover {
-      color: white;
+      color: $color-prim-white;
       text-decoration: none;
     }
   }

@@ -16,16 +16,12 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import fireCustomEvent from '../../../utils/custom-event';
 
-const elTagName = 'axa-top-content-bar';
-const elRootSelector = '.m-top-content-bar';
-const hideClass = 'hide';
-let elementHidden = true;
 /**
  *  We need InlineStyles to give children some margins.
  */
 class AXATopContentBar extends InlineStyles {
   static get tagName() {
-    return elTagName;
+    return 'axa-top-content-bar';
   }
 
   static get styles() {
@@ -41,9 +37,11 @@ class AXATopContentBar extends InlineStyles {
       href: { type: String },
       variant: { type: String },
       icon: { type: String },
-      stickymobile: { type: String },
-      overlaydesktop: { type: String },
-      closeable: { type: String },
+      stickymobile: { type: Boolean },
+      overlaydesktop: { type: Boolean },
+      closable: { type: Boolean },
+      initiallyclosed: { type: Boolean },
+      closed: { type: Boolean },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -56,12 +54,16 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
-    window.addEventListener('axa-top-bar-open', () => {
-      const contBarEl = this.shadowRoot.querySelector(elRootSelector);
-      if (contBarEl) {
-        contBarEl.classList.remove(hideClass);
-      } else {
-        elementHidden = false;
+    window.addEventListener('axa-top-content-bar-open', () => {
+      if (this.initiallyclosed) {
+        this.closed = false;
+        this.initiallyclosed = false;
+      }
+    });
+
+    window.addEventListener('axa-top-content-bar-close', () => {
+      if (!this.initiallyclosed) {
+        this.closed = true;
       }
     });
 
@@ -73,14 +75,22 @@ class AXATopContentBar extends InlineStyles {
   }
 
   onClose() {
-    const contBarEl = this.shadowRoot.querySelector(elRootSelector);
-    contBarEl.classList.add(hideClass);
-    fireCustomEvent('axa-top-bar-close', null, window);
+    this.closed = true;
+    // The sessionStorage item 'top-content-bar-closed' needs to be set to make
+    // sure the bar will not be opened during the current browser session.
+    // sessionStorage can be used only in the core module, so the event will be
+    // fired here and handled in core module by adding the 'top-content-bar-closed'
+    // item to sessionStorage.
+    // The similar counts for the event 'axa-top-content-bar-open', we check the
+    // sessionStorage in core module and then fire the event to open the bar
+    // if it's initially closed. Since we cannot read the elements in shadow dom,
+    // we have to use the window object as a target for the events.
+    fireCustomEvent('axa-top-content-bar-close', null, window);
   }
 
   firstUpdated() {
     this.inlineStyles('childStyles');
-    const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
+    const links = [...this.querySelectorAll('axa-link')];
     links.forEach(link => {
       link.setAttribute('variant', 'hyperlink-white-underline');
     });
@@ -128,7 +138,9 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const { variant, icon, stickymobile, overlaydesktop, closeable } = this;
+    const { variant, icon, stickymobile, overlaydesktop, closable, closed, initiallyclosed } = this;
+
+    if (closed || initiallyclosed) return html ``;
 
     const btnHtml = this.getButtonHtml();
 
@@ -139,9 +151,8 @@ class AXATopContentBar extends InlineStyles {
     };
 
     const rootClasses = {
-      'm-top-content-bar__overlay-desktop': overlaydesktop === 'true',
-      'm-top-content-bar__bottom-mobile': stickymobile === 'true',
-      hide: elementHidden,
+      'm-top-content-bar__overlay-desktop': overlaydesktop,
+      'm-top-content-bar__bottom-mobile': stickymobile,
     };
 
     const iconClasses = {
@@ -149,7 +160,7 @@ class AXATopContentBar extends InlineStyles {
     };
 
     const closeClasses = {
-      'hide-close': closeable !== 'true',
+      'hide-close': !closable,
     };
 
     const buttonClasses = {
@@ -187,11 +198,11 @@ class AXATopContentBar extends InlineStyles {
               <axa-icon icon="close"></axa-icon>
             </div>
             ${
-              closeable !== 'true'
-                ? html`
-                    <div class="m-top-content-bar-empty"></div>
-                  `
-                : null
+              closable
+                ? html ``
+                : html`
+                  <div class="m-top-content-bar-empty"></div>
+                `
             }
           </div>
 
