@@ -32,7 +32,7 @@ Set the boolean attribute `stickymobile` to `true` to display the bar at the bot
 
 ### overlaydesktop
 
-Set the boolean attribute `overlaydesktop` to `true` to display the bar on top of the DOM element that comes after this element. Usually that would be the Keyvisual CTA component. This feature applies only for the screen width larger than 411px. For mobile devices the bar will either be displayed as usually with `position:static` or at the bottom of the screen if the attribute `stickymobile` is enabled. 
+Set the boolean attribute `overlaydesktop` to `true` to display the bar on top of the DOM element that comes after this element. Usually that would be the Keyvisual CTA component. This feature applies only for the screen width larger than 411px. For mobile devices the bar will either be displayed as usually with `position:static` or at the bottom of the screen if the attribute `stickymobile` is enabled.
 
 ### closable
 
@@ -40,7 +40,7 @@ Set the boolean attribute `closable` to `true` to display the Close button. Once
 
 ### initiallyclosed
 
-Set the boolean attribute `initiallyclosed` to `true` to make the bar is initially closed (on page load). By default it is initially opened ie. displayed. If the bar is initially closed it will be displayed after the check that the bar is not closed by the user during that browser session. Also if the bar is initially opened it will be automatically closed after the check that the bar is closed by the user during that browser session. 
+Set the boolean attribute `initiallyclosed` to `true` to make the bar is initially closed (on page load). By default it is initially opened ie. displayed. If the bar is initially closed it will be displayed after the check that the bar is not closed by the user during that browser session. Also if the bar is initially opened it will be automatically closed after the check that the bar is closed by the user during that browser session.
 
 ### onClick
 

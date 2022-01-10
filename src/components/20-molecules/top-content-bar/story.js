@@ -1,4 +1,4 @@
-import {boolean, select, text, withKnobs} from '@storybook/addon-knobs';
+import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -50,7 +50,6 @@ export const TopContentBar = () => {
     'Unidentified flying object detected in your region. People are panicking. Stay calm!'
   );
   const link = text('Add axa-link', '');
-  const sessionItemClosed = window.sessionStorage.getItem('top-content-bar-closed');
 
   setTimeout(() => {
     if (window.sessionStorage.getItem('top-content-bar-closed')) {

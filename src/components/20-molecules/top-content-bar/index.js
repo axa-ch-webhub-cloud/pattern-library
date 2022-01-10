@@ -138,9 +138,17 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const { variant, icon, stickymobile, overlaydesktop, closable, closed, initiallyclosed } = this;
+    const {
+      variant,
+      icon,
+      stickymobile,
+      overlaydesktop,
+      closable,
+      closed,
+      initiallyclosed,
+    } = this;
 
-    if (closed || initiallyclosed) return html ``;
+    if (closed || initiallyclosed) return html``;
 
     const btnHtml = this.getButtonHtml();
 
@@ -199,10 +207,10 @@ class AXATopContentBar extends InlineStyles {
             </div>
             ${
               closable
-                ? html ``
+                ? html``
                 : html`
-                  <div class="m-top-content-bar-empty"></div>
-                `
+                    <div class="m-top-content-bar-empty"></div>
+                  `
             }
           </div>
 
