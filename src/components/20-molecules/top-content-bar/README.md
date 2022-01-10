@@ -42,6 +42,10 @@ Set the boolean attribute `closable` to `true` to display the Close button. Once
 
 Set the boolean attribute `initiallyclosed` to `true` to make the bar is initially closed (on page load). By default it is initially opened ie. displayed. If the bar is initially closed it will be displayed after the check that the bar is not closed by the user during that browser session. Also if the bar is initially opened it will be automatically closed after the check that the bar is closed by the user during that browser session.
 
+### closed
+
+The boolean property `closed` can be used to hide or show the bar on the page. We use this property after we check the sessionStorage item `top-content-bar-closed`.
+
 ### onClick
 
 The function-valued attribute `onClick` can be used as a callback prop for React and other frameworks.

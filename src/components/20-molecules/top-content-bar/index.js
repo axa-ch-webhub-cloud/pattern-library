@@ -171,7 +171,7 @@ class AXATopContentBar extends InlineStyles {
             
               <div class="m-top-content-bar__children">
                 <div class="m-top-content-bar__icon ${classMap(iconClasses)}">
-                  <axa-icon icon="${icon}"></axa-icon>
+                  <axa-icon size="large" icon="${icon}"></axa-icon>
                 </div>
                 
                 <div class="m-top-content-bar__content-text">
