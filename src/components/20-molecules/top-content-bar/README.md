@@ -28,7 +28,7 @@ Using the string-valued attribute `icon` as icon name, an icon will be rendered.
 
 ### stickymobile
 
-Set the Boolean attribute `stickymobile` to `true` to display the bar at the bottom of the screen on mobile devices with width < 411px.
+Set the Boolean attribute `stickymobile` to `true` to display the bar at the bottom of the screen on mobile devices with width < 576px.
 
 ### closable
 
