@@ -36,15 +36,6 @@ $dropdown-height: 40px;
   }
 }
 
-axa-dropdown[cropText] .m-dropdown__flex-wrapper > span {
-  text-overflow: inherit;
-}
-
-axa-dropdown[cropText] .m-dropdown__select,
-axa-dropdown[cropText] .m-dropdown__toggle {
-  padding: 0 36px 0 12px;
-}
-
 axa-dropdown {
   display: block;
 
@@ -105,6 +96,17 @@ axa-dropdown {
       outline: 2px solid $color-axa-blue;
       outline-offset: -1px;
       box-sizing: border-box;
+    }
+  }
+
+  &[croptext] {
+    .m-dropdown__flex-wrapper > span {
+      text-overflow: inherit;
+    }
+
+    .m-dropdown__select,
+    .m-dropdown__toggle {
+      padding: 0 36px 0 12px;
     }
   }
 
