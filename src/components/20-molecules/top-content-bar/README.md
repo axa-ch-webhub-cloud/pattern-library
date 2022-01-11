@@ -28,23 +28,15 @@ Using the string-valued attribute `icon` as icon name, an icon will be rendered.
 
 ### stickymobile
 
-Set the boolean attribute `stickymobile` to `true` to display the bar at the bottom of the screen on mobile devices with width < 411px.
-
-### overlaydesktop
-
-Set the boolean attribute `overlaydesktop` to `true` to display the bar on top of the DOM element that comes after this element. Usually that would be the Keyvisual CTA component. This feature applies only for the screen width larger than 411px. For mobile devices the bar will either be displayed as usually with `position:static` or at the bottom of the screen if the attribute `stickymobile` is enabled.
+Set the Boolean attribute `stickymobile` to `true` to display the bar at the bottom of the screen on mobile devices with width < 411px.
 
 ### closable
 
-Set the boolean attribute `closable` to `true` to display the Close button. Once the bar is closed it will not be displayed any more during that browser session.
-
-### initiallyclosed
-
-Set the boolean attribute `initiallyclosed` to `true` to make the bar is initially closed (on page load). By default it is initially opened ie. displayed. If the bar is initially closed it will be displayed after the check that the bar is not closed by the user during that browser session. Also if the bar is initially opened it will be automatically closed after the check that the bar is closed by the user during that browser session.
+Set the Boolean attribute `closable` to `true` to display the Close button. Once the bar is closed it will not be displayed any more during that browser session.
 
 ### closed
 
-The boolean property `closed` can be used to hide or show the bar on the page. We use this property after we check the sessionStorage item `top-content-bar-closed`.
+The Boolean property `closed` can be used to hide or show the bar on the page. We use this property after we check the sessionStorage item `top-content-bar-closed`.
 
 ### onClick
 

@@ -38,9 +38,7 @@ class AXATopContentBar extends InlineStyles {
       variant: { type: String },
       icon: { type: String },
       stickymobile: { type: Boolean },
-      overlaydesktop: { type: Boolean },
       closable: { type: Boolean },
-      initiallyclosed: { type: Boolean },
       closed: { type: Boolean },
       onClick: { type: Function, attribute: false },
     };
@@ -121,20 +119,9 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const {
-      variant,
-      icon,
-      stickymobile,
-      overlaydesktop,
-      closable,
-      closed,
-    } = this;
+    const { variant, icon, stickymobile, closable, closed } = this;
 
-    if (!closed) {
-      this.initiallyclosed = false;
-    }
-
-    if (closed || this.initiallyclosed) return html``;
+    if (closed) return html``;
 
     const btnHtml = this.getButtonHtml();
 
@@ -145,7 +132,6 @@ class AXATopContentBar extends InlineStyles {
     };
 
     const rootClasses = {
-      'm-top-content-bar__overlay-desktop': overlaydesktop,
       'm-top-content-bar__bottom-mobile': stickymobile,
     };
 

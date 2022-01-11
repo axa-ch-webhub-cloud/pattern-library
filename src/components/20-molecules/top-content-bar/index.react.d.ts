@@ -6,9 +6,8 @@ export interface AXATopContentBarProps {
   variant?: Variant;
   icon?: string;
   stickymobile?: boolean;
-  overlaydesktop?: boolean;
   closable?: boolean;
-  initiallyclosed?: boolean;
+  closed?: boolean;
   ctatext?: string;
   href?: string;
   className?: string;

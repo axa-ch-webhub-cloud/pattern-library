@@ -40,9 +40,7 @@ export const TopContentBar = () => {
   const ctatext = text('Cta text', '');
   const variant = select('Variant', variantOptions, '');
   const stickyMobile = boolean('Sticky on mobile', false);
-  const overlayDesktop = boolean('Overlay on desktop', false);
   const closable = boolean('Closable', false);
-  const initiallyClosed = boolean('Initially closed', false);
   const icon = select('Icon', iconOptions, '');
   const href = text('Href', '');
   const textValue = text(
@@ -68,9 +66,7 @@ export const TopContentBar = () => {
     <axa-top-content-bar
       variant="${variant}"
       ?stickymobile="${stickyMobile}"
-      ?overlaydesktop="${overlayDesktop}"
       ?closable="${closable}"
-      ?initiallyclosed="${initiallyClosed}"
       icon="${icon}"
       href="${href}"
       ctatext="${ctatext}"

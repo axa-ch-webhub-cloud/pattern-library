@@ -3,16 +3,6 @@ $mediaquery-mobile-up: 411px;
 .m-top-content-bar {
   display: block;
 
-  &.m-top-content-bar__overlay-desktop,
-  &.m-top-content-bar__overlay-desktop.m-top-content-bar__bottom-mobile {
-    @include breakpoint($mediaquery-mobile-up) {
-      position: absolute;
-      height: 0;
-      width: 100%;
-    }
-    z-index: 2;
-  }
-
   &.m-top-content-bar__bottom-mobile {
     position: fixed;
     bottom: 0;
