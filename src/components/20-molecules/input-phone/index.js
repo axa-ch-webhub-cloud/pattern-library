@@ -6,7 +6,7 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countries, nearCountries } from './country-items';
+import { countries, dialCodes } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
 
 class AXAInputPhone extends LitElement {
@@ -26,7 +26,7 @@ class AXAInputPhone extends LitElement {
       label: { type: String, reflect: true },
       lang: { type: String, reflect: true },
       errorprefix: { type: String, reflect: true, defaultValue: 'Error' },
-      areavalue: { type: String, reflect: true, defaultValue: '+41' },
+      countrycode: { type: String, reflect: true, defaultValue: '+41' },
       phonevalue: { type: String, reflect: true },
       value: { type: String, reflect: true },
       onChange: { type: Function, attribute: false },
@@ -58,7 +58,7 @@ class AXAInputPhone extends LitElement {
     }
     // Longer than 15 character? See: https://en.wikipedia.org/wiki/E.164
     else if (
-      this.areaCodeDropdown.value?.length +
+      this.countryCodeDropdown.value?.length +
         phoneNumberTypedByUser?.replaceAll(' ', '').length >=
       15
     ) {
@@ -68,14 +68,14 @@ class AXAInputPhone extends LitElement {
   }
 
   setAndValidatePhoneNumber() {
-    this.value = `${this.areaCodeDropdown.value}${this.phoneInputText.value}`;
+    this.value = `${this.countryCodeDropdown.value}${this.phoneInputText.value}`;
     if (this.isValid(this.phoneInputText.value)) {
       this.invalid = false;
     } else {
       this.invalid = true;
       this._errorText = `${
         this.errorprefix
-      }: ${`${this.areaCodeDropdown.value} ${this.phoneInputText.value}`}`;
+      }: ${`${this.countryCodeDropdown.value} ${this.phoneInputText.value}`}`;
     }
   }
 
@@ -84,8 +84,8 @@ class AXAInputPhone extends LitElement {
    * This will still be checked for errors by the custom element.
    */
   applyManualValueOverride() {
-    if (this.areavalue) {
-      this.areaCodeDropdown.value = this.areavalue;
+    if (this.countrycode) {
+      this.countryCodeDropdown.value = this.countrycode;
     }
     if (this.phonevalue) {
       this.phoneInputText.value = this.phonevalue;
@@ -106,26 +106,16 @@ class AXAInputPhone extends LitElement {
     fireCustomEvent('axa-change', this.value, this, { bubbles: false });
   }
 
-  countryMapper(countryArray) {
-    return countryArray.map(cItem => ({
-      name: `${cItem[this.lang] || cItem.de} ${cItem.dialCode}`,
-      value: cItem.dialCode,
-      selected: cItem.dialCode === this.areavalue,
-    }));
-  }
-
   connectedCallback() {
     super.connectedCallback();
-    const adaptedCountryItems = this.countryMapper(countries);
-    adaptedCountryItems.sort((a, b) =>
-      // eslint-disable-next-line no-nested-ternary
-      a.name < b.name ? -1 : a.name > b.name ? 1 : 0
-    );
-    const adaptedNearCountryItems = this.countryMapper(nearCountries);
-
-    this.sortedCountryItems = adaptedNearCountryItems.concat(
-      adaptedCountryItems
-    );
+    const { countrycode, lang } = this;
+    const numericCountryCode = parseInt(countrycode.slice(1), 10);
+    const offset = { de: 0, en: 1, fr: 2, it: 3 };
+    this.sortedCountryItems = dialCodes.map((code, index) => ({
+      name: `${countries[4 * index + offset[lang || 'de']]} +${code}`,
+      value: `+${code}`,
+      selected: code === numericCountryCode,
+    }));
   }
 
   firstUpdated() {
@@ -134,7 +124,7 @@ class AXAInputPhone extends LitElement {
     );
     mobileDropdown.items = this.sortedCountryItems;
 
-    this.areaCodeDropdown = this.shadowRoot.querySelector(
+    this.countryCodeDropdown = this.shadowRoot.querySelector(
       '.m-input-phone__mobile-area-code-dropdown'
     );
 
