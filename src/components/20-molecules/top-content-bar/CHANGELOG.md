@@ -1,3 +1,6 @@
+## 4.1.0
+- Feature: allow for icons, be more usable on mobile, and closable. (#2252)
+
 ## 4.0.7
 
 - Fixed vertical alignment, in case a button is being used. (#2039)
