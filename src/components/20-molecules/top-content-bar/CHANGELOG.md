@@ -1,4 +1,5 @@
 ## 4.1.0
+
 - Feature: allow for icons, be more usable on mobile, and closable. (#2252)
 
 ## 4.0.7
