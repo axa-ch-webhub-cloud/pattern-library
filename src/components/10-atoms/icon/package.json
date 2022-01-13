@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/icon",
-  "version": "6.0.6",
+  "version": "6.1.0",
   "description": "The icon component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/icon#readme",
@@ -30,7 +30,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "14.3.3",
+    "@axa-ch/materials": "14.4.0",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
