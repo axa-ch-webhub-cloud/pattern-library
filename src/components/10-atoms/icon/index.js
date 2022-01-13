@@ -14,6 +14,11 @@ import {
   File_uploadSvg,
   Cloud_uploadSvg,
   Check_circleSvg,
+  CheckSvg,
+  Info_outlineSvg,
+  WarningSvg,
+  Cloud_queueSvg,
+  CloseSvg,
 } from '@axa-ch/materials/icons/material-design';
 import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
@@ -51,6 +56,11 @@ class AXAIcon extends LitElement {
       'axa-logo': AxaLogoSvg,
       'axa-logo-open': AxaLogoOpenSvg,
       'check-circle': Check_circleSvg,
+      check: CheckSvg,
+      'info-outline': Info_outlineSvg,
+      warning: WarningSvg,
+      'cloud-queue': Cloud_queueSvg,
+      close: CloseSvg,
     };
   }
 
