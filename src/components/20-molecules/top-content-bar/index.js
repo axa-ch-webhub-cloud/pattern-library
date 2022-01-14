@@ -185,10 +185,15 @@ class AXATopContentBar extends InlineStyles {
                   `
             }
           </div>
-
-          <div class="m-top-content-bar__content-button-mobile">
-            ${btnHtml}
-          </div>
+          ${
+            btnHtml
+              ? html`
+                  <div class="m-top-content-bar__content-button-mobile">
+                    ${btnHtml}
+                  </div>
+                `
+              : html``
+          }
         </div>
       </article>
     `;
