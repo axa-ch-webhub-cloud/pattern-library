@@ -16,8 +16,8 @@ import {
   Check_circleSvg,
   CheckSvg,
   Info_outlineSvg,
-  WarningSvg,
-  Cloud_queueSvg,
+  Warning_amberSvg,
+  CloudySvg,
   CloseSvg,
 } from '@axa-ch/materials/icons/material-design';
 import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
@@ -58,8 +58,8 @@ class AXAIcon extends LitElement {
       'check-circle': Check_circleSvg,
       check: CheckSvg,
       'info-outline': Info_outlineSvg,
-      warning: WarningSvg,
-      'cloud-queue': Cloud_queueSvg,
+      'warning-amber': Warning_amberSvg,
+      cloudy: CloudySvg,
       close: CloseSvg,
     };
   }

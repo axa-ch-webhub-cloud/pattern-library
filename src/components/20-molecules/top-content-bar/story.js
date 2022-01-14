@@ -16,8 +16,8 @@ const iconOptions = {
   None: '',
   Success: 'check',
   Informative: 'info-outline',
-  Attention: 'cloud-queue',
-  Error: 'warning',
+  Attention: 'cloudy',
+  Error: 'warning-amber',
 };
 
 export default {
