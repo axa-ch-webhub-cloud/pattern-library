@@ -28,8 +28,8 @@
 | `icon="check-circle"`  |
 | `icon="check"`         |
 | `icon="info-outline"`  |
-| `icon="warning"`       |
-| `icon="cloud-queue"`   |
+| `icon="warning-amber"` |
+| `icon="cloudy"`        |
 | `icon="close"`         |
 
 #### Icon resource path
