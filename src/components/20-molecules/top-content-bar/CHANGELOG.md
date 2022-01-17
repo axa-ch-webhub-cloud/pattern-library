@@ -1,3 +1,7 @@
+## 4.1.1
+
+- Fix: correct icons used for attention and warning variants. (#2254)
+
 ## 4.1.0
 
 - Feature: allow for icons, be more usable on mobile, and closable. (#2252)
