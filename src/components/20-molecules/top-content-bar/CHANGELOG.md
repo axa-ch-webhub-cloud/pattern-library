@@ -1,6 +1,6 @@
 ## 4.1.1
 
-- Fix: correct icons used for attention and warning variants. (#2254)
+- Fix: correct icons used for attention and warning variants. Font size corrected. (#2254)
 
 ## 4.1.0
 
