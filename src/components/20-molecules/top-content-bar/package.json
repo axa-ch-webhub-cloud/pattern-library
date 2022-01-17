@@ -27,10 +27,10 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "6.0.24",
-    "@axa-ch/button-link": "5.0.23",
+    "@axa-ch/button": "6.0.25",
+    "@axa-ch/button-link": "5.0.24",
     "@axa-ch/container": "3.0.12",
-    "@axa-ch/icon": "6.1.0",
+    "@axa-ch/icon": "6.1.1",
     "@skatejs/val": "^0.4.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.0"
