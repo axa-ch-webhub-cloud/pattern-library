@@ -1,7 +1,7 @@
 .m-input-phone {
     display: flex;
     flex-direction: column;
-    width: 220px;
+    width: 234px; // min. width to show 13 digits for a 2-digit country code
 }
 
 .m-input-phone__label {
@@ -16,8 +16,8 @@
 }
 
 .m-input-phone__mobile-area-code-dropdown {
-    // Width is needed because of the native dropdown
-    width: 150px;
+    // Width is needed because of the native dropdown - the widest case is a country with a flag emoji + 3-digit CC
+    width: 180px;
 
     @include breakpoint($mediaquery-sm-up) {
         // Reset mobile width in not-native mode
@@ -53,11 +53,9 @@
 }
 
 .m-input-phone__error {
-    opacity: 0;
+    @include text(t4);
+    display: block;
+    color: $color-shy-tomato;
     margin-top: 10px;
 }
 
-.m-input-phone__error--show {
-    color: $color-shy-tomato;
-    opacity: 1;
-}

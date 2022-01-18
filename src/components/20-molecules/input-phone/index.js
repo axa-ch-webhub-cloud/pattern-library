@@ -6,9 +6,26 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countries, dialCodes } from './country-items';
+import { countries, dialCodes, flagEmojis } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
 
+// helper functions
+
+const isValid = (userInputPhoneNumber, countrycode) => {
+  // ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
+  const phoneNumber = userInputPhoneNumber.trim().replace(/[\s\.\-]/g, '');
+  // only accept numbers
+  if (!phoneNumber.match(/^\d+$/)) {
+    return false;
+  }
+  // contains zero at the beginning?
+  else if (phoneNumber.charAt(0) === '0') {
+    return false;
+  }
+  // longer than 15 character? See: https://en.wikipedia.org/wiki/E.164#Global_services
+  return `${countrycode}${phoneNumber}`.length <= 15;
+};
+// CE class
 class AXAInputPhone extends LitElement {
   static get tagName() {
     return 'axa-input-phone';
@@ -23,147 +40,183 @@ class AXAInputPhone extends LitElement {
   static get properties() {
     return {
       invalid: { type: Boolean, reflect: true },
+      disabled: { type: Boolean, reflect: true },
       label: { type: String, reflect: true },
-      lang: { type: String, reflect: true },
-      errorprefix: { type: String, reflect: true, defaultValue: 'Error' },
+      lang: { type: String, reflect: true, defaultValue: 'de' },
+      error: {
+        type: String,
+        defaultValue: 'Falsches Format',
+      },
       countrycode: { type: String, reflect: true, defaultValue: '+41' },
-      phonevalue: { type: String, reflect: true },
-      value: { type: String, reflect: true },
+      countryflags: { type: Boolean, reflect: true },
+      value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
+      defaultValue: { type: String },
       onChange: { type: Function, attribute: false },
-      _errorText: { type: String, attribute: false },
+      errorText: { type: String, attribute: false },
+      placeholder: {
+        type: String,
+        attribute: false,
+        defaultValue: '79 123 45 67',
+      },
+      isReact: { type: Boolean },
     };
   }
 
   constructor() {
     super();
     applyDefaults(this);
-
     defineVersioned([AXADropdown, AXAInputText], __VERSION_INFO__, this);
-    this.change = this.change.bind(this);
+
+    // initialize internal properties
+    this.inputText = { value: '' };
+    this.modelValue = '';
+    this.isControlled = false;
   }
 
-  /**
-   * The phone number typed by the user. Must not contain no area-code information.
-   * @param {string} phoneNumberTypedByUser e.g. '795121821'
-   */
-
-  isValid(phoneNumberTypedByUser) {
-    // only accept numbers
-    if (!phoneNumberTypedByUser.match(/^[0-9]*$/g)) {
-      return false;
+  set value(val) {
+    const { isControlled } = this;
+    if (!isControlled && val !== undefined) {
+      this.isControlled = true;
     }
-    // Contains zero at the beginning?
-    else if (phoneNumberTypedByUser.substring(0, 1) === '0') {
-      return false;
+    // val(ue) has country-code prefix "+ddd...d" followed by pipe symbol or space?
+    if (/^\+\d+[\|\s]/.test(val)) {
+      // yes, split into parts (assuming phone number has *neither* pipe symbols nor spaces!)
+      const [countrycode, phoneNumber] = val.split(/[\|\s]/);
+      // update country code
+      this.countryCodeDropdown.value = countrycode;
+      // and make phone number part the val(ue)
+      val = phoneNumber;
     }
-    // Longer than 15 character? See: https://en.wikipedia.org/wiki/E.164
-    else if (
-      this.countryCodeDropdown.value?.length +
-        phoneNumberTypedByUser?.replaceAll(' ', '').length >=
-      15
-    ) {
-      return false;
-    }
-    return true;
+    const oldVal = this.modelValue;
+    this.modelValue = val;
+    this.requestUpdate('value', oldVal);
   }
 
-  setAndValidatePhoneNumber() {
-    this.value = `${this.countryCodeDropdown.value}${this.phoneInputText.value}`;
-    if (this.isValid(this.phoneInputText.value)) {
-      this.invalid = false;
-    } else {
-      this.invalid = true;
-      this._errorText = `${
-        this.errorprefix
-      }: ${`${this.countryCodeDropdown.value} ${this.phoneInputText.value}`}`;
+  get value() {
+    // when applyDefaults() is called inside the constructor, inputText
+    // does not exist yet.
+    if (!this.inputText) {
+      return '';
     }
+
+    const {
+      isControlled,
+      modelValue,
+      inputText: { value: inputValue },
+    } = this;
+
+    return isControlled ? modelValue : inputValue;
   }
 
-  /**
-   * If the number should be prefilled, we override it here.
-   * This will still be checked for errors by the custom element.
-   */
-  applyManualValueOverride() {
-    if (this.countrycode) {
-      this.countryCodeDropdown.value = this.countrycode;
-    }
-    if (this.phonevalue) {
-      this.phoneInputText.value = this.phonevalue;
-      // To comply with the 'onNumberChange' method's contract, use a synthetic event.
-      const syntheticEventWithInputValue = {
-        target: { value: this.phoneInputText.value },
-      };
-      this.setAndValidatePhoneNumber(syntheticEventWithInputValue);
-    }
+  validatePhoneNumber({ target: { type, value } }) {
+    // get country code and phone number from UI input elements
+    const { countryCodeDropdown, inputText } = this;
+    const [_, countrycode] = countryCodeDropdown.value.split('+');
+    const phoneNumber = type === 'text' ? value : inputText.value;
+    // calculate overall wellformedness from inputs
+    this.invalid = !isValid(phoneNumber, countrycode);
+    return phoneNumber;
   }
 
-  change(ev) {
-    ev.stopPropagation();
-    this.setAndValidatePhoneNumber(ev);
-    if (this.onChange) {
-      this.onChange(this.value);
+  change = event => {
+    // event stops here
+    event.stopPropagation();
+    // validate phone number value (setting this.invalid as side-effect)
+    const value = this.validatePhoneNumber(event);
+    // we need to call back someone?
+    const { onChange } = this;
+    if (typeof onChange === 'function') {
+      // yes, tell them the changed value
+      onChange(value);
     }
-    fireCustomEvent('axa-change', this.value, this, { bubbles: false });
-  }
+    // are we a 'controlled' input in the React sense?
+    if (this.isControlled) {
+      // yes, set UI from model state
+      this.inputText.value = this.modelValue;
+    }
+    // let the world know our value changed
+    fireCustomEvent('axa-change', value, this, { bubbles: false });
+  };
 
-  connectedCallback() {
-    super.connectedCallback();
-    const { countrycode, lang } = this;
-    const numericCountryCode = parseInt(countrycode.slice(1), 10);
-    const offset = { de: 0, en: 1, fr: 2, it: 3 };
-    this.sortedCountryItems = dialCodes.map((code, index) => ({
-      name: `${countries[4 * index + offset[lang || 'de']]} +${code}`,
-      value: `+${code}`,
-      selected: code === numericCountryCode,
-    }));
+  Q(selector) {
+    return this.shadowRoot.querySelector(selector);
   }
 
   firstUpdated() {
-    const mobileDropdown = this.shadowRoot.querySelector(
-      '.m-input-phone__mobile-area-code-dropdown'
-    );
-    mobileDropdown.items = this.sortedCountryItems;
-
-    this.countryCodeDropdown = this.shadowRoot.querySelector(
-      '.m-input-phone__mobile-area-code-dropdown'
-    );
-
-    this.phoneInputText = this.shadowRoot.querySelector(
-      '.m-input-phone__mobile-number-input'
-    );
-    this.phoneInputText.removeEventListener('change', this.change);
-    this.phoneInputText.addEventListener('change', this.change);
-
-    this.applyManualValueOverride();
+    // precompute country items from compressed country data
+    const { countrycode, lang, countryflags, defaultValue, isReact } = this;
+    const numericCountryCode = parseInt(countrycode.replace(/\D/g, ''), 10);
+    const perLanguageOffsets = { de: 0, en: 1, fr: 2, it: 3 };
+    const numLanguages = Object.keys(perLanguageOffsets).length;
+    const perLanguageOffset =
+      perLanguageOffsets[lang] || perLanguageOffsets['de'];
+    const sortedCountryItems = dialCodes.map((code, index) => {
+      const flagEmoji = flagEmojis[index];
+      const flag = countryflags && flagEmoji ? `${flagEmoji} ` : '';
+      const value = `${flag}+${code}`;
+      // storage layout of countries array is: [germanEntry0, englishEntry0, frenchEntry0, italianEntry0, germanEntry1, ...]
+      const languageDependentIndex = numLanguages * index + perLanguageOffset;
+      const name = `${flag}${countries[languageDependentIndex]} (+${code})`;
+      const selected = code === numericCountryCode;
+      return { name, value, selected };
+    });
+    // cache important DOM nodes
+    this.countryCodeDropdown = this.Q('axa-dropdown');
+    this.inputText = this.Q('axa-input-text');
+    // assign country items to embedded axa-dropdown
+    this.countryCodeDropdown.items = sortedCountryItems;
+    // prespecified phone number?
+    if (defaultValue) {
+      // yes, let embedded axa-input-text know
+      this.inputText[isReact ? 'defaultValue' : 'value'] = defaultValue;
+    }
   }
 
   render() {
+    // extract salient properties
+    const {
+      label,
+      invalid,
+      disabled,
+      error = '',
+      placeholder,
+      change,
+      isControlled,
+      isReact,
+      value,
+    } = this;
+    // determine whether component is controlled in the React sense
+    // (cf. https://reactjs.org/docs/forms.html#controlled-components)
+    this.isControlled = isControlled && isReact;
+    // render proper
+    const errorHTML = invalid
+      ? html`
+          <label class="m-input-phone__error">${error}</label>
+        `
+      : html``;
+
     return html`
       <div class="m-input-phone">
-        <label class="m-input-phone__label">${this.label}</label>
-        <div
-          class="m-input-phone__container ${this.invalid
-            ? 'm-input-phone--invalid'
-            : ''}"
-        >
+        <label class="m-input-phone__label">${label}</label>
+        <div class="m-input-phone__container">
           <axa-dropdown
             class="m-input-phone__mobile-area-code-dropdown"
             cropText=""
             showValue=""
-            @axa-change="${this.change}"
+            ?disabled="${disabled}"
+            @axa-change="${change}"
           ></axa-dropdown>
           <axa-input-text
             class="m-input-phone__mobile-number-input"
-            @input="${this.change}"
-            placeholder="79 500 20 20"
+            .value="${value}"
+            .invalid="${invalid}"
+            ?disabled="${disabled}"
+            .isReact="${isReact}"
+            .onChange="${change}"
+            .placeholder="${placeholder}"
           ></axa-input-text>
         </div>
-        <label
-          class="m-input-phone__error ${this.invalid
-            ? 'm-input-phone__error--show'
-            : ''}"
-          >${this._errorText}</label
-        >
+        ${errorHTML}
       </div>
     `;
   }
