@@ -1,3 +1,7 @@
+## 4.1.2
+
+- Fix: Show the component after it is fully constructed to avoid flickers. (#2258)
+
 ## 4.1.1
 
 - Fix: correct icons used for attention and warning variants. Font size corrected. (#2257)
