@@ -57,6 +57,8 @@ class AXATopContentBar extends InlineStyles {
       __VERSION_INFO__,
       this
     );
+
+    this.style.display = this.closed ? 'none' : 'block';
   }
 
   onClose() {

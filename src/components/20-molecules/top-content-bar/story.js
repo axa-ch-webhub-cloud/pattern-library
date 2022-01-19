@@ -48,7 +48,15 @@ export const TopContentBar = () => {
     'Unidentified flying object detected in your region. People are panicking. Stay calm!'
   );
   const link = text('Add axa-link', '');
-  const barClosed = !!window.sessionStorage.getItem('top-content-bar-closed');
+
+  const isBarClosed = doc => {
+    const ssValue = window.sessionStorage.getItem('top-content-bar-closed');
+    const topContentBarEl = doc.querySelector('axa-top-content-bar');
+    return (
+      ssValue &&
+      JSON.parse(ssValue).includes(topContentBarEl.dataset.configHash)
+    );
+  };
 
   setTimeout(() => {
     const el = document.querySelector('axa-top-content-bar');
@@ -57,13 +65,23 @@ export const TopContentBar = () => {
     }
 
     el.addEventListener('axa-top-content-bar-close', () => {
-      window.sessionStorage.setItem('top-content-bar-closed', 'true');
+      const ssVal = window.sessionStorage.getItem('top-content-bar-closed');
+      const ssArray = ssVal ? JSON.parse(ssVal) : [];
+      if (!ssArray.includes(el.dataset.configHash)) {
+        ssArray.push(el.dataset.configHash);
+      }
+      window.sessionStorage.setItem(
+        'top-content-bar-closed',
+        JSON.stringify(ssArray)
+      );
     });
   });
 
   const template = html`
     <h1>HEADER</h1>
     <axa-top-content-bar
+      style="display:none"
+      data-config-hash="123abc"
       variant="${variant}"
       ?stickymobile="${stickyMobile}"
       ?closable="${closable}"
@@ -86,6 +104,6 @@ export const TopContentBar = () => {
   `;
 
   render(template, wrapper);
-  wrapper.querySelector('axa-top-content-bar').closed = barClosed;
+  wrapper.querySelector('axa-top-content-bar').closed = isBarClosed(wrapper);
   return wrapper;
 };
