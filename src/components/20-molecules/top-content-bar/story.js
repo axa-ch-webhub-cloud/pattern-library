@@ -81,7 +81,6 @@ export const TopContentBar = () => {
     <h1>HEADER</h1>
     <axa-top-content-bar
       style="display:none"
-      data-config-hash="123abc"
       variant="${variant}"
       ?stickymobile="${stickyMobile}"
       ?closable="${closable}"
