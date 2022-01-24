@@ -1,6 +1,6 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 const tag = 'axa-input-phone';
-const validPhoneNumber = '795002020';
+const validPhoneNumber = '795213848';
 
 let hostElement;
 
@@ -19,12 +19,12 @@ const writePhoneNumber = async number => {
 
 const assertInvalidAndErrorMessageShown = async () => {
   expect(await hostElement.getAttribute('invalid')).toBe('');
-  expect(await page.isVisible('.m-input-phone__error--show')).toBeTruthy();
+  expect(await page.isVisible('.m-input-phone__error')).toBeTruthy();
 };
 
 const assertValidComponent = async () => {
   expect(await hostElement.getAttribute('invalid')).toBe(null);
-  expect(await page.isVisible('.m-input-phone__error--show')).not.toBeTruthy();
+  expect(await page.isVisible('.m-input-phone__error')).not.toBeTruthy();
 };
 
 const assertChangeValue = async phoneNumber => {
@@ -46,7 +46,7 @@ describe('Input Phone', () => {
     await writePhoneNumber(validPhoneNumber);
     await assertValidComponent();
 
-    await writePhoneNumber('79 500 20 20');
+    await writePhoneNumber('79 521 38 48');
     await assertValidComponent();
   });
 
@@ -74,12 +74,12 @@ describe('Input Phone', () => {
       `${host}/iframe.html?id=examples-input-phone-react--controlled-uncontrolled&args=&viewMode=story`
     );
     hostElement = await page.waitForSelector(tag);
-
-    await assertChangeValue('-');
+    // we initially expect the default value of the React demo
+    await assertChangeValue('795002020');
 
     await writePhoneNumber(validPhoneNumber);
     await assertValidComponent();
 
-    await assertChangeValue(`+43${validPhoneNumber}`);
+    await assertChangeValue(`+43 ${validPhoneNumber}`);
   });
 });

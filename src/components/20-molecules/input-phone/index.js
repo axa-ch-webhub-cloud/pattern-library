@@ -114,6 +114,7 @@ class AXAInputPhone extends LitElement {
     const { countryCodeDropdown, inputText } = this;
     // eslint-disable-next-line no-unused-vars
     const [_, countrycode] = countryCodeDropdown.value.split('+');
+    // if we got here via axa-input-text's onChange, use the event value, otherwise query the input element
     const phoneNumber = type === 'text' ? value : inputText.value;
     // calculate overall wellformedness from inputs
     this.invalid = !isValid(phoneNumber, countrycode);
@@ -129,7 +130,7 @@ class AXAInputPhone extends LitElement {
     const { onChange } = this;
     if (typeof onChange === 'function') {
       // yes, tell them the changed value
-      onChange(value);
+      onChange(`${this.countrycode} ${value}`);
     }
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
@@ -153,7 +154,7 @@ class AXAInputPhone extends LitElement {
     const perLanguageOffset = perLanguageOffsets[lang] || perLanguageOffsets.de;
     const sortedCountryItems = dialCodes.map((code, index) => {
       const flagEmoji = flagEmojis[index];
-      const flag = countryflags && flagEmoji ? `${flagEmoji} ` : '';
+      const flag = countryflags && flagEmoji ? `${flagEmoji}\xa0` : ''; // hex. a0 = non-breaking space character
       const value = `${flag}+${code}`;
       // storage layout of countries array is: [germanEntry0, englishEntry0, frenchEntry0, italianEntry0, germanEntry1, ...]
       const languageDependentIndex = numLanguages * index + perLanguageOffset;
