@@ -65,7 +65,7 @@ describe('Input Phone', () => {
     await writePhoneNumber(`0${validPhoneNumber}`);
     await assertInvalidAndErrorMessageShown();
 
-    await writePhoneNumber(`${validPhoneNumber}123`);
+    await writePhoneNumber(`${validPhoneNumber}12345`);
     await assertInvalidAndErrorMessageShown();
   });
 
