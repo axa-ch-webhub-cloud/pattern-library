@@ -13,7 +13,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 
 const isValid = (userInputPhoneNumber, countrycode) => {
   // ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
-  const phoneNumber = userInputPhoneNumber.trim().replace(/[\s\.\-]/g, '');
+  const phoneNumber = userInputPhoneNumber.trim().replace(/[\s.-]/g, '');
   // only accept numbers
   if (!phoneNumber.match(/^\d+$/)) {
     return false;
@@ -79,16 +79,17 @@ class AXAInputPhone extends LitElement {
       this.isControlled = true;
     }
     // val(ue) has country-code prefix "+ddd...d" followed by pipe symbol or space?
-    if (/^\+\d+[\|\s]/.test(val)) {
+    let value = val;
+    if (/^\+\d+[|\s]/.test(val)) {
       // yes, split into parts (assuming phone number has *neither* pipe symbols nor spaces!)
-      const [countrycode, phoneNumber] = val.split(/[\|\s]/);
+      const [countrycode, phoneNumber] = val.split(/[|\s]/);
       // update country code
       this.countryCodeDropdown.value = countrycode;
       // and make phone number part the val(ue)
-      val = phoneNumber;
+      value = phoneNumber;
     }
     const oldVal = this.modelValue;
-    this.modelValue = val;
+    this.modelValue = value;
     this.requestUpdate('value', oldVal);
   }
 
@@ -111,6 +112,7 @@ class AXAInputPhone extends LitElement {
   validatePhoneNumber({ target: { type, value } }) {
     // get country code and phone number from UI input elements
     const { countryCodeDropdown, inputText } = this;
+    // eslint-disable-next-line no-unused-vars
     const [_, countrycode] = countryCodeDropdown.value.split('+');
     const phoneNumber = type === 'text' ? value : inputText.value;
     // calculate overall wellformedness from inputs
@@ -148,8 +150,7 @@ class AXAInputPhone extends LitElement {
     const numericCountryCode = parseInt(countrycode.replace(/\D/g, ''), 10);
     const perLanguageOffsets = { de: 0, en: 1, fr: 2, it: 3 };
     const numLanguages = Object.keys(perLanguageOffsets).length;
-    const perLanguageOffset =
-      perLanguageOffsets[lang] || perLanguageOffsets['de'];
+    const perLanguageOffset = perLanguageOffsets[lang] || perLanguageOffsets.de;
     const sortedCountryItems = dialCodes.map((code, index) => {
       const flagEmoji = flagEmojis[index];
       const flag = countryflags && flagEmoji ? `${flagEmoji} ` : '';
