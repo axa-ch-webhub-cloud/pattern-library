@@ -52,7 +52,6 @@ export const TopContentBar = () => {
   const template = html`
     <h1>HEADER</h1>
     <axa-top-content-bar
-      style="display:none"
       variant="${variant}"
       ?stickymobile="${stickyMobile}"
       ?closable="${closable}"
@@ -75,6 +74,5 @@ export const TopContentBar = () => {
   `;
 
   render(template, wrapper);
-  wrapper.querySelector('axa-top-content-bar').closed = false;
   return wrapper;
 };
