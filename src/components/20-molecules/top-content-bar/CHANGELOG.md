@@ -1,6 +1,6 @@
 ## 4.1.2
 
-- Fix: Show the component after it is fully constructed to avoid flickers. (#2258)
+- Fix: Remove unnecessary code. (#2258)
 
 ## 4.1.1
 
