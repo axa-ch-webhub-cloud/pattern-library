@@ -8,12 +8,16 @@ import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import { countries, dialCodes, flagEmojis } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
+import findIndex from '../../../utils/find-index';
 
 // helper functions
 
+// ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
+const cleaned = string => string.trim().replace(/[\s.-]/g, '');
+
 const isValid = (userInputPhoneNumber, countrycode) => {
-  // ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
-  const phoneNumber = userInputPhoneNumber.trim().replace(/[\s.-]/g, '');
+  // derive canonical phone number
+  const phoneNumber = cleaned(userInputPhoneNumber);
   // only accept numbers
   if (!phoneNumber.match(/^\d+$/)) {
     return false;
@@ -25,6 +29,22 @@ const isValid = (userInputPhoneNumber, countrycode) => {
   // longer than 15 character? See: https://en.wikipedia.org/wiki/E.164#Global_services
   return `${countrycode}${phoneNumber}`.length <= 15;
 };
+
+// map country code such as (+)41 to country-flag-prefixed code
+/* eslint-disable indent */
+const code2flaggedCode = (countryCodeNumeric, index, withFlags = true) => {
+  const _index =
+    typeof index === 'number'
+      ? /* index already given */ index
+      : /* need to find index, given code */ findIndex(
+          dialCodes,
+          element => element === countryCodeNumeric
+        );
+  const flagEmoji = flagEmojis[_index];
+  const flag = withFlags && flagEmoji ? `${flagEmoji}\xa0` : ''; // hex. a0 = non-breaking space character
+  return { flag, value: `${flag}+${countryCodeNumeric}` };
+};
+
 // CE class
 class AXAInputPhone extends LitElement {
   static get tagName() {
@@ -70,11 +90,13 @@ class AXAInputPhone extends LitElement {
     // initialize internal properties
     this.inputText = { value: '' };
     this.modelValue = '';
+    this.modelCountryCode = '';
     this.isControlled = false;
   }
 
   set value(val) {
-    const { isControlled } = this;
+    const { isControlled, countryflags } = this;
+    // detect controlled-ness
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
     }
@@ -83,11 +105,18 @@ class AXAInputPhone extends LitElement {
     if (/^\+\d+[|\s]/.test(val)) {
       // yes, split into parts (assuming phone number has *neither* pipe symbols nor spaces!)
       const [countrycode, phoneNumber] = val.split(/[|\s]/);
-      // update country code
-      this.countryCodeDropdown.value = countrycode;
+      // update country code in model
+      // N.B. we represent it as flag-prefixed because dropdown values are as well,
+      // and value-controlled dropdowns need an exact match to switch selection programmatically
+      this.modelCountryCode = code2flaggedCode(
+        parseInt(countrycode, 10),
+        null,
+        countryflags
+      ).value;
       // and make phone number part the val(ue)
       value = phoneNumber;
     }
+    // update phone number in model and trigger re-render
     const oldVal = this.modelValue;
     this.modelValue = value;
     this.requestUpdate('value', oldVal);
@@ -109,36 +138,53 @@ class AXAInputPhone extends LitElement {
     return isControlled ? modelValue : inputValue;
   }
 
-  validatePhoneNumber({ target: { type, value } }) {
-    // get country code and phone number from UI input elements
+  validatePhoneNumber({
+    target: {
+      type,
+      value: newInputTextValueFromOnChange,
+      detail: newDropdownValueFromAxaChangeEvent,
+    },
+  }) {
+    // get country code and phone number from UI input elements resp. event
     const { countryCodeDropdown, inputText } = this;
-    // eslint-disable-next-line no-unused-vars
-    const [_, countrycode] = countryCodeDropdown.value.split('+');
-    // if we got here via axa-input-text's onChange, use the event value, otherwise query the input element
-    const phoneNumber = type === 'text' ? value : inputText.value;
+    const [, countrycode] = (
+      newDropdownValueFromAxaChangeEvent || countryCodeDropdown.value
+    ).split('+'); // split: ensure we only get the digits
+    // for obtaining the phone number proper, there are 2 cases:
+    // if we got here via axa-input-text's onChange firing, use the event value; otherwise query the input element
+    const eventOriginatedFromInputText = type === 'text';
+    const phoneNumber = eventOriginatedFromInputText
+      ? newInputTextValueFromOnChange
+      : inputText.value;
     // calculate overall wellformedness from inputs
     this.invalid = !isValid(phoneNumber, countrycode);
-    return phoneNumber;
+    return { value: phoneNumber, countrycode: parseInt(countrycode, 10) };
   }
 
   change = event => {
     // event stops here
-    event.stopPropagation();
+    // eslint-disable-next-line no-undef
+    if (event instanceof Event) {
+      event.stopPropagation();
+    }
     // validate phone number value (setting this.invalid as side-effect)
-    const value = this.validatePhoneNumber(event);
-    // we need to call back someone?
+    const { value, countrycode } = this.validatePhoneNumber(event);
+    // form a space-separated, easily split-table <countrycode, phonenumber> pair
+    const compositeValue = `+${countrycode} ${value}`;
+    // we need to call someone back?
     const { onChange } = this;
     if (typeof onChange === 'function') {
       // yes, tell them the changed value
-      onChange(`${this.countrycode} ${value}`);
+      onChange(compositeValue);
     }
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
       // yes, set UI from model state
       this.inputText.value = this.modelValue;
+      this.countryCodeDropdown.value = this.modelCountryCode;
     }
     // let the world know our value changed
-    fireCustomEvent('axa-change', value, this, { bubbles: false });
+    fireCustomEvent('axa-change', compositeValue, this, { bubbles: false });
   };
 
   Q(selector) {
@@ -151,11 +197,9 @@ class AXAInputPhone extends LitElement {
     const numericCountryCode = parseInt(countrycode.replace(/\D/g, ''), 10);
     const perLanguageOffsets = { de: 0, en: 1, fr: 2, it: 3 };
     const numLanguages = Object.keys(perLanguageOffsets).length;
-    const perLanguageOffset = perLanguageOffsets[lang] || perLanguageOffsets.de;
+    const perLanguageOffset = perLanguageOffsets[lang] || perLanguageOffsets.de; // de = default language
     const sortedCountryItems = dialCodes.map((code, index) => {
-      const flagEmoji = flagEmojis[index];
-      const flag = countryflags && flagEmoji ? `${flagEmoji}\xa0` : ''; // hex. a0 = non-breaking space character
-      const value = `${flag}+${code}`;
+      const { flag, value } = code2flaggedCode(code, index, countryflags);
       // storage layout of countries array is: [germanEntry0, englishEntry0, frenchEntry0, italianEntry0, germanEntry1, ...]
       const languageDependentIndex = numLanguages * index + perLanguageOffset;
       const name = `${flag}${countries[languageDependentIndex]} (+${code})`;
@@ -172,6 +216,12 @@ class AXAInputPhone extends LitElement {
       // yes, let embedded axa-input-text know
       this.inputText[isReact ? 'defaultValue' : 'value'] = defaultValue;
     }
+  }
+
+  updated() {
+    // re-cache important DOM nodes after each re-render
+    this.countryCodeDropdown = this.Q('axa-dropdown');
+    this.inputText = this.Q('axa-input-text');
   }
 
   render() {
@@ -202,7 +252,7 @@ class AXAInputPhone extends LitElement {
         <label class="m-input-phone__label">${label}</label>
         <div class="m-input-phone__container">
           <axa-dropdown
-            class="m-input-phone__mobile-area-code-dropdown"
+            class="m-input-phone__mobile-country-code-dropdown"
             cropText=""
             showValue=""
             ?disabled="${disabled}"
