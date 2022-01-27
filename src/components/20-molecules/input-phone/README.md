@@ -1,6 +1,7 @@
 # Input Phone
 
 This component constitutes a special-purpose input field to enter phone numbers from around the world in a standardized way.
+It features a country-code dropdown and a text-input field for the phone number proper. Pasting composite numbers like '+41 771234567' into the text-input field is also supported.
 
 ## Usage
 
