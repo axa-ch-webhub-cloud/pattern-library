@@ -15,9 +15,20 @@ import findIndex from '../../../utils/find-index';
 // ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
 const cleaned = string => string.trim().replace(/[\s.-]/g, '');
 
+// parse e.g. '+1 888-944-9400' => ['1','888-944-9400'], but equally '  +41 79 123 45 67' => ['41','79 123 45 67']
+// as well as '79 123 45 67' => ['', '79 123 45 67']
+const parseCompositeValue = string =>
+  /^\s*\+\d+\s/.test(string)
+    ? string.match(/^\s*\+(\d+)\D+(.*)$/).slice(1)
+    : ['', string];
+
 const isValid = (userInputPhoneNumber, countrycode) => {
+  // handle pasted-in fully country-coded numbers, too
+  const [_countrycode, _phoneNumber] = parseCompositeValue(
+    userInputPhoneNumber
+  );
   // derive canonical phone number
-  const phoneNumber = cleaned(userInputPhoneNumber);
+  const phoneNumber = cleaned(_phoneNumber);
   // only accept numbers
   if (!phoneNumber.match(/^\d+$/)) {
     return false;
@@ -27,7 +38,7 @@ const isValid = (userInputPhoneNumber, countrycode) => {
     return false;
   }
   // longer than 15 character? See: https://en.wikipedia.org/wiki/E.164#Global_services
-  return `${countrycode}${phoneNumber}`.length <= 15;
+  return `${_countrycode || countrycode}${phoneNumber}`.length <= 15;
 };
 
 // map country code such as (+)41 to country-flag-prefixed code
@@ -100,12 +111,11 @@ class AXAInputPhone extends LitElement {
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
     }
-    // val(ue) has country-code prefix "+ddd...d" followed by pipe symbol or space?
+    // val(ue) has country-code prefix "+ddd...d" followed by space?
     let value = val;
-    if (/^\+\d+[|\s]/.test(val)) {
-      // yes, split into parts (assuming phone number has *neither* pipe symbols nor spaces!)
-      const [countrycode, phoneNumber] = val.split(/[|\s]/);
-      // update country code in model
+    const [countrycode, phoneNumber] = parseCompositeValue(val);
+    if (countrycode) {
+      // yes, update country code in model
       // N.B. we represent it as flag-prefixed because dropdown values are as well,
       // and value-controlled dropdowns need an exact match to switch selection programmatically
       this.modelCountryCode = code2flaggedCode(
@@ -139,26 +149,37 @@ class AXAInputPhone extends LitElement {
   }
 
   validatePhoneNumber({
-    target: {
-      type,
-      value: newInputTextValueFromOnChange,
-      detail: newDropdownValueFromAxaChangeEvent,
-    },
+    target: { type, value: newInputTextValueFromOnChange } = {},
+    detail,
   }) {
-    // get country code and phone number from UI input elements resp. event
+    // get country code and phone number from UI input elements resp. event:
+
+    // prepare
+    const eventOriginatedFromInputText = type === 'text';
+    const eventOriginatedFromDropdown =
+      !eventOriginatedFromInputText && detail !== undefined;
     const { countryCodeDropdown, inputText } = this;
-    const [, countrycode] = (
-      newDropdownValueFromAxaChangeEvent || countryCodeDropdown.value
-    ).split('+'); // split: ensure we only get the digits
     // for obtaining the phone number proper, there are 2 cases:
     // if we got here via axa-input-text's onChange firing, use the event value; otherwise query the input element
-    const eventOriginatedFromInputText = type === 'text';
-    const phoneNumber = eventOriginatedFromInputText
-      ? newInputTextValueFromOnChange
-      : inputText.value;
+    const [_countrycode, phoneNumber] = parseCompositeValue(
+      eventOriginatedFromInputText
+        ? newInputTextValueFromOnChange
+        : inputText.value
+    );
+    // for obtaining the country code, there are 3 cases:
+    // either it comes from a dropdown event, or it was parsed from a pasted-in composite number, or we use the
+    // current dropdown value
+    const [, countrycode] = (
+      (eventOriginatedFromDropdown && detail) ||
+      (_countrycode && `+${_countrycode}`) ||
+      countryCodeDropdown.value
+    ).split('+'); // split: ensure we only get the digits
     // calculate overall wellformedness from inputs
     this.invalid = !isValid(phoneNumber, countrycode);
-    return { value: phoneNumber, countrycode: parseInt(countrycode, 10) };
+    return {
+      value: cleaned(phoneNumber),
+      countrycode: parseInt(countrycode, 10),
+    };
   }
 
   change = event => {
