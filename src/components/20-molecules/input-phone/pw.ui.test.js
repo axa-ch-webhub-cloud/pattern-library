@@ -13,6 +13,17 @@ const selectGermany = async () => {
   }, tag);
 };
 
+const selectNthCountry = async n => {
+  await page.click('.js-dropdown__toggle');
+  await page.waitForSelector('.m-dropdown__content');
+  return page.evaluate(nth => {
+    document
+      .querySelector('axa-input-phone')
+      .shadowRoot.querySelector(`[data-index="${nth}"]`)
+      .click();
+  }, n);
+};
+
 const writePhoneNumber = async number => {
   return page.fill('.a-input-text__input', number);
 };
@@ -81,5 +92,38 @@ describe('Input Phone', () => {
     await assertValidComponent();
 
     await assertChangeValue(`+43 ${validPhoneNumber}`);
+  });
+
+  it('should demonstrate React controlled mode', async () => {
+    // set up
+    await page.goto(
+      `${host}/iframe.html?id=examples-input-phone-react--controlled-uncontrolled&args=&viewMode=story`
+    );
+    hostElement = await page.waitForSelector(tag);
+    // set initial phone number and country code
+    await writePhoneNumber('+1 888-944-9400');
+    await assertChangeValue('+1 8889449400');
+    // show that UI-changed number is reflected in callback value
+    await page.keyboard.press('Backspace');
+    await assertChangeValue('+1 888944940');
+    // show that UI-changed country code is reflected in callback value
+    await selectNthCountry(2);
+    await assertChangeValue('+33 888944940');
+    // freeze changes by clicking on checkbox
+    await page.click('#input-phone-frozen-mode');
+    // show that UI-changed number is reverted in UI and not reflected in callback value
+    await writePhoneNumber('+1 888-944-9400');
+    await assertChangeValue('+33 888944940');
+    // show that UI-changed country code is reverted in UI and not reflected in callback value
+    await selectNthCountry(0);
+    await assertChangeValue('+33 888944940');
+    // unfreeze byy clicking on checkbox again
+    await page.click('#input-phone-frozen-mode');
+    // show that UI-changed number is reflected in callback value
+    await writePhoneNumber('+1 888-944-9412');
+    await assertChangeValue('+1 8889449412');
+    // show that UI-changed country code is reflected in callback value
+    await selectNthCountry(0);
+    await assertChangeValue('+41 8889449412');
   });
 });
