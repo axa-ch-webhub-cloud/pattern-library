@@ -16,7 +16,7 @@ export default {
 export const InputPhone = () => {
   const lang = select('lang', ['de', 'en', 'it', 'fr'], 'de');
   const label = text('label', 'Phone Number');
-  const error = text('error', 'Invalid Phone Number');
+  const error = text('error', 'Invalid phone number');
   const countrycode = text('countrycode', '+41');
   const value = text('value', '');
 

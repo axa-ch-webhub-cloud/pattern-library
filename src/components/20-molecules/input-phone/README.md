@@ -1,10 +1,8 @@
 # Input Phone
 
-Input field to enter phone numbers from around the world in a standardized way.
+This component constitutes a special-purpose input field to enter phone numbers from around the world in a standardized way.
 
 ## Usage
-
-**Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
 
 ```bash
 npm install @axa-ch/input-phone
@@ -30,9 +28,7 @@ export default AXAInputPhoneReact;
 ```
 
 ```js
-<AXAInputPhoneReact
-  onClick={() => alert('you clicked me')}
-></AXAInputPhoneReact>
+<AXAInputPhoneReact onChange={value => console.log(value)}></AXAInputPhoneReact>
 ```
 
 ### Pure HTML pages
@@ -57,71 +53,60 @@ Import the input-phone-defining script and use a input-phone like this:
 
 ## Properties
 
-### Variant
-
-| Attribute     | Details                                                |
-| ------------- | ------------------------------------------------------ |
-| `invalid`     | Invalid number indication                              |
-| `label`       | Name of the element                                    |
-| `lang`        | Language, one of `de`, `en`, `it`, `fr`, default: `de` |
-| `value`       | String based, but object based if manually overridden  |
-| `areavalue`   | Area Code, e.g. `+41` for Switzerland (default!)       |
-| `phonevalue`  | Phone number without area code, e.g. `795002020`       |
-| `errorprefix` | Error Message                                          |
-
 ### invalid
 
-Will become true if the entered number does not meet certain phone number related requirements. At the moment, this will not prevent submitting a form.
+Boolean attribute `invalid` is true if and only if the entered number does not meet wellformedness criteria. Currently, &lt;axa-input-phone invalid&gt; will not prevent submitting a form.
+
+### disabled
+
+Boolean attribute `disabled`, when true, disables both of the component's input elements, i.e. the country-code dropdown and the text-input field.
 
 ### label
 
-The text on top of the input field.
+The string-valued `label` defines the text above the input field.
 
 ### lang
 
-The language, in which the countries should be displayed (and sorted).
+The string-valued `lang` defines the UI's language used for displaying country names in the country-code dropdown. Permissible values are `de, fr, it, en` (default: `de`).
 
 ### value
 
-This property is always a `string` when read. To override it manually, you need to provide an object though (which will be converted to a string directly after). This is needed to provide proper validation of the string. Example: `+1268771231212` would need to be split into areacode (for the selection in the dropdown and for the validation), but those can contain from 1 up to 5 digits.
+The string-valued `value` property represents the phone number proper when read, i.e. minus the country-code part. When written to, again phone numbers are permissible values. Additionally a composite value consisting of country code (c) and phone number (p) digits is supported, using the format `+c...c p...p`, e.g. `+41 771234567`. Spaces, dashes, and dots are ignored in the phone-number part. The composite format can be used in React controlled mode.
 
-Example of a legitimate object to pass:
+### defaultValue
 
-```js
-{
-  areaCode: '+41',
-  phoneNumber: '795005050'
-}
-```
+The string-valued `defaultValue` property represents the _initial_ phone-number value of the input field of the component. Its intended use is for React controlled mode.
 
-### areavalue
+### countrycode
 
-Has this format: `+41` (for Switzerland).
-Is used to prefill the area-code dropdown.
+The string-valued `countrycode` has `+c, +cc, +ccc` as wellformed formats with 1-3 digits c (default: `+41`). It gives an application the ability to preselect the country-code dropdown.
 
-### phonevalue
+### countryflags
 
-Has this format: `795002020`
-The phone number part can be prefilled by this attribute. Do not include the area code in here!
+The Boolean `countryflags`, when true, causes country-flag emojis (in the form of Unicode) to be displayed alongside the country code, where possible.
 
-### errorprefix
+### error
 
-The error message in case of a wrongly typed phone number. To display the following information: `Invalid Phone Number: +410795002020` you have to only provide `Invalid Phone Number` as `errorprefix` and the rest will be appended by the component.
+The string-valued `error` property can be used to set an error-message text, to be displayed below the component in case of an invalid phone number (default: `Falsches Format`).
 
 ### onChange
 
-Will trigger onChange. The current value will be added as parameter.
+The function-valued `onChange` property takes a callback function, which will be invoked whenever the component's input elements register change. The function signature is `callback(compositeValue)`, see the description for `value` above for the format of the composite value passed.
+
+Its intended use is for React controlled mode.
+
+### placeholder
+
+The string-valued `placeholder` specifies placeholder text for the component's input field (default: `79 123 45 67`).
 
 ## Events
 
 ### axa-change
 
-This event fires and contains a synthetic event Object containing the current value.
-
-Structure:
+This custom event targets the component itself and is fired whenever `onChange` is invoked (see above). Its event object contains the same composite-value string as `onChange`:
 
 ```js
 {
-  detail: string; // Contains the value
+  detail: compositeValue;
 }
 ```
