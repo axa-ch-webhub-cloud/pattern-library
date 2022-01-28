@@ -1,6 +1,6 @@
 ## 4.1.2
 
-- Fix: Remove unnecessary code. (#2258)
+- Fix: Remove unnecessary code.
 
 ## 4.1.1
 
