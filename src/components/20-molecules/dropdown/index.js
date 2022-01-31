@@ -468,7 +468,7 @@ class AXADropdown extends NoShadowDOM {
       if (value) {
         this.value = value;
       }
-      this.selectedIndex = selectedItemIndex;
+      this.selectedIndex = selectedItemIndex + (defaultTitle ? 1 : 0);
     }
 
     return html`
