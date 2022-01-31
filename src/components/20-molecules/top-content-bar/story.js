@@ -48,18 +48,6 @@ export const TopContentBar = () => {
     'Unidentified flying object detected in your region. People are panicking. Stay calm!'
   );
   const link = text('Add axa-link', '');
-  const barClosed = !!window.sessionStorage.getItem('top-content-bar-closed');
-
-  setTimeout(() => {
-    const el = document.querySelector('axa-top-content-bar');
-    if (!el) {
-      return;
-    }
-
-    el.addEventListener('axa-top-content-bar-close', () => {
-      window.sessionStorage.setItem('top-content-bar-closed', 'true');
-    });
-  });
 
   const template = html`
     <h1>HEADER</h1>
@@ -86,6 +74,5 @@ export const TopContentBar = () => {
   `;
 
   render(template, wrapper);
-  wrapper.querySelector('axa-top-content-bar').closed = barClosed;
   return wrapper;
 };
