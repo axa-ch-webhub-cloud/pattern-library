@@ -98,6 +98,8 @@ class AXAInputPhone extends LitElement {
     applyDefaults(this);
     defineVersioned([AXADropdown, AXAInputText], __VERSION_INFO__, this);
 
+    this.change = this.change.bind(this);
+
     // initialize internal properties
     this.inputText = { value: '' };
     this.modelValue = '';
@@ -182,7 +184,7 @@ class AXAInputPhone extends LitElement {
     };
   }
 
-  change = event => {
+  change(event) {
     // event stops here
     // eslint-disable-next-line no-undef
     if (event instanceof Event) {
@@ -206,7 +208,7 @@ class AXAInputPhone extends LitElement {
     }
     // let the world know our value changed
     fireCustomEvent('axa-change', compositeValue, this, { bubbles: false });
-  };
+  }
 
   Q(selector) {
     return this.shadowRoot.querySelector(selector);
@@ -253,7 +255,6 @@ class AXAInputPhone extends LitElement {
       disabled,
       error = '',
       placeholder,
-      change,
       isControlled,
       isReact,
       value,
@@ -277,7 +278,7 @@ class AXAInputPhone extends LitElement {
             cropText=""
             showValue=""
             ?disabled="${disabled}"
-            @axa-change="${change}"
+            @axa-change="${this.change}"
           ></axa-dropdown>
           <axa-input-text
             class="m-input-phone__mobile-number-input"
@@ -285,7 +286,7 @@ class AXAInputPhone extends LitElement {
             .invalid="${invalid}"
             ?disabled="${disabled}"
             .isReact="${isReact}"
-            .onChange="${change}"
+            .onChange="${this.change}"
             .placeholder="${placeholder}"
           ></axa-input-text>
         </div>
