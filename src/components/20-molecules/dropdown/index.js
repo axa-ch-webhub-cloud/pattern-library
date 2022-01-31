@@ -461,10 +461,14 @@ class AXADropdown extends NoShadowDOM {
       maxHeight,
     } = this;
 
-    const [selectedItem] = this.findByValue(null);
+    const [selectedItem, selectedItemIndex] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
-    if (selectedItem?.value) {
-      this.value = selectedItem.value;
+    if (selectedItem) {
+      const { value } = selectedItem;
+      if (value) {
+        this.value = value;
+      }
+      this.selectedIndex = selectedItemIndex;
     }
 
     return html`
