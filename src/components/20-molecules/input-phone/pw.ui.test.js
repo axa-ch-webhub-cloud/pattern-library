@@ -19,7 +19,7 @@ const selectNthCountry = async n => {
   return page.evaluate(nth => {
     document
       .querySelector('axa-input-phone')
-      .shadowRoot.querySelector(`[data-index="${nth}"]`)
+      .shadowRoot.querySelector(`button[data-index="${nth}"]`)
       .click();
   }, n);
 };
