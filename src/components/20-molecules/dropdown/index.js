@@ -459,6 +459,7 @@ class AXADropdown extends NoShadowDOM {
       handleDropdownClick,
       handleKeyUp,
       maxHeight,
+      useCase,
     } = this;
 
     const [selectedItem, selectedItemIndex] = this.findByValue(null);
@@ -468,7 +469,9 @@ class AXADropdown extends NoShadowDOM {
       if (value) {
         this.value = value;
       }
-      this.selectedIndex = selectedItemIndex + (defaultTitle ? 1 : 0);
+      if (useCase === 'axa-input-phone') {
+        this.selectedIndex = selectedItemIndex + (defaultTitle ? 1 : 0);
+      }
     }
 
     return html`

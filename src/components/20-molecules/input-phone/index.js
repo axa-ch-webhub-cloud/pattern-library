@@ -274,6 +274,7 @@ class AXAInputPhone extends LitElement {
         <label class="m-input-phone__label">${label}</label>
         <div class="m-input-phone__container">
           <axa-dropdown
+            useCase="axa-input-phone"
             class="m-input-phone__mobile-country-code-dropdown"
             cropText=""
             showValue=""
