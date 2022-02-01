@@ -83,7 +83,6 @@ class AXAInputPhone extends LitElement {
       value: { type: String, defaultValue: undefined }, // proper default for controlled-mode under React
       defaultValue: { type: String },
       onChange: { type: Function, attribute: false },
-      errorText: { type: String, attribute: false },
       placeholder: {
         type: String,
         attribute: false,
