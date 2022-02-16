@@ -4,6 +4,7 @@ import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
+import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
@@ -24,6 +25,7 @@ class AXAModal extends InlineStyles {
       open: { type: Boolean },
       forced: { type: Boolean },
       small: { type: Boolean },
+      onClose: { type: Function, attribute: false },
     };
   }
 
@@ -83,6 +85,7 @@ class AXAModal extends InlineStyles {
       article.remove('o-modal__close--background');
       this.removeAttribute('open');
     }, 200);
+    this.onClose(fireCustomEvent('axa-close', null, this));
   }
 
   firstUpdated() {
