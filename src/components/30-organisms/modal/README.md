@@ -40,3 +40,25 @@ If `forced` is set to `true`, closing functionality has to be manually implement
 ### small
 
 if `small`is set to true, it has the `small` size and sets the `max-width` attribute to 500px.
+
+## onClose / axa-close
+
+Under react we can pass a method `onClose` that will get called when the Modal closes, like so:
+
+```js
+<AXAModal
+  open
+  onClose={customEvent => {
+    console.log(customEvent, 'called when modal closes');
+  }}
+/>
+```
+
+When using the component as a native WebComponent, you can add an event listener on `axa-modal` that listens to the custom event `axa-close` like so:
+
+```js
+const modal = document.querySelector('axa-modal');
+modal.addEventListener('axa-close', customEvent => {
+  console.log(customEvent, 'called when modal closes');
+});
+```
