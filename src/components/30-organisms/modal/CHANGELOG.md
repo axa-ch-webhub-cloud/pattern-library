@@ -1,4 +1,5 @@
 ## 2.1.0
+
 - Fire custom 'axa-close' event when the modal closes and implement onClose Function for use with React.
 
 ## 2.0.5
@@ -25,5 +26,3 @@
 ## 1.0.1
 
 - Fix: close modal in Safari by pressing outside the modal.
-
-
