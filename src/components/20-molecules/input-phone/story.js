@@ -1,4 +1,4 @@
-import { text, select, withKnobs } from '@storybook/addon-knobs';
+import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit-html';
 import './index';
 import changelog from './CHANGELOG.md';
@@ -19,6 +19,8 @@ export const InputPhone = () => {
   const error = text('error', 'Invalid phone number');
   const countrycode = text('countrycode', '+41');
   const value = text('value', '');
+  const disabled = boolean('disabled', false);
+  const countryflags = boolean('countryflags', false);
 
   const wrapper = document.createElement('div');
   const template = html`
@@ -28,6 +30,8 @@ export const InputPhone = () => {
       error="${error}"
       countrycode="${countrycode}"
       value="${value}"
+      ?disabled="${disabled}"
+      ?countryflags="${countryflags}"
     ></axa-input-phone>
   `;
 
