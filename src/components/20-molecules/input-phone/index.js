@@ -6,9 +6,8 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countries, dialCodes, flagEmojis, flagSVGs } from './country-items';
+import { countries, dialCodes } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
-import findIndex from '../../../utils/find-index';
 
 // helper functions
 
@@ -92,7 +91,7 @@ class AXAInputPhone extends LitElement {
   }
 
   set value(val) {
-    const { isControlled, countryflags } = this;
+    const { isControlled } = this;
     // detect controlled-ness
     if (!isControlled && val !== undefined) {
       this.isControlled = true;
@@ -194,7 +193,7 @@ class AXAInputPhone extends LitElement {
 
   firstUpdated() {
     // precompute country items from compressed country data
-    const { countrycode, lang, countryflags, defaultValue, isReact } = this;
+    const { countrycode, lang, defaultValue, isReact } = this;
     const numericCountryCode = parseInt(countrycode.replace(/\D/g, ''), 10);
     const perLanguageOffsets = { de: 0, en: 1, fr: 2, it: 3 };
     const numLanguages = Object.keys(perLanguageOffsets).length;
