@@ -84,7 +84,8 @@ The string-valued `countrycode` has `+c, +cc, +ccc` as wellformed formats with 1
 
 ### countryflags
 
-The Boolean `countryflags`, when true, causes country-flag emojis (in the form of Unicode) to be displayed alongside the country code, where possible.
+The Boolean `countryflags`, when true, causes country-flag icons to be displayed alongside the country code, where possible.
+Note that in mobile viewports, the underlying native &lt;select&gt; cannot display such icons, since it allows only text.
 
 ### error
 
