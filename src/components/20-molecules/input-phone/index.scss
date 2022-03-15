@@ -5,13 +5,9 @@
 }
 
 .m-input-phone__label {
-    font-size: 16px;
-    letter-spacing: 0.02em;
-    line-height: 24px;
-    font-family: "Source Sans Pro", Arial, sans-serif;
+    @include text(t3, semibold);
     display: block;
-    font-weight: 600;
-    color: #333;
+    color: $color-dark-grey;
     margin-bottom: 10px;
 }
 
@@ -29,27 +25,18 @@
     width: 100%;
 }
 
-.m-input-phone__error {
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    line-height: 17px;
-    font-family: "Source Sans Pro", Arial, sans-serif;
-    display: block;
-    color: $color-shy-tomato;
-    margin-top: 10px;
-}
-
 .m-input-phone__container {
     display: inline-flex;
     flex-direction: row;
-}
-
-.m-input-phone__container  {
     border: 2px solid transparent;
-}
 
-.m-input-phone__container.m-input-phone--invalid {
-    border: 2px solid $color-shy-tomato;
+    &.m-input-phone--invalid {
+        border: 2px solid $color-shy-tomato;
+    }
+
+    [usecase="axa-input-phone"] {
+        margin-right: 3px;
+    }
 }
 
 .m-input-phone__error {
