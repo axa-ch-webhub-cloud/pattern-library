@@ -51,11 +51,7 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = (
-  { name, value, selected, _disabled },
-  index,
-  showValue
-) => {
+const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
   return html`
     <option
       class="m-dropdown__option"
@@ -64,7 +60,7 @@ const nativeItemsMapper = (
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${_disabled}"
-      >${showValue && selected ? value : name}</option
+      >${name}</option
     >
   `;
 };
@@ -489,7 +485,10 @@ class AXADropdown extends NoShadowDOM {
       <div class="m-dropdown__wrapper" @keyup="${handleKeyUp}">
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
-          <div class="m-dropdown__select-wrapper">
+          <div
+            class="m-dropdown__select-wrapper"
+            data-value="${this.value || ''}"
+          >
             <select
               id="${refId}"
               class="m-dropdown__select js-dropdown__select"
@@ -502,7 +501,7 @@ class AXADropdown extends NoShadowDOM {
             >
               ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
-                .map((item, i) => nativeItemsMapper(item, i, this.showValue))}
+                .map((item, i) => nativeItemsMapper(item, i))}
             </select>
             <span class="m-dropdown__select-icon">
               ${ARROW_ICON}
