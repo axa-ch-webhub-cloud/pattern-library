@@ -6,7 +6,7 @@ import AXAInputText from '@axa-ch/input-text';
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
-import { countries, dialCodes, flagEmojis } from './country-items';
+import { countries, dialCodes, flagEmojis, flagSVGs } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
 import findIndex from '../../../utils/find-index';
 
@@ -39,21 +39,6 @@ const isValid = (userInputPhoneNumber, countrycode) => {
   }
   // longer than 15 character? See: https://en.wikipedia.org/wiki/E.164#Global_services
   return `${_countrycode || countrycode}${phoneNumber}`.length <= 15;
-};
-
-// map country code such as (+)41 to country-flag-prefixed code
-/* eslint-disable indent */
-const code2flaggedCode = (countryCodeNumeric, index, withFlags = true) => {
-  const _index =
-    typeof index === 'number'
-      ? /* index already given */ index
-      : /* need to find index, given code */ findIndex(
-          dialCodes,
-          element => element === countryCodeNumeric
-        );
-  const flagEmoji = flagEmojis[_index];
-  const flag = withFlags && flagEmoji ? `${flagEmoji}\xa0` : ''; // hex. a0 = non-breaking space character
-  return { flag, value: `${flag}+${countryCodeNumeric}` };
 };
 
 // CE class
@@ -117,13 +102,7 @@ class AXAInputPhone extends LitElement {
     const [countrycode, phoneNumber] = parseCompositeValue(val);
     if (countrycode) {
       // yes, update country code in model
-      // N.B. we represent it as flag-prefixed because dropdown values are as well,
-      // and value-controlled dropdowns need an exact match to switch selection programmatically
-      this.modelCountryCode = code2flaggedCode(
-        parseInt(countrycode, 10),
-        null,
-        countryflags
-      ).value;
+      this.modelCountryCode = `+${parseInt(countrycode, 10)}`;
       // and make phone number part the val(ue)
       value = phoneNumber;
     }
@@ -221,10 +200,10 @@ class AXAInputPhone extends LitElement {
     const numLanguages = Object.keys(perLanguageOffsets).length;
     const perLanguageOffset = perLanguageOffsets[lang] || perLanguageOffsets.de; // de = default language
     const sortedCountryItems = dialCodes.map((code, index) => {
-      const { flag, value } = code2flaggedCode(code, index, countryflags);
+      const value = `+${parseInt(code, 10)}`;
       // storage layout of countries array is: [germanEntry0, englishEntry0, frenchEntry0, italianEntry0, germanEntry1, ...]
       const languageDependentIndex = numLanguages * index + perLanguageOffset;
-      const name = `${flag}${countries[languageDependentIndex]} (+${code})`;
+      const name = `${countries[languageDependentIndex]} (+${code})`;
       const selected = code === numericCountryCode;
       return { name, value, selected };
     });

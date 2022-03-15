@@ -520,7 +520,9 @@ class AXADropdown extends NoShadowDOM {
             @click="${handleDropdownClick}"
           >
             <span class="m-dropdown__flex-wrapper">
-              <span class="js-dropdown__title"
+              <span
+                class="js-dropdown__title"
+                data-index="${this.selectedIndex}"
                 >${this.showValue ? this.value : this.title}</span
               >
               <span class="m-dropdown__select-icon">${ARROW_ICON}</span>
