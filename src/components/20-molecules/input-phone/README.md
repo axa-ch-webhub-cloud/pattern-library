@@ -3,6 +3,8 @@
 This component constitutes a special-purpose input field to enter phone numbers from around the world in a standardized way.
 It features a country-code dropdown and a text-input field for the phone number proper. Pasting composite numbers like '+41 771234567' into the text-input field is also supported.
 
+Known restrictions: for now, &lt;axa-input-phone&gt; cannot be submitted in a &lt;form&gt; due to complications stemming from its _two_ internal form-input elements. This is likely to be lifted in a future version. Also, not all countries have country flags &mdash; this is unlikely to change, because of the undue code-size increase it would entail.
+
 ## Usage
 
 ```bash
@@ -34,7 +36,7 @@ export default AXAInputPhoneReact;
 
 ### Pure HTML pages
 
-Import the input-phone-defining script and use a input-phone like this:
+Import the input-phone-defining script and use &lt;axa-input-phone&gt; like this:
 
 ```html
 <!DOCTYPE html>
@@ -72,7 +74,7 @@ The string-valued `lang` defines the UI's language used for displaying country n
 
 ### value
 
-The string-valued `value` property represents the phone number proper when read, i.e. minus the country-code part. When written to, again phone numbers are permissible values. Additionally a composite value consisting of country code (c) and phone number (p) digits is supported, using the format `+c...c p...p`, e.g. `+41 771234567`. Spaces, dashes, and dots are ignored in the phone-number part. The composite format can be used in React controlled mode.
+The string-valued `value` property upon read access represents the phone number proper, i.e. minus the country-code part. When written to, again proper phone numbers are permissible values. Additionally a composite value consisting of country code (c) and phone number (p) digits is supported, using the format `+c...c p...p`, e.g. `+41 771234567`. Spaces, dashes, and dots are ignored in the phone-number part. This composite format can be used in React controlled mode.
 
 ### defaultValue
 
