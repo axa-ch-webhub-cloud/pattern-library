@@ -1,4 +1,5 @@
-import { LitElement, html, css, unsafeCSS, svg } from 'lit';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
 import defineOnce from '../../../../utils/define-once';
@@ -49,7 +50,7 @@ class AXAPolicyFeaturesItem extends LitElement {
     return html`
       <section class="m-policy-features-item">
         <div class="m-policy-features-item__icon">
-          ${_loadedSvg && svg([_loadedSvg])}
+          ${_loadedSvg && unsafeHTML(_loadedSvg)}
         </div>
         <h1 class="m-policy-features-item__title">${title}</h1>
         <p class="m-policy-features-item__description">${description}</p>

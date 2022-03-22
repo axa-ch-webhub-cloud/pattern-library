@@ -1,4 +1,4 @@
-import { html, svg } from 'lit';
+import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html';
 import { classMap } from 'lit/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
@@ -10,7 +10,7 @@ import createRefId from '../../../utils/create-ref-id';
 // icon isolated from others, because it's a component specific icon
 import CheckmarkHardEdgesSvg from './icon';
 
-const CHECKMARK_ICON = svg([CheckmarkHardEdgesSvg]);
+const CHECKMARK_ICON = unsafeHTML(CheckmarkHardEdgesSvg);
 const REQUIRED_SYMBOL = '*';
 
 class AXACheckbox extends NoShadowDOM {

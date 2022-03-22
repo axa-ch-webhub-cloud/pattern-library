@@ -1,4 +1,5 @@
-import { html, svg } from 'lit';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import NoShadowDOM from '../../../utils/no-shadow';
 import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
@@ -174,7 +175,7 @@ class AXARadio extends NoShadowDOM {
         : html`
             <span class="a-radio__icon"></span>
           `}
-      ${icon && button ? svg([icon]) : html``}
+      ${icon && button ? unsafeHTML(icon) : html``}
     `;
 
     return html`

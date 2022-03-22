@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import { LitElement, svg, css, unsafeCSS } from 'lit';
+import { LitElement, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 /* eslint-disable import/no-extraneous-dependencies */
 import {
   Expand_lessSvg,
@@ -92,7 +93,7 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    return this._loadedSvg && svg([this._loadedSvg]);
+    return this._loadedSvg && unsafeHTML(this._loadedSvg);
   }
 }
 

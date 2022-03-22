@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, svg, css, unsafeCSS } from 'lit';
+import { html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import { repeat } from 'lit/directives/repeat';
 import { classMap } from 'lit/directives/class-map';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
@@ -225,7 +226,7 @@ class AXAFooter extends InlineStyles {
       };
     };
 
-    const showCaret = svg([Expand_moreSvg || '']);
+    const showCaret = unsafeHTML(Expand_moreSvg);
 
     this._addListenersToLinks();
 

@@ -1,4 +1,5 @@
-import { html, css, unsafeCSS, svg } from 'lit';
+import { html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
@@ -57,7 +58,7 @@ class AXAModal extends InlineStyles {
                     class="o-modal__upper-close-container-button"
                     @click="${this.closeModal}"
                   >
-                    ${svg([closeIcon])}
+                    ${unsafeHTML(closeIcon)}
                   </button>
                 </div>
               `

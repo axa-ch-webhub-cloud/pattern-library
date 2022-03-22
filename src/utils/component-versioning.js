@@ -134,6 +134,9 @@ const versionedHtml = componentInstance => (strings, ...args) => {
   for (let i = 0, n = newStrings.length; i < n; i++) {
     newStrings[i] = newStrings[i].split(RESERVED_CHARACTER).join('<');
   }
+  // fake a proper TemplateResult because lit now checks the .raw property
+  // (cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#raw_strings)
+  newStrings.raw = newStrings;
   // let lit-html see the rewritten static parts together with the
   // unchanged dynamic arg(ument)s
   return html(newStrings, ...args);
