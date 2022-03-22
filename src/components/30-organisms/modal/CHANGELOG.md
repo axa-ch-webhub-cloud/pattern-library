@@ -2,6 +2,10 @@
 
 Migrate to lit. #2207
 
+## 2.1.0
+
+- Fire custom 'axa-close' event when the modal closes and implement onClose Function for use with React.
+
 ## 2.0.5
 
 - Fix: unnamed function

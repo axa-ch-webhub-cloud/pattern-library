@@ -2,6 +2,18 @@
 
 Migrate to lit. #2207
 
+## 4.1.2
+
+- Fix: Remove unnecessary code.
+
+## 4.1.1
+
+- Fix: correct icons used for attention and warning variants. Font size corrected. (#2257)
+
+## 4.1.0
+
+- Feature: allow for icons, be more usable on mobile, and closable. (#2252)
+
 ## 4.0.7
 
 - Fixed vertical alignment, in case a button is being used. (#2039)

@@ -13,4 +13,5 @@ export default (
     composed,
   });
   target.dispatchEvent(event);
+  return event;
 };
