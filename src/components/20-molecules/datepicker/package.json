@@ -31,6 +31,6 @@
     "@axa-ch/materials": "14.4.1",
     "@skatejs/val": "^0.4.0",
     "date-fns": "^2.9.0",
-    "lit": "^2.0.2"
+    "lit": "^2.2.1"
   }
 }
