@@ -2,7 +2,7 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import { classMap } from 'lit/directives/class-map';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import debounce from '../../../utils/debounce';
