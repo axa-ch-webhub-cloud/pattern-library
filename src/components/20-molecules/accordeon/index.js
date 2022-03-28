@@ -7,6 +7,8 @@ import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg'
 import { classMap } from 'lit/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
+import { sanitizeSVG } from '../../../utils/sanitize';
+
 import styles from './index.scss';
 
 class AXAAccordeon extends LitElement {
@@ -81,7 +83,7 @@ class AXAAccordeon extends LitElement {
 
     const statusIcon = unsafeHTML(open ? expandLess : expandMore);
 
-    const iconHTML = icon ? unsafeHTML(icon) : html``;
+    const iconHTML = icon ? unsafeHTML(sanitizeSVG(icon)) : html``;
     return html`
       <article class="m-accordeon">
         <div class="m-accordeon__container">

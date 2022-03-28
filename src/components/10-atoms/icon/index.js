@@ -27,6 +27,7 @@ import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import { xhrCall } from '../../../utils/requests';
+import { sanitizeSVG } from '../../../utils/sanitize';
 
 class AXAIcon extends LitElement {
   static get tagName() {
@@ -93,7 +94,7 @@ class AXAIcon extends LitElement {
   }
 
   render() {
-    return this._loadedSvg && unsafeHTML(this._loadedSvg);
+    return this._loadedSvg && unsafeHTML(sanitizeSVG(this._loadedSvg));
   }
 }
 

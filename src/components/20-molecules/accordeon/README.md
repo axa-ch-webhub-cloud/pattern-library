@@ -1,35 +1,25 @@
 # Accordeon
 
-These accordion boxes hide a text or information by default and reveal them if requested or the other way around.
+An accordion UI element hides a text or other piece of information by default and can reveal them if requested by user gesture.
 
 ## Properties
 
-### Variant
+### disabled
 
-| Attribute  | Details                                                               |
-| ---------- | --------------------------------------------------------------------- |
-| `disabled` | When true, disables the accordeon natively (boolean, default: false). |
-| `open`     | Opens the accordeon besides clicking it (boolean, default: false).    |
-| `small`    | Small version of the accordeon (boolean, default: false).             |
-| `title`    | Sets the title of the accordeon.                                      |
-| `icon`     | If you want an icon, add the SVG here as a string.                    |
+Boolean attribute `disabled` disables the accordeon (default: false). Users can not open or close the accordeon anymore. However, it is still possible to programmatically open the accordion by way of the `open` attribute.
 
-### Disabled
+### open
 
-Disables the accordeon. Users can not open/close the accordeon, it has to be manually opened by the `open` attribute.
+Boolean attribute `open` opens the accordeon when set to a truthy value (default: false). This is a second way to open the accordeon besides clicking on it. This can be useful when you use the `disabled` attribute.
 
-### Open
+### small
 
-Open attribute to open the accordeon. This is a second way to open the accordeon besides clicking on it. This can be useful when you use the `disabled` attribute.
+Boolean attribute `small` controls a smaller version of the accordeon (default: false).
 
-### Small
+### title
 
-Smaller version of the accordeon (boolean, default: false).
+String-valued `title` sets the title of the accordeon.
 
-### Title
+### icon
 
-Sets the title of the accordeon.
-
-### Icon
-
-Sets the additional icon of the accordeon. Leave empty if no icon is required.
+String-valued `icon` sets the additional icon of the accordeon according to a valid `<svg>...</svg>` value. Leave unset if no icon is required.

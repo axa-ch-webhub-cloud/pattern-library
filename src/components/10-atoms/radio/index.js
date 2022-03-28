@@ -5,6 +5,7 @@ import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import { applyDefaults } from '../../../utils/with-react';
+import { sanitizeSVG } from '../../../utils/sanitize';
 
 import styles from './index.scss';
 
@@ -175,7 +176,7 @@ class AXARadio extends NoShadowDOM {
         : html`
             <span class="a-radio__icon"></span>
           `}
-      ${icon && button ? unsafeHTML(icon) : html``}
+      ${icon && button ? unsafeHTML(sanitizeSVG(icon)) : html``}
     `;
 
     return html`
