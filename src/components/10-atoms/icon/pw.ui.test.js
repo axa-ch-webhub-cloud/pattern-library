@@ -62,7 +62,7 @@ describe('Icon', () => {
       );
       const axaIconSvg = await page.$('svg');
       // sanitizing illegal SVGs should result in *no* <svg> DOM node being rendered at all
-      expect(await axaIconSvg.exists).not.ok();
+      expect(axaIconSvg).toBe(null);
     });
   });
 });
