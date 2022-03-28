@@ -185,6 +185,10 @@ class AXAInputPhone extends LitElement {
     }
     // let the world know our value changed
     fireCustomEvent('axa-change', compositeValue, this, { bubbles: false });
+    // re-calculate country code width
+    this.countryCodeDropdown.dataset.width = `+${
+      this.isControlled ? this.modelCountryCode : countrycode
+    }`.length;
   }
 
   Q(selector) {
@@ -222,6 +226,9 @@ class AXAInputPhone extends LitElement {
     // re-cache important DOM nodes after each re-render
     this.countryCodeDropdown = this.Q('axa-dropdown');
     this.inputText = this.Q('axa-input-text');
+    this.countryCodeDropdown.dataset.width = (
+      this.countryCodeDropdown.value || this.countrycode
+    ).length;
   }
 
   render() {

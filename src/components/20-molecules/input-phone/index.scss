@@ -1,7 +1,7 @@
 .m-input-phone {
     display: flex;
     flex-direction: column;
-    width: 234px; // min. width to show 13 digits for a 2-digit country code
+    width: 245px; // min. width to show 13 digits for a 2-digit country code
 }
 
 .m-input-phone__label {
@@ -9,16 +9,6 @@
     display: block;
     color: $color-dark-grey;
     margin-bottom: 10px;
-}
-
-.m-input-phone__mobile-country-code-dropdown {
-    // Width is needed because of the native dropdown - the widest case is a country with a flag emoji + 3-digit CC
-    width: 180px;
-
-    @include breakpoint($mediaquery-sm-up) {
-        // Reset mobile width in not-native mode
-        width: auto;
-    }
 }
 
 .m-input-phone__mobile-number-input {
@@ -46,7 +36,35 @@
     margin-top: 10px;
 }
 
+[usecase="axa-input-phone"] {
+
+    &[data-width="2"] .m-dropdown__wrapper {
+        width: 70px;
+    }
+
+    &[data-width="3"] .m-dropdown__wrapper {
+        width: 80px;
+    }
+
+    &[data-width="4"] .m-dropdown__wrapper {
+        width: 80px;
+    }
+
+    &[data-width="5"] .m-dropdown__wrapper {
+        width: 90px;
+    }
+}
+
 :host([countryflags]) [usecase="axa-input-phone"] {
+
+    &[data-width="3"] .m-dropdown__wrapper {
+        width: 100px;
+    }
+
+    &[data-width="4"] .m-dropdown__wrapper {
+        width: 105px;
+    }
+
     [data-index="0"],
     [data-index="1"],
     [data-index="2"],
