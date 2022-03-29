@@ -5,6 +5,7 @@ export interface AXAModalProps {
   open?: boolean;
   forced?: boolean;
   small?: boolean;
+  onClose?: (e: CustomEvent) => void;
 }
 
 declare function createAXAModal(

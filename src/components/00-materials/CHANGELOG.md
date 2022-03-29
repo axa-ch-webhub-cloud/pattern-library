@@ -1,3 +1,7 @@
+## 15.0.0
+
+Migrate to lit. #2207
+
 ## 14.3.3
 
 Revert to the state of version 14.2.0 because it is not possible for us to use @use methods in scss.

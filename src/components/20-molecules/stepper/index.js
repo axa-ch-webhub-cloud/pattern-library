@@ -1,11 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CheckSvg } from '@axa-ch/materials/icons/material-design';
-import { css, html, LitElement, svg, unsafeCSS } from 'lit-element';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 
-const checkIcon = svg([CheckSvg]);
+const checkIcon = unsafeHTML(CheckSvg);
 
 class AXAStepper extends LitElement {
   static get tagName() {

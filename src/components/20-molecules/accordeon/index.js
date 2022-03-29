@@ -1,11 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css, unsafeCSS, svg } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import expandLess from '@axa-ch/materials/icons/material-design/expand_less.svg';
 import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg';
 
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit/directives/class-map';
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
+import { sanitizeSVG } from '../../../utils/sanitize';
+
 import styles from './index.scss';
 
 class AXAAccordeon extends LitElement {
@@ -78,9 +81,9 @@ class AXAAccordeon extends LitElement {
       ? 'm-accordeon__title-container-title-icon'
       : 'm-accordeon__title-container-title-icon--hidden';
 
-    const statusIcon = svg([open ? expandLess : expandMore]);
+    const statusIcon = unsafeHTML(open ? expandLess : expandMore);
 
-    const iconHTML = icon ? svg([icon]) : html``;
+    const iconHTML = icon ? unsafeHTML(sanitizeSVG(icon)) : html``;
     return html`
       <article class="m-accordeon">
         <div class="m-accordeon__container">

@@ -1,3 +1,11 @@
+## 10.0.0
+
+Migrate to lit. #2207
+
+## 9.1.21
+
+- Add title attribute to each dropdown element. #2241
+
 ## 9.1.20
 
 - Revert using the Sass module for division operations. #2202

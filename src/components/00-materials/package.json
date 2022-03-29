@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/materials",
-  "version": "14.3.3",
+  "version": "15.0.0",
   "description": "The materials component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/00-materials/#readme",
@@ -30,5 +30,8 @@
   },
   "devDependencies": {
     "svgo": "^1.2.0"
+  },
+  "dependencies": {
+    "lit": "^2.2.1"
   }
 }

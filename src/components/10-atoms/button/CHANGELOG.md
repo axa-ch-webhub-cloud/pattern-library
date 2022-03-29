@@ -1,3 +1,7 @@
+## 7.0.0
+
+Migrate to lit. #2207
+
 ## 6.0.16
 
 - Add `event` to the `onClick` typescript interface. #2136

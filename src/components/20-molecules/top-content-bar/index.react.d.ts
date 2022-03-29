@@ -4,7 +4,11 @@ export type Variant = 'warning';
 
 export interface AXATopContentBarProps {
   variant?: Variant;
-  ctatext: string;
+  icon?: string;
+  stickymobile?: boolean;
+  closable?: boolean;
+  closed?: boolean;
+  ctatext?: string;
   href?: string;
   className?: string;
   onClick?: () => void;

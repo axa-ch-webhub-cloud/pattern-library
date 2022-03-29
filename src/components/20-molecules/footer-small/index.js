@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, css, unsafeCSS } from 'lit-element';
-import { repeat } from 'lit-html/directives/repeat';
-import { classMap } from 'lit-html/directives/class-map';
+import { html, css, unsafeCSS } from 'lit';
+import { repeat } from 'lit/directives/repeat';
+import { classMap } from 'lit/directives/class-map';
 import AXAContainer from '@axa-ch/container';
 import footerSmallCSS from './index.scss';
 import childStyles from './child.scss';

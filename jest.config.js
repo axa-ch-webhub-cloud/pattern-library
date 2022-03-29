@@ -27,7 +27,7 @@ module.exports = {
     '^.+\\.(js|jsx)$': '<rootDir>config/jest/jestPreprocess.js',
   },
   transformIgnorePatterns: [
-    '/node_modules\\/(?![lit\\-element|lit\\-html])/',
+    '/node_modules\\/(?![lit])/',
   ],
   moduleFileExtensions: [
     'js',

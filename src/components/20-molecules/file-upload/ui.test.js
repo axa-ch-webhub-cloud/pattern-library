@@ -400,9 +400,9 @@ test('should upload all files and then invalidate a single file', async t => {
   const revalidateSingleFile = ClientFunction(() => {
     // get DOM reference
     const ref = document.querySelector('axa-file-upload');
-    // pretend 'server-side validation' had identified the 2nd file as invalid
-    const file = ref.files[1];
-    // set UI into valid state again for 2nd file
+    // pretend 'server-side validation' had identified the formerly 2nd file as invalid
+    const file = ref.faultyFiles[0];
+    // set UI into valid state again for formerly 2nd file
     ref.invalidate(file, true);
   });
 

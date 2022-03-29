@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, svg } from 'lit-html';
+import { html, svg } from 'lit';
 
 import axaLogo from '@axa-ch/materials/images/axa-logo.svg';
 

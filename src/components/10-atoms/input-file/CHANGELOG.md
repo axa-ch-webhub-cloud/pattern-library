@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.0.0
 
 - **BREAKING CHANGE**: Same height on all devices. (#1869)

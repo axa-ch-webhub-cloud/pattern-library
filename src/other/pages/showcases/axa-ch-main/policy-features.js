@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html } from 'lit-html';
+import { html } from 'lit';
 
 import carIcon from '@axa-ch/materials/images/car.svg';
 import chairIcon from '@axa-ch/materials/images/rocking-chair.svg';

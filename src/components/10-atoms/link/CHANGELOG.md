@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.0.0
 
 - BREAKING CHANGE: Use `display: inline` if no icon is present. #2076

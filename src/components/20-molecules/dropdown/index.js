@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { classMap } from 'lit/directives/class-map';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
@@ -15,7 +16,7 @@ import findIndex from '../../../utils/find-index';
 import { applyDefaults } from '../../../utils/with-react';
 
 // module constants
-const ARROW_ICON = svg([Expand_moreSvg]);
+const ARROW_ICON = unsafeHTML(Expand_moreSvg);
 const DEBOUNCE_DELAY = 250; // milliseconds
 const DROPDOWN_UL_MAXHEIGHT = '200px';
 const DOWN = '40'; // keyCode
@@ -76,7 +77,7 @@ const contentItemsMapper = (clickHandler, defaultTitle) => (
   return _disabled
     ? html``
     : html`
-        <li class="${classMap(classes)}">
+        <li class="${classMap(classes)}" title="${name}">
           <button
             type="button"
             @click="${clickHandler}"

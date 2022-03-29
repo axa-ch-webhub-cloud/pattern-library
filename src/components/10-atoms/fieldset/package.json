@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/fieldset",
-  "version": "4.1.12",
+  "version": "5.0.0",
   "description": "The fieldset component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/fieldset#readme",
@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0"
+    "lit": "^2.2.1"
   }
 }

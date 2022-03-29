@@ -1,9 +1,10 @@
-import { css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { css, html, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';
 import AXAButton from '@axa-ch/button';
 import AXAButtonLink from '@axa-ch/button-link';
+import AXAIcon from '@axa-ch/icon';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
 
@@ -13,6 +14,7 @@ import {
 } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
+import fireCustomEvent from '../../../utils/custom-event';
 
 /**
  *  We need InlineStyles to give children some margins.
@@ -34,6 +36,10 @@ class AXATopContentBar extends InlineStyles {
       ctatext: { type: String },
       href: { type: String },
       variant: { type: String },
+      icon: { type: String },
+      stickymobile: { type: Boolean },
+      closable: { type: Boolean },
+      closed: { type: Boolean },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -47,15 +53,25 @@ class AXATopContentBar extends InlineStyles {
     applyDefaults(this);
 
     defineVersioned(
-      [AXAButton, AXAButtonLink, AXAContainer],
+      [AXAButton, AXAButtonLink, AXAContainer, AXAIcon],
       __VERSION_INFO__,
       this
     );
   }
 
+  onClose() {
+    this.closed = true;
+    // The sessionStorage item 'top-content-bar-closed' needs to be set to make
+    // sure the bar will not be opened during the current browser session.
+    // sessionStorage can be used only in the core module, so the event will be
+    // fired here and handled in core module by adding the 'top-content-bar-closed'
+    // item to sessionStorage.
+    fireCustomEvent('axa-top-content-bar-close', null, this);
+  }
+
   firstUpdated() {
     this.inlineStyles('childStyles');
-    const links = Array.prototype.slice.call(this.querySelectorAll('axa-link'));
+    const links = [...this.querySelectorAll('axa-link')];
     links.forEach(link => {
       link.setAttribute('variant', 'hyperlink-white-underline');
     });
@@ -103,23 +119,81 @@ class AXATopContentBar extends InlineStyles {
   }
 
   render() {
-    const { variant } = this;
+    const { variant, icon, stickymobile, closable, closed } = this;
+
+    if (closed) return html``;
 
     const btnHtml = this.getButtonHtml();
 
-    const classes = {
+    const variantClasses = {
       'm-top-content-bar__container--warning': variant === 'warning',
+      'm-top-content-bar__container--success': variant === 'success',
+      'm-top-content-bar__container--attention': variant === 'attention',
+    };
+
+    const rootClasses = {
+      'm-top-content-bar__bottom-mobile': stickymobile,
+    };
+
+    const iconClasses = {
+      'hide-icon': !icon,
+    };
+
+    const closeClasses = {
+      'hide-close': !closable,
+    };
+
+    const buttonClasses = {
+      'hide-button': !btnHtml,
     };
 
     return versionedHtml(this)`
-      <article class="m-top-content-bar">
-        <div class="m-top-content-bar__container ${classMap(classes)}">
-          <axa-container class="m-top-content-bar__container-component">
-            <div class="m-top-content-bar__children">
-              <slot></slot>
-              ${btnHtml}
+      <article class="m-top-content-bar ${classMap(rootClasses)}">
+        <div class="m-top-content-bar__container ${classMap(variantClasses)}">
+          <div class="m-top-content-bar__container-flex">
+            <div class="m-top-content-bar-empty"></div>
+        
+            <div class="m-top-content-bar__container-component">
+            
+              <div class="m-top-content-bar__children">
+                <div class="m-top-content-bar__icon ${classMap(iconClasses)}">
+                  <axa-icon size="large" icon="${icon}"></axa-icon>
+                </div>
+                
+                <div class="m-top-content-bar__content-text">
+                  <slot></slot>
+                </div>
+                <div class="m-top-content-bar__content-button ${classMap(
+                  buttonClasses
+                )}">
+                  ${btnHtml}
+                </div>
+              </div>
+
             </div>
-          </axa-container>
+        
+            <div class="m-top-content-bar__close-button ${classMap(
+              closeClasses
+            )}" @click="${this.onClose}">
+              <axa-icon icon="close"></axa-icon>
+            </div>
+            ${
+              closable
+                ? html``
+                : html`
+                    <div class="m-top-content-bar-empty"></div>
+                  `
+            }
+          </div>
+          ${
+            btnHtml
+              ? html`
+                  <div class="m-top-content-bar__content-button-mobile">
+                    ${btnHtml}
+                  </div>
+                `
+              : html``
+          }
         </div>
       </article>
     `;

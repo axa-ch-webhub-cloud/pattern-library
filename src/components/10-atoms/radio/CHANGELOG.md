@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.1.10
 
 - Fix: The text of the radiobuttons now wraps. #2125

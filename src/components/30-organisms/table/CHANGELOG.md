@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.0.11
 
 - Fix: No visual border when hovering over

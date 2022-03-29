@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.1.15
 
 - Revert using the Sass module for division operations. #2202

@@ -7,9 +7,7 @@ const { commonPlugins } = require('./common.rollup.js');
 const lib = {
   input: 'index.js',
   external: [
-    'lit-element',
-    'lit-html/directives/class-map',
-    'lit-html/directives/repeat',
+    'lit',
     '@skatejs/val',
   ],
   output: {

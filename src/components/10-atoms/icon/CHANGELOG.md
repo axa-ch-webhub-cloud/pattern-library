@@ -1,3 +1,7 @@
+## 7.0.0
+
+Migrate to lit. #2207
+
 ## 6.0.0
 
 - BREAKING CHANGE: The new default for `size` of icons loaded by URL or SVG string is now 24x24 px instead of `auto`.

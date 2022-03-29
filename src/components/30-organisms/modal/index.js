@@ -1,9 +1,11 @@
-import { html, css, unsafeCSS, svg } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import { applyDefaults } from '../../../utils/with-react';
+import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
@@ -24,6 +26,7 @@ class AXAModal extends InlineStyles {
       open: { type: Boolean },
       forced: { type: Boolean },
       small: { type: Boolean },
+      onClose: { type: Function, attribute: false },
     };
   }
 
@@ -55,7 +58,7 @@ class AXAModal extends InlineStyles {
                     class="o-modal__upper-close-container-button"
                     @click="${this.closeModal}"
                   >
-                    ${svg([closeIcon])}
+                    ${unsafeHTML(closeIcon)}
                   </button>
                 </div>
               `
@@ -83,6 +86,7 @@ class AXAModal extends InlineStyles {
       article.remove('o-modal__close--background');
       this.removeAttribute('open');
     }, 200);
+    this.onClose(fireCustomEvent('axa-close', null, this));
   }
 
   firstUpdated() {

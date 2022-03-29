@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-globals */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AXATable from '@axa-ch/table';
-import { css, html, LitElement, unsafeCSS } from 'lit-element';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { css, html, LitElement, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import {
   defineVersioned,
   versionedHtml,

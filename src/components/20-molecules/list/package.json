@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/list",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "The list component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/list#readme",
@@ -27,7 +27,6 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0"
+    "lit": "^2.2.1"
   }
 }

@@ -1,3 +1,7 @@
+## 4.0.0
+
+Migrate to lit. #2207
+
 ## 3.0.2
 
 - Fix: prevent duplicate style attachment. (#1727)

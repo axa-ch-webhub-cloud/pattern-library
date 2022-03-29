@@ -22,8 +22,15 @@
 | `icon="phone"`         |
 | `icon="search"`        |
 | `icon="upload"`        |
+| `icon="cloud-upload"`  |
 | `icon="axa-logo"`      |
 | `icon="axa-logo-open"` |
+| `icon="check-circle"`  |
+| `icon="check"`         |
+| `icon="info-outline"`  |
+| `icon="warning-amber"` |
+| `icon="cloudy"`        |
+| `icon="close"`         |
 
 #### Icon resource path
 

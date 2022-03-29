@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg } from '@axa-ch/materials/images';
 import { storiesOf } from '@storybook/html';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';

@@ -1,3 +1,7 @@
+## 16.0.0
+
+Migrate to lit. #2207
+
 ## 15.1.0
 
 - year dropdown reversed sorting, so that it goes from current year at first position down.

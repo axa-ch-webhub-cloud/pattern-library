@@ -1,4 +1,4 @@
-import { css, html, unsafeCSS } from 'lit-element';
+import { css, html, unsafeCSS } from 'lit';
 import defineOnce from '../../../../utils/define-once';
 import NoShadowDOM from '../../../../utils/no-shadow';
 import styles from './index.scss';

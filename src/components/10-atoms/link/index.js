@@ -1,8 +1,8 @@
 // TODO fix that stuff
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map';
 import linkCSS from './index.scss';
 import {
   defineVersioned,

@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.0.10
 
 - Removed outline style on focussing the element. (#2085)
