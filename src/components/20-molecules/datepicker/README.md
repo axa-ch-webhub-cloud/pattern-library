@@ -68,7 +68,7 @@ This property is only available under React.
 It is intended to be used in conjunction with `date`, which does not auto-reflect to the date-input field (
 rather, only user-initiated input does).
 
-_Note_: _initial_ refers to the [firstUpdated lifecyle point](https://lit-element.polymer-project.org/guide/lifecycle#firstupdated) of the component's internal lifecycle &mdash; the datepicker by construction is unaware of
+_Note_: _initial_ refers to the [firstUpdated lifecycle point](https://lit.dev/docs/components/lifecycle/#reactive-update-cycle-completing) of the component's internal lifecycle &mdash; the datepicker by construction is unaware of
 external lifecycles such as React's.
 
 As a consequence, React developers should avoid the pitfall of unnecessarily recreating a new instance of the datepicker from scratch on every property update, especially for `date` changes. Failure to do so not only incurs a performance penalty, it also causes `defaultValue` to be imposed after every (re)creation. This may in turn create the false impression that the datepicker is not reactive to property changes, since its input-field value would be always that of `defaultValue`.

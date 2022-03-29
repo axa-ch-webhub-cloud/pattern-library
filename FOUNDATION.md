@@ -45,19 +45,19 @@ Questions:
 ### Foundation options
 
 1. Continue to use IH by AXA
-1. Use [lit-element](https://lit-element.polymer-project.org/) by
+1. Use [lit-element](https://lit.dev/docs/api/LitElement/) by
 Google ([BSD 3-clause
-License](https://github.com/Polymer/lit-element/blob/master/LICENSE) +
+License](https://github.com/lit/lit/blob/main/LICENSE) +
 [Patent clause](http://polymer.github.io/PATENTS.txt)). Lit-element
 allows ShadowDOM/scoped CSS, and uses [&lt;template&gt; under the
-hood](https://lit-html.polymer-project.org/guide/concepts#html-template-elements). 
+hood](https://lit.dev/docs/libraries/standalone-templates/#rendering-lit-html-templates). 
 
 ### Criteria for evaluating foundation options
 
 1. What is the [bus factor](https://en.wikipedia.org/wiki/Bus_factor): If *N* core developers of a software were hypothetically run over by a bus, would further development of the software be in grave danger?
 1. How stable is it?
 1. Who else uses it or depends on it, is there an eco system around it?
-1. Closeness to a major browser vendor (to tap into deep knowledge when relevant specs are not detailled enough)?
+1. Closeness to a major browser vendor (to tap into deep knowledge when relevant specs are not detailed enough)?
 1. Quality of code?
 1. Quality of documentation?
 1. Supports extension of built-ins?
@@ -67,19 +67,19 @@ hood](https://lit-html.polymer-project.org/guide/concepts#html-template-elements
 #### IH by Axa
 * bus factor 1-2. 
 * Stability unclear, not yet production-ready because of [major issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues).
-* Only used inhouse by AXA teams (18 github stars). 
+* Only used inhouse by AXA teams (18 Github stars &mdash; these are the 2019 numbers at the time of decision-making).
 * Devs not close to any major browser vendor. 
 * Quality of code variable, not typed JS.
 * Quality of documentation low, too little, spotty.
 * Built-ins can be extended, but quality and coverage of necessary Safari polyfill unclear.
 
 #### lit-element by Google
-* bus factor [>= 2](https://github.com/Polymer/lit-element/graphs/contributors), [code owners](https://github.com/Polymer/lit-element/blob/master/.github/CODEOWNERS) are Google engineers that could be replaced by other Google engineers. 
+* bus factor [>= 2](https://github.com/lit/lit-element/graphs/contributors), [code owners](https://github.com/lit/lit-element/blob/master/.github/CODEOWNERS) are Google engineers that could be replaced by other Google engineers. 
 * Stability: [production-ready](https://www.polymer-project.org/blog/2019-02-05-lit-element-and-lit-html-release).
-* User base growing (1320 Github stars, 3811 for [lit-html](https://github.com/Polymer/lit-html)), anecdotal evidence via [retweets from Justin Fagnani](https://twitter.com/justinfagnani), growing tool support as evidence for growing eco system (ibid.) and [this github issue on use in production](https://github.com/Polymer/lit-element/issues/120).
+* User base growing (1320 Github stars, 3811 for lit-html &mdash; these are the 2019 numbers at the time of decision-making, now we have 9.9k Github stars in early 2022 for [lit](https://github.com/lit/lit)), anecdotal evidence via [retweets from Justin Fagnani](https://twitter.com/justinfagnani), growing tool support as evidence for growing eco system (ibid.).
 [lit-element is officially recommended for new projects over
 Polymer](https://www.polymer-project.org/blog/2018-05-02-roadmap-faq#polymer-3.0-or-litelement).
-Additionally, [Youtube built on Polymer 1/CE version 0](https://react-etc.net/entry/youtube-is-being-rebuilt-on-web-components-and-polymer) throws deprecation warnings for removal of CE v.0 in March 2019 = a candidate for rewrite in lit-element?! 
+Additionally, [YouTube built on Polymer 1/CE version 0](https://react-etc.net/entry/youtube-is-being-rebuilt-on-web-components-and-polymer) throws deprecation warnings for removal of CE v.0 in March 2019 = a candidate for rewrite in lit-element?! 
 * Lit-element core devs are Google engineers, can get advice from Blink platform engineers.
 * High code quality, Typescript, comprehensive + understandable answers  in issues, suggesting deep understanding, e.g. [this issue on synchronous rendering](https://github.com/Polymer/lit-element/issues/365#issuecomment-448075179). 
 * High [documentation](https://lit-element.polymer-project.org/guide) quality, [dedicated technical writer](https://github.com/Polymer/lit-element/commits?author=katejeffreys).
@@ -87,8 +87,7 @@ Additionally, [Youtube built on Polymer 1/CE version 0](https://react-etc.net/en
 
 ### Choosing the foundation
 
-The evaluation clearly points to **lit-element** as the preferred
-choice.
+The evaluation clearly points to **lit-element** as the preferred choice.
 
 ## Using the foundation
 
@@ -111,7 +110,7 @@ CEs might be used in a pure-HTML scenario. For example, Markdown and AEM compone
 
 In such a setting, it could be very cumbersome to author large and complex stringified JSON values for CE attributes. In contrast specifying a CE content subtree via HTML looks quite idiomatic and can be handled with existing authoring tools, profits from nice syntax highlighting, etc.
 
-Besides, in the limit large values turn into infinite values, which in practice means streaming. This is not as outlandish as it seems at first sight, since event streams of *a priori* unbounded length arise naturally in practice (e.g. Twitter tweets). In the streaming case, there is a clear difference between stringified JSON and HTML: only the latter enjoys native browser support, since the browser's HTML parser is a streaming parser. In the future, [streaming fetch() into CEs](https://lit-html.polymer-project.org/guide/template-reference#asyncappend-and-asyncreplace) can be expected in more [browsers](https://developer.mozilla.org/de/docs/Web/API/ReadableStream#Browser_compatibility) than today and [early experiments](https://jakearchibald.com/2016/streaming-template-literals/) will give way to clean implementation. The point here is that specifying a CE content subtree in a declarative fashion via HTML enjoys broader applicability and is more future-proof, since it includes large and  even conceptually infinite content, i.e. the streaming scenario. 
+Besides, in the limit large values turn into infinite values, which in practice means streaming. This is not as outlandish as it seems at first sight, since event streams of *a priori* unbounded length arise naturally in practice (e.g. Twitter tweets). In the streaming case, there is a clear difference between stringified JSON and HTML: only the latter enjoys native browser support, since the browser's HTML parser is a streaming parser. In the future, [streaming fetch() into CEs](https://lit.dev/docs/templates/directives/) can be expected in more [browsers](https://developer.mozilla.org/de/docs/Web/API/ReadableStream#Browser_compatibility) than today and [early experiments](https://jakearchibald.com/2016/streaming-template-literals/) will give way to clean implementation. The point here is that specifying a CE content subtree in a declarative fashion via HTML enjoys broader applicability and is more future-proof, since it includes large and  even conceptually infinite content, i.e. the streaming scenario. 
 
 It is worth noting that this principle is a preference rather than an absolute requirement &mdash; clearly there can be cases where complex properties can be more concise.
 

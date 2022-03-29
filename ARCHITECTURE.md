@@ -22,7 +22,7 @@ To be filled.
 ## New Foundation
 
 Version 2 is based on
-**[lit-element](https://lit-element.polymer-project.org)**, a simple
+**[lit-element](https://lit.dev/docs/api/LitElement/)**, a simple
 base class for creating fast, lightweight web components provided by
 Google.
 
@@ -132,7 +132,7 @@ sketching *how* it can be adressed.
    [react-with-lit-element](https://github.com/axa-ch-webhub-cloud/react-with-lit-element) &nbsp; ([**Demo**](http://localhost:6006/?path=/story/demo--controlled-inputs-react))
    - **How:** Looking at ``value,checked`` we can  determine whether a CE should be controlled.
     We then monitor UI-state-changing events via [lit-element event
-    listeners](https://lit-element.polymer-project.org/guide/events) and
+    listeners](https://lit.dev/docs/components/events/) and
    let both property changes and user events lead to a post-render
    correction of the visual state of an input element to conform with
    the controlled state (we can use native DOM APIs for that).
@@ -171,7 +171,7 @@ sketching *how* it can be adressed.
    content to be rendered, since many CEs need to be built and since
    they would normally react to properties/attributes.
    - **How:** lit-element provides this out of the box by including the
-   awesome [lit-html](https://lit-html.polymer-project.org/). The key ingredient is [tagged template
+   awesome [lit-html](https://lit.dev/docs/templates/overview/). The key ingredient is [tagged template
    literals](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings#Tagged_Template-Strings)
    which are authored in a syntax very close to JSX, like 
    this: <br> ``render() { return html `<p>${this.myProp}</p>`; }``.
@@ -207,7 +207,7 @@ sketching *how* it can be adressed.
    JS value type &mdash; constant (de-)serialization to and from the
    ``String`` data type is cumbersome and inefficient.
    - **How:** lit-element allows [real, dynamically observed
-   properties](https://lit-element.polymer-project.org/guide/properties)
+   properties](https://lit.dev/docs/components/properties/)
    out of the box, including ``Array, Object`` data types. Reflecting
    these to attributes is optional. For event handlers, ``Function``
    is supported as well.
@@ -284,7 +284,7 @@ sketching *how* it can be adressed.
    - **Experiment:**
    [react-with-lit-element](https://github.com/axa-ch-webhub-cloud/react-with-lit-element),
    cf. App.js under React.
-   - **How:** We use lit-html's built-in [``@event``](https://lit-element.polymer-project.org/guide/events) notation
+   - **How:** We use lit-html's built-in [``@event``](https://lit.dev/docs/components/events/) notation
    inside CEs built with lit-element. The [skatejs/val](https://github.com/skatejs/val)
    wrapper for React export preserves registered event callbacks. As a
    result, event handling becomes reliable.
