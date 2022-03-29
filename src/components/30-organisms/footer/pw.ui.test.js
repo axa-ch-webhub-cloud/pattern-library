@@ -14,6 +14,6 @@ describe('Footer', () => {
     await button.click();
 
     footer = await page.$('footer');
-    expect((await footer.boundingBox()).height).toBe(275);
+    expect((await footer.boundingBox()).height).toBe(278.75);
   });
 });
