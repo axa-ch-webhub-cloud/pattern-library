@@ -6,8 +6,9 @@ import {
   Keyboard_arrow_leftSvg,
   Keyboard_arrow_rightSvg,
 } from '@axa-ch/materials/icons/material-design';
-import { html, svg } from 'lit-element';
-import { classMap } from 'lit-html/directives/class-map';
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { classMap } from 'lit/directives/class-map';
 import {
   defineVersioned,
   versionedHtml,
@@ -27,9 +28,9 @@ import {
 } from './utils/date';
 
 // module constants
-const dateRangeIcon = svg([Date_rangeSvg]);
-const keyboardArrowLeftIcon = svg([Keyboard_arrow_leftSvg]);
-const keyboardArrowRightIcon = svg([Keyboard_arrow_rightSvg]);
+const dateRangeIcon = unsafeHTML(Date_rangeSvg);
+const keyboardArrowLeftIcon = unsafeHTML(Keyboard_arrow_leftSvg);
+const keyboardArrowRightIcon = unsafeHTML(Keyboard_arrow_rightSvg);
 const EMPTY_FUNCTION = () => {};
 
 // module globals

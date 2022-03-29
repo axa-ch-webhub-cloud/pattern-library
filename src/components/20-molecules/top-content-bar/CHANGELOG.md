@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.1.2
 
 - Fix: Remove unnecessary code.

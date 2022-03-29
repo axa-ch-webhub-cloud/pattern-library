@@ -1,5 +1,5 @@
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import './index';

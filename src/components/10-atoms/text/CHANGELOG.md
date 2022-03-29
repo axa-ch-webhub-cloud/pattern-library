@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.4.0
 
 - Added a 4th size. (#2143)

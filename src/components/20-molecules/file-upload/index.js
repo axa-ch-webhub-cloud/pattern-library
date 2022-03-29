@@ -1,7 +1,8 @@
 /* eslint-disable camelcase, no-continue */
-import { LitElement, html, svg, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 /* eslint-disable import/no-extraneous-dependencies */
-import { classMap } from 'lit-html/directives/class-map';
+import { classMap } from 'lit/directives/class-map';
 import AXAInputFile from '@axa-ch/input-file';
 import {
   AddSvg,
@@ -25,11 +26,11 @@ import compressImages from './utils/imageCompressor';
 import createRefId from '../../../utils/create-ref-id';
 
 // constants
-const ADD_ICON = svg([AddSvg]);
-const ATTACH_FILE_ICON = svg([Attach_fileSvg]);
-const DELETE_FOREVER_ICON = svg([Delete_foreverSvg]);
-const CLEAR_ICON = svg([ClearSvg]);
-const FILE_UPLOAD_GROUP_ICON = svg([FileUploadGroupSvg]);
+const ADD_ICON = unsafeHTML(AddSvg);
+const ATTACH_FILE_ICON = unsafeHTML(Attach_fileSvg);
+const DELETE_FOREVER_ICON = unsafeHTML(Delete_foreverSvg);
+const CLEAR_ICON = unsafeHTML(ClearSvg);
+const FILE_UPLOAD_GROUP_ICON = unsafeHTML(FileUploadGroupSvg);
 
 const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 

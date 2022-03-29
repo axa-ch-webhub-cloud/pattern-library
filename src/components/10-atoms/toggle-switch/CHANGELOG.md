@@ -1,3 +1,7 @@
+## 3.0.0
+
+Migrate to lit. #2207
+
 ## 2.2.0
 
 - Added outline for accessibility reasons. (#2198)

@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0"
+    "lit": "^2.2.1"
   }
 }

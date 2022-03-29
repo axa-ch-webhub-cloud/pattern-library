@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import { STYLE_WHITELIST } from './index';

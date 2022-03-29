@@ -1,3 +1,7 @@
+## 6.0.0
+
+Migrate to lit. #2207
+
 ## 5.4.1
 
 - Fixes a bug involving the interaction of UI-based file deletion with the new `invalidate` method. (#2239)

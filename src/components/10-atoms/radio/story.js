@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';

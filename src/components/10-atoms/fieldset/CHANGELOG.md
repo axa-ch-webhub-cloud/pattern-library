@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.1.7
 
 - Fix: gap between error message and content. (#1998)

@@ -30,7 +30,9 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "2.2.10",
-    "core-js": "^2.6.5"
+    "@ungap/global-this": "^0.4.4",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
+    "core-js": "^2.6.5",
+    "lit": "^2.2.1"
   }
 }

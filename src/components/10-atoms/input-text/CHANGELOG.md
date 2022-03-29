@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.5.4
 
 - Fix: No currency formatting on first render. (#2020)

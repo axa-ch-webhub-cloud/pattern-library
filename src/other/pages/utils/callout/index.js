@@ -1,4 +1,4 @@
-import { css, html, LitElement, unsafeCSS } from 'lit-element';
+import { css, html, LitElement, unsafeCSS } from 'lit';
 import defineOnce from '../../../../utils/define-once';
 import styles from './index.scss';
 

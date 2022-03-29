@@ -56,5 +56,13 @@ describe('Icon', () => {
       expect((await axaIconSvg.boundingBox()).width).toBe(100);
       expect((await axaIconSvg.boundingBox()).height).toBe(100);
     });
+    it('should not render user-supplied SVGs with embedded scripts', async () => {
+      await page.goto(
+        `${host}/iframe.html?id=components-icon--icon&knob-size=medium&knob-Load%20icon%20this%20way%20(Fill%20values%20below):=string&knob-Value%20for%20"Named%20property"=download&knob-Value%20for%20"URL"=./svg/logo-axa.svg&knob-Value%20for%20"SVG%20string"=<svg><script>alert(%27hi%27);</svg>&viewMode=story`
+      );
+      const axaIconSvg = await page.$('svg');
+      // sanitizing illegal SVGs should result in *no* <svg> DOM node being rendered at all
+      expect(axaIconSvg).toBe(null);
+    });
   });
 });

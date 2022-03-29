@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS } from 'lit-element';
+import { html, css, unsafeCSS } from 'lit';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';

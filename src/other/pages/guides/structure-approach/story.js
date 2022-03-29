@@ -1,4 +1,4 @@
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import '../../../../components/10-atoms/heading';
 import '../../../../components/10-atoms/text';
 import '../../utils/callout';

@@ -191,7 +191,7 @@ const createFiles = (store, a, m, o, done) => () => {
     `${BASE_FOLDER}/story.js`,
     outdent`
     import { text, withKnobs } from '@storybook/addon-knobs';
-    import { html, render } from 'lit-html';
+    import { html, render } from 'lit';
     import './index';
 
     export default {
@@ -279,7 +279,7 @@ describe('${compTitle}', () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/index.js`,
     outdent`
-    import { LitElement, html, css, unsafeCSS } from 'lit-element';
+    import { LitElement, html, css, unsafeCSS } from 'lit';
 
     /* eslint-disable import/no-extraneous-dependencies */
 

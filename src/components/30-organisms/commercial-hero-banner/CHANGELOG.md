@@ -1,3 +1,7 @@
+## 5.0.0
+
+Migrate to lit. #2207
+
 ## 4.1.2
 
 - Fix: Undo version 4.1.1, as the import was not used internally.
