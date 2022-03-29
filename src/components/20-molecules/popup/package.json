@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/popup",
-  "version": "3.1.29",
+  "version": "4.0.0",
   "description": "The popup component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/popup#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "14.4.1",
+    "@axa-ch/materials": "15.0.0",
     "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }
