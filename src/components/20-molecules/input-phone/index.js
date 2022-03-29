@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { LitElement, html, css, unsafeCSS } from 'lit-element';
+import { LitElement, html, css, unsafeCSS } from 'lit';
 import AXADropdown from '@axa-ch/dropdown';
 import AXAInputText from '@axa-ch/input-text';
 

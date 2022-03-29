@@ -1,5 +1,5 @@
 import { text, select, boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit-html';
+import { html, render } from 'lit';
 import './index';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
