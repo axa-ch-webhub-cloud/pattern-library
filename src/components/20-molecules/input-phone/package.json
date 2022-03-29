@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-     "lit": "^2.2.1",
+    "lit": "^2.2.1",
     "@axa-ch/input-text": "5.0.0",
     "@axa-ch/dropdown": "10.0.0"
   }
