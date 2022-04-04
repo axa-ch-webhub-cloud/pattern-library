@@ -99,6 +99,17 @@ axa-dropdown {
     }
   }
 
+  &[croptext] {
+    .m-dropdown__flex-wrapper > span {
+      text-overflow: inherit;
+    }
+
+    .m-dropdown__select,
+    .m-dropdown__toggle {
+      padding: 0 36px 0 12px;
+    }
+  }
+
   /* FIXME: remove this selectivity hack once v1 CSS problem is systematically addressed, cf. https://github.com/axa-ch-webhub-cloud/pattern-library/issues/1343 */
   .m-dropdown__select-icon.m-dropdown__select-icon {
     display: block;

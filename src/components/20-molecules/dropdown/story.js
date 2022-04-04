@@ -30,6 +30,8 @@ export const Dropdown = () => {
   const disabled = boolean('disabled', false);
   const dataTestId = text('data-test-id', '');
   const maxHeight = text('max-height', '');
+  const cropText = boolean('cropText', false);
+  const showValue = boolean('showValue', false);
 
   const handleChange = e => {
     const { target, detail } = e;
@@ -52,6 +54,8 @@ export const Dropdown = () => {
       ?disabled="${disabled}"
       ?required="${required}"
       ?native="${native}"
+      ?croptext="${cropText}"
+      ?showvalue="${showValue}"
       items='[
         {"name": "< CHF 1,000", "value": "Item 1" },
         {"name": "From CHF 1,000 to 10,0000", "value": "Item 2" },

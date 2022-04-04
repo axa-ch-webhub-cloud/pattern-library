@@ -24,6 +24,7 @@
     "src/components/20-molecules/dropdown",
     "src/components/20-molecules/file-upload",
     "src/components/20-molecules/footer-small",
+    "src/components/20-molecules/input-phone",
     "src/components/20-molecules/list",
     "src/components/20-molecules/policy-features",
     "src/components/20-molecules/popup",

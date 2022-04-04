@@ -52,8 +52,8 @@ const forEach = (array, callback, scope) => {
   }
 };
 
-const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
-  html`
+const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
+  return html`
     <option
       class="m-dropdown__option"
       value="${value}"
@@ -64,6 +64,7 @@ const nativeItemsMapper = ({ name, value, selected, _disabled }, index) =>
       >${name}</option
     >
   `;
+};
 
 const contentItemsMapper = (clickHandler, defaultTitle) => (
   { name, value, selected, _disabled },
@@ -123,6 +124,8 @@ class AXADropdown extends NoShadowDOM {
       invalid: { type: Boolean, reflect: true },
       error: { type: String, reflect: true },
       disabled: { type: Boolean, reflect: true },
+      cropText: { type: Boolean, reflect: true },
+      showValue: { type: Boolean, reflect: true },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -453,10 +456,20 @@ class AXADropdown extends NoShadowDOM {
       handleDropdownClick,
       handleKeyUp,
       maxHeight,
+      useCase,
     } = this;
 
-    const [selectedItem] = this.findByValue(null);
+    const [selectedItem, selectedItemIndex] = this.findByValue(null);
     this.title = selectedItem ? selectedItem.name : defaultTitle;
+    if (selectedItem) {
+      const { value } = selectedItem;
+      if (value) {
+        this.value = value;
+      }
+      if (useCase === 'axa-input-phone') {
+        this.selectedIndex = selectedItemIndex + (defaultTitle ? 1 : 0);
+      }
+    }
 
     return html`
       ${label &&
@@ -473,7 +486,10 @@ class AXADropdown extends NoShadowDOM {
       <div class="m-dropdown__wrapper" @keyup="${handleKeyUp}">
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
-          <div class="m-dropdown__select-wrapper">
+          <div
+            class="m-dropdown__select-wrapper"
+            data-value="${this.value || ''}"
+          >
             <select
               id="${refId}"
               class="m-dropdown__select js-dropdown__select"
@@ -486,7 +502,7 @@ class AXADropdown extends NoShadowDOM {
             >
               ${defaultTitleIfNeeded(defaultTitle, selectedItem)
                 .concat(items)
-                .map(nativeItemsMapper)}
+                .map((item, i) => nativeItemsMapper(item, i))}
             </select>
             <span class="m-dropdown__select-icon">
               ${ARROW_ICON}
@@ -504,7 +520,11 @@ class AXADropdown extends NoShadowDOM {
             @click="${handleDropdownClick}"
           >
             <span class="m-dropdown__flex-wrapper">
-              <span class="js-dropdown__title">${this.title}</span>
+              <span
+                class="js-dropdown__title"
+                data-index="${this.selectedIndex}"
+                >${this.showValue ? this.value : this.title}</span
+              >
               <span class="m-dropdown__select-icon">${ARROW_ICON}</span>
             </span>
           </button>

@@ -61,6 +61,16 @@ Is an array of objects to set the options of the dropdown. The objects must have
 | value    | The value that is submitted via form submit                      |
 | selected | boolean: just set true to one of the options to preselect option |
 
+### cropText
+
+This removes the ellipsis dots when the value becomes too long to fully display on the dropdown element. It also reduces the paddings within the dropdown, for a more minified look.
+
+Example: `+41 Switzer...` => `+41 Switzerla`
+
+### showValue
+
+Display the `value` instead of the `name` (from the `items` array) as selected value in the dropdown.
+
 ## Callback Properties
 
 ### onChange

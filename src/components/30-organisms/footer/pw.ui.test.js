@@ -9,11 +9,11 @@ describe('Footer', () => {
     const button = await page.$('#footerTestButton');
     let footer = await page.$('footer');
 
-    expect((await footer.boundingBox()).height).toBe(310);
+    expect((await footer.boundingBox()).height).toBe(314.6875);
 
     await button.click();
 
     footer = await page.$('footer');
-    expect((await footer.boundingBox()).height).toBe(275);
+    expect((await footer.boundingBox()).height).toBe(278.75);
   });
 });
