@@ -1,3 +1,7 @@
+## 10.1.0
+
+- Add cropText and showValue attributes (supporting axa-input-phone use case). #2246
+
 ## 10.0.0
 
 Migrate to lit. #2207
