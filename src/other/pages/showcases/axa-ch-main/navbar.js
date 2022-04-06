@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { html, svg } from 'lit';
-
+import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import axaLogo from '@axa-ch/materials/images/axa-logo.svg';
 
-const logo = svg([axaLogo]);
+const logo = unsafeHTML(axaLogo);
 
 const style = html`
   <style>
