@@ -1,6 +1,7 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit';
 import { repeat } from 'lit/directives/repeat';
+import { unsafeHTML } from 'lit/directives/unsafe-html';
 import '../10-atoms/heading';
 import '../10-atoms/text';
 import changelog from './CHANGELOG.md';
@@ -295,7 +296,7 @@ export const IconsAndImages = () => {
             </axa-text>
             <div class="materials__icon-container">
               ${repeat(icons.slice(0, assetsToRenderNext), i =>
-                html([mapToIconItem(i)])
+                unsafeHTML(mapToIconItem(i))
               )}
             </div>
           </div>
@@ -306,7 +307,7 @@ export const IconsAndImages = () => {
             </axa-text>
             <div class="materials__images-container">
               ${repeat(images.slice(0, assetsToRenderNext / 2), i =>
-                html([mapToIconItem(i, 'materials__single-image')])
+                unsafeHTML(mapToIconItem(i, 'materials__single-image'))
               )}
             </div>
           </div>
