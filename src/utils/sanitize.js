@@ -1,6 +1,6 @@
 // sanitize SVG, preventing XSS attacks etc.
 // (uses ideas from https://github.com/mattkrick/sanitize-svg/blob/master/src/sanitizeSVG.ts#L19)
-export const sanitizeSVG = (svgText) => {
+export const sanitizeSVG = svgText => {
   // create a container, which will remain disconnected from live DOM
   const root = document.createElement('div');
   // parse putative <svg>....</svg>

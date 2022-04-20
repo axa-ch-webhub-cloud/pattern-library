@@ -21,7 +21,7 @@ storiesOf('Examples/Radio/Pure HTML', module)
         const atLeastOneChecked = [
           ...document.querySelectorAll('axa-radio[name="contract"]'),
         ]
-          .map((radio) => radio.checked)
+          .map(radio => radio.checked)
           .reduce((acc, curr) => acc | curr, 0);
         document.querySelector('axa-fieldset').error = atLeastOneChecked
           ? ''

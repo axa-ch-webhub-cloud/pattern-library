@@ -11,7 +11,7 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
     changelog,
   })
   .add('In a form', () => {
-    const handleSubmit = (event) => {
+    const handleSubmit = event => {
       event.preventDefault();
       document.getElementById('form-data').open = true;
       const formData = new window.FormData(event.target);

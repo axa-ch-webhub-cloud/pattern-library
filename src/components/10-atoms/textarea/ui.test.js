@@ -9,7 +9,7 @@ fixture('Textarea - basic functionality').page(
 const TAG = 'axa-textarea';
 const CLASS = '.a-textarea__textarea';
 
-test('should render textarea', async (t) => {
+test('should render textarea', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaTag = await Selector(() => document.querySelector('axa-textarea'));
@@ -17,7 +17,7 @@ test('should render textarea', async (t) => {
   await t.expect($axaTagElem.exists).ok();
 });
 
-test('should type something in textarea', async (t) => {
+test('should type something in textarea', async t => {
   const setupTextarea = ClientFunction(() => {
     const textarea = document.createElement('axa-textarea');
     textarea.className = 'my-textarea';
@@ -34,7 +34,7 @@ test('should type something in textarea', async (t) => {
   await t.expect(textarea.value).eql('Pattern Warriors');
 });
 
-test('should show error message and have the right color', async (t) => {
+test('should show error message and have the right color', async t => {
   const setInvalid = ClientFunction(() => {
     document.querySelector('axa-textarea').invalid = true;
     document.querySelector('axa-textarea').error = 'error';
@@ -49,7 +49,7 @@ test('should show error message and have the right color', async (t) => {
     .eql('rgb(201, 20, 50)');
 });
 
-test('should show counter', async (t) => {
+test('should show counter', async t => {
   const setCounter = ClientFunction(() => {
     const textarea = document.createElement('axa-textarea');
     textarea.className = 'counter';
@@ -62,7 +62,7 @@ test('should show counter', async (t) => {
   await t.expect($messages.innerText).contains('still 2 characters left');
 });
 
-test('should show counterMax', async (t) => {
+test('should show counterMax', async t => {
   const setCounterMax = ClientFunction(() => {
     const textarea = document.createElement('axa-textarea');
     textarea.className = 'counter';

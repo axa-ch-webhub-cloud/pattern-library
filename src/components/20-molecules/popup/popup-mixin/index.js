@@ -3,7 +3,7 @@
 //
 import { applyDefaults } from '../../../../utils/with-react';
 
-export const AXAPopupMixin = (superclass) =>
+export const AXAPopupMixin = superclass =>
   class extends superclass {
     static get properties() {
       return {

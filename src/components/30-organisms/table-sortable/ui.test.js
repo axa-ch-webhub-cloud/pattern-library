@@ -4,11 +4,11 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
   .page(`${host}/iframe.html?id=components-table-sortable--table-sortable`)
-  .beforeEach(async (t) => {
+  .beforeEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render sortable table', async (t) => {
+test('should render sortable table', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $elShadow = await Selector(
@@ -18,7 +18,7 @@ test('should render sortable table', async (t) => {
   await t.expect($elShadowEl.exists).ok();
 });
 
-test('should render correct color of table header text', async (t) => {
+test('should render correct color of table header text', async t => {
   const expectedColor = 'rgb(51, 51, 51)';
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
@@ -29,7 +29,7 @@ test('should render correct color of table header text', async (t) => {
   await t.expect($columnZero.getStyleProperty('color')).eql(expectedColor);
 });
 
-test('should have aria ascending when passing ASC in model', async (t) => {
+test('should have aria ascending when passing ASC in model', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnZero = await Selector(() => {
@@ -39,7 +39,7 @@ test('should have aria ascending when passing ASC in model', async (t) => {
   await t.expect($columnZero.getAttribute('aria-sort')).eql('ascending');
 });
 
-test('should have aria descending when passing DESC in model', async (t) => {
+test('should have aria descending when passing DESC in model', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnThree = await Selector(() => {
@@ -49,7 +49,7 @@ test('should have aria descending when passing DESC in model', async (t) => {
   await t.expect($columnThree.getAttribute('aria-sort')).eql('descending');
 });
 
-test('should have aria none when passing nothing in model', async (t) => {
+test('should have aria none when passing nothing in model', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnFour = await Selector(() => {
@@ -59,7 +59,7 @@ test('should have aria none when passing nothing in model', async (t) => {
   await t.expect($columnFour.getAttribute('aria-sort')).eql('none');
 });
 
-test('should sort strings', async (t) => {
+test('should sort strings', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnTwo = await Selector(() => {
@@ -72,7 +72,7 @@ test('should sort strings', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
     return firstRow.querySelectorAll('td')[1];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   const $columnTwoLastRow = await Selector(() => {
@@ -80,7 +80,7 @@ test('should sort strings', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[1];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t
@@ -110,7 +110,7 @@ test('should sort strings', async (t) => {
   await t.expect($columnTwoLastRow.innerHTML).contains('<span>Petra</span>');
 });
 
-test('should sort numbers', async (t) => {
+test('should sort numbers', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnOne = await Selector(() => {
@@ -123,7 +123,7 @@ test('should sort numbers', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   const $columnOneLastRow = await Selector(() => {
@@ -131,7 +131,7 @@ test('should sort numbers', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t
@@ -161,7 +161,7 @@ test('should sort numbers', async (t) => {
   await t.expect($columnOneLastRow.innerHTML).contains('<span>55</span>');
 });
 
-test('should sort dates', async (t) => {
+test('should sort dates', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnOne = await Selector(() => {
@@ -174,7 +174,7 @@ test('should sort dates', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
     return firstRow.querySelectorAll('td')[3];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   const $columnFourLastRow = await Selector(() => {
@@ -182,7 +182,7 @@ test('should sort dates', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[3];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t
@@ -220,7 +220,7 @@ test('should sort dates', async (t) => {
     .contains('<span>02.05.2013</span>');
 });
 
-test('should add a fix css class when sorted is clicked', async (t) => {
+test('should add a fix css class when sorted is clicked', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
   const $columnOne = await Selector(() => {
@@ -241,7 +241,7 @@ test('should add a fix css class when sorted is clicked', async (t) => {
   await t.expect($columnTwo.getAttribute('class')).eql('');
 });
 
-test('should render two arrows', async (t) => {
+test('should render two arrows', async t => {
   const $columnOneHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     const firstRow = sRoot.querySelectorAll('thead tr')[0];
@@ -259,7 +259,7 @@ test('should render two arrows', async (t) => {
   await t.expect($arrowDown.getStyleProperty('display')).notEql('none');
 });
 
-test('should render only arrowdown and with right color', async (t) => {
+test('should render only arrowdown and with right color', async t => {
   const expectedColor = 'rgb(0, 0, 143)';
   const $columnOneHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
@@ -285,7 +285,7 @@ test('should render only arrowdown and with right color', async (t) => {
     .eql(expectedColor);
 });
 
-test('should render only arrowup and with right color', async (t) => {
+test('should render only arrowup and with right color', async t => {
   const expectedColor = 'rgb(0, 0, 143)';
   const $columnThreeHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
@@ -311,7 +311,7 @@ test('should render only arrowup and with right color', async (t) => {
   await t.expect($arrowDown.getStyleProperty('display')).eql('none');
 });
 
-test('should not render arrows', async (t) => {
+test('should not render arrows', async t => {
   const $columnFourHeaderRow = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     const firstRow = sRoot.querySelectorAll('thead tr')[0];
@@ -329,7 +329,7 @@ fixture('Table Sortable - innerscroll functionality').page(
   `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=650`
 );
 
-test('should sort also when innerscroll is set ', async (t) => {
+test('should sort also when innerscroll is set ', async t => {
   await t.resizeWindow(300, 1000);
   const $elRoot = await Selector('axa-table-sortable');
 
@@ -351,7 +351,7 @@ test('should sort also when innerscroll is set ', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   const $columnOneLastRow = await Selector(() => {
@@ -359,7 +359,7 @@ test('should sort also when innerscroll is set ', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t
@@ -384,7 +384,7 @@ fixture('Table Sortable - maxheight functionality').page(
   `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
 );
 
-test('should sort also when maxheight is set ', async (t) => {
+test('should sort also when maxheight is set ', async t => {
   await t.resizeWindow(300, 400);
   const $elRoot = await Selector('axa-table-sortable');
 
@@ -411,7 +411,7 @@ test('should sort also when maxheight is set ', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   const $columnOneLastRow = await Selector(() => {
@@ -419,7 +419,7 @@ test('should sort also when maxheight is set ', async (t) => {
     const firstRow = sRoot.querySelectorAll('tbody tr')[5];
     return firstRow.querySelectorAll('td')[0];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t
@@ -444,7 +444,7 @@ fixture('Table Sortable - on row click').page(
   `${host}/iframe.html?id=examples-table-sortable-pure-html--on-row-click`
 );
 
-test('should react to click on row', async (t) => {
+test('should react to click on row', async t => {
   await t.resizeWindow(800, 600);
 
   const $elTableTr = await Selector(() => {
@@ -471,14 +471,14 @@ fixture('Table Sortable - react').page(
   `${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`
 );
 
-test('should display HTML as text if desired', async (t) => {
+test('should display HTML as text if desired', async t => {
   const $rowOneDate = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     const firstRow = sRoot.querySelectorAll('tbody tr')[0];
 
     return firstRow.querySelectorAll('td')[3];
   }).addCustomDOMProperties({
-    innerHTML: (el) => el.innerHTML,
+    innerHTML: el => el.innerHTML,
   });
 
   await t.expect($rowOneDate.innerText).eql('<span>22.04.2019</span>');

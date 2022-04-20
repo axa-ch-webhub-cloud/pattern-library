@@ -6,7 +6,7 @@ import { applyDefaults } from '../../../utils/with-react';
 import styles from './index.scss';
 import childStyles from './child.scss';
 
-const variantClass = (variant) => {
+const variantClass = variant => {
   if (variant === 'ordered') {
     return 'm-list--ordered';
   }
@@ -64,7 +64,7 @@ class AXAList extends InlineStyles {
 
   updated() {
     if (this.variant === 'icon' && this.icon) {
-      [...this.querySelectorAll('li')].forEach((li) => {
+      [...this.querySelectorAll('li')].forEach(li => {
         li.style.backgroundImage = `url('data:image/svg+xml;charset=UTF-8,${this.icon}')`;
       });
     }

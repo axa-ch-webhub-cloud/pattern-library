@@ -4,21 +4,21 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table - basic functionality')
   .page(`${host}/iframe.html?id=components-table--table`)
-  .beforeEach(async (t) => {
+  .beforeEach(async t => {
     await t.maximizeWindow();
   });
 
 const TAG = 'axa-table';
 const TOPMOST_TABLE = 'axa-table > table';
 
-test('should render table', async (t) => {
+test('should render table', async t => {
   const $el = await Selector(TAG);
   await t.expect($el.exists).ok();
   const $elEl = await $el.find(TOPMOST_TABLE);
   await t.expect($elEl.exists).ok();
 });
 
-test('should render default table on mobile', async (t) => {
+test('should render default table on mobile', async t => {
   await t.resizeWindow(300, 1000);
   const $el = await Selector('axa-table th');
   await t.expect(await $el.getStyleProperty('display')).eql('none');
@@ -28,7 +28,7 @@ fixture('Table - maxheight functionality').page(
   `${host}/iframe.html?id=components-table--table&knob-innerscroll=600&knob-maxheight=160`
 );
 
-test('should render maxheight table on mobile', async (t) => {
+test('should render maxheight table on mobile', async t => {
   await t.resizeWindow(300, 400);
   const $el = await Selector('axa-table');
   const $elBody = await Selector('axa-table tbody');
@@ -50,7 +50,7 @@ fixture('Table - innerscroll functionality').page(
   `${host}/iframe.html?id=components-table--table&knob-innerscroll=500`
 );
 
-test('should render innerscroll table on mobile', async (t) => {
+test('should render innerscroll table on mobile', async t => {
   await t.resizeWindow(300, 1000);
   const $el = await Selector('axa-table');
   const $elChild = await Selector(TOPMOST_TABLE);

@@ -4,16 +4,16 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Dropdown')
   .page(`${host}/iframe.html?id=components-dropdown--dropdown`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render correctly', async (t) => {
+test('should render correctly', async t => {
   const dropdown = await Selector(() => document.querySelector(`axa-dropdown`));
   await t.expect(dropdown.exists).ok();
 });
 
-test('should render arrow icon color correctly', async (t) => {
+test('should render arrow icon color correctly', async t => {
   const expectedColor = 'rgb(0, 0, 143)';
   const dropdownArrowIcon = await Selector(() =>
     document.querySelector(`axa-dropdown .m-dropdown__select-icon svg`)
@@ -23,27 +23,27 @@ test('should render arrow icon color correctly', async (t) => {
     .eql(expectedColor);
 });
 
-test('On Desktop the first element should have index 1 if defaulttitle is set', async (t) => {
+test('On Desktop the first element should have index 1 if defaulttitle is set', async t => {
   const firstOption = await Selector(
     () => document.querySelectorAll(`axa-dropdown .m-dropdown__button`)[0]
   );
 
   await t.expect(firstOption.getAttribute('data-index')).eql('1');
-}).before(async (t) => {
+}).before(async t => {
   await t.maximizeWindow();
 });
 
-test('On mobiles the first element should have index 1 if defaulttitle is set', async (t) => {
+test('On mobiles the first element should have index 1 if defaulttitle is set', async t => {
   const firstOption = await Selector(() =>
     document.querySelector(`axa-dropdown .m-dropdown__option[value='Item 1']`)
   );
 
   await t.expect(firstOption.getAttribute('data-index')).eql('1');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(767, 767);
 });
 
-test('should select first element with key', async (t) => {
+test('should select first element with key', async t => {
   const dropdown = Selector('axa-dropdown');
   const firstOptionFocused = Selector(
     'axa-dropdown button[data-index="1"]:focus'
@@ -56,7 +56,7 @@ test('should select first element with key', async (t) => {
     .ok();
 });
 
-test('should select next element with key if a element is selected', async (t) => {
+test('should select next element with key if a element is selected', async t => {
   const dropdown = Selector('axa-dropdown');
   const firstOption = Selector('axa-dropdown button[data-index="1"]');
   const secondOptionFocused = Selector(
@@ -72,7 +72,7 @@ test('should select next element with key if a element is selected', async (t) =
     .ok();
 });
 
-test('should select previous element with key if a element is selected', async (t) => {
+test('should select previous element with key if a element is selected', async t => {
   const dropdown = Selector('axa-dropdown');
   const secondOption = Selector('axa-dropdown button[data-index="2"]');
   const firstOptionFocused = Selector(
@@ -88,7 +88,7 @@ test('should select previous element with key if a element is selected', async (
     .ok();
 });
 
-test('should select next element with key if a element has focus', async (t) => {
+test('should select next element with key if a element has focus', async t => {
   const dropdown = Selector('axa-dropdown');
   const secondOptionFocused = Selector(
     'axa-dropdown button[data-index="2"]:focus'
@@ -102,7 +102,7 @@ test('should select next element with key if a element has focus', async (t) => 
     .ok();
 });
 
-test('should select previous element with key if a element has focus', async (t) => {
+test('should select previous element with key if a element has focus', async t => {
   const dropdown = Selector('axa-dropdown');
   const firstOptionFocused = Selector(
     'axa-dropdown button[data-index="1"]:focus'
@@ -121,7 +121,7 @@ fixture('Dropdown named').page(
   `${host}//iframe.html?id=components-dropdown--dropdown&knob-defaulttitle=Select%20amount&knob-name=my-insurance`
 );
 
-test('should select entry and fire change event correctly', async (t) => {
+test('should select entry and fire change event correctly', async t => {
   const dropdown = Selector('axa-dropdown');
 
   await t
@@ -137,7 +137,7 @@ test('should select entry and fire change event correctly', async (t) => {
     .contains('"name":"my-insurance"');
 });
 
-test('should open via arrow keys alone', async (t) => {
+test('should open via arrow keys alone', async t => {
   const body = Selector('body');
   const dropdown = Selector('axa-dropdown');
 
@@ -161,7 +161,7 @@ fixture('Dropdown disabled').page(
   `${host}/iframe.html?id=components-dropdown--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
 );
 
-test('should render arrow icon color correctly if disabled', async (t) => {
+test('should render arrow icon color correctly if disabled', async t => {
   const expectedColor = 'rgb(153, 153, 153)';
   const dropdownArrowIcon = await Selector(() =>
     document.querySelector(`axa-dropdown .m-dropdown__select-icon svg`)
@@ -171,7 +171,7 @@ test('should render arrow icon color correctly if disabled', async (t) => {
     .eql(expectedColor);
 });
 
-test('should not set any background color on svg parent span', async (t) => {
+test('should not set any background color on svg parent span', async t => {
   const expectedColor = 'rgba(0, 0, 0, 0)';
   const dropdownArrowIcon = await Selector(() =>
     document.querySelector(`axa-dropdown .m-dropdown__select-icon`)
@@ -184,7 +184,7 @@ test('should not set any background color on svg parent span', async (t) => {
 fixture('Dropdown check mark').page(
   `${host}/iframe.html?id=components-dropdown--dropdown&knob-checkmark=true`
 );
-test('should show checkmark', async (t) => {
+test('should show checkmark', async t => {
   const dropdownCheckmark = await Selector(() =>
     document.querySelector(`axa-dropdown .js-dropdown__check`)
   );
@@ -195,7 +195,7 @@ fixture('Dropdown error').page(
   `${host}/iframe.html?id=components-dropdown--dropdown&knob-invalid=true&knob-error=error`
 );
 
-test('should show error message and have the correct color', async (t) => {
+test('should show error message and have the correct color', async t => {
   const $axaError = await Selector(() =>
     document.querySelector(`axa-dropdown .js-dropdown__error `)
   );
@@ -220,14 +220,14 @@ fixture('Dropdown React').page(
   `${host}/iframe.html?id=examples-dropdown-react--react-component`
 );
 
-test('should render dropdown as reactified component', async (t) => {
+test('should render dropdown as reactified component', async t => {
   const dropdownReact = await Selector(() =>
     document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
   );
   await t.expect(dropdownReact.exists).ok();
 });
 
-test('should exhibit controlled-component behaviour', async (t) => {
+test('should exhibit controlled-component behaviour', async t => {
   const dropdownReact = await Selector(() =>
     document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
   );
@@ -264,7 +264,7 @@ fixture('Dropdown React native').page(
   `${host}/iframe.html?id=examples-dropdown-react--react-component`
 );
 
-test('should exhibit controlled-component behaviour when native', async (t) => {
+test('should exhibit controlled-component behaviour when native', async t => {
   const dropdownReact = await Selector(() =>
     document.querySelector('axa-dropdown[data-test-id="dropdown-react"]')
   );
@@ -333,7 +333,7 @@ fixture('Dropdown React uncontrolled').page(
   `${host}/iframe.html?id=examples-dropdown-react--story-uncontrolled`
 );
 
-test('should allow setting non-initial item via items property', async (t) => {
+test('should allow setting non-initial item via items property', async t => {
   const dropdown = await Selector(() =>
     document.querySelector(
       'axa-dropdown[data-test-id="uncontrolled-dropdown-react"]'
@@ -354,7 +354,7 @@ fixture('Dropdown React uncontrolled').page(
   `${host}/iframe.html?id=examples-dropdown-react--focussable`
 );
 
-test('should fire onFocus/onBlur correctly', async (t) => {
+test('should fire onFocus/onBlur correctly', async t => {
   const dropdown = await Selector(() =>
     document.querySelector(
       'axa-dropdown[data-test-id="focussable-dropdown-react"]'
@@ -391,14 +391,14 @@ fixture('Dropdown Form').page(
   `${host}/iframe.html?id=examples-dropdown-pure-html--in-a-form`
 );
 
-test('should react to value property changes', async (t) => {
+test('should react to value property changes', async t => {
   const getDropdownTitle = ClientFunction(
     () =>
       document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
         .title
   );
 
-  const setValue = ClientFunction((value) => {
+  const setValue = ClientFunction(value => {
     document.querySelector(
       'axa-dropdown[data-test-id="dropdown-forms"]'
     ).value = value;
@@ -416,14 +416,14 @@ test('should react to value property changes', async (t) => {
   await t.expect(await getDropdownTitle()).eql('Français');
 });
 
-test('should react to items property changes', async (t) => {
+test('should react to items property changes', async t => {
   const getDropdownTitle = ClientFunction(
     () =>
       document.querySelector('axa-dropdown[data-test-id="dropdown-forms"]')
         .title
   );
 
-  const setItems = ClientFunction((_items) => {
+  const setItems = ClientFunction(_items => {
     document.querySelector(
       'axa-dropdown[data-test-id="dropdown-forms"]'
     ).items = _items;
@@ -478,7 +478,7 @@ fixture('Dropdown Autocomplete').page(
   `${host}/iframe.html?id=examples-dropdown-pure-html--dropdown-with-lots-of-options`
 );
 
-test('should change selected option by typing', async (t) => {
+test('should change selected option by typing', async t => {
   const dropdown = await Selector(() =>
     document.querySelector('axa-dropdown[data-test-id="dropdown-many"]')
   );

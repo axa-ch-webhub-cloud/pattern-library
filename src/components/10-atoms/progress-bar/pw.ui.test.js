@@ -7,7 +7,7 @@ describe('Progress Bar', () => {
 
     const fontSize = await page.$eval(
       'p',
-      (el) => window.getComputedStyle(el).fontSize
+      el => window.getComputedStyle(el).fontSize
     );
 
     expect(fontSize).toBe('16px');
@@ -34,7 +34,7 @@ describe('Progress Bar', () => {
 
     const borderRadius = await page.$eval(
       '.a-progress-bar__border',
-      (el) => window.getComputedStyle(el).borderRadius
+      el => window.getComputedStyle(el).borderRadius
     );
 
     expect(borderRadius).toBe('0px');

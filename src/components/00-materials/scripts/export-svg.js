@@ -3,17 +3,17 @@ const fs = require('fs');
 const path = require('path');
 const outdent = require('outdent');
 
-const camelise = (str) =>
+const camelise = str =>
   str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) => {
     if (+match === 0) return '';
     return index === 0 ? match.toLowerCase() : match.toUpperCase();
   });
-const componentName = (name) => name.trim().replace(/\s+/g, '-');
-const camelCase = (_camelCase) =>
+const componentName = name => name.trim().replace(/\s+/g, '-');
+const camelCase = _camelCase =>
   camelise(componentName(_camelCase.replace('.', '-')).replace(/-/g, ' '));
-const toClassName = (_className) =>
-  camelCase(_className).replace(/^\w/, (c) => c.toUpperCase());
-const cleanFileName = (_fileName) => {
+const toClassName = _className =>
+  camelCase(_className).replace(/^\w/, c => c.toUpperCase());
+const cleanFileName = _fileName => {
   return _fileName
     .replace(/ /g, '-')
     .replace(/&/, '')
@@ -38,7 +38,7 @@ function readdirAndSaveSvgToJs(importPath, exportPath) {
     }
 
     let namedExports = '';
-    items.forEach((icon) => {
+    items.forEach(icon => {
       if (/\.svg/.test(icon)) {
         const iconPath = path.resolve(importPath, icon);
         const contents = fs
@@ -92,7 +92,7 @@ fs.readdir(importImagesPath, { withFileTypes: true }, (err, dirents) => {
   }
 
   // check directories
-  dirents.forEach((dirent) => {
+  dirents.forEach(dirent => {
     if (dirent.isDirectory() && dirent.name !== '.tmp') {
       readdirAndSaveSvgToJs(
         `${importImagesPath}/${dirent.name}`,

@@ -9,7 +9,7 @@ fixture('Stepper - basic functionality').page(
 const TAG = 'axa-stepper';
 const CLASS = '.m-stepper';
 
-test('should render stepper', async (t) => {
+test('should render stepper', async t => {
   const $axaElem = Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
@@ -22,7 +22,7 @@ test('should render stepper', async (t) => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should render correct amount of steps', async (t) => {
+test('should render correct amount of steps', async t => {
   const amountOfSteps = ClientFunction(
     () => {
       const shadow = document.querySelector(TAG).shadowRoot;
@@ -34,9 +34,9 @@ test('should render correct amount of steps', async (t) => {
   await t.expect(await amountOfSteps()).eql(4);
 });
 
-test('should display correct step number', async (t) => {
+test('should display correct step number', async t => {
   const getStepNumber = ClientFunction(
-    (index) => {
+    index => {
       const shadow = document.querySelector(TAG).shadowRoot;
       const step = shadow.querySelectorAll('.js-stepper__circle')[index];
 
@@ -50,9 +50,9 @@ test('should display correct step number', async (t) => {
   await t.expect(await getStepNumber(2)).eql('4');
 });
 
-test('should display correct step title', async (t) => {
+test('should display correct step title', async t => {
   const getStepTitle = ClientFunction(
-    (index) => {
+    index => {
       const shadow = document.querySelector(TAG).shadowRoot;
       const step = shadow.querySelectorAll('.js-stepper__text')[index];
 
@@ -67,9 +67,9 @@ test('should display correct step title', async (t) => {
   await t.expect(await getStepTitle(3)).eql('Fertig');
 });
 
-test('should display correct step state', async (t) => {
+test('should display correct step state', async t => {
   const getStepState = ClientFunction(
-    (index) => {
+    index => {
       const shadow = document.querySelector(TAG).shadowRoot;
       const step = shadow.querySelectorAll('.js-stepper__step')[index];
 
@@ -100,7 +100,7 @@ test('should display correct step state', async (t) => {
   await t.expect(await getStepState(3)).eql(2);
 });
 
-test('should display correct progress', async (t) => {
+test('should display correct progress', async t => {
   const getProgress = ClientFunction(
     () => {
       const shadow = document.querySelector(TAG).shadowRoot;
@@ -114,9 +114,9 @@ test('should display correct progress', async (t) => {
   await t.expect(await getProgress()).eql('37.5%');
 });
 
-test('should round stepActive down to an integer', async (t) => {
+test('should round stepActive down to an integer', async t => {
   const setStepActive = ClientFunction(
-    (value) => {
+    value => {
       const stepper = document.querySelector(TAG);
       stepper.stepActive = value;
     },
@@ -146,9 +146,9 @@ test('should round stepActive down to an integer', async (t) => {
   await t.expect(await getProgress()).eql('62.5%');
 });
 
-test('should treat stepActive=0 like stepActive=1', async (t) => {
+test('should treat stepActive=0 like stepActive=1', async t => {
   const setStepActive = ClientFunction(
-    (value) => {
+    value => {
       const stepper = document.querySelector(TAG);
       stepper.stepActive = value;
     },
@@ -176,9 +176,9 @@ test('should treat stepActive=0 like stepActive=1', async (t) => {
   await t.expect(await getStepState()).ok();
 });
 
-test('should treat stepProgress=-1 like stepProgress=0', async (t) => {
+test('should treat stepProgress=-1 like stepProgress=0', async t => {
   const setStepProgress = ClientFunction(
-    (value) => {
+    value => {
       const stepper = document.querySelector(TAG);
       stepper.stepProgress = value;
     },
@@ -199,9 +199,9 @@ test('should treat stepProgress=-1 like stepProgress=0', async (t) => {
   await t.expect(await getProgress()).eql('25%');
 });
 
-test('should treat stepProgress=2 like stepProgress=1', async (t) => {
+test('should treat stepProgress=2 like stepProgress=1', async t => {
   const setStepProgress = ClientFunction(
-    (value) => {
+    value => {
       const stepper = document.querySelector(TAG);
       stepper.stepProgress = value;
     },

@@ -209,7 +209,7 @@ class AXARadio extends NoShadowDOM {
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
         const width = noAutoWidth ? labelTextWidth : maxWidth[name];
-        radioButtonGroup[name].forEach((radioButton) => {
+        radioButtonGroup[name].forEach(radioButton => {
           // special case 'noAutoWidth' only impose minWidth on ourselves
           // (suppresses length changes .a.k.a 'pumping effect' between
           // selected/unselected state due to font-weight changes)

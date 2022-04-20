@@ -4,7 +4,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=1`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
@@ -31,7 +31,7 @@ async function _getHeadingElement(t, rank, variant) {
   return $nativeHeadingElement;
 }
 
-test('should render h1 primary correctly on desktop', async (t) => {
+test('should render h1 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
@@ -47,11 +47,11 @@ test('should render h1 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h1 primary correctly on tablet', async (t) => {
+test('should render h1 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
@@ -67,11 +67,11 @@ test('should render h1 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h1 primary correctly on mobile', async (t) => {
+test('should render h1 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', '');
 
@@ -87,17 +87,17 @@ test('should render h1 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=2`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h2 primary correctly on desktop', async (t) => {
+test('should render h2 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
@@ -113,11 +113,11 @@ test('should render h2 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h2 primary correctly on tablet', async (t) => {
+test('should render h2 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
@@ -134,11 +134,11 @@ test('should render h2 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h2 primary correctly on mobile', async (t) => {
+test('should render h2 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', '');
 
@@ -154,17 +154,17 @@ test('should render h2 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.3px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=3`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h3 primary correctly on desktop', async (t) => {
+test('should render h3 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
@@ -180,11 +180,11 @@ test('should render h3 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h3 primary correctly on tablet', async (t) => {
+test('should render h3 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
@@ -200,11 +200,11 @@ test('should render h3 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h3 primary correctly on mobile', async (t) => {
+test('should render h3 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', '');
 
@@ -220,17 +220,17 @@ test('should render h3 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=4`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h4 primary correctly on desktop', async (t) => {
+test('should render h4 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
@@ -246,11 +246,11 @@ test('should render h4 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h4 primary correctly on tablet', async (t) => {
+test('should render h4 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
@@ -266,11 +266,11 @@ test('should render h4 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h4 primary correctly on mobile', async (t) => {
+test('should render h4 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', '');
 
@@ -286,17 +286,17 @@ test('should render h4 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.25px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=5`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h5 primary correctly on desktop', async (t) => {
+test('should render h5 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
@@ -312,11 +312,11 @@ test('should render h5 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h5 primary correctly on tablet', async (t) => {
+test('should render h5 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
@@ -332,11 +332,11 @@ test('should render h5 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h5 primary correctly on mobile', async (t) => {
+test('should render h5 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', '');
 
@@ -352,17 +352,17 @@ test('should render h5 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
 fixture('Heading - Correct CSS attributes')
   .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=6`)
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h6 primary correctly on desktop', async (t) => {
+test('should render h6 primary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
@@ -378,11 +378,11 @@ test('should render h6 primary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h6 primary correctly on tablet', async (t) => {
+test('should render h6 primary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
@@ -398,11 +398,11 @@ test('should render h6 primary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h6 primary correctly on mobile', async (t) => {
+test('should render h6 primary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', '');
 
@@ -418,7 +418,7 @@ test('should render h6 primary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.18px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -426,11 +426,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=1&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h1 secondary correctly on desktop', async (t) => {
+test('should render h1 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
@@ -446,11 +446,11 @@ test('should render h1 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h1 secondary correctly on tablet', async (t) => {
+test('should render h1 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
@@ -466,11 +466,11 @@ test('should render h1 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.62px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h1 secondary correctly on mobile', async (t) => {
+test('should render h1 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '1', 'secondary');
 
@@ -486,7 +486,7 @@ test('should render h1 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -494,11 +494,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=2&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h2 secondary correctly on desktop', async (t) => {
+test('should render h2 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
@@ -514,11 +514,11 @@ test('should render h2 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h2 secondary correctly on tablet', async (t) => {
+test('should render h2 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
@@ -534,11 +534,11 @@ test('should render h2 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.48px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h2 secondary correctly on mobile', async (t) => {
+test('should render h2 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '2', 'secondary');
 
@@ -554,7 +554,7 @@ test('should render h2 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.3px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -562,11 +562,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=3&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h3 secondary correctly on desktop', async (t) => {
+test('should render h3 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
@@ -582,11 +582,11 @@ test('should render h3 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h3 secondary correctly on tablet', async (t) => {
+test('should render h3 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
@@ -602,11 +602,11 @@ test('should render h3 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.36px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h3 secondary correctly on mobile', async (t) => {
+test('should render h3 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '3', 'secondary');
 
@@ -622,7 +622,7 @@ test('should render h3 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -630,11 +630,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=4&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h4 secondary correctly on desktop', async (t) => {
+test('should render h4 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
@@ -650,11 +650,11 @@ test('should render h4 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h4 secondary correctly on tablet', async (t) => {
+test('should render h4 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
@@ -670,11 +670,11 @@ test('should render h4 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.28px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h4 secondary correctly on mobile', async (t) => {
+test('should render h4 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '4', 'secondary');
 
@@ -690,7 +690,7 @@ test('should render h4 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.25px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -698,11 +698,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=5&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h5 secondary correctly on desktop', async (t) => {
+test('should render h5 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
@@ -718,11 +718,11 @@ test('should render h5 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h5 secondary correctly on tablet', async (t) => {
+test('should render h5 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
@@ -738,11 +738,11 @@ test('should render h5 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.24px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h5 secondary correctly on mobile', async (t) => {
+test('should render h5 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '5', 'secondary');
 
@@ -758,7 +758,7 @@ test('should render h5 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });
 
@@ -766,11 +766,11 @@ fixture('Heading - Correct CSS attributes')
   .page(
     `${host}/iframe.html?id=components-heading--heading&knob-Rank=6&knob-Secondary%20(variant)=true`
   )
-  .afterEach(async (t) => {
+  .afterEach(async t => {
     await t.maximizeWindow();
   });
 
-test('should render h6 secondary correctly on desktop', async (t) => {
+test('should render h6 secondary correctly on desktop', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
@@ -786,11 +786,11 @@ test('should render h6 secondary correctly on desktop', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(desktopBreakpoint, desktopBreakpoint);
 });
 
-test('should render h6 secondary correctly on tablet', async (t) => {
+test('should render h6 secondary correctly on tablet', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
@@ -806,11 +806,11 @@ test('should render h6 secondary correctly on tablet', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.2px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(tabletBreakpoint, tabletBreakpoint);
 });
 
-test('should render h6 secondary correctly on mobile', async (t) => {
+test('should render h6 secondary correctly on mobile', async t => {
   const $headingElement = await Selector(TAG);
   const $axaElemShadowEl = await _getHeadingElement(t, '6', 'secondary');
 
@@ -826,6 +826,6 @@ test('should render h6 secondary correctly on mobile', async (t) => {
   await t
     .expect($axaElemShadowEl.getStyleProperty('letter-spacing'))
     .eql('-0.18px');
-}).before(async (t) => {
+}).before(async t => {
   await t.resizeWindow(mobileBreakpoint, mobileBreakpoint);
 });

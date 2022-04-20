@@ -6,7 +6,7 @@ fixture('Radio - basic functionality').page(
   `${host}/iframe.html?id=examples-radio-pure-html--default`
 );
 
-test('should render radio button', async (t) => {
+test('should render radio button', async t => {
   const radio = await Selector('axa-radio');
   await t.expect(radio.exists).ok();
 });
@@ -15,7 +15,7 @@ fixture('Radio - controlled-component behaviour under React 1').page(
   `${host}/iframe.html?id=examples-radio-react--controlled-component-react-ified`
 );
 
-test('should show controlled-component behaviour in button mode', async (t) => {
+test('should show controlled-component behaviour in button mode', async t => {
   const radio1 = await Selector('axa-radio#radio1');
   const radio2 = await Selector('axa-radio#radio2');
   const checked = await Selector('#checked');
@@ -49,7 +49,7 @@ fixture('Radio - controlled-component behaviour under React 2').page(
   `${host}/iframe.html?id=examples-radio-react--controlled-component-react-ified`
 );
 
-test('should show controlled-component behaviour in default mode', async (t) => {
+test('should show controlled-component behaviour in default mode', async t => {
   const radio1 = await Selector('axa-radio#radio1');
   const radio2 = await Selector('axa-radio#radio2');
   const checked = await Selector('#checked');

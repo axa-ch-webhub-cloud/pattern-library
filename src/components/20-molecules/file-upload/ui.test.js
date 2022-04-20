@@ -16,7 +16,7 @@ const validFiles = [
   './ui-test-files/testbig.pdf',
 ];
 
-test('should render file-upload', async (t) => {
+test('should render file-upload', async t => {
   const $axaElem = await Selector(FILE_UPLOAD_TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -26,7 +26,7 @@ test('should render file-upload', async (t) => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should upload file and switch view', async (t) => {
+test('should upload file and switch view', async t => {
   const $inputFileInputElem = await Selector(
     () =>
       document
@@ -46,7 +46,7 @@ test('should upload file and switch view', async (t) => {
   await t.expect($fileOverviewElem.exists).ok();
 });
 
-test("shouldn't upload file because it's an invalid type", async (t) => {
+test("shouldn't upload file because it's an invalid type", async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -64,7 +64,7 @@ test("shouldn't upload file because it's an invalid type", async (t) => {
   await t.expect($fileOverviewElem.exists).notOk();
 });
 
-test('should convert .png file to .jpg', async (t) => {
+test('should convert .png file to .jpg', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -83,7 +83,7 @@ test('should convert .png file to .jpg', async (t) => {
   await t.expect($figcaptionElem.textContent).eql('test.jpg');
 });
 
-test('should delete image', async (t) => {
+test('should delete image', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -124,7 +124,7 @@ fixture('File upload - maxSizeOfSingleFileKB prop').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1&knob-maxSizeOfAllFilesKB=500&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
 
-test('should exceed maximum size of single file', async (t) => {
+test('should exceed maximum size of single file', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -151,7 +151,7 @@ test('should exceed maximum size of single file', async (t) => {
   await t.expect($fileName.innerText).eql('File size exceeds maximum size');
 });
 
-test('should exceed maximum size of single PDF file', async (t) => {
+test('should exceed maximum size of single PDF file', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -181,7 +181,7 @@ test('should exceed maximum size of single PDF file', async (t) => {
 fixture('File upload - maxNumberOfFiles prop').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=1&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
-test('should remove addMoreInputFile', async (t) => {
+test('should remove addMoreInputFile', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -199,7 +199,7 @@ test('should remove addMoreInputFile', async (t) => {
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
 
-test('should exceed maximum number of files', async (t) => {
+test('should exceed maximum number of files', async t => {
   const $inputFileInputElem = await Selector(
     () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
     { dependencies: { FILE_UPLOAD_TAG } }
@@ -230,7 +230,7 @@ test('should exceed maximum number of files', async (t) => {
 fixture('File upload - maxSizeOfAllFilesKB prop').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=100&knob-maxSizeOfAllFilesKB=1&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
-test('should exceed maximum size of all files', async (t) => {
+test('should exceed maximum size of all files', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -251,7 +251,7 @@ test('should exceed maximum size of all files', async (t) => {
 fixture('File upload - Remove file event').page(
   `${host}/iframe.html?id=examples-file-upload-react--story&viewMode=story`
 );
-test('should throw an event if a file was removed from the list', async (t) => {
+test('should throw an event if a file was removed from the list', async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -289,7 +289,7 @@ fixture('Access original Files').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-Width=455px&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1051&knob-maxSizeOfAllFilesKB=7411&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-wrongFileTypeText=Your%20file%20does%20not%20correspond%20with%20our%20allowed%20file-types&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred%3A&knob-preventFileCompression=true&viewMode=story`
 );
 
-test(`shouldn't convert .png file to .jpg`, async (t) => {
+test(`shouldn't convert .png file to .jpg`, async t => {
   const $inputFileInputElem = await Selector(() =>
     document
       .querySelector('axa-file-upload')
@@ -312,7 +312,7 @@ fixture('File upload - reset').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=5&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
 
-test('should upload and then reset all files', async (t) => {
+test('should upload and then reset all files', async t => {
   const $inputFileInputElem = await Selector(
     () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
     { dependencies: { FILE_UPLOAD_TAG } }
@@ -345,7 +345,7 @@ fixture('File upload - invalidate').page(
   `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=5&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
 );
 
-test('should upload all files and then invalidate a single file', async (t) => {
+test('should upload all files and then invalidate a single file', async t => {
   const $inputFileInputElem = await Selector(
     () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
     { dependencies: { FILE_UPLOAD_TAG } }

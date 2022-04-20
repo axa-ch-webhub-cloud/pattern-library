@@ -114,7 +114,7 @@ class AXAAccordeon extends LitElement {
   getFirstChild() {
     return Array.prototype.slice
       .call(this.parentNode.querySelectorAll('*'))
-      .find((el) => {
+      .find(el => {
         return el.tagName.toLowerCase().includes('axa-accordeon');
       });
   }

@@ -127,7 +127,7 @@ class AXACheckbox extends NoShadowDOM {
   // (like <axa-checkbox><span>my label</span></axa-checkbox>),
   // where those children (here, <span>) may not be DOM-constructed yet when using lit-element's default microtask timing!)
   performUpdate() {
-    new Promise((resolve) =>
+    new Promise(resolve =>
       // eslint-disable-next-line no-promise-executor-return
       window.requestAnimationFrame(() => resolve())
     ).then(() => super.performUpdate());

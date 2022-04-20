@@ -5,7 +5,7 @@ import './index';
 import readme from './README.md';
 
 storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
-  .addDecorator((story) => withNoBorder(story))
+  .addDecorator(story => withNoBorder(story))
   .addDecorator(withNoBorder)
   .addParameters({
     readme,

@@ -39,7 +39,7 @@ class AXATextarea extends NoShadowDOM {
          * Number with the value 0 and the user would not be able write
          * anything.
          */
-        converter: (value) =>
+        converter: value =>
           // eslint-disable-next-line no-restricted-globals
           !isNaN(parseFloat(value)) && isFinite(value)
             ? Number(value)
@@ -160,17 +160,17 @@ class AXATextarea extends NoShadowDOM {
     this.nativeInput.classList.remove('focus');
   }
 
-  handleFocus = (ev) => {
+  handleFocus = ev => {
     this.nativeInput.classList.add('focus');
     this.onFocus(ev);
   };
 
-  handleBlur = (ev) => {
+  handleBlur = ev => {
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
   };
 
-  handleInput = (ev) => {
+  handleInput = ev => {
     this.onChange(ev);
 
     // are we a 'controlled' input in the React sense?

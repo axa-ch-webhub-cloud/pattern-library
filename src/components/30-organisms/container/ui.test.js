@@ -9,7 +9,7 @@ fixture('Container - basic functionality').page(
 const TAG = 'axa-container';
 const CLASS = '.o-container';
 
-test('should render container', async (t) => {
+test('should render container', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(

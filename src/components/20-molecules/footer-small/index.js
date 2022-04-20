@@ -115,7 +115,7 @@ class AXAFooterSmall extends InlineStyles {
                       <a
                         href="${languageItem.href}"
                         class="${classMap(classes)}"
-                        @click=${(ev) => this.handleLanguageClick(ev, index)}
+                        @click=${ev => this.handleLanguageClick(ev, index)}
                         >${languageItem.textContent}</a
                       >
                     </li>
@@ -132,7 +132,7 @@ class AXAFooterSmall extends InlineStyles {
                     <li class="m-footer-small__list-item">
                       <a
                         href="${disclaimerItem.href}"
-                        @click=${(ev) => this.handleDisclaimerClick(ev, index)}
+                        @click=${ev => this.handleDisclaimerClick(ev, index)}
                         >${disclaimerItem.textContent}</a
                       >
                     </li>

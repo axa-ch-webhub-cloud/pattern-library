@@ -11,7 +11,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     changelog,
   })
   .add('Get files from onChange event', () => {
-    const changeHandler = (e) => {
+    const changeHandler = e => {
       const files = e.detail;
 
       if (files.length > 0) {
@@ -19,7 +19,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
           <div class="js-file-upload__list-wrapper">
             <h3>The following files were selected:</h3>
             <ol>
-              ${files.map((file) => {
+              ${files.map(file => {
                 return html` <li>${file.name}</li> `;
               })}
             </ol>
@@ -49,7 +49,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
     return wrapper;
   })
   .add('In a form', () => {
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
       e.preventDefault();
 
       const imgUpload = document.querySelector('.js-file-upload__file-upload');
@@ -59,7 +59,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
           <div class="js-file-upload__list-wrapper">
             <h3>The following files were selected:</h3>
             <ol>
-              ${imgUpload.files.map((file) => {
+              ${imgUpload.files.map(file => {
                 return html` <li>${file.name}</li> `;
               })}
             </ol>

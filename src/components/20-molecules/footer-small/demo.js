@@ -73,12 +73,12 @@ storiesOf('Examples/Footer Small/Pure HTML', module)
     wrapper.appendChild(clickedDisclaimer);
     wrapper.appendChild(footerSmall);
 
-    footerSmall.addEventListener('axa-language-click', (languageEvent) => {
+    footerSmall.addEventListener('axa-language-click', languageEvent => {
       const languageResult = document.getElementById('active-language');
       languageResult.innerText = `Language - Index Clicked: ${languageEvent.detail}`;
     });
 
-    footerSmall.addEventListener('axa-disclaimer-click', (disclaimerEvent) => {
+    footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
       const clickedDisclaimers = document.getElementById('clicked-disclaimer');
       clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${disclaimerEvent.detail}`;
     });

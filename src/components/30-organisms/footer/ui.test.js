@@ -5,14 +5,14 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer - Basic Functionality')
   .page(`${host}/iframe.html?id=components-footer--footer`)
-  .beforeEach(async (t) => {
+  .beforeEach(async t => {
     await t.maximizeWindow();
   });
 
 const TAG = 'axa-footer';
 const CLASS = '.o-footer';
 
-test('should render footer with correct background color', async (t) => {
+test('should render footer with correct background color', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -23,7 +23,7 @@ test('should render footer with correct background color', async (t) => {
   await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
 });
 
-test('should correctly render footer titles', async (t) => {
+test('should correctly render footer titles', async t => {
   const $footerTitle = FooterAccessor.getSlotNode('column-0-title');
 
   await t.expect($footerTitle.textContent).contains('axa and you');
@@ -37,7 +37,7 @@ test('should correctly render footer titles', async (t) => {
     .eql('uppercase');
 });
 
-test('should correctly render footer link content', async (t) => {
+test('should correctly render footer link content', async t => {
   const $contactLink = FooterAccessor.getSlotNode('column-0-item-0');
   await t.expect($contactLink.exists).ok();
 
@@ -52,7 +52,7 @@ test('should correctly render footer link content', async (t) => {
   await t.expect($contactLink.getStyleProperty('font-size')).eql('14px');
 });
 
-test('should correctly render footer link content of second column', async (t) => {
+test('should correctly render footer link content of second column', async t => {
   const $contactLink = FooterAccessor.getSlotNode('column-1-item-0');
   await t.expect($contactLink.exists).ok();
 
@@ -60,7 +60,7 @@ test('should correctly render footer link content of second column', async (t) =
   await t.expect($contactLink.visible).ok();
 });
 
-test('should render facebook social media button', async (t) => {
+test('should render facebook social media button', async t => {
   const $facebookButton = FooterAccessor.getSlotNode('social-item-0');
 
   await t.expect($facebookButton.visible).ok();
@@ -78,7 +78,7 @@ test('should render facebook social media button', async (t) => {
   await t.expect($facebookSvgSubElement.childElementCount).eql(0);
 });
 
-test('should render accordion only in mobile mode', async (t) => {
+test('should render accordion only in mobile mode', async t => {
   await t.resizeWindow(576, 400);
   const $accordion = Selector(() =>
     document
@@ -91,7 +91,7 @@ test('should render accordion only in mobile mode', async (t) => {
   await t.expect($accordion.visible).ok();
 });
 
-test('should correctly open accordion on click', async (t) => {
+test('should correctly open accordion on click', async t => {
   await t.resizeWindow(575, 400);
 
   const $accordionButtons = Selector(
@@ -136,7 +136,7 @@ test('should correctly open accordion on click', async (t) => {
     .eql('0px');
 });
 
-test('should correctly render social media title in desktop view', async (t) => {
+test('should correctly render social media title in desktop view', async t => {
   const $socialMediaTitle = FooterAccessor.getSlotNode('social-title');
 
   await t.expect($socialMediaTitle.textContent).contains('stay in touch');
@@ -157,7 +157,7 @@ fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=examples-footer-react--callbacks`
 );
 
-test('should render footer with working react callbacks', async (t) => {
+test('should render footer with working react callbacks', async t => {
   await t.setTestSpeed(0.5);
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
@@ -202,7 +202,7 @@ fixture('Footer - Demo Smoketest').page(
   `${host}/iframe.html?id=examples-footer-pure-html--callbacks`
 );
 
-test('should render footer with working native callbacks', async (t) => {
+test('should render footer with working native callbacks', async t => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -237,7 +237,7 @@ fixture('Footer - without content').page(
   `${host}/iframe.html?id=examples-footer-pure-html--without-content`
 );
 
-test('should not render empty accordions on mobile', async (t) => {
+test('should not render empty accordions on mobile', async t => {
   const $footerTitleColumn0 = Selector(() =>
     document
       .querySelector('axa-footer')
@@ -252,9 +252,9 @@ test('should not render empty accordions on mobile', async (t) => {
   await t.expect($footerTitleColumn0.exists).eql(false);
   await t.expect($footerTitleColumn1.exists).eql(false);
 })
-  .before(async (t) => {
+  .before(async t => {
     await t.resizeWindow(767, 767);
   })
-  .after(async (t) => {
+  .after(async t => {
     await t.maximizeWindow();
   });

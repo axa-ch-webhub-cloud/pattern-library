@@ -4,7 +4,7 @@ import '../../../components/10-atoms/text';
 import '../utils/contact-footer';
 import styles from './index.scss';
 
-const getFormattedGitCommitMessage = (answerJson) => {
+const getFormattedGitCommitMessage = answerJson => {
   const keyword = 'Publish\n\n - ';
   const seperator = '<br>';
 
@@ -22,7 +22,7 @@ const getFormattedGitCommitMessage = (answerJson) => {
   return '';
 };
 
-const getDateFromGitCommit = (answerJson) => {
+const getDateFromGitCommit = answerJson => {
   const formattedDate = new Date(answerJson.items[0].commit.author.date);
   return formattedDate.toLocaleString(navigator.language);
 };

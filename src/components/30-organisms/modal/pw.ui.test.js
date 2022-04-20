@@ -3,7 +3,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const delayTimeAnimation = 300;
 
 function delay(time) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, time);
   });
 }
@@ -91,7 +91,7 @@ describe('Modal', () => {
 
     const modalMaxWidth = await page.$eval(
       '.o-modal__container',
-      (el) => window.getComputedStyle(el).maxWidth
+      el => window.getComputedStyle(el).maxWidth
     );
 
     expect(modalMaxWidth).toBe('500px');
@@ -102,12 +102,12 @@ describe('Modal', () => {
 
     const firstChildElementMargins = await page.$eval(
       'axa-heading[rank="2"]',
-      (el) => window.getComputedStyle(el).margin
+      el => window.getComputedStyle(el).margin
     );
 
     const lastChildElementMargins = await page.$eval(
       'axa-button',
-      (el) => window.getComputedStyle(el).margin
+      el => window.getComputedStyle(el).margin
     );
 
     const noMarginTop = '0px 0px 18px';

@@ -16,7 +16,7 @@ describe('List', () => {
       `${host}/iframe.html?id=components-list--list&viewMode=story`
     );
     await page.waitForSelector(tag);
-    const computedStyle = await page.$eval('axa-list > li', (el) =>
+    const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
     expect(computedStyle.paddingLeft).toBe('32px');
@@ -25,7 +25,7 @@ describe('List', () => {
 
     const listStyleType = await page.$eval(
       'ul.m-list',
-      (el) => window.getComputedStyle(el).listStyleType
+      el => window.getComputedStyle(el).listStyleType
     );
     expect(listStyleType).toBe('none');
   });
@@ -35,7 +35,7 @@ describe('List', () => {
       `${host}/iframe.html?id=components-list--list&knob-variant=ordered&knob-icon=&viewMode=story`
     );
     await page.waitForSelector(tag);
-    const computedStyle = await page.$eval('axa-list > li', (el) =>
+    const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
     expect(computedStyle.paddingLeft).toBe('0px');
@@ -44,7 +44,7 @@ describe('List', () => {
 
     const listStyleType = await page.$eval(
       'ol.m-list',
-      (el) => window.getComputedStyle(el).listStyleType
+      el => window.getComputedStyle(el).listStyleType
     );
     expect(listStyleType).toBe('none');
   });
@@ -54,7 +54,7 @@ describe('List', () => {
       `${host}/iframe.html?id=components-list--list&knob-variant=unstyled&knob-icon=&viewMode=story`
     );
     await page.waitForSelector(tag);
-    const computedStyle = await page.$eval('axa-list > li', (el) =>
+    const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
     expect(computedStyle.paddingLeft).toBe('0px');
@@ -63,7 +63,7 @@ describe('List', () => {
 
     const listStyleType = await page.$eval(
       'ul.m-list',
-      (el) => window.getComputedStyle(el).listStyleType
+      el => window.getComputedStyle(el).listStyleType
     );
     expect(listStyleType).toBe('none');
   });
@@ -73,7 +73,7 @@ describe('List', () => {
       `${host}/iframe.html?id=components-list--list&knob-variant=icon&knob-icon=<svg%20xmlns="http://www.w3.org/2000/svg"%20width="24"%20height="24"%20viewBox="0%200%2024%2024"><path%20fill="&viewMode=story#1cc54e"%20d="M9%2016.17L4.83%2012l-1.42%201.41L9%2019%2021%207l-1.41-1.41z"/></svg>&viewMode=story`
     );
     await page.waitForSelector(tag);
-    const computedStyle = await page.$eval('axa-list > li', (el) =>
+    const computedStyle = await page.$eval('axa-list > li', el =>
       window.getComputedStyle(el)
     );
     expect(computedStyle.paddingLeft).toBe('32px');
@@ -85,7 +85,7 @@ describe('List', () => {
 
     const listStyleType = await page.$eval(
       'ul.m-list',
-      (el) => window.getComputedStyle(el).listStyleType
+      el => window.getComputedStyle(el).listStyleType
     );
     expect(listStyleType).toBe('none');
   });

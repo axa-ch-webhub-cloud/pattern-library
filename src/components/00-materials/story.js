@@ -18,17 +18,17 @@ const filepathsImages = reqSvgsImages.keys();
 let assetsLoadedAlready = 0;
 let assetsToRenderNext = 50;
 
-const _extractIconNameFromPath = (path) =>
+const _extractIconNameFromPath = path =>
   path.substring(2).split(FILE_ENDING).join('');
 
-const icons = filepathsIcons.map((path) => {
+const icons = filepathsIcons.map(path => {
   return {
     svgstring: reqSvgsIcons(path).default,
     path: _extractIconNameFromPath(path),
   };
 });
 
-const images = filepathsImages.map((path) => {
+const images = filepathsImages.map(path => {
   return {
     svgstring: reqSvgsImages(path).default,
     path: _extractIconNameFromPath(path),
@@ -81,7 +81,7 @@ const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
 export const IconsAndImages = () => {
   const mixColors = boolean('change icon and background color', false);
 
-  window.onCallbackInput = (ev) => {
+  window.onCallbackInput = ev => {
     const { value } = ev.target;
 
     if (value) {
@@ -117,18 +117,18 @@ export const IconsAndImages = () => {
       return;
     }
 
-    const filteredIcons = icons.filter((icon) => {
+    const filteredIcons = icons.filter(icon => {
       const foundSearchTerm = icon.path.includes(value.trim());
       return foundSearchTerm ? icon : '';
     });
 
-    const filteredImages = images.filter((image) => {
+    const filteredImages = images.filter(image => {
       const foundSearchTerm = image.path.includes(value.trim());
       return foundSearchTerm ? image : '';
     });
 
     renderAreaIcons.innerHTML = filteredIcons
-      .map((i) => mapToIconItem(i))
+      .map(i => mapToIconItem(i))
       .join('');
 
     iconHeader.innerHTML =
@@ -137,7 +137,7 @@ export const IconsAndImages = () => {
         : `${filteredIcons.length} Icons:`;
 
     renderAreaImages.innerHTML = filteredImages
-      .map((i) => mapToIconItem(i, 'materials__single-image'))
+      .map(i => mapToIconItem(i, 'materials__single-image'))
       .join('');
 
     imageHeader.innerHTML =
@@ -292,7 +292,7 @@ export const IconsAndImages = () => {
               ${icons.length} Icons:
             </axa-text>
             <div class="materials__icon-container">
-              ${repeat(icons.slice(0, assetsToRenderNext), (i) =>
+              ${repeat(icons.slice(0, assetsToRenderNext), i =>
                 unsafeHTML(mapToIconItem(i))
               )}
             </div>
@@ -303,7 +303,7 @@ export const IconsAndImages = () => {
               ${images.length} Images:
             </axa-text>
             <div class="materials__images-container">
-              ${repeat(images.slice(0, assetsToRenderNext / 2), (i) =>
+              ${repeat(images.slice(0, assetsToRenderNext / 2), i =>
                 unsafeHTML(mapToIconItem(i, 'materials__single-image'))
               )}
             </div>

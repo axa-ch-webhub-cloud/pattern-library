@@ -5,7 +5,7 @@ const validPhoneNumber = '795213848';
 let hostElement;
 
 const selectGermany = async () => {
-  return page.evaluate((evaluateTag) => {
+  return page.evaluate(evaluateTag => {
     document
       .querySelector(evaluateTag)
       .shadowRoot.querySelector('[data-value="+49"]')
@@ -13,10 +13,10 @@ const selectGermany = async () => {
   }, tag);
 };
 
-const selectNthCountry = async (n) => {
+const selectNthCountry = async n => {
   await page.click('.js-dropdown__toggle');
   await page.waitForSelector('.m-dropdown__content');
-  return page.evaluate((nth) => {
+  return page.evaluate(nth => {
     document
       .querySelector('axa-input-phone')
       .shadowRoot.querySelector(`button[data-index="${nth}"]`)
@@ -24,7 +24,7 @@ const selectNthCountry = async (n) => {
   }, n);
 };
 
-const writePhoneNumber = async (number) => {
+const writePhoneNumber = async number => {
   return page.fill('.a-input-text__input', number);
 };
 
@@ -38,7 +38,7 @@ const assertValidComponent = async () => {
   expect(await page.isVisible('.m-input-phone__error')).not.toBeTruthy();
 };
 
-const assertChangeValue = async (phoneNumber) => {
+const assertChangeValue = async phoneNumber => {
   expect(await page.textContent('#inputtext-react-testoutput')).toBe(
     `Entered phone number (onChange): ${phoneNumber}`
   );

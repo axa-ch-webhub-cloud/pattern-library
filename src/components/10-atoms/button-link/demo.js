@@ -17,7 +17,7 @@ storiesOf('Examples/Button Link/Pure HTML', module)
     const btn = document.createElement('axa-button-link');
     let counter = 0;
     btn.innerHTML = `You clicked me: ${counter}`;
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', e => {
       e.preventDefault();
       counter += 1;
       btn.innerHTML = `You clicked me: ${counter}`;

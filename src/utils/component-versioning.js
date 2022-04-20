@@ -6,21 +6,21 @@ const RESERVED_CHARACTER = '{'; // not allowed in HTML tags or their attributes 
 // and also not part of static template strings due to ${...} syntax!
 
 // helper functions
-const toKebabCase = (dottedVersionString) =>
+const toKebabCase = dottedVersionString =>
   `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
 
 const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
-const extractDependencies = (componentClass) => {
+const extractDependencies = componentClass => {
   const { versions, tagName } = componentClass;
   // extract all dependencies...
   const dependencies = Object.keys(versions)
     // ... by comparing with master-component tag name
-    .filter((name) => name !== tagName)
+    .filter(name => name !== tagName)
     // ... and sorting longest-first (e.g. axa-button-link comes before axa-button)
     .sort((a, b) => b.length - a.length);
   // pair the list of dependency tag names with their versions
-  return [dependencies, dependencies.map((_tagName) => versions[_tagName])];
+  return [dependencies, dependencies.map(_tagName => versions[_tagName])];
 };
 
 const oldTag = (tagName, closing = '', openingBracket = '<') =>
@@ -48,7 +48,7 @@ const newTag = (tagName, aVersion, closing) =>
 // without needing the special-character escaping necessary for
 // a reg-exp-based alternative (the latter is marginally faster, but our strings here are short)
 const rewrite = (someStrings, aTagName, aVersion) =>
-  someStrings.map((string) =>
+  someStrings.map(string =>
     string
       .split(oldTag(aTagName))
       .join(newTag(aTagName, aVersion))
@@ -69,7 +69,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
   const customVersion = typeof versionInfo === 'string' && versionInfo;
   let versionedTagName = '';
   // process all dependant components that it lists...
-  dependencies.forEach((dependency) => {
+  dependencies.forEach(dependency => {
     const componentClass =
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
@@ -120,7 +120,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
 
 // prettier-ignore
 const versionedHtml =
-  (componentInstance) =>
+  componentInstance =>
     (strings, ...args) => {
     // derive class from instance
       const componentClass = componentInstance.constructor;

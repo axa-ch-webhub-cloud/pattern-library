@@ -22,7 +22,7 @@ const BLUEPRINT = new Date(BLUEPRINT_YEAR, BLUEPRINT_MONTH, BLUEPRINT_DAY); // s
 
 const DATE_SEPARATOR = '.'; // hard-coded on purpose! Our dates are dd.mm.yyyy, irrespective of locale (#1845)
 
-export const getStartOfWeek = (date) => {
+export const getStartOfWeek = date => {
   return startOfWeek(date, { weekStartsOn: WEEK_STARTS_ON });
 };
 
@@ -56,11 +56,11 @@ const getMonthMatrix = (date, selectedDate, allowedYears = []) => {
     { weekStartsOn: WEEK_STARTS_ON }
   );
   // enumerate days within week ranges
-  weekRanges.forEach((weekDay) =>
+  weekRanges.forEach(weekDay =>
     eachDayOfInterval({
       start: startOfISOWeek(weekDay),
       end: endOfISOWeek(weekDay),
-    }).forEach((day) =>
+    }).forEach(day =>
       cells.push(dayToCell(day, date, selectedDate, today, allowedYears))
     )
   );
@@ -68,7 +68,7 @@ const getMonthMatrix = (date, selectedDate, allowedYears = []) => {
   return cells;
 };
 
-const clearStringFromIEGeneratedCharacters = (string) =>
+const clearStringFromIEGeneratedCharacters = string =>
   typeof string === 'string' ? string.replace(/[^\x00-\x7F]/g, '') : ''; // eslint-disable-line no-control-regex
 
 const addLeadingZeroes = (rawNumber, numDigits) => {
@@ -124,7 +124,7 @@ const getAllLocaleMonthsArray = (locale = 'en-UK') => {
     objDate.setMonth(i);
     let month = objDate.toLocaleString(locale, { month: 'long' });
     // Month identifier of some languages (f.a. italian) are not capitalized at IE. They have invisible characters at position 0. So we need a RegEx here.
-    month = month.replace(/[a-zA-Z]/, (match) => match.toUpperCase());
+    month = month.replace(/[a-zA-Z]/, match => match.toUpperCase());
     finalArray.push(month);
   }
   return finalArray;

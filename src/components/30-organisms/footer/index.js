@@ -18,7 +18,7 @@ import InlineStyles from '../../../utils/inline-styles';
 
 const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
-const _setMaxHeightToZero = (panel) => {
+const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
@@ -75,7 +75,7 @@ class AXAFooter extends InlineStyles {
       }
       if (rawNode.hasChildNodes()) {
         const children = Array.prototype.slice.call(rawNode.childNodes);
-        children.forEach((ch) => {
+        children.forEach(ch => {
           this._revealChildrenWithSlotAttribute(ch, slotElements);
         });
       }
@@ -128,14 +128,14 @@ class AXAFooter extends InlineStyles {
       this.querySelectorAll('[slot]')
     );
 
-    const childrenArray = slotElements.map((c) =>
+    const childrenArray = slotElements.map(c =>
       this._setSlotNameFromNestedChildToDirectChildNodeOfComponent(c)
     );
 
-    const filter = (criteria) => (child) =>
+    const filter = criteria => child =>
       child.getAttribute('slot').includes(criteria);
 
-    const noHeaderFilter = (criteria) => (child) => {
+    const noHeaderFilter = criteria => child => {
       const { nodeName } = child;
       return (
         filter(criteria)(child) && !HEADINGS.includes(nodeName.toLowerCase())
@@ -185,21 +185,21 @@ class AXAFooter extends InlineStyles {
     const links = [...this.querySelectorAll('a')];
     if (remove) {
       // clean up listeners
-      links.forEach((link) =>
+      links.forEach(link =>
         link.removeEventListener('click', this._handleLinkClick)
       );
       return;
     }
     // add event listener to each link/<a> tag, which is inside a slot element,
     // hence cannot use @click, as it resides in light DOM
-    links.forEach((link) =>
+    links.forEach(link =>
       link.addEventListener('click', this._handleLinkClick)
     );
   }
 
   // throttle re-rendering to once per frame (so that children added late by browser HTML parsers are defined)
   performUpdate() {
-    new Promise((resolve) =>
+    new Promise(resolve =>
       // eslint-disable-next-line no-promise-executor-return
       window.requestAnimationFrame(() => resolve())
     ).then(() => super.performUpdate());
@@ -219,7 +219,7 @@ class AXAFooter extends InlineStyles {
       'js-footer__main-content-panel': true,
     };
 
-    const accordionCaretState = (index) => {
+    const accordionCaretState = index => {
       return {
         'o-footer__accordion-button-caret': true,
         'o-footer__accordion-button-caret--open':
@@ -245,7 +245,7 @@ class AXAFooter extends InlineStyles {
                     ? html`
                         <button
                           class="o-footer__accordion-button"
-                          @click="${(ev) => this._handleAccordionClick(0, ev)}"
+                          @click="${ev => this._handleAccordionClick(0, ev)}"
                         >
                           <slot
                             name="column-0-title"
@@ -276,7 +276,7 @@ class AXAFooter extends InlineStyles {
                     ? html`
                         <button
                           class="o-footer__accordion-button"
-                          @click="${(ev) => this._handleAccordionClick(1, ev)}"
+                          @click="${ev => this._handleAccordionClick(1, ev)}"
                         >
                           <slot
                             name="column-1-title"
@@ -336,7 +336,7 @@ class AXAFooter extends InlineStyles {
         '.js-footer__main-content-panel'
       );
 
-    [].forEach.call(panels, (panel) => {
+    [].forEach.call(panels, panel => {
       _setMaxHeightToZero(panel);
     });
 
@@ -355,7 +355,7 @@ class AXAFooter extends InlineStyles {
     }
   };
 
-  _handleLinkClick = (ev) => {
+  _handleLinkClick = ev => {
     if (this.clickevents) {
       ev.preventDefault();
 
