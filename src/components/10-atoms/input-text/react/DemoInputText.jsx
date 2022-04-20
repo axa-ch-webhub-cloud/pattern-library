@@ -5,11 +5,11 @@ const DemoInputText = () => {
   const [firstName, setFirstName] = useState('controlled');
   const [name, setName] = useState('');
 
-  const handleChange = ev => {
+  const handleChange = (ev) => {
     setFirstName(ev.target.value);
   };
 
-  const handleNameChange = ev => {
+  const handleNameChange = (ev) => {
     setName(ev.target.value);
   };
 

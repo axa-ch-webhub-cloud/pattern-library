@@ -7,7 +7,7 @@ describe('Link', () => {
     );
     const cssDisplay = await page.$eval(
       '#axalink_icon > .a-link',
-      el => window.getComputedStyle(el).display
+      (el) => window.getComputedStyle(el).display
     );
 
     expect(cssDisplay).toBe('inline-flex');
@@ -19,7 +19,7 @@ describe('Link', () => {
     );
     const cssDisplay = await page.$eval(
       '#axalink_no_icon > .a-link',
-      el => window.getComputedStyle(el).display
+      (el) => window.getComputedStyle(el).display
     );
 
     expect(cssDisplay).toBe('inline');

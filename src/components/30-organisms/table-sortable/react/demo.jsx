@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
@@ -74,7 +73,7 @@ storiesOf('Examples/Table Sortable/React', module)
       <TableSortable
         model={model}
         datesortcolumnindex="3"
-        onClick={ev => {
+        onClick={(ev) => {
           window.alert(JSON.stringify(ev));
         }}
       />,

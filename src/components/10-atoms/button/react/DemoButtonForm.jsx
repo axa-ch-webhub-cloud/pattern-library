@@ -4,13 +4,13 @@ import AXAButton from './AXAButton';
 const DemoButtonForm = () => {
   const [buttonText, setButtonText] = useState(`0 times clicked`);
 
-  const handleSubmitAndChangeText = ev => {
+  const handleSubmitAndChangeText = (ev) => {
     ev.preventDefault();
     const count = parseInt(buttonText, 10) || 0;
     setButtonText(`${count + 1} times clicked`);
   };
 
-  const handleSubmit = ev => {
+  const handleSubmit = (ev) => {
     ev.preventDefault();
   };
 

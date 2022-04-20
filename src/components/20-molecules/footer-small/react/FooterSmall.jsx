@@ -4,16 +4,16 @@ import createAXAFooterSmallReact from '../index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
-const DemoFooterSmall = props => {
+const DemoFooterSmall = (props) => {
   const [activeLanguage, setActiveLanguageIndex] = useState('-');
 
   const [disclaimerChange, setDisclaimerIndex] = useState('-');
 
-  const handleAXAFooterLanguageClicked = languageIndex => {
+  const handleAXAFooterLanguageClicked = (languageIndex) => {
     setActiveLanguageIndex(languageIndex);
   };
 
-  const handleAXAFooterDisclaimerClicked = disclaimerIndex => {
+  const handleAXAFooterDisclaimerClicked = (disclaimerIndex) => {
     setDisclaimerIndex(disclaimerIndex);
   };
 

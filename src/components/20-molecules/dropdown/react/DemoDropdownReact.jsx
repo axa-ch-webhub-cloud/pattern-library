@@ -15,10 +15,11 @@ const DemoDropdown = () => {
   const [error, setError] = useState('');
   const [native, setNative] = useState(false);
 
-  const findName = val =>
-    (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
+  const findName = (val) =>
+    (items[findIndex(items, (item) => item.value === val)] || { name: '' })
+      .name;
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setValue(frozen ? value : event.target.value);
     const oldName = findName(value);
     const newName = event.target.name;

@@ -16,7 +16,7 @@ const $elementTestimonial = Selector(() => document.querySelector(TAG), {
   dependencies: { TAG },
 });
 
-test('should render testimonials', async t => {
+test('should render testimonials', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
@@ -26,14 +26,14 @@ test('should render testimonials', async t => {
   await t.expect($elementTestimonialShadowEl.exists).ok();
 });
 
-test('should set title text', async t => {
+test('should set title text', async (t) => {
   const $titleElement = await $elementTestimonialShadow.find(
     '.o-testimonials__title'
   );
   await t.expect($titleElement.textContent).eql('Customer Reviews');
 });
 
-test('should set subtitle text', async t => {
+test('should set subtitle text', async (t) => {
   const $subTitleElement = await $elementTestimonialShadow.find(
     '.o-testimonials__subtitle'
   );
@@ -44,12 +44,12 @@ test('should set subtitle text', async t => {
     );
 });
 
-test('should find axa-carousel tag if attribute showallinline is not set', async t => {
+test('should find axa-carousel tag if attribute showallinline is not set', async (t) => {
   const $carouselElement = await $elementTestimonialShadow.find('.js-carousel');
   await t.expect($carouselElement.exists).ok();
 });
 
-test('should set text to uppercase for elements with class "o-testimonials__author"', async t => {
+test('should set text to uppercase for elements with class "o-testimonials__author"', async (t) => {
   const $firstAuthorElementInDocument = await $elementTestimonial.find(
     '[class="o-testimonials__author"]'
   );
@@ -64,14 +64,14 @@ fixture('Testimonials - attribute showallinline is set').page(
   `${host}/iframe.html?id=components-testimonials--testimonials&knob-title=Customer%20Reviews&knob-Text=AXA%20works%20hard%20to%20provide%20the%20best%20service%20possible%20to%20its%20customers.&knob-autorotatetime=5000&knob-keysenabled=true&knob-showallinline=true&viewMode=story`
 );
 
-test('should find inline class if attribute showallinline is set', async t => {
+test('should find inline class if attribute showallinline is set', async (t) => {
   const $inlineElement = await $elementTestimonialShadow.find(
     '.o-testimonials__content__inline'
   );
   await t.expect($inlineElement.exists).ok();
 });
 
-test('should set margin for elements with class "o-testimonials__vertical-margin"', async t => {
+test('should set margin for elements with class "o-testimonials__vertical-margin"', async (t) => {
   const $firstAuthorElementInDocument = await $elementTestimonial.find(
     '[class="o-testimonials__vertical-margin"]'
   );

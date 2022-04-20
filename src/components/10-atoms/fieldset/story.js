@@ -54,11 +54,7 @@ export const Fieldset = () => {
             >${radioElement}</axa-fieldset
           >
         `
-      : html`
-          <axa-fieldset error="${error}">
-            ${radioElement}
-          </axa-fieldset>
-        `}
+      : html` <axa-fieldset error="${error}"> ${radioElement} </axa-fieldset> `}
   `;
   render(template, wrapper);
   return wrapper;

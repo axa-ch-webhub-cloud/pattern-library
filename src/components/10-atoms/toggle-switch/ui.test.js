@@ -8,7 +8,7 @@ fixture('Toggle Switch - basic functionality').page(
   `${host}/iframe.html?id=components-toggle-switch--toggle-switch`
 );
 
-test('should render toggle-switch', async t => {
+test('should render toggle-switch', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
 
@@ -21,7 +21,7 @@ test('should render toggle-switch', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should set correct background-color to inactive toggle-switch-slider', async t => {
+test('should set correct background-color to inactive toggle-switch-slider', async (t) => {
   const getBackgroundColor = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
@@ -38,7 +38,7 @@ test('should set correct background-color to inactive toggle-switch-slider', asy
   await t.expect(await getBackgroundColor()).eql('rgb(153, 153, 153)');
 });
 
-test('should set correct background-color to active toggle-switch-slider', async t => {
+test('should set correct background-color to active toggle-switch-slider', async (t) => {
   const setProperties = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     toggleSwitch.active = true;
@@ -63,7 +63,7 @@ test('should set correct background-color to active toggle-switch-slider', async
   await t.expect(await getBackgroundColor()).eql('rgb(28, 197, 78)');
 });
 
-test('should set correct background-color to inactive disabled toggle-switch-slider', async t => {
+test('should set correct background-color to inactive disabled toggle-switch-slider', async (t) => {
   const setProperties = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     toggleSwitch.disabled = true;
@@ -88,7 +88,7 @@ test('should set correct background-color to inactive disabled toggle-switch-sli
   await t.expect(await getBackgroundColor()).eql('rgb(245, 245, 245)');
 });
 
-test('should set correct background-color to active disabled toggle-switch-slider', async t => {
+test('should set correct background-color to active disabled toggle-switch-slider', async (t) => {
   const setProperties = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
 
@@ -115,7 +115,7 @@ test('should set correct background-color to active disabled toggle-switch-slide
   await t.expect(await getBackgroundColor()).eql('rgb(159, 217, 180)');
 });
 
-test('should add attributes checked and disabled to input if needed', async t => {
+test('should add attributes checked and disabled to input if needed', async (t) => {
   const setProperties = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
 
@@ -123,7 +123,7 @@ test('should add attributes checked and disabled to input if needed', async t =>
     toggleSwitch.disabled = true;
   });
 
-  const getInputAttribute = ClientFunction(attributeName => {
+  const getInputAttribute = ClientFunction((attributeName) => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
@@ -140,8 +140,8 @@ test('should add attributes checked and disabled to input if needed', async t =>
   await t.expect(await getInputAttribute('disabled')).ok();
 });
 
-test('should not add attributes checked and disabled to input if not needed', async t => {
-  const getInputAttribute = ClientFunction(attributeName => {
+test('should not add attributes checked and disabled to input if not needed', async (t) => {
+  const getInputAttribute = ClientFunction((attributeName) => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     const toggleSwitchShadow = toggleSwitch.shadowRoot;
 
@@ -156,7 +156,7 @@ test('should not add attributes checked and disabled to input if not needed', as
   await t.expect(await getInputAttribute('disabled')).notOk();
 });
 
-test('should change state when clicked and not disabled', async t => {
+test('should change state when clicked and not disabled', async (t) => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document
@@ -182,7 +182,7 @@ test('should change state when clicked and not disabled', async t => {
   await t.expect(await isChecked()).ok();
 });
 
-test('should not change state when clicked and disabled', async t => {
+test('should not change state when clicked and disabled', async (t) => {
   const setProperties = ClientFunction(() => {
     const toggleSwitch = document.querySelector('axa-toggle-switch');
     toggleSwitch.disabled = true;
@@ -219,7 +219,7 @@ fixture('Toggle Switch - controlled mode without onChange (active=false)').page(
   `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`
 );
 
-test('should stay inactive when clicked', async t => {
+test('should stay inactive when clicked', async (t) => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document
@@ -249,7 +249,7 @@ fixture('Toggle Switch - controlled mode without onChange (active=true)').page(
   `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`
 );
 
-test('should stay active when clicked', async t => {
+test('should stay active when clicked', async (t) => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document
@@ -279,7 +279,7 @@ fixture('Toggle Switch - controlled mode with onChange').page(
   `${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-onchange&viewMode=story`
 );
 
-test('should change state when clicked', async t => {
+test('should change state when clicked', async (t) => {
   const performClick = async () => {
     const toggleSwitch = Selector(() =>
       document

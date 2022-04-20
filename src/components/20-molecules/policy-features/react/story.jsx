@@ -1,4 +1,3 @@
-/* global document */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';

@@ -4,7 +4,7 @@ import AXAButtonLink from './AXAButtonLink';
 const DemoButtonLinkClick = () => {
   const [count, setCount] = useState(0);
 
-  const handleAXAButtonClick = e => {
+  const handleAXAButtonClick = (e) => {
     e.preventDefault();
     setCount(count + 1);
   };

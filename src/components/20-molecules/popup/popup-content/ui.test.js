@@ -9,7 +9,7 @@ fixture('Popup content - basic functionality').page(
 const TAG = 'axa-popup-content';
 const CLASS = '.a-popup__content';
 
-test('should render popup-content', async t => {
+test('should render popup-content', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(

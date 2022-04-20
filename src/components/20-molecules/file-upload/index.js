@@ -37,7 +37,7 @@ const IMAGE_FILE_TYPES = 'image/jpg, image/jpeg, image/png';
 // helper functions:
 
 // bytes from kBytes
-export const getBytesFromKilobyte = kilobyte => 1024 * kilobyte;
+export const getBytesFromKilobyte = (kilobyte) => 1024 * kilobyte;
 
 // find file in a list of files, returning a match (or its index) if found (undefined otherwise)
 const findFileById = (files, file, indexOnly) => {
@@ -87,7 +87,7 @@ const findAndManipulate = (
   deletions.forEach(({ where: _where, foundAt: _foundAt }) =>
     _where.splice(_foundAt, 1)
   ); // splice performs in-place modification!
-  appends.forEach(_where => _where.push(file));
+  appends.forEach((_where) => _where.push(file));
   // return summary of record'ed cases
   return result;
 };
@@ -203,7 +203,7 @@ class AXAFileUpload extends LitElement {
     if (this.allowedFileTypes !== '') {
       // filter out files with wrong MIME type
       const validFileTypesFiles = [...files].filter(
-        file => file.type && this.allowedFileTypes.indexOf(file.type) > -1
+        (file) => file.type && this.allowedFileTypes.indexOf(file.type) > -1
       );
 
       // we have at least one wrong-MIME-type file?
@@ -338,7 +338,7 @@ class AXAFileUpload extends LitElement {
 
   async addFiles(droppedFiles, removeGlobalMessage) {
     // generate id to match original files with compressed one if this.preventFileCompression is set
-    const droppedFilesWithID = droppedFiles.map(file => {
+    const droppedFilesWithID = droppedFiles.map((file) => {
       file.id = createRefId();
       return file;
     });
@@ -351,7 +351,7 @@ class AXAFileUpload extends LitElement {
     this.numberOfDroppedFiles += droppedFilesWithID.length;
 
     const notImagesFiles = [...droppedFilesWithID].filter(
-      file => IMAGE_FILE_TYPES.indexOf(file.type) === -1
+      (file) => IMAGE_FILE_TYPES.indexOf(file.type) === -1
     );
 
     // compress all images. png's will become jpeg's and unrecognised files will be deleted. (all pdf's were removed)
@@ -477,9 +477,8 @@ class AXAFileUpload extends LitElement {
       originalFilesLeftover
     );
 
-    this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
-      faultyOriginalFiles
-    );
+    this.faultyOriginalFiles =
+      this.faultyOriginalFiles.concat(faultyOriginalFiles);
 
     this.fireCustomChangeEvent();
   }
@@ -667,9 +666,7 @@ class AXAFileUpload extends LitElement {
           class="m-file-upload__icon-wrapper"
           @click=${this.handleAddMoreInputClick}
         >
-          <div class="m-file-upload__icon-layer">
-            ${ADD_ICON}
-          </div>
+          <div class="m-file-upload__icon-layer">${ADD_ICON}</div>
         </div>
         <figcaption
           class="m-file-upload__img-caption js-file-upload__img-caption"

@@ -4,7 +4,7 @@ import '../../../components/10-atoms/text';
 import '../utils/contact-footer';
 import styles from './index.scss';
 
-const getFormattedGitCommitMessage = answerJson => {
+const getFormattedGitCommitMessage = (answerJson) => {
   const keyword = 'Publish\n\n - ';
   const seperator = '<br>';
 
@@ -22,7 +22,7 @@ const getFormattedGitCommitMessage = answerJson => {
   return '';
 };
 
-const getDateFromGitCommit = answerJson => {
+const getDateFromGitCommit = (answerJson) => {
   const formattedDate = new Date(answerJson.items[0].commit.author.date);
   return formattedDate.toLocaleString(navigator.language);
 };
@@ -47,15 +47,13 @@ export const WhatsNew = () => {
 
   const xhttp = new XMLHttpRequest();
   // eslint-disable-next-line func-names
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
-      document.querySelector(
-        '#what-is-new__github-response'
-      ).innerHTML = getFormattedGitCommitMessage(responseJson);
-      document.querySelector(
-        '#what-is-new__github-response-date'
-      ).innerHTML = getDateFromGitCommit(responseJson);
+      document.querySelector('#what-is-new__github-response').innerHTML =
+        getFormattedGitCommitMessage(responseJson);
+      document.querySelector('#what-is-new__github-response-date').innerHTML =
+        getDateFromGitCommit(responseJson);
     }
   };
   xhttp.open(

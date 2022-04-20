@@ -7,11 +7,11 @@ describe('Accordeon', () => {
 
     const accordeonContentMaxHeight = await page.$eval(
       '.m-accordeon__content',
-      el => window.getComputedStyle(el).maxHeight
+      (el) => window.getComputedStyle(el).maxHeight
     );
 
     expect(
-      await page.$eval('.m-accordeon__content', el =>
+      await page.$eval('.m-accordeon__content', (el) =>
         el.classList.contains('m-accordeon__content--open')
       )
     ).toBeTruthy();
@@ -39,7 +39,7 @@ describe('Accordeon', () => {
 
     const accordeonContainerColor = await page.$eval(
       '.m-accordeon__title-container',
-      el => window.getComputedStyle(el).color
+      (el) => window.getComputedStyle(el).color
     );
 
     expect(accordeonContainerColor).toBe('rgb(204, 204, 204)');

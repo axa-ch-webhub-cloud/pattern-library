@@ -72,7 +72,7 @@ class Swipe {
     this.timeDown = null;
   }
 
-  _handleTouchStart = evt => {
+  _handleTouchStart = (evt) => {
     this.xDown = evt.touches[0].clientX;
     this.yDown = evt.touches[0].clientY;
     this.timeDown = Date.now();
@@ -80,7 +80,7 @@ class Swipe {
     this.yDiff = 0;
   };
 
-  _handleTouchMove = evt => {
+  _handleTouchMove = (evt) => {
     this.handleTouchMove(evt);
   };
 

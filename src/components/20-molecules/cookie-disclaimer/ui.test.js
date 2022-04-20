@@ -9,7 +9,7 @@ fixture('Cookie disclaimer - basic functionality').page(
 const TAG = 'axa-cookie-disclaimer';
 const CLASS = '.m-cookie-disclaimer';
 
-test('should render cookie-disclaimer', async t => {
+test('should render cookie-disclaimer', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -19,7 +19,7 @@ test('should render cookie-disclaimer', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should set opacity', async t => {
+test('should set opacity', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -29,7 +29,7 @@ test('should set opacity', async t => {
   await t.expect($axaElemShadowEl.getStyleProperty('opacity')).eql('0.95');
 });
 
-test('should store in localStorage the date of when accepted', async t => {
+test('should store in localStorage the date of when accepted', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaBtnShadow = await Selector(() =>
@@ -50,7 +50,7 @@ test('should store in localStorage the date of when accepted', async t => {
     .within(time - 1000, time + 1000);
 });
 
-test('should not render once accepted', async t => {
+test('should not render once accepted', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaBtnShadow = await Selector(() =>

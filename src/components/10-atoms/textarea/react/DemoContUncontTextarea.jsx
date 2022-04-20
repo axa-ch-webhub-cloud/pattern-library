@@ -5,11 +5,11 @@ const DemoContUncontTextarea = () => {
   const [message, setMessage] = useState('controlled');
   const [name, setName] = useState('');
 
-  const handleChange = ev => {
+  const handleChange = (ev) => {
     setMessage(ev.target.value);
   };
 
-  const handleNameChange = ev => {
+  const handleNameChange = (ev) => {
     setName(ev.target.value);
   };
 

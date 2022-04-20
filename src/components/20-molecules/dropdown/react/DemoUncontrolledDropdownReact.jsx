@@ -3,7 +3,7 @@ import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXATextReact from './AXATextReact';
 
-const DemoUncontrolledDropdown = props => {
+const DemoUncontrolledDropdown = (props) => {
   const items = [
     { name: props.item1, value: 'Item 1' },
     { name: props.item2, value: 'Item 2', selected: true },
@@ -25,7 +25,7 @@ const DemoUncontrolledDropdown = props => {
         checkMark={props.checkMark}
         disabled={props.disabled}
         // eslint-disable-next-line no-console
-        onChange={value =>
+        onChange={(value) =>
           (document.getElementById(
             'checkbox-output'
           ).innerHTML = `Value: ${JSON.stringify(value)}`)

@@ -31,7 +31,7 @@ const AUTOSUGGEST_INACTIVITY_DELAY = 300; // milliseconds
 let openDropdownInstance;
 
 // helper functions
-const shouldMove = elem => {
+const shouldMove = (elem) => {
   const boundingBox = elem.getBoundingClientRect();
   const bottomIsInViewport =
     boundingBox.bottom <=
@@ -40,7 +40,7 @@ const shouldMove = elem => {
   return !bottomIsInViewport && enoughSpaceToMove;
 };
 
-const handleViewportCheck = elem => {
+const handleViewportCheck = (elem) => {
   if (elem && shouldMove(elem)) {
     elem.style.maxHeight = DROPDOWN_UL_MAXHEIGHT;
   }
@@ -61,36 +61,37 @@ const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${_disabled}"
-      >${name}</option
     >
+      ${name}
+    </option>
   `;
 };
 
-const contentItemsMapper = (clickHandler, defaultTitle) => (
-  { name, value, selected, _disabled },
-  index
-) => {
-  const classes = {
-    'm-dropdown__item': true,
-    'm-dropdown__item--is-selected': selected,
-  };
-  return _disabled
-    ? html``
-    : html`
-        <li class="${classMap(classes)}" title="${name}">
-          <button
-            type="button"
-            @click="${clickHandler}"
-            tabindex="-1"
-            class="m-dropdown__button js-dropdown__button"
-            data-index="${index + (defaultTitle ? 1 : 0)}"
-            data-value="${value}"
-          >
-            ${name}
-          </button>
-        </li>
-      `;
-};
+// prettier-ignore
+const contentItemsMapper =
+  (clickHandler, defaultTitle) =>
+    ({ name, value, selected, _disabled }, index) => {
+      const classes = {
+        'm-dropdown__item': true,
+        'm-dropdown__item--is-selected': selected,
+      };
+      return _disabled
+        ? html``
+        : html`
+          <li class="${classMap(classes)}" title="${name}">
+            <button
+              type="button"
+              @click="${clickHandler}"
+              tabindex="-1"
+              class="m-dropdown__button js-dropdown__button"
+              data-index="${index + (defaultTitle ? 1 : 0)}"
+              data-value="${value}"
+            >
+              ${name}
+            </button>
+          </li>
+        `;
+    };
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
@@ -431,7 +432,7 @@ class AXADropdown extends NoShadowDOM {
       changedProperties.size === 1
     ) {
       // make change explicit
-      const selectedItem = this.items.find(item => item.selected);
+      const selectedItem = this.items.find((item) => item.selected);
       if (selectedItem) {
         this.value = selectedItem.value;
       }
@@ -473,16 +474,11 @@ class AXADropdown extends NoShadowDOM {
 
     return html`
       ${label &&
-        html`
-          <label for="${refId}" class="m-dropdown__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}
-          </label>
-        `}
+      html`
+        <label for="${refId}" class="m-dropdown__label">
+          ${label} ${required ? html` * ` : ''}
+        </label>
+      `}
       <div class="m-dropdown__wrapper" @keyup="${handleKeyUp}">
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
@@ -504,9 +500,7 @@ class AXADropdown extends NoShadowDOM {
                 .concat(items)
                 .map((item, i) => nativeItemsMapper(item, i))}
             </select>
-            <span class="m-dropdown__select-icon">
-              ${ARROW_ICON}
-            </span>
+            <span class="m-dropdown__select-icon"> ${ARROW_ICON} </span>
           </div>
           <!-- NATIVE END -->
 
@@ -575,13 +569,13 @@ class AXADropdown extends NoShadowDOM {
 
     this._autosuggestDictionary =
       items
-        .filter(item => !item.disabled && item.name)
+        .filter((item) => !item.disabled && item.name)
         .map((item, index) => {
           // normalize word for purposes of matching
           const word = item.name.toLowerCase();
           // construct a set of all letters in word
           // (used for an early filter over keystrokes)
-          word.split('').forEach(letter => {
+          word.split('').forEach((letter) => {
             letters.add(letter.toLowerCase());
           });
           return `${INDEX_END}${word}${WORD_END}${index}`;

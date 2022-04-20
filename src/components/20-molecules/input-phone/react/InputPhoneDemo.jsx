@@ -7,12 +7,12 @@ const DemoInputPhone = () => {
   const [frozen, setfrozen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(defaultValue);
 
-  const handleFrozen = event => {
+  const handleFrozen = (event) => {
     event.stopPropagation;
     setfrozen(event.target.checked);
   };
 
-  const handleChange = value => {
+  const handleChange = (value) => {
     if (!frozen) {
       setPhoneNumber(value);
     }

@@ -22,19 +22,19 @@ export default {
 function getFirstChildOfEachAxaCustomElement() {
   return Array.prototype.slice
     .call(document.querySelectorAll('*'))
-    .filter(el => el.tagName.toUpperCase().startsWith('AXA-'))
-    .map(el =>
+    .filter((el) => el.tagName.toUpperCase().startsWith('AXA-'))
+    .map((el) =>
       el.shadowRoot ? el.shadowRoot.querySelector('*') : el.querySelector('*')
     );
 }
 
 function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   if (shouldDrawBorder) {
-    elements.forEach(el => {
+    elements.forEach((el) => {
       el.style.border = '5px red solid';
     });
   } else {
-    elements.forEach(el => {
+    elements.forEach((el) => {
       el.style.border = 'none';
     });
   }

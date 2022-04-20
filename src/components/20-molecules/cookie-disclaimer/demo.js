@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -6,7 +5,7 @@ import './index';
 import readme from './README.md';
 
 storiesOf('Examples/Cookie Disclaimer/Pure HTML', module)
-  .addDecorator(story => withNoBorder(story))
+  .addDecorator((story) => withNoBorder(story))
   .addDecorator(withNoBorder)
   .addParameters({
     readme,

@@ -23,7 +23,7 @@ const isNativeShadowDOM = (window || global).ShadowRoot
 
 // @TODO: REMOVE ONCE IE11 is deprecated!!!!
 // equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
+const eventIsTrusted = (e) => e.screenX || e.screenY || e.clientX || e.clientY;
 
 class AXAButton extends InlineStyles {
   static get tagName() {
@@ -132,7 +132,7 @@ class AXAButton extends InlineStyles {
 
     // If someone fires a click on the button and its type is submit then trigger fake button
     // press
-    this.onclick = e => {
+    this.onclick = (e) => {
       // call handle click and pass flag to be sure that handle click does not call
       // us back.
       this.handleClick(e, true);

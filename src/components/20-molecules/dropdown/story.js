@@ -33,7 +33,7 @@ export const Dropdown = () => {
   const cropText = boolean('cropText', false);
   const showValue = boolean('showValue', false);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { target, detail } = e;
     target.dataset.change = JSON.stringify(detail);
   };

@@ -55,7 +55,7 @@ class AXAText extends NoShadowDOM {
   customRender() {
     // do we have 'pure', non-empty text, e.g. <axa-text>Hello, World</axa-text>?
     const nonWhitespaceTextNodes = [...this.childNodes].filter(
-      node => node.nodeType === TEXT_NODE_TYPE && node.textContent.trim()
+      (node) => node.nodeType === TEXT_NODE_TYPE && node.textContent.trim()
     );
     if (nonWhitespaceTextNodes.length) {
       // yes, wrap it in 1 <p> node to keep screenreaders happy (they offer

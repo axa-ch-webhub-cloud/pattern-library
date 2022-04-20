@@ -9,7 +9,7 @@ fixture('Popup button - basic functionality').page(
 const TAG = 'axa-popup-button';
 const CLASS = '.a-popup-button';
 
-test('should render popup-button', async t => {
+test('should render popup-button', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(

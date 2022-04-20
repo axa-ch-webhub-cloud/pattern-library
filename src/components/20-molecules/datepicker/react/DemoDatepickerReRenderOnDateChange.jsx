@@ -20,8 +20,8 @@ const DemoDatepickerReRenderOnEveryKeyStroke = () => {
         id="datepicker-react-inputfield-rerender-on-date-change"
         data-test-id="datepicker-react-rerender-on-date-change"
         locale="de-CH"
-        onDateChange={d => setDate(d)}
-        onChange={e => {
+        onDateChange={(d) => setDate(d)}
+        onChange={(e) => {
           setValue(e.target.value);
           setDate(null);
         }}

@@ -1,4 +1,3 @@
-/* global document */
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';
@@ -45,7 +44,7 @@ storiesOf('Examples/Checkbox/React', module)
           variant={variant}
           required={required}
           styled={styled}
-          onChange={e =>
+          onChange={(e) =>
             (document.getElementById(
               'checkbox-output'
             ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)

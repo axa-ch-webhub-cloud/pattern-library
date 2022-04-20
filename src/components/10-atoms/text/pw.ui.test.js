@@ -10,7 +10,7 @@ describe('Text', () => {
 
     const fontSize = await page.$eval(
       '#root > div > axa-text > p',
-      el => window.getComputedStyle(el).fontSize
+      (el) => window.getComputedStyle(el).fontSize
     );
 
     expect(fontSize).toBe('14px');

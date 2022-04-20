@@ -1,4 +1,3 @@
-/* global document */
 import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React, { PureComponent } from 'react';
@@ -69,7 +68,7 @@ storyInputText.add('Story', () => {
           inputmode={inputmode}
           autofocus={autofocus}
           currency={currency}
-          onChange={evt => this.setState({ value: evt.target.value })}
+          onChange={(evt) => this.setState({ value: evt.target.value })}
         />
       );
     }

@@ -9,7 +9,7 @@ fixture('Top content bar - basic functionality').page(
 const TAG = 'axa-top-content-bar';
 const CLASS = '.m-top-content-bar';
 
-test('should render top-content-bar', async t => {
+test('should render top-content-bar', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -19,7 +19,7 @@ test('should render top-content-bar', async t => {
   await t.expect($axaElemShadowEl.exists).ok();
 });
 
-test('should render warning top-content-bar', async t => {
+test('should render warning top-content-bar', async (t) => {
   const setWarning = ClientFunction(() => {
     document.querySelector('axa-top-content-bar').variant = 'warning';
   });
@@ -36,7 +36,7 @@ test('should render warning top-content-bar', async t => {
     .eql('rgb(201, 20, 50)');
 });
 
-test('should render axa-button top-content-bar', async t => {
+test('should render axa-button top-content-bar', async (t) => {
   const setButton = ClientFunction(() => {
     document.querySelector('axa-top-content-bar').ctatext = 'Click';
   });
@@ -52,7 +52,7 @@ test('should render axa-button top-content-bar', async t => {
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
 });
 
-test('should render axa-button-link top-content-bar', async t => {
+test('should render axa-button-link top-content-bar', async (t) => {
   const setButton = ClientFunction(() => {
     document.querySelector('axa-top-content-bar').ctatext = 'Click';
     document.querySelector('axa-top-content-bar').href = 'http://www.axa.ch';
@@ -74,7 +74,7 @@ fixture('Top content bar - inline link').page(
   `${host}/iframe.html?id=components-top-content-bar--top-content-bar&knob-Text=Undefined%20flighting%20object%20detected%20in%20your%20region.%20People%20are%20paniking.%20Stay%20calm&knob-Add%20axa-link=Test`
 );
 
-test('should render link as hyperlink and underline in top-content-bar', async t => {
+test('should render link as hyperlink and underline in top-content-bar', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemLink = await Selector(() =>

@@ -22,7 +22,7 @@ const DemoFocussableDropdown = () => {
         data-test-id="focussable-dropdown-react"
         defaultTitle="Please Select"
         items={items}
-        onChange={value => {
+        onChange={(value) => {
           output.innerHTML += `${value.target.name},`;
         }}
         onFocus={() => {
@@ -42,7 +42,7 @@ const DemoFocussableDropdown = () => {
       />
       <span
         data-test-id="focussable-dropdown-react-event-log"
-        ref={element => {
+        ref={(element) => {
           output = element;
         }}
         style={{

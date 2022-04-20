@@ -36,7 +36,8 @@ class AXAProgressBar extends LitElement {
         return 100;
       }
       return (this.value / this.max) * 100;
-    } else if (this.value > 100) {
+    }
+    if (this.value > 100) {
       return 100;
     }
     return this.value;

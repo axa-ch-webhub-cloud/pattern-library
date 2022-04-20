@@ -19,7 +19,7 @@ const DemoDatepickerNoInputfield = () => {
             month={1}
             day={1}
             // eslint-disable-next-line no-console
-            onDateChange={date =>
+            onDateChange={(date) =>
               (document.getElementById(
                 'checkbox-output'
               ).innerHTML = `Date changed to: ${date}`)

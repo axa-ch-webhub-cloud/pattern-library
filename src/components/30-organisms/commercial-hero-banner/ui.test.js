@@ -9,7 +9,7 @@ fixture('Commercial Hero Banner - basic functionality').page(
 const TAG = 'axa-commercial-hero-banner';
 const ROOT_CLASS = '.o-commercial-hero-banner';
 
-test('should render commercial-hero-banner', async t => {
+test('should render commercial-hero-banner', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
@@ -23,7 +23,7 @@ fixture('Commercial Hero Banner - Dark Mode').page(
   `${host}/iframe.html?id=components-commercial-hero-banner--commercial-hero-banner&knob-Variant=dark&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
 );
 
-test('should render in dark mode', async t => {
+test('should render in dark mode', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.getAttribute('variant')).eql('dark');
   const $axaElemShadow = await Selector(
@@ -52,11 +52,11 @@ fixture('Commercial Hero Banner - Content')
   .page(
     `${host}/iframe.html?id=components-commercial-hero-banner--commercial-hero-banner&knob-Variant=light&knob-Image%20Source=https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.maximizeWindow();
   });
 
-test('should render in light mode', async t => {
+test('should render in light mode', async (t) => {
   const $axaElemShadow = await Selector(
     () => document.querySelector(TAG).shadowRoot,
     { dependencies: { TAG } }
@@ -77,7 +77,7 @@ async function _assertLightBackgroundGradient(t, container) {
     );
 }
 
-test('should use correct typography for mobile view', async t => {
+test('should use correct typography for mobile view', async (t) => {
   await t.resizeWindow(575, 700);
 
   const title = await _getTitleNode(t);
@@ -102,7 +102,7 @@ test('should use correct typography for mobile view', async t => {
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
-test('should use correct typography for tablet view', async t => {
+test('should use correct typography for tablet view', async (t) => {
   await t.resizeWindow(576, 700);
 
   const title = await _getTitleNode(t);
@@ -127,7 +127,7 @@ test('should use correct typography for tablet view', async t => {
   await t.expect(disclaimer.getStyleProperty('font-weight')).eql('400');
 });
 
-test('should use correct typography for desktop view', async t => {
+test('should use correct typography for desktop view', async (t) => {
   await t.resizeWindow(992, 700);
 
   const title = await _getTitleNode(t);
@@ -156,11 +156,11 @@ fixture('Commercial Hero Banner - Check addons')
   .page(
     `${host}/iframe.html?id=examples-commercial-hero-banner-pure-html--with-badges`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.maximizeWindow();
   });
 
-test('should render badge and addon', async t => {
+test('should render badge and addon', async (t) => {
   const $axaHeroBanner = await Selector(TAG);
 
   const $addon = $axaHeroBanner.find(
@@ -195,7 +195,7 @@ async function _getDisclaimerNode(t) {
   return disclaimerNode;
 }
 
-test('should set correct width for button', async t => {
+test('should set correct width for button', async (t) => {
   const expectedWidth = '157px';
   const $axaButtonLink = await Selector('axa-button-link');
 

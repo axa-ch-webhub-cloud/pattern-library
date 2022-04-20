@@ -9,7 +9,7 @@ const DemoTextReact = () => {
     setText(!text);
   };
 
-  const handleCounter = ev => {
+  const handleCounter = (ev) => {
     setCounter(counter + 1);
   };
 

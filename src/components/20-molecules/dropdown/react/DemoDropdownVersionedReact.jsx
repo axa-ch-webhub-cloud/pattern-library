@@ -34,7 +34,7 @@ const DemoVersionedDropdown = () => {
         checkMark={props.checkMark}
         disabled={props.disabled}
         // eslint-disable-next-line no-console
-        onChange={value =>
+        onChange={(value) =>
           (document.getElementById(
             'checkbox-output'
           ).innerHTML = `axa-dropdown version ${numericalVersion} 

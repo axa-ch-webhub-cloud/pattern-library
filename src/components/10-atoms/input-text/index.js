@@ -45,7 +45,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
          * Number with the value 0 and the user would not be able write
          * anything.
          */
-        converter: value =>
+        converter: (value) =>
           // eslint-disable-next-line no-restricted-globals
           !isNaN(parseFloat(value)) && isFinite(value)
             ? Number(value)
@@ -55,7 +55,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       currency: { type: String },
       pattern: {
         // pattern="" or pattern="undefined" can cause problems on validating a form. Because of that set a RegEx that allows everything in that case.
-        converter: value => value || PATTERN_DEFAULT,
+        converter: (value) => value || PATTERN_DEFAULT,
       },
       autofocus: { type: Boolean },
       onChange: { type: Function, attribute: false },
@@ -200,12 +200,12 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput.classList.remove('focus');
   }
 
-  handleFocus = ev => {
+  handleFocus = (ev) => {
     this.nativeInput.classList.add('focus');
     this.onFocus(ev);
   };
 
-  handleBlur = ev => {
+  handleBlur = (ev) => {
     this.nativeInput.value = this._formatCurrency(this.value);
     this.modelCounter = this.getCounterText; // update the chars left counter after formatting the input
 
@@ -213,7 +213,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.onBlur(ev);
   };
 
-  handleInput = ev => {
+  handleInput = (ev) => {
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
     this.onChange(ev, this.invalidFormat);
@@ -349,17 +349,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     };
 
     return html`
-      ${label &&
+      ${
+        label &&
         html`
           <label for="${refId}" class="a-input-text__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}
+            ${label} ${required ? html` * ` : ''}
           </label>
-        `}
+        `
+      }
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
         ${
@@ -411,26 +408,24 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         }
           ${
             this.showCheckMark
-              ? html`
-                  <span class="a-input-text__check"></span>
-                `
+              ? html` <span class="a-input-text__check"></span> `
               : ''
           }
         </div>
-        ${info &&
+        ${
+          info &&
           versionedHtml(this)`
             <axa-popup-button
               ?open="${_open}"
               class="a-input-text__info-button"
               @click="${this.handlePopupButtonClick}"
             ></axa-popup-button>
-          `}
+          `
+        }
       </div>
         ${
           this.showError
-            ? html`
-                <span class="a-input-text__error">${error}</span>
-              `
+            ? html` <span class="a-input-text__error">${error}</span> `
             : ''
         }
         ${

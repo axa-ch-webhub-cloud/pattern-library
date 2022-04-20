@@ -1,4 +1,3 @@
-/* global document */
 import {
   boolean,
   number,
@@ -81,7 +80,7 @@ storiesOf('Examples/Datepicker/React', module)
         data-selenium-id="0815"
         data-display-name={AXADatepickerReact.displayName}
         className="my-special-class"
-        onDateChange={newDate => {
+        onDateChange={(newDate) => {
           document.querySelector(
             'axa-datepicker[data-test-id="datepicker-react"]'
           ).title = newDate;

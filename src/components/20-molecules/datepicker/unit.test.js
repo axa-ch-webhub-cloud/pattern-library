@@ -26,8 +26,7 @@ describe('Datepicker unit tests', () => {
     });
     it('should return array with allowed years if value is a string (without setting setYear)', () => {
       expect(parseAndFormatAllowedYears(['1999-2000'], 2020)).toEqual([
-        1999,
-        2000,
+        1999, 2000,
       ]);
     });
     it('should return array with allowed years without setting setYear', () => {

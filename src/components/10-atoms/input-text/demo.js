@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
@@ -12,7 +11,7 @@ storiesOf('Examples/Input text/Pure HTML', module)
     changelog,
   })
   .add('In a form', () => {
-    const handleSubmit = ev => {
+    const handleSubmit = (ev) => {
       ev.preventDefault();
       document.getElementById('form-data-details').open = true;
       const $inputDemoForm = document.getElementById('input-demo-form');

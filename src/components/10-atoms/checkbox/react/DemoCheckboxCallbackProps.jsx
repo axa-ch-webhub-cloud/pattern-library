@@ -7,7 +7,7 @@ const DemoCheckboxCallbackProps = () => {
   const [focus, setFocus] = useState(false);
   const [blur, setBlur] = useState(false);
 
-  const handleFreeze = e => {
+  const handleFreeze = (e) => {
     setFrozen(!frozen);
   };
 

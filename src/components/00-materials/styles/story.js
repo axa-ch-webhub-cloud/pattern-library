@@ -1,7 +1,7 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit';
-import changelog from '../../../components/00-materials/CHANGELOG.md';
-import readme from '../../../components/00-materials/README.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import '../../10-atoms/heading';
 import '../../10-atoms/text';
 import styles from '../story.scss';
@@ -22,11 +22,11 @@ export default {
 export const Colors = () => {
   const darkmode = boolean('darkmode', false);
 
-  const getColorGroups = scssString => {
+  const getColorGroups = (scssString) => {
     const groups = scssString.split('///');
-    const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
+    const groupsWithColorIds = groups.filter((group) => /#\w+/.test(group));
 
-    return groupsWithColorIds.map(group => {
+    return groupsWithColorIds.map((group) => {
       return {
         name: group.split('\n')[0],
         value: group,
@@ -34,12 +34,12 @@ export const Colors = () => {
     });
   };
 
-  const getColors = colorGroup => {
+  const getColors = (colorGroup) => {
     const lines = colorGroup.split('\n');
 
-    const linesWithColorIds = lines.filter(line => /#\w+/.test(line));
+    const linesWithColorIds = lines.filter((line) => /#\w+/.test(line));
 
-    return linesWithColorIds.map(line => {
+    return linesWithColorIds.map((line) => {
       return {
         name: line.split(': ')[0],
         code: line.match(/#\w+/),
@@ -90,12 +90,12 @@ export const Colors = () => {
 
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">Colors</axa-heading>
-      ${getColorGroups(colors).map(group => {
+      ${getColorGroups(colors).map((group) => {
         return html`
           <div id="colorGroup">
             <axa-heading rank="3">${group.name}</axa-heading>
             <div class="colorgroupwrapper">
-              ${getColors(group.value).map(color => {
+              ${getColors(group.value).map((color) => {
                 return html`
                   <div class="colorwrapper">
                     <div
@@ -103,10 +103,14 @@ export const Colors = () => {
                       style="background-color: ${color.code};"
                     ></div>
                     <axa-text>
-                      ${color.name /* TODO: change to axa-text if bug is fixed */}
+                      ${
+                        color.name /* TODO: change to axa-text if bug is fixed */
+                      }
                     </axa-text>
                     <axa-text variant="size-2"
-                      >${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text
+                      >${
+                        color.code /* TODO: change to axa-text if bug is fixed */
+                      }</axa-text
                     >
                   </div>
                 `;

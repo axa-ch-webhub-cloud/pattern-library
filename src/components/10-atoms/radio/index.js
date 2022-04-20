@@ -171,11 +171,7 @@ class AXARadio extends NoShadowDOM {
         @focus="${this.handleFocus}"
         @blur="${this.handleBlur}"
       />
-      ${button
-        ? html``
-        : html`
-            <span class="a-radio__icon"></span>
-          `}
+      ${button ? html`` : html` <span class="a-radio__icon"></span> `}
       ${icon && button ? unsafeHTML(sanitizeSVG(icon)) : html``}
     `;
 
@@ -187,11 +183,7 @@ class AXARadio extends NoShadowDOM {
               <div class="a-radio__content js-radio__content">${label}</div>
             </label>
           `
-        : html`
-            <div class="a-radio__wrapper">
-              ${inputElement}
-            </div>
-          `}
+        : html` <div class="a-radio__wrapper">${inputElement}</div> `}
     `;
   }
 
@@ -212,13 +204,12 @@ class AXARadio extends NoShadowDOM {
         if (!this || !this.isConnected || !radioButtonGroup[name]) {
           return;
         }
-        const { width: labelTextWidth } = this.querySelector(
-          '.js-radio__content'
-        ).getBoundingClientRect();
+        const { width: labelTextWidth } =
+          this.querySelector('.js-radio__content').getBoundingClientRect();
         maxWidth[name] = Math.max(labelTextWidth | 0, maxWidth[name] | 0);
         // equalize width for all <axa-radio button> with same name:
         const width = noAutoWidth ? labelTextWidth : maxWidth[name];
-        radioButtonGroup[name].forEach(radioButton => {
+        radioButtonGroup[name].forEach((radioButton) => {
           // special case 'noAutoWidth' only impose minWidth on ourselves
           // (suppresses length changes .a.k.a 'pumping effect' between
           // selected/unselected state due to font-weight changes)

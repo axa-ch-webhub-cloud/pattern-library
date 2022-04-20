@@ -13,13 +13,13 @@ const DemoRadiobuttonsControlled = () => {
   const [blur, setBlur] = useState([false, false]);
 
   const handleRadioButtonChange = () =>
-    setChecked(frozen ? checked : checked.map(check => !check));
+    setChecked(frozen ? checked : checked.map((check) => !check));
 
-  const handleRadioButtonBlur = index => () => {
+  const handleRadioButtonBlur = (index) => () => {
     setBlur(blur.map((b, i) => (i === index ? !b : b)));
   };
 
-  const handleRadioButtonFocus = index => () => {
+  const handleRadioButtonFocus = (index) => () => {
     setFocus(focus.map((f, i) => (i === index ? !f : f)));
   };
 

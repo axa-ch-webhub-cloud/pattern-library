@@ -6,21 +6,21 @@ const RESERVED_CHARACTER = '{'; // not allowed in HTML tags or their attributes 
 // and also not part of static template strings due to ${...} syntax!
 
 // helper functions
-const toKebabCase = dottedVersionString =>
+const toKebabCase = (dottedVersionString) =>
   `${dottedVersionString}`.replace(/\./g, '-').replace(/[^A-Za-z0-9-]/g, '');
 
 const versionedTag = (tagName, version) => `${tagName}-${toKebabCase(version)}`;
 
-const extractDependencies = componentClass => {
+const extractDependencies = (componentClass) => {
   const { versions, tagName } = componentClass;
   // extract all dependencies...
   const dependencies = Object.keys(versions)
     // ... by comparing with master-component tag name
-    .filter(name => name !== tagName)
+    .filter((name) => name !== tagName)
     // ... and sorting longest-first (e.g. axa-button-link comes before axa-button)
     .sort((a, b) => b.length - a.length);
   // pair the list of dependency tag names with their versions
-  return [dependencies, dependencies.map(_tagName => versions[_tagName])];
+  return [dependencies, dependencies.map((_tagName) => versions[_tagName])];
 };
 
 const oldTag = (tagName, closing = '', openingBracket = '<') =>
@@ -48,7 +48,7 @@ const newTag = (tagName, aVersion, closing) =>
 // without needing the special-character escaping necessary for
 // a reg-exp-based alternative (the latter is marginally faster, but our strings here are short)
 const rewrite = (someStrings, aTagName, aVersion) =>
-  someStrings.map(string =>
+  someStrings.map((string) =>
     string
       .split(oldTag(aTagName))
       .join(newTag(aTagName, aVersion))
@@ -69,7 +69,7 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
   const customVersion = typeof versionInfo === 'string' && versionInfo;
   let versionedTagName = '';
   // process all dependant components that it lists...
-  dependencies.forEach(dependency => {
+  dependencies.forEach((dependency) => {
     const componentClass =
       dependency instanceof HTMLElement ? dependency.constructor : dependency;
     // extract each dependant component's version
@@ -118,28 +118,31 @@ const defineVersioned = (dependencies, versionInfo, parentInstance) => {
   return versionedTagName; // for convenience in single-component custom-versioned definitions
 };
 
-const versionedHtml = componentInstance => (strings, ...args) => {
-  // derive class from instance
-  const componentClass = componentInstance.constructor;
-  // extract dependency info by looking at versions of component
-  const [tagNames, versions] = extractDependencies(componentClass);
-  // rewrite incoming array of static parts of template literals
-  // in such a way that tags of dependent components are versioned:
-  let newStrings = strings;
-  // 1. rewriting proper, turning tags into versioned ones with funny initial brackets (see newTag(...) above)
-  for (let i = 0, n = tagNames.length; i < n; i++) {
-    newStrings = rewrite(newStrings, tagNames[i], versions[i]);
-  }
-  // 2. finish rewriting by converting funny initial brackets back to standard ones
-  for (let i = 0, n = newStrings.length; i < n; i++) {
-    newStrings[i] = newStrings[i].split(RESERVED_CHARACTER).join('<');
-  }
-  // fake a proper TemplateResult because lit now checks the .raw property
-  // (cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#raw_strings)
-  newStrings.raw = newStrings;
-  // let lit-html see the rewritten static parts together with the
-  // unchanged dynamic arg(ument)s
-  return html(newStrings, ...args);
-};
+// prettier-ignore
+const versionedHtml =
+  (componentInstance) =>
+    (strings, ...args) => {
+    // derive class from instance
+      const componentClass = componentInstance.constructor;
+      // extract dependency info by looking at versions of component
+      const [tagNames, versions] = extractDependencies(componentClass);
+      // rewrite incoming array of static parts of template literals
+      // in such a way that tags of dependent components are versioned:
+      let newStrings = strings;
+      // 1. rewriting proper, turning tags into versioned ones with funny initial brackets (see newTag(...) above)
+      for (let i = 0, n = tagNames.length; i < n; i++) {
+        newStrings = rewrite(newStrings, tagNames[i], versions[i]);
+      }
+      // 2. finish rewriting by converting funny initial brackets back to standard ones
+      for (let i = 0, n = newStrings.length; i < n; i++) {
+        newStrings[i] = newStrings[i].split(RESERVED_CHARACTER).join('<');
+      }
+      // fake a proper TemplateResult because lit now checks the .raw property
+      // (cf. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#raw_strings)
+      newStrings.raw = newStrings;
+      // let lit-html see the rewritten static parts together with the
+      // unchanged dynamic arg(ument)s
+      return html(newStrings, ...args);
+    };
 
 export { defineVersioned, versionedHtml };

@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
@@ -55,7 +54,7 @@ storiesOf('Examples/Footer/Pure HTML', module)
     lastClicked.innerText = 'Last clicked link: -';
     wrapper.appendChild(lastClicked);
 
-    document.addEventListener('axa-footer-click', ev => {
+    document.addEventListener('axa-footer-click', (ev) => {
       const span = document.getElementById(lastClicked.id);
       span.innerText = `Last clicked link: ${ev.detail}`;
     });

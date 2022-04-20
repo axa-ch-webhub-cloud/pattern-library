@@ -9,7 +9,7 @@ const DemoTextReactVersioned = () => {
     setVariant(variant ? '' : 'bold');
   };
 
-  const handleCounter = ev => {
+  const handleCounter = (ev) => {
     setCounter(counter + 1);
   };
 

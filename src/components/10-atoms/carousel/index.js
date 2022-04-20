@@ -68,7 +68,7 @@ class AXACarousel extends InlineStyles {
     const slotsSelectedByShadowRootFiltered = usedThis.shadowRoot
       .querySelector('.js-carousel__wrapper > slot')
       .assignedNodes({ flatten: true })
-      .filter(node => node.nodeType === ELEMENT_NODE);
+      .filter((node) => node.nodeType === ELEMENT_NODE);
 
     const slotsSelectedWithoutShadowRoot = usedThis.querySelector('slot');
 
@@ -78,7 +78,7 @@ class AXACarousel extends InlineStyles {
     if (slotsSelectedWithoutShadowRoot) {
       slotsSelectedWithoutShadowRootFiltered = slotsSelectedWithoutShadowRoot
         .assignedNodes({ flatten: true })
-        .filter(node => node.nodeType === ELEMENT_NODE);
+        .filter((node) => node.nodeType === ELEMENT_NODE);
     }
 
     // IE: slotsSelectedByShadowRootFiltered is []
@@ -110,7 +110,7 @@ class AXACarousel extends InlineStyles {
 
   _setSlideVisibleWithAnimation(slideIndex, animationClass) {
     this.visibleSlideIndex = slideIndex;
-    this.slides.forEach(node => {
+    this.slides.forEach((node) => {
       node.style.display = 'none';
     });
     this.slides[slideIndex].style.display = 'block';
@@ -140,7 +140,7 @@ class AXACarousel extends InlineStyles {
   // Resize:
 
   _setSlideVisibleAndAllOthersNone(inputNode) {
-    this.slides.forEach(node => {
+    this.slides.forEach((node) => {
       if (node === inputNode) {
         node.style.display = 'block';
       } else {
@@ -151,7 +151,7 @@ class AXACarousel extends InlineStyles {
 
   _calculateContainerMinHeight() {
     // we need to set carousel min height in case there are elements with different heights.
-    this.slides.forEach(node => {
+    this.slides.forEach((node) => {
       this._setSlideVisibleAndAllOthersNone(node);
 
       if (node.clientHeight > this._carouselMinHeight) {
@@ -226,7 +226,7 @@ class AXACarousel extends InlineStyles {
     usedDocument.removeEventListener('keyup', this._handleKeyUp);
   }
 
-  _handleKeyUp = ev => {
+  _handleKeyUp = (ev) => {
     const e = ev || window.event;
 
     if (e.keyCode === 37) {

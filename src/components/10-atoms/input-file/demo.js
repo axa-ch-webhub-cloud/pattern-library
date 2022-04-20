@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import changelog from './CHANGELOG.md';
 import './index';
@@ -17,7 +16,7 @@ storiesOf('Examples/Input File/Pure HTML', module)
     let counter = 0;
     inputFile.text = `You have chosen ${counter} files`;
 
-    inputFile.addEventListener('change', e => {
+    inputFile.addEventListener('change', (e) => {
       counter = e.target.files.length;
 
       inputFile.querySelector('.a-input-file').innerHTML = `

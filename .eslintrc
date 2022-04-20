@@ -1,16 +1,13 @@
 {
-  "extends": ["airbnb", "plugin:jest/recommended", "prettier"],
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["import", "jest", "prettier"],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
   "rules": {
-    "max-len": [
-      "error",
-      {
-        "code": 140,
-        "tabWidth": 2,
-        "ignoreComments": true,
-        "ignoreUrls": true,
-        "ignoreTemplateLiterals": true
-      }
-    ],
+    "arrow-body-style": "off",
+    "import/no-relative-packages": "off",
     "import/prefer-default-export": "off",
     "indent": [
       "error",
@@ -79,8 +76,11 @@
     "__VERSION_INFO__": true,
     "__COLORS_SCSS_AS_STRING__": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "babelOptions": {
+      "configFile": "./.storybook/.babelrc.js"
+    },
     "ecmaVersion": 8,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,

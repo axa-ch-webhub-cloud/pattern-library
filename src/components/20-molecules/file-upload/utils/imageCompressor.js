@@ -18,7 +18,7 @@ const DEFAULTS = {
   error: null,
 };
 
-const isImageType = value => /^image\/.+$/.test(value);
+const isImageType = (value) => /^image\/.+$/.test(value);
 
 const imageTypeToExtension = (value, includeDot = true) => {
   let extension = isImageType(value) ? value.substr(6) : '';
@@ -48,7 +48,7 @@ const createImage = (url, file, image) => {
 };
 
 const appendToCanvas = (width, height, _options, file, image) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     const options = _options;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -159,13 +159,12 @@ const onResultCanvas = (res, _image, _options, file) => {
   return Promise.resolve(_result);
 };
 
-const isBlob = input => {
+const isBlob = (input) => {
   if (typeof Blob === 'undefined') {
     return false;
   }
 
   return (
-    /* global Blob */ // otherwise Blob would be marked as undefined
     input instanceof Blob ||
     Object.prototype.toString.call(input) === '[object Blob]'
   );
@@ -187,7 +186,7 @@ const createPromise = (file, _options) => {
     } else if (FileReader) {
       const reader = new FileReader();
 
-      reader.onload = e => resolve(e.file.result);
+      reader.onload = (e) => resolve(e.file.result);
       reader.onabort = reject;
       reader.onerror = reject;
       reader.readAsDataURL(file);
@@ -196,12 +195,12 @@ const createPromise = (file, _options) => {
       reject('The current browser does not support image compression.');
     }
   })
-    .then(url => createImage(url, file, image))
+    .then((url) => createImage(url, file, image))
     .then(({ width, height }) =>
       appendToCanvas(width, height, _options, file, image)
     )
-    .then(res => onResultCanvas(res, image, options, file))
-    .catch(err => {
+    .then((res) => onResultCanvas(res, image, options, file))
+    .catch((err) => {
       if (!options.error) {
         throw err;
       }
@@ -217,7 +216,7 @@ const compressedImage = (filesList, _options) => {
   const options = { ...DEFAULTS, ..._options };
   const promises = [];
   const files = [...filesList];
-  files.forEach(file => {
+  files.forEach((file) => {
     const filePromise = createPromise(file, options);
     if (filePromise) {
       promises.push(filePromise);

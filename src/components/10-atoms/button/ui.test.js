@@ -10,7 +10,7 @@ fixture('Button - basic functionality').page(
   `${host}/iframe.html?id=examples-button-pure-html--clickable`
 );
 
-test('should render button', async t => {
+test('should render button', async (t) => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.expect($axaButton.exists).ok();
   const $axaButtonShadow = await Selector(
@@ -20,7 +20,7 @@ test('should render button', async t => {
   await t.expect($axaButtonShadowEl.exists).ok();
 });
 
-test('should style button default css (test axa blue bg color)', async t => {
+test('should style button default css (test axa blue bg color)', async (t) => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot
   );
@@ -30,7 +30,7 @@ test('should style button default css (test axa blue bg color)', async t => {
     .eql('rgb(0, 0, 143)');
 });
 
-test("shouldn't be clickable (set different text after click)", async t => {
+test("shouldn't be clickable (set different text after click)", async (t) => {
   const setDisabled = ClientFunction(() => {
     document.querySelector('axa-button').disabled = true;
   });
@@ -40,13 +40,13 @@ test("shouldn't be clickable (set different text after click)", async t => {
   await t.expect($axaButton.innerText).notContains('1');
 });
 
-test('should be clickable (set different text after click)', async t => {
+test('should be clickable (set different text after click)', async (t) => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.click($axaButton);
   await t.expect($axaButton.innerText).contains('1');
 });
 
-test('should inherit width to internal button', async t => {
+test('should inherit width to internal button', async (t) => {
   const expectedWidth = '125px';
   const $axaButton = await Selector(BUTTON_TAG);
   const $axaButtonShadow = await Selector(
@@ -68,7 +68,7 @@ fixture('Button - set properties').page(
   `${host}/iframe.html?id=components-button--button`
 );
 
-test('should set button element disabled', async t => {
+test('should set button element disabled', async (t) => {
   const setDisabled = ClientFunction(() => {
     document.querySelector('axa-button').disabled = true;
   });
@@ -80,7 +80,7 @@ test('should set button element disabled', async t => {
   await t.expect(await $axaButtonShadowEl.hasAttribute('disabled')).ok();
 });
 
-test('should set button element type', async t => {
+test('should set button element type', async (t) => {
   const setType = ClientFunction(() => {
     document.querySelector('axa-button').type = 'submit';
   });
@@ -98,7 +98,7 @@ fixture('Button - render icon').page(
   `${host}/iframe.html?id=examples-button-pure-html--icon-visible`
 );
 
-test('should render icon', async t => {
+test('should render icon', async (t) => {
   const $axaButtonShadow = await Selector(
     () => document.querySelector('axa-button').shadowRoot
   );
@@ -110,7 +110,7 @@ fixture('Button - react smoke test').page(
   `${host}/iframe.html?id=examples-button-react--story`
 );
 
-test('should render react button', async t => {
+test('should render react button', async (t) => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.expect($axaButton.exists).ok();
   const $axaButtonShadow = await Selector(
@@ -120,7 +120,7 @@ test('should render react button', async t => {
   await t.expect($axaButtonShadowEl.exists).ok();
 });
 
-test('should set className', async t => {
+test('should set className', async (t) => {
   const $axaButton = await Selector(BUTTON_TAG);
   await t.expect($axaButton.exists).ok();
 
@@ -131,7 +131,7 @@ fixture('Button - Works in a form').page(
   `${host}/iframe.html?id=examples-button-pure-html--in-a-form`
 );
 
-test('should submit only once', async t => {
+test('should submit only once', async (t) => {
   const $submitButton = await Selector('.js-submit-prevent');
   await t.click($submitButton());
   await t.wait(100);

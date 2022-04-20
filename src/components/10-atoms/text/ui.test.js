@@ -4,18 +4,18 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Text - basic functionality')
   .page(`${host}/iframe.html?id=components-text--text`)
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(380, 680);
   });
 
 const TAG = 'axa-text';
 
-test('should render text', async t => {
+test('should render text', async (t) => {
   const $axaElem = await Selector(TAG);
   await t.expect($axaElem.exists).ok();
 });
 
-test('should have correct font definitions for text size 1', async t => {
+test('should have correct font definitions for text size 1', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text > *')
   );
@@ -37,11 +37,11 @@ test('should have correct font definitions for text size 1', async t => {
 
 fixture('Text - Size 2')
   .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-2`)
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(380, 680);
   });
 
-test('should have correct font definitions for text size 2', async t => {
+test('should have correct font definitions for text size 2', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant="size-2"] > *')
   );
@@ -63,11 +63,11 @@ test('should have correct font definitions for text size 2', async t => {
 
 fixture('Text - Size 3')
   .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-3`)
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(380, 680);
   });
 
-test('should have correct font definitions for text size 3', async t => {
+test('should have correct font definitions for text size 3', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant="size-3"] > *')
   );
@@ -91,11 +91,11 @@ fixture('Text - Size 2 with custom tag')
   .page(
     `${host}/iframe.html?id=components-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(380, 680);
   });
 
-test('should have correct font definitions for text size 2 with custom span tag', async t => {
+test('should have correct font definitions for text size 2 with custom span tag', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant="size-2"] > *')
   );
@@ -117,11 +117,11 @@ test('should have correct font definitions for text size 2 with custom span tag'
 
 fixture('Text - Bold')
   .page(`${host}/iframe.html?id=components-text--text&knob-variant=bold`)
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(380, 680);
   });
 
-test('should have correct font weight for text bold', async t => {
+test('should have correct font weight for text bold', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant="bold"] > *')
   );
@@ -135,7 +135,7 @@ fixture('Text - Semibold').page(
   `${host}/iframe.html?id=components-text--text&knob-variant=semibold`
 );
 
-test('should have correct font weight for text semibold', async t => {
+test('should have correct font weight for text semibold', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant="semibold"] > *')
   );
@@ -149,11 +149,11 @@ fixture('Text - Variant')
   .page(
     `${host}/iframe.html?id=components-text--text&knob-variant=size-1%20bold`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(800, 600);
   });
 
-test('should be mutually exclusive', async t => {
+test('should be mutually exclusive', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text[variant] > *')
   );
@@ -170,14 +170,14 @@ test('should be mutually exclusive', async t => {
     .notEql('700');
 });
 
-test('should update pure text dynamically and wrap in <p>', async t => {
+test('should update pure text dynamically and wrap in <p>', async (t) => {
   const $axaElem = Selector(() =>
     document.querySelector('axa-text[variant]')
   ).addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
+    innerHTML: (el) => el.innerHTML,
   });
 
-  const setText = ClientFunction(text => {
+  const setText = ClientFunction((text) => {
     const node = document.querySelector('axa-text');
     node.textContent = text;
     return text;
@@ -199,11 +199,11 @@ fixture('Text - React')
   .page(
     `${host}/iframe.html?id=examples-text-react--dynamic-children-under-react`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(800, 600);
   });
 
-test('should update dynamically for pure and HTML texts', async t => {
+test('should update dynamically for pure and HTML texts', async (t) => {
   const TESTS = [
     [true, 'This is example pure text no. 1', '.js-pure-text'],
     [false, 'This is example HTML text no. 1', '.js-update'],
@@ -214,7 +214,7 @@ test('should update dynamically for pure and HTML texts', async t => {
   const $axaElem = Selector(() =>
     document.querySelector('axa-text')
   ).addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
+    innerHTML: (el) => el.innerHTML,
   });
 
   let [isPure, expectation, clickSelector] = TESTS[0];
@@ -263,11 +263,11 @@ fixture('Text - React, versioned')
   .page(
     `${host}/iframe.html?id=examples-text-react--custom-versioned-axa-text-under-react`
   )
-  .beforeEach(async t => {
+  .beforeEach(async (t) => {
     await t.resizeWindow(800, 600);
   });
 
-test('should update dynamically and change variant for versioned axa-text', async t => {
+test('should update dynamically and change variant for versioned axa-text', async (t) => {
   const $axaElemChild = await Selector(() =>
     document.querySelector('axa-text-mypod[variant] > *')
   );
@@ -275,7 +275,7 @@ test('should update dynamically and change variant for versioned axa-text', asyn
   const $axaElem = Selector(() =>
     document.querySelector('axa-text-mypod')
   ).addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
+    innerHTML: (el) => el.innerHTML,
   });
 
   // existing text is wrapped properly and as expected

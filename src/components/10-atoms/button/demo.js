@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
@@ -29,7 +28,7 @@ storiesOf('Examples/Button/Pure HTML', module)
   })
   .add('In a form', () => {
     let count = 0;
-    const handleSubmit = ev => {
+    const handleSubmit = (ev) => {
       const { target } = ev;
       ev.preventDefault();
       count += 1;

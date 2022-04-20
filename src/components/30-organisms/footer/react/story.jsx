@@ -24,14 +24,14 @@ storiesOf('Examples/Footer/React', module)
         'Last clicked link: -'
       );
 
-      const setNewlyClickedLink = link => {
+      const setNewlyClickedLink = (link) => {
         setClickedLinkText(`Last clicked link: ${link}`);
       };
 
       return (
         <div>
           <AXAFooterReact
-            onItemClick={link => setNewlyClickedLink(link)}
+            onItemClick={(link) => setNewlyClickedLink(link)}
             clickevents
           >
             <h2 slot="column-title">axa & you</h2>

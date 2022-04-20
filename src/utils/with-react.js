@@ -2,12 +2,12 @@ import val from '@skatejs/val';
 import { defineVersioned } from './component-versioning';
 
 // defined values are different from undefined (for properties) or null (for attributes)
-const isDefined = value => !(value === undefined || value === null);
+const isDefined = (value) => !(value === undefined || value === null);
 
-const pascalCase = hyphenatedName =>
+const pascalCase = (hyphenatedName) =>
   hyphenatedName
     .split('-')
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join('');
 
 // generic defaults (will be applied in the absence of explicit 'defaultValue')
@@ -42,12 +42,12 @@ const convert = (value, type) => {
   return type === Array || type === Object ? JSON.parse(value) : value;
 };
 
-const applyDefaults = ceInst => {
+const applyDefaults = (ceInst) => {
   const {
     constructor: { properties },
   } = ceInst;
   // get all properties of the custom element and loop over each key
-  Object.keys(properties).forEach(property => {
+  Object.keys(properties).forEach((property) => {
     // extract default value and property type
     const propertyValue = properties[property];
     const { type, converter, defaultValue } = propertyValue;
@@ -103,7 +103,7 @@ const applyDefaults = ceInst => {
 
 export { applyDefaults };
 
-const transformStylesObjectToString = value => {
+const transformStylesObjectToString = (value) => {
   // {width: "500px"} -> width:500px;
   const styleString = Object.keys(value).reduce((prev, curr) => {
     let previousValue = prev;
@@ -121,7 +121,7 @@ const distributeProperties = (properties, componentClass) => {
   const props = {};
   let map;
   // iterate over all properties
-  Object.keys(properties).forEach(name => {
+  Object.keys(properties).forEach((name) => {
     const value = properties[name];
     // classify property by type to select correct map object
     // (note that unregistered properties are classified as attr(ibute)s via their undefined .type)

@@ -72,7 +72,7 @@ class AXATopContentBar extends InlineStyles {
   firstUpdated() {
     this.inlineStyles('childStyles');
     const links = [...this.querySelectorAll('axa-link')];
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute('variant', 'hyperlink-white-underline');
     });
   }
@@ -86,7 +86,7 @@ class AXATopContentBar extends InlineStyles {
         <axa-button-link
           class="m-top-content-bar__button-link js-button-link"
           href="${href}"
-          @click="${ev => {
+          @click="${(ev) => {
             if (typeof this.onClick === 'function') {
               ev.preventDefault();
               this.onClick();
@@ -98,11 +98,12 @@ class AXATopContentBar extends InlineStyles {
           ${ctatext}
         </axa-button-link>
       `;
-    } else if (ctatext) {
+    }
+    if (ctatext) {
       return versionedHtml(this)`
         <axa-button
           class="m-top-content-bar__button js-button"
-          @click="${ev => {
+          @click="${(ev) => {
             if (typeof this.onClick === 'function') {
               ev.preventDefault();
               this.onClick();
@@ -180,9 +181,7 @@ class AXATopContentBar extends InlineStyles {
             ${
               closable
                 ? html``
-                : html`
-                    <div class="m-top-content-bar-empty"></div>
-                  `
+                : html` <div class="m-top-content-bar-empty"></div> `
             }
           </div>
           ${

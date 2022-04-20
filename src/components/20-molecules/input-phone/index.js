@@ -12,20 +12,19 @@ import fireCustomEvent from '../../../utils/custom-event';
 // helper functions
 
 // ignore interspersed filler characters (spaces, dots, dashes) that people may use in various countries
-const cleaned = string => string.trim().replace(/[\s.-]/g, '');
+const cleaned = (string) => string.trim().replace(/[\s.-]/g, '');
 
 // parse e.g. '+1 888-944-9400' => ['1','888-944-9400'], but equally '  +41 79 123 45 67' => ['41','79 123 45 67']
 // as well as '79 123 45 67' => ['', '79 123 45 67']
-const parseCompositeValue = string =>
+const parseCompositeValue = (string) =>
   /^\s*\+\d+\s/.test(string)
     ? string.match(/^\s*\+(\d+)\D+(.*)$/).slice(1)
     : ['', string];
 
 const isValid = (userInputPhoneNumber, countrycode) => {
   // handle pasted-in fully country-coded numbers, too
-  const [_countrycode, _phoneNumber] = parseCompositeValue(
-    userInputPhoneNumber
-  );
+  const [_countrycode, _phoneNumber] =
+    parseCompositeValue(userInputPhoneNumber);
   // derive canonical phone number
   const phoneNumber = cleaned(_phoneNumber);
   // only accept numbers
@@ -33,7 +32,7 @@ const isValid = (userInputPhoneNumber, countrycode) => {
     return false;
   }
   // contains zero at the beginning?
-  else if (phoneNumber.charAt(0) === '0') {
+  if (phoneNumber.charAt(0) === '0') {
     return false;
   }
   // longer than 15 character? See: https://en.wikipedia.org/wiki/E.164#Global_services
@@ -248,9 +247,7 @@ class AXAInputPhone extends LitElement {
     this.isControlled = isControlled && isReact;
     // render proper
     const errorHTML = invalid
-      ? html`
-          <label class="m-input-phone__error">${error}</label>
-        `
+      ? html` <label class="m-input-phone__error">${error}</label> `
       : html``;
 
     return html`

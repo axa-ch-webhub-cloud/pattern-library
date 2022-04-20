@@ -1,4 +1,3 @@
-/* global document */
 import {
   boolean,
   radios,
@@ -61,9 +60,9 @@ storiesOf('Examples/Input File/React', module)
         <AXAInputFileReact
           text={_text}
           variant={variant}
-          onChange={e => {
+          onChange={(e) => {
             const allFileNames = [];
-            [...e.target.files].forEach(i => allFileNames.push(i.name));
+            [...e.target.files].forEach((i) => allFileNames.push(i.name));
 
             document.getElementById(
               'checkbox-output'

@@ -22,9 +22,7 @@ export const Container = () => {
 
   const childsText = text('text', 'Some children');
 
-  const template = html`
-    <axa-container>${childsText}</axa-container>
-  `;
+  const template = html` <axa-container>${childsText}</axa-container> `;
 
   render(template, wrapper);
   return wrapper;

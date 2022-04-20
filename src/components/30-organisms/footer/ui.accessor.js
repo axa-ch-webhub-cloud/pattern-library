@@ -13,7 +13,7 @@ class FooterAccessor {
   }
 
   _getSlotNode = Selector(
-    slotName =>
+    (slotName) =>
       document
         .querySelector('axa-footer')
         .shadowRoot.querySelector(`slot[name='${slotName}']`)

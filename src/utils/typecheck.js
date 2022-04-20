@@ -4,7 +4,7 @@ const typecheck = (self, mode) => {
   const fixErrors = mode && typeof mode === 'object';
   const typeErrors = {};
 
-  propertyNames.forEach(key => {
+  propertyNames.forEach((key) => {
     const { type, check } = properties[key];
     if (!check) {
       return;
@@ -50,8 +50,10 @@ const typecheck = (self, mode) => {
   let errorString = '';
 
   if (errors.length) {
-    const format = keys =>
-      keys.map(property => `"${property}": ${typeErrors[property]}`).join('\n');
+    const format = (keys) =>
+      keys
+        .map((property) => `"${property}": ${typeErrors[property]}`)
+        .join('\n');
 
     errorString = `<${tagName}> properties type violations detected - ${format(
       errors

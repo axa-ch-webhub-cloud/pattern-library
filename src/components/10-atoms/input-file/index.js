@@ -75,7 +75,7 @@ class AXAInputFile extends NoShadowDOM {
       <label class="a-input-file ${classMap(classes)}" for="${this.refId}">
         <span class="a-input-file__flex-wrapper">
           ${icon &&
-            versionedHtml(this)`
+          versionedHtml(this)`
               <axa-icon class="a-input-file__icon js-input-file__icon" icon="${icon}"></axa-icon>
             `}
           ${text}

@@ -42,9 +42,7 @@ export const Text = () => {
           <span>${content}</span>
         </axa-text>
       `
-    : html`
-        <axa-text variant="${variant}">${content}</axa-text>
-      `;
+    : html` <axa-text variant="${variant}">${content}</axa-text> `;
   render(template, wrapper);
   return wrapper;
 };

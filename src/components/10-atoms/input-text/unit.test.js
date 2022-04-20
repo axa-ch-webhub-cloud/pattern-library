@@ -50,7 +50,8 @@ describe('InputText', () => {
     });
     it('should not create a new NumberFormat object (already exists)', () => {
       const alreadyExistingNumberFormatObject = { format: () => {} };
-      AXAInputText.prototype.currencyFormatter = alreadyExistingNumberFormatObject;
+      AXAInputText.prototype.currencyFormatter =
+        alreadyExistingNumberFormatObject;
       AXAInputText.prototype._formatCurrency('1');
 
       expect(AXAInputText.prototype.currencyFormatter).toBe(

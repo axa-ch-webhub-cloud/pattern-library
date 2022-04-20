@@ -160,7 +160,7 @@ class AXATableSortable extends LitElement {
     // the value of this.dateSortColumnIndex wasn't available
     const dateColumnsCustomSort = this.dateSortColumnIndex
       .split(',')
-      .map(cellIndex => {
+      .map((cellIndex) => {
         const parsed = parseInt(cellIndex, 10);
         return isNaN(parsed) ? undefined : parsed;
       });
@@ -171,7 +171,7 @@ class AXATableSortable extends LitElement {
       const cellRx = cleanCell(rowRx[index].html) || rowRx[index].text;
       const cellLx = cleanCell(rowLx[index].html) || rowLx[index].text;
 
-      const convertComparatorToSortingType = compNumber => {
+      const convertComparatorToSortingType = (compNumber) => {
         return sortAs === ASC ? compNumber : -compNumber;
       };
       let result;
@@ -261,7 +261,8 @@ class AXATableSortable extends LitElement {
         <table>
           <thead>
             <tr>
-              ${thead &&
+              ${
+                thead &&
                 thead.map(
                   (config, index) => html`
                     <th
@@ -289,59 +290,60 @@ class AXATableSortable extends LitElement {
                       </div>
                     </th>
                   `
-                )}
+                )
+              }
             </tr>
           </thead>
           <tbody>
-            ${tbody &&
+            ${
+              tbody &&
               tbody.map(
                 (cells, index) => html`
                   <tr
                     tabindex="0"
-                    @click=${ev => {
+                    @click=${(ev) => {
                       this.handleOnClick(ev, index, TABLE_BODY);
                     }}
-                    @keypress=${ev => {
+                    @keypress=${(ev) => {
                       this.onKeyPress(ev, index, TABLE_BODY);
                     }}
                   >
                     ${cells &&
-                      cells.map(
-                        cell => html`
-                          <td>
-                            ${cell.html ? unsafeHTML(cell.html) : cell.text}
-                          </td>
-                        `
-                      )}
+                    cells.map(
+                      (cell) => html`
+                        <td>
+                          ${cell.html ? unsafeHTML(cell.html) : cell.text}
+                        </td>
+                      `
+                    )}
                   </tr>
                 `
-              )}
+              )
+            }
           </tbody>
           ${
             tfoot
               ? html`
                   <tfoot>
                     ${tbody &&
-                      tfoot.map(
-                        (cells, index) => html`
-                          <tr
-                            tabindex="0"
-                            @click=${ev => {
-                              this.handleOnClick(ev, index, TABLE_FOOT);
-                            }}
-                            @keypress=${ev => {
-                              this.onKeyPress(ev, index, TABLE_FOOT);
-                            }}
-                          >
-                            ${cells &&
-                              cells.map(
-                                cell => html`
-                                  <td>${unsafeHTML(cell.html)}</td>
-                                `
-                              )}
-                          </tr>
-                        `
-                      )}
+                    tfoot.map(
+                      (cells, index) => html`
+                        <tr
+                          tabindex="0"
+                          @click=${(ev) => {
+                            this.handleOnClick(ev, index, TABLE_FOOT);
+                          }}
+                          @keypress=${(ev) => {
+                            this.onKeyPress(ev, index, TABLE_FOOT);
+                          }}
+                        >
+                          ${cells &&
+                          cells.map(
+                            (cell) => html` <td>${unsafeHTML(cell.html)}</td> `
+                          )}
+                        </tr>
+                      `
+                    )}
                   </tfoot>
                 `
               : ''
