@@ -12,7 +12,7 @@ const t = (scope, text) => {
   return ((TRANSLATIONS[scope] || {})[text] || {})[language] || text;
 };
 
-const DemoLink = () => {
+function DemoLink() {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {
@@ -32,6 +32,6 @@ const DemoLink = () => {
       </AXALink>
     </>
   );
-};
+}
 
 export default DemoLink;

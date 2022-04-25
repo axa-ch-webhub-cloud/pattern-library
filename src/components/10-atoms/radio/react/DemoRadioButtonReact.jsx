@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXAFieldset from '../../fieldset/react/AXAFieldsetReact';
 import AXARadioButton from './AXARadioButtonReact';
 
-const DemoRadiobuttonsControlled = () => {
+function DemoRadiobuttonsControlled() {
   const [button, setButton] = useState(true);
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
@@ -13,13 +13,13 @@ const DemoRadiobuttonsControlled = () => {
   const [blur, setBlur] = useState([false, false]);
 
   const handleRadioButtonChange = () =>
-    setChecked(frozen ? checked : checked.map((check) => !check));
+    setChecked(frozen ? checked : checked.map(check => !check));
 
-  const handleRadioButtonBlur = (index) => () => {
+  const handleRadioButtonBlur = index => () => {
     setBlur(blur.map((b, i) => (i === index ? !b : b)));
   };
 
-  const handleRadioButtonFocus = (index) => () => {
+  const handleRadioButtonFocus = index => () => {
     setFocus(focus.map((f, i) => (i === index ? !f : f)));
   };
 
@@ -120,6 +120,6 @@ const DemoRadiobuttonsControlled = () => {
       </div>
     </fieldset>
   );
-};
+}
 
 export default DemoRadiobuttonsControlled;

@@ -2,7 +2,7 @@ import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXATextReact from './AXATextReact';
 
-const DemoManyOptionsReact = () => {
+function DemoManyOptionsReact() {
   const items = [
     { name: 'Afghanistan', value: 'Afghanistan' },
     { name: 'Albania', value: 'Albania' },
@@ -211,7 +211,7 @@ const DemoManyOptionsReact = () => {
         maxHeight
         items={items}
         // eslint-disable-next-line no-console
-        onChange={(value) =>
+        onChange={value =>
           (document.getElementById(
             'checkbox-output'
           ).innerHTML = `Value: ${JSON.stringify(value)}`)
@@ -221,6 +221,6 @@ const DemoManyOptionsReact = () => {
       <AXATextReact id="checkbox-output">Value:</AXATextReact>
     </>
   );
-};
+}
 
 export default DemoManyOptionsReact;

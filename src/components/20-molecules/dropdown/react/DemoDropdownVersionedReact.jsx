@@ -5,7 +5,7 @@ import AXADropdownVersionedReact, {
 } from './AXADropdownVersionedReact';
 import AXATextReact from './AXATextReact';
 
-const DemoVersionedDropdown = () => {
+function DemoVersionedDropdown() {
   const props = {
     item1: 'item1',
     item2: 'item2',
@@ -34,7 +34,7 @@ const DemoVersionedDropdown = () => {
         checkMark={props.checkMark}
         disabled={props.disabled}
         // eslint-disable-next-line no-console
-        onChange={(value) =>
+        onChange={value =>
           (document.getElementById(
             'checkbox-output'
           ).innerHTML = `axa-dropdown version ${numericalVersion} 
@@ -47,6 +47,6 @@ const DemoVersionedDropdown = () => {
       </AXATextReact>
     </>
   );
-};
+}
 
 export default DemoVersionedDropdown;

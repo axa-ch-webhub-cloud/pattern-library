@@ -11,7 +11,7 @@ const ALLOWED_CATEGORIES = [
   '10-atoms',
   '20-molecules',
   '30-organisms',
-]
+];
 
 const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
@@ -20,12 +20,15 @@ const ALLOWED_DEPENDENCIES = [
   'lit',
 ];
 
-console.log(chalk.cyan(outdent`
+// eslint-disable-next-line no-console
+console.log(
+  chalk.cyan(outdent`
   
   👉 Testing project constraints...
-`));
+`)
+);
 
-const { length : found } = Object.keys(dependencies).filter(
+const { length: found } = Object.keys(dependencies).filter(
   key => ALLOWED_DEPENDENCIES.indexOf(key) === -1
 );
 
@@ -37,22 +40,27 @@ if (found) {
 
     If not, then add it as devDependency.
 
-    `
-  )
+    `);
 }
 
 // get all components and test if there is any package json with main field or not allowed categories
-const files = glob.sync(`src${sep}components${sep}*(${ALLOWED_CATEGORIES.join('|')})${sep}*${sep}index.js`);
+const files = glob.sync(
+  `src${sep}components${sep}*(${ALLOWED_CATEGORIES.join(
+    '|'
+  )})${sep}*${sep}index.js`
+);
 
-files.forEach((file) => {
+files.forEach(file => {
   const pkgPath = file.replace('index.js', 'package.json');
   if (fs.existsSync(pkgPath)) {
     const pkgData = fs.readFileSync(pkgPath, 'UTF-8');
-    let pkg
+    let pkg;
     try {
       pkg = JSON.parse(pkgData);
     } catch (e) {
-      throw new Error(`Package json in path ${pkgPath} has a problem. Err: ${e}`);
+      throw new Error(
+        `Package json in path ${pkgPath} has a problem. Err: ${e}`
+      );
     }
     if (pkg && pkg.main) {
       throw new Error(
@@ -74,7 +82,7 @@ files.forEach((file) => {
 // Test if there are not allowed categories
 const allFiles = glob.sync(`src${sep}components${sep}*${sep}**${sep}*.js`);
 
-allFiles.forEach((file) => {
+allFiles.forEach(file => {
   // file is like this: src/components/20-molecules/datepicker/index.js
   const { 2: category } = file.split(sep);
   if (ALLOWED_CATEGORIES.indexOf(category) === -1) {
@@ -89,9 +97,12 @@ allFiles.forEach((file) => {
   }
 });
 
-console.log(chalk.green(outdent`
+// eslint-disable-next-line no-console
+console.log(
+  chalk.green(outdent`
 
   👉 All project constraints are met
-`));
+`)
+);
 
 process.exit(0);

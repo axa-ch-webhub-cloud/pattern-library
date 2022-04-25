@@ -3,7 +3,7 @@ import AXADropdownReact from './AXADropdownReact';
 import AXACheckboxReact from '../../../10-atoms/checkbox/react/AXACheckboxReact';
 import findIndex from '../../../../utils/find-index';
 
-const DemoDropdown = () => {
+function DemoDropdown() {
   const items = [
     { name: 'Item A', value: 'Item 1' },
     { name: 'Item B', value: 'Item 2' },
@@ -15,11 +15,10 @@ const DemoDropdown = () => {
   const [error, setError] = useState('');
   const [native, setNative] = useState(false);
 
-  const findName = (val) =>
-    (items[findIndex(items, (item) => item.value === val)] || { name: '' })
-      .name;
+  const findName = val =>
+    (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setValue(frozen ? value : event.target.value);
     const oldName = findName(value);
     const newName = event.target.name;
@@ -74,6 +73,6 @@ const DemoDropdown = () => {
       </p>
     </div>
   );
-};
+}
 
 export default DemoDropdown;

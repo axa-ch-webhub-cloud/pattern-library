@@ -13,6 +13,7 @@ export default function App() {
   return (
     <div className="App">
       <button
+        type="button"
         className="js-checkbox__demo-button-rerender-children"
         onClick={updateLabel}
       >

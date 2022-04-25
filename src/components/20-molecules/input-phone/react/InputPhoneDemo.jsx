@@ -3,16 +3,16 @@ import AXAInputPhone from './InputPhone';
 
 const defaultValue = '795002020';
 
-const DemoInputPhone = () => {
+function DemoInputPhone() {
   const [frozen, setfrozen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(defaultValue);
 
-  const handleFrozen = (event) => {
-    event.stopPropagation;
+  const handleFrozen = event => {
+    event.stopPropagation();
     setfrozen(event.target.checked);
   };
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     if (!frozen) {
       setPhoneNumber(value);
     }
@@ -21,9 +21,10 @@ const DemoInputPhone = () => {
   return (
     <div>
       <p>
-        <label>
+        <label htmlFor="freeze-input">
           controlled mode - freeze values:
           <input
+            name="freeze-input"
             type="checkbox"
             id="input-phone-frozen-mode"
             onClick={handleFrozen}
@@ -45,6 +46,6 @@ const DemoInputPhone = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoInputPhone;

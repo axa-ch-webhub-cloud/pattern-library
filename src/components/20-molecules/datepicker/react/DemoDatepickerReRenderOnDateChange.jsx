@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-const DemoDatepickerReRenderOnEveryKeyStroke = () => {
+function DemoDatepickerReRenderOnEveryKeyStroke() {
   const START_VALUE = '';
   const [value, setValue] = useState(START_VALUE);
   const [date, setDate] = useState(null);
@@ -20,8 +20,8 @@ const DemoDatepickerReRenderOnEveryKeyStroke = () => {
         id="datepicker-react-inputfield-rerender-on-date-change"
         data-test-id="datepicker-react-rerender-on-date-change"
         locale="de-CH"
-        onDateChange={(d) => setDate(d)}
-        onChange={(e) => {
+        onDateChange={d => setDate(d)}
+        onChange={e => {
           setValue(e.target.value);
           setDate(null);
         }}
@@ -39,6 +39,6 @@ const DemoDatepickerReRenderOnEveryKeyStroke = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoDatepickerReRenderOnEveryKeyStroke;

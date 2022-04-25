@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 import AXATextReact from './AXATextReact';
 
-const DemoDatepickerNoInputfield = () => {
+function DemoDatepickerNoInputfield() {
   const [showDatepicker, setShowDatepicker] = useState(true);
   return (
     <div>
-      <button onClick={() => setShowDatepicker(!showDatepicker)}>
+      <button type="button" onClick={() => setShowDatepicker(!showDatepicker)}>
         Toggle Datepicker
       </button>
       <hr />
@@ -19,7 +19,7 @@ const DemoDatepickerNoInputfield = () => {
             month={1}
             day={1}
             // eslint-disable-next-line no-console
-            onDateChange={(date) =>
+            onDateChange={date =>
               (document.getElementById(
                 'checkbox-output'
               ).innerHTML = `Date changed to: ${date}`)
@@ -30,6 +30,6 @@ const DemoDatepickerNoInputfield = () => {
       )}
     </div>
   );
-};
+}
 
 export default DemoDatepickerNoInputfield;

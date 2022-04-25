@@ -1,22 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 
-export default class example extends React.Component {
-  constructor() {
-    super();
+function ControlledWithOnChange() {
+  const [active, setActive] = useState(false);
 
-    this.state = {
-      active: false,
-    };
-  }
-
-  render() {
-    return (
-      <AXAToggleSwitchReact active={this.state.active} onChange={this.change} />
-    );
-  }
-
-  change = () => {
-    this.setState({ active: !this.state.active });
+  const change = () => {
+    setActive(!active);
   };
+
+  return <AXAToggleSwitchReact active={active} onChange={change} />;
 }
+
+export default ControlledWithOnChange;

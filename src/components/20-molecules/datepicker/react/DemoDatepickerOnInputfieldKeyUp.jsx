@@ -1,7 +1,7 @@
 import React from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-const DemoDatepickerOnInputfieldKeyUp = () => {
+function DemoDatepickerOnInputfieldKeyUp() {
   return (
     <div>
       <p>
@@ -11,7 +11,7 @@ const DemoDatepickerOnInputfieldKeyUp = () => {
       <AXADatepickerReact
         inputfield
         id="datepicker-react-inputfield-on-date-change"
-        onInputfieldKeyUp={(e) => {
+        onInputfieldKeyUp={e => {
           document.querySelector('#datepicker-react-testoutput').innerHTML =
             e.key;
         }}
@@ -19,6 +19,6 @@ const DemoDatepickerOnInputfieldKeyUp = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoDatepickerOnInputfieldKeyUp;

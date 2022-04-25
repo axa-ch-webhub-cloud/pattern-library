@@ -37,14 +37,14 @@ const COPYRIGHT = [
   '© 2020 AXA Assicurazioni SA',
 ];
 
-const DemoFooterSmallDynamicChildren = (props) => {
+function DemoFooterSmallDynamicChildren() {
   const [activeLanguage, setActiveLanguageIndex] = useState(0);
 
   const [disclaimerChange, setDisclaimerIndex] = useState(0);
   const [legals, setLegals] = useState(LEGALS[0]);
   const [copyrightText, setCopyrightText] = useState(COPYRIGHT[0]);
 
-  const handleLanguageClick = (languageIndex) => {
+  const handleLanguageClick = languageIndex => {
     delete languageOptions[activeLanguage].isActive;
     languageOptions[languageIndex].isActive = true;
     setActiveLanguageIndex(languageIndex);
@@ -52,7 +52,7 @@ const DemoFooterSmallDynamicChildren = (props) => {
     setCopyrightText(COPYRIGHT[languageIndex]);
   };
 
-  const handleLegalClick = (disclaimerIndex) => {
+  const handleLegalClick = disclaimerIndex => {
     setDisclaimerIndex(disclaimerIndex);
   };
 
@@ -65,18 +65,24 @@ const DemoFooterSmallDynamicChildren = (props) => {
         onDisclaimerClick={handleLegalClick}
         dynamic
       >
-        {languageOptions.map((l) => (
+        {languageOptions.map(l => (
           <a
             key={l.name}
             slot="language-item"
             className={l.isActive ? 'm-footer-small__link--active' : undefined}
-            href="#"
+            href="https://patterns.axa.ch"
           >
             {l.name.toUpperCase()}
           </a>
         ))}
-        {legals.map((l) => (
-          <a key={l.name} slot="disclaimer-item" href={l.url} target="_blank">
+        {legals.map(l => (
+          <a
+            key={l.name}
+            slot="disclaimer-item"
+            href={l.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             {l.name}
           </a>
         ))}
@@ -84,6 +90,6 @@ const DemoFooterSmallDynamicChildren = (props) => {
       </AXAFooterSmall>
     </div>
   );
-};
+}
 
 export default DemoFooterSmallDynamicChildren;

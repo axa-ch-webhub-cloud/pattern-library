@@ -51,9 +51,7 @@ const typecheck = (self, mode) => {
 
   if (errors.length) {
     const format = keys =>
-      keys
-        .map(property => `"${property}": ${typeErrors[property]}`)
-        .join('\n');
+      keys.map(property => `"${property}": ${typeErrors[property]}`).join('\n');
 
     errorString = `<${tagName}> properties type violations detected - ${format(
       errors

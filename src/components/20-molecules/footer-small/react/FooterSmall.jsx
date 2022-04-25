@@ -4,16 +4,23 @@ import createAXAFooterSmallReact from '../index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
-const DemoFooterSmall = (props) => {
+function DemoFooterSmall({
+  language1,
+  language2,
+  language3,
+  language4,
+  dataProtection,
+  termsOfUse,
+}) {
   const [activeLanguage, setActiveLanguageIndex] = useState('-');
 
   const [disclaimerChange, setDisclaimerIndex] = useState('-');
 
-  const handleAXAFooterLanguageClicked = (languageIndex) => {
+  const handleAXAFooterLanguageClicked = languageIndex => {
     setActiveLanguageIndex(languageIndex);
   };
 
-  const handleAXAFooterDisclaimerClicked = (disclaimerIndex) => {
+  const handleAXAFooterDisclaimerClicked = disclaimerIndex => {
     setDisclaimerIndex(disclaimerIndex);
   };
 
@@ -31,33 +38,33 @@ const DemoFooterSmall = (props) => {
           className="m-footer-small__link--active"
           href="https://axa.ch/de/privatkunden.html"
         >
-          {props.language1}
+          {language1}
         </a>
         <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
-          {props.language2}
+          {language2}
         </a>
         <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
-          {props.language3}
+          {language3}
         </a>
         <a slot="language-item" href="https://axa.ch/en/private-customers.html">
-          {props.language4}
+          {language4}
         </a>
         <a
           slot="disclaimer-item"
           href="https://axa.ch/en/information/terms-of-use.html"
         >
-          {props.termsOfUse}
+          {termsOfUse}
         </a>
         <a
           slot="disclaimer-item"
           href="https://axa.ch/en/information/data-protection.html"
         >
-          {props.dataProtection}
+          {dataProtection}
         </a>
         <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
       </AXAFooterSmallReact>
     </div>
   );
-};
+}
 
 export default DemoFooterSmall;

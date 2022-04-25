@@ -28,7 +28,7 @@ function logFiles(e) {
 
   document.querySelector('#m-fileupload-story__files').innerHTML = '';
   if (files.length > 0) {
-    files.forEach((file) => {
+    files.forEach(file => {
       const item = document.createElement('li');
       item.innerHTML = file.name;
       document.querySelector('#m-fileupload-story__files').appendChild(item);
@@ -144,7 +144,7 @@ storiesOf('Examples/File Upload/React', module)
       <div>
         <AXAFileUploadReact
           maxSizeOfSingleFileKB="500"
-          onChange={(e) => {
+          onChange={e => {
             logFiles(e);
           }}
         />

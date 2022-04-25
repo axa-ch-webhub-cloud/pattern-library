@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAButton from './AXAButton';
 
-const DemoButtonClick = () => {
+function DemoButtonClick() {
   const [count, setCount] = useState(0);
 
   const handleAXAButtonClick = () => {
@@ -16,6 +16,6 @@ const DemoButtonClick = () => {
       </AXAButton>
     </div>
   );
-};
+}
 
 export default DemoButtonClick;

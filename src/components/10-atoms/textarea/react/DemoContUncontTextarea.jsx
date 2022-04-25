@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import AXATextarea from './AXATextarea';
 
-const DemoContUncontTextarea = () => {
+function DemoContUncontTextarea() {
   const [message, setMessage] = useState('controlled');
   const [name, setName] = useState('');
 
-  const handleChange = (ev) => {
+  const handleChange = ev => {
     setMessage(ev.target.value);
   };
 
-  const handleNameChange = (ev) => {
+  const handleNameChange = ev => {
     setName(ev.target.value);
   };
 
@@ -45,6 +45,6 @@ const DemoContUncontTextarea = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoContUncontTextarea;

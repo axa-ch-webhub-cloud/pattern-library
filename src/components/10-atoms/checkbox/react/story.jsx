@@ -44,7 +44,7 @@ storiesOf('Examples/Checkbox/React', module)
           variant={variant}
           required={required}
           styled={styled}
-          onChange={(e) =>
+          onChange={e =>
             (document.getElementById(
               'checkbox-output'
             ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)

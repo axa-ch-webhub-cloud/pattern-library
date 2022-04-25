@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-const DemoDatepickerExternalValidation = () => {
+function DemoDatepickerExternalValidation() {
   const [outsideDateRange, setOutsideDateRange] = useState(false);
   const locale = 'de-CH';
 
-  const localizedDateString = (date) =>
+  const localizedDateString = date =>
     date.toLocaleString(locale, {
       day: 'numeric',
       month: 'numeric',
@@ -14,7 +14,7 @@ const DemoDatepickerExternalValidation = () => {
 
   const [start, end] = [new Date('2019-04-01'), new Date('2020-04-01')];
 
-  const checkOutsideDateRange = (date) => +date < +start || +date >= +end;
+  const checkOutsideDateRange = date => +date < +start || +date >= +end;
 
   return (
     <div>
@@ -27,7 +27,7 @@ const DemoDatepickerExternalValidation = () => {
         id="datepicker-react-inputfield-external-validation"
         data-test-id="datepicker-react-external-validation"
         locale={locale}
-        onDateChange={(newDate) =>
+        onDateChange={newDate =>
           setOutsideDateRange(checkOutsideDateRange(newDate))
         }
         placeholder="Choose a date"
@@ -41,6 +41,6 @@ const DemoDatepickerExternalValidation = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoDatepickerExternalValidation;

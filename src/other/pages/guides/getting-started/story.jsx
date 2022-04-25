@@ -58,9 +58,9 @@ export const GettingStarted = () => {
         </AXAText>
         <AXAHeading rank="3">Install and use components</AXAHeading>
         <p className="getting-started__dependency-wrapper">
-          AXA's Design System is made up of multiple web components and tools,
-          which you can import one by one. All you need to do is install the
-          corresponding <em>npm</em> package under the &nbsp;
+          AXA&rsquo;s Design System is made up of multiple web components and
+          tools, which you can import one by one. All you need to do is install
+          the corresponding <em>npm</em> package under the &nbsp;
           <code className="getting-started__dependency">@axa-ch/</code>&nbsp;
           namespace. Here is an example featuring a button:
         </p>

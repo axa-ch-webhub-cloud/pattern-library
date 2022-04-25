@@ -1,7 +1,3 @@
-# Ignore everything except the src folder:
-/*
-!/src
-
 # We decided in the team to not format scss files
 *.scss
 
@@ -14,6 +10,10 @@ src/static
 .gitignore
 .DS_Store
 *.sh
+*.md
+*.yml
+*.json
+
 
 # Ignore auto generated files
 node_modules

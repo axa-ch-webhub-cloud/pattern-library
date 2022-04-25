@@ -5,42 +5,47 @@ const fs = require('fs');
 const { cwd } = process;
 const templateJson = require('./templates/template-package.json');
 
-const getAMOType = (type) => {
-  console.log(chalk.cyan(outdent`
+const getAMOType = type => {
+  // eslint-disable-next-line no-console
+  console.log(
+    chalk.cyan(outdent`
 
     Ok good, you choose to create a new component of type ${chalk.bold(type)}.
 
     Now, tell me how your new component should be called (minus the axa- prefix),
     and submit with Enter:
 
-  `));
+  `)
+  );
 };
 
-const capitalizeFirstLetter = string => string
-  .charAt(0)
-  .toUpperCase() + string
-  .slice(1);
+const capitalizeFirstLetter = string =>
+  string.charAt(0).toUpperCase() + string.slice(1);
 
-const prepareName = done => (userInput) => {
-  const camelCase = string => string
-    .split(/[-_ ]+/)
-    .map(capitalizeFirstLetter)
-    .join('');
+const prepareName = done => userInput => {
+  const camelCase = string =>
+    string
+      .split(/[-_ ]+/)
+      .map(capitalizeFirstLetter)
+      .join('');
   const fileName = userInput.replace(/ /g, '-').toLowerCase();
   const className = `AXA${camelCase(fileName)}`;
 
-  console.log(chalk.cyan(outdent`
+  // eslint-disable-next-line no-console
+  console.log(
+    chalk.cyan(outdent`
 
     Ok good, now we will set up all the files for your new component.
 
     Class name: ${chalk.bold(className)}
     Folder name: ${chalk.bold(fileName)}
 
-  `));
+  `)
+  );
 
   done({
     className,
-    fileName
+    fileName,
   });
 };
 
@@ -53,10 +58,11 @@ const createFiles = (store, a, m, o, done) => () => {
   };
 
   const BASE_FOLDER = `./src/components/${folderMap[type]}/${fileName}`;
-  const upperCaseWithSpace = string => string
-    .split(/[-_ ]+/)
-    .map(capitalizeFirstLetter)
-    .join(' ');
+  const upperCaseWithSpace = string =>
+    string
+      .split(/[-_ ]+/)
+      .map(capitalizeFirstLetter)
+      .join(' ');
   const compTitle = upperCaseWithSpace(fileName.replace(/-/g, ' '));
 
   if (!fs.existsSync(BASE_FOLDER)) {
@@ -71,7 +77,7 @@ const createFiles = (store, a, m, o, done) => () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/package.json`,
     JSON.stringify(templateJson, null, 2),
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -83,7 +89,7 @@ const createFiles = (store, a, m, o, done) => () => {
     ## 0.0.1
     * first release of component
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -162,7 +168,7 @@ const createFiles = (store, a, m, o, done) => () => {
     The function-valued attribute \`onClick\` can be used as a callback prop for React and other frameworks.
 
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -172,7 +178,7 @@ const createFiles = (store, a, m, o, done) => () => {
         display: block;
       }
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -184,7 +190,7 @@ const createFiles = (store, a, m, o, done) => () => {
     export default (createElement, version) =>
       withReact(createElement, ${className}, version);
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -211,7 +217,7 @@ const createFiles = (store, a, m, o, done) => () => {
       return wrapper;
     }
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -234,7 +240,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     export default create${className};
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -255,7 +261,7 @@ describe('${compTitle}', () => {
 });
 
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -273,7 +279,7 @@ describe('${compTitle}', () => {
       });
     });
     `,
-    'utf8',
+    'utf8'
   );
 
   fs.writeFileSync(
@@ -353,11 +359,12 @@ describe('${compTitle}', () => {
 
     export default ${className};
     `,
-    'utf8',
+    'utf8'
   );
 
   // update lerna.json
   const lernaPath = `${cwd()}/lerna.json`;
+  // eslint-disable-next-line global-require,import/no-dynamic-require
   const lerna = require(lernaPath);
   const { packages = [] } = lerna;
   const newComponentPackageName = BASE_FOLDER.replace(/^\.\//, '');
@@ -365,16 +372,11 @@ describe('${compTitle}', () => {
     packages.push(newComponentPackageName);
     packages.sort();
 
-    fs.writeFileSync(
-      lernaPath,
-      JSON.stringify(lerna, null, 2),
-      'utf8',
-    );
+    fs.writeFileSync(lernaPath, JSON.stringify(lerna, null, 2), 'utf8');
   }
 
   done(BASE_FOLDER);
 };
-
 
 module.exports = {
   getAMOType,

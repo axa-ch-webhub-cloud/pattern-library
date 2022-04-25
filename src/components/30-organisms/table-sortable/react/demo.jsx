@@ -73,7 +73,8 @@ storiesOf('Examples/Table Sortable/React', module)
       <TableSortable
         model={model}
         datesortcolumnindex="3"
-        onClick={(ev) => {
+        onClick={ev => {
+          // eslint-disable-next-line no-alert
           window.alert(JSON.stringify(ev));
         }}
       />,

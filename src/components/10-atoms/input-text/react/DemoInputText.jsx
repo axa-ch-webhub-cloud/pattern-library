@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import AXAInputText from './AXAInputText';
 
-const DemoInputText = () => {
+function DemoInputText() {
   const [firstName, setFirstName] = useState('controlled');
   const [name, setName] = useState('');
 
-  const handleChange = (ev) => {
+  const handleChange = ev => {
     setFirstName(ev.target.value);
   };
 
-  const handleNameChange = (ev) => {
+  const handleNameChange = ev => {
     setName(ev.target.value);
   };
 
@@ -24,6 +24,7 @@ const DemoInputText = () => {
       />
       <p>
         <AXAInputText
+          name="chf"
           currency="chf"
           label="Controlled with currency attribute set to 'CHF'"
           error="Please enter at least one number"
@@ -58,6 +59,6 @@ const DemoInputText = () => {
       />
     </div>
   );
-};
+}
 
 export default DemoInputText;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AXAButtonLink from './AXAButtonLink';
 
-const DemoButtonLinkClick = () => {
+function DemoButtonLinkClick() {
   const [count, setCount] = useState(0);
 
-  const handleAXAButtonClick = (e) => {
+  const handleAXAButtonClick = e => {
     e.preventDefault();
     setCount(count + 1);
   };
@@ -17,6 +17,6 @@ const DemoButtonLinkClick = () => {
       </AXAButtonLink>
     </div>
   );
-};
+}
 
 export default DemoButtonLinkClick;

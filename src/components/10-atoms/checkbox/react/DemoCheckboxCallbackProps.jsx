@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
-const DemoCheckboxCallbackProps = () => {
+function DemoCheckboxCallbackProps() {
   const [frozen, setFrozen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [focus, setFocus] = useState(false);
   const [blur, setBlur] = useState(false);
 
-  const handleFreeze = (e) => {
+  const handleFreeze = () => {
     setFrozen(!frozen);
   };
 
@@ -47,6 +47,6 @@ const DemoCheckboxCallbackProps = () => {
       </div>
     </fieldset>
   );
-};
+}
 
 export default DemoCheckboxCallbackProps;
