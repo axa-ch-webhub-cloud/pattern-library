@@ -20,7 +20,7 @@ function DemoTextReact() {
           pure, non-HTML text
         </span>
         <input
-          name="checkbox"
+          id="checkbox"
           type="checkbox"
           onChange={handleChange}
           checked={text}

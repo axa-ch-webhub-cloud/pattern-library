@@ -40,7 +40,7 @@ storyInputText.add('Story', () => {
   const autofocus = boolean('autofocus', false);
 
   function InputText() {
-    const { valueState, setValueState } = useState(value);
+    const [valueState, setValueState] = useState(value);
 
     return (
       <AXAInputText

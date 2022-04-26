@@ -20,7 +20,7 @@ function DemoTextReactVersioned() {
           variant &rsquo;bold&rsquo;
         </span>
         <input
-          name="variant"
+          id="variant"
           type="checkbox"
           onChange={handleVariant}
           checked={!!variant}
