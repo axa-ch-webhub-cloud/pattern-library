@@ -37,7 +37,7 @@ const COPYRIGHT = [
   '© 2020 AXA Assicurazioni SA',
 ];
 
-function DemoFooterSmallDynamicChildren() {
+const DemoFooterSmallDynamicChildren = () => {
   const [activeLanguage, setActiveLanguageIndex] = useState(0);
 
   const [disclaimerChange, setDisclaimerIndex] = useState(0);

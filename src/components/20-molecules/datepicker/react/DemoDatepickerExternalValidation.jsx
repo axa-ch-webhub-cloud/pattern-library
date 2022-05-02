@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-function DemoDatepickerExternalValidation() {
+const DemoDatepickerExternalValidation = () => {
   const [outsideDateRange, setOutsideDateRange] = useState(false);
   const locale = 'de-CH';
 

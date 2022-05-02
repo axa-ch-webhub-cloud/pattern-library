@@ -5,7 +5,7 @@ import AXADropdownVersionedReact, {
 } from './AXADropdownVersionedReact';
 import AXATextReact from './AXATextReact';
 
-function DemoVersionedDropdown() {
+const DemoVersionedDropdown = () => {
   const props = {
     item1: 'item1',
     item2: 'item2',
@@ -47,6 +47,6 @@ function DemoVersionedDropdown() {
       </AXATextReact>
     </>
   );
-}
+};
 
 export default DemoVersionedDropdown;

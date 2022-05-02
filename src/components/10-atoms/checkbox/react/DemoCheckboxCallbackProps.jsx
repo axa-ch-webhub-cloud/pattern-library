@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
-function DemoCheckboxCallbackProps() {
+const DemoCheckboxCallbackProps = () => {
   const [frozen, setFrozen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [focus, setFocus] = useState(false);

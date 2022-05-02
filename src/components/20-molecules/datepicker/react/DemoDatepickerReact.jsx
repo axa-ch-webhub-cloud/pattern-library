@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 import AXACheckboxReact from '../../../10-atoms/checkbox/react/AXACheckboxReact';
 
-function DemoDatepicker() {
+const DemoDatepicker = () => {
   const [value, setValue] = useState('4.6.2019');
   const [frozen, setFrozen] = useState(false);
 
@@ -48,6 +48,6 @@ function DemoDatepicker() {
       </p>
     </div>
   );
-}
+};
 
 export default DemoDatepicker;

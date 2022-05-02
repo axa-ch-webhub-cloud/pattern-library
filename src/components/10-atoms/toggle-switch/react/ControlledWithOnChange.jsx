@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 
-function ControlledWithOnChange() {
+const ControlledWithOnChange = () => {
   const [active, setActive] = useState(false);
 
   const change = () => {
@@ -9,6 +9,6 @@ function ControlledWithOnChange() {
   };
 
   return <AXAToggleSwitchReact active={active} onChange={change} />;
-}
+};
 
 export default ControlledWithOnChange;

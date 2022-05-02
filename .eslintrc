@@ -57,7 +57,8 @@
       "error",
       { "multiline": true, "consistent": true }
     ],
-    "jest/no-jest-import": "off"
+    "jest/no-jest-import": "off",
+    "react/function-component-definition": "off"
   },
   "globals": {
     "HTMLElement": true,

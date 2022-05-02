@@ -4,14 +4,14 @@ import createAXAFooterSmallReact from '../index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
-function DemoFooterSmall({
+const DemoFooterSmall = ({
   language1,
   language2,
   language3,
   language4,
   dataProtection,
   termsOfUse,
-}) {
+}) => {
   const [activeLanguage, setActiveLanguageIndex] = useState('-');
 
   const [disclaimerChange, setDisclaimerIndex] = useState('-');
@@ -65,6 +65,6 @@ function DemoFooterSmall({
       </AXAFooterSmallReact>
     </div>
   );
-}
+};
 
 export default DemoFooterSmall;

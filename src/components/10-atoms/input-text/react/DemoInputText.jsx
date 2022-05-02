@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAInputText from './AXAInputText';
 
-function DemoInputText() {
+const DemoInputText = () => {
   const [firstName, setFirstName] = useState('controlled');
   const [name, setName] = useState('');
 
@@ -59,6 +59,6 @@ function DemoInputText() {
       />
     </div>
   );
-}
+};
 
 export default DemoInputText;

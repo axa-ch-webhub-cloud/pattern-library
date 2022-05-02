@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 import AXATextReact from './AXATextReact';
 
-function DemoDatepickerNoInputfield() {
+const DemoDatepickerNoInputfield = () => {
   const [showDatepicker, setShowDatepicker] = useState(true);
   return (
     <div>
@@ -30,6 +30,6 @@ function DemoDatepickerNoInputfield() {
       )}
     </div>
   );
-}
+};
 
 export default DemoDatepickerNoInputfield;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAButton from './AXAButton';
 
-function DemoButtonClick() {
+const DemoButtonClick = () => {
   const [count, setCount] = useState(0);
 
   const handleAXAButtonClick = () => {

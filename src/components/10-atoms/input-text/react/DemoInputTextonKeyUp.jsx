@@ -1,7 +1,7 @@
 import React from 'react';
 import AXAInputText from './AXAInputText';
 
-function DemoInputTextonKeyUp() {
+const DemoInputTextonKeyUp = () => {
   return (
     <div>
       <p>
@@ -18,6 +18,6 @@ function DemoInputTextonKeyUp() {
       />
     </div>
   );
-}
+};
 
 export default DemoInputTextonKeyUp;

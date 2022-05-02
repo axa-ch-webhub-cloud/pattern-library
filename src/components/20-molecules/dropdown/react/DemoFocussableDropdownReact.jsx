@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import React, { Fragment } from 'react';
+import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 
-function DemoFocussableDropdown() {
+const DemoFocussableDropdown = () => {
   let output;
 
   const items = [
@@ -66,6 +66,6 @@ function DemoFocussableDropdown() {
       </select>
     </>
   );
-}
+};
 
 export default DemoFocussableDropdown;

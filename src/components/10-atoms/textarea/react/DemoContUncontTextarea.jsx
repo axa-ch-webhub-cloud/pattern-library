@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXATextarea from './AXATextarea';
 
-function DemoContUncontTextarea() {
+const DemoContUncontTextarea = () => {
   const [message, setMessage] = useState('controlled');
   const [name, setName] = useState('');
 

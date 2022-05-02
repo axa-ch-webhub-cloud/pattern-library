@@ -3,7 +3,7 @@ import AXADropdownReact from './AXADropdownReact';
 import AXACheckboxReact from '../../../10-atoms/checkbox/react/AXACheckboxReact';
 import findIndex from '../../../../utils/find-index';
 
-function DemoDropdown() {
+const DemoDropdown = () => {
   const items = [
     { name: 'Item A', value: 'Item 1' },
     { name: 'Item B', value: 'Item 2' },
@@ -73,6 +73,6 @@ function DemoDropdown() {
       </p>
     </div>
   );
-}
+};
 
 export default DemoDropdown;

@@ -12,7 +12,7 @@ const t = (scope, text) => {
   return ((TRANSLATIONS[scope] || {})[text] || {})[language] || text;
 };
 
-function DemoLink() {
+const DemoLink = () => {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpand = () => {

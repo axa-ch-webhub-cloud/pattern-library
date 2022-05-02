@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAText from './AXATextReactVersioned.jsx';
 
-function DemoTextReactVersioned() {
+const DemoTextReactVersioned = () => {
   const [counter, setCounter] = useState(1);
   const [variant, setVariant] = useState('bold');
 
@@ -40,6 +40,6 @@ function DemoTextReactVersioned() {
       </AXAText>
     </div>
   );
-}
+};
 
 export default DemoTextReactVersioned;

@@ -1,7 +1,7 @@
 import React from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-function DemoDatepickerOnInputfieldKeyUp() {
+const DemoDatepickerOnInputfieldKeyUp = () => {
   return (
     <div>
       <p>

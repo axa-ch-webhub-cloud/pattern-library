@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAButton from './AXAButton';
 
-function DemoButtonForm() {
+const DemoButtonForm = () => {
   const [buttonText, setButtonText] = useState(`0 times clicked`);
 
   const handleSubmitAndChangeText = ev => {
@@ -51,6 +51,6 @@ function DemoButtonForm() {
       </form>
     </div>
   );
-}
+};
 
 export default DemoButtonForm;

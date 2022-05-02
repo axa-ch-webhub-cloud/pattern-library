@@ -3,7 +3,7 @@ import AXAInputPhone from './InputPhone';
 
 const defaultValue = '795002020';
 
-function DemoInputPhone() {
+const DemoInputPhone = () => {
   const [frozen, setfrozen] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(defaultValue);
 
@@ -46,6 +46,6 @@ function DemoInputPhone() {
       />
     </div>
   );
-}
+};
 
 export default DemoInputPhone;

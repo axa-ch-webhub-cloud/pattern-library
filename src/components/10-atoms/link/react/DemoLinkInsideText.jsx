@@ -1,7 +1,7 @@
 import React from 'react';
 import AXALink from './AXALinkReact';
 
-function DemoLinkInsideText() {
+const DemoLinkInsideText = () => {
   return (
     <span>
       is simply dummy text of the printing and typesetting industry. Lorem Ipsum

@@ -3,7 +3,7 @@ import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXATextReact from './AXATextReact';
 
-function DemoUncontrolledDropdown({
+const DemoUncontrolledDropdown = ({
   item1,
   item2,
   item3,
@@ -16,7 +16,7 @@ function DemoUncontrolledDropdown({
   required,
   checkMark,
   disabled,
-}) {
+}) => {
   const items = [
     { name: item1, value: 'Item 1' },
     { name: item2, value: 'Item 2', selected: true },

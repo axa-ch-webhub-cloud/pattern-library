@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
-function DemoCheckboxLabelAsChildren() {
+const DemoCheckboxLabelAsChildren = () => {
   const [checked, setChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -22,6 +22,6 @@ function DemoCheckboxLabelAsChildren() {
       </p>
     </AXACheckbox>
   );
-}
+};
 
 export default DemoCheckboxLabelAsChildren;

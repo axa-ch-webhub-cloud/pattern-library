@@ -1,7 +1,7 @@
 import React from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-function DemoDatepickerOnDateChange() {
+const DemoDatepickerOnDateChange = () => {
   const startDateString = '2019-07-29';
   const [selectedDateString, setSelectedDateString] =
     React.useState(startDateString);
@@ -42,6 +42,6 @@ function DemoDatepickerOnDateChange() {
       />
     </div>
   );
-}
+};
 
 export default DemoDatepickerOnDateChange;

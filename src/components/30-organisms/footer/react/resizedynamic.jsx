@@ -2,7 +2,7 @@ import React from 'react';
 import AXAFooter from './Footer';
 
 // eslint-disable-next-line react/prop-types
-export function Footer({ col1ItemsCount }) {
+export const Footer = ({ col1ItemsCount }) => {
   const colData = Array.from(Array(col1ItemsCount).keys()).map(i => (
     <a key={i} slot="column-item" href="www.example.com" target="_blank">
       Item <span>{i + 1}</span>

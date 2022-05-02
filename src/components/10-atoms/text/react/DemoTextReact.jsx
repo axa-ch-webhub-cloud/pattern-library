@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAText from './AXATextReact.jsx';
 
-function DemoTextReact() {
+const DemoTextReact = () => {
   const [counter, setCounter] = useState(1);
   const [text, setText] = useState(true);
 
@@ -44,6 +44,6 @@ function DemoTextReact() {
       </AXAText>
     </div>
   );
-}
+};
 
 export default DemoTextReact;

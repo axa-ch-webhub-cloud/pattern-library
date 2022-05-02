@@ -2,7 +2,7 @@ import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXATextReact from './AXATextReact';
 
-function DemoManyOptionsReact() {
+const DemoManyOptionsReact = () => {
   const items = [
     { name: 'Afghanistan', value: 'Afghanistan' },
     { name: 'Albania', value: 'Albania' },
@@ -221,6 +221,6 @@ function DemoManyOptionsReact() {
       <AXATextReact id="checkbox-output">Value:</AXATextReact>
     </>
   );
-}
+};
 
 export default DemoManyOptionsReact;

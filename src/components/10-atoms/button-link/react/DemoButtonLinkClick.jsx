@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAButtonLink from './AXAButtonLink';
 
-function DemoButtonLinkClick() {
+const DemoButtonLinkClick = () => {
   const [count, setCount] = useState(0);
 
   const handleAXAButtonClick = e => {

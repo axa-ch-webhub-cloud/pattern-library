@@ -19,7 +19,7 @@ storiesOf('Examples/Footer/React', module)
     const div = document.createElement('div');
     div.id = 'footer';
 
-    function CallbacksExample() {
+    const CallbacksExample = () => {
       const [clickedLinkText, setClickedLinkText] = useState(
         'Last clicked link: -'
       );
@@ -206,7 +206,7 @@ storiesOf('Examples/Footer/React', module)
           <p id="clicked-link">{clickedLinkText}</p>
         </div>
       );
-    }
+    };
 
     ReactDOM.render(<CallbacksExample />, div);
     return div;
@@ -214,7 +214,7 @@ storiesOf('Examples/Footer/React', module)
   .add('Resize dynamic', () => {
     const div = document.createElement('div');
 
-    function ResizeExample() {
+    const ResizeExample = () => {
       const [col1ItemsCount, setCol1ItemsCount] = useState(10);
 
       const onItemsChangeClick = () => {

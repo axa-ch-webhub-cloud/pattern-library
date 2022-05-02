@@ -39,7 +39,7 @@ storyInputText.add('Story', () => {
   const inputmode = text('inputmode', '');
   const autofocus = boolean('autofocus', false);
 
-  function InputText() {
+  const InputText = () => {
     const [valueState, setValueState] = useState(value);
 
     return (
@@ -64,7 +64,7 @@ storyInputText.add('Story', () => {
         onChange={evt => setValueState(evt.target.value)}
       />
     );
-  }
+  };
 
   const wrapper = document.createElement('div');
   ReactDOM.render(<InputText />, wrapper);

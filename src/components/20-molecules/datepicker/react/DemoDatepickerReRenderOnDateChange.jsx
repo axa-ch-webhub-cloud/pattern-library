@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
 
-function DemoDatepickerReRenderOnEveryKeyStroke() {
+const DemoDatepickerReRenderOnEveryKeyStroke = () => {
   const START_VALUE = '';
   const [value, setValue] = useState(START_VALUE);
   const [date, setDate] = useState(null);
@@ -39,6 +39,6 @@ function DemoDatepickerReRenderOnEveryKeyStroke() {
       />
     </div>
   );
-}
+};
 
 export default DemoDatepickerReRenderOnEveryKeyStroke;
