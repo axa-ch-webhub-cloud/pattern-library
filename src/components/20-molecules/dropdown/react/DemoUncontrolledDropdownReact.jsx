@@ -47,6 +47,6 @@ const DemoUncontrolledDropdown = ({
       <AXATextReact id="checkbox-output">Value:</AXATextReact>
     </>
   );
-}
+};
 
 export default DemoUncontrolledDropdown;

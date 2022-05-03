@@ -32,6 +32,6 @@ const DemoLink = () => {
       </AXALink>
     </>
   );
-}
+};
 
 export default DemoLink;

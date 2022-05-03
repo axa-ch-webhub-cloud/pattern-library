@@ -236,7 +236,7 @@ storiesOf('Examples/Footer/React', module)
           <Footer col1ItemsCount={col1ItemsCount} />
         </div>
       );
-    }
+    };
 
     ReactDOM.render(<ResizeExample />, div);
     return div;

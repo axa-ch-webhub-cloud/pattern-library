@@ -47,6 +47,6 @@ const DemoCheckboxCallbackProps = () => {
       </div>
     </fieldset>
   );
-}
+};
 
 export default DemoCheckboxCallbackProps;

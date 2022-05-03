@@ -28,6 +28,6 @@ const DemoLinkInsideText = () => {
       software like Aldus PageMaker including versions of Lorem Ipsum.
     </span>
   );
-}
+};
 
 export default DemoLinkInsideText;

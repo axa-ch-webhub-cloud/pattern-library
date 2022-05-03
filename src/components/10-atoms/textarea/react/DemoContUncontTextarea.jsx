@@ -45,6 +45,6 @@ const DemoContUncontTextarea = () => {
       />
     </div>
   );
-}
+};
 
 export default DemoContUncontTextarea;

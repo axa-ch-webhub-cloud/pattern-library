@@ -16,6 +16,6 @@ const DemoButtonClick = () => {
       </AXAButton>
     </div>
   );
-}
+};
 
 export default DemoButtonClick;

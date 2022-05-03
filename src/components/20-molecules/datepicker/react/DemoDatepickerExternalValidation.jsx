@@ -41,6 +41,6 @@ const DemoDatepickerExternalValidation = () => {
       />
     </div>
   );
-}
+};
 
 export default DemoDatepickerExternalValidation;

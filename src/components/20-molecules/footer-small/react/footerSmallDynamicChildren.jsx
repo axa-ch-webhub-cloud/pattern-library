@@ -90,6 +90,6 @@ const DemoFooterSmallDynamicChildren = () => {
       </AXAFooterSmall>
     </div>
   );
-}
+};
 
 export default DemoFooterSmallDynamicChildren;

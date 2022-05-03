@@ -19,6 +19,6 @@ const DemoDatepickerOnInputfieldKeyUp = () => {
       />
     </div>
   );
-}
+};
 
 export default DemoDatepickerOnInputfieldKeyUp;

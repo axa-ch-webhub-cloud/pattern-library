@@ -15,4 +15,4 @@ export const Footer = ({ col1ItemsCount }) => {
       {colData}
     </AXAFooter>
   );
-}
+};
