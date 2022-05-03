@@ -31,7 +31,9 @@ export default AXAInputPhoneReact;
 ```
 
 ```js
-<AXAInputPhoneReact onChange={value => console.log(value)}></AXAInputPhoneReact>
+<AXAInputPhoneReact
+  onChange={(value) => console.log(value)}
+></AXAInputPhoneReact>
 ```
 
 ### Pure HTML pages

@@ -61,36 +61,37 @@ const nativeItemsMapper = ({ name, value, selected, _disabled }, index) => {
       data-value="${value}"
       ?selected="${selected}"
       ?disabled="${_disabled}"
-      >${name}</option
     >
+      ${name}
+    </option>
   `;
 };
 
-const contentItemsMapper = (clickHandler, defaultTitle) => (
-  { name, value, selected, _disabled },
-  index
-) => {
-  const classes = {
-    'm-dropdown__item': true,
-    'm-dropdown__item--is-selected': selected,
-  };
-  return _disabled
-    ? html``
-    : html`
-        <li class="${classMap(classes)}" title="${name}">
-          <button
-            type="button"
-            @click="${clickHandler}"
-            tabindex="-1"
-            class="m-dropdown__button js-dropdown__button"
-            data-index="${index + (defaultTitle ? 1 : 0)}"
-            data-value="${value}"
-          >
-            ${name}
-          </button>
-        </li>
-      `;
-};
+// prettier-ignore
+const contentItemsMapper =
+  (clickHandler, defaultTitle) =>
+    ({ name, value, selected, _disabled }, index) => {
+      const classes = {
+        'm-dropdown__item': true,
+        'm-dropdown__item--is-selected': selected,
+      };
+      return _disabled
+        ? html``
+        : html`
+          <li class="${classMap(classes)}" title="${name}">
+            <button
+              type="button"
+              @click="${clickHandler}"
+              tabindex="-1"
+              class="m-dropdown__button js-dropdown__button"
+              data-index="${index + (defaultTitle ? 1 : 0)}"
+              data-value="${value}"
+            >
+              ${name}
+            </button>
+          </li>
+        `;
+    };
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
@@ -473,16 +474,11 @@ class AXADropdown extends NoShadowDOM {
 
     return html`
       ${label &&
-        html`
-          <label for="${refId}" class="m-dropdown__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}
-          </label>
-        `}
+      html`
+        <label for="${refId}" class="m-dropdown__label">
+          ${label} ${required ? html` * ` : ''}
+        </label>
+      `}
       <div class="m-dropdown__wrapper" @keyup="${handleKeyUp}">
         <div class="m-dropdown__elements">
           <!-- NATIVE -->
@@ -504,9 +500,7 @@ class AXADropdown extends NoShadowDOM {
                 .concat(items)
                 .map((item, i) => nativeItemsMapper(item, i))}
             </select>
-            <span class="m-dropdown__select-icon">
-              ${ARROW_ICON}
-            </span>
+            <span class="m-dropdown__select-icon"> ${ARROW_ICON} </span>
           </div>
           <!-- NATIVE END -->
 

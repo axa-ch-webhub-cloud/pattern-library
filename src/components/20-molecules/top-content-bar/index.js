@@ -98,7 +98,8 @@ class AXATopContentBar extends InlineStyles {
           ${ctatext}
         </axa-button-link>
       `;
-    } else if (ctatext) {
+    }
+    if (ctatext) {
       return versionedHtml(this)`
         <axa-button
           class="m-top-content-bar__button js-button"
@@ -180,9 +181,7 @@ class AXATopContentBar extends InlineStyles {
             ${
               closable
                 ? html``
-                : html`
-                    <div class="m-top-content-bar-empty"></div>
-                  `
+                : html` <div class="m-top-content-bar-empty"></div> `
             }
           </div>
           ${

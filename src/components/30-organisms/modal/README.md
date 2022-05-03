@@ -48,7 +48,7 @@ Under react we can pass a method `onClose` that will get called when the Modal c
 ```js
 <AXAModal
   open
-  onClose={customEvent => {
+  onClose={(customEvent) => {
     console.log(customEvent, 'called when modal closes');
   }}
 />
@@ -58,7 +58,7 @@ When using the component as a native WebComponent, you can add an event listener
 
 ```js
 const modal = document.querySelector('axa-modal');
-modal.addEventListener('axa-close', customEvent => {
+modal.addEventListener('axa-close', (customEvent) => {
   console.log(customEvent, 'called when modal closes');
 });
 ```

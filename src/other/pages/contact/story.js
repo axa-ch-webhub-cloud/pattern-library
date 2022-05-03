@@ -92,9 +92,7 @@ export const Contact = () => {
         <div>
           <img src="email.svg" width="40" alt="Email Icon" />
           <axa-heading rank="6">Feature request</axa-heading>
-          <axa-text variant="size-2">
-            You need a feature?
-          </axa-text>
+          <axa-text variant="size-2"> You need a feature? </axa-text>
           <axa-link href="mailto:martin.stuedle@axa-winterthur.ch"
             >Message our product owner</axa-link
           >

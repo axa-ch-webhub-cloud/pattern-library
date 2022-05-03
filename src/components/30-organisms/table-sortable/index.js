@@ -261,7 +261,8 @@ class AXATableSortable extends LitElement {
         <table>
           <thead>
             <tr>
-              ${thead &&
+              ${
+                thead &&
                 thead.map(
                   (config, index) => html`
                     <th
@@ -289,11 +290,13 @@ class AXATableSortable extends LitElement {
                       </div>
                     </th>
                   `
-                )}
+                )
+              }
             </tr>
           </thead>
           <tbody>
-            ${tbody &&
+            ${
+              tbody &&
               tbody.map(
                 (cells, index) => html`
                   <tr
@@ -306,42 +309,41 @@ class AXATableSortable extends LitElement {
                     }}
                   >
                     ${cells &&
-                      cells.map(
-                        cell => html`
-                          <td>
-                            ${cell.html ? unsafeHTML(cell.html) : cell.text}
-                          </td>
-                        `
-                      )}
+                    cells.map(
+                      cell => html`
+                        <td>
+                          ${cell.html ? unsafeHTML(cell.html) : cell.text}
+                        </td>
+                      `
+                    )}
                   </tr>
                 `
-              )}
+              )
+            }
           </tbody>
           ${
             tfoot
               ? html`
                   <tfoot>
                     ${tbody &&
-                      tfoot.map(
-                        (cells, index) => html`
-                          <tr
-                            tabindex="0"
-                            @click=${ev => {
-                              this.handleOnClick(ev, index, TABLE_FOOT);
-                            }}
-                            @keypress=${ev => {
-                              this.onKeyPress(ev, index, TABLE_FOOT);
-                            }}
-                          >
-                            ${cells &&
-                              cells.map(
-                                cell => html`
-                                  <td>${unsafeHTML(cell.html)}</td>
-                                `
-                              )}
-                          </tr>
-                        `
-                      )}
+                    tfoot.map(
+                      (cells, index) => html`
+                        <tr
+                          tabindex="0"
+                          @click=${ev => {
+                            this.handleOnClick(ev, index, TABLE_FOOT);
+                          }}
+                          @keypress=${ev => {
+                            this.onKeyPress(ev, index, TABLE_FOOT);
+                          }}
+                        >
+                          ${cells &&
+                          cells.map(
+                            cell => html` <td>${unsafeHTML(cell.html)}</td> `
+                          )}
+                        </tr>
+                      `
+                    )}
                   </tfoot>
                 `
               : ''

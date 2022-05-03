@@ -239,16 +239,11 @@ class AXATextarea extends NoShadowDOM {
 
     return html`
       ${label &&
-        html`
-          <label for="${refId}" class="a-textarea__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}</label
-          >
-        `}
+      html`
+        <label for="${refId}" class="a-textarea__label">
+          ${label} ${required ? html` * ` : ''}</label
+        >
+      `}
       <div class="a-textarea__textarea-wrapper">
         <textarea
           @input="${this.handleInput}"
@@ -266,27 +261,13 @@ class AXATextarea extends NoShadowDOM {
         ></textarea>
 
         ${checkMark && !showCounterMax
-          ? html`
-              <span class="a-textarea__check"></span>
-            `
+          ? html` <span class="a-textarea__check"></span> `
           : ''}
       </div>
       <div class="${classMap(textareaMessagesClasses)}">
-        ${showCounter
-          ? html`
-              <span>${modelCounter}</span>
-            `
-          : ''}
-        ${showCounterMax
-          ? html`
-              <span>${counterMax}</span>
-            `
-          : ''}
-        ${showError
-          ? html`
-              <span>${error}</span>
-            `
-          : ''}
+        ${showCounter ? html` <span>${modelCounter}</span> ` : ''}
+        ${showCounterMax ? html` <span>${counterMax}</span> ` : ''}
+        ${showError ? html` <span>${error}</span> ` : ''}
       </div>
     `;
   }

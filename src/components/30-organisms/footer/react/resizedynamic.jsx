@@ -12,7 +12,7 @@ export const Footer = ({ col1ItemsCount }) => {
   return (
     <AXAFooter onItemClick={() => {}} clickevents>
       <h2 slot="column-title">Col 1</h2>
-      <>{colData}</>
+      {colData}
     </AXAFooter>
   );
 };

@@ -47,15 +47,13 @@ export const WhatsNew = () => {
 
   const xhttp = new XMLHttpRequest();
   // eslint-disable-next-line func-names
-  xhttp.onreadystatechange = function() {
+  xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
-      document.querySelector(
-        '#what-is-new__github-response'
-      ).innerHTML = getFormattedGitCommitMessage(responseJson);
-      document.querySelector(
-        '#what-is-new__github-response-date'
-      ).innerHTML = getDateFromGitCommit(responseJson);
+      document.querySelector('#what-is-new__github-response').innerHTML =
+        getFormattedGitCommitMessage(responseJson);
+      document.querySelector('#what-is-new__github-response-date').innerHTML =
+        getDateFromGitCommit(responseJson);
     }
   };
   xhttp.open(

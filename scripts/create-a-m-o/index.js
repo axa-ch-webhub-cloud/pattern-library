@@ -6,6 +6,7 @@ const { getAMOType, prepareName, createFiles } = require('./functions');
 
 process.stdin.setEncoding('utf8');
 
+// eslint-disable-next-line no-console
 console.log(
   chalk.cyan(outdent`
     Hello, dear developer, thank you for contributing to us. 😊
@@ -51,6 +52,7 @@ const reset = () => {
   currentStep = 0;
   STORE = {};
 
+  // eslint-disable-next-line no-console
   console.log(
     chalk.yellow(outdent`
     Reset your choices. Select again an a-m-o type
@@ -80,6 +82,7 @@ const STEPS = {
     [FREE_TEXT_KEY]: prepareName(({ className, fileName }) => {
       currentStep++; // eslint-disable-line no-plusplus
 
+      // eslint-disable-next-line no-console
       console.log(
         chalk.yellow(outdent`
 
@@ -99,6 +102,7 @@ const STEPS = {
     y: createFiles(STORE, A, M, O, folder => {
       currentStep++; // eslint-disable-line no-plusplus
 
+      // eslint-disable-next-line no-console
       console.log(
         chalk.yellow(outdent`
 
@@ -126,6 +130,7 @@ rl.on('line', line => {
   } else if (STEPS[currentStep] && STEPS[currentStep][FREE_TEXT_KEY]) {
     STEPS[currentStep][FREE_TEXT_KEY](userInput);
   } else {
+    // eslint-disable-next-line no-console
     console.log(
       chalk.red(outdent`
 

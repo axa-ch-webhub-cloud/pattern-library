@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
@@ -46,8 +45,9 @@ storiesOf('Examples/Datepicker/Pure HTML', module)
           >
             <summary
               style="background:rgb(0,0,143);color:#fff;padding:11px;font-family:sans-serif;outline:none"
-              >form content</summary
             >
+              form content
+            </summary>
             <div
               id="datepicker-forms-content"
               style="display:table; padding: 5px 0"

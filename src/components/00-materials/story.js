@@ -19,10 +19,7 @@ let assetsLoadedAlready = 0;
 let assetsToRenderNext = 50;
 
 const _extractIconNameFromPath = path =>
-  path
-    .substring(2)
-    .split(FILE_ENDING)
-    .join('');
+  path.substring(2).split(FILE_ENDING).join('');
 
 const icons = filepathsIcons.map(path => {
   return {

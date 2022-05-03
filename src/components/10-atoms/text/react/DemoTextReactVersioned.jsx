@@ -9,19 +9,25 @@ const DemoTextReactVersioned = () => {
     setVariant(variant ? '' : 'bold');
   };
 
-  const handleCounter = ev => {
+  const handleCounter = () => {
     setCounter(counter + 1);
   };
 
   return (
     <div>
-      <label className="js-variant-bold">
+      <label htmlFor="variant" className="js-variant-bold">
         <span style={{ fontFamily: 'sans-serif', fontSize: '12px' }}>
-          variant 'bold'
+          variant &rsquo;bold&rsquo;
         </span>
-        <input type="checkbox" onChange={handleVariant} checked={!!variant} />
+        <input
+          id="variant"
+          type="checkbox"
+          onChange={handleVariant}
+          checked={!!variant}
+        />
       </label>
       <button
+        type="button"
         className="js-update"
         onClick={handleCounter}
         style={{ fontFamily: 'sans-serif', marginLeft: '4rem' }}

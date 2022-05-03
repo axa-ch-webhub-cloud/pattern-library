@@ -92,12 +92,8 @@ class AXAAccordeon extends LitElement {
             @click="${this.toggleAccordion}"
           >
             <div class="m-accordeon__title-container-title">
-              <div class="${iconClass}">
-                ${iconHTML}
-              </div>
-              <axa-text variant="${small ? 'size-3' : ''}">
-                ${title}
-              </axa-text>
+              <div class="${iconClass}">${iconHTML}</div>
+              <axa-text variant="${small ? 'size-3' : ''}"> ${title} </axa-text>
             </div>
             <div class="m-accordeon__title-container--closed">
               ${statusIcon}

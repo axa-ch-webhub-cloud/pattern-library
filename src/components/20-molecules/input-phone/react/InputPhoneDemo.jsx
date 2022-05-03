@@ -8,7 +8,7 @@ const DemoInputPhone = () => {
   const [phoneNumber, setPhoneNumber] = useState(defaultValue);
 
   const handleFrozen = event => {
-    event.stopPropagation;
+    event.stopPropagation();
     setfrozen(event.target.checked);
   };
 
@@ -21,9 +21,10 @@ const DemoInputPhone = () => {
   return (
     <div>
       <p>
-        <label>
+        <label htmlFor="freeze-input">
           controlled mode - freeze values:
           <input
+            name="freeze-input"
             type="checkbox"
             id="input-phone-frozen-mode"
             onClick={handleFrozen}

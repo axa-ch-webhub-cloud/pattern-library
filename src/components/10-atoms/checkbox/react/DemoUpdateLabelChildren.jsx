@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXACheckbox from './AXACheckboxReact';
 
-export default function App() {
+export const App = () => {
   const [rerenders, setRerenders] = useState(1);
   const [label, setLabel] = useState(`Rerenders: ${rerenders - 1}`);
 
@@ -13,6 +13,7 @@ export default function App() {
   return (
     <div className="App">
       <button
+        type="button"
         className="js-checkbox__demo-button-rerender-children"
         onClick={updateLabel}
       >
@@ -26,4 +27,6 @@ export default function App() {
       </AXACheckbox>
     </div>
   );
-}
+};
+
+export default App;

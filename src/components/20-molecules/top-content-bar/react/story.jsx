@@ -1,4 +1,3 @@
-/* global document */
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';

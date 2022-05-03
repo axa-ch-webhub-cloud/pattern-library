@@ -349,17 +349,14 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     };
 
     return html`
-      ${label &&
+      ${
+        label &&
         html`
           <label for="${refId}" class="a-input-text__label">
-            ${label}
-            ${required
-              ? html`
-                  *
-                `
-              : ''}
+            ${label} ${required ? html` * ` : ''}
           </label>
-        `}
+        `
+      }
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
         ${
@@ -411,26 +408,24 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         }
           ${
             this.showCheckMark
-              ? html`
-                  <span class="a-input-text__check"></span>
-                `
+              ? html` <span class="a-input-text__check"></span> `
               : ''
           }
         </div>
-        ${info &&
+        ${
+          info &&
           versionedHtml(this)`
             <axa-popup-button
               ?open="${_open}"
               class="a-input-text__info-button"
               @click="${this.handlePopupButtonClick}"
             ></axa-popup-button>
-          `}
+          `
+        }
       </div>
         ${
           this.showError
-            ? html`
-                <span class="a-input-text__error">${error}</span>
-              `
+            ? html` <span class="a-input-text__error">${error}</span> `
             : ''
         }
         ${

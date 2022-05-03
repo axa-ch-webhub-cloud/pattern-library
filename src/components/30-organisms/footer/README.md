@@ -11,9 +11,7 @@ Set the Boolean `clickevents` property, if you want to use callbacks for footer 
 Example:
 
 ```html
-<axa-footer clickevents>
-  ...
-</axa-footer>
+<axa-footer clickevents> ... </axa-footer>
 ```
 
 ### onItemClick
@@ -27,7 +25,7 @@ Example:
 ```js
 <axa-footer
   clickevents
-  onItemClick={link => console.log('A link in the footer was clicked', link)}
+  onItemClick={(link) => console.log('A link in the footer was clicked', link)}
 >
   ...
 </axa-footer>

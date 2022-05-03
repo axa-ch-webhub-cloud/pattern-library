@@ -20,15 +20,13 @@ const stringifiedVersionInfo = gatherVersions();
 module.exports.commonPlugins = [
   replace({
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    '__VERSION_INFO__': stringifiedVersionInfo
+    __VERSION_INFO__: stringifiedVersionInfo,
   }),
   rollupPluginSass({
-    insert: false, /* no automatic style insertion in <head>, style use under component control */
+    insert: false /* no automatic style insertion in <head>, style use under component control */,
     include: '**/*.scss',
     options: {
-      includePaths: [
-        'node_modules',
-      ],
+      includePaths: ['node_modules'],
       data: globalSassImports,
     },
     processor: css =>

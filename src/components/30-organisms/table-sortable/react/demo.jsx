@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
@@ -75,6 +74,7 @@ storiesOf('Examples/Table Sortable/React', module)
         model={model}
         datesortcolumnindex="3"
         onClick={ev => {
+          // eslint-disable-next-line no-alert
           window.alert(JSON.stringify(ev));
         }}
       />,

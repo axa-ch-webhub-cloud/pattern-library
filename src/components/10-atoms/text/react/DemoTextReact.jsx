@@ -9,19 +9,25 @@ const DemoTextReact = () => {
     setText(!text);
   };
 
-  const handleCounter = ev => {
+  const handleCounter = () => {
     setCounter(counter + 1);
   };
 
   return (
     <div>
-      <label className="js-pure-text">
+      <label htmlFor="checkbox" className="js-pure-text">
         <span style={{ fontFamily: 'sans-serif', fontSize: '12px' }}>
           pure, non-HTML text
         </span>
-        <input type="checkbox" onChange={handleChange} checked={text} />
+        <input
+          id="checkbox"
+          type="checkbox"
+          onChange={handleChange}
+          checked={text}
+        />
       </label>
       <button
+        type="button"
         className="js-update"
         onClick={handleCounter}
         style={{ fontFamily: 'sans-serif', marginLeft: '4rem' }}

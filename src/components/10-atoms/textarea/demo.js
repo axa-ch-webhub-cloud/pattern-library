@@ -1,4 +1,3 @@
-/* global document */
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit';

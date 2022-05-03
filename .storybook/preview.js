@@ -44,7 +44,16 @@ addParameters({
     showPanel: true,
     storySort: {
       method: 'alphabetical',
-      order: ['Welcome', 'What is new', 'Guides', 'Brand Elements', 'Components', 'Pages', 'Examples', 'Others']
+      order: [
+        'Welcome',
+        'What is new',
+        'Guides',
+        'Brand Elements',
+        'Components',
+        'Pages',
+        'Examples',
+        'Others',
+      ],
     },
   },
   viewport: {

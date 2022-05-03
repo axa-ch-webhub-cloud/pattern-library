@@ -10,6 +10,7 @@ export default class NoShadowDOM extends InlineStyles {
     // robust against multiple invocations of connectedCallback
     // (allowed by the spec)
   }
+
   /* render template in light DOM */
   createRenderRoot() {
     return this;

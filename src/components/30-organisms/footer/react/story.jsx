@@ -45,6 +45,7 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://axa.ch/en/private-customers/claims/everything-about-claiming/file-claim.html"
               target="_blank"
+              rel="noreferrer"
             >
               Report a claim
             </a>
@@ -52,6 +53,7 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://axa.ch/en/information/broker-services.html"
               target="_blank"
+              rel="noreferrer"
             >
               Broker
             </a>
@@ -59,6 +61,7 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://axa.ch/en/about-axa/jobs-career/job-vacancies/job-vacancies.html"
               target="_blank"
+              rel="noreferrer"
             >
               Job vacancies
             </a>
@@ -66,6 +69,7 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://myaxa.axa.ch/myaxa"
               target="_blank"
+              rel="noreferrer"
             >
               MyAXA
             </a>
@@ -73,6 +77,7 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://axa.ch/en/about-axa/reviews.html"
               target="_blank"
+              rel="noreferrer"
             >
               Customer reviews
             </a>
@@ -80,11 +85,17 @@ storiesOf('Examples/Footer/React', module)
               slot="column-item"
               href="https://axa.ch/content/garagen/en/garage-portal.html"
               target="_blank"
+              rel="noreferrer"
             >
               Garage Portal
             </a>
             <h2 slot="column-title">axa worldwide</h2>
-            <a slot="column-item" href="http://www.axa.com" target="_blank">
+            <a
+              slot="column-item"
+              href="http://www.axa.com"
+              target="_blank"
+              rel="noreferrer"
+            >
               AXA worldwide
             </a>
             <h2 slot="social-title">stay in touch</h2>
@@ -105,6 +116,7 @@ storiesOf('Examples/Footer/React', module)
               slot="social-item"
               href="https://www.instagram.com/axaswitzerland/"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,6 +134,7 @@ storiesOf('Examples/Footer/React', module)
               slot="social-item"
               href="https://twitter.com/axa_schweiz"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,6 +152,7 @@ storiesOf('Examples/Footer/React', module)
               slot="social-item"
               href="https://www.xing.com/companies/AXAWINTERTHUR"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -156,6 +170,7 @@ storiesOf('Examples/Footer/React', module)
               slot="social-item"
               href="https://www.youtube.com/axaschweiz"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -173,6 +188,7 @@ storiesOf('Examples/Footer/React', module)
               slot="social-item"
               href="https://www.linkedin.com/company/axa/"
               target="_blank"
+              rel="noreferrer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -208,7 +224,11 @@ storiesOf('Examples/Footer/React', module)
       return (
         <div className="App">
           <h1>Footer col1 items count: {col1ItemsCount}</h1>
-          <button onClick={onItemsChangeClick} id="footerTestButton">
+          <button
+            type="button"
+            onClick={onItemsChangeClick}
+            id="footerTestButton"
+          >
             Click to change footer items
           </button>
           <br />

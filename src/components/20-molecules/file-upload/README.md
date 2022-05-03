@@ -23,14 +23,14 @@ A component used for uploading files in forms.
 const { files } = document.querySelector('axa-file-upload');
 
 if (files.length > 0) {
-  files.map(file => {
+  files.map((file) => {
     const reader = new FileReader();
 
-    reader.onload = file => {
+    reader.onload = (file) => {
       // success
     };
 
-    reader.onerror = evt => {
+    reader.onerror = (evt) => {
       // error
     };
 

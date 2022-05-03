@@ -477,9 +477,8 @@ class AXAFileUpload extends LitElement {
       originalFilesLeftover
     );
 
-    this.faultyOriginalFiles = this.faultyOriginalFiles.concat(
-      faultyOriginalFiles
-    );
+    this.faultyOriginalFiles =
+      this.faultyOriginalFiles.concat(faultyOriginalFiles);
 
     this.fireCustomChangeEvent();
   }
@@ -667,9 +666,7 @@ class AXAFileUpload extends LitElement {
           class="m-file-upload__icon-wrapper"
           @click=${this.handleAddMoreInputClick}
         >
-          <div class="m-file-upload__icon-layer">
-            ${ADD_ICON}
-          </div>
+          <div class="m-file-upload__icon-layer">${ADD_ICON}</div>
         </div>
         <figcaption
           class="m-file-upload__img-caption js-file-upload__img-caption"

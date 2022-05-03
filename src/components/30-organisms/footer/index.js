@@ -200,6 +200,7 @@ class AXAFooter extends InlineStyles {
   // throttle re-rendering to once per frame (so that children added late by browser HTML parsers are defined)
   performUpdate() {
     new Promise(resolve =>
+      // eslint-disable-next-line no-promise-executor-return
       window.requestAnimationFrame(() => resolve())
     ).then(() => super.performUpdate());
   }
@@ -330,9 +331,10 @@ class AXAFooter extends InlineStyles {
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
 
-    const panels = ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
-      '.js-footer__main-content-panel'
-    );
+    const panels =
+      ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+        '.js-footer__main-content-panel'
+      );
 
     [].forEach.call(panels, panel => {
       _setMaxHeightToZero(panel);

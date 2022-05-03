@@ -31,11 +31,11 @@ const DemoFooterSmall = () => {
 
   const [disclaimerChange, setDisclaimerIndex] = useState('-');
 
-  const handleAXAFooterLanguageClicked = language => {
+  const handleAXAFooterLanguageClicked = (language) => {
     setActiveLanguageIndex(language);
   };
 
-  const handleAXAFooterDisclaimerClicked = disclaimer => {
+  const handleAXAFooterDisclaimerClicked = (disclaimer) => {
     setDisclaimerIndex(disclaimer);
   };
 
@@ -210,17 +210,19 @@ This approach will not redirect the user automatically, if he/she clicks on a li
       wrapper.appendChild(clickedDisclaimer);
       wrapper.appendChild(footerSmall);
 
-      footerSmall.addEventListener('axa-language-click', languageEvent => {
+      footerSmall.addEventListener('axa-language-click', (languageEvent) => {
         const languageResult = document.getElementById('active-language');
         languageResult.innerText = `Language - Index Clicked: ${languageEvent.detail}`;
       });
 
-      footerSmall.addEventListener('axa-disclaimer-click', disclaimerEvent => {
-        const clickedDisclaimers = document.getElementById(
-          'clicked-disclaimer'
-        );
-        clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${disclaimerEvent.detail}`;
-      });
+      footerSmall.addEventListener(
+        'axa-disclaimer-click',
+        (disclaimerEvent) => {
+          const clickedDisclaimers =
+            document.getElementById('clicked-disclaimer');
+          clickedDisclaimers.innerText = `Disclaimer - Index Clicked: ${disclaimerEvent.detail}`;
+        }
+      );
 
       document.querySelector('body').appendChild(wrapper);
     </script>

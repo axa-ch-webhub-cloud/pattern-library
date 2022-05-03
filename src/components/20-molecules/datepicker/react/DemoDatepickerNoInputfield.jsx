@@ -6,7 +6,7 @@ const DemoDatepickerNoInputfield = () => {
   const [showDatepicker, setShowDatepicker] = useState(true);
   return (
     <div>
-      <button onClick={() => setShowDatepicker(!showDatepicker)}>
+      <button type="button" onClick={() => setShowDatepicker(!showDatepicker)}>
         Toggle Datepicker
       </button>
       <hr />

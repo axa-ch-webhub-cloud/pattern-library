@@ -24,6 +24,7 @@ const DemoInputText = () => {
       />
       <p>
         <AXAInputText
+          name="chf"
           currency="chf"
           label="Controlled with currency attribute set to 'CHF'"
           error="Please enter at least one number"

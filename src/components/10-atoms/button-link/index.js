@@ -117,6 +117,7 @@ class AXAButtonLink extends InlineStyles {
       </a>
     `;
   }
+
   firstUpdated() {
     this.inlineStyles('blockMouseEventsCss');
   }

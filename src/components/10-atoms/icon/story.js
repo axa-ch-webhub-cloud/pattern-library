@@ -6,7 +6,7 @@ import {
   withKnobs,
 } from '@storybook/addon-knobs';
 import { html, render } from 'lit';
-import { iconList } from '../icon/icon-list';
+import { iconList } from './icon-list';
 import changelog from './CHANGELOG.md';
 import AXAIcon from './index';
 import readme from './README.md';
@@ -79,14 +79,10 @@ export const Icon = () => {
   const wrapper = document.createElement('div');
   const template = html`
     ${showAll
-      ? html`
-          ${createListWithAllIcons()}
-        `
+      ? html` ${createListWithAllIcons()} `
       : html`
           ${noIcon
-            ? html`
-                <axa-icon></axa-icon>
-              `
+            ? html` <axa-icon></axa-icon> `
             : html`
                 ${noSize
                   ? html`

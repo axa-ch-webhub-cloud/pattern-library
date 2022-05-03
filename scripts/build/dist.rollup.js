@@ -32,14 +32,16 @@ const preDist = {
           // scss inside js works only in the first level of the node-resolve algorythm
           parsedJson.main = 'lib/index.js';
         } catch (e) {
-          throw new Error(`Something went wrong while parsing the package.json of the component. Error: ${e}`);
+          throw new Error(
+            `Something went wrong while parsing the package.json of the component. Error: ${e}`
+          );
         }
         // Rollup cant handle internally .json files therefore do not return code
         fs.writeFileSync(id, JSON.stringify(parsedJson, null, 2));
         return '';
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
 
 const dist = {
@@ -104,9 +106,9 @@ const postDist = {
         }
         fs.writeFileSync(id, memory.preDistJsonData, 'UTF-8');
         return '';
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
 
 module.exports = { preDist, dist, postDist };

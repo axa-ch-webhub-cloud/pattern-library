@@ -33,9 +33,7 @@ class PLCallout extends LitElement {
         </div>
         <div class="callout__col callout__col-padding">
           <p class="callout__header">${header}</p>
-          <p class="callout__text">
-            ${text}
-          </p>
+          <p class="callout__text">${text}</p>
         </div>
         <div class="callout__col">
           <axa-button-link

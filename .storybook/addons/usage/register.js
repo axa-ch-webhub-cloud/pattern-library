@@ -7,16 +7,20 @@ import React from 'react';
 const ADDON_ID = 'axa-ch/usage';
 const PANEL_ID = `${ADDON_ID}/panel`;
 
-const formatComponentNameReact = (componentName) => componentName && componentName.replace(/\s/g, '');
-const formatComponentNameHtml = (componentName) => {
-  return componentName && formatComponentNameReact(componentName)
-    .replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`) // uppercase to lowercase and add "-"
-    .replace(/^-/, ''); // remove the "-" from the beginning of string
+const formatComponentNameReact = componentName =>
+  componentName && componentName.replace(/\s/g, '');
+const formatComponentNameHtml = componentName => {
+  return (
+    componentName &&
+    formatComponentNameReact(componentName)
+      .replace(/[A-Z]/g, match => `-${match.toLowerCase()}`) // uppercase to lowercase and add "-"
+      .replace(/^-/, '')
+  ); // remove the "-" from the beginning of string
 };
 
 const MyPanel = () => {
   const param = useParameter('usage', {});
-  const {storyId, storiesHash} = useStorybookState();
+  const { storyId, storiesHash } = useStorybookState();
   const componentName = storiesHash[storyId]?.name; // "name" is the const at story.js, f.a. "export const CommercialHeroBanner"
 
   const PURE_HTML_TAG = formatComponentNameHtml(componentName);
@@ -91,9 +95,7 @@ const MyPanel = () => {
         </>
       )}
       <h3>Pure HTML pages</h3>
-      <p>
-        Import the {PURE_HTML_TAG}-defining script and use it like this:
-      </p>
+      <p>Import the {PURE_HTML_TAG}-defining script and use it like this:</p>
       <pre>
         <code className="language-html">
           &lt;!DOCTYPE html&gt;
@@ -131,50 +133,61 @@ const MyPanel = () => {
       </pre>
       <h3>Component versioning</h3>
       <p>
-        Different versions of our web components can coexist on the same web page!
-        Read more about component versioning&nbsp;
+        Different versions of our web components can coexist on the same web
+        page! Read more about component versioning&nbsp;
         <a href="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md">
-        here
-        </a>.
+          here
+        </a>
+        .
       </p>
       <h4>Best practice</h4>
-      <p>Here is the recommended <strong>new way of including <i>user-versioned</i> components</strong>.</p>
+      <p>
+        Here is the recommended{' '}
+        <strong>
+          new way of including <i>user-versioned</i> components
+        </strong>
+        .
+      </p>
       <pre>
         <code className="language-js">
           import {'{ createElement }'} from 'react';
           <br />
           import createAXA{REACT_TAG}React from '@axa-ch/
-              {PURE_HTML_TAG}
-              /lib/index.react';
+          {PURE_HTML_TAG}
+          /lib/index.react';
           <br />
           <br />
-          const podNameAsVersionSuffix = 'YOUR UNIQUE 
-              SPA SHORT-NAME HERE'; // e.g. 'rsv'
+          const podNameAsVersionSuffix = 'YOUR UNIQUE SPA SHORT-NAME HERE'; //
+          e.g. 'rsv'
           <br />
           <br />
           export const AXA{REACT_TAG}React = createAXA
-              {REACT_TAG}React(createElement, podNameAsVersionSuffix);
+          {REACT_TAG}React(createElement, podNameAsVersionSuffix);
         </code>
       </pre>
-      <p>Apart from the best practice, <strong>other versioning schemes</strong> are possible.</p>
+      <p>
+        Apart from the best practice, <strong>other versioning schemes</strong>{' '}
+        are possible.
+      </p>
       <h4>Numeric versioning</h4>
       <pre>
         <code className="language-js">
           import {'{ createElement }'} from 'react';
           <br />
           import createAXA{REACT_TAG}React from '@axa-ch/
-              {PURE_HTML_TAG}
-              /lib/index.react';
+          {PURE_HTML_TAG}
+          /lib/index.react';
           <br />
           <br />
-          const numericalVersion = '4.1.2'; 
-              // must match with SPA dependency @axa-ch/button's version
+          const numericalVersion = '4.1.2'; // must match with SPA dependency
+          @axa-ch/button's version
           <br />
           <br />
           export const AXA{REACT_TAG}React = createAXA
-              {REACT_TAG}React(createElement, numericalVersion);
+          {REACT_TAG}React(createElement, numericalVersion);
           <br />
-          // In the DOM, the button would appear as &lt;axa-{PURE_HTML_TAG}-4-1-2&gt;
+          // In the DOM, the button would appear as &lt;axa-{PURE_HTML_TAG}
+          -4-1-2&gt;
         </code>
       </pre>
       <h4>Automatic npm versioning</h4>
@@ -183,16 +196,16 @@ const MyPanel = () => {
           import {'{ createElement }'} from 'react';
           <br />
           import createAXA{REACT_TAG}React from '@axa-ch/
-              {PURE_HTML_TAG}
-              /lib/index.react';
+          {PURE_HTML_TAG}
+          /lib/index.react';
           <br />
           <br />
-          const automaticVersion = tagName =&gt; 
-              window.customElements.get(tagName).versions[tagName];
+          const automaticVersion = tagName =&gt;
+          window.customElements.get(tagName).versions[tagName];
           <br />
           <br />
           export const AXA{REACT_TAG}React = createAXA
-              {REACT_TAG}React(createElement, automaticVersion('{PURE_HTML_TAG}'));
+          {REACT_TAG}React(createElement, automaticVersion('{PURE_HTML_TAG}'));
         </code>
       </pre>
     </div>

@@ -103,9 +103,8 @@ class AXAFooterSmall extends InlineStyles {
                 this.querySelectorAll('[slot="language-item"]'),
                 (languageItem, index) => {
                   // copy the active class from the light-DOM child
-                  const isActive = languageItem.classList.contains(
-                    ACTIVE_LINK_CLASS
-                  );
+                  const isActive =
+                    languageItem.classList.contains(ACTIVE_LINK_CLASS);
                   const classes = {
                     'm-footer-small__link--bold': true,
                     [`js-footer-small__link-${index}`]: true,

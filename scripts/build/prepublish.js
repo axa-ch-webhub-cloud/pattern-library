@@ -17,6 +17,6 @@ const pkg = require(pkgPath);
 // and node closes all open and temporary files, ergo node takes care of the cleanup
 fs.copyFileSync(pkgPath, pkgPathTmp);
 
-pkg.main = "lib/index.js";
+pkg.main = 'lib/index.js';
 
 fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));

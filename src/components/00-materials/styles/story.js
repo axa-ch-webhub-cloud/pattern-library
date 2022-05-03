@@ -1,7 +1,7 @@
 import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit';
-import changelog from '../../../components/00-materials/CHANGELOG.md';
-import readme from '../../../components/00-materials/README.md';
+import changelog from '../CHANGELOG.md';
+import readme from '../README.md';
 import '../../10-atoms/heading';
 import '../../10-atoms/text';
 import styles from '../story.scss';
@@ -103,10 +103,14 @@ export const Colors = () => {
                       style="background-color: ${color.code};"
                     ></div>
                     <axa-text>
-                      ${color.name /* TODO: change to axa-text if bug is fixed */}
+                      ${
+                        color.name /* TODO: change to axa-text if bug is fixed */
+                      }
                     </axa-text>
                     <axa-text variant="size-2"
-                      >${color.code /* TODO: change to axa-text if bug is fixed */}</axa-text
+                      >${
+                        color.code /* TODO: change to axa-text if bug is fixed */
+                      }</axa-text
                     >
                   </div>
                 `;

@@ -3,9 +3,8 @@ import AXADatepickerReact from './AXADatepickerReact';
 
 const DemoDatepickerOnDateChange = () => {
   const startDateString = '2019-07-29';
-  const [selectedDateString, setSelectedDateString] = React.useState(
-    startDateString
-  );
+  const [selectedDateString, setSelectedDateString] =
+    React.useState(startDateString);
   const locale = 'de-CH';
 
   const localizedDateString = date =>

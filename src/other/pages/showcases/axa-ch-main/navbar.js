@@ -83,9 +83,7 @@ export default html`
       </div>
 
       <div class="pages-axa-main-page__navbar-row">
-        <div class="pages-axa-main-page__logo">
-          ${logo}
-        </div>
+        <div class="pages-axa-main-page__logo">${logo}</div>
         <div class="pages-axa-main-page__navbar-right">
           <ul class="pages-axa-main-page__navbar-navigation-items">
             <li><axa-link href="#">Offers</axa-link></li>

@@ -494,10 +494,7 @@ test('should change selected option by typing', async t => {
   await t.wait(50).pressKey('s w i');
 
   // ascertain correct country code was selected...
-  await t
-    .wait(300)
-    .expect(dropdown.value)
-    .eql('CH');
+  await t.wait(300).expect(dropdown.value).eql('CH');
 
   // ... as well as correct title displayed
 

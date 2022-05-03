@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-/* global document */
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/html';
 import React from 'react';

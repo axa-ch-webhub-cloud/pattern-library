@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { Fragment } from 'react';
+import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 
 const DemoFocussableDropdown = () => {
@@ -12,7 +12,7 @@ const DemoFocussableDropdown = () => {
   ];
 
   return (
-    <Fragment>
+    <>
       <input
         type="text"
         placeholder="focus before dropdown"
@@ -64,7 +64,7 @@ const DemoFocussableDropdown = () => {
         <option value="2">Item B</option>
         <option value="3">Item C</option>
       </select>
-    </Fragment>
+    </>
   );
 };
 

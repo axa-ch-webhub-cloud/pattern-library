@@ -46,7 +46,7 @@ const dayToCell = (day, date, selectedDate, today, allowedYears) => ({
   inactive: allowedYears.indexOf(date.getFullYear()) < 0,
 });
 
-const getMonthMatrix = (date, allowedYears = [], selectedDate) => {
+const getMonthMatrix = (date, selectedDate, allowedYears = []) => {
   // set up
   const cells = [];
   const today = new Date();
@@ -94,9 +94,8 @@ const parseLocalisedDateIfValid = (inputValue = '', options = {}) => {
   }
 
   // parsing proper: split date string into parts using appropriate separator
-  const [day, month, year] = clearStringFromIEGeneratedCharacters(
-    inputValue
-  ).split(DATE_SEPARATOR);
+  const [day, month, year] =
+    clearStringFromIEGeneratedCharacters(inputValue).split(DATE_SEPARATOR);
 
   // note: we can use Date.parse despite caveats about browser-specific implementation differences by
   // explicitly constructing an unambiguous date string here,

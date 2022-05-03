@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
@@ -21,9 +20,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
             <h3>The following files were selected:</h3>
             <ol>
               ${files.map(file => {
-                return html`
-                  <li>${file.name}</li>
-                `;
+                return html` <li>${file.name}</li> `;
               })}
             </ol>
           </div>
@@ -63,9 +60,7 @@ storiesOf('Examples/File Upload/Pure HTML', module)
             <h3>The following files were selected:</h3>
             <ol>
               ${imgUpload.files.map(file => {
-                return html`
-                  <li>${file.name}</li>
-                `;
+                return html` <li>${file.name}</li> `;
               })}
             </ol>
           </div>

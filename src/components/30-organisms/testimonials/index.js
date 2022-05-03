@@ -65,14 +65,11 @@ class AXATestimonials extends InlineStyles {
     return versionedHtml(this)`
       <article class="o-testimonials">
         <axa-container>
-          ${title &&
-            html`
-              <h1 class="o-testimonials__title">${title}</h1>
-            `}
-          ${subtitle &&
-            html`
-              <p class="o-testimonials__subtitle">${subtitle}</p>
-            `}
+          ${title && html` <h1 class="o-testimonials__title">${title}</h1> `}
+          ${
+            subtitle &&
+            html` <p class="o-testimonials__subtitle">${subtitle}</p> `
+          }
           <div class="o-testimonials__content">
             ${
               showallinline

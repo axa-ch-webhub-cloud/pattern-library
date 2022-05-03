@@ -1,4 +1,3 @@
-/* global document */
 /* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg } from '@axa-ch/materials/images';
 import { storiesOf } from '@storybook/html';

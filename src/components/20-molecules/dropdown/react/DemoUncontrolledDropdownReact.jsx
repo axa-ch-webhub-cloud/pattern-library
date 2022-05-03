@@ -3,11 +3,24 @@ import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXATextReact from './AXATextReact';
 
-const DemoUncontrolledDropdown = props => {
+const DemoUncontrolledDropdown = ({
+  item1,
+  item2,
+  item3,
+  label,
+  defaultTitle,
+  name,
+  invalid,
+  error,
+  native,
+  required,
+  checkMark,
+  disabled,
+}) => {
   const items = [
-    { name: props.item1, value: 'Item 1' },
-    { name: props.item2, value: 'Item 2', selected: true },
-    { name: props.item3, value: 'Item 3' },
+    { name: item1, value: 'Item 1' },
+    { name: item2, value: 'Item 2', selected: true },
+    { name: item3, value: 'Item 3' },
   ];
 
   return (
@@ -15,16 +28,15 @@ const DemoUncontrolledDropdown = props => {
       <AXADropdownReact
         data-test-id="uncontrolled-dropdown-react"
         items={items}
-        label={props.label}
-        defaultTitle={props.defaultTitle}
-        name={props.name}
-        invalid={props.invalid}
-        error={props.error}
-        native={props.native}
-        required={props.required}
-        checkMark={props.checkMark}
-        disabled={props.disabled}
-        // eslint-disable-next-line no-console
+        label={label}
+        defaultTitle={defaultTitle}
+        name={name}
+        invalid={invalid}
+        error={error}
+        native={native}
+        required={required}
+        checkMark={checkMark}
+        disabled={disabled}
         onChange={value =>
           (document.getElementById(
             'checkbox-output'

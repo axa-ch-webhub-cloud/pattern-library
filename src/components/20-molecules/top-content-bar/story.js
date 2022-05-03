@@ -59,12 +59,7 @@ export const TopContentBar = () => {
       href="${href}"
       ctatext="${ctatext}"
     >
-      ${textValue}
-      ${link
-        ? html`
-            <axa-link>${link}</axa-link>
-          `
-        : ''}
+      ${textValue} ${link ? html` <axa-link>${link}</axa-link> ` : ''}
     </axa-top-content-bar>
     <h2>Subheader</h2>
     <h3>Text 1</h3>

@@ -37,7 +37,7 @@ const COPYRIGHT = [
   '© 2020 AXA Assicurazioni SA',
 ];
 
-const DemoFooterSmallDynamicChildren = props => {
+const DemoFooterSmallDynamicChildren = () => {
   const [activeLanguage, setActiveLanguageIndex] = useState(0);
 
   const [disclaimerChange, setDisclaimerIndex] = useState(0);
@@ -70,13 +70,19 @@ const DemoFooterSmallDynamicChildren = props => {
             key={l.name}
             slot="language-item"
             className={l.isActive ? 'm-footer-small__link--active' : undefined}
-            href="#"
+            href="https://patterns.axa.ch"
           >
             {l.name.toUpperCase()}
           </a>
         ))}
         {legals.map(l => (
-          <a key={l.name} slot="disclaimer-item" href={l.url} target="_blank">
+          <a
+            key={l.name}
+            slot="disclaimer-item"
+            href={l.url}
+            target="_blank"
+            rel="noreferrer"
+          >
             {l.name}
           </a>
         ))}

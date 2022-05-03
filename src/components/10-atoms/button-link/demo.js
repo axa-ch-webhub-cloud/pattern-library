@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import changelog from './CHANGELOG.md';
 import './index';

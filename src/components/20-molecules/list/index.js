@@ -55,9 +55,7 @@ class AXAList extends InlineStyles {
       </${listTag}>
     `;
 
-    return html`
-      ${unsafeHTML(template)}
-    `;
+    return html` ${unsafeHTML(template)} `;
   }
 
   firstUpdated() {

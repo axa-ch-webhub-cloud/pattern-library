@@ -84,7 +84,8 @@ test('should display correct step state', async t => {
 
       if (circleBackground === 'rgb(0, 0, 143)') {
         return 1;
-      } else if (circleBackground === 'rgb(255, 255, 255)') {
+      }
+      if (circleBackground === 'rgb(255, 255, 255)') {
         return 2;
       }
 

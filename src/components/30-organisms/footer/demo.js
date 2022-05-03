@@ -1,4 +1,3 @@
-/* global document */
 import { storiesOf } from '@storybook/html';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';

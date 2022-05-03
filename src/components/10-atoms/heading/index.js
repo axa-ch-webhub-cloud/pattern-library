@@ -54,9 +54,7 @@ class AXAHeading extends LitElement {
     </h${this.rank}>
     `;
 
-    return html`
-      ${unsafeHTML(template)}
-    `;
+    return html` ${unsafeHTML(template)} `;
   }
 }
 

@@ -107,80 +107,68 @@ test('should begin with September 1 as first Monday in 1980', async t => {
 test('should have working selection', async t => {
   const datePickerAccessor = new DatePickerAccessor(t, 'datepicker');
 
-  let dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  let dayCell22State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseMonth(1);
 
-  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  dayCell22State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell22State).eql('STANDARD');
 
   await datePickerAccessor.chooseMonth(5);
-  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  dayCell22State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell22State).eql('SELECTED');
 
   await datePickerAccessor.chooseYear(1971);
 
-  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  dayCell22State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell22State).eql('STANDARD');
 
   await datePickerAccessor.chooseYear(2020);
 
-  dayCell22State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  dayCell22State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell22State).eql('SELECTED');
 
-  let dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  let dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('STANDARD');
 
   await datePickerAccessor.selectDayOfCurrentMonth(23);
 
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    22
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(22);
   await t.expect(dayCell23State).eql('STANDARD');
 
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('HOVER');
 
   await datePickerAccessor.chooseMonth(1);
 
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('STANDARD');
 
   await datePickerAccessor.chooseMonth(5);
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('SELECTED');
 
   await datePickerAccessor.chooseYear(1971);
 
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('STANDARD');
 
   await datePickerAccessor.chooseYear(2020);
 
-  dayCell23State = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    23
-  );
+  dayCell23State =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(23);
   await t.expect(dayCell23State).eql('SELECTED');
 });
 
@@ -367,9 +355,10 @@ test('should highlight today', async t => {
   await datePickerAccessor.chooseYear(today.getFullYear());
   await datePickerAccessor.chooseMonth(today.getMonth() + 1);
 
-  const cell = await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
-    today.getDate()
-  );
+  const cell =
+    await datePickerAccessor.getStateOfSpecificDayCellWithinCurrentMonth(
+      today.getDate()
+    );
 
   await t.expect(cell).eql('TODAY');
 });
@@ -566,8 +555,9 @@ test('should behave correctly when controlled', async t => {
 
   await t
     .expect(
-      (await Selector('[data-test-id="datepicker-react-controlled-value"]'))
-        .innerText
+      (
+        await Selector('[data-test-id="datepicker-react-controlled-value"]')
+      ).innerText
     )
     .eql('28.2.2019 (frozen)');
 
