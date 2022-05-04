@@ -23,7 +23,7 @@ fi
 
 
 ### Start testcafe tests
-NUM_CPUS=$(python -c 'import multiprocessing as mp; print(mp.cpu_count())')
+NUM_CPUS=$(node -e 'console.log(require("os").cpus().length)')
 if [ -z "$1" ]
 then
     npx testcafe -c ${NUM_CPUS} "chrome:headless" -q ./**/ui.test.js
