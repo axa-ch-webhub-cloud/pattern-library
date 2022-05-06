@@ -4,7 +4,7 @@
   "description": "[Check out our Contribution File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
   "scripts": {
-    "build": "NODE_ENV=production npm run build-components",
+    "build": "cross-env NODE_ENV=production npm run build-components",
     "watch": "npm run watch-components",
     "build-components": "lerna run build --parallel",
     "watch-components": "lerna run watch --parallel",
@@ -14,7 +14,7 @@
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 -s src/static",
     "build-storybook": "build-storybook -s ./src/static",
-    "test": "npm run test-lint && prettier --check '.' && node ./scripts/build.test.js && npm run test-ui",
+    "test": "npm run test-lint && prettier --check . && node ./scripts/build.test.js && npm run test-ui",
     "test-lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
     "test-jest": "jest --env=jsdom",
     "test-playwright": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 jest --config=jest.ui.config.js",
