@@ -18,6 +18,7 @@ src/static
 # Ignore auto generated files
 node_modules
 package-lock.json
+storybook-static
 lib
 dist
 src/components/00-materials/icons/*
