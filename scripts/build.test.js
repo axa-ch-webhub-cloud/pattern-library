@@ -84,8 +84,9 @@ const allFiles = glob.sync(`src${sep}components${sep}*${sep}**${sep}*.js`);
 
 allFiles.forEach(file => {
   // file is like this: src/components/20-molecules/datepicker/index.js
-  // file looks even on windows like that, thats why necessary hardcode the slash
-  const { 2: category } = file.split('/');
+  // file looks even on windows like that, that's why it is necessary to hard-code the slash
+  /* eslint-disable no-unused-vars */
+  const [_src, _components, category] = file.split('/');
   if (ALLOWED_CATEGORIES.indexOf(category) === -1) {
     throw new Error(
       chalk.red(outdent`
