@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import styles from './index.scss';
 import { xhrCall } from '../../../../utils/requests';
 import defineOnce from '../../../../utils/define-once';

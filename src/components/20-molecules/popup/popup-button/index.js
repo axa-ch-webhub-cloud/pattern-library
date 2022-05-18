@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 /* eslint-disable import/no-extraneous-dependencies */
 import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons/material-design';
 import popupButtonCSS from './index.scss';
