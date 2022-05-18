@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 // if your need more boolean, select, radios
 import { radios, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import { html, render } from 'lit';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';

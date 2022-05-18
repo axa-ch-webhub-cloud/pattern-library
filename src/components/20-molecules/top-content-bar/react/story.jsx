@@ -1,5 +1,5 @@
 import { select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import React from 'react';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import wrap from '../../../../other/demo/react/utils/wrap-render-react';
