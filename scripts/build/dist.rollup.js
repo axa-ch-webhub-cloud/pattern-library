@@ -1,13 +1,12 @@
 const fs = require('fs');
 const { extname } = require('path');
-const { uglify } = require('rollup-plugin-uglify');
+const { terser } = require('rollup-plugin-terser');
 
 const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const { babel } = require('@rollup/plugin-babel');
 
 const { commonPlugins } = require('./common.rollup.js');
-const customBabelRc = require('../../.storybook/.babelrc'); // get the babelrc file
 
 const memory = {};
 
@@ -59,9 +58,6 @@ const dist = {
       mainFields: ['module', 'main', 'browser'],
     }),
     commonjs({
-      namedExports: {
-        '@skatejs/val': ['val'],
-      },
       include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     }),
     babel({
@@ -69,7 +65,6 @@ const dist = {
       babelHelpers: 'runtime',
       presets: ['@babel/preset-env'],
       plugins: [
-        ...customBabelRc.plugins,
         [
           '@babel/plugin-transform-runtime',
           {
@@ -86,7 +81,11 @@ const dist = {
         '../../../../node_modules/@babel/**',
       ],
     }),
-    uglify(),
+    terser({
+      ecma: 5,
+      compress: true,
+      mangle: true,
+    }),
   ],
 };
 
