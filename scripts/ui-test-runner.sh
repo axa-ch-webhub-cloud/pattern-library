@@ -6,7 +6,7 @@ export $(egrep -v '^#' .env | xargs) > /dev/null 2>&1
 
 echo "Running Storybook on address '$TEST_HOST_STORYBOOK_URL' and on port '$TEST_HOST_STORYBOOK_PORT'"
 
-npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook -s ./src/static --ci  &
+npx start-storybook -p $TEST_HOST_STORYBOOK_PORT -c .storybook --ci  &
 npx wait-on $TEST_HOST_STORYBOOK_PATH -t 120000 && echo "Storybook ready for testing"
 
 ### Start playwright tests
