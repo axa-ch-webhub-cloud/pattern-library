@@ -7,5 +7,5 @@ import 'core-js/fn/array/find-index';
 import 'core-js/fn/array/from';
 import 'core-js/fn/object/assign';
 import '@ungap/global-this';
-import 'lit/polyfill-support';
+import 'lit/polyfill-support.js';
 import './index.webcomponents';
