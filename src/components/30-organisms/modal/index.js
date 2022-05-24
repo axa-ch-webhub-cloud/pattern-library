@@ -26,6 +26,7 @@ class AXAModal extends InlineStyles {
       open: { type: Boolean },
       forced: { type: Boolean },
       small: { type: Boolean },
+      noheader: { type: Boolean },
       onClose: { type: Function, attribute: false },
     };
   }
@@ -47,7 +48,7 @@ class AXAModal extends InlineStyles {
             ? 'o-modal__container--small'
             : ''}"
         >
-          ${!this.forced
+          ${!this.forced && !this.noheader
             ? html`
                 <div
                   class="o-modal__upper-close-container ${this.forced
@@ -66,8 +67,18 @@ class AXAModal extends InlineStyles {
           <div
             class="o-modal__content ${this.forced
               ? 'o-modal__content--forced'
-              : ''}"
+              : ''} ${this.noheader ? 'o-modal__content--noheader' : ''}"
           >
+            ${this.noheader
+              ? html`
+                  <button
+                    class="o-modal__upper-close-container-button"
+                    @click="${this.closeModal}"
+                  >
+                    ${unsafeHTML(closeIcon)}
+                  </button>
+                `
+              : ''}
             <slot></slot>
           </div>
         </div>

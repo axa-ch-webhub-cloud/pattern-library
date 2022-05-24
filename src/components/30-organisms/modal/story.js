@@ -17,6 +17,7 @@ export const Modal = () => {
   const open = boolean('open', true);
   const forced = boolean('forced', false);
   const small = boolean('small', false);
+  const noHeader = boolean('no header', false);
 
   const wrapper = document.createElement('div');
 
@@ -32,7 +33,12 @@ export const Modal = () => {
         margin-top: 20px;
       }
     </style>
-    <axa-modal ?open="${open}" ?forced="${forced}" ?small="${small}">
+    <axa-modal
+      ?open="${open}"
+      ?forced="${forced}"
+      ?small="${small}"
+      ?noheader="${noHeader}"
+    >
       <axa-heading rank="2">Liability insurance</axa-heading>
       <axa-text>
         The liability insurance protects the company against the financial

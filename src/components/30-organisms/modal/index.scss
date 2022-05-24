@@ -126,6 +126,24 @@
         padding: $spacing-7;
       } 
     }
+
+    &--noheader {
+      border-radius: $spacing-2;
+      padding: 0;
+    }
+
+    .o-modal__upper-close-container-button {
+      position: absolute;
+      right: 9px;
+      z-index: 1;
+
+      @media (max-width: $mediaquery-xs-up) {
+        svg {
+          color: white;
+          filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
+        }
+      }
+    }
   }
 
   &__close {
