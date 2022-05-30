@@ -117,48 +117,6 @@ test('should select previous element with key if a element has focus', async t =
     .ok();
 });
 
-fixture('Dropdown named').page(
-  `${host}//iframe.html?id=components-dropdown--dropdown&knob-defaulttitle=Select%20amount&knob-name=my-insurance`
-);
-
-// flaky test
-// test('should select entry and fire change event correctly', async t => {
-//   const dropdown = Selector('axa-dropdown');
-//
-//   await t
-//     .click(dropdown)
-//     .pressKey('down')
-//     .pressKey('down')
-//     .pressKey('enter')
-//     .expect(dropdown.getAttribute('data-change'))
-//     .contains('"optionLabel":"From CHF 1,000 to 10,0000"');
-//
-//   await t
-//     .expect(dropdown.getAttribute('data-change'))
-//     .contains('"name":"my-insurance"');
-// });
-
-// flaky test
-// test('should open via arrow keys alone', async t => {
-//   const body = Selector('body');
-//   const dropdown = Selector('axa-dropdown');
-//
-//   // focus dropdown
-//   await t.click(body).pressKey('tab');
-//
-//   // open dropdown
-//   await t.pressKey('up');
-//
-//   // binary attribute 'open' exists
-//   await t.expect(dropdown.getAttribute('open')).eql('');
-//
-//   // select first entry
-//   await t
-//     .pressKey('enter')
-//     .expect(dropdown.getAttribute('data-change'))
-//     .contains('"optionLabel":"< CHF 1,000"');
-// });
-
 fixture('Dropdown disabled').page(
   `${host}/iframe.html?id=components-dropdown--dropdown&knob-label=&knob-value=&knob-defaulttitle=Please%20Select&knob-name=&knob-error=Error%20Message&knob-disabled=true&knob-data-test-id=&knob-max-height=`
 );
