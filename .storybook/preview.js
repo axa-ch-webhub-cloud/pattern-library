@@ -1,4 +1,4 @@
-import '../src/components/05-utils/polyfill/index';
+// import '../src/components/05-utils/polyfill/index';
 import { addParameters } from '@storybook/web-components';
 
 const customViewports = {
