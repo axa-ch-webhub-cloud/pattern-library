@@ -2,7 +2,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import AXATable from '@axa-ch/table';
 import { css, html, LitElement, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {
   defineVersioned,
   versionedHtml,

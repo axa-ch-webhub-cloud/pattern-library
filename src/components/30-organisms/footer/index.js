@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
-import { repeat } from 'lit/directives/repeat';
-import { classMap } from 'lit/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { repeat } from 'lit/directives/repeat.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import AXAContainer from '@axa-ch/container';
 import {

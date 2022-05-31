@@ -1,5 +1,5 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';

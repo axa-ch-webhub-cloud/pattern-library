@@ -29,7 +29,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "devDependencies": {
-    "svgo": "^1.2.0"
+    "svgo": "^2.8.0"
   },
   "dependencies": {
     "lit": "^2.2.1"

@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import changelog from './CHANGELOG.md';
 import './index';
 import readme from './README.md';

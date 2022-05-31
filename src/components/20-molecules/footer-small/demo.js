@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
 import './index';
