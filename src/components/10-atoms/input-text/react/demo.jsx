@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputText from './DemoInputText';
+import DemoInputTextonKeyDown from './DemoInputTextonKeyDown';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
 storiesOf('Examples/Input Text/React', module)
@@ -16,6 +17,11 @@ storiesOf('Examples/Input Text/React', module)
   .add('Controlled/uncontrolled', () => {
     const div = document.createElement('div');
     ReactDOM.render(<DemoInputText />, div);
+    return div;
+  })
+  .add('Using onKeyDown event', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<DemoInputTextonKeyDown />, div);
     return div;
   })
   .add('Using onKeyUp event', () => {

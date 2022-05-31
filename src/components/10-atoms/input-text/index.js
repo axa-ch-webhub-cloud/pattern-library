@@ -61,6 +61,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
+      onKeyDown: { type: Function, attribute: false },
       onKeyUp: { type: Function, attribute: false },
     };
   }
@@ -382,6 +383,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  @keydown="${this.onKeyDown}"
                   @keyup="${this.onKeyUp}"
                 />
               `
@@ -402,6 +404,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  @keydown="${this.onKeyDown}"
                   @keyup="${this.onKeyUp}"
                 />
               `

@@ -242,6 +242,28 @@ test('should display error when invalid is set', async t => {
   await t.expect(await getBorderColor()).eql('rgb(201, 20, 50)');
 });
 
+fixture('Input-Text - React onKeyDown').page(
+  `${host}/iframe.html?id=examples-input-text-react--using-onkeydown-event&viewMode=story`
+);
+
+test('should fire onKeyDown callback on user input', async t => {
+  const testoutput = await Selector(() =>
+    document.querySelector('#inputtext-react-testoutput')
+  ).addCustomDOMProperties({
+    innerHTML: el => el.innerHTML,
+  });
+
+  const realInputField = await Selector(() =>
+    document.querySelector('axa-input-text').querySelector('input')
+  );
+
+  await t.typeText(realInputField, 'x', {
+    replace: true,
+  });
+
+  await t.expect(await testoutput().innerHTML).eql('x');
+});
+
 fixture('Input-Text - React onKeyUp').page(
   `${host}/iframe.html?id=examples-input-text-react--using-onkeyup-event&viewMode=story`
 );
