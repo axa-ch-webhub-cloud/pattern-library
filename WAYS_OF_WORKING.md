@@ -16,22 +16,13 @@ needed, we prefer to 'pull' the outside stakeholders in for help.
 
 We roughly follow established agile methodology.
 
-## Kanban board
-
-We maintain a Kanban board to depict the current state of the design
-and development tasks in our work pipeline.
-
-See this picture for an example:
-
-<img src="https://raw.githubusercontent.com/axa-ch-webhub-cloud/pattern-library/develop/assets/kanban_board.jpg" width="400">
-
 ## Dailies
 
 We have a daily standup where each team member briefly reviews
 yesterday's work and what is planned for today's work. We strive to
 stay on topic and limit the time to 15 minutes. We have a voluntary moderator
 per daily standup. The moderator's job it is to keep the conversation
-focussed and within time limits. Team members who are remote are integrated via Google Hangout.
+focussed and within time limits. Team members who are remote are integrated via Teams.
 
 ## Demos
 
