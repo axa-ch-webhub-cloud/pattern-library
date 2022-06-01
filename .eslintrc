@@ -80,16 +80,9 @@
     "__VERSION_INFO__": true,
     "__COLORS_SCSS_AS_STRING__": true
   },
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "babelOptions": {
-      "configFile": "./.storybook/.babelrc.js"
-    },
-    "ecmaVersion": 8,
+    "ecmaVersion": 2019,
     "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "classes": true,
-      "decorations": true,
       "jsx": true
     }
   }
