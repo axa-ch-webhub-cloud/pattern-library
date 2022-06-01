@@ -1,6 +1,3 @@
-// module globals (next minor)
-// let openPopupInstance;
-//
 import { applyDefaults } from '../../../../utils/with-react';
 
 export const AXAPopupMixin = superclass =>
@@ -14,22 +11,10 @@ export const AXAPopupMixin = superclass =>
     constructor() {
       super();
       applyDefaults(this);
+      this.handlePopupButtonClick = this.handlePopupButtonClick.bind(this);
     }
 
-    handlePopupButtonClick = () => {
+    handlePopupButtonClick() {
       this._open = !this._open;
-
-      // (next minor)
-      // if (!this._open) {
-      //   if (openPopupInstance && openPopupInstance !== this) {
-      //     console.log('AooO');
-      //     openPopupInstance._open = false;
-      //   }
-      //
-      //   this._open = true;
-      //   openPopupInstance = this;
-      // } else {
-      //   openPopupInstance = null;
-      // }
-    };
+    }
   };

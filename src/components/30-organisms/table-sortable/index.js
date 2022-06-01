@@ -34,6 +34,9 @@ class AXATableSortable extends LitElement {
       tfoot: [[]],
     };
     applyDefaults(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+
     this.firstRender = true;
     this.numCollator = new Intl.Collator(undefined, {
       numeric: true,
@@ -223,7 +226,7 @@ class AXATableSortable extends LitElement {
     return super.shouldUpdate(...args);
   }
 
-  handleOnClick = (ev, index, type) => {
+  handleOnClick(ev, index, type) {
     ev.preventDefault();
     ev.stopPropagation();
     const { currentTarget } = ev;
@@ -236,17 +239,17 @@ class AXATableSortable extends LitElement {
     };
     this.onClick(details);
     fireCustomEvent('click', details, this, { bubbles: false });
-  };
+  }
 
   // if is focused, let the row be pressed via keyboard
-  onKeyPress = (...args) => {
+  onKeyPress(...args) {
     const {
       0: { charCode, code },
     } = args;
     if (KEY_CODES.indexOf(charCode) > -1 || KEY_NAMES.indexOf(code) > -1) {
       this.handleOnClick(...args);
     }
-  };
+  }
 
   /* eslint-disable indent */
   render() {

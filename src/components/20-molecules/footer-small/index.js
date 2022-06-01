@@ -37,6 +37,8 @@ class AXAFooterSmall extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
+    this.handleLanguageClick = this.handleLanguageClick.bind(this);
+    this.handleDisclaimerClick = this.handleDisclaimerClick.bind(this);
 
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
   }
@@ -47,7 +49,7 @@ class AXAFooterSmall extends InlineStyles {
     return childStyles;
   }
 
-  handleLanguageClick = (ev, languageIndex) => {
+  handleLanguageClick(ev, languageIndex) {
     if (this.dynamic) {
       ev.preventDefault();
       [...this.querySelectorAll('[slot="language-item"]')].forEach(
@@ -63,15 +65,15 @@ class AXAFooterSmall extends InlineStyles {
       fireCustomEvent('axa-language-click', languageIndex, this);
       this.requestUpdate();
     }
-  };
+  }
 
-  handleDisclaimerClick = (ev, disclaimerIndex) => {
+  handleDisclaimerClick(ev, disclaimerIndex) {
     if (this.dynamic) {
       ev.preventDefault();
       this.onDisclaimerClick(disclaimerIndex);
       fireCustomEvent('axa-disclaimer-click', disclaimerIndex, this);
     }
-  };
+  }
 
   firstUpdated() {
     // call parent class method that adds inline styles

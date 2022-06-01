@@ -42,6 +42,13 @@ class AXACarousel extends InlineStyles {
     super();
     // Props
     applyDefaults(this);
+    this._onSwipeLeft = this._onSwipeLeft.bind(this);
+    this._onSwipeRight = this._onSwipeRight.bind(this);
+    this._handleKeyUp = this._handleKeyUp.bind(this);
+    this._onResize = debounce(() => {
+      this._carouselMinHeight = 0;
+      this._calculateContainerMinHeight();
+    }, 200);
     // Internal
     this.autoRotateTimerID = null;
     this.slides = null;
@@ -161,12 +168,6 @@ class AXACarousel extends InlineStyles {
 
     this._setSlideVisibleAndAllOthersNone(this.slides[this.visibleSlideIndex]);
   }
-
-  _onResize = debounce(() => {
-    this._carouselMinHeight = 0;
-    this._calculateContainerMinHeight();
-  }, 200);
-
   // AutoRotate:
 
   _startAutoRotate() {
@@ -188,13 +189,13 @@ class AXACarousel extends InlineStyles {
 
   // Swipe for mobile devices:
 
-  _onSwipeLeft = () => {
+  _onSwipeLeft() {
     this.handleNextButtonClick();
-  };
+  }
 
-  _onSwipeRight = () => {
+  _onSwipeRight() {
     this.handlePreviousButtonClick();
-  };
+  }
 
   _initSwipe(usedElement = this) {
     // usedElement as a property to encapsulate for unit tests
@@ -226,7 +227,7 @@ class AXACarousel extends InlineStyles {
     usedDocument.removeEventListener('keyup', this._handleKeyUp);
   }
 
-  _handleKeyUp = ev => {
+  _handleKeyUp(ev) {
     const e = ev || window.event;
 
     if (e.keyCode === 37) {
@@ -234,7 +235,7 @@ class AXACarousel extends InlineStyles {
     } else if (e.keyCode === 39) {
       this.handleNextButtonClick();
     }
-  };
+  }
 
   firstUpdated() {
     this.inlineStyles('childStyles');

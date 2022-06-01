@@ -59,6 +59,8 @@ class AXAFooter extends InlineStyles {
     super();
     applyDefaults(this);
     this._accordionActiveIndex = -1;
+    this._handleAccordionClick = this._handleAccordionClick.bind(this);
+    this._handleLinkClick = this._handleLinkClick.bind(this);
 
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
   }
@@ -326,7 +328,7 @@ class AXAFooter extends InlineStyles {
     `;
   }
 
-  _handleAccordionClick = (index, ev) => {
+  _handleAccordionClick(index, ev) {
     // toggle opening of correct accordion
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
@@ -353,9 +355,9 @@ class AXAFooter extends InlineStyles {
     } else {
       _setMaxHeightToZero(panel);
     }
-  };
+  }
 
-  _handleLinkClick = ev => {
+  _handleLinkClick(ev) {
     if (this.clickevents) {
       ev.preventDefault();
 
@@ -372,7 +374,7 @@ class AXAFooter extends InlineStyles {
         );
       }
     }
-  };
+  }
 
   disconnectedCallback() {
     super.disconnectedCallback();

@@ -62,6 +62,7 @@ class AXAButton extends InlineStyles {
     /* eslint-disable no-undef */
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
     /* eslint-enable no-undef */
+    this.handleClick = this.handleClick.bind(this);
   }
 
   get isTypeSubmitOrReset() {
@@ -139,7 +140,7 @@ class AXAButton extends InlineStyles {
     };
   }
 
-  handleClick = (e, eventIsManuallyFunctionTriggered = false) => {
+  handleClick(e, eventIsManuallyFunctionTriggered = false) {
     // block propagation if event is not synthetic. We need only that
     // the event coming from fake button is fired so that default
     // form behaviour works (submit, reset, etc). The reason why it works with fake button is
@@ -169,7 +170,7 @@ class AXAButton extends InlineStyles {
     if (!eventIsManuallyFunctionTriggered && typeof onclick === 'function') {
       onclick(e);
     }
-  };
+  }
 
   render() {
     const {

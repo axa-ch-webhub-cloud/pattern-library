@@ -103,9 +103,11 @@ class AXAModal extends InlineStyles {
   }
 
   mouseCloseHandler(e) {
+    // WTF code worked earlier?
     if (
       !this.forced &&
-      e.composedPath()?.[0] === this.shadowRoot.querySelector('.o-modal--open')
+      e.composedPath() &&
+      e.composedPath()[0] === this.shadowRoot.querySelector('.o-modal--open')
     ) {
       this.closeModal();
     }

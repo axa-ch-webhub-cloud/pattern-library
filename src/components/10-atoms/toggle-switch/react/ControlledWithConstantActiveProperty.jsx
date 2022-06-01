@@ -4,6 +4,7 @@ import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 export default class example extends React.Component {
   constructor() {
     super();
+    this.change = this.change.bind(this);
 
     this.state = {
       active: true,
@@ -11,13 +12,13 @@ export default class example extends React.Component {
     };
   }
 
-  change = ev => {
+  change(ev) {
     // We expect 'ev.target.checked' to always contain the same value, as the active flag.
     this.setState({
       active: ev.target.checked,
       receivedEvent: String(ev.target.checked),
     });
-  };
+  }
 
   render() {
     const { receivedEvent, active } = this.state;

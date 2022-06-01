@@ -72,7 +72,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   constructor() {
     super();
     applyDefaults(this);
-
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     // internal properties
     this.nativeInput = { value: '' };
     this.modelValue = '';
@@ -200,20 +202,20 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput.classList.remove('focus');
   }
 
-  handleFocus = ev => {
+  handleFocus(ev) {
     this.nativeInput.classList.add('focus');
     this.onFocus(ev);
-  };
+  }
 
-  handleBlur = ev => {
+  handleBlur(ev) {
     this.nativeInput.value = this._formatCurrency(this.value);
     this.modelCounter = this.getCounterText; // update the chars left counter after formatting the input
 
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
-  };
+  }
 
-  handleInput = ev => {
+  handleInput(ev) {
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
     this.onChange(ev, this.invalidFormat);
@@ -244,7 +246,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     if (this.maxLength) {
       this.modelCounter = this.getCounterText;
     }
-  };
+  }
 
   _isSafari() {
     return (

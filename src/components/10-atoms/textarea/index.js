@@ -56,7 +56,9 @@ class AXATextarea extends NoShadowDOM {
   constructor() {
     super();
     applyDefaults(this);
-
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     // internal properties
     this.isReact = false;
     this.modelCounter = '';
@@ -160,17 +162,17 @@ class AXATextarea extends NoShadowDOM {
     this.nativeInput.classList.remove('focus');
   }
 
-  handleFocus = ev => {
+  handleFocus(ev) {
     this.nativeInput.classList.add('focus');
     this.onFocus(ev);
-  };
+  }
 
-  handleBlur = ev => {
+  handleBlur(ev) {
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
-  };
+  }
 
-  handleInput = ev => {
+  handleInput(ev) {
     this.onChange(ev);
 
     // are we a 'controlled' input in the React sense?
@@ -182,7 +184,7 @@ class AXATextarea extends NoShadowDOM {
     if (this.maxLength) {
       this.modelCounter = this.getCounterText;
     }
-  };
+  }
 
   updated() {
     const { nativeDefaultValue, defaultValue, isReact, value } = this;
