@@ -22,4 +22,20 @@ describe('Input text', () => {
     expect(await page.textContent('#email-id')).toBe(`email: ${emailText}`);
     expect(await page.textContent('#password-id')).toBe(`password: ${pwText}`);
   });
+
+  test('should fire onKeyDown callback on user input', async () => {
+    await page.goto(
+      `${host}/iframe.html?id=examples-input-text-react--using-onkeydown-event`
+    );
+
+    const text = 'x';
+    const input = page.locator(
+      '#inputtext-react-inputfield-on-key-pressed .a-input-text__input'
+    );
+    const output = page.locator('#inputtext-react-testoutput');
+
+    await input.type(text);
+
+    expect(await output.textContent()).toEqual(text);
+  });
 });
