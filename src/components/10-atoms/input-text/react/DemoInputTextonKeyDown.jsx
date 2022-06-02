@@ -12,7 +12,7 @@ const DemoInputTextonKeyDown = () => {
         name="onkeydown"
         id="inputtext-react-inputfield-on-key-pressed"
         onKeyDown={e => {
-          document.querySelector('#inputtext-react-testoutput').innerHTML =
+          document.querySelector('#inputtext-react-testoutput').textContent =
             e.key;
         }}
       />
