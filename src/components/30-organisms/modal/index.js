@@ -1,4 +1,5 @@
 import { html, css, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map';
 import { unsafeHTML } from 'lit/directives/unsafe-html';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
@@ -41,39 +42,40 @@ class AXAModal extends InlineStyles {
   }
 
   render() {
+    const { open, small, forced, noheader, closeModal } = this;
+    const contentClasses = {
+      'o-modal__content': true,
+      'o-modal__content--forced': forced,
+      'o-modal__content--noheader': noheader,
+    };
+
     return html`
-      <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
+      <article class="o-modal ${open ? 'o-modal--open' : ''}">
         <div
-          class="o-modal__container ${this.small
-            ? 'o-modal__container--small'
-            : ''}"
+          class="o-modal__container ${small ? 'o-modal__container--small' : ''}"
         >
-          ${!this.forced && !this.noheader
+          ${!forced && !noheader
             ? html`
                 <div
-                  class="o-modal__upper-close-container ${this.forced
+                  class="o-modal__upper-close-container ${forced
                     ? 'o-modal__upper-close-container--forced'
                     : ''}"
                 >
                   <button
                     class="o-modal__upper-close-container-button"
-                    @click="${this.closeModal}"
+                    @click="${closeModal}"
                   >
                     ${unsafeHTML(closeIcon)}
                   </button>
                 </div>
               `
             : ''}
-          <div
-            class="o-modal__content ${this.forced
-              ? 'o-modal__content--forced'
-              : ''} ${this.noheader ? 'o-modal__content--noheader' : ''}"
-          >
-            ${this.noheader
+          <div class="${classMap(contentClasses)}">
+            ${noheader
               ? html`
                   <button
                     class="o-modal__upper-close-container-button"
-                    @click="${this.closeModal}"
+                    @click="${closeModal}"
                   >
                     ${unsafeHTML(closeIcon)}
                   </button>

@@ -28,7 +28,7 @@ import '@axa-ch/modal';
 | `open`    | State of modal visibility (boolean)                    |
 | `forced`  | Disables the internal close mechanisms (boolean)       |
 | `small`   | Smaller version of the modal (boolean, default: false) |
-| `noheader`| Removes the header and padding of the modal root element (boolean, default: false) |
+| `noheader`| Removes the header and the space around the modal content (boolean, default: false) |
 
 ### open
 
@@ -40,15 +40,15 @@ If `forced` is set to `true`, closing functionality has to be manually implement
 
 ### small
 
-if `small`is set to true, it has the `small` size and sets the `max-width` attribute to 500px.
+If `small`is set to true, it has the `small` size and sets the `max-width` attribute to 500px.
 
 ### no header
 
-if `noheader` is set to true, the modal will be displayed without header and padding of the root element.
+If `noheader` is set to true, the modal will be displayed without header and padding of the root element.
 
 ## onClose / axa-close
 
-Under react we can pass a method `onClose` that will get called when the Modal closes, like so:
+Under React we can pass a method `onClose` that will get called when the Modal closes, like so:
 
 ```js
 <AXAModal
