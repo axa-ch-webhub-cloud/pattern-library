@@ -11,7 +11,7 @@ npm install @axa-ch/materials
 ```
 
 ```js
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
 
 <span>${unsafeHTML(Arrow_forwardSvg)}</span>;

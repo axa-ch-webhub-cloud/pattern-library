@@ -1,8 +1,8 @@
 /* eslint-disable camelcase, no-continue */
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 /* eslint-disable import/no-extraneous-dependencies */
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import AXAInputFile from '@axa-ch/input-file';
 import {
   AddSvg,

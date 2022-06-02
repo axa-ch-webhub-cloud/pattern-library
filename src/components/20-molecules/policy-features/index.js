@@ -1,5 +1,5 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineVersioned } from '../../../utils/component-versioning';

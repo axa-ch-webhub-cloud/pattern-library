@@ -7,8 +7,8 @@ import {
   Keyboard_arrow_rightSvg,
 } from '@axa-ch/materials/icons/material-design';
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
-import { classMap } from 'lit/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { classMap } from 'lit/directives/class-map.js';
 import {
   defineVersioned,
   versionedHtml,

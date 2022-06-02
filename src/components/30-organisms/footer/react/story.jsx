@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/html';
+import { storiesOf } from '@storybook/web-components';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import withNoBorder from '../../../../../.storybook/addons/no-border';

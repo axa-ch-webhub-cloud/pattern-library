@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import linkCSS from './index.scss';
 import {
   defineVersioned,
