@@ -18,6 +18,8 @@ const ALLOWED_DEPENDENCIES = [
   '@webcomponents/webcomponentsjs',
   '@ungap/global-this',
   'lit',
+  'blueimp-canvas-to-blob',
+  'date-fns',
 ];
 
 // eslint-disable-next-line no-console
