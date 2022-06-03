@@ -4,7 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';

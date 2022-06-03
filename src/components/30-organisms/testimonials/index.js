@@ -9,7 +9,7 @@ import {
 } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import childStyles from './child.scss';
 
 class AXATestimonials extends InlineStyles {

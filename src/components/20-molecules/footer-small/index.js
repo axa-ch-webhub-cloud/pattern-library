@@ -9,7 +9,7 @@ import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import InlineStyles from '../../../utils/inline-styles';
 import fireCustomEvent from '../../../utils/custom-event';
 

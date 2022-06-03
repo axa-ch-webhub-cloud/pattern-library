@@ -9,7 +9,7 @@ import {
 } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 const PATTERN_DEFAULT = '.*';

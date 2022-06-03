@@ -4,7 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons/material-design';
 import popupButtonCSS from './index.scss';
 
-import { applyDefaults } from '../../../../utils/with-react';
+import applyDefaults from '../../../../utils/apply-defaults';
 
 class AXAPopupButton extends LitElement {
   static get tagName() {

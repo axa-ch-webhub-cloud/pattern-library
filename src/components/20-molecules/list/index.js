@@ -2,7 +2,7 @@ import { html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { defineVersioned } from '../../../utils/component-versioning';
 import InlineStyles from '../../../utils/inline-styles';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import childStyles from './child.scss';
 

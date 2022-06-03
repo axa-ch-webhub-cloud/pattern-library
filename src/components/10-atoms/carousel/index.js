@@ -6,7 +6,7 @@ import styles from './index.scss';
 import Swipe from './swipe';
 import debounce from '../../../utils/debounce';
 import InlineStyles from '../../../utils/inline-styles';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import childStyles from './child.scss';
 
 const ELEMENT_NODE = 1;

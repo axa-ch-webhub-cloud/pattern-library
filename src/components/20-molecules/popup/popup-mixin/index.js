@@ -1,4 +1,4 @@
-import { applyDefaults } from '../../../../utils/with-react';
+import applyDefaults from '../../../../utils/apply-defaults';
 
 export const AXAPopupMixin = superclass =>
   class extends superclass {

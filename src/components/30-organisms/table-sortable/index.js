@@ -8,7 +8,7 @@ import {
   versionedHtml,
 } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import tableCss from './index.scss';
 
 const ASC = 'ascending';

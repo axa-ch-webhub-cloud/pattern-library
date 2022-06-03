@@ -1,6 +1,6 @@
 import { defineVersioned } from '../../../utils/component-versioning';
 import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import tableCSS from './index.scss';
 
 class AXATable extends NoShadowDOM {

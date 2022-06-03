@@ -4,7 +4,7 @@ import NoShadowDOM from '../../../utils/no-shadow';
 import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import { sanitizeSVG } from '../../../utils/sanitize';
 
 import styles from './index.scss';
