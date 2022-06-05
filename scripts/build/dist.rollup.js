@@ -64,7 +64,7 @@ const dist = {
       ecma: 2019,
       compress: true,
       mangle: true,
-    })
+    }),
   ],
 };
 
