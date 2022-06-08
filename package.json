@@ -9,7 +9,7 @@
     "build-components": "lerna run build --parallel",
     "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
-    "postinstall": "lerna bootstrap --hoist && cross-env NODE_ENV=production npm run build-components && lerna run --parallel genPackagelock",
+    "postinstall": "cross-env NODE_ENV=production npm run build-components && lerna run --parallel genPackagelock",
     "release": "git clean -dfxq -e .idea -e .vscode && npm whoami && npx lerna clean && npm ci && lerna version --exact && cross-env NODE_ENV=production npm run build-components && lerna publish from-package && git clean -dfxq -e .idea -e .vscode && npm install && git add -A && git commit -m \"release: update package locks\" && git push",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 --no-version-updates",
@@ -31,9 +31,9 @@
     "@skatejs/val": "^0.4.0",
     "@ungap/global-this": "^0.4.4",
     "@webcomponents/webcomponentsjs": "^2.6.0",
-    "lit": "^2.2.1",
     "blueimp-canvas-to-blob": "^3.29.0",
-    "date-fns": "^2.28.0"
+    "date-fns": "^2.28.0",
+    "lit": "^2.2.1"
   },
   "devDependencies": {
     "@axa-ch/materials": "latest",
