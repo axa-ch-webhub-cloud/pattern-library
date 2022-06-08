@@ -9,8 +9,8 @@
     "build-components": "lerna run build --parallel",
     "watch-components": "lerna run watch --parallel",
     "setup-npm-links": "node scripts/setup-npm-link.js",
-    "postinstall": "cross-env NODE_ENV=production npm run build-components && lerna run --parallel genPackagelock",
-    "release": "git clean -dfxq -e .idea -e .vscode && npm whoami && npx lerna clean && npm ci && lerna version --exact && cross-env NODE_ENV=production npm run build-components && lerna publish from-package && git clean -dfxq -e .idea -e .vscode && npm install && git add -A && git commit -m \"release: update package locks\" && git push",
+    "postinstall": "lerna bootstrap --hoist && cross-env NODE_ENV=production npm run build-components && lerna run --parallel genPackagelock",
+    "release": "git clean -dfxq -e .idea -e .vscode && npm whoami && lerna clean --yes && npm ci && lerna version --exact && cross-env NODE_ENV=production npm run build-components && lerna publish from-package && git clean -dfxq -e .idea -e .vscode && npm install && git add -A && git commit -m \"release: update package locks\" && git push",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 --no-version-updates",
     "build-storybook": "build-storybook",
@@ -23,11 +23,12 @@
     "test-testcafe": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome ./**/ui.test.js",
     "test-testcafe-headless": "TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe 'chrome:headless' ./**/ui.test.js",
     "new": "node scripts/create-a-m-o/index.js",
-    "deploy-branch": "npm run build-storybook && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
+    "deploy-branch": "npm run build-storybook && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
     "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --"
   },
   "dependencies": {
+    "@axa-ch/materials": "latest",
     "@skatejs/val": "^0.4.0",
     "@ungap/global-this": "^0.4.4",
     "@webcomponents/webcomponentsjs": "^2.6.0",
@@ -36,7 +37,6 @@
     "lit": "^2.2.1"
   },
   "devDependencies": {
-    "@axa-ch/materials": "latest",
     "@babel/core": "^7.3.3",
     "@babel/plugin-transform-runtime": "^7.4.0",
     "@babel/preset-env": "^7.3.1",
