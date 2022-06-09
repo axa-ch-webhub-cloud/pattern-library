@@ -78,7 +78,7 @@
     "glob": "^8.0.1",
     "jest": "^27.5.1",
     "jest-playwright-preset": "1.7.2",
-    "lerna": "^4.0.0",
+    "lerna": "^5.1.0",
     "marked": "^1.2.4",
     "mkdirp": "^0.5.1",
     "mutationobserver-shim": "^0.3.3",
