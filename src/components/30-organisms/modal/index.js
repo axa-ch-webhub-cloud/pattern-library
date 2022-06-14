@@ -43,24 +43,30 @@ class AXAModal extends InlineStyles {
 
   render() {
     const { open, small, forced, noheader, closeModal } = this;
+    const rootClasses = {
+      'o-modal': true,
+      'o-modal--open': open,
+    };
+    const containerClasses = {
+      'o-modal__container': true,
+      'o-modal__container--small': small,
+    };
     const contentClasses = {
       'o-modal__content': true,
       'o-modal__content--forced': forced,
       'o-modal__content--noheader': noheader,
     };
+    const closeClasses = {
+      'o-modal__upper-close-container': true,
+      'o-modal__upper-close-container--forced': forced,
+    };
 
     return html`
-      <article class="o-modal ${open ? 'o-modal--open' : ''}">
-        <div
-          class="o-modal__container ${small ? 'o-modal__container--small' : ''}"
-        >
+      <article class="${classMap(rootClasses)}">
+        <div class="${classMap(containerClasses)}">
           ${!forced && !noheader
             ? html`
-                <div
-                  class="o-modal__upper-close-container ${forced
-                    ? 'o-modal__upper-close-container--forced'
-                    : ''}"
-                >
+                <div class="${classMap(closeClasses)}">
                   <button
                     class="o-modal__upper-close-container-button"
                     @click="${closeModal}"

@@ -140,7 +140,7 @@
 
       @include breakpoint($mediaquery-xs-up) {
         svg {
-          color: white;
+          color: $color-prim-white;
           filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
         }
       }
