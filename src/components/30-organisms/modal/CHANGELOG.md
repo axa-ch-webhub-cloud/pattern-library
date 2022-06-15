@@ -1,3 +1,7 @@
+## 3.1.0
+
+- Add a `noheader` option. #2292
+
 ## 3.0.0
 
 Migrate to lit. #2207
