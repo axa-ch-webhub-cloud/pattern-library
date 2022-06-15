@@ -117,6 +117,33 @@ describe('Modal', () => {
   });
 });
 
+it('should not display top-bar', async () => {
+  await openNoHeaderModal();
+
+  expect(await page.isVisible('.o-modal__upper-close-container')).toBe(false);
+});
+
+it('should display content with close icon', async () => {
+  await openNoHeaderModal();
+
+  expect(
+    await page.isVisible(
+      '.o-modal__content .o-modal__upper-close-container-button'
+    )
+  ).toBe(true);
+});
+
+it('should remove padding for the root content element', async () => {
+  await openNoHeaderModal();
+
+  const contentNoHeaderPadding = await page.$eval(
+    '.o-modal__content--noheader',
+    el => window.getComputedStyle(el).padding
+  );
+
+  expect(contentNoHeaderPadding).toBe('0px');
+});
+
 async function openModal() {
   await page.goto(
     `${host}/iframe.html?id=components-modal--modal&viewMode=story`
@@ -126,5 +153,11 @@ async function openModal() {
 async function openForcedModal() {
   await page.goto(
     `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`
+  );
+}
+
+async function openNoHeaderModal() {
+  await page.goto(
+    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-no%20header=true&viewMode=story`
   );
 }

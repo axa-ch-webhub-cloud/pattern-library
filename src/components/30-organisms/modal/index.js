@@ -1,4 +1,5 @@
 import { html, css, unsafeCSS } from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
@@ -26,6 +27,7 @@ class AXAModal extends InlineStyles {
       open: { type: Boolean },
       forced: { type: Boolean },
       small: { type: Boolean },
+      noheader: { type: Boolean },
       onClose: { type: Function, attribute: false },
     };
   }
@@ -40,34 +42,51 @@ class AXAModal extends InlineStyles {
   }
 
   render() {
+    const { open, small, forced, noheader, closeModal } = this;
+    const rootClasses = {
+      'o-modal': true,
+      'o-modal--open': open,
+    };
+    const containerClasses = {
+      'o-modal__container': true,
+      'o-modal__container--small': small,
+    };
+    const contentClasses = {
+      'o-modal__content': true,
+      'o-modal__content--forced': forced,
+      'o-modal__content--noheader': noheader,
+    };
+    const closeClasses = {
+      'o-modal__upper-close-container': true,
+      'o-modal__upper-close-container--forced': forced,
+    };
+
     return html`
-      <article class="o-modal ${this.open ? 'o-modal--open' : ''}">
-        <div
-          class="o-modal__container ${this.small
-            ? 'o-modal__container--small'
-            : ''}"
-        >
-          ${!this.forced
+      <article class="${classMap(rootClasses)}">
+        <div class="${classMap(containerClasses)}">
+          ${!forced && !noheader
             ? html`
-                <div
-                  class="o-modal__upper-close-container ${this.forced
-                    ? 'o-modal__upper-close-container--forced'
-                    : ''}"
-                >
+                <div class="${classMap(closeClasses)}">
                   <button
                     class="o-modal__upper-close-container-button"
-                    @click="${this.closeModal}"
+                    @click="${closeModal}"
                   >
                     ${unsafeHTML(closeIcon)}
                   </button>
                 </div>
               `
             : ''}
-          <div
-            class="o-modal__content ${this.forced
-              ? 'o-modal__content--forced'
-              : ''}"
-          >
+          <div class="${classMap(contentClasses)}">
+            ${noheader
+              ? html`
+                  <button
+                    class="o-modal__upper-close-container-button"
+                    @click="${closeModal}"
+                  >
+                    ${unsafeHTML(closeIcon)}
+                  </button>
+                `
+              : ''}
             <slot></slot>
           </div>
         </div>
