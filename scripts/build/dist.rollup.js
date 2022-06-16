@@ -46,7 +46,6 @@ const dist = {
   output: {
     file: './dist/index.js', // no react dist on purpose
     format: 'iife',
-    extend: false,
     name: 'window',
   },
   plugins: [
