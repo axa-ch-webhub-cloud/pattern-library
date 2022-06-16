@@ -5,6 +5,7 @@ export interface AXAModalProps {
   open?: boolean;
   forced?: boolean;
   small?: boolean;
+  noheader?: boolean;
   onClose?: (e: CustomEvent) => void;
 }
 
