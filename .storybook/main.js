@@ -1,11 +1,12 @@
 const path = require('path');
 const fs = require('fs');
-const base = path.resolve(process.cwd(), 'src');
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
 require('dotenv-extended').load();
+
+const base = path.resolve(process.cwd(), 'src');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
 const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))

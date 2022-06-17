@@ -25,7 +25,7 @@ import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
 import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import { xhrCall } from '../../../utils/requests';
 import { sanitizeSVG } from '../../../utils/sanitize';
 

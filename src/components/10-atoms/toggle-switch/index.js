@@ -2,7 +2,7 @@ import { css, html, LitElement, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 class AXAToggleSwitch extends LitElement {

@@ -6,7 +6,7 @@ import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';

@@ -3,7 +3,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
 import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import createRefId from '../../../utils/create-ref-id';
 

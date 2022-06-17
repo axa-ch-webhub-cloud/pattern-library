@@ -17,7 +17,10 @@ const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
   '@webcomponents/webcomponentsjs',
   '@ungap/global-this',
+  '@axa-ch/materials',
   'lit',
+  'blueimp-canvas-to-blob',
+  'date-fns',
 ];
 
 // eslint-disable-next-line no-console

@@ -1,11 +1,15 @@
 class Swipe {
   constructor(element, onLeftCallback, onRightCallback) {
+    this._handleTouchStart = this._handleTouchStart.bind(this);
+    this._handleTouchMove = this._handleTouchMove.bind(this);
+    this._handleTouchEnd = this._handleTouchEnd.bind(this);
+
     this.xDown = null;
     this.yDown = null;
     this.element = element;
     this.DIFF_THRESHOLD = element.offsetWidth / 10; // 10% of the width is the threshold swipe
-    this.TIME_THRESHOLD = 200;
 
+    this.TIME_THRESHOLD = 200;
     this.onLeftCallback = onLeftCallback;
     this.onRightCallback = onRightCallback;
   }
@@ -72,21 +76,21 @@ class Swipe {
     this.timeDown = null;
   }
 
-  _handleTouchStart = evt => {
+  _handleTouchStart(evt) {
     this.xDown = evt.touches[0].clientX;
     this.yDown = evt.touches[0].clientY;
     this.timeDown = Date.now();
     this.xDiff = 0;
     this.yDiff = 0;
-  };
+  }
 
-  _handleTouchMove = evt => {
+  _handleTouchMove(evt) {
     this.handleTouchMove(evt);
-  };
+  }
 
-  _handleTouchEnd = () => {
+  _handleTouchEnd() {
     this.handleTouchEnd();
-  };
+  }
 
   run() {
     this.element.addEventListener('touchstart', this._handleTouchStart);

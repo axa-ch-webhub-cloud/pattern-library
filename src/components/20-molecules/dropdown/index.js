@@ -13,7 +13,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
 import findIndex from '../../../utils/find-index';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 
 // module constants
 const ARROW_ICON = unsafeHTML(Expand_moreSvg);

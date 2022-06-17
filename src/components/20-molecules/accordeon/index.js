@@ -6,7 +6,7 @@ import expandMore from '@axa-ch/materials/icons/material-design/expand_more.svg'
 
 import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import { sanitizeSVG } from '../../../utils/sanitize';
 
 import styles from './index.scss';

@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 import InlineStyles from '../../../utils/inline-styles';
@@ -122,9 +122,11 @@ class AXAModal extends InlineStyles {
   }
 
   mouseCloseHandler(e) {
+    // WTF code worked earlier?
     if (
       !this.forced &&
-      e.composedPath()?.[0] === this.shadowRoot.querySelector('.o-modal--open')
+      e.composedPath() &&
+      e.composedPath()[0] === this.shadowRoot.querySelector('.o-modal--open')
     ) {
       this.closeModal();
     }

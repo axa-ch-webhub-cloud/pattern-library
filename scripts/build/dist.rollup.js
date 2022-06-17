@@ -1,11 +1,8 @@
 const fs = require('fs');
+const commonjs = require('@rollup/plugin-commonjs');
 const { extname } = require('path');
 const { terser } = require('rollup-plugin-terser');
-
-const commonjs = require('@rollup/plugin-commonjs');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const { babel } = require('@rollup/plugin-babel');
-
 const { commonPlugins } = require('./common.rollup.js');
 
 const memory = {};
@@ -49,40 +46,21 @@ const dist = {
   output: {
     file: './dist/index.js', // no react dist on purpose
     format: 'iife',
-    extend: false,
     name: 'window',
   },
   plugins: [
     ...commonPlugins,
+    // Resolve bare module specifiers to relative paths
     nodeResolve({
       mainFields: ['module', 'main', 'browser'],
     }),
+    // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
     commonjs({
-      include: /node_modules/, // needed because we are in a monorepo and the node_modules could be somewhere up or in the root
+      include: /node_modules/,
     }),
-    babel({
-      babelrc: false,
-      babelHelpers: 'runtime',
-      presets: ['@babel/preset-env'],
-      plugins: [
-        [
-          '@babel/plugin-transform-runtime',
-          {
-            absoluteRuntime: false,
-            corejs: false,
-            helpers: true,
-            regenerator: true,
-            useESModules: false,
-          },
-        ],
-      ],
-      exclude: [
-        '../../../../node_modules/@skatejs/val/**',
-        '../../../../node_modules/@babel/**',
-      ],
-    }),
+    // Minify JS
     terser({
-      ecma: 5,
+      ecma: 2019,
       compress: true,
       mangle: true,
     }),

@@ -2,6 +2,16 @@
 import { Selector } from 'testcafe';
 
 class FooterAccessor {
+  constructor() {
+    this._getSlotNode = Selector(
+      slotName =>
+        document
+          .querySelector('axa-footer')
+          .shadowRoot.querySelector(`slot[name='${slotName}']`)
+          .assignedNodes()[0]
+    );
+  }
+
   getSlotNode(slotName) {
     return Selector(this._getSlotNode(slotName));
   }
@@ -11,14 +21,6 @@ class FooterAccessor {
       .expect(element.getStyleProperty('background-color'))
       .eql('rgb(59, 63, 216)');
   }
-
-  _getSlotNode = Selector(
-    slotName =>
-      document
-        .querySelector('axa-footer')
-        .shadowRoot.querySelector(`slot[name='${slotName}']`)
-        .assignedNodes()[0]
-  );
 }
 
 export default new FooterAccessor();

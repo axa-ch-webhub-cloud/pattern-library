@@ -337,33 +337,14 @@ fixture('Link - Reactified, dynamic icons').page(
   `${host}/iframe.html?id=examples-link-react--variable-icons`
 );
 
-test('should correctly update icon and text', async t => {
+test('should correctly update text', async t => {
   const axaLink = await Selector(() => document.querySelector('axa-link'));
   const axaLinkEmbedded = await Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
 
-  const downIconSignature = 'M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'; // expand_more.svg
-  const upIconSignature = 'M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z'; // expand_less.svg
-
-  const iconSVGPathElement = Selector(() =>
-    document
-      .querySelector('axa-link')
-      .shadowRoot.querySelector('.js-icon')
-      .shadowRoot.querySelector('path')
-  );
-
-  await t
-    .expect(await iconSVGPathElement.getAttribute('d'))
-    .eql(downIconSignature);
-
   await t.expect(axaLink.textContent).eql('Mehr Filter');
 
   await t.click(axaLinkEmbedded);
-
-  await t
-    .expect(await iconSVGPathElement.getAttribute('d'))
-    .eql(upIconSignature);
-
   await t.expect(axaLink.textContent).eql('Weniger Filter');
 });

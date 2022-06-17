@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 /* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
 
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import {
   defineVersioned,
   versionedHtml,
