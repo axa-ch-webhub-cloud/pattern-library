@@ -1,3 +1,7 @@
+## 3.1.1
+
+- Fix: inverted desktop and mobile close icons for `noheader` size option #2293
+
 ## 3.1.0
 
 - Add a `noheader` option. #2292
