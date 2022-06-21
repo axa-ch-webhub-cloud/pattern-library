@@ -14,7 +14,7 @@
   &__wrapper {
     margin: 0 10px;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       margin: 0 30px;
     }
   }
@@ -28,7 +28,7 @@
     cursor: pointer;
     background: transparent;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       padding: 10px;
       height: 20px;
       width: 10px;

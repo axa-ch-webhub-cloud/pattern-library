@@ -1,7 +1,7 @@
 $height-md-up: 440px;
 
 .o-commercial-hero-banner {
-  @include breakpoint($mediaquery-md-up) {
+  @media (min-width: $breakpoint-md) {
     height: $height-md-up;
   }
 
@@ -13,13 +13,13 @@ $height-md-up: 440px;
     left: 0;
     z-index: -10;
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       height: $height-md-up;
     }
   }
 
   &__text--dark {
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       color: $color-prim-white;
     }
   }
@@ -27,7 +27,7 @@ $height-md-up: 440px;
   &__container {
     position: relative;
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       background: linear-gradient(
         270deg,
         rgba(255, 255, 255, 0) 30%,
@@ -37,7 +37,7 @@ $height-md-up: 440px;
     }
 
     &--dark {
-      @include breakpoint($mediaquery-md-up) {
+      @media (min-width: $breakpoint-md) {
         background: linear-gradient(
           270deg,
           rgba(0, 0, 0, 0) 30%,
@@ -54,7 +54,7 @@ $height-md-up: 440px;
     max-height: $height-md-up;
     overflow: hidden;
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       padding: 0;
       background-color: transparent;
 
@@ -67,7 +67,7 @@ $height-md-up: 440px;
       width: 100%;
       word-wrap: break-word;
 
-      @include breakpoint($mediaquery-md-up) {
+      @media (min-width: $breakpoint-md) {
         display: flex;
         flex-basis: 50%;
         align-items: center;

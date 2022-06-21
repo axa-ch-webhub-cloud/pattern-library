@@ -1,3 +1,20 @@
 .o-container {
-  @include max-width;
-}
+  max-width: 576px;
+  margin: auto;
+
+  @media (min-width: $breakpoint-xs) {
+    max-width: 540px;
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    max-width: 720px;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-width: 960px;
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    max-width: 1140px;
+  }
+};

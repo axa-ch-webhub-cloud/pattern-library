@@ -9,7 +9,7 @@
   left: 0;
   top: 0;
 
-  @include breakpoint($mediaquery-xs-up) {
+  @media (min-width: $breakpoint-xs) {
     align-items: center;
   }
 
@@ -29,7 +29,7 @@
       }
     }
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       justify-content: center;
     }
   }
@@ -53,14 +53,14 @@
       }
     }
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       max-height: none;
       max-width: 780px;
       margin: 0;
     }
 
     &--small {
-      @include breakpoint($mediaquery-xs-up) {
+      @media (min-width: $breakpoint-xs) {
         max-width: 500px;
         margin: 0;
       }
@@ -78,7 +78,7 @@
     border-radius: $spacing-2 $spacing-2 0 0;
     background-color: $color-prim-white;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       height: auto;
     }
 
@@ -115,7 +115,7 @@
     border-radius: 0 0 $spacing-2 $spacing-2;
     box-shadow: $box-shadow-high;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       max-height: 70vh;
     }
 
@@ -123,7 +123,7 @@
       border-radius: $spacing-2;
       padding: $spacing-6;
       margin-top: $spacing-2;
-      @include breakpoint($mediaquery-xs-up) {
+      @media (min-width: $breakpoint-xs) {
         padding: $spacing-7;
       }
     }
@@ -142,7 +142,7 @@
         color: $color-prim-white;
         filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
 
-        @include breakpoint($mediaquery-xs-up) {
+        @media (min-width: $breakpoint-xs) {
           color: $color-axa-blue;
           filter: unset;
         }

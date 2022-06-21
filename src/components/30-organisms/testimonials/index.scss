@@ -15,17 +15,17 @@
     margin: 20px 30px 0 30px;
     text-align: center;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       @include text(t3);
     }
   }
 
   &__content {
     padding: 20px 5px 30px 5px;
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       padding: 30px 5px 50px 5px;
     }
-    @include breakpoint($mediaquery-xl-up) {
+    @media (min-width: $breakpoint-xl) {
       padding: 30px 5px 80px 5px;
     }
   }

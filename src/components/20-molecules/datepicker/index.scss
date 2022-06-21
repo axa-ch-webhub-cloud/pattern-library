@@ -359,7 +359,7 @@ axa-datepicker .m-datepicker {
 
 // This is not an official breakpoint and might become obsolete with a redesign.
 // It is only necessary because the datepicker would be too wide for the smallest screens.
-@include breakpoint((min-width: 380px)) {
+@media (min-width: 380px) {
   axa-datepicker .m-datepicker{
     &__wrap {
       margin: 0 20px;
