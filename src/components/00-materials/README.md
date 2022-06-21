@@ -69,11 +69,11 @@ body {
 ### Breakpoints
 
 ```scss
-@import '@axa-ch/materials/styles/30-layout.scss';
+@import '@axa-ch/materials/styles/variables.scss';
 
 body {
-  // Rules for devices bigger than portrail mobile
-  @include breakpoint($mediaquery-xs-up) {
+  // Rules for devices bigger than portrait mobile
+  @media (min-width: $breakpoint-xs) {
     margin: 8px;
   }
 }
