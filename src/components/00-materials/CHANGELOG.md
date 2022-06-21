@@ -1,3 +1,7 @@
+## 16.0.0
+- Remove `layout.scss` with breakpoint mixin and `10-helpers.scss` file
+- Remove `reset-button-completely.scss`
+
 ## 15.0.0
 
 Migrate to lit. #2207
