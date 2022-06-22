@@ -81,5 +81,5 @@ storiesOf('Examples/Link/React', module)
       </div>
     );
 
-    return container
+    return container;
   });

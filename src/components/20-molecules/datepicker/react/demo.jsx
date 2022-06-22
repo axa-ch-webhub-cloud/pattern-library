@@ -40,7 +40,9 @@ storiesOf('Examples/Datepicker/React', module)
   })
   .add('Re-rendering on every keystroke with inputfield', () => {
     const container = document.createElement('container');
-    root.render(<DemoDatepickerReRenderOnEveryKeyStroke />, container);
+    const root = createRoot(container);
+    root.render(<DemoDatepickerReRenderOnEveryKeyStroke />);
+
     return container;
   })
   .add('No-inputfield with external show/hide', () => {

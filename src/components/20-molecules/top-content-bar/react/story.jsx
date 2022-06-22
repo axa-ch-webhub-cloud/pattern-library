@@ -1,11 +1,11 @@
 import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATopContentBar from './AXATopContentBarReact';
-import { createRoot } from 'react-dom/client';
 
 const variantOptions = {
   none: '',

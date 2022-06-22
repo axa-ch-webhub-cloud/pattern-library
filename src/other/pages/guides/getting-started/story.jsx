@@ -195,7 +195,7 @@ export default AXAButtonReact;`}
         />
         <PLContactFooter />
       </div>
-    </div>,
+    </div>
   );
 
   return container;

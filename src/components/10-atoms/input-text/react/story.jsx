@@ -66,10 +66,12 @@ storyInputText.add('Story', () => {
     );
   };
 
-  const wrapper = document.createElement('div');
-  root.render(<InputText />, wrapper);
+  const container = document.createElement('div');
+  const root = createRoot(container);
 
-  return wrapper;
+  root.render(<InputText />);
+
+  return container;
 });
 
 storyInputText.add('Story - Simulate autocomplete', () => {

@@ -70,7 +70,7 @@ story.add('Story', () => {
       <span className="o-testimonials__vertical-margin">
         This is a small text without an author.
       </span>
-    </AXATestimonialsReact>,
+    </AXATestimonialsReact>
   );
 
   return container;
