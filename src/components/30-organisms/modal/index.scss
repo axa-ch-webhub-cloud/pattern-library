@@ -138,10 +138,13 @@
       right: 9px;
       z-index: 1;
 
-      @include breakpoint($mediaquery-xs-up) {
-        svg {
-          color: $color-prim-white;
-          filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
+      svg {
+        color: $color-prim-white;
+        filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8));
+
+        @include breakpoint($mediaquery-xs-up) {
+          color: $color-axa-blue;
+          filter: unset;
         }
       }
     }
