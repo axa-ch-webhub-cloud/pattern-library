@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputText from './DemoInputText';
@@ -12,14 +12,17 @@ storiesOf('Examples/Input Text/React', module)
     usage: { disable: true },
     changelog,
   })
-  /* Default */
   .add('Controlled/uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputText />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoInputText />);
+
+    return container;
   })
   .add('Using onKeyUp event', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputTextonKeyUp />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoInputTextonKeyUp />);
+
+    return container;
   });

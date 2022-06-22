@@ -7,7 +7,7 @@ import {
 } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { iconList } from '../../../10-atoms/icon/icon-list';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -99,8 +99,10 @@ storiesOf('Examples/File Upload/React', module)
     );
     const preventFileCompression = boolean('preventFileCompression', false);
 
-    const div = document.createElement('div');
-    ReactDOM.render(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <div style={{ width: wrapperWidth }}>
         <AXAFileUploadReact
           inputFileText={inputFileText}
@@ -133,14 +135,16 @@ storiesOf('Examples/File Upload/React', module)
           <p>Events:</p>
           <ul id="m-fileupload-story__events" />
         </div>
-      </div>,
-      div
+      </div>
     );
-    return div;
+
+    return container;
   })
   .add('Get files from onChange event', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <div>
         <AXAFileUploadReact
           maxSizeOfSingleFileKB="500"
@@ -152,8 +156,8 @@ storiesOf('Examples/File Upload/React', module)
           <p>Files:</p>
           <ol id="m-fileupload-story__files" />
         </div>
-      </div>,
-      div
+      </div>
     );
-    return div;
+
+    return container;
   });

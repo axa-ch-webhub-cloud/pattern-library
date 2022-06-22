@@ -1,7 +1,7 @@
 import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAInputText from './AXAInputText';
@@ -67,7 +67,7 @@ storyInputText.add('Story', () => {
   };
 
   const wrapper = document.createElement('div');
-  ReactDOM.render(<InputText />, wrapper);
+  root.render(<InputText />, wrapper);
 
   return wrapper;
 });
@@ -85,10 +85,11 @@ storyInputText.add('Story - Simulate autocomplete', () => {
   const counterMax = text('counterMax', 'Over character limit!');
   const autofocus = boolean('autofocus', false);
 
-  const wrapper = document.createElement('div');
+  const container = document.createElement('div');
+  const root = createRoot(container);
   // there are two input fields because with only one is not possible to
   // activate the Safari's autocomplete feature.
-  ReactDOM.render(
+  root.render(
     <form>
       <AXAInputText refid="fix-id-fake" name="Name" />
       <AXAInputText
@@ -108,8 +109,7 @@ storyInputText.add('Story - Simulate autocomplete', () => {
         info={info}
         autofocus={autofocus}
       />
-    </form>,
-    wrapper
+    </form>
   );
 
   // simulate autocomplete
@@ -125,5 +125,5 @@ storyInputText.add('Story - Simulate autocomplete', () => {
     }
   }, 1);
 
-  return wrapper;
+  return container;
 });

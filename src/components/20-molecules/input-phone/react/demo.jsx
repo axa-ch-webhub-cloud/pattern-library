@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputPhone from './InputPhoneDemo';
@@ -11,9 +11,10 @@ storiesOf('Examples/Input Phone/React', module)
     usage: { disable: true },
     changelog,
   })
-  /* Default */
   .add('Controlled/uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputPhone />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoInputPhone />);
+
+    return container;
   });

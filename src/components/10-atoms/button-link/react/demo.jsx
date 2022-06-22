@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoButtonClick from './DemoButtonLinkClick';
@@ -12,7 +12,8 @@ storiesOf('Examples/Button Link/React', module)
     changelog,
   })
   .add('Clickable', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoButtonClick />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoButtonClick />);
+    return container;
   });

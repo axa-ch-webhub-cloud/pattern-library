@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
@@ -14,17 +14,20 @@ storiesOf('Examples/Checkbox/React', module)
     changelog,
   })
   .add('Default with label', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoCheckboxCallbackProps />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoCheckboxCallbackProps />);
+    return container;
   })
   .add('Label as child of the component', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoCheckboxLabelAsChildren />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoCheckboxLabelAsChildren />);
+    return container;
   })
   .add('Updates also as child', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoUpdateLabelChildren />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoUpdateLabelChildren />);
+    return container;
   });

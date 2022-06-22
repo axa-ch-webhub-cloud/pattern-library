@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoLink from './DemoLink';
@@ -13,12 +13,16 @@ storiesOf('Examples/Link/React', module)
     changelog,
   })
   .add('Variable icons', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoLink />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoLink />);
+
+    return container;
   })
   .add('Link inside of text', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoLinkInsideText />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoLinkInsideText />);
+
+    return container;
   });

@@ -2,10 +2,10 @@ import { select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
-import wrap from '../../../../other/demo/react/utils/wrap-render-react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATopContentBar from './AXATopContentBarReact';
+import { createRoot } from 'react-dom/client';
 
 const variantOptions = {
   none: '',
@@ -20,7 +20,6 @@ storiesOf('Examples/Top Content Bar/React', module)
     usage: { disable: true },
     changelog,
   })
-  /* Default */
   .add('Story', () => {
     const ctatext = text('ctatext', '');
     const variant = select('variant', variantOptions, '');
@@ -31,7 +30,10 @@ storiesOf('Examples/Top Content Bar/React', module)
     );
     const link = text('Add axa-link', '');
 
-    return wrap(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <AXATopContentBar
         variant={variant}
         href={href}
@@ -44,4 +46,6 @@ storiesOf('Examples/Top Content Bar/React', module)
         {textValue} {link ? <axa-link>{link}</axa-link> : ''}
       </AXATopContentBar>
     );
+
+    return container;
   });

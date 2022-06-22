@@ -8,7 +8,7 @@ import {
 } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXADatepickerReact from './AXADatepickerReact';
@@ -51,12 +51,12 @@ storiesOf('Examples/Datepicker/React', module)
       '2018-2022',
     ]);
 
-    const div = document.createElement('div');
+    const container = document.createElement('div');
     const style = {
       width: inlineWidth,
     };
-
-    ReactDOM.render(
+    const root = createRoot(container);
+    root.render(
       <AXADatepickerReact
         locale={locale}
         autofocus={autofocus}
@@ -85,8 +85,8 @@ storiesOf('Examples/Datepicker/React', module)
             'axa-datepicker[data-test-id="datepicker-react"]'
           ).title = newDate;
         }}
-      />,
-      div
+      />
     );
-    return div;
+
+    return container;
   });

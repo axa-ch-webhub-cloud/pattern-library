@@ -1,7 +1,7 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATextarea from './AXATextarea';
@@ -29,8 +29,10 @@ storyTextarea.add('Story', () => {
   const counterMax = text('counterMax', '');
   const maxLength = text('maxLength', '');
 
-  const wrapper = document.createElement('div');
-  ReactDOM.render(
+  const container = document.createElement('div');
+  const root = createRoot(container);
+
+  root.render(
     <AXATextarea
       refId={refId}
       name={name}
@@ -45,9 +47,8 @@ storyTextarea.add('Story', () => {
       required={required}
       invalid={invalid}
       defaultValue={defaultValue}
-    />,
-    wrapper
+    />
   );
 
-  return wrapper;
+  return container;
 });
