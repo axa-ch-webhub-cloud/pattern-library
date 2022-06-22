@@ -4,6 +4,7 @@ export interface AXATableProps {
   className?: string;
   innerscroll?: number;
   maxheight?: number;
+  children?: React.ReactNode;
 }
 
 declare function createAXATable(

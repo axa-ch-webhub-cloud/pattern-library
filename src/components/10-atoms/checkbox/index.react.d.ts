@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface AXACheckboxProps {
+export interface AXACheckboxProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   refId?: string;
   value?: string;
   name?: string;

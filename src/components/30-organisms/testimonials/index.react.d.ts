@@ -7,6 +7,7 @@ export interface AXATestimonialsProps {
   autorotatetime?: number;
   showallinline?: boolean;
   keysenabled?: boolean;
+  children?: React.ReactNode;
 }
 
 declare function createAXATestimonials(

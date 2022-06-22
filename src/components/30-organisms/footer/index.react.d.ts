@@ -4,6 +4,7 @@ export interface AXAFooterProps {
   onItemClick?: Function;
   clickevents?: Boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAFooter(

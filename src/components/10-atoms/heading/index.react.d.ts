@@ -7,6 +7,7 @@ export interface AXAHeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement> {
   rank: Rank;
   variant?: Variant;
+  children?: React.ReactNode;
 }
 
 declare function createAXAHeading(

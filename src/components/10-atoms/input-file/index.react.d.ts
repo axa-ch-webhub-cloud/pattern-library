@@ -3,7 +3,8 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 
 export type Variant = 'secondary' | 'red' | 'inverted';
 
-export interface AXAInputFileProps {
+export interface AXAInputFileProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   text: String;
   variant?: Variant;
   icon?: Icon;

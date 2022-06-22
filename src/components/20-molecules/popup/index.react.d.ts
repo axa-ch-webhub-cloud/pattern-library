@@ -5,6 +5,7 @@ export type Variant = 'foo' | 'bar';
 export interface AXAPopupProps {
   variant?: Variant;
   slot?: string;
+  children?: string;
   onClick?: () => void;
 }
 

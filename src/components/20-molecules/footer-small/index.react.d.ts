@@ -6,6 +6,7 @@ export interface AXAFooterSmallProps {
   className?: string;
   // set to true if want to use onLanguageClick/onDisclaimerClick callbacks
   dynamic?: boolean;
+  children?: React.ReactNode;
 }
 
 declare function createAXAFooterSmall(
