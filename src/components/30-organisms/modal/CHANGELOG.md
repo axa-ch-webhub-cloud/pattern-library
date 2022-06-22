@@ -1,10 +1,7 @@
-## 3.1.2
-
-- Hide the vertical scrollbar for `noheader` size option.
-
 ## 3.1.1
 
 - Fix: Inverted desktop and mobile close icons for `noheader` size option. #2293
+- Hide the vertical scrollbar for `noheader` size option.
 
 ## 3.1.0
 
