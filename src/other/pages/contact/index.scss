@@ -4,7 +4,7 @@
 @include content-padding;
 
 .contact-grid {
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
@@ -26,7 +26,7 @@
         width: 100%;
         height: auto;
     }
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
         display: flex;
         margin-bottom: 2.5rem;
         align-items: center;

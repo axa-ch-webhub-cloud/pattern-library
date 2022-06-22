@@ -30,7 +30,7 @@ axa-fieldset {
   }
 
   &[horizontal="stretch"]{
-    @include breakpoint($mediaquery-xs) {
+    @media (min-width: $breakpoint-xs) {
       > *,
       > * > * {
         margin-right: 0;

@@ -3,15 +3,15 @@
   text-align: center;
   margin: 0 11px;
 
-  @include breakpoint($mediaquery-xs-up) {
+  @media (min-width: $breakpoint-xs) {
     width: 240px;
   }
 
-  @include breakpoint($mediaquery-sm-up) {
+  @media (min-width: $breakpoint-sm) {
     width: 210px;
   }
 
-  @include breakpoint($mediaquery-md-up) {
+  @media (min-width: $breakpoint-md) {
     width: 255px;
     margin: 0; // should display 3 items in smallest lg
   }
@@ -24,7 +24,7 @@
       height: 42px;
       margin: 50px auto 0 auto;
 
-      @include breakpoint($mediaquery-sm-up) {
+      @media (min-width: $breakpoint-sm) {
         width: 96px;
         height: 96px;
       }
@@ -39,7 +39,7 @@
     @include text(t3);
   }
 
-  @include breakpoint($mediaquery-sm-up) {
+  @media (min-width: $breakpoint-sm) {
     &__title {
       @include text(t2, bold);
     }

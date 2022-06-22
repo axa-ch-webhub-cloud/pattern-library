@@ -11,7 +11,7 @@ html, body, #root {
     background-color: $color-dark-grey;
     color: $color-prim-white;
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
         min-width: 420px;
         padding-left: 4rem;
     }
@@ -22,7 +22,7 @@ html, body, #root {
         justify-content: space-between;
         padding-left: 1rem;
 
-        @include breakpoint($mediaquery-xs-up) {
+        @media (min-width: $breakpoint-xs) {
             padding-left: 3rem;
         }
     }

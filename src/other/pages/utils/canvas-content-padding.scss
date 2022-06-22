@@ -1,7 +1,7 @@
 @mixin canvas-padding {
     .accessory-story-wrapper {
         padding-left: 1rem;
-        @include breakpoint($mediaquery-md-up) {
+        @media (min-width: $breakpoint-md) {
             padding-left: 4rem;
         }
     }
@@ -11,7 +11,7 @@
     .accessory-story-content {
         padding: 2rem 1rem 1rem;
         width: 88%;
-        @include breakpoint($mediaquery-xs-up) {
+        @media (min-width: $breakpoint-xs) {
             padding: 4rem 3rem 3rem;
             width: 85%;
             max-width: 840px;

@@ -176,7 +176,7 @@ axa-checkbox {
       @include text(t4);
       line-height: 1;
 
-      @include breakpoint($mediaquery-sm-up) {
+      @media (min-width: $breakpoint-sm) {
          @include text(t3);
          line-height: 1;
       }

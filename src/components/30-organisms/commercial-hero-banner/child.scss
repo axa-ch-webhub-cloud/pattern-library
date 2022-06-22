@@ -15,7 +15,7 @@ axa-commercial-hero-banner {
 
   p, .checkmarks {
     @include text(t4);
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       @include text(t3);
     }
   }
@@ -34,7 +34,7 @@ axa-commercial-hero-banner {
     padding-top: 4px;
     padding-bottom: 8px;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       padding-top: 0;
       padding-bottom: 12px;
     }

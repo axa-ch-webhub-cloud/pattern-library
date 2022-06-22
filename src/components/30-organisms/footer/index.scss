@@ -6,11 +6,11 @@
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
-  @include breakpoint($mediaquery-xs-up) {
+  @media (min-width: $breakpoint-xs) {
     padding: 40px 0;
   }
 
-  @include breakpoint($mediaquery-md-up) {
+  @media (min-width: $breakpoint-md) {
     padding: 50px 0;
 
     h2 {
@@ -19,7 +19,7 @@
   }
 
   &__content {
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       display: grid;
       grid-template-areas:
         'links'
@@ -30,7 +30,7 @@
       -ms-grid-columns: 1fr;
     }
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       grid-template-areas: 'links social';
 
       // IE11 workaround
@@ -40,7 +40,7 @@
   }
 
   &__collection {
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       display: flex;
       grid-area: links;
 
@@ -49,7 +49,7 @@
       -ms-grid-column: 1;
     }
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       // IE11 workaround
       -ms-grid-row: 1;
       -ms-grid-column: 1;
@@ -65,12 +65,12 @@
     // IE11 workaround: This breakpoint will make sure, that everything in it
     // is IE10+ exclusive
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @include breakpoint($mediaquery-md-up) {
+      @media (min-width: $breakpoint-md) {
         margin-left: 100px;
       }
     }
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       grid-area: social;
 
       // IE11 workaround
@@ -78,7 +78,7 @@
       -ms-grid-column: 1;
     }
 
-    @include breakpoint($mediaquery-md-up) {
+    @media (min-width: $breakpoint-md) {
       // IE11 workaround
       -ms-grid-row: 1;
       -ms-grid-column: 2;
@@ -109,7 +109,7 @@
         }
       }
 
-      @include breakpoint($mediaquery-xs-up) {
+      @media (min-width: $breakpoint-xs) {
         margin: 0;
         text-indent: 0;
         list-style-type: none;
@@ -132,7 +132,7 @@
         }
       }
 
-      @include breakpoint($mediaquery-md-up) {
+      @media (min-width: $breakpoint-md) {
         padding: 10px 0;
       }
     }
@@ -168,12 +168,12 @@
         transform: rotate(0deg);
       }
 
-      @include breakpoint($mediaquery-xs-up) {
+      @media (min-width: $breakpoint-xs) {
         display: none;
       }
     }
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       padding: 0;
       background-color: transparent;
       border: 0 solid transparent;
@@ -184,7 +184,7 @@
   }
 
   &__main {
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       margin: 0 10px;
     }
 
@@ -216,7 +216,7 @@
           border-bottom: none;
         }
 
-        @include breakpoint($mediaquery-xs-up) {
+        @media (min-width: $breakpoint-xs) {
           @include text(t4);
 
           width: 165px;
@@ -227,7 +227,7 @@
         }
       }
 
-      @include breakpoint($mediaquery-xs-up) {
+      @media (min-width: $breakpoint-xs) {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

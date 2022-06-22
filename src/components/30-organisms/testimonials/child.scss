@@ -7,7 +7,7 @@ axa-testimonials {
     text-transform: uppercase;
     margin-top: 10px;
 
-    @include breakpoint($mediaquery-xl-up) {
+    @media (min-width: $breakpoint-xl) {
       margin-top: 20px;
     }
   }
@@ -15,7 +15,7 @@ axa-testimonials {
   .o-testimonials__vertical-margin {
     @include text(t4);
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       @include text(t1);
     }
   }
