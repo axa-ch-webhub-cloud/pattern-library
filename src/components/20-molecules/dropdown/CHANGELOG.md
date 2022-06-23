@@ -1,3 +1,7 @@
+## 11.0.0
+
+Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
+
 ## 10.1.0
 
 - Add cropText and showValue attributes (supporting axa-input-phone use case). #2246

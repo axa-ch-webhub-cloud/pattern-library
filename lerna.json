@@ -1,7 +1,6 @@
 {
   "packages": [
     "src/components/00-materials",
-    "src/components/05-utils/polyfill",
     "src/components/10-atoms/button",
     "src/components/10-atoms/button-link",
     "src/components/10-atoms/carousel",

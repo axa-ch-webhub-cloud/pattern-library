@@ -30,8 +30,6 @@
   "dependencies": {
     "@axa-ch/materials": "latest",
     "@skatejs/val": "^0.4.0",
-    "@ungap/global-this": "^0.4.4",
-    "@webcomponents/webcomponentsjs": "^2.6.0",
     "blueimp-canvas-to-blob": "^3.29.0",
     "date-fns": "^2.28.0",
     "lit": "^2.2.1"

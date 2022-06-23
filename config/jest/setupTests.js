@@ -7,6 +7,3 @@ import 'core-js/actual/object/assign';
 import 'core-js/actual/object/create';
 import 'core-js/actual/object/define-properties';
 import 'core-js/actual/object/set-prototype-of';
-import '@ungap/global-this';
-import 'lit/polyfill-support.js';
-import '@webcomponents/webcomponentsjs';

@@ -101,7 +101,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     ## Usage
 
-    **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
+    **Important:** Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
 
     \`\`\`bash
     npm install @axa-ch/${fileName}
