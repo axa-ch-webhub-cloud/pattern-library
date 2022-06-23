@@ -29,7 +29,7 @@ You can add any Pattern Library component via the community CDN jsdelivr. This i
 
 ## Build Pattern Library components in your own application
 
-Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` in ES5 JavaScript and `/lib/index.*` in ES6. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
+Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` and `/lib/index.*` in ES2019. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
 
 The de-facto standard in the frontend community is to render `/lib` exports as ESM, i.e. **ES5** + **import/export**. Due to the nature of web components and lit-element, however, we are forced to export in ES6. For more details, see the [custom element specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
 
