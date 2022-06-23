@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -16,8 +16,9 @@ storiesOf('Examples/Footer/React', module)
   })
 
   .add('Callbacks', () => {
-    const div = document.createElement('div');
-    div.id = 'footer';
+    const container = document.createElement('div');
+    container.id = 'footer';
+    const root = createRoot(container);
 
     const CallbacksExample = () => {
       const [clickedLinkText, setClickedLinkText] = useState(
@@ -208,11 +209,13 @@ storiesOf('Examples/Footer/React', module)
       );
     };
 
-    ReactDOM.render(<CallbacksExample />, div);
-    return div;
+    root.render(<CallbacksExample />);
+
+    return container;
   })
   .add('Resize dynamic', () => {
-    const div = document.createElement('div');
+    const container = document.createElement('div');
+    const root = createRoot(container);
 
     const ResizeExample = () => {
       const [col1ItemsCount, setCol1ItemsCount] = useState(10);
@@ -238,6 +241,7 @@ storiesOf('Examples/Footer/React', module)
       );
     };
 
-    ReactDOM.render(<ResizeExample />, div);
-    return div;
+    root.render(<ResizeExample />);
+
+    return container;
   });

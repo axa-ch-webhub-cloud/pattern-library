@@ -12,7 +12,8 @@ export type Variant =
   | 'inverted-green-viridian'
   | 'inverted-blue-teal';
 
-export interface AXAButtonLinkProps {
+export interface AXAButtonLinkProps
+  extends React.LinkHTMLAttributes<HTMLLinkElement> {
   href?: string;
   external?: boolean;
   size?: Size;
@@ -24,6 +25,7 @@ export interface AXAButtonLinkProps {
   className?: string;
   onClick?: () => void;
   slot?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAButtonLink(

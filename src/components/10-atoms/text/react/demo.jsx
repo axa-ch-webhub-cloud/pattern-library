@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoTextReact from './DemoTextReact';
@@ -15,12 +15,16 @@ storiesOf('Examples/Text/React', module)
   })
   /* Default */
   .add('Dynamic children under React', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoTextReact />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoTextReact />);
+
+    return container;
   })
   .add('Custom-versioned axa-text under React', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoTextReactVersioned />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoTextReactVersioned />);
+
+    return container;
   });

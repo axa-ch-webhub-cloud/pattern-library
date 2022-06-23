@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
@@ -18,37 +18,51 @@ storiesOf('Examples/Datepicker/React', module)
     changelog,
   })
   .add('Controlled-component with inputfield', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoControlledDatepickerReact />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoControlledDatepickerReact />);
+
+    return container;
   })
   .add('Uncontrolled, onDateChange-driven with inputfield', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerOnDateChange />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerOnDateChange />);
+
+    return container;
   })
   .add('External validation using onDateChange-driven with inputfield', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerExternalValidation />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerExternalValidation />);
+
+    return container;
   })
   .add('Re-rendering on every keystroke with inputfield', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerReRenderOnEveryKeyStroke />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerReRenderOnEveryKeyStroke />);
+
+    return container;
   })
   .add('No-inputfield with external show/hide', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerNoInputfield />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerNoInputfield />);
+
+    return container;
   })
   .add('Pod-versioned', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerReactPod />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerReactPod />);
+
+    return container;
   })
   .add('Using onInputfieldKeyUp event', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDatepickerOnInputfieldKeyUp />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDatepickerOnInputfieldKeyUp />);
+
+    return container;
   });

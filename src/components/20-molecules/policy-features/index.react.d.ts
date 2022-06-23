@@ -6,6 +6,7 @@ export interface AXAPolicyFeaturesProps {
   title: string;
   variant?: Variant;
   className?: string;
+  children?: React.ReactNode;
 }
 
 export function createAXAPolicyFeatures(

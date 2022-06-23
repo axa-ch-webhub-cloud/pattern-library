@@ -1,7 +1,7 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -24,9 +24,10 @@ storiesOf('Examples/Footer Small/React', module)
     const termsOfUse = text('Terms of use', `Terms of use`);
     const dataProtection = text('Data protection', `Data protection`);
 
-    const div = document.createElement('div');
-    div.id = 'footer-small';
-    ReactDOM.render(
+    const container = document.createElement('div');
+    container.id = 'footer-small';
+    const root = createRoot(container);
+    root.render(
       <DemoFooterSmall
         language1={language1}
         language2={language2}
@@ -34,14 +35,16 @@ storiesOf('Examples/Footer Small/React', module)
         language4={language4}
         termsOfUse={termsOfUse}
         dataProtection={dataProtection}
-      />,
-      div
+      />
     );
-    return div;
+
+    return container;
   })
   .add('Dynamic change of children upon language change', () => {
-    const div = document.createElement('div');
-    div.id = 'footer-small-dynamic-children';
-    ReactDOM.render(<DemoFooterSmallDynamicChildren />, div);
-    return div;
+    const container = document.createElement('div');
+    container.id = 'footer-small-dynamic-children';
+    const root = createRoot(container);
+
+    root.render(<DemoFooterSmallDynamicChildren />);
+    return container;
   });

@@ -1,7 +1,7 @@
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoUncontrolledDropdownReact from './DemoUncontrolledDropdownReact';
@@ -14,8 +14,6 @@ storiesOf('Examples/Dropdown/React', module)
     changelog,
   })
   .add('Story - uncontrolled', () => {
-    const div = document.createElement('div');
-
     const item1 = text('First Item', '< CHF 1,000');
     const item2 = text('Second Item', 'From CHF 1,000 to 10,000');
     const item3 = text('Third Item', '> CHF 10,000');
@@ -32,7 +30,9 @@ storiesOf('Examples/Dropdown/React', module)
     const disabled = boolean('disabled', false);
     const maxHeight = text('max-height', '');
 
-    ReactDOM.render(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(
       <DemoUncontrolledDropdownReact
         item1={item1}
         item2={item2}
@@ -48,8 +48,8 @@ storiesOf('Examples/Dropdown/React', module)
         checkMark={checkMark}
         disabled={disabled}
         maxHeight={maxHeight}
-      />,
-      div
+      />
     );
-    return div;
+
+    return container;
   });

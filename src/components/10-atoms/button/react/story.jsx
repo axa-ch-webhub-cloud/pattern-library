@@ -7,7 +7,7 @@ import {
 } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -63,8 +63,9 @@ storyButton.add('Story', () => {
   const disabled = boolean('disabled', false);
   const types = radios('types', typesOptions, 'button');
 
-  const wrapper = document.createElement('div');
-  ReactDOM.render(
+  const container = document.createElement('div');
+  const root = createRoot(container);
+  root.render(
     <div style={{ backgroundColor: invertedBgs[variants], padding: '10px' }}>
       <AXAButton
         type={types}
@@ -77,9 +78,8 @@ storyButton.add('Story', () => {
       >
         {buttonText}
       </AXAButton>
-    </div>,
-    wrapper
+    </div>
   );
 
-  return wrapper;
+  return container;
 });

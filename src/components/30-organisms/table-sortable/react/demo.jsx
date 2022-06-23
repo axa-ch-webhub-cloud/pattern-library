@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React, { createElement } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import createTableSortableReact from '../index.react';
 import readme from '../README.md';
@@ -68,8 +68,10 @@ storiesOf('Examples/Table Sortable/React', module)
     changelog,
   })
   .add('On click works also in react', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <TableSortable
         model={model}
         datesortcolumnindex="3"
@@ -77,8 +79,8 @@ storiesOf('Examples/Table Sortable/React', module)
           // eslint-disable-next-line no-alert
           window.alert(JSON.stringify(ev));
         }}
-      />,
-      div
+      />
     );
-    return div;
+
+    return container;
   });

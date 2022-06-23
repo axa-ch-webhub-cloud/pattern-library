@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';
@@ -15,22 +15,30 @@ storiesOf('Examples/Dropdown/React', module)
     changelog,
   })
   .add('Focussable', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoFocussableDropdownReact />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoFocussableDropdownReact />);
+
+    return container;
   })
   .add('Many-options', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoManyOptionsDropdownReact />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoManyOptionsDropdownReact />);
+
+    return container;
   })
   .add('React Component', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDropdownReact />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDropdownReact />);
+
+    return container;
   })
   .add('Versioned React Component', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDropdownVersionedReact />, div);
-    return div;
+    const container = document.createElement('container');
+    const root = createRoot(container);
+    root.render(<DemoDropdownVersionedReact />);
+
+    return container;
   });

@@ -1,7 +1,7 @@
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXACheckboxReact from './AXACheckboxReact';
@@ -28,14 +28,15 @@ storiesOf('Examples/Checkbox/React', module)
     const required = boolean('required', false);
     const styled = boolean('styled', false);
 
-    const div = document.createElement('div');
+    const container = document.createElement('div');
 
     if (variant && variant.includes('inverted')) {
-      div.style.backgroundColor = '#027180';
-      div.style.padding = '10px';
+      container.style.backgroundColor = '#027180';
+      container.style.padding = '10px';
     }
 
-    ReactDOM.render(
+    const root = createRoot(container);
+    root.render(
       <>
         <AXACheckboxReact
           name={name}
@@ -54,8 +55,8 @@ storiesOf('Examples/Checkbox/React', module)
         <AXATextReact id="checkbox-output">
           checkbox {name} state changed to:
         </AXATextReact>
-      </>,
-      div
+      </>
     );
-    return div;
+
+    return container;
   });

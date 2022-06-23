@@ -1,7 +1,7 @@
 import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import wrap from '../../../../other/demo/react/utils/wrap-render-react';
+import { createRoot } from 'react-dom/client';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -60,7 +60,10 @@ storiesOf('Examples/Link/React', module)
         }
       `;
 
-    return wrap(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <div>
         <style>{css}</style>
         <AXALinkReact
@@ -77,4 +80,6 @@ storiesOf('Examples/Link/React', module)
         </AXALinkReact>
       </div>
     );
+
+    return container;
   });

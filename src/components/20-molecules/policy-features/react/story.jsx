@@ -3,7 +3,7 @@ import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
 import { radios, select, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import { STYLE_WHITELIST } from '../index';
@@ -20,7 +20,6 @@ story
     usage: { disable: true },
     changelog,
   })
-  /* Default */
   .add('Story', () => {
     const variants = select(
       'variant',
@@ -57,9 +56,10 @@ story
       'axa-policy-features-item'
     );
 
-    const div = document.createElement('div');
+    const container = document.createElement('div');
+    const root = createRoot(container);
 
-    ReactDOM.render(
+    root.render(
       <AXAPolicyFeaturesReact title={title} variant={variants}>
         <AXAPolicyFeaturesItemReact
           title={itemTitleRadio === 'y' ? itemTitle : ''}
@@ -81,8 +81,8 @@ story
           description="We reward safe drivers : 75% no claims discount + an extra 10% off if you get a quote online"
           icon={CarSvg}
         />
-      </AXAPolicyFeaturesReact>,
-      div
+      </AXAPolicyFeaturesReact>
     );
-    return div;
+
+    return container;
   });

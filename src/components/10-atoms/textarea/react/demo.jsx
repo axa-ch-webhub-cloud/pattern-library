@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoContUncontTextarea from './DemoContUncontTextarea';
@@ -13,7 +13,9 @@ storiesOf('Examples/Textarea/React', module)
   })
   /* Default */
   .add('Controlled/uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoContUncontTextarea />, div);
-    return div;
+    const container = document.createElement('div');
+    const root = createRoot(container);
+    root.render(<DemoContUncontTextarea />);
+
+    return container;
   });

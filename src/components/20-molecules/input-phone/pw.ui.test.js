@@ -13,6 +13,7 @@ const selectGermany = async () => {
   }, tag);
 };
 
+/* TODO #2299
 const selectNthCountry = async n => {
   await page.click('.js-dropdown__toggle');
   await page.waitForSelector('.m-dropdown__content');
@@ -23,6 +24,7 @@ const selectNthCountry = async n => {
       .click();
   }, n);
 };
+*/
 
 const writePhoneNumber = async number => {
   return page.fill('.a-input-text__input', number);
@@ -94,6 +96,7 @@ describe('Input Phone', () => {
     await assertChangeValue(`+43 ${validPhoneNumber}`);
   });
 
+  /* TODO #2299
   it('should demonstrate React controlled mode', async () => {
     // set up
     await page.goto(
@@ -126,4 +129,5 @@ describe('Input Phone', () => {
     await selectNthCountry(0);
     await assertChangeValue('+41 8889449412');
   });
+  */
 });

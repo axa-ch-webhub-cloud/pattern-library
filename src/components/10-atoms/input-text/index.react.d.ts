@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface AXAInputTextProps {
+export interface AXAInputTextProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   refId?: string;
   name: string;
   label?: string;

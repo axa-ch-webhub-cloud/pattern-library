@@ -1,7 +1,7 @@
 import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -27,8 +27,10 @@ story.add('Story', () => {
   const keysenabled = boolean('keysenabled', true);
   const showallinline = boolean('showallinline', false);
 
-  const wrapper = document.createElement('div');
-  ReactDOM.render(
+  const container = document.createElement('div');
+  const root = createRoot(container);
+
+  root.render(
     <AXATestimonialsReact
       autorotatetime={autorotatetime}
       autorotatedisabled={autorotatedisabled}
@@ -68,9 +70,8 @@ story.add('Story', () => {
       <span className="o-testimonials__vertical-margin">
         This is a small text without an author.
       </span>
-    </AXATestimonialsReact>,
-    wrapper
+    </AXATestimonialsReact>
   );
 
-  return wrapper;
+  return container;
 });

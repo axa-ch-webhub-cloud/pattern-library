@@ -11,6 +11,7 @@ export interface AXATopContentBarProps {
   ctatext?: string;
   href?: string;
   className?: string;
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 

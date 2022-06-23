@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
 import PLCallout from '../../utils/callout/index.react';
@@ -26,10 +26,11 @@ export const GettingStarted = () => {
     border: '1px solid rgba(0, 0, 0, 0.1)',
   };
 
-  const div = document.createElement('div');
-  div.classList.add('accessory-story-wrapper');
+  const container = document.createElement('div');
+  container.classList.add('accessory-story-wrapper');
+  const root = createRoot(container);
 
-  ReactDOM.render(
+  root.render(
     <div>
       <style>{styles}</style>
       <div className="accessory-story-content">
@@ -194,9 +195,8 @@ export default AXAButtonReact;`}
         />
         <PLContactFooter />
       </div>
-    </div>,
-    div
+    </div>
   );
 
-  return div;
+  return container;
 };

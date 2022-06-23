@@ -2,7 +2,7 @@
 import { text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import withNoBorder from '../../../../../.storybook/addons/no-border';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -35,8 +35,10 @@ storiesOf('Examples/Cookie Disclaimer/React', module)
       'https://axa.ch/de/informationen/datenschutz.html'
     );
 
-    const div = document.createElement('div');
-    ReactDOM.render(
+    const container = document.createElement('div');
+    const root = createRoot(container);
+
+    root.render(
       <>
         <AXACookieDisclaimerReact
           onClick={() => {
@@ -55,8 +57,7 @@ storiesOf('Examples/Cookie Disclaimer/React', module)
           </p>
         </AXACookieDisclaimerReact>
         <AXATextReact id="checkbox-output">Clicked on:</AXATextReact>
-      </>,
-      div
+      </>
     );
     const warning = document.createElement('div');
     warning.innerHTML = `
@@ -65,7 +66,7 @@ storiesOf('Examples/Cookie Disclaimer/React', module)
       <div style="border: 1px solid red; padding: 10px;">
       <h1>This is not rendered by the component. This story disappears after click (Empty your cache and/or localStorage if this page is only showing this message</h1>
       </div>`;
-    div.appendChild(warning);
+    container.appendChild(warning);
 
-    return div;
+    return container;
   });

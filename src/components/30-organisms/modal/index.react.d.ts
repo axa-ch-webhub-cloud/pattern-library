@@ -6,6 +6,7 @@ export interface AXAModalProps {
   forced?: boolean;
   small?: boolean;
   noheader?: boolean;
+  children?: React.ReactNode;
   onClose?: (e: CustomEvent) => void;
 }
 

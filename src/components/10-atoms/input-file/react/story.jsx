@@ -7,7 +7,7 @@ import {
 } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { iconList } from '../../icon/icon-list';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -48,14 +48,15 @@ storiesOf('Examples/Input File/React', module)
     const capture = boolean('capture', false);
     const multiple = boolean('multiple', false);
 
-    const div = document.createElement('div');
+    const container = document.createElement('div');
 
     if (variant.includes('inverted')) {
-      div.style.backgroundColor = '#00008f';
-      div.style.padding = '10px';
+      container.style.backgroundColor = '#00008f';
+      container.style.padding = '10px';
     }
 
-    ReactDOM.render(
+    const root = createRoot(container);
+    root.render(
       <>
         <AXAInputFileReact
           text={_text}
@@ -79,9 +80,8 @@ storiesOf('Examples/Input File/React', module)
         />
         <br />
         <AXATextReact id="checkbox-output">Files selected:</AXATextReact>
-      </>,
-      div
+      </>
     );
 
-    return div;
+    return container;
   });

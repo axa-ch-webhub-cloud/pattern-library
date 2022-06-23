@@ -4,6 +4,7 @@ export interface AXAFieldsetProps {
   horizontal?: 'horizontal' | 'stretch';
   error?: string;
   slot?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAFieldset(

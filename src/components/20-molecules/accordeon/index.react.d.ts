@@ -7,6 +7,7 @@ export interface AXAAccordeonProps {
   small?: boolean;
   title?: string;
   icon?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAAccordeon(

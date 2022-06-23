@@ -11,7 +11,8 @@ export type AXARadioChangeEvent = {
   target: Item;
 };
 
-export interface AXARadioProps {
+export interface AXARadioProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   id?: string;
   refId?: string;
   className?: string;
