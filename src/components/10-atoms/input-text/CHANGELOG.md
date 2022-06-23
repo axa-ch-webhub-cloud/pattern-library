@@ -1,3 +1,8 @@
+## 6.0.0
+
+- Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
+- Add html attributes types
+
 ## 5.0.0
 
 Migrate to lit. #2207
