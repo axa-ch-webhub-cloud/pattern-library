@@ -15,8 +15,6 @@ const ALLOWED_CATEGORIES = [
 
 const ALLOWED_DEPENDENCIES = [
   '@skatejs/val',
-  '@webcomponents/webcomponentsjs',
-  '@ungap/global-this',
   '@axa-ch/materials',
   'lit',
   'blueimp-canvas-to-blob',
