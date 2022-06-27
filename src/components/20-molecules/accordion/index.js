@@ -52,14 +52,7 @@ class AXAAccordion extends LitElement {
 
     window.addEventListener('resize', this.debouncedHandleViewportCheck);
 
-    // slot-content is not available on IE 11 at this time
-    if (window.document.documentMode) {
-      setTimeout(() => {
-        this.toggleAnimation();
-      });
-    } else {
-      this.toggleAnimation();
-    }
+    this.toggleAnimation();
   }
 
   toggleAnimation() {
@@ -76,7 +69,7 @@ class AXAAccordion extends LitElement {
     } else {
       accordionContent.style.maxHeight = 0;
     }
-  };
+  }
 
   render() {
     const { open, title, large, disabled, icon } = this;
