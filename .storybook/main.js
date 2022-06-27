@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
@@ -76,14 +75,6 @@ module.exports = {
           loader: 'css-loader',
           options: {
             exportType: 'string',
-          },
-        },
-        {
-          loader: 'postcss-loader',
-          options: {
-            postcssOptions: {
-              plugins: [autoprefixer({ grid: 'autoplace' })],
-            },
           },
         },
         {
