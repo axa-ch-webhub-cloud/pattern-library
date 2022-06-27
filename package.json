@@ -69,6 +69,7 @@
     "eslint-plugin-react-hooks": "^4.4.0",
     "github-markdown-css": "^4.0.0",
     "glob": "^8.0.1",
+    "jest": "^27.5.1",
     "jest-playwright-preset": "1.7.2",
     "lerna": "^5.1.0",
     "marked": "^1.2.4",
