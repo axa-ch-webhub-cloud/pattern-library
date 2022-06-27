@@ -1,6 +1,4 @@
-const postcss = require('postcss');
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const scss = require('rollup-plugin-scss');
 
@@ -28,11 +26,6 @@ module.exports.commonPlugins = [
     include: '/**/*.scss',
     includePaths: [path.resolve('node_modules')],
     prefix: globalSassImports,
-    processor: css =>
-      postcss({
-        plugins: [autoprefixer({ grid: 'autoplace' })],
-      })
-        .process(css, { from: undefined })
-        .then(result => result.css),
+    processor: css => css,
   }),
 ];
