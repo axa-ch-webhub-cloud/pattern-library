@@ -41,9 +41,10 @@ We reuse the Pattern Lib v1 JavaScript linting settings.
 
 # Testing
 
-- [Jest](https://jestjs.io/) for unit testing
+- [Vitest](https://vitest.dev/) for unit testing
 - [Playwright](https://playwright.dev/) for UI tests
 - Deprecated: ~~TestCafe](https://devexpress.github.io/testcafe/) for UI tests~~
+
 ## UI Testing
 
 - A Component should have at least a smoke test
@@ -60,21 +61,8 @@ test('should render a button as reactified component', async t => {
 });
 ```
 
-### How-to write and run tests
-
-- `npm run test-jest` Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
-- Tests should be written with the `it()` function, i.e `it('should render correctly')`.
-- You may optionally want to describe and group them in `describe()` blocks.
-- Optional: Coverage: Run `npm test -- --coverage`
-- Optional: Disable jsDOM via `npm run test-jest --env=node`
-
-```js
-import sum from './sum';
-it('should sum numbers', () => {
-  expect(sum(1, 2)).toEqual(3);
-  expect(sum(2, 2)).toEqual(4);
-});
-```
+## Unit Testing
+- Test file name: `unit.test.js`
 
 ## Create a new component
 
