@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface AXAAccordeonProps {
+export interface AXAAccordionProps {
   className?: string;
   disabled?: boolean;
   open?: boolean;
@@ -10,9 +10,9 @@ export interface AXAAccordeonProps {
   children?: React.ReactNode;
 }
 
-declare function createAXAAccordeon(
+declare function createAXAAccordion(
   createElement: typeof React.createElement,
   version?: string
-): React.ComponentType<AXAAccordeonProps>;
+): React.ComponentType<AXAAccordionProps>;
 
-export default createAXAAccordeon;
+export default createAXAAccordion;

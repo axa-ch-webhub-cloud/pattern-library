@@ -1,8 +1,18 @@
-.m-accordeon {
+.m-accordion {
 display: block;
 
   &__container {
     border-bottom: solid 1px $color-silver;
+  }
+
+  &__title {
+    display: block;
+    @include text(t3, semibold);
+    margin: auto 0;
+
+    &--large {
+      @include text(t1);
+    }
   }
 
   &__title-container {
@@ -20,11 +30,6 @@ display: block;
 
     &-title {
       display: flex;
-
-      axa-text {
-        @include text(t1, semibold);
-        margin: auto 0;
-      }
 
       &-icon {
         margin: auto 12px auto 0;
