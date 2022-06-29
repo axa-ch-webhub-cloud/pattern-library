@@ -70,8 +70,9 @@ describe('Accordion', () => {
       el => window.getComputedStyle(el).maxHeight
     );
 
-
-    expect(expectedAccordionContentMaxHeight > accordionContentMaxHeight).toBeTruthy();
+    expect(
+      expectedAccordionContentMaxHeight > accordionContentMaxHeight
+    ).toBeTruthy();
   });
 });
 
