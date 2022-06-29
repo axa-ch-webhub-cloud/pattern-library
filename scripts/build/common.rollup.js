@@ -26,6 +26,5 @@ module.exports.commonPlugins = [
     include: '/**/*.scss',
     includePaths: [path.resolve('node_modules')],
     prefix: globalSassImports,
-    processor: css => css,
   }),
 ];
