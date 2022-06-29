@@ -45,7 +45,6 @@
           "**/demo/**",
           "**/ui.test.js",
           "**/unit.test.{js,jsx}",
-          "**/setupTests.js",
           "**/*test.accessor.js",
           "**/*ui.test.js"
         ],
