@@ -35,6 +35,7 @@ class AXAAccordion extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
+    this.toggleAnimation = this.toggleAnimation.bind(this);
     // When changing the window size, we have to calculate and set the max-height of m-accordion__content again.
     this.recalculateDimensionsOnResize = debounce(this.toggleAnimation, 500);
   }
