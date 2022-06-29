@@ -41,12 +41,10 @@ export const Accordion = () => {
       icon="${icon}"
       title="${title}"
     >
-      <axa-text variant="size-3"
-        >Welcome to the website. If you're here, you're likely looking to find
-        random words. Random Word Generator is the perfect tool to help you do
-        this. While this tool isn't a word creator, it is a word generator that
-        will generate random words for a variety of activities or uses.
-      </axa-text>
+      Welcome to the website. If you're here, you're likely looking to find
+      random words. Random Word Generator is the perfect tool to help you do
+      this. While this tool isn't a word creator, it is a word generator that
+      will generate random words for a variety of activities or uses.
     </axa-accordion>
     <axa-accordion
       title="This is the title of the second Accordion"
@@ -54,16 +52,13 @@ export const Accordion = () => {
       ?large="${large}"
       ?disabled="${disabled}"
     >
-      <axa-text variant="size-3"
-        >Residence certainly elsewhere something she preferred cordially law.
-        Age his surprise formerly mrs perceive few stanhill moderate. Of in
-        power match on truth worse voice would. Large an it sense shall an match
-        learn. By expect it result silent in formal of. Ask eat questions
-        abilities described elsewhere assurance. Appetite in unlocked advanced
-        breeding position concerns as. Cheerful get shutters yet for repeated
-        screened. An no am cause hopes at three. Prevent behaved fertile he is
-        mistake on.
-      </axa-text>
+      >Residence certainly elsewhere something she preferred cordially law. Age
+      his surprise formerly mrs perceive few stanhill moderate. Of in power
+      match on truth worse voice would. Large an it sense shall an match learn.
+      By expect it result silent in formal of. Ask eat questions abilities
+      described elsewhere assurance. Appetite in unlocked advanced breeding
+      position concerns as. Cheerful get shutters yet for repeated screened. An
+      no am cause hopes at three. Prevent behaved fertile he is mistake on.
     </axa-accordion>
     <axa-accordion
       title="This is the title of the third Accordion"
@@ -71,13 +66,10 @@ export const Accordion = () => {
       ?large="${large}"
       ?disabled="${disabled}"
     >
-      <axa-text variant="size-3">
-        Luckily friends do ashamed to do suppose. Tried meant mr smile so.
-        Exquisite behaviour as to middleton perfectly. Chicken no wishing
-        waiting am. Say concerns dwelling graceful six humoured. Whether mr up
-        savings talking an. Active mutual nor father mother exeter change six
-        did all.
-      </axa-text>
+      Luckily friends do ashamed to do suppose. Tried meant mr smile so.
+      Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting
+      am. Say concerns dwelling graceful six humoured. Whether mr up savings
+      talking an. Active mutual nor father mother exeter change six did all.
     </axa-accordion>
   `;
 
