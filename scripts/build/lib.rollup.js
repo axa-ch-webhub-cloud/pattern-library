@@ -15,7 +15,8 @@ const lib = {
     // Resolve bare module specifiers to relative paths
     nodeResolve({
       mainFields: ['module', 'main'],
-      resolveOnly: [/^\.{0,2}\/|\.scss$/i], // threat all node_modules as external apart od .scss files
+      // threat all node_modules as external apart od .scss files
+      resolveOnly: [/^\.{0,2}\/|\.scss$/i],
     }),
     // Minify JS
     terser({
