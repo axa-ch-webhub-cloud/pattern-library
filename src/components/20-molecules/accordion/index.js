@@ -35,7 +35,8 @@ class AXAAccordion extends LitElement {
   constructor() {
     super();
     applyDefaults(this);
-    this.debouncedHandleViewportCheck = debounce(this.toggleAnimation, 500);
+    // When changing the window size, we have to calculate and set the max-height of m-accordion__content again.
+    this.recalculateDimensionsOnResize = debounce(this.toggleAnimation, 500);
   }
 
   toggleAccordion() {
@@ -50,7 +51,7 @@ class AXAAccordion extends LitElement {
       '.m-accordion__container'
     ).style.borderTop = 'solid 1px #ccc';
 
-    window.addEventListener('resize', this.debouncedHandleViewportCheck);
+    window.addEventListener('resize', this.recalculateDimensionsOnResize);
 
     this.toggleAnimation();
   }
@@ -126,7 +127,7 @@ class AXAAccordion extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('resize', this.debouncedHandleViewportCheck);
+    window.removeEventListener('resize', this.recalculateDimensionsOnResize);
   }
 }
 
