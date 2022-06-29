@@ -52,7 +52,7 @@ export const Accordion = () => {
       ?large="${large}"
       ?disabled="${disabled}"
     >
-      >Residence certainly elsewhere something she preferred cordially law. Age
+      Residence certainly elsewhere something she preferred cordially law. Age
       his surprise formerly mrs perceive few stanhill moderate. Of in power
       match on truth worse voice would. Large an it sense shall an match learn.
       By expect it result silent in formal of. Ask eat questions abilities
