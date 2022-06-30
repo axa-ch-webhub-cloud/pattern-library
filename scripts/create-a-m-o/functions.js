@@ -265,24 +265,6 @@ describe('${compTitle}', () => {
   );
 
   fs.writeFileSync(
-    `${BASE_FOLDER}/unit.test.js`,
-    outdent`
-    import ${className} from './index';
-    
-    describe('${compTitle}', () => {
-      test('firstUpdated() should not call another method', () => {
-        ${className}.prototype.methodThatShouldNotBeCalled = jest.fn();
-    
-        ${className}.prototype.firstUpdated();
-    
-        expect(${className}.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
-      });
-    });
-    `,
-    'utf8'
-  );
-
-  fs.writeFileSync(
     `${BASE_FOLDER}/index.js`,
     outdent`
     import { LitElement, html, css, unsafeCSS } from 'lit';

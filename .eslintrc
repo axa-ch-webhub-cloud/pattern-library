@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb", "prettier"],
-  "plugins": ["import", "jest", "prettier"],
+  "plugins": ["import", "prettier"],
   "env": {
     "browser": true,
     "jest": true
@@ -45,8 +45,6 @@
           "**/demo/**",
           "**/ui.test.js",
           "**/unit.test.{js,jsx}",
-          "**/setupTests.js",
-          "**/jestPreprocess.js",
           "**/*test.accessor.js",
           "**/*ui.test.js"
         ],
@@ -57,7 +55,6 @@
       "error",
       { "multiline": true, "consistent": true }
     ],
-    "jest/no-jest-import": "off",
     "react/function-component-definition": "off"
   },
   "globals": {
