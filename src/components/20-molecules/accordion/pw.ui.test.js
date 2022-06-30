@@ -1,7 +1,7 @@
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 const tag = 'axa-accordion';
 
-const delayTimeAnimation = 550;
+const delayTimeAnimation = 500;
 
 function delay(time) {
   return new Promise(resolve => {
@@ -63,7 +63,7 @@ describe('Accordion', () => {
     );
     await page.setViewportSize({ width: 500, height: 500 });
 
-    // Wait for debounce get then the max-height value
+    // Wait until the max-height value is set.
     await delay(delayTimeAnimation);
     const expectedAccordionContentMaxHeight = await page.$eval(
       '.m-accordion__content',
