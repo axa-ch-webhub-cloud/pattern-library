@@ -24,7 +24,7 @@ class AXAAccordion extends LitElement {
 
   static get properties() {
     return {
-      large: { type: Boolean },
+      small: { type: Boolean },
       open: { type: Boolean },
       disabled: { type: Boolean },
       icon: { type: String },
@@ -74,14 +74,14 @@ class AXAAccordion extends LitElement {
   }
 
   render() {
-    const { open, title, large, disabled, icon } = this;
+    const { open, title, small, disabled, icon } = this;
     const titleContainerClasses = {
       'm-accordion__title-container': true,
       'm-accordion__title-container--disabled': disabled,
     };
     const titleClasses = {
       'm-accordion__title': true,
-      'm-accordion__title--large': large,
+      'm-accordion__title--small': small,
     };
 
     const iconClass = icon

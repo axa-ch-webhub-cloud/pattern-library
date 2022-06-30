@@ -12,9 +12,9 @@ Boolean attribute `disabled` disables the accordion (default: false). Users can 
 
 Boolean attribute `open` opens the accordion when set to a truthy value (default: false). This is a second way to open the accordion besides clicking on it. This can be useful when you use the `disabled` attribute.
 
-### large
+### small
 
-Boolean attribute `large` controls a larger version of the accordion (default: false).
+Boolean attribute `small` controls a smaller version of the accordion (default: false).
 
 ### title
 
