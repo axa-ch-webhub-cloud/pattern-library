@@ -7,8 +7,6 @@ import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';
 import { sanitizeSVG } from '../../../utils/sanitize';
-import debounce from '../../../utils/debounce';
-
 import styles from './index.scss';
 
 class AXAAccordion extends LitElement {
@@ -36,8 +34,6 @@ class AXAAccordion extends LitElement {
     super();
     applyDefaults(this);
     this.toggleAnimation = this.toggleAnimation.bind(this);
-    // When changing the window size, we have to calculate and set the max-height of m-accordion__content again.
-    this.recalculateDimensionsOnResize = debounce(this.toggleAnimation, 500);
   }
 
   toggleAccordion() {
@@ -52,7 +48,8 @@ class AXAAccordion extends LitElement {
       '.m-accordion__container'
     ).style.borderTop = 'solid 1px #ccc';
 
-    window.addEventListener('resize', this.recalculateDimensionsOnResize);
+    // When changing the window size, we have to calculate and set the max-height of m-accordion__content again.
+    window.addEventListener('resize', this.toggleAnimation);
 
     this.toggleAnimation();
   }
@@ -66,11 +63,9 @@ class AXAAccordion extends LitElement {
       return;
     }
 
-    if (this.open) {
-      accordionContent.style.maxHeight = `${accordionContent.scrollHeight}px`;
-    } else {
-      accordionContent.style.maxHeight = 0;
-    }
+    accordionContent.style.maxHeight = this.open
+      ? `${accordionContent.scrollHeight}px`
+      : 0;
   }
 
   render() {
@@ -128,7 +123,7 @@ class AXAAccordion extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window.removeEventListener('resize', this.recalculateDimensionsOnResize);
+    window.removeEventListener('resize', this.toggleAnimation);
   }
 }
 
