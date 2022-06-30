@@ -33,12 +33,12 @@ describe('Accordion', () => {
     expect(await page.$$('svg')).toBeTruthy();
   });
 
-  it('checks if accordion is large', async () => {
+  it('checks if accordion is small', async () => {
     await openAccordion();
 
     expect(
       await page.$eval('.m-accordion__title', el =>
-        el.classList.contains('m-accordion__title--large')
+        el.classList.contains('m-accordion__title--small')
       )
     ).toBeTruthy();
   });
