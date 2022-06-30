@@ -116,6 +116,38 @@ We are dedicated to building a welcoming, diverse, and safe community. We expect
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
 
+## How do my get my (unit) tests to work when using Pattern Library components?
+
+### The problem
+Unit-test frameworks like Jest run under the `node` environment, which is quite different from a browser. The most commonly used abstraction to mimic a minimal browser within `node` is `jsdom`. However, `jsdom` lacks crucial features such as `Mutation Observer`, `Custom Elements` and other browser APIs commonly needed by web components.
+
+### Solutions
+So what are your options?
+
+- Insisting on `jest`, one option would be to use a better DOM emulation. Exchanging `jsdom` with `happydom`, we now have enough emulated browser features to test web components. The details are described [here](https://github.com/capricorn86/happy-dom/tree/master/packages/jest-environment).
+- Instead of using `jest`, employ end-to-end (e2e) testing tools that control a real browser, e.g. `Playwright`, `Cypress` or `Testcafe`. Arguably this is a better match for UI-heavy apps anyway, because e2e tests are closer to a real user experience.
+- Use a lightweight mocking strategy. The idea is to mock pattern library components by a simple, traditional-HTML replacement such as a &lt;div&gt; or a &lt;button&gt;. Here is a code sketch using Jest that employs this strategy:
+    ```
+    All Pattern-Library React components are imported from this index.js.
+    
+    import createAXAButton from '@axa-ch/button/lib/index.react';
+    import createAXADropdown from '@axa-ch/dropdown/lib/index.react';
+
+    export const AXAButton = createAXAButton(createElement);
+    export const AXADropdown = createAXADropdown(createElement);
+  
+    AXAButton.displayName = 'AXAButton';
+    AXADropdown.displayName = 'AXADropdown';
+    ```
+    ```
+    __mocks__/index.js
+  
+    export const AXAButton = (props) => {
+    return <button {...props}>{props.children}</button>;
+    };
+    ...
+    ```
+
 ### Testing with Selenium, Testcafe and other UI testing tools
 
 By default, pattern-library web components make use of [ShadowDOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). To trigger interactions inside such web component you need to access the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) via the [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot). Schematically,  this works like this: **UI Testtool -> Driver -> native DOM selector -> ShadowRoot -> querySelector**
