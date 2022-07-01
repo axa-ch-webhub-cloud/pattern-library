@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import { classMap } from 'lit/directives/class-map.js';

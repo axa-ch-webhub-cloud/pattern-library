@@ -1,7 +1,6 @@
 import { html, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
 
 import applyDefaults from '../../../utils/apply-defaults';

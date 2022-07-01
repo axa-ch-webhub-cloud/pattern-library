@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-globals */
-/* eslint-disable import/no-extraneous-dependencies */
+
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { classMap } from 'lit/directives/class-map.js';

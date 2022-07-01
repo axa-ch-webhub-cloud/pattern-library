@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
 
 import carIcon from '@axa-ch/materials/images/car.svg';

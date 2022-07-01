@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
 import { boolean, text, withKnobs } from '@storybook/addon-knobs';
 import { html, render } from 'lit';

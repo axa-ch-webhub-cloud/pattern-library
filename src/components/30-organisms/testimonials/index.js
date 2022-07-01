@@ -1,6 +1,5 @@
 import { html, css, unsafeCSS } from 'lit';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import AXAContainer from '@axa-ch/container';
 import AXACarousel from '@axa-ch/carousel';
 import {

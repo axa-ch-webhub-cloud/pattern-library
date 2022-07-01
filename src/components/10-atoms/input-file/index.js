@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import AXAIcon from '@axa-ch/icon';
 import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';

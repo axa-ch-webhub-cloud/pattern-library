@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { CarSvg } from '@axa-ch/materials/images';
 import { storiesOf } from '@storybook/web-components';
 import { html, render } from 'lit';

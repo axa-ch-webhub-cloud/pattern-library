@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { LitElement, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-/* eslint-disable import/no-extraneous-dependencies */
+
 import {
   Expand_lessSvg,
   Insert_drive_fileSvg,

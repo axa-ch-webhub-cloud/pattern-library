@@ -1,6 +1,5 @@
 import { html, css, unsafeCSS } from 'lit';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import { defineVersioned } from '../../../utils/component-versioning';
 import styles from './index.scss';
 import Swipe from './swipe';

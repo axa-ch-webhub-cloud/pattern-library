@@ -1,5 +1,5 @@
 // TODO fix that stuff
-/* eslint-disable import/no-extraneous-dependencies */
+
 import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
