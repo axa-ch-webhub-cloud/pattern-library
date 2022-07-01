@@ -116,7 +116,7 @@ We are dedicated to building a welcoming, diverse, and safe community. We expect
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
 
-## How do my get my (unit) tests to work when using Pattern Library components?
+## How do I get my (unit) tests to work when using Pattern Library components?
 
 ### The problem
 Unit-test frameworks like Jest run under the `node` environment, which is quite different from a browser. The most commonly used abstraction to mimic a minimal browser within `node` is `jsdom`. However, `jsdom` lacks crucial features such as `Mutation Observer`, `Custom Elements` and other browser APIs commonly needed by web components.
