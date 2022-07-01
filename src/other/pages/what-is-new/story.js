@@ -46,7 +46,7 @@ export const WhatsNew = () => {
   wrapper.classList.add('accessory-story-wrapper');
 
   const xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange =  () => {
+  xhttp.onreadystatechange = () => {
     if (this.readyState === 4 && this.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
       document.querySelector('#what-is-new__github-response').innerHTML =
