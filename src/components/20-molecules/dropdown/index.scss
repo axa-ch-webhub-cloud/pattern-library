@@ -40,7 +40,7 @@ axa-dropdown {
   display: block;
 
   .m-dropdown__label {
-    @include text(t3);;
+    @include text(t3);
     display: block;
     font-weight: 600;
     color: $color-dark-grey;
@@ -91,6 +91,8 @@ axa-dropdown {
     padding: 0 40px 0 20px;
     height: $dropdown-height;
     box-sizing: border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:focus {
       outline: 2px solid $color-axa-blue;
@@ -153,6 +155,8 @@ axa-dropdown {
     height: $dropdown-height;
     text-align: left;
     cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover,
     &:active,
