@@ -269,8 +269,6 @@ describe('${compTitle}', () => {
     outdent`
     import { LitElement, html, css, unsafeCSS } from 'lit';
 
-    /* eslint-disable import/no-extraneous-dependencies */
-
     //    If you need other axa-XXX components inside your new component,
     //    import them here like this:
     //

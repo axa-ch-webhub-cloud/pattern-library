@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-/* eslint-disable import/no-extraneous-dependencies */
+
 import NoShadowDOM from '../../../utils/no-shadow';
 import { defineVersioned } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';

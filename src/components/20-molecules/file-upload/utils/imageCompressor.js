@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import toBlob from 'blueimp-canvas-to-blob';
 
 const URL = window.URL || window.webkitURL;

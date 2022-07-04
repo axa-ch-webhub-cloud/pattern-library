@@ -1,7 +1,5 @@
-/* eslint-disable camelcase, no-continue */
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-/* eslint-disable import/no-extraneous-dependencies */
 import { classMap } from 'lit/directives/class-map.js';
 import AXAInputFile from '@axa-ch/input-file';
 import {
@@ -73,6 +71,7 @@ const findAndManipulate = (
     // N.B. this is the only case that's *independent* of file-found status
     if (_append && _append.has(where)) appends.push(where);
     // file not found?
+    // eslint-disable-next-line no-continue
     if (foundAt === undefined) continue; // no, skip this array
     // yes, file found - process cases:
     // 1. just record the facts

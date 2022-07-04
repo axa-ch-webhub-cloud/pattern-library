@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // if your need more boolean, select, radios
 import { radios, text, withKnobs } from '@storybook/addon-knobs';
 import { storiesOf } from '@storybook/web-components';

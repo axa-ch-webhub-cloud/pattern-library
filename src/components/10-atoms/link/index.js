@@ -1,14 +1,12 @@
-// TODO fix that stuff
-/* eslint-disable import/no-extraneous-dependencies */
-import AXAIcon from '@axa-ch/icon';
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import linkCSS from './index.scss';
+import AXAIcon from '@axa-ch/icon';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';
+import linkCSS from './index.scss';
 
 class AXALink extends LitElement {
   static get tagName() {

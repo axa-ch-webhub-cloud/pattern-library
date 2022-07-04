@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Selector } from 'testcafe';
 
 class FooterAccessor {

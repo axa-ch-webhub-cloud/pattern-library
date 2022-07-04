@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import axaLogo from '@axa-ch/materials/images/axa-logo.svg';
