@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { Selector } from 'testcafe';
 
 class FooterAccessor {

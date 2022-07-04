@@ -1,5 +1,5 @@
 import { Selector } from 'testcafe';
-import FooterAccessor from './ui.accessor';
+import FooterAccessor from './ui.test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
