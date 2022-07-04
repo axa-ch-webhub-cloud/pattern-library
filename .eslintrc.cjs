@@ -29,6 +29,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'no-return-assign': 'off',
     'no-bitwise': 'off',
+    'no-continue': 'off',
     'no-param-reassign': ['error', { props: false }],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-underscore-dangle': 'off',
