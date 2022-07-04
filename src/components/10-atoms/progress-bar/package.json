@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/progress-bar",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "The progress-bar component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/progress-bar#readme",
