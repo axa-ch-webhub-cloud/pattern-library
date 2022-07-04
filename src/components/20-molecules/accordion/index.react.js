@@ -1,5 +1,5 @@
 import withReact from '../../../utils/with-react';
-import AXAAccordeon from './index';
+import AXAAccordion from './index';
 
 export default (createElement, version) =>
-  withReact(createElement, AXAAccordeon, version);
+  withReact(createElement, AXAAccordion, version);
