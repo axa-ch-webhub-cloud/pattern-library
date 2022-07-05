@@ -20,6 +20,7 @@
     display: flex;
     justify-content: space-between;
     padding: 16px 4px;
+    box-sizing: border-box;
     cursor: pointer;
     color: $color-axa-blue;
 
@@ -88,7 +89,7 @@
     transition: max-height $transition-medium-colapsing $standard-easing;
 
     &--open {
-      margin: 0 4px 16px;
+      margin: 0 0 16px;
       transition: max-height $transition-medium-expanding $standard-easing;
     }
   }
