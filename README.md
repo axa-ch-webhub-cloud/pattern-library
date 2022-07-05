@@ -64,7 +64,8 @@ Different versions of our web components can coexist on the same web page! Here 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 | Component                                                                          | npmjs.com                                                                                                                                                  |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [AXA Accordion](./src/components/20-molecules/accordion)                           | [![npm version](https://img.shields.io/npm/v/@axa-ch/accordion.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/accordion)                           |
 | [AXA Button](./src/components/10-atoms/button)                                     | [![npm version](https://img.shields.io/npm/v/@axa-ch/button.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button)                                 |
 | [AXA Button Link](./src/components/10-atoms/button-link)                           | [![npm version](https://img.shields.io/npm/v/@axa-ch/button-link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button-link)                       |
 | [AXA Carousel](./src/components/10-atoms/carousel)                                 | [![npm version](https://img.shields.io/npm/v/@axa-ch/carousel.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/carousel)                             |
