@@ -43,13 +43,22 @@ module.exports = {
     '../src/other/pages/showcases/axa-ch-main/story.js',
   ],
   addons: [
-    '@storybook/addon-knobs',
+    '@storybook/addon-controls',
     './addons/readme/register',
     './addons/usage/register',
     './addons/changelog/register',
     '@storybook/addon-a11y',
     '@storybook/addon-viewport',
+    '@storybook/addon-backgrounds',
   ],
+  babel: async options => ({
+    ...options,
+    presets: ['@babel/preset-react'],
+  }),
+  // Allows storybook 7 features. It will become obsolete after update to sb 7
+  features: {
+    babelModeV7: true,
+  },
   staticDirs: [path.resolve(__dirname, '../src/static')],
   framework: '@storybook/web-components',
   core: {
