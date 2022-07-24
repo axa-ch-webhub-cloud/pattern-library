@@ -7,7 +7,7 @@ const ARROW_ICON_TAG = '.js-button__arrow';
 const BUTTON_CLASS = '.a-button';
 
 fixture('Button - basic functionality').page(
-  `${host}/iframe.html?id=examples-button-pure-html--clickable`
+  `${host}/iframe.html?id=examples-button-pure-html--clickable&viewMode=story`
 );
 
 test('should render button', async t => {
@@ -65,7 +65,7 @@ test('should inherit width to internal button', async t => {
 });
 
 fixture('Button - set properties').page(
-  `${host}/iframe.html?id=components-button--button`
+  `${host}/iframe.html?id=components-button--button&viewMode=story`
 );
 
 test('should set button element disabled', async t => {
@@ -95,7 +95,7 @@ test('should set button element type', async t => {
 });
 
 fixture('Button - render icon').page(
-  `${host}/iframe.html?id=examples-button-pure-html--icon-visible`
+  `${host}/iframe.html?id=examples-button-pure-html--icon-visible&viewMode=story`
 );
 
 test('should render icon', async t => {
@@ -107,7 +107,7 @@ test('should render icon', async t => {
 });
 
 fixture('Button - react smoke test').page(
-  `${host}/iframe.html?id=examples-button-react--story`
+  `${host}/iframe.html?id=examples-button-react--button`
 );
 
 test('should render react button', async t => {
@@ -128,7 +128,7 @@ test('should set className', async t => {
 });
 
 fixture('Button - Works in a form').page(
-  `${host}/iframe.html?id=examples-button-pure-html--in-a-form`
+  `${host}/iframe.html?id=examples-button-pure-html--in-a-form&viewMode=story`
 );
 
 test('should submit only once', async t => {

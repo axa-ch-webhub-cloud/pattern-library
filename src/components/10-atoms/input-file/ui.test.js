@@ -58,19 +58,22 @@ test('should set text correctly', async t => {
 });
 
 fixture('Input File - set property accept').page(
-  `${host}/iframe.html?id=components-input-file--input-file&knob-text=Upload&knob-accept=application/pdf`
+  `${host}/iframe.html?id=components-input-file--input-file&viewMode=story`
 );
 
 test('should set input file accept', async t => {
   const $axaElm = await Selector('axa-input-file');
   const $axaElmInput = await $axaElm.find(INPUT_FILE_INPUT_CLASS);
   await t
-    .expect((await $axaElmInput.getAttribute('accept')) === 'application/pdf')
+    .expect(
+      (await $axaElmInput.getAttribute('accept')) ===
+        'image/jpg, image/jpeg, application/pdf, image/png'
+    )
     .ok();
 });
 
 fixture('Input File - set property multiple').page(
-  `${host}/iframe.html?id=components-input-file--input-file&knob-text=Upload&knob-multiple=true`
+  `${host}/iframe.html?args=multiple:true&id=components-input-file--input-file&viewMode=story`
 );
 
 test('should set input file multiple', async t => {
@@ -80,7 +83,7 @@ test('should set input file multiple', async t => {
 });
 
 fixture('Input File - set property capture').page(
-  `${host}/iframe.html?id=components-input-file--input-file&knob-text=Upload&knob-capture=true`
+  `${host}/iframe.html?args=capture:true&id=components-input-file--input-file&viewMode=story`
 );
 
 test('should set input file capture', async t => {
@@ -90,7 +93,7 @@ test('should set input file capture', async t => {
 });
 
 fixture('Input File - react smoke test').page(
-  `${host}/iframe.html?id=examples-input-file-react--story`
+  `${host}/iframe.html?id=examples-input-file-react--input-file&viewMode=story`
 );
 
 test('should render react input file', async t => {

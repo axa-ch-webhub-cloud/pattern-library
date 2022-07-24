@@ -3,7 +3,9 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Table Sortable - basic functionality')
-  .page(`${host}/iframe.html?id=components-table-sortable--table-sortable`)
+  .page(
+    `${host}/iframe.html?args=&id=components-table-sortable--table-sortable&viewMode=story`
+  )
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -326,7 +328,7 @@ test('should not render arrows', async t => {
 });
 
 fixture('Table Sortable - innerscroll functionality').page(
-  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=650`
+  `${host}/iframe.html?args=innerscroll:650&id=components-table-sortable--table-sortable&viewMode=story`
 );
 
 test('should sort also when innerscroll is set ', async t => {
@@ -381,7 +383,7 @@ test('should sort also when innerscroll is set ', async t => {
 });
 
 fixture('Table Sortable - maxheight functionality').page(
-  `${host}/iframe.html?id=components-table-sortable--table-sortable&knob-innerscroll=900&knob-maxheight=160`
+  `${host}/iframe.html?args=innerscroll:900;maxheight:160&id=components-table-sortable--table-sortable&viewMode=story`
 );
 
 test('should sort also when maxheight is set ', async t => {
@@ -441,7 +443,7 @@ test('should sort also when maxheight is set ', async t => {
 });
 
 fixture('Table Sortable - on row click').page(
-  `${host}/iframe.html?id=examples-table-sortable-pure-html--on-row-click`
+  `${host}/iframe.html?id=examples-table-sortable-pure-html--on-row-click&viewMode=story`
 );
 
 test('should react to click on row', async t => {
@@ -465,21 +467,4 @@ test('should react to click on row', async t => {
     .eql(
       'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
     );
-});
-
-fixture('Table Sortable - react').page(
-  `${host}/iframe.html?id=examples-table-sortable-react--on-click-works-also-in-react&viewMode=story`
-);
-
-test('should display HTML as text if desired', async t => {
-  const $rowOneDate = await Selector(() => {
-    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
-
-    return firstRow.querySelectorAll('td')[3];
-  }).addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
-  });
-
-  await t.expect($rowOneDate.innerText).eql('<span>22.04.2019</span>');
 });

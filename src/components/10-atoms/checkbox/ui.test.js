@@ -4,7 +4,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-checkbox';
 
 fixture('Checkbox - basic functionality').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox`
+  `${host}/iframe.html?id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('should render checkbox', async t => {
@@ -104,7 +104,7 @@ test('should set refId on label and input', async t => {
 });
 
 fixture('Checkbox - with error label').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox&knob-refId=checkbox-h555d87h399&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-checked=true&knob-error=true&viewMode=story`
+  `${host}/iframe.html?args=error:error&id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('should show error text with a margin left', async t => {
@@ -112,8 +112,8 @@ test('should show error text with a margin left', async t => {
   await t.expect(errorlabel.getStyleProperty('margin-left')).eql('31px');
 });
 
-fixture('Checkbox - Disabled and checked').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox&knob-refId=checkbox-xu5ogmxpvh&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=undefined&knob-checked=false&knob-disabled=true`
+fixture('Checkbox - Disabled and checked false').page(
+  `${host}/iframe.html?args=disabled:true;checked:false&id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('should set checkbox element to disabled + not change state', async t => {
@@ -125,7 +125,7 @@ test('should set checkbox element to disabled + not change state', async t => {
 });
 
 fixture('Checkbox - Label as a child of the component').page(
-  `${host}/iframe.html?id=examples-checkbox-pure-html--use-your-own-label-as-a-child-of-the-component`
+  `${host}/iframe.html?id=examples-checkbox-pure-html--custom-label&viewMode=story`
 );
 
 test('should be clickable + change state and render child label', async t => {
@@ -143,7 +143,7 @@ test('should be clickable + change state and render child label', async t => {
 });
 
 fixture('Checkbox - Variant checkmark').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox&knob-refId=checkbox-fmurdvbx9pv&knob-label=this%20is%20a%20label&knob-name=my-checkbox&knob-variant=checkmark&knob-checked=true`
+  `${host}/iframe.html?args=variant:checkmark&id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('should show checkbox variant checkmark', async t => {
@@ -163,7 +163,7 @@ test('should show checkbox variant checkmark', async t => {
 });
 
 fixture('Checkbox - Variant checkmark-inverted').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox&knob-refId=checkbox-00zf06b7egl3n&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true`
+  `${host}/iframe.html?args=variant:checkmark-inverted&id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('box should have correct background-color', async t => {
@@ -209,7 +209,7 @@ test('label text should have correct color', async t => {
 });
 
 fixture('Checkbox - Variant checkmark-inverted: disabled').page(
-  `${host}/iframe.html?id=components-checkbox--checkbox&knob-refId=checkbox-tz6etn0cv7e&knob-label=I%20agree%20to%20conditions%20of%20data%20protection.&knob-name=my-checkbox&knob-variant=checkmark-inverted&knob-checked=true&knob-disabled=true`
+  `${host}/iframe.html?args=variant:checkmark-inverted;disabled:true&id=components-checkbox--checkbox&viewMode=story`
 );
 
 test('if disabled: box should have correct background-color', async t => {
@@ -311,7 +311,7 @@ test('should shows correct controlled behavior', async t => {
 });
 
 fixture('Checkbox - without a label, with error state').page(
-  `${host}/iframe.html?id=examples-checkbox-pure-html--without-a-label&viewMode=story`
+  `${host}/iframe.html?id=examples-checkbox-pure-html--without-label&viewMode=story`
 );
 
 test('should be clickable', async t => {

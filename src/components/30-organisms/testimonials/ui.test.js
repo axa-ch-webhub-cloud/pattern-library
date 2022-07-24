@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Testimonials - basic functionality').page(
-  `${host}/iframe.html?id=components-testimonials--testimonials`
+  `${host}/iframe.html?id=components-testimonials--testimonials&viewMode=story`
 );
 
 const TAG = 'axa-testimonials';
@@ -61,7 +61,7 @@ test('should set text to uppercase for elements with class "o-testimonials__auth
 });
 
 fixture('Testimonials - attribute showallinline is set').page(
-  `${host}/iframe.html?id=components-testimonials--testimonials&knob-title=Customer%20Reviews&knob-Text=AXA%20works%20hard%20to%20provide%20the%20best%20service%20possible%20to%20its%20customers.&knob-autorotatetime=5000&knob-keysenabled=true&knob-showallinline=true&viewMode=story`
+  `${host}/iframe.html?args=showallinline:true&id=components-testimonials--testimonials&viewMode=story`
 );
 
 test('should find inline class if attribute showallinline is set', async t => {
