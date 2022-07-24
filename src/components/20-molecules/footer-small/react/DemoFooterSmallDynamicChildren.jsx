@@ -1,8 +1,5 @@
-/* eslint-disable react/prop-types */
-import React, { createElement, useState } from 'react';
-import createAXAFooterSmallReact from '../index.react';
-
-const AXAFooterSmall = createAXAFooterSmallReact(createElement);
+import React, { useState } from 'react';
+import AXAFooterSmallReact from './AXAFooterSmall';
 
 const languageOptions = [
   { name: 'DE', isActive: true },
@@ -39,7 +36,6 @@ const COPYRIGHT = [
 
 const DemoFooterSmallDynamicChildren = () => {
   const [activeLanguage, setActiveLanguageIndex] = useState(0);
-
   const [disclaimerChange, setDisclaimerIndex] = useState(0);
   const [legals, setLegals] = useState(LEGALS[0]);
   const [copyrightText, setCopyrightText] = useState(COPYRIGHT[0]);
@@ -60,7 +56,7 @@ const DemoFooterSmallDynamicChildren = () => {
     <div>
       <p>Language - Index Clicked: {activeLanguage}</p>
       <p>Disclaimer - Index Clicked: {disclaimerChange}</p>
-      <AXAFooterSmall
+      <AXAFooterSmallReact
         onLanguageClick={handleLanguageClick}
         onDisclaimerClick={handleLegalClick}
         dynamic
@@ -87,7 +83,7 @@ const DemoFooterSmallDynamicChildren = () => {
           </a>
         ))}
         <span slot="copyright">{copyrightText}</span>
-      </AXAFooterSmall>
+      </AXAFooterSmallReact>
     </div>
   );
 };

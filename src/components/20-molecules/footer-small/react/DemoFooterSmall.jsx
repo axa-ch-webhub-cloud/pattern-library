@@ -1,14 +1,11 @@
-/* eslint-disable react/prop-types */
-import React, { createElement, useState } from 'react';
-import createAXAFooterSmallReact from '../index.react';
-
-const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
+import React, { useState } from 'react';
+import AXAFooterSmallReact from './AXAFooterSmall';
 
 const DemoFooterSmall = ({
-  language1,
-  language2,
-  language3,
-  language4,
+  firstLanguage,
+  secondLanguage,
+  thirdLanguage,
+  fourthLanguage,
   dataProtection,
   termsOfUse,
 }) => {
@@ -38,16 +35,16 @@ const DemoFooterSmall = ({
           className="m-footer-small__link--active"
           href="https://axa.ch/de/privatkunden.html"
         >
-          {language1}
+          {firstLanguage}
         </a>
         <a slot="language-item" href="https://axa.ch/fr/particuliers.html">
-          {language2}
+          {secondLanguage}
         </a>
         <a slot="language-item" href="https://axa.ch/it/clienti-privati.html">
-          {language3}
+          {thirdLanguage}
         </a>
         <a slot="language-item" href="https://axa.ch/en/private-customers.html">
-          {language4}
+          {fourthLanguage}
         </a>
         <a
           slot="disclaimer-item"
