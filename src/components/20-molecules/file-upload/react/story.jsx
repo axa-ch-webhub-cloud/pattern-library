@@ -1,14 +1,6 @@
-import {
-  number,
-  select,
-  text,
-  boolean,
-  withKnobs,
-} from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { iconList } from '../../../10-atoms/icon/icon-list';
+import { createReactContainer } from '../../../../utils/create-react-container';
+import { args, argTypes } from '../story.args';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAFileUploadReact from './AXAFileUploadReact';
@@ -35,129 +27,54 @@ function logFiles(e) {
     });
   }
 }
-storiesOf('Examples/File Upload/React', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+
+export default {
+  title: 'Examples/File Upload/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Story', () => {
-    const wrapperWidth = text('Width', '455px');
-    const sizeSliderOptions = {
-      range: true,
-      min: 1,
-      max: 500,
-      step: 10,
-    };
-    const numberOfFilesSliderOptions = {
-      range: true,
-      min: 1,
-      max: 20,
-      step: 1,
-    };
-    const inputFileText = text('inputFileText', 'Upload file');
-    const maxSizeOfSingleFileKB = number(
-      'maxSizeOfSingleFileKB',
-      100,
-      sizeSliderOptions
-    );
-    const maxSizeOfAllFilesKB = number(
-      'maxSizeOfAllFilesKB',
-      500,
-      sizeSliderOptions
-    );
-    const maxNumberOfFiles = number(
-      'maxNumberOfFiles',
-      10,
-      numberOfFilesSliderOptions
-    );
-    const deleteStatusText = text('deleteStatusText', 'Delete');
-    const addStatusText = text('addStatusText', 'Add more');
-    const fileTooBigStatusText = text(
-      'fileTooBigStatusText',
-      `File size exceeds maximum size`
-    );
-    const filesTooBigStatusText = text(
-      'filesTooBigStatusText',
-      `File sizes exceed maximum size`
-    );
-    const tooManyFilesStatusText = text(
-      'tooManyFilesStatusText',
-      `You exceeded the maximum number of files`
-    );
-    const orText = text('orText', 'or');
-    const infoText = text('infoText', 'Drag and drop to upload your file');
-    const wrongFileTypeStatusText = text(
-      'wrongFileTypeText',
-      'Your file does not correspond with our allowed file-types'
-    );
-    const icon = select('icon', iconList, 'cloud-upload');
-    const headerText = text(
-      'headerText',
-      'The following files are being transferred:'
-    );
-    const preventFileCompression = boolean('preventFileCompression', false);
+  },
+  args,
+  argTypes,
+};
 
-    const container = document.createElement('div');
-    const root = createRoot(container);
-
-    root.render(
-      <div style={{ width: wrapperWidth }}>
-        <AXAFileUploadReact
-          inputFileText={inputFileText}
-          maxSizeOfSingleFileKB={maxSizeOfSingleFileKB}
-          maxSizeOfAllFilesKB={maxSizeOfAllFilesKB}
-          maxNumberOfFiles={maxNumberOfFiles}
-          deleteStatusText={deleteStatusText}
-          addStatusText={addStatusText}
-          preventFileCompression={preventFileCompression}
-          fileTooBigStatusText={fileTooBigStatusText}
-          filesTooBigStatusText={filesTooBigStatusText}
-          tooManyFilesStatusText={tooManyFilesStatusText}
-          orText={orText}
-          infoText={infoText}
-          wrongFileTypeStatusText={wrongFileTypeStatusText}
-          icon={icon}
-          onFileDrop={() => {
-            logEvent('onFileDrop');
-          }}
-          onFileRemove={() => {
-            logEvent('onFileRemove');
-          }}
-          onChange={() => {
-            logEvent('onChange');
-          }}
-        >
-          {headerText}
-        </AXAFileUploadReact>
-        <div>
-          <p>Events:</p>
-          <ul id="m-fileupload-story__events" />
-        </div>
-      </div>
-    );
-
-    return container;
-  })
-  .add('Get files from onChange event', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-
-    root.render(
+export const FileUpload = _args =>
+  createReactContainer(
+    <div style={{ width: _args.width }}>
+      <AXAFileUploadReact
+        {..._args}
+        onFileDrop={() => {
+          logEvent('onFileDrop');
+        }}
+        onFileRemove={() => {
+          logEvent('onFileRemove');
+        }}
+        onChange={() => {
+          logEvent('onChange');
+        }}
+      >
+        {_args.slot}
+      </AXAFileUploadReact>
       <div>
-        <AXAFileUploadReact
-          maxSizeOfSingleFileKB="500"
-          onChange={e => {
-            logFiles(e);
-          }}
-        />
-        <div>
-          <p>Files:</p>
-          <ol id="m-fileupload-story__files" />
-        </div>
+        <p>Events:</p>
+        <ul id="m-fileupload-story__events" />
       </div>
-    );
+    </div>
+  );
 
-    return container;
-  });
+export const GetFilesFromOnchange = () =>
+  createReactContainer(
+    <div>
+      <AXAFileUploadReact
+        maxSizeOfSingleFileKB="500"
+        onChange={e => {
+          logFiles(e);
+        }}
+      />
+      <div>
+        <p>Files:</p>
+        <ol id="m-fileupload-story__files" />
+      </div>
+    </div>
+  );
