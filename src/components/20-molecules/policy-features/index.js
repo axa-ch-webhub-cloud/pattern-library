@@ -6,8 +6,6 @@ import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import AXAPolicyFeaturesItem from './policy-features-item/index';
 
-export const STYLE_WHITELIST = ['axa-blue', 'wild-sand', 'white'];
-
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {
     return 'axa-policy-features';
