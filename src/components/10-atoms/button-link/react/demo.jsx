@@ -1,19 +1,18 @@
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import DemoButtonClick from './DemoButtonLinkClick';
+import { createReactContainer } from '../../../../utils/create-react-container';
+import DemoButtonLinkClick from './DemoButtonLinkClick';
 
-storiesOf('Examples/Button Link/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Button Link/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Clickable', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    root.render(<DemoButtonClick />);
-    return container;
-  });
+    controls: { disable: true },
+  },
+};
+
+export const ButtonLinkClickable = () =>
+  createReactContainer(<DemoButtonLinkClick />);

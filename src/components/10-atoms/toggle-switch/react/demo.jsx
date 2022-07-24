@@ -1,46 +1,26 @@
-import { boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 import ControlledWithOnChange from './ControlledWithOnChange';
 import ControlledWithConstantActiveProperty from './ControlledWithConstantActiveProperty';
 
-storiesOf('Examples/Toggle Switch/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Toggle Switch/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Controlled without onChange', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    const active = boolean('active', false);
+    controls: { disable: true },
+  },
+};
 
-    root.render(<AXAToggleSwitchReact active={active} />);
-
-    return container;
-  })
-  .add('Controlled with onChange', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<ControlledWithOnChange />);
-
-    return container;
-  })
-  .add('Controlled with dummy onChange listener', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<ControlledWithConstantActiveProperty />);
-
-    return container;
-  })
-  .add('Uncontrolled', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<AXAToggleSwitchReact />);
-
-    return container;
-  });
+export const ToggleSwitchControlledWithoutOnChange = () =>
+  createReactContainer(<AXAToggleSwitchReact active={false} />);
+export const ToggleSwitchControlledWithOnChange = () =>
+  createReactContainer(<ControlledWithOnChange />);
+export const ToggleSwitchControlledWithOnChangeListener = () =>
+  createReactContainer(<ControlledWithConstantActiveProperty />);
+export const ToggleSwitchUncontrolled = () =>
+  createReactContainer(<AXAToggleSwitchReact />);

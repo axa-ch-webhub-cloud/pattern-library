@@ -2,19 +2,19 @@ import React from 'react';
 import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import DemoLink from './DemoLink';
-import DemoLinkInsideText from './DemoLinkInsideText';
+import DemoCallbacks from './DemoCallbacks';
+import DemoResizeDynamic from './DemoResizeDynamic';
 
 export default {
-  title: 'Examples/Link/React',
+  title: 'Examples/Footer/React',
   parameters: {
     readme,
     usage: { disable: true },
     changelog,
     controls: { disable: true },
+    layout: 'fullscreen',
   },
 };
 
-export const LinkVariableIcons = () => createReactContainer(<DemoLink />);
-export const LinkInsideOfText = () =>
-  createReactContainer(<DemoLinkInsideText />);
+export const Callbacks = () => createReactContainer(<DemoCallbacks />);
+export const ResizeDynamic = () => createReactContainer(<DemoResizeDynamic />);

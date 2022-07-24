@@ -1,21 +1,18 @@
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import DemoContUncontTextarea from './DemoContUncontTextarea';
+import DemoControlledUncontrolledTextarea from './DemoControlledUncontrolledTextarea';
+import { createReactContainer } from '../../../../utils/create-react-container';
 
-storiesOf('Examples/Textarea/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Textarea/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  /* Default */
-  .add('Controlled/uncontrolled', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    root.render(<DemoContUncontTextarea />);
+    controls: { disable: true },
+  },
+};
 
-    return container;
-  });
+export const TextareaControlledUncontrolled = () =>
+  createReactContainer(<DemoControlledUncontrolledTextarea />);

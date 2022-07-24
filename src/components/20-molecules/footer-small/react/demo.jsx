@@ -2,11 +2,10 @@ import React from 'react';
 import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import DemoLink from './DemoLink';
-import DemoLinkInsideText from './DemoLinkInsideText';
+import DemoFooterSmallDynamicChildren from './DemoFooterSmallDynamicChildren';
 
 export default {
-  title: 'Examples/Link/React',
+  title: 'Examples/Footer Small/React',
   parameters: {
     readme,
     usage: { disable: true },
@@ -15,6 +14,5 @@ export default {
   },
 };
 
-export const LinkVariableIcons = () => createReactContainer(<DemoLink />);
-export const LinkInsideOfText = () =>
-  createReactContainer(<DemoLinkInsideText />);
+export const FooterSmallDynamicChildren = () =>
+  createReactContainer(<DemoFooterSmallDynamicChildren />);
