@@ -1,13 +1,10 @@
-import { text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Components/Container',
-  decorators: [withKnobs],
-
   parameters: {
     readme,
     usage: {
@@ -15,15 +12,15 @@ export default {
     },
     changelog,
   },
+  args: {
+    slot: 'Some children',
+  },
+  argTypes: {
+    slot: {
+      control: 'text',
+    },
+  },
 };
 
-export const Container = () => {
-  const wrapper = document.createElement('div');
-
-  const childsText = text('text', 'Some children');
-
-  const template = html` <axa-container>${childsText}</axa-container> `;
-
-  render(template, wrapper);
-  return wrapper;
-};
+export const Container = ({ slot }) =>
+  html` <axa-container>${slot}</axa-container> `;
