@@ -4,7 +4,7 @@ describe('Dropdown', () => {
   it('should submit correct value to form', async () => {
     const dropdownSelector = 'axa-dropdown[data-test-id="dropdown-forms"]';
     await page.goto(
-      `${host}/iframe.html?id=examples-dropdown-pure-html--in-a-form`
+      `${host}/iframe.html?id=examples-dropdown-pure-html--in-a-form&viewMode=story`
     );
     await page.waitForSelector(dropdownSelector);
 

@@ -86,7 +86,7 @@ describe('Modal', () => {
 
   it('should check if modal is set to small', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-small=true&viewMode=story`
+      `${host}/iframe.html?args=open:true;small:true&id=components-modal--modal&viewMode=story`
     );
 
     const modalMaxWidth = await page.$eval(
@@ -146,18 +146,18 @@ it('should remove padding for the root content element', async () => {
 
 async function openModal() {
   await page.goto(
-    `${host}/iframe.html?id=components-modal--modal&viewMode=story`
+    `${host}/iframe.html?args=open:true&id=components-modal--modal&viewMode=story`
   );
 }
 
 async function openForcedModal() {
   await page.goto(
-    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-forced=true&viewMode=story`
+    `${host}/iframe.html?args=open:true;forced:true&id=components-modal--modal&viewMode=story`
   );
 }
 
 async function openNoHeaderModal() {
   await page.goto(
-    `${host}/iframe.html?id=components-modal--modal&knob-open=true&knob-no%20header=true&viewMode=story`
+    `${host}/iframe.html?args=open:true;noHeader:true&id=components-modal--modal&viewMode=story`
   );
 }

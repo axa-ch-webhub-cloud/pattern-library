@@ -13,7 +13,7 @@ describe('List', () => {
 
   it('should have correct css properties in default mode', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-list--list&viewMode=story`
+      `${host}/iframe.html?args=&id=components-list--list&viewMode=story`
     );
     await page.waitForSelector(tag);
     const computedStyle = await page.$eval('axa-list > li', el =>
@@ -32,7 +32,7 @@ describe('List', () => {
 
   it('should have correct css properties in ordered mode', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-list--list&knob-variant=ordered&knob-icon=&viewMode=story`
+      `${host}/iframe.html?args=variant:ordered&id=components-list--list&viewMode=story`
     );
     await page.waitForSelector(tag);
     const computedStyle = await page.$eval('axa-list > li', el =>
@@ -51,7 +51,7 @@ describe('List', () => {
 
   it('should have correct css properties in unstyled mode', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-list--list&knob-variant=unstyled&knob-icon=&viewMode=story`
+      `${host}/iframe.html?args=variant:unstyled&id=components-list--list&viewMode=story`
     );
     await page.waitForSelector(tag);
     const computedStyle = await page.$eval('axa-list > li', el =>
@@ -70,7 +70,7 @@ describe('List', () => {
 
   it('should have correct css properties in icon mode', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-list--list&knob-variant=icon&knob-icon=<svg%20xmlns="http://www.w3.org/2000/svg"%20width="24"%20height="24"%20viewBox="0%200%2024%2024"><path%20fill="&viewMode=story#1cc54e"%20d="M9%2016.17L4.83%2012l-1.42%201.41L9%2019%2021%207l-1.41-1.41z"/></svg>&viewMode=story`
+      `${host}/iframe.html?args=variant:icon&id=components-list--list&viewMode=story`
     );
     await page.waitForSelector(tag);
     const computedStyle = await page.$eval('axa-list > li', el =>
