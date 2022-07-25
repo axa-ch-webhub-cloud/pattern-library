@@ -1,3 +1,7 @@
+## 7.0.1
+
+- Fix bug preventing height adaptation with long texts and externally restricted width. #2234
+
 ## 7.0.0
 
 - Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
