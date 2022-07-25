@@ -221,7 +221,7 @@ test('should exhibit controlled-component behaviour', async t => {
 
 // Dropdown react controlled forced native-selector
 fixture('Dropdown React native').page(
-  `${host}//iframe.html?id=examples-dropdown-react--dropdown-react-component&viewMode=story`
+  `${host}/iframe.html?id=examples-dropdown-react--dropdown-react-component&viewMode=story`
 );
 
 test('should exhibit controlled-component behaviour when native', async t => {

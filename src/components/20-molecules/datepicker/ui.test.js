@@ -879,7 +879,7 @@ test('Should preselect defaultValue date', async t => {
 });
 
 fixture('Datepicker React - Story').page(
-  `${host}//iframe.html?args=month:NaN;day:0&id=examples-datepicker-react--datepicker&viewMode=story`
+  `${host}/iframe.html?args=month:NaN;day:0&id=examples-datepicker-react--datepicker&viewMode=story`
 );
 
 test('Should not preselect by default', async t => {

@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('File upload').page(
-  `${host}//iframe.html?id=components-file-upload--file-upload&viewMode=story`
+  `${host}/iframe.html?id=components-file-upload--file-upload&viewMode=story`
 );
 
 const FILE_UPLOAD_TAG = 'axa-file-upload';
