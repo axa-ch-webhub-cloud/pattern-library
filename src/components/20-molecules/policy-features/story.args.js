@@ -24,13 +24,7 @@ export const argTypes = {
     mapping: variants,
     labels: variants,
   },
-  firstItemTitle: {
-    control: 'text',
-  },
-  firstItemDescription: {
-    control: 'text',
-  },
-  firstItemIconUrl: {
-    control: 'text',
-  },
+  firstItemTitle: { control: 'text' },
+  firstItemDescription: { control: 'text' },
+  firstItemIconUrl: { control: 'text' },
 };

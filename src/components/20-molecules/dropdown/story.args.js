@@ -16,37 +16,15 @@ export const args = {
 };
 
 export const argTypes = {
-  label: {
-    control: 'text',
-  },
-  value: {
-    control: 'text',
-  },
-  defaultTitle: {
-    control: 'text',
-  },
-  name: {
-    control: 'text',
-  },
-  invalid: {
-    control: 'boolean',
-  },
-  error: {
-    control: 'text',
-  },
-  native: {
-    control: 'boolean',
-  },
-  datatestid: {
-    control: 'text',
-  },
-  maxheight: {
-    control: 'text',
-  },
-  cropText: {
-    control: 'boolean',
-  },
-  showValue: {
-    control: 'boolean',
-  },
+  label: { control: 'text' },
+  value: { control: 'text' },
+  defaultTitle: { control: 'text' },
+  name: { control: 'text' },
+  invalid: { control: 'boolean' },
+  error: { control: 'text' },
+  native: { control: 'boolean' },
+  datatestid: { control: 'text' },
+  maxheight: { control: 'text' },
+  cropText: { control: 'boolean' },
+  showValue: { control: 'boolean' },
 };

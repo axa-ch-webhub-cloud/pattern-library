@@ -12,15 +12,9 @@ export const args = {
 };
 
 export const argTypes = {
-  refId: {
-    control: 'text',
-  },
-  label: {
-    control: 'text',
-  },
-  name: {
-    control: 'text',
-  },
+  refId: { control: 'text' },
+  label: { control: 'text' },
+  name: { control: 'text' },
   variant: {
     control: 'radio',
     options: [
@@ -31,19 +25,9 @@ export const argTypes = {
       // 'inverted-square': 'inverted-square' ,
     ],
   },
-  checked: {
-    control: 'boolean',
-  },
-  disabled: {
-    control: 'boolean',
-  },
-  error: {
-    control: 'text',
-  },
-  required: {
-    control: 'boolean',
-  },
-  styled: {
-    control: 'boolean',
-  },
+  checked: { control: 'boolean' },
+  disabled: { control: 'boolean' },
+  error: { control: 'text' },
+  required: { control: 'boolean' },
+  styled: { control: 'boolean' },
 };

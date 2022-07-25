@@ -22,58 +22,26 @@ export const args = {
 };
 
 export const argTypes = {
-  width: {
-    control: 'text',
-  },
-  inputFileText: {
-    control: 'text',
-  },
-  maxSizeOfSingleFileKB: {
-    control: 'number',
-  },
-  maxSizeOfAllFilesKB: {
-    control: 'number',
-  },
-  maxNumberOfFiles: {
-    control: 'number',
-  },
-  deleteStatusText: {
-    control: 'text',
-  },
-  addStatusText: {
-    control: 'text',
-  },
-  allowedFileTypes: {
-    control: 'text',
-  },
-  fileTooBigStatusText: {
-    control: 'text',
-  },
-  filesTooBigStatusText: {
-    control: 'text',
-  },
-  tooManyFilesStatusText: {
-    control: 'text',
-  },
-  orText: {
-    control: 'text',
-  },
-  infoText: {
-    control: 'text',
-  },
-  wrongFileTypeStatusText: {
-    control: 'text',
-  },
+  width: { control: 'text' },
+  inputFileText: { control: 'text' },
+  maxSizeOfSingleFileKB: { control: 'number' },
+  maxSizeOfAllFilesKB: { control: 'number' },
+  maxNumberOfFiles: { control: 'number' },
+  deleteStatusText: { control: 'text' },
+  addStatusText: { control: 'text' },
+  allowedFileTypes: { control: 'text' },
+  fileTooBigStatusText: { control: 'text' },
+  filesTooBigStatusText: { control: 'text' },
+  tooManyFilesStatusText: { control: 'text' },
+  orText: { control: 'text' },
+  infoText: { control: 'text' },
+  wrongFileTypeStatusText: { control: 'text' },
   icon: {
     control: 'select',
     options: Object.keys(iconList),
     mapping: iconList,
     labels: iconList,
   },
-  slot: {
-    control: 'text',
-  },
-  preventFileCompression: {
-    control: 'boolean',
-  },
+  slot: { control: 'text' },
+  preventFileCompression: { control: 'boolean' },
 };

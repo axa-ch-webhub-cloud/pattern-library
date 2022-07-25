@@ -4,12 +4,8 @@ export const args = {
 };
 
 export const argTypes = {
-  innerscroll: {
-    control: 'text',
-  },
-  maxheight: {
-    control: 'text',
-  },
+  innerscroll: { control: 'text' },
+  maxheight: { control: 'text' },
 };
 
 export const model = {

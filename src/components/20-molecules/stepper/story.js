@@ -20,15 +20,9 @@ export default {
     stepProgress: 0.5,
   },
   argTypes: {
-    steps: {
-      control: 'object',
-    },
-    stepActive: {
-      control: 'number',
-    },
-    stepProgress: {
-      control: 'number',
-    },
+    steps: { control: 'object' },
+    stepActive: { control: 'number' },
+    stepProgress: { control: 'number' },
   },
 };
 

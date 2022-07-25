@@ -16,18 +16,10 @@ export default {
     noHeader: false,
   },
   argTypes: {
-    open: {
-      control: 'boolean',
-    },
-    forced: {
-      control: 'boolean',
-    },
-    small: {
-      control: 'boolean',
-    },
-    noHeader: {
-      control: 'boolean',
-    },
+    open: { control: 'boolean' },
+    forced: { control: 'boolean' },
+    small: { control: 'boolean' },
+    noHeader: { control: 'boolean' },
   },
 };
 

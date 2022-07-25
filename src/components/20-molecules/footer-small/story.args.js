@@ -8,22 +8,10 @@ export const args = {
 };
 
 export const argTypes = {
-  firstLanguage: {
-    control: 'text',
-  },
-  secondLanguage: {
-    control: 'text',
-  },
-  thirdLanguage: {
-    control: 'text',
-  },
-  fourthLanguage: {
-    control: 'text',
-  },
-  termOfUse: {
-    control: 'text',
-  },
-  dataProtection: {
-    control: 'text',
-  },
+  firstLanguage: { control: 'text' },
+  secondLanguage: { control: 'text' },
+  thirdLanguage: { control: 'text' },
+  fourthLanguage: { control: 'text' },
+  termOfUse: { control: 'text' },
+  dataProtection: { control: 'text' },
 };

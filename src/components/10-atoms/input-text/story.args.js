@@ -21,62 +21,26 @@ export const args = {
 };
 
 export const argTypes = {
-  label: {
-    control: 'text',
-  },
-  name: {
-    control: 'text',
-  },
-  refId: {
-    control: 'text',
-  },
-  placeholder: {
-    control: 'text',
-  },
-  value: {
-    control: 'text',
-  },
-  currency: {
-    control: 'text',
-  },
-  error: {
-    control: 'text',
-  },
-  info: {
-    control: 'text',
-  },
-  checkMark: {
-    control: 'boolean',
-  },
-  disabled: {
-    control: 'boolean',
-  },
-  required: {
-    control: 'boolean',
-  },
-  invalid: {
-    control: 'boolean',
-  },
+  label: { control: 'text' },
+  name: { control: 'text' },
+  refId: { control: 'text' },
+  placeholder: { control: 'text' },
+  value: { control: 'text' },
+  currency: { control: 'text' },
+  error: { control: 'text' },
+  info: { control: 'text' },
+  checkMark: { control: 'boolean' },
+  disabled: { control: 'boolean' },
+  required: { control: 'boolean' },
+  invalid: { control: 'boolean' },
   type: {
     control: 'radio',
     options: ['text', 'email', 'password'],
   },
-  maxLength: {
-    control: 'text',
-  },
-  counter: {
-    control: 'text',
-  },
-  counterMax: {
-    control: 'text',
-  },
-  pattern: {
-    control: 'text',
-  },
-  inputmode: {
-    control: 'text',
-  },
-  autofocus: {
-    control: 'boolean',
-  },
+  maxLength: { control: 'text' },
+  counter: { control: 'text' },
+  counterMax: { control: 'text' },
+  pattern: { control: 'text' },
+  inputmode: { control: 'text' },
+  autofocus: { control: 'boolean' },
 };

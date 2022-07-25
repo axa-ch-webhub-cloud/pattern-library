@@ -38,49 +38,19 @@ export const argTypes = {
     mapping: locales,
     labels: locales,
   },
-  year: {
-    control: 'number',
-  },
-  month: {
-    control: 'number',
-  },
-  day: {
-    control: 'number',
-  },
-  allowedyears: {
-    control: 'object',
-  },
-  disabled: {
-    control: 'boolean',
-  },
-  autofocus: {
-    control: 'boolean',
-  },
-  checkMark: {
-    control: 'boolean',
-  },
-  label: {
-    control: 'text',
-  },
-  monthtitle: {
-    control: 'text',
-  },
-  yeartitle: {
-    control: 'text',
-  },
-  invaliddatetext: {
-    control: 'text',
-  },
-  invalid: {
-    control: 'boolean',
-  },
-  placeholder: {
-    control: 'text',
-  },
-  marginTop: {
-    control: 'number',
-  },
-  width: {
-    control: 'text',
-  },
+  year: { control: 'number' },
+  month: { control: 'number' },
+  day: { control: 'number' },
+  allowedyears: { control: 'object' },
+  disabled: { control: 'boolean' },
+  autofocus: { control: 'boolean' },
+  checkMark: { control: 'boolean' },
+  label: { control: 'text' },
+  monthtitle: { control: 'text' },
+  yeartitle: { control: 'text' },
+  invaliddatetext: { control: 'text' },
+  invalid: { control: 'boolean' },
+  placeholder: { control: 'text' },
+  marginTop: { control: 'number' },
+  width: { control: 'text' },
 };

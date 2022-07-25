@@ -14,12 +14,8 @@ export default {
     maxheight: '',
   },
   argTypes: {
-    innerscroll: {
-      control: 'text',
-    },
-    maxheight: {
-      control: 'text',
-    },
+    innerscroll: { control: 'text' },
+    maxheight: { control: 'text' },
   },
 };
 

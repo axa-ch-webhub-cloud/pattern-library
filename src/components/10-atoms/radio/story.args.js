@@ -10,28 +10,12 @@ export const args = {
 };
 
 export const argTypes = {
-  label: {
-    control: 'text',
-  },
-  checked: {
-    control: 'boolean',
-  },
-  focus: {
-    control: 'boolean',
-  },
-  disabled: {
-    control: 'boolean',
-  },
-  button: {
-    control: 'boolean',
-  },
-  icon: {
-    control: 'boolean',
-  },
-  noGap: {
-    control: 'boolean',
-  },
-  noAutoWidth: {
-    control: 'boolean',
-  },
+  label: { control: 'text' },
+  checked: { control: 'boolean' },
+  focus: { control: 'boolean' },
+  disabled: { control: 'boolean' },
+  button: { control: 'boolean' },
+  icon: { control: 'boolean' },
+  noGap: { control: 'boolean' },
+  noAutoWidth: { control: 'boolean' },
 };

@@ -25,34 +25,22 @@ const icons = {
 };
 
 export const argTypes = {
-  ctatext: {
-    control: 'text',
-  },
+  ctatext: { control: 'text' },
   variant: {
     control: 'radio',
     options: Object.keys(variants),
     mapping: variants,
     labels: variants,
   },
-  stickymobile: {
-    control: 'boolean',
-  },
-  closable: {
-    control: 'boolean',
-  },
+  stickymobile: { control: 'boolean' },
+  closable: { control: 'boolean' },
   icon: {
     control: 'radio',
     options: Object.keys(icons),
     mapping: icons,
     labels: icons,
   },
-  slot: {
-    control: 'text',
-  },
-  link: {
-    control: 'text',
-  },
-  href: {
-    control: 'text',
-  },
+  slot: { control: 'text' },
+  link: { control: 'text' },
+  href: { control: 'text' },
 };

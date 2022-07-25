@@ -20,9 +20,7 @@ const variants = {
 };
 
 export const argTypes = {
-  text: {
-    control: 'text',
-  },
+  text: { control: 'text' },
   variant: {
     control: 'radio',
     options: Object.keys(variants),
@@ -35,22 +33,10 @@ export const argTypes = {
     mapping: iconList,
     labels: iconList,
   },
-  large: {
-    control: 'boolean',
-  },
-  motionOff: {
-    control: 'boolean',
-  },
-  disabled: {
-    control: 'boolean',
-  },
-  accept: {
-    control: 'text',
-  },
-  capture: {
-    control: 'boolean',
-  },
-  multiple: {
-    control: 'boolean',
-  },
+  large: { control: 'boolean' },
+  motionOff: { control: 'boolean' },
+  disabled: { control: 'boolean' },
+  accept: { control: 'text' },
+  capture: { control: 'boolean' },
+  multiple: { control: 'boolean' },
 };

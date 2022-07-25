@@ -9,7 +9,5 @@ export const argTypes = {
     control: 'radio',
     options: ['light', 'dark'],
   },
-  imageSource: {
-    control: 'text',
-  },
+  imageSource: { control: 'text' },
 };

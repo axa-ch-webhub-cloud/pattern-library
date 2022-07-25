@@ -34,15 +34,9 @@ const variants = {
 };
 
 export const argTypes = {
-  href: {
-    control: 'text',
-  },
-  slot: {
-    control: 'text',
-  },
-  external: {
-    control: 'boolean',
-  },
+  href: { control: 'text' },
+  slot: { control: 'text' },
+  external: { control: 'boolean' },
   variant: {
     control: 'radio',
     options: Object.keys(variants),

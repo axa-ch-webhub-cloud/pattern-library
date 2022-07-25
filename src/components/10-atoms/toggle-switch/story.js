@@ -17,15 +17,9 @@ export default {
     disabled: false,
   },
   argTypes: {
-    active: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    error: {
-      control: 'text',
-    },
+    active: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    error: { control: 'text' },
   },
 };
 

@@ -9,22 +9,10 @@ export const args = {
 };
 
 export const argTypes = {
-  buttonname: {
-    control: 'text',
-  },
-  title: {
-    control: 'text',
-  },
-  description: {
-    control: 'text',
-  },
-  slot: {
-    control: 'text',
-  },
-  href: {
-    control: 'text',
-  },
-  fixed: {
-    control: 'boolean',
-  },
+  buttonname: { control: 'text' },
+  title: { control: 'text' },
+  description: { control: 'text' },
+  slot: { control: 'text' },
+  href: { control: 'text' },
+  fixed: { control: 'boolean' },
 };

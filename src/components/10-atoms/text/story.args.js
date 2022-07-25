@@ -23,10 +23,6 @@ export const argTypes = {
     mapping: variants,
     labels: variants,
   },
-  wrapSlotInSpan: {
-    control: 'boolean',
-  },
-  slot: {
-    control: 'text',
-  },
+  wrapSlotInSpan: { control: 'boolean' },
+  slot: { control: 'text' },
 };

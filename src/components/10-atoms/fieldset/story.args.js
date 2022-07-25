@@ -15,7 +15,5 @@ export const argTypes = {
     options: Object.keys(horizontals),
     labels: horizontals,
   },
-  error: {
-    control: 'text',
-  },
+  error: { control: 'text' },
 };
