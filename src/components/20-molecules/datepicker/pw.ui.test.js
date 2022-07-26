@@ -45,21 +45,4 @@ describe('Datepicker', () => {
       '29.02.2020 (of 1 submittable elements)'
     );
   });
-
-  it('should submit before and after text child updates', async () => {
-    const axaButtonSelector = '[data-test-id="button-submit-text-change"]';
-    await page.goto(`${host}/iframe.html?id=examples-button-react--in-a-form`);
-    await page.waitForSelector(axaButtonSelector);
-
-    const axaButton = await page.$(axaButtonSelector);
-    const getAxaButtonText = () => page.textContent(axaButtonSelector);
-
-    expect(await getAxaButtonText()).toContain('0');
-
-    await axaButton.click();
-    expect(await getAxaButtonText()).toContain('1');
-
-    await axaButton.click();
-    expect(await getAxaButtonText()).toContain('2');
-  });
 });

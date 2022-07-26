@@ -49,7 +49,7 @@ const assertChangeValue = async phoneNumber => {
 describe('Input Phone', () => {
   it('should accept a valid phone number', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components--input-phone&knob-counter=Still&viewMode=story`
+      `${host}/iframe.html?args=&id=components--input-phone&viewMode=story`
     );
     hostElement = await page.waitForSelector(tag);
     await page.click('.js-dropdown__toggle');
@@ -65,7 +65,7 @@ describe('Input Phone', () => {
 
   it('should deny invalid inserted phone numbers', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components--input-phone&knob-counter=Still&viewMode=story`
+      `${host}/iframe.html?args=&id=components--input-phone&viewMode=story`
     );
     hostElement = await page.waitForSelector(tag);
 
@@ -84,7 +84,7 @@ describe('Input Phone', () => {
 
   it('should work with the onChange property', async () => {
     await page.goto(
-      `${host}/iframe.html?id=examples-input-phone-react--controlled-uncontrolled&args=&viewMode=story`
+      `${host}/iframe.html?id=examples-input-phone-react--input-phone-controlled-uncontrolled&viewMode=story`
     );
     hostElement = await page.waitForSelector(tag);
     // we initially expect the default value of the React demo

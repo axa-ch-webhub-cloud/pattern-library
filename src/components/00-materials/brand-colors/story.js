@@ -1,5 +1,4 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import '../../10-atoms/heading';
@@ -10,18 +9,16 @@ const colors = __COLORS_SCSS_AS_STRING__;
 
 export default {
   title: 'Brand Elements/Colors',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
     a11y: { disable: true },
+    controls: { disable: true },
     layout: 'fullscreen',
   },
 };
 
 export const Colors = () => {
-  const darkmode = boolean('darkmode', false);
-
   const getColorGroups = scssString => {
     const groups = scssString.split('///');
     const groupsWithColorIds = groups.filter(group => /#\w+/.test(group));
@@ -47,7 +44,7 @@ export const Colors = () => {
     });
   };
 
-  const template = html`
+  return html`
     <style>
       div.colorgroupwrapper {
         margin: 0 -10px;
@@ -76,19 +73,7 @@ export const Colors = () => {
 
       ${styles}
     </style>
-
-    ${darkmode
-      ? html`
-          <style>
-            body {
-              background-color: black;
-              color: white;
-            }
-          </style>
-        `
-      : ''}
-
-    <div class="accessory-story-content">
+    <div class="accessory-story-wrapper accessory-story-content">
       <axa-heading rank="1" variant="secondary">Colors</axa-heading>
       ${getColorGroups(colors).map(group => {
         return html`
@@ -121,10 +106,4 @@ export const Colors = () => {
       })}
     </div>
   `;
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('accessory-story-wrapper');
-
-  render(template, wrapper);
-  return wrapper;
 };

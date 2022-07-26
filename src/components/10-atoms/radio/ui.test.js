@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Radio - basic functionality').page(
-  `${host}/iframe.html?id=examples-radio-pure-html--default`
+  `${host}/iframe.html?args=&id=examples-radio-pure-html--radio&viewMode=story`
 );
 
 test('should render radio button', async t => {
@@ -12,7 +12,7 @@ test('should render radio button', async t => {
 });
 
 fixture('Radio - controlled-component behaviour under React 1').page(
-  `${host}/iframe.html?id=examples-radio-react--controlled-component-react-ified`
+  `${host}/iframe.html?id=examples-radio-react--radio-button-controlled&viewMode=story`
 );
 
 test('should show controlled-component behaviour in button mode', async t => {
@@ -46,7 +46,7 @@ test('should show controlled-component behaviour in button mode', async t => {
 });
 
 fixture('Radio - controlled-component behaviour under React 2').page(
-  `${host}/iframe.html?id=examples-radio-react--controlled-component-react-ified`
+  `${host}/iframe.html?id=examples-radio-react--radio-button-controlled&viewMode=story`
 );
 
 test('should show controlled-component behaviour in default mode', async t => {

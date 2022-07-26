@@ -1,21 +1,21 @@
-import { storiesOf } from '@storybook/web-components';
-import withNoBorder from '../../../../.storybook/addons/no-border';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
-storiesOf('Examples/Footer/Pure HTML', module)
-  .addDecorator(withNoBorder)
-  .addParameters({
+export default {
+  title: 'Examples/Footer/Pure HTML',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
+    controls: { disable: true },
+    layout: 'fullscreen',
+  },
+};
 
-  .add('Callbacks', () => {
-    const wrapper = document.createElement('div');
-
-    const footerMarkup = `
+export const Callbacks = () => {
+  const wrapper = document.createElement('div');
+  const footerMarkup = `
     <axa-footer clickevents>
       <h2 slot="column-title">axa & you</h2>
       <a slot="column-item" href="#https://axa.ch/en/private-customers.html">Contact</a>
@@ -47,22 +47,20 @@ storiesOf('Examples/Footer/Pure HTML', module)
       </a>
     </axa-footer>`;
 
-    wrapper.innerHTML = footerMarkup;
+  wrapper.innerHTML = footerMarkup;
 
-    const lastClicked = document.createElement('span');
-    lastClicked.id = 'clicked-link';
-    lastClicked.innerText = 'Last clicked link: -';
-    wrapper.appendChild(lastClicked);
+  const lastClicked = document.createElement('span');
+  lastClicked.id = 'clicked-link';
+  lastClicked.innerText = 'Last clicked link: -';
+  wrapper.appendChild(lastClicked);
 
-    document.addEventListener('axa-footer-click', ev => {
-      const span = document.getElementById(lastClicked.id);
-      span.innerText = `Last clicked link: ${ev.detail}`;
-    });
-
-    return wrapper;
-  })
-  .add('Without content', () => {
-    const wrapper = document.createElement('div');
-    wrapper.innerHTML = `<axa-text>This demo is just for UI Testing. It shows the footer without content. Do not use it like this!</axa-text><axa-footer></axa-footer>`;
-    return wrapper;
+  document.addEventListener('axa-footer-click', ev => {
+    const span = document.getElementById(lastClicked.id);
+    span.innerText = `Last clicked link: ${ev.detail}`;
   });
+
+  return wrapper;
+};
+
+export const WithoutContent = () =>
+  `<axa-text>This demo is just for UI Testing. It shows the footer without content. Do not use it like this!</axa-text><axa-footer></axa-footer>`;

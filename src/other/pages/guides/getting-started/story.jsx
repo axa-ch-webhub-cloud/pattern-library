@@ -1,17 +1,16 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
 import PLCallout from '../../utils/callout/index.react';
 import PLContactFooter from '../../utils/contact-footer/index.react';
-import styles from './index.scss';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import { AXAHeading, AXAText } from './plib-components';
+import styles from './index.scss';
 
 export default {
   title: 'Guides/Getting Started',
   decorators: [],
   parameters: {
-    knobs: { disable: true },
     readme: { disable: true },
     usage: { disable: true },
     changelog: { disable: true },
@@ -21,17 +20,9 @@ export default {
   },
 };
 
-export const GettingStarted = () => {
-  const devGuideStyle = {
-    border: '1px solid rgba(0, 0, 0, 0.1)',
-  };
-
-  const container = document.createElement('div');
-  container.classList.add('accessory-story-wrapper');
-  const root = createRoot(container);
-
-  root.render(
-    <div>
+export const GettingStarted = () =>
+  createReactContainer(
+    <div className="accessory-story-wrapper">
       <style>{styles}</style>
       <div className="accessory-story-content">
         <AXAHeading rank="1" variant="secondary">
@@ -187,7 +178,7 @@ export default AXAButtonReact;`}
         </div>
         <iframe
           title="figma dev guide"
-          style={devGuideStyle}
+          style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
           width="100%"
           height="500"
           src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FGBd1NZWB94Ek4WVUDROCE6%2FDX-Product-Development-Guide%3Fnode-id%3D196%253A502%26viewport%3D17094%252C-15509%252C0.3761351704597473%26scaling%3Dmin-zoom&chrome=DOCUMENTATION"
@@ -197,6 +188,3 @@ export default AXAButtonReact;`}
       </div>
     </div>
   );
-
-  return container;
-};

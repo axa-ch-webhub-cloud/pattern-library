@@ -3,7 +3,7 @@ const host = process.env.TEST_HOST_STORYBOOK_URL;
 describe('Button', () => {
   it('should render button', async () => {
     await page.goto(
-      `${host}/iframe.html?id=examples-button-pure-html--clickable`
+      `${host}/iframe.html?id=examples-button-pure-html--clickable&viewMode=story`
     );
     await page.waitForSelector('.a-button__flex-wrapper');
     const axaButtonText = await page.textContent('axa-button');
@@ -13,7 +13,9 @@ describe('Button', () => {
 
   it('should submit before and after text child updates', async () => {
     const axaButtonSelector = '[data-test-id="button-submit-text-change"]';
-    await page.goto(`${host}/iframe.html?id=examples-button-react--in-a-form`);
+    await page.goto(
+      `${host}/iframe.html?id=examples-button-react--button-in-a-form&viewMode=story`
+    );
     await page.waitForSelector(axaButtonSelector);
 
     const axaButton = await page.$(axaButtonSelector);

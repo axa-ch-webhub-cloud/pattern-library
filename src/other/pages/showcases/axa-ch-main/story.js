@@ -1,5 +1,4 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import '../../../../components/10-atoms/heading';
 import '../../../../components/10-atoms/text';
 import commercialHeroBanner from './commercial-hero-banner';
@@ -10,12 +9,17 @@ import policyFeatures from './policy-features';
 
 export default {
   title: 'Pages/AXA',
-  decorators: [withKnobs],
   parameters: {
     readme: { disable: true },
     usage: { disable: true },
     changelog: { disable: true },
     a11y: { disable: true },
+  },
+  args: {
+    highlightAXAWebcomponents: false,
+  },
+  argTypes: {
+    highlightAXAWebcomponents: { control: 'boolean' },
   },
 };
 
@@ -40,16 +44,13 @@ function drawOrRemoveBorderAroundElements(shouldDrawBorder, elements) {
   }
 }
 
-export const AXA = () => {
-  const markWebcomponents = boolean('Highlight AXA Webcomponents', false);
-  const wrapper = document.createElement('div');
-
+export const AXA = ({ highlightAXAWebcomponents }) => {
   // Execution is guaranteed to happen after the render, by putting it at the
   // end of the event loop.
   setTimeout(() => {
     const allChildrenOfWebcomponents = getFirstChildOfEachAxaCustomElement();
     drawOrRemoveBorderAroundElements(
-      markWebcomponents,
+      highlightAXAWebcomponents,
       allChildrenOfWebcomponents
     );
   });
@@ -85,7 +86,7 @@ export const AXA = () => {
     </style>
   `;
 
-  const template = html`
+  return html`
     ${resetBrowserDefaultStyles} ${style}
 
     <div class="pages-axa-main-page">
@@ -93,7 +94,4 @@ export const AXA = () => {
       ${footerSmall}
     </div>
   `;
-
-  render(template, wrapper);
-  return wrapper;
 };

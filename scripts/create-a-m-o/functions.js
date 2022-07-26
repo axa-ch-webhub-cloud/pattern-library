@@ -194,29 +194,69 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/story.args.js`,
+    outdent`
+    export const args = {
+      slot: 'default value',
+      // boolean: false,
+      // number: 5,
+      // radio: 'text',
+      // radioMapping: 'default',
+      // icon: 'none',
+    };
+    
+    // const variants = {
+    //  default: '',
+    //  red: 'red',
+    //  secondary: 'secondary',
+    // };
+    
+    export const argTypes = {
+      slot: { control: 'text' },
+      // boolean: { control: 'boolean' },
+      // number: { control: 'number' },
+      // radio: {
+      //   control: 'radio',
+      //   options: ['text', 'email', 'password'],
+      // },
+      // radioMapping: {
+      //   control: 'radio',
+      //   options: Object.keys(variants),
+      //   mapping: variants,
+      //   labels: variants,
+      // },
+      // select: {
+      //   control: 'select',
+      //   options: Object.keys(iconList),
+      //   mapping: iconList,
+      //   labels: iconList,
+      // },
+    };
+    `,
+    'utf8'
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/story.js`,
     outdent`
-    import { text, withKnobs } from '@storybook/addon-knobs';
-    import { html, render } from 'lit';
+    import { html } from 'lit';
+    import { args, argTypes } from './story.args';
+    import changelog from './CHANGELOG.md';
+    import readme from './README.md';
     import './index';
 
     export default {
       title: 'Components',
-      decorators: [withKnobs],
+      parameters: {
+        readme,
+        usage: {},
+        changelog,
+      },
+      args,
+      argTypes,
     };
     
-    export const ${compTitle} = () => {
-      const textknob = text('This is a knob', 'Value of text knob');
-      
-      const wrapper = document.createElement('div');
-      const template = html\`
-        <axa-${fileName}>\${textknob}</axa-${fileName}>
-      \`;
-      
-      render(template, wrapper);
-      return wrapper;
-    }
-    `,
+    export const ${compTitle} = ({ slot }) => html\`<axa-${fileName}>\${slot}</axa-${fileName}>\`;`,
     'utf8'
   );
 

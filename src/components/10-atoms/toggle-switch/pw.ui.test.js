@@ -24,7 +24,7 @@ describe('toggle-switch', () => {
 
   it('should write error message', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-toggle-switch--toggle-switch&knob-error=Error%20Message&knob-disabled=true&viewMode=story`
+      `${host}/iframe.html?args=error:Error%20Message&id=components-toggle-switch--toggle-switch&viewMode=story`
     );
     await page.waitForSelector(tag);
 
@@ -36,6 +36,6 @@ describe('toggle-switch', () => {
 
 async function openToggleSwitch() {
   await page.goto(
-    `${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-dummy-onchange-listener&viewMode=story`
+    `${host}/iframe.html?id=examples-toggle-switch-react--toggle-switch-controlled-with-on-change-listener&viewMode=story`
   );
 }

@@ -1,28 +1,22 @@
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputText from './DemoInputText';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
-storiesOf('Examples/Input Text/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Input Text/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Controlled/uncontrolled', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    root.render(<DemoInputText />);
+    controls: { disable: true },
+  },
+};
 
-    return container;
-  })
-  .add('Using onKeyUp event', () => {
-    const container = document.createElement('div');
-    const root = createRoot(container);
-    root.render(<DemoInputTextonKeyUp />);
+export const InputTextControlledUncontrolled = () =>
+  createReactContainer(<DemoInputText />);
 
-    return container;
-  });
+export const InputTextOnKeyUpEvent = () =>
+  createReactContainer(<DemoInputTextonKeyUp />);

@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Stepper - basic functionality').page(
-  `${host}/iframe.html?id=components-stepper--stepper`
+  `${host}/iframe.html?id=components-stepper--stepper&viewMode=story`
 );
 
 const TAG = 'axa-stepper';

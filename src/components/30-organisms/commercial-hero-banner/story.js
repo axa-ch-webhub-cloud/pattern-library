@@ -1,37 +1,22 @@
-// if your need more boolean, select, radios
-import { radios, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
-import withNoBorder from '../../../../.storybook/addons/no-border';
+import { html } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Components/Commercial Hero Banner',
-  decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
     changelog,
+    layout: 'fullscreen',
   },
+  args,
+  argTypes,
 };
 
-export const CommercialHeroBanner = () => {
-  const variant = radios(
-    'Variant',
-    {
-      light: 'light',
-      dark: 'dark',
-    },
-    'light'
-  );
-
-  const imageSource = text(
-    'Image Source',
-    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
-  );
-
-  const wrapper = document.createElement('div');
-  const template = html`
+export const CommercialHeroBanner = ({ variant, imageSource }) =>
+  html`
     <div>
       <axa-commercial-hero-banner
         variant="${variant}"
@@ -80,6 +65,3 @@ export const CommercialHeroBanner = () => {
       </axa-commercial-hero-banner>
     </div>
   `;
-  render(template, wrapper);
-  return wrapper;
-};

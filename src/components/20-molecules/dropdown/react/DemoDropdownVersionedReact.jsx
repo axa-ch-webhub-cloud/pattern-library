@@ -1,9 +1,8 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import AXADropdownVersionedReact, {
   numericalVersion,
 } from './AXADropdownVersionedReact';
-import AXATextReact from './AXATextReact';
+import AXATextReact from '../../../10-atoms/text/react/AXATextReact';
 
 const DemoVersionedDropdown = () => {
   const props = {

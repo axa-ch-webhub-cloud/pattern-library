@@ -1,33 +1,36 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
-import './index';
+import { html } from 'lit';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
+import './index';
 
 export default {
   title: 'Components/Modal',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
+  args: {
+    open: false,
+    forced: false,
+    small: false,
+    noHeader: false,
+  },
+  argTypes: {
+    open: { control: 'boolean' },
+    forced: { control: 'boolean' },
+    small: { control: 'boolean' },
+    noHeader: { control: 'boolean' },
+  },
 };
 
-export const Modal = () => {
-  const open = boolean('open', true);
-  const forced = boolean('forced', false);
-  const small = boolean('small', false);
-  const noHeader = boolean('no header', false);
-
-  const wrapper = document.createElement('div');
-
+export const Modal = ({ open, forced, small, noHeader }) => {
   setTimeout(() => {
     document.querySelector('axa-button').addEventListener('click', () => {
       document.querySelector('axa-modal').removeAttribute('open');
     });
   });
 
-  const template = html`
+  return html`
     <style>
       .modal-story__close-modal-child-button {
         margin-top: 20px;
@@ -86,7 +89,4 @@ export const Modal = () => {
       Open modal
     </button>
   `;
-
-  render(template, wrapper);
-  return wrapper;
 };

@@ -1,5 +1,4 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import '../10-atoms/heading';
@@ -55,12 +54,12 @@ const mapToIconItemNode = (icon, ...cssClasses) => {
 
 export default {
   title: 'Brand Elements/Icons and Images',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
     a11y: { disable: true },
     options: { showPanel: true },
+    controls: { disable: true },
     layout: 'fullscreen',
   },
 };
@@ -79,8 +78,6 @@ const renderMoreIconsAndImages = (iconGroup, imageGroup) => {
 };
 
 export const IconsAndImages = () => {
-  const mixColors = boolean('change icon and background color', false);
-
   window.onCallbackInput = ev => {
     const { value } = ev.target;
 
@@ -165,11 +162,11 @@ export const IconsAndImages = () => {
     });
   });
 
-  const template = html`
+  return html`
     <style>
       body {
-        color: ${mixColors ? 'white' : 'black'};
-        background-color: ${mixColors ? 'lightcoral' : 'white'};
+        color: black;
+        background-color: white;
       }
 
       svg {
@@ -317,12 +314,4 @@ export const IconsAndImages = () => {
       </div>
     </div>
   `;
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('accessory-story-wrapper');
-
-  render(template, wrapper);
-  return wrapper;
 };
-
-IconsAndImages.storyName = 'Icons and Images';

@@ -20,7 +20,9 @@ const $axaPolicyFeaturesArticleEl = Selector(
 ).find('article');
 
 fixture('Policy features - basic functionality')
-  .page(`${host}/iframe.html?id=components-policy-features--policy-features`)
+  .page(
+    `${host}/iframe.html?id=components-policy-features--policy-features&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -75,7 +77,7 @@ test('should render title with correct size on all other screen sizes', async t 
 });
 
 fixture('Policy features - attribute variant: not set').page(
-  `${host}/iframe.html?id=components-policy-features--policy-features&knob-variant=&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?id=components-policy-features--policy-features&viewMode=story`
 );
 
 test('should set default background-color if variant is not set', async t => {
@@ -87,7 +89,7 @@ test('should set default background-color if variant is not set', async t => {
 });
 
 fixture('Policy features - attribute variant: not in whitelist').page(
-  `${host}/iframe.html?id=components-policy-features--policy-features&knob-variant=thisStyleIsNotInWhitelist&knob-title=A 5 star car insurance with affordable premium services&knob-Show title?=y&knob-title (of item)=Get Discount&knob-icon=email&knob-icon - load svg icon from this url instead:=&knob-description=A 5 star car insurance with affordable premium services`
+  `${host}/iframe.html?args=variant:thisStyleIsNotInWhitelist&id=components-policy-features--policy-features&viewMode=story`
 );
 
 test('should set default style if variant string is not in whitelist', async t => {
@@ -110,7 +112,7 @@ test('should set default style if variant string is not in whitelist', async t =
 });
 
 fixture('Policy features - attribute variant: is in whitelist').page(
-  `${host}/iframe.html?id=examples-policy-features-react--story&knob-variant_axa-policy-features=wild-sand&knob-title_axa-policy-features=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services&knob-Show%20title?_axa-policy-features-item=y&knob-title%20(of%20item)_axa-policy-features-item=Get%20Discount&knob-icon%20-%20load%20svg%20icon%20from%20this%20url%20instead:_axa-policy-features-item=&knob-description_axa-policy-features-item=A%205%20star%20car%20insurance%20with%20affordable%20premium%20services`
+  `${host}/iframe.html?args=variant:wild-sand&id=components-policy-features--policy-features&viewMode=story`
 );
 
 test('should set style to "wild-sand"', async t => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
-import AXATextReact from './AXATextReact';
+import AXATextReact from '../../../10-atoms/text/react/AXATextReact';
 
 const DemoManyOptionsReact = () => {
   const items = [

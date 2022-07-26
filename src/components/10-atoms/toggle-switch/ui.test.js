@@ -5,7 +5,7 @@ const TAG = 'axa-toggle-switch';
 const CLASS = '.a-toggle-switch';
 
 fixture('Toggle Switch - basic functionality').page(
-  `${host}/iframe.html?id=components-toggle-switch--toggle-switch`
+  `${host}/iframe.html?id=components-toggle-switch--toggle-switch&viewMode=story`
 );
 
 test('should render toggle-switch', async t => {
@@ -216,7 +216,7 @@ test('should not change state when clicked and disabled', async t => {
 });
 
 fixture('Toggle Switch - controlled mode without onChange (active=false)').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&viewMode=story`
+  `${host}/iframe.html?id=examples-toggle-switch-react--toggle-switch-controlled-without-on-change&viewMode=story`
 );
 
 test('should stay inactive when clicked', async t => {
@@ -246,7 +246,7 @@ test('should stay inactive when clicked', async t => {
 });
 
 fixture('Toggle Switch - controlled mode without onChange (active=true)').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-without-onchange&knob-active=true&viewMode=story`
+  `${host}/iframe.html?id=examples-toggle-switch-react--toggle-switch-controlled-with-on-change-listener&viewMode=story`
 );
 
 test('should stay active when clicked', async t => {
@@ -276,7 +276,7 @@ test('should stay active when clicked', async t => {
 });
 
 fixture('Toggle Switch - controlled mode with onChange').page(
-  `${host}/iframe.html?id=examples-toggle-switch-react--controlled-with-onchange&viewMode=story`
+  `${host}/iframe.html?id=examples-toggle-switch-react--toggle-switch-controlled-with-on-change&viewMode=story`
 );
 
 test('should change state when clicked', async t => {

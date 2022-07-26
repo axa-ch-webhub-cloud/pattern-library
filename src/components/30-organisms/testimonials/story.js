@@ -1,74 +1,65 @@
-import { boolean, number, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
-import withNoBorder from '../../../../.storybook/addons/no-border';
+import { html } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Components/Testimonials',
-  decorators: [withKnobs, withNoBorder],
   parameters: {
     readme,
     changelog,
+    layout: 'fullscreen',
   },
+  args,
+  argTypes,
 };
 
-export const Testimonials = () => {
-  const title = text('title', 'Customer Reviews');
-  const subtitle = text(
-    'Text',
-    'AXA works hard to provide the best service possible to its customers.'
-  );
-  const autorotatedisabled = boolean('autorotatedisabled', false);
-  const autorotatetime = number('autorotatetime', 5000);
-  const keysenabled = boolean('keysenabled', true);
-  const showallinline = boolean('showallinline', false);
-
-  const wrapper = document.createElement('div');
-  const template = html`
-    <axa-testimonials
-      autorotatetime="${autorotatetime}"
-      ?autorotatedisabled="${autorotatedisabled}"
-      ?keysenabled="${keysenabled}"
-      ?showallinline="${showallinline}"
-      title="${title}"
-      subtitle="${subtitle}"
-    >
-      <div class="o-testimonials__vertical-margin">
-        <span
-          >Very helpful once I got through to the correct person but I was
-          constantly being transferred from person to person, in the end I
-          called into my local axa once in the city and got sorted in 10 minutes
-          after 3 weeks of phone calls.</span
-        >
-        <span class="o-testimonials__author">Andrew Jackson, Advocate</span>
-      </div>
-      <div class="o-testimonials__vertical-margin">
-        <span
-          >Very helpful once I got through to the correct person but I was
-          constantly being transferred from person to person, in the end I
-          called into my local axa once in the city and got sorted in 10 minutes
-          after 3 weeks of phone calls. Very helpful once I got through to the
-          correct person but I was constantly being transferred from person to
-          person, in the end I called into my local axa once in the city and got
-          sorted in 10 minutes after 3 weeks of phone calls. Very helpful once I
-          got through to the correct person but I was constantly being
-          transferred from person to person, in the end I called into my local
-          axa once in the city and got sorted in 10 minutes after 3 weeks of
-          phone calls. Very helpful once I got through to the correct person but
-          I was constantly being transferred from person to person, in the end I
-          called into my local axa once in the city and got sorted in 10 minutes
-          after 3 weeks of phone calls.</span
-        >
-        <span class="o-testimonials__author">Andrew Müller, Advocate</span>
-      </div>
-      <span class="o-testimonials__vertical-margin"
-        >This is a small text without an author.</span
+export const Testimonials = ({
+  autorotatetime,
+  autorotatedisabled,
+  keysenabled,
+  showallinline,
+  title,
+  subtitle,
+}) => html`
+  <axa-testimonials
+    autorotatetime="${autorotatetime}"
+    ?autorotatedisabled="${autorotatedisabled}"
+    ?keysenabled="${keysenabled}"
+    ?showallinline="${showallinline}"
+    title="${title}"
+    subtitle="${subtitle}"
+  >
+    <div class="o-testimonials__vertical-margin">
+      <span
+        >Very helpful once I got through to the correct person but I was
+        constantly being transferred from person to person, in the end I called
+        into my local axa once in the city and got sorted in 10 minutes after 3
+        weeks of phone calls.</span
       >
-    </axa-testimonials>
-  `;
-
-  render(template, wrapper);
-  return wrapper;
-};
+      <span class="o-testimonials__author">Andrew Jackson, Advocate</span>
+    </div>
+    <div class="o-testimonials__vertical-margin">
+      <span
+        >Very helpful once I got through to the correct person but I was
+        constantly being transferred from person to person, in the end I called
+        into my local axa once in the city and got sorted in 10 minutes after 3
+        weeks of phone calls. Very helpful once I got through to the correct
+        person but I was constantly being transferred from person to person, in
+        the end I called into my local axa once in the city and got sorted in 10
+        minutes after 3 weeks of phone calls. Very helpful once I got through to
+        the correct person but I was constantly being transferred from person to
+        person, in the end I called into my local axa once in the city and got
+        sorted in 10 minutes after 3 weeks of phone calls. Very helpful once I
+        got through to the correct person but I was constantly being transferred
+        from person to person, in the end I called into my local axa once in the
+        city and got sorted in 10 minutes after 3 weeks of phone calls.</span
+      >
+      <span class="o-testimonials__author">Andrew Müller, Advocate</span>
+    </div>
+    <span class="o-testimonials__vertical-margin"
+      >This is a small text without an author.</span
+    >
+  </axa-testimonials>
+`;

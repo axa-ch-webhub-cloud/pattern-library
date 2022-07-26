@@ -1,12 +1,11 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Components/Dropdown',
-  decorators: [withKnobs],
   parameters: {
     readme,
     usage: {
@@ -15,40 +14,41 @@ export default {
     },
     changelog,
   },
+  args,
+  argTypes,
 };
 
-export const Dropdown = () => {
-  const label = text('label', '');
-  const value = text('value', '');
-  const defaultTitle = text('defaulttitle', 'Select amount');
-  const name = text('name', '');
-  const invalid = boolean('invalid', false);
-  const error = text('error', 'This selection is required.');
-  const native = boolean('native', false);
-  const required = boolean('required', false);
-  const checkMark = boolean('checkmark', false);
-  const disabled = boolean('disabled', false);
-  const dataTestId = text('data-test-id', '');
-  const maxHeight = text('max-height', '');
-  const cropText = boolean('cropText', false);
-  const showValue = boolean('showValue', false);
-
+export const Dropdown = ({
+  defaultTitle,
+  value,
+  label,
+  name,
+  datatestid,
+  error,
+  maxheight,
+  invalid,
+  checkMark,
+  disabled,
+  required,
+  native,
+  cropText,
+  showValue,
+}) => {
   const handleChange = e => {
     const { target, detail } = e;
     target.dataset.change = JSON.stringify(detail);
   };
 
-  const wrapper = document.createElement('div');
-  const template = html`
+  return html`
     <axa-dropdown
       @change="${handleChange}"
       defaulttitle="${defaultTitle}"
       value="${value}"
       label="${label}"
       name="${name}"
-      datatestid="${dataTestId}"
+      datatestid="${datatestid}"
       error="${error}"
-      maxheight="${maxHeight}"
+      maxheight="${maxheight}"
       ?invalid="${invalid}"
       ?checkmark="${checkMark}"
       ?disabled="${disabled}"
@@ -63,7 +63,4 @@ export const Dropdown = () => {
      ]'
     ></axa-dropdown>
   `;
-
-  render(template, wrapper);
-  return wrapper;
 };

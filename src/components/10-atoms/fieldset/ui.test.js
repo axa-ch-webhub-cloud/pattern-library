@@ -35,7 +35,7 @@ test('should render an error message', async t => {
 });
 
 fixture('Fieldset - horizontal').page(
-  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=true`
+  `${host}/iframe.html?args=horizontal:horizontal&id=components-fieldset--fieldset&viewMode=story`
 );
 
 test('should render horizontally', async t => {
@@ -54,7 +54,7 @@ test('should render horizontally', async t => {
 });
 
 fixture('Fieldset - enableResponsiveStretch').page(
-  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=stretch`
+  `${host}/iframe.html?args=horizontal:stretch&id=components-fieldset--fieldset&viewMode=story`
 );
 
 test('should responsive stretch', async t => {

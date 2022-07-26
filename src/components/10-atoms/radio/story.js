@@ -1,13 +1,12 @@
+import { html } from 'lit';
 import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Components/Radio',
-  decorators: [withKnobs],
   parameters: {
     readme,
     usage: {
@@ -17,21 +16,21 @@ export default {
     },
     changelog,
   },
+  args,
+  argTypes,
 };
 
-export const Radio = () => {
-  const wrapper = document.createElement('div');
-
-  const label = text('label*', 'car');
-  const checked = boolean('checked*', false);
-  const focus = boolean('focus*', false);
-  const disabled = boolean('disabled', false);
-  const button = boolean('button', false);
-  const icon = boolean('Icon', false);
-  const noGap = boolean('noGap', false);
-  const noAutoWidth = boolean('noAutoWidth', false);
-
-  const template = html`
+export const Radio = ({
+  label,
+  checked,
+  focus,
+  disabled,
+  button,
+  icon,
+  noGap,
+  noAutoWidth,
+}) =>
+  html`
     <axa-text variant="size-3">
       Knobs with a * only affect the first radio button
     </axa-text>
@@ -75,7 +74,3 @@ export const Radio = () => {
       ></axa-radio>
     </axa-fieldset>
   `;
-
-  render(template, wrapper);
-  return wrapper;
-};

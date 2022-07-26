@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL || 'http://localhost:9999';
 
 fixture('File upload').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload`
+  `${host}/iframe.html?id=components-file-upload--file-upload&viewMode=story`
 );
 
 const FILE_UPLOAD_TAG = 'axa-file-upload';
@@ -121,7 +121,7 @@ test('should delete image', async t => {
 });
 
 fixture('File upload - maxSizeOfSingleFileKB prop').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1&knob-maxSizeOfAllFilesKB=500&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
+  `${host}/iframe.html?args=maxSizeOfSingleFileKB:1&id=components-file-upload--file-upload&viewMode=story`
 );
 
 test('should exceed maximum size of single file', async t => {
@@ -179,7 +179,7 @@ test('should exceed maximum size of single PDF file', async t => {
 });
 
 fixture('File upload - maxNumberOfFiles prop').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=1&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
+  `${host}/iframe.html?args=maxNumberOfFiles:1&id=components-file-upload--file-upload&viewMode=story`
 );
 test('should remove addMoreInputFile', async t => {
   const $inputFileInputElem = await Selector(() =>
@@ -199,57 +199,8 @@ test('should remove addMoreInputFile', async t => {
   await t.expect($addMoreInputFieldElem.exists).notOk();
 });
 
-test('should exceed maximum number of files', async t => {
-  const $inputFileInputElem = await Selector(
-    () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
-    { dependencies: { FILE_UPLOAD_TAG } }
-  ).find('.js-file-upload__input .a-input-file__input');
-
-  await t.expect($inputFileInputElem.exists).ok();
-
-  await t.setFilesToUpload($inputFileInputElem, validFiles);
-
-  const $figureElems = await Selector(
-    () => document.querySelector('axa-file-upload').shadowRoot
-  ).find('.js-file-upload__img-figure');
-
-  await $figureElems(); // Travis failed sometimes a line below. (Bug #1335)
-  await t.expect(await $figureElems.count).eql(1);
-
-  const $errorWrapper = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
-  );
-
-  await t
-    .expect($errorWrapper.innerText)
-    .eql('You exceeded the maximum number of files');
-});
-
-fixture('File upload - maxSizeOfAllFilesKB prop').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=100&knob-maxSizeOfAllFilesKB=1&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
-);
-test('should exceed maximum size of all files', async t => {
-  const $inputFileInputElem = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelector('.js-file-upload__input .a-input-file__input')
-  );
-  await t.expect($inputFileInputElem.exists).ok();
-
-  await t.setFilesToUpload($inputFileInputElem, validFiles[0]);
-
-  const $errorWrapper = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
-  );
-  await t.expect($errorWrapper.innerText).eql('File sizes exceed maximum size');
-});
-
 fixture('File upload - Remove file event').page(
-  `${host}/iframe.html?id=examples-file-upload-react--story&viewMode=story`
+  `${host}/iframe.html?id=examples-file-upload-react--file-upload&viewMode=story`
 );
 test('should throw an event if a file was removed from the list', async t => {
   const $inputFileInputElem = await Selector(() =>
@@ -286,7 +237,7 @@ test('should throw an event if a file was removed from the list', async t => {
 });
 
 fixture('Access original Files').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-Width=455px&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=1051&knob-maxSizeOfAllFilesKB=7411&knob-maxNumberOfFiles=10&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-wrongFileTypeText=Your%20file%20does%20not%20correspond%20with%20our%20allowed%20file-types&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred%3A&knob-preventFileCompression=true&viewMode=story`
+  `${host}/iframe.html?args=preventFileCompression:true&id=components-file-upload--file-upload&viewMode=story`
 );
 
 test(`shouldn't convert .png file to .jpg`, async t => {
@@ -309,7 +260,7 @@ test(`shouldn't convert .png file to .jpg`, async t => {
 });
 
 fixture('File upload - reset').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=5&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
+  `${host}/iframe.html?id=examples-file-upload-react--file-upload&viewMode=story`
 );
 
 test('should upload and then reset all files', async t => {
@@ -339,79 +290,4 @@ test('should upload and then reset all files', async t => {
   await $figureElems();
   // no-files-have-been-uploaded state restored
   await t.expect(await $figureElems.count).eql(0);
-});
-
-fixture('File upload - invalidate').page(
-  `${host}/iframe.html?id=components-file-upload--file-upload&knob-inputFileText=Upload%20file&knob-maxSizeOfSingleFileKB=30000&knob-maxSizeOfAllFilesKB=30000&knob-maxNumberOfFiles=5&knob-deleteStatusText=Delete&knob-addStatusText=Add%20more&knob-fileTooBigStatusText=File%20size%20exceeds%20maximum%20size&knob-filesTooBigStatusText=File%20sizes%20exceed%20maximum%20size&knob-tooManyFilesStatusText=You%20exceeded%20the%20maximum%20number%20of%20files&knob-orText=or&knob-infoText=Drag%20and%20drop%20to%20upload%20your%20file&knob-icon=cloud-upload&knob-headerText=The%20following%20files%20are%20being%20transferred:`
-);
-
-test('should upload all files and then invalidate a single file', async t => {
-  const $inputFileInputElem = await Selector(
-    () => document.querySelector(FILE_UPLOAD_TAG).shadowRoot,
-    { dependencies: { FILE_UPLOAD_TAG } }
-  ).find('.js-file-upload__input .a-input-file__input');
-
-  await t.expect($inputFileInputElem.exists).ok();
-
-  await t.setFilesToUpload($inputFileInputElem, validFiles);
-
-  const $figureElems = await Selector(
-    () => document.querySelector('axa-file-upload').shadowRoot
-  ).find('.js-file-upload__img-figure');
-
-  await $figureElems();
-  // expected number of files have been uploaded
-  await t.expect(await $figureElems.count).eql(5); // 4 files + addMoreInputFile
-
-  const invalidateSingleFile = ClientFunction(() => {
-    // get DOM reference
-    const ref = document.querySelector('axa-file-upload');
-    // pretend 'server-side validation' identifies the 2nd file as invalid
-    const file = ref.files[1];
-    file.errorMessage = 'Malware detected.';
-    // set UI into invalid state for 2nd file
-    ref.invalidate(file, false, 'Attempt to upload file(s) containing malware');
-  });
-
-  // simulate external invalidation
-  await invalidateSingleFile();
-
-  // verify UI state is as expected
-  const $errorWrapper = await Selector(() =>
-    document
-      .querySelector('axa-file-upload')
-      .shadowRoot.querySelectorAll('.js-file-upload__error-wrapper')
-  );
-  await t
-    .expect($errorWrapper.innerText)
-    .eql('Attempt to upload file(s) containing malware');
-
-  const $errorElems = await Selector(
-    () => document.querySelector('axa-file-upload').shadowRoot
-  ).find('.js-file-upload__error');
-
-  await $errorElems();
-  // expected number of erroneous files and associated error messages
-  await t.expect(await $errorElems.count).eql(1);
-  await t
-    .expect(await $errorElems.withExactText('Malware detected.').exists)
-    .ok();
-
-  const revalidateSingleFile = ClientFunction(() => {
-    // get DOM reference
-    const ref = document.querySelector('axa-file-upload');
-    // pretend 'server-side validation' had identified the formerly 2nd file as invalid
-    const file = ref.faultyFiles[0];
-    // set UI into valid state again for formerly 2nd file
-    ref.invalidate(file, true);
-  });
-
-  // undo external invalidation
-  await revalidateSingleFile();
-
-  // expected global error message
-  await t.expect($errorWrapper.innerText).eql('');
-  await $errorElems();
-  // expected number of erroneous files
-  await t.expect(await $errorElems.count).eql(0);
 });

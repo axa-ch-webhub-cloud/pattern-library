@@ -21,7 +21,7 @@ describe('Progress Bar', () => {
 
   it('should calculate the percantage correctly', async () => {
     await page.goto(
-      `${host}/iframe.html?id=components-progress-bar--progress-bar&knob-noBorderRadius=true&knob-value=60&knob-max=300&knob-text=&viewMode=story`
+      `${host}/iframe.html?args=value:60;max:300&id=components-progress-bar--progress-bar&viewMode=story`
     );
     await page.waitForSelector(tag);
 
@@ -43,7 +43,7 @@ describe('Progress Bar', () => {
 
 async function openProgressBar() {
   await page.goto(
-    `${host}/iframe.html?id=components-progress-bar--progress-bar&knob-value=32&knob-text=hi%20I%20am%20a%20text&knob-noBorderRadius=true&knob-small=true&viewMode=story`
+    `${host}/iframe.html?args=small:true;noBorderRadius:true;progressText:hi%20I%20am%20a%20text&id=components-progress-bar--progress-bar&viewMode=story`
   );
   await page.waitForSelector(tag);
 }

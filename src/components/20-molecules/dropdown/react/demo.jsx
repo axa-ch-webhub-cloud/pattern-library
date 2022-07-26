@@ -1,6 +1,5 @@
-import { storiesOf } from '@storybook/web-components';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';
@@ -8,37 +7,24 @@ import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
 import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 
-storiesOf('Examples/Dropdown/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Dropdown/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Focussable', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<DemoFocussableDropdownReact />);
+    controls: { disable: true },
+  },
+};
 
-    return container;
-  })
-  .add('Many-options', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<DemoManyOptionsDropdownReact />);
+export const DropdownFocusable = () =>
+  createReactContainer(<DemoFocussableDropdownReact />);
 
-    return container;
-  })
-  .add('React Component', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<DemoDropdownReact />);
+export const DropdownManyOptions = () =>
+  createReactContainer(<DemoManyOptionsDropdownReact />);
 
-    return container;
-  })
-  .add('Versioned React Component', () => {
-    const container = document.createElement('container');
-    const root = createRoot(container);
-    root.render(<DemoDropdownVersionedReact />);
+export const DropdownReactComponent = () =>
+  createReactContainer(<DemoDropdownReact />);
 
-    return container;
-  });
+export const DropdownVersionedReactComponent = () =>
+  createReactContainer(<DemoDropdownVersionedReact />);

@@ -1,21 +1,12 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
-
-const variantOptions = {
-  '[none]': '',
-  'size-2': 'size-2',
-  'size-3': 'size-3',
-  'size-4': 'size-4',
-  semibold: 'semibold',
-  bold: 'bold',
-};
+import './index';
+import { renderLitContainer } from '../../../utils/render-lit-container';
 
 export default {
   title: 'Components/Text',
-  decorators: [withKnobs],
   parameters: {
     readme,
     usage: {
@@ -23,26 +14,13 @@ export default {
     },
     changelog,
   },
+  args,
+  argTypes,
 };
 
-export const Text = () => {
-  const variant = select('variant', variantOptions, '');
-  const addSpanTag = boolean('Add <span> tag', false);
-  const content = text(
-    'text',
-    `Is your car your pride and joy, or just a means of getting from A to
-    B ? Whichever applies to you, it will certainly have the best
-    insurance with us. Calculate your premium online – You keep your
-    advisor even when you purchase from us online.`
-  );
-  const wrapper = document.createElement('div');
-  const template = addSpanTag
-    ? html`
-        <axa-text variant="${variant}">
-          <span>${content}</span>
-        </axa-text>
-      `
-    : html` <axa-text variant="${variant}">${content}</axa-text> `;
-  render(template, wrapper);
-  return wrapper;
-};
+export const Text = ({ variant, wrapSlotInSpan, slot }) =>
+  renderLitContainer(html`
+    <axa-text variant="${variant}">
+      ${wrapSlotInSpan ? html`<span>${slot}</span>` : html`${slot}`}
+    </axa-text>
+  `);

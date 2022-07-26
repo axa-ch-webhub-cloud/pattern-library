@@ -1,38 +1,37 @@
-import { boolean, radios, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
-import './index';
+import { html } from 'lit';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
+import './index';
+
+const colors = {
+  default: '',
+  'dark-grey': 'inverted-dark-grey',
+  white: 'inverted-white',
+};
 
 export default {
   title: 'Components/Spinner',
-  decorators: [withKnobs],
   parameters: {
     readme,
     changelog,
   },
+  args: {
+    small: false,
+    color: 'default',
+  },
+  argTypes: {
+    small: {
+      control: 'boolean',
+    },
+    color: {
+      control: 'radio',
+      options: Object.keys(colors),
+      mapping: colors,
+      labels: colors,
+    },
+  },
 };
 
-const invertedColors = {
-  'ocean blue (default)': 'inverted-blue-ocean',
-  'dark grey': 'inverted-dark-grey',
-  white: 'inverted-white',
-};
-
-export const Spinner = () => {
-  const sizes = boolean('small', false);
-  const colors = radios('color', invertedColors, '');
-
-  const wrapper = document.createElement('div');
-
-  const template = html`
-    <style>
-      body {
-        background-color: ${colors === 'inverted-white' ? '#ccc' : '#fff'};
-      }
-    </style>
-    <axa-spinner ?small="${sizes}" color="${colors}"></axa-spinner>
-  `;
-  render(template, wrapper);
-  return wrapper;
-};
+export const Spinner = ({ small, color }) => html`
+  <axa-spinner small="${small}" color="${color}"></axa-spinner>
+`;
