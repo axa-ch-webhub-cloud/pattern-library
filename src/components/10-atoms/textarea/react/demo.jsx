@@ -1,7 +1,7 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import DemoControlledUncontrolledTextarea from './DemoControlledUncontrolledTextarea';
+import DemoControllabilityOfTextarea from './DemoControllabilityOfTextarea';
 import { createReactContainer } from '../../../../utils/create-react-container';
 
 export default {
@@ -14,5 +14,5 @@ export default {
   },
 };
 
-export const TextareaControlledUncontrolled = () =>
-  createReactContainer(<DemoControlledUncontrolledTextarea />);
+export const ControllabilityOfTextarea = () =>
+  createReactContainer(<DemoControllabilityOfTextarea />);
