@@ -42,7 +42,7 @@ export const StyledHtmlLabel = () => html`
 export const WithoutLabel = () => html`
   <axa-checkbox
     name="checkbox"
-    error="This checkbox do not have a label, but its also clickable"
+    error="This checkbox does not have a label, but it's still clickable"
   >
   </axa-checkbox>
 `;

@@ -47,7 +47,7 @@ export const SimulateAutocomplete = _args => {
   }, 1);
 
   // there are two input fields because with only one is not possible to
-  // activate the Safari's autocomplete feature.
+  // activate Safari's autocomplete feature.
   return  createReactContainer(
     <form>
       <AXAInputText refid="fix-id-fake" name="Name" />
