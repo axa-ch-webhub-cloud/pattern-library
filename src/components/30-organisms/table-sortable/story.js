@@ -14,16 +14,20 @@ export default {
   argTypes,
 };
 
-export const TableSortable = ({ innerscroll, maxheight }) => html`
+export const TableSortable = ({
+  innerscroll,
+  maxheight,
+  datesortcolumnindex,
+}) => html`
   <axa-table-sortable
     innerscroll="${innerscroll}"
     maxheight="${maxheight}"
-    datesortcolumnindex="3,4"
+    datesortcolumnindex="${datesortcolumnindex}"
     model="${JSON.stringify(model)}"
   ></axa-table-sortable>
   <br />
   <axa-text variant="size-3">
     Note: The datesortcolumnindex="3,4" is set. It can't be controlled by the
-    knobs.
+    Controls.
   </axa-text>
 `;
