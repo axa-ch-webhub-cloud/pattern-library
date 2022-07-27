@@ -134,7 +134,7 @@ class AXAButton extends InlineStyles {
     // that fake button is NOT inside a ShadowDOM. The event instead
     // bubbles out of ShadowDOM, hence the stop propagation trick
 
-    if (e.isTrusted  && this.isTypeSubmitOrReset) {
+    if (e.isTrusted && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
     }
