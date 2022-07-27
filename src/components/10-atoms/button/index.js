@@ -14,16 +14,6 @@ import InlineStyles from '../../../utils/inline-styles';
 
 const ARROW_RIGHT = 'arrow-right';
 
-/* eslint-disable no-undef */
-const isNativeShadowDOM = (window || global).ShadowRoot
-  ? ShadowRoot.toString().indexOf('native code') > -1
-  : false;
-/* eslint-enable no-undef */
-
-// @TODO: REMOVE ONCE IE11 is deprecated!!!!
-// equivalent to event.isTrusted. Unfortunately, IE11 does not support it
-const eventIsTrusted = e => e.screenX || e.screenY || e.clientX || e.clientY;
-
 class AXAButton extends InlineStyles {
   static get tagName() {
     return 'axa-button';
@@ -58,9 +48,7 @@ class AXAButton extends InlineStyles {
   constructor() {
     super();
     applyDefaults(this);
-    /* eslint-disable no-undef */
     defineVersioned([AXAIcon], __VERSION_INFO__, this);
-    /* eslint-enable no-undef */
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -113,7 +101,7 @@ class AXAButton extends InlineStyles {
 
     // shadow dom submit btn workaround
     // only use fakeButton when shadowDom is natively supported
-    if (isNativeShadowDOM && this.isTypeSubmitOrReset) {
+    if (this.isTypeSubmitOrReset) {
       this.attachFakeButton();
     }
 
@@ -146,16 +134,7 @@ class AXAButton extends InlineStyles {
     // that fake button is NOT inside a ShadowDOM. The event instead
     // bubbles out of ShadowDOM, hence the stop propagation trick
 
-    // TODO: remove all the IE stuff if support drops
-    const isIESubmitResetEvent =
-      document.documentMode &&
-      eventIsTrusted(e) &&
-      isNativeShadowDOM &&
-      this.isTypeSubmitOrReset;
-    const isSubmitResetEvent =
-      e.isTrusted && isNativeShadowDOM && this.isTypeSubmitOrReset;
-
-    if (isIESubmitResetEvent || isSubmitResetEvent) {
+    if (e.isTrusted  && this.isTypeSubmitOrReset) {
       e.stopPropagation();
       this.fakeButton.click();
     }
