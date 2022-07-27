@@ -44,6 +44,10 @@ The string-valued `value` sets the value of the underlying native HTML &lt;texta
 
 The Boolean attribute `disabled` disables the underlying native HTML &lt;textarea&gt; text.
 
+### readonly
+
+The Boolean `readonly` attribute, when present, makes the underlying native HTML &lt;textarea&gt; text not mutable, meaning the user can not edit the control.
+
 ### error
 
 The string-valued `error` provides error text as HTML, to be shown when `invalid` is true.
