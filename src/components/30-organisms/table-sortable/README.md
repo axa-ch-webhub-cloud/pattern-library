@@ -22,6 +22,7 @@ const model = {
     { html: 'Title 1', sort: 'ASC' },
     { html: 'Title 3', sort: 'DESC' },
     { html: 'Title 2' },
+    { html: 'Place', key: 'placeName', sort: 'ASC' },
   ],
   tbody: [
     [
@@ -31,18 +32,20 @@ const model = {
       { text: '<span>Hello</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'A' },
+      { html: '8180 Bülach', placeName: 'Bülach' },
     ],
     [
       { html: '<span>1 Test</span>' },
       { html: '<span>Z Hello 2</span>' },
       { html: '<span>Cell 2</span>' },
       { html: 'B' },
+      { html: '8038 Zürich', placeName: 'Zürich' },
     ],
     [
       { html: '<span>2 Test</span>' },
       { html: '<span>A Hello 3</span>' },
       { html: '<span>Cell 2</span>' },
-      { html: 'C' },
+      { html: '8197 Rafz', placeName: 'Rafz' },
     ],
   ],
 };
