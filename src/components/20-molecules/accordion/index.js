@@ -7,6 +7,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';
 import { sanitizeSVG } from '../../../utils/sanitize';
+import fireCustomEvent from '../../../utils/custom-event';
 import styles from './index.scss';
 
 class AXAAccordion extends LitElement {
@@ -27,6 +28,7 @@ class AXAAccordion extends LitElement {
       disabled: { type: Boolean },
       icon: { type: String },
       title: { type: String },
+      onStateChange: { type: Function, attribute: false },
     };
   }
 
@@ -40,6 +42,8 @@ class AXAAccordion extends LitElement {
     if (!this.disabled) {
       this.open = !this.open;
       this.toggleAnimation();
+      this.onStateChange(this.open);
+      fireCustomEvent('axa-state-change', { isOpen: !this.open }, this);
     }
   }
 
