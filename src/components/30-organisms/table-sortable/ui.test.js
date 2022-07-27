@@ -112,6 +112,40 @@ test('should sort strings', async t => {
   await t.expect($columnTwoLastRow.innerHTML).contains('<span>Petra</span>');
 });
 
+test('should sort with key', async t => {
+  const $el = await Selector('axa-table-sortable');
+  await t.expect($el.exists).ok();
+  const $columnSeven = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelectorAll('th')[6];
+  });
+
+  const $columnSevenFirstRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+    return firstRow.querySelectorAll('td')[6];
+  });
+
+  const $columnSevenLastRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
+    return firstRow.querySelectorAll('td')[6];
+  });
+
+  await t
+    .click($columnSeven)
+    .expect($columnSeven.getAttribute('aria-sort'))
+    .eql('descending');
+  await t.expect($columnSevenFirstRow.innerText).eql('8038 Zürich');
+  await t.expect($columnSevenLastRow.innerText).eql('13469 Berlin');
+  await t
+    .click($columnSeven)
+    .expect($columnSeven.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t.expect($columnSevenFirstRow.innerText).eql('13469 Berlin');
+  await t.expect($columnSevenLastRow.innerText).eql('8038 Zürich');
+});
+
 test('should sort numbers', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
