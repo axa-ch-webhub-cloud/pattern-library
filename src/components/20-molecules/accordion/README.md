@@ -23,3 +23,11 @@ String-valued `title` sets the title of the accordion.
 ### icon
 
 String-valued `icon` sets the additional icon of the accordion according to a valid `<svg>...</svg>` value. Leave unset if no icon is required.
+
+### onStateChange
+
+The function-valued attribute `onStateChange` can be used as a callback prop for React and other frameworks. The value(`isOpen`) is the `open` property.
+
+## Events
+
+The custom events `axa-state-change` whenever `onStateChange` fires (see above). The `event.detail` value is the `open` property .
