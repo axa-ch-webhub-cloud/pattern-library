@@ -29,6 +29,7 @@ class AXATextarea extends NoShadowDOM {
       checkMark: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
+      readonly: { type: Boolean },
 
       counter: { type: String },
       counterMax: { type: String },
@@ -131,7 +132,11 @@ class AXATextarea extends NoShadowDOM {
 
   get showCounter() {
     return (
-      this.maxLength > 0 && !this.invalid && this.areCharsLeft && !this.disabled
+      this.maxLength > 0 &&
+      !this.invalid &&
+      this.areCharsLeft &&
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -144,7 +149,8 @@ class AXATextarea extends NoShadowDOM {
       this.maxLength > 0 &&
       this.counterMax &&
       !this.areCharsLeft &&
-      !this.disabled
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -215,6 +221,7 @@ class AXATextarea extends NoShadowDOM {
       maxLength = '',
       placeholder,
       disabled,
+      readonly,
       isReact,
       isControlled,
       refId,
@@ -229,6 +236,7 @@ class AXATextarea extends NoShadowDOM {
 
     const textareaClasses = {
       'a-textarea__textarea': true,
+      'a-textarea__textarea--readonly': readonly,
       'a-textarea__textarea--error': (invalid || showCounterMax) && !disabled,
       'a-textarea__textarea--check': checkMark && !disabled && !showCounterMax,
     };
@@ -259,6 +267,7 @@ class AXATextarea extends NoShadowDOM {
           name="${name}"
           placeholder="${placeholder}"
           ?disabled="${disabled}"
+          ?readonly="${readonly}"
           aria-required="${required}"
         ></textarea>
 
