@@ -9,6 +9,7 @@ export const args = {
   info: '',
   checkMark: false,
   disabled: false,
+  readonly: false,
   required: false,
   invalid: false,
   type: 'text',
@@ -31,6 +32,7 @@ export const argTypes = {
   info: { control: 'text' },
   checkMark: { control: 'boolean' },
   disabled: { control: 'boolean' },
+  readonly: { control: 'boolean' },
   required: { control: 'boolean' },
   invalid: { control: 'boolean' },
   type: {
