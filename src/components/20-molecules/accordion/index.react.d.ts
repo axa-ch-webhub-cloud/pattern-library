@@ -8,6 +8,7 @@ export interface AXAAccordionProps {
   title?: string;
   icon?: string;
   children?: React.ReactNode;
+  onStateChange?: (isOpen: boolean) => void;
 }
 
 declare function createAXAAccordion(
