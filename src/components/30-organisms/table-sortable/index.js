@@ -126,6 +126,7 @@ class AXATableSortable extends LitElement {
 
     if (sortingAria !== 'none') {
       const sortAs = sortingAria === ASC ? DESC : ASC;
+      // A tmp model is used because the model is reactive and rerender should be avoided.
       const tmpModel = { ...this.model };
       const { tbody, tfoot } = this.model;
 
