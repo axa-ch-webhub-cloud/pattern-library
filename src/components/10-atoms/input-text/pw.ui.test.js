@@ -22,4 +22,17 @@ describe('Input text', () => {
     expect(await page.textContent('#email-id')).toBe(`email: ${emailText}`);
     expect(await page.textContent('#password-id')).toBe(`password: ${pwText}`);
   });
+
+  it('should be readonly', async () => {
+    await page.goto(
+      `${host}/iframe.html?args=readonly:true&id=components-input-text--input-text&viewMode=story`
+    );
+
+    const inputBg = await page.$eval(
+      '.a-input-text__input',
+      el => window.getComputedStyle(el).backgroundColor
+    );
+
+    expect(inputBg).toBe('rgb(250, 250, 250)');
+  });
 });
