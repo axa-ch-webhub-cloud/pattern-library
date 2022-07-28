@@ -26,8 +26,8 @@ String-valued `icon` sets the additional icon of the accordion according to a va
 
 ### onStateChange
 
-The function-valued attribute `onStateChange` can be used as a callback prop for React and other frameworks. The value(`isOpen`) is the `open` property.
+The function-valued attribute `onStateChange` can be used as a callback prop for React and other frameworks. The passed-in function gets called whenever the accordion's state changes, and it receives a Boolean parameter that mirrors the `open` property value.
 
 ## Events
 
-The custom events `axa-state-change` whenever `onStateChange` fires (see above). The `event.detail` value is the `open` property .
+TThe custom event axa-state-change is fired on the component itself whenever onStateChange is called (see above). The event.detail value again mirrors the `open` property value.
