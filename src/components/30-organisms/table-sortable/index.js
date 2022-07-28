@@ -154,12 +154,6 @@ class AXATableSortable extends LitElement {
     return ASC;
   }
 
-  // V8 engine uses QuickSort algorythm for Array.prototype.sort
-  // with elements less then 10. for more then 10, it uses the InsertionSort
-  // algorythm. As result, for arrays containing 10 or fewer elements,
-  // time complexity of .sort is O(n^2), and space complexity is O(1).
-  // For longer arrays time complexity is Θ(n log(n)) (average case),
-  // and space complexity is O(log(n))
   sort(arr, index, sortAs, key) {
     // Declaration of dateColumnsCustomSort had to be moved from the constructor, because
     // the value of this.dateSortColumnIndex wasn't available
