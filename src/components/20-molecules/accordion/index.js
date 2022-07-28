@@ -43,7 +43,7 @@ class AXAAccordion extends LitElement {
       this.open = !this.open;
       this.toggleAnimation();
       this.onStateChange(this.open);
-      fireCustomEvent('axa-state-change', { isOpen: !this.open }, this);
+      fireCustomEvent('axa-state-change', this.open, this);
     }
   }
 
