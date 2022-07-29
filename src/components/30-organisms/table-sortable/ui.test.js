@@ -112,6 +112,40 @@ test('should sort strings', async t => {
   await t.expect($columnTwoLastRow.innerHTML).contains('<span>Petra</span>');
 });
 
+test('should sort with key', async t => {
+  const $el = await Selector('axa-table-sortable');
+  await t.expect($el.exists).ok();
+  const $columnSeven = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    return sRoot.querySelectorAll('th')[6];
+  });
+
+  const $columnSevenFirstRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[0];
+    return firstRow.querySelectorAll('td')[6];
+  });
+
+  const $columnSevenLastRow = await Selector(() => {
+    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
+    const firstRow = sRoot.querySelectorAll('tbody tr')[5];
+    return firstRow.querySelectorAll('td')[6];
+  });
+
+  await t
+    .click($columnSeven)
+    .expect($columnSeven.getAttribute('aria-sort'))
+    .eql('descending');
+  await t.expect($columnSevenFirstRow.innerText).eql('8038 Zürich');
+  await t.expect($columnSevenLastRow.innerText).eql('13469 Berlin');
+  await t
+    .click($columnSeven)
+    .expect($columnSeven.getAttribute('aria-sort'))
+    .eql('ascending');
+  await t.expect($columnSevenFirstRow.innerText).eql('13469 Berlin');
+  await t.expect($columnSevenLastRow.innerText).eql('8038 Zürich');
+});
+
 test('should sort numbers', async t => {
   const $el = await Selector('axa-table-sortable');
   await t.expect($el.exists).ok();
@@ -340,8 +374,6 @@ test('should sort also when innerscroll is set ', async t => {
     return sRoot.querySelector('.js-table');
   });
 
-  const $elChild = $el.find('table');
-
   await t.expect($elRoot.exists).ok();
   const $columnOne = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
@@ -372,11 +404,6 @@ test('should sort also when innerscroll is set ', async t => {
   await t.expect($columnOneLastRow.innerText).eql('18');
 
   await t.expect(await $el.getStyleProperty('overflow-x')).eql('auto');
-  const innerscroll = parseInt(await $el.getAttribute('innerscroll'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('width'), 10))
-    .within(innerscroll - 1, innerscroll + 1);
-
   await t
     .expect(parseInt(await $el.getStyleProperty('width'), 10))
     .within(250, 305);
@@ -390,17 +417,10 @@ test('should sort also when maxheight is set ', async t => {
   await t.resizeWindow(300, 400);
   const $elRoot = await Selector('axa-table-sortable');
 
-  const $el = await Selector(() => {
-    const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
-    return sRoot.querySelector('.js-table');
-  });
-
   const $elTableBody = await Selector(() => {
     const sRoot = document.querySelector('axa-table-sortable').shadowRoot;
     return sRoot.querySelector('.js-table tbody');
   });
-
-  const $elChild = $el.find('table');
 
   await t.expect($elRoot.exists).ok();
   const $columnOne = await Selector(() => {
@@ -432,14 +452,6 @@ test('should sort also when maxheight is set ', async t => {
   await t.expect($columnOneLastRow.innerText).eql('18');
 
   await t.expect(await $elTableBody.getStyleProperty('overflow-y')).eql('auto');
-  const innerscroll = parseInt(await $el.getAttribute('maxheight'), 10);
-  await t
-    .expect(parseInt(await $elChild.getStyleProperty('height'), 10))
-    .within(innerscroll - 60, innerscroll + 60);
-
-  await t
-    .expect(parseInt(await $el.getStyleProperty('height'), 10))
-    .within(200, 250);
 });
 
 fixture('Table Sortable - on row click').page(
@@ -465,6 +477,6 @@ test('should react to click on row', async t => {
   await t
     .expect(text.replace(/\s+/g, ' '))
     .eql(
-      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A"]'
+      'Pressed on row 0 in tbody. Inner Text is: ["55","Peter","Winterthur","22.04.2019","10.01.2020","A","8180","Bülach"]'
     );
 });
