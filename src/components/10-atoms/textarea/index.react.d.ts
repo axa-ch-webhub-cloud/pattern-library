@@ -13,6 +13,7 @@ export interface AXATextareaProps
   checkMark?: boolean;
   required?: boolean;
   disabled?: boolean;
+  readonly?: boolean;
   isReact?: boolean;
   counter?: string;
   counterError?: string;

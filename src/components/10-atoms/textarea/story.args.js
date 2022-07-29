@@ -2,6 +2,7 @@ export const args = {
   label: 'Please describe the course of events',
   checkMark: false,
   disabled: false,
+  readonly: false,
   required: false,
   invalid: false,
 };
@@ -14,6 +15,7 @@ export const argTypes = {
   error: { control: 'text' },
   checkMark: { control: 'boolean' },
   disabled: { control: 'boolean' },
+  readonly: { control: 'boolean' },
   required: { control: 'boolean' },
   invalid: { control: 'boolean' },
   counter: { control: 'text' },

@@ -28,6 +28,7 @@ export const Textarea = ({
   maxLength,
   checkMark,
   disabled,
+  readonly,
   required,
   invalid,
 }) => html`
@@ -42,6 +43,7 @@ export const Textarea = ({
     maxlength="${maxLength}"
     ?checkmark="${checkMark}"
     ?disabled="${disabled}"
+    ?readonly="${readonly}"
     ?required="${required}"
     ?invalid="${invalid}"
   ></axa-textarea>

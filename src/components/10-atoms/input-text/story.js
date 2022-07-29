@@ -37,6 +37,7 @@ export const InputText = ({
   required,
   invalid,
   autofocus,
+  readonly,
 }) => html`
   <axa-input-text
     refid="${refId}"
@@ -58,5 +59,6 @@ export const InputText = ({
     ?required="${required}"
     ?invalid="${invalid}"
     ?autofocus="${autofocus}"
+    ?readonly="${readonly}"
   ></axa-input-text>
 `;

@@ -57,6 +57,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         converter: value => value || PATTERN_DEFAULT,
       },
       autofocus: { type: Boolean },
+      readonly: { type: Boolean },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -120,7 +121,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       !(this.invalid || this.invalidFormat) &&
       this.areCharsLeft &&
       this.counter &&
-      !this.disabled
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -130,7 +132,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       this.counterMax &&
       !this.showError &&
       !this.areCharsLeft &&
-      !this.disabled
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -324,6 +327,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       isReact,
       maxLength = '',
       invalid,
+      readonly,
       invalidFormat,
       checkMark,
       isControlled,
@@ -343,6 +347,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
+      'a-input-text__input--readonly': readonly,
       'a-input-text__input--error':
         ((invalid || invalidFormat) && !disabled) || this.showCounterMax,
       'a-input-text__input--check':
@@ -380,6 +385,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   pattern="${pattern}"
                   inputmode="${inputmode}"
                   ?disabled="${disabled}"
+                  ?readonly="${readonly}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
@@ -400,6 +406,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   pattern="${pattern}"
                   inputmode="${inputmode}"
                   ?disabled="${disabled}"
+                  ?readonly="${readonly}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
