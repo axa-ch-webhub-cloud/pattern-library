@@ -74,6 +74,18 @@ describe('Accordion', () => {
       expectedAccordionContentMaxHeight > accordionContentMaxHeight
     ).toBeTruthy();
   });
+
+  it('should change text on state change', async () => {
+    await page.goto(
+      `${host}/iframe.html?id=examples-accordion-react--demo-accordion-on-state-change&viewMode=story`
+    );
+
+    await page.click('text=Test Accordion on state change');
+
+    await delay(delayTimeAnimation);
+
+    expect(await page.textContent('text=true')).toBe('true');
+  });
 });
 
 async function openAccordion() {
