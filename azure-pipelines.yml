@@ -24,7 +24,7 @@ steps:
   displayName: 'Check if there are no uncommitted files'
 
 - script: |
-    npm lint
+    npm run lint
   displayName: 'Lint and prettier check'
 
 - script: |
@@ -32,7 +32,7 @@ steps:
   displayName: 'Build static storybook'
 
 - script: |
-    npm test:ci
+    npm run test:ci
   displayName: 'Run unit and e2e tests'
 
 - script: |
