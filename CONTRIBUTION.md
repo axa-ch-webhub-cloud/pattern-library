@@ -48,17 +48,16 @@ We reuse the Pattern Lib v1 JavaScript linting settings.
 ## UI Testing
 
 - A Component should have at least a smoke test
-- Test file name: `pw.ui.test.js`
+- Test file name: `e2e.js`
 
 ```js
-// React smoke test
-fixture('Button').page(`${host}/iframe.html?id=your-component-page`);
-test('should render a button as reactified component', async t => {
-  const button = await Selector(() =>
-    document.querySelector(`axa-button[data-test-id="button"]`)
-  );
-  await t.expect(button.exists).ok();
-});
+test.describe('button', () => {
+  test('should render', async ({ page }) => {
+    await page.goto(fixtureURL('your-component-page'));
+    
+    expect(page.locator('text="Login"').isVisible());
+  })
+})
 ```
 
 ## Unit Testing
