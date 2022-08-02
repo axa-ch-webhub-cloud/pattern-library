@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/input-phone",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "The input-phone component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/input-phone#readme",
@@ -26,8 +26,8 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/dropdown": "11.0.2",
-    "@axa-ch/input-text": "6.0.2",
+    "@axa-ch/dropdown": "11.0.3",
+    "@axa-ch/input-text": "6.1.0",
     "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }
