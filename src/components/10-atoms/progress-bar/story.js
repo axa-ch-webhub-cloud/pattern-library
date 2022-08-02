@@ -17,7 +17,7 @@ export default {
     noBorderRadius: false,
     value: '32',
     max: '',
-    progressText: '',
+    text: '',
   },
   argsTypes: {
     small: {
@@ -32,7 +32,7 @@ export default {
     max: {
       control: 'text',
     },
-    progressText: {
+    text: {
       control: 'text',
     },
   },
@@ -42,13 +42,13 @@ export const ProgressBar = ({
   noBorderRadius,
   value,
   max,
-  progressText,
+  text,
 }) => html`
   <axa-progress-bar
     ?small=${small}
     ?noborderradius=${noBorderRadius}
     value=${value}
     max=${max}
-    text=${progressText}
+    text=${text}
   ></axa-progress-bar>
 `;
