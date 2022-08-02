@@ -12,6 +12,8 @@ storybook-static
 logs
 *.log
 npm-debug.log*
+playwright-report
+test-results
 
 # Environment
 .env
@@ -30,3 +32,4 @@ node_modules
 
 .DS_Store
 .coverage
+/playwright/.cache/
