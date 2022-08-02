@@ -55,15 +55,6 @@ test('input element should have correct html attributes', async t => {
   await t.expect($axaInputElement.getAttribute('pattern')).eql('.*'); // const PATTERN_DEFAULT @ index.js
 });
 
-fixture('Input text - Form').page(
-  `${host}/iframe.html?args=&id=examples-input-text-pure-html--in-a-form&viewMode=story`
-);
-
-test('should render label', async t => {
-  const $axaLabel = await Selector('.a-input-text__label');
-  await t.expect($axaLabel.exists).ok();
-});
-
 fixture('Input text - Max Length').page(
   `${host}/iframe.html?args=checkMark:true;maxLength:5&id=components-input-text--input-text&viewMode=story`
 );
