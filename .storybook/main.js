@@ -3,12 +3,15 @@ const fs = require('fs');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
 
-require('dotenv-extended').load();
-
 const base = path.resolve(process.cwd(), 'src');
 
 // Global Import SCSS Materials -> SCSS Materials as they are always a dependency.
-const globals = require(path.resolve(__dirname, '..', 'config', 'globals.js'))
+const globals = [
+  'components/00-materials/styles/variables.scss',
+  'components/00-materials/styles/00-colors.scss',
+  'components/00-materials/styles/20-animations.scss',
+  'components/00-materials/styles/typography.scss',
+]
   .map(item => `@import '${base}/${item}';`)
   .join('\n')
   .replace(/\\/g, '/'); // use '/' dir seps on win32, to satisfy sass-loader/LibSass; otherwise crash

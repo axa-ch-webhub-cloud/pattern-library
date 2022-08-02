@@ -6,7 +6,12 @@ const { resolve: pathResolve } = require('path');
 
 const base = pathResolve(__dirname, '../../src').replace(/\\/g, '/');
 
-const globalSassImports = require('../../config/globals.js')
+const globalSassImports = [
+  'components/00-materials/styles/variables.scss',
+  'components/00-materials/styles/00-colors.scss',
+  'components/00-materials/styles/20-animations.scss',
+  'components/00-materials/styles/typography.scss',
+]
   .map(item => {
     return `@import '${base}/${item}';`;
   })
