@@ -15,7 +15,7 @@ test.describe('datepicker', () => {
       const formDataDate = await page.textContent('#form-data-date');
       expect(
         formDataDate === '29.2.2020 (of 1 submittable elements)' ||
-        formDataDate === "'29.02.2020 (of 1 submittable elements)'"
+          formDataDate === "'29.02.2020 (of 1 submittable elements)'"
       ).toBeTruthy();
     });
 
