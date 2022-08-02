@@ -72,7 +72,10 @@ test.describe('accordion', () => {
     const getContentMaxHeight = async () =>
       content.evaluate(el => window.getComputedStyle(el).maxHeight);
 
-    const delay = time => new Promise(resolve => setTimeout(resolve, time));
+    const delay = time =>
+      new Promise(resolve => {
+        setTimeout(resolve, time);
+      });
 
     const contentMaxHeight = await getContentMaxHeight();
     await page.setViewportSize({ width: 500, height: 500 });
