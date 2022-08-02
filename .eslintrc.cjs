@@ -5,7 +5,6 @@ module.exports = {
   plugins: ['import', 'prettier'],
   env: {
     browser: true,
-    jest: true,
   },
   rules: {
     'arrow-body-style': 'off',
