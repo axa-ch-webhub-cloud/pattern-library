@@ -24,12 +24,16 @@ steps:
   displayName: 'Check if there are no uncommitted files'
 
 - script: |
-    npm test
-  displayName: 'Test'
+    npm lint
+  displayName: 'Lint and prettier check'
 
 - script: |
     npm run build-storybook
   displayName: 'Build static storybook'
+
+- script: |
+    npm test:ci
+  displayName: 'Run unit and e2e tests'
 
 - script: |
     git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh
