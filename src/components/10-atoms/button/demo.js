@@ -2,9 +2,10 @@ import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../input-text/index';
 
 export default {
-  title: 'Examples/Button/Pure HTML',
+  title: 'Examples/Button',
   parameters: {
     readme,
     usage: { disable: true },
@@ -28,42 +29,76 @@ export const Clickable = () => {
   return btn;
 };
 
-export const InAForm = () => {
-  let count = 0;
+export const Form = () => {
   const handleSubmit = ev => {
-    const { target } = ev;
     ev.preventDefault();
-    count += 1;
+    document.getElementById('form-data-details').open = true;
+    const $inputDemoForm = document.getElementById('input-demo-form');
+    const formData = new FormData($inputDemoForm);
 
-    const el = target.nodeName === 'AXA-BUTTON' ? target : target.parentNode;
-    // this code is for test purposes. Its ok to write it as is only a demo
-    // It also make sure the structure of the DOM is correct with the fake button
-    el.dataset.count = count;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const pair of formData.entries()) {
+      const container = document.createElement('span');
+      container.textContent = `${pair[0]}: ${pair[1]}`;
+      container.id = `${pair[0]}-id`;
+      document.getElementById('form-data').appendChild(container);
+    }
   };
 
   return html`
-    <div>
-      <form>
-        <axa-button type="submit">Click me, I send you to Nirvana</axa-button>
-      </form>
+    <form id="input-demo-form" @submit="${handleSubmit}">
+      <fieldset>
+        <legend>input text types - work in forms</legend>
+        <axa-input-text
+          refId="default"
+          required
+          label="Default Label"
+          name="default"
+        >
+        </axa-input-text>
+        <axa-input-text
+          refId="email"
+          required
+          type="email"
+          name="email"
+          label="Email Label"
+        >
+        </axa-input-text>
+        <axa-input-text
+          refId="password"
+          required
+          label="Password Label"
+          name="password"
+          type="password"
+        >
+        </axa-input-text>
+        <div style="margin-top: 1rem">
+          <axa-button id="submit" type="submit">submit</axa-button>
+        </div>
+        <details
+          id="form-data-details"
+          style="display: inline-block; margin-top: 1rem;"
+        >
+          <summary
+            style="background:rgb(0,0,143);color:#fff;padding:11px;font-family:sans-serif;outline:none"
+          >
+            form content
+          </summary>
+          <div
+            id="form-data"
+            style="display: flex; flex-direction: column; margin-top: 10px"
+          ></div>
+        </details>
+      </fieldset>
+    </form>
+    <form>
       <p>
-        I&apos;m type submit Button in a form, on click I stop submit event for
-        you for example you can validate me
+        I&apos;m type reset Button in a form, if you type something - on click I
+        should reset the input
       </p>
-      <form @click="${handleSubmit}">
-        <axa-button class="js-submit-prevent" type="submit">
-          Click me I prevent submit
-        </axa-button>
-      </form>
-      <form>
-        <p>
-          I&apos;m type reset Button in a form, if you type something - on click
-          I should reset the input
-        </p>
-        <input type="text" />
-        <axa-button type="reset">Reset Input</axa-button>
-      </form>
-    </div>
+      <input type="text" />
+      <axa-button type="reset">Reset Input</axa-button>
+    </form>
   `;
 };
 
