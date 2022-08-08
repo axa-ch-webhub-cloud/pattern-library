@@ -9,8 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-# container: mcr.microsoft.com/playwright:v1.24.0-focal
-
 steps:
 - task: NodeTool@0
   inputs:
