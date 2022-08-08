@@ -17,7 +17,7 @@
     "start-storybook-static": "http-server storybook-static -s -p 9999",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore && prettier --check .",
     "test": "vitest run && npm run test-ui",
-    "test:ci": "vitest run && cross-env TEST_HOST_STORYBOOK_URL=http://localhost:9999 sh scripts/ui-test-runner.sh",
+    "test:ci": "vitest run && node scripts/ui-test-runner.js",
     "test-unit": "vitest",
     "test-playwright": "cross-env SB_URL=http://localhost:6006 playwright test",
     "test-playwright-debug": "cross-env PWDEBUG=1 SB_URL==http://localhost:6006 playwright test --debug",
