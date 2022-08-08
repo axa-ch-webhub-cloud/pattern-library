@@ -22,10 +22,6 @@ steps:
   displayName: 'Install (with build included)'
 
 - script: |
-    npx playwright install-deps chromium
-  displayName: 'Install playwright deps'
-
-- script: |
     npm run check-for-uncommitted-files
   displayName: 'Check if there are no uncommitted files'
 
