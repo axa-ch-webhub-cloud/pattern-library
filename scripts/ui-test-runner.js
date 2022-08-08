@@ -4,7 +4,7 @@ const path = require('path');
 
 // testcafe cannot manage more than 6 instances.
 const numCpus = os.cpus().length > 6 ? 6 : os.cpus().length;
-const RUN_TESTCAFE = `cross-env TEST_HOST_STORYBOOK_URL=http://localhost:9999 npx testcafe -c ${numCpus} "chrome:headless" -q ./**/ui.test.js`;
+const RUN_TESTCAFE = `cross-env TEST_HOST_STORYBOOK_URL=http://localhost:9999 testcafe -c ${numCpus} "chrome:headless" -q ./**/ui.test.js`;
 const RUN_PLAYWRIGHT = 'cross-env SB_URL=http://localhost:9999 playwright test';
 
 const sbStaticPath = path.resolve(__dirname, '../storybook-static');
