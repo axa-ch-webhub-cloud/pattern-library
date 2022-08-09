@@ -1,17 +1,7 @@
-const host = process.env.TEST_HOST_STORYBOOK_URL;
-const tag = 'axa-input-phone';
+import { expect, test } from '@playwright/test';
+import { fixtureURL } from '../../../utils/e2e-helpers';
+
 const validPhoneNumber = '795213848';
-
-let hostElement;
-
-const selectGermany = async () => {
-  return page.evaluate(evaluateTag => {
-    document
-      .querySelector(evaluateTag)
-      .shadowRoot.querySelector('[data-value="+49"]')
-      .click();
-  }, tag);
-};
 
 /* TODO #2299
 const selectNthCountry = async n => {
@@ -26,74 +16,71 @@ const selectNthCountry = async n => {
 };
 */
 
-const writePhoneNumber = async number => {
-  return page.fill('.a-input-text__input', number);
-};
-
-const assertInvalidAndErrorMessageShown = async () => {
-  expect(await hostElement.getAttribute('invalid')).toBe('');
+const assertInvalidAndErrorMessageShown = async page => {
+  expect(await page.locator('axa-input-phone').getAttribute('invalid')).toBe(
+    ''
+  );
   expect(await page.isVisible('.m-input-phone__error')).toBeTruthy();
 };
 
-const assertValidComponent = async () => {
-  expect(await hostElement.getAttribute('invalid')).toBe(null);
+const assertValidComponent = async page => {
+  expect(await page.locator('axa-input-phone').getAttribute('invalid')).toBe(
+    null
+  );
   expect(await page.isVisible('.m-input-phone__error')).not.toBeTruthy();
 };
 
-const assertChangeValue = async phoneNumber => {
+const assertChangeValue = async (page, phoneNumber) => {
   expect(await page.textContent('#inputtext-react-testoutput')).toBe(
     `Entered phone number (onChange): ${phoneNumber}`
   );
 };
 
-describe('Input Phone', () => {
-  it('should accept a valid phone number', async () => {
-    await page.goto(
-      `${host}/iframe.html?args=&id=components--input-phone&viewMode=story`
-    );
-    hostElement = await page.waitForSelector(tag);
+test.describe('input-phone', () => {
+  test('should accept a valid phone number', async ({ page }) => {
+    await page.goto(fixtureURL('components--input-phone'));
+
     await page.click('.js-dropdown__toggle');
     await page.waitForSelector('.m-dropdown__content');
 
-    await selectGermany();
-    await writePhoneNumber(validPhoneNumber);
-    await assertValidComponent();
+    await page.locator('button[data-value="+49"]').click();
+    await page.fill('.a-input-text__input', validPhoneNumber);
+    await assertValidComponent(page);
 
-    await writePhoneNumber('79 521 38 48');
-    await assertValidComponent();
+    await page.fill('.a-input-text__input', '79 521 38 48');
+    await assertValidComponent(page);
   });
 
-  it('should deny invalid inserted phone numbers', async () => {
-    await page.goto(
-      `${host}/iframe.html?args=&id=components--input-phone&viewMode=story`
-    );
-    hostElement = await page.waitForSelector(tag);
+  test('should deny invalid inserted phone numbers', async ({ page }) => {
+    await page.goto(fixtureURL('components--input-phone'));
 
-    await writePhoneNumber('a');
-    await assertInvalidAndErrorMessageShown();
+    await page.fill('.a-input-text__input', 'a');
+    await assertInvalidAndErrorMessageShown(page);
 
-    await writePhoneNumber(validPhoneNumber);
-    await assertValidComponent();
+    await page.fill('.a-input-text__input', validPhoneNumber);
+    await assertValidComponent(page);
 
-    await writePhoneNumber(`0${validPhoneNumber}`);
-    await assertInvalidAndErrorMessageShown();
+    await page.fill('.a-input-text__input', `0${validPhoneNumber}`);
+    await assertInvalidAndErrorMessageShown(page);
 
-    await writePhoneNumber(`${validPhoneNumber}12345`);
-    await assertInvalidAndErrorMessageShown();
+    await page.fill('.a-input-text__input', `${validPhoneNumber}12345`);
+    await assertInvalidAndErrorMessageShown(page);
   });
 
-  it('should work with the onChange property', async () => {
+  test('should work with the onChange property', async ({ page }) => {
     await page.goto(
-      `${host}/iframe.html?id=examples-input-phone-react--input-phone-controlled-uncontrolled&viewMode=story`
+      fixtureURL(
+        'examples-input-phone-react--input-phone-controlled-uncontrolled'
+      )
     );
-    hostElement = await page.waitForSelector(tag);
+
     // we initially expect the default value of the React demo
-    await assertChangeValue('795002020');
+    await assertChangeValue(page, '795002020');
 
-    await writePhoneNumber(validPhoneNumber);
-    await assertValidComponent();
+    await page.fill('.a-input-text__input', validPhoneNumber);
+    await assertValidComponent(page);
 
-    await assertChangeValue(`+43 ${validPhoneNumber}`);
+    await assertChangeValue(page, `+43 ${validPhoneNumber}`);
   });
 
   /* TODO #2299

@@ -5,7 +5,6 @@ module.exports = {
   plugins: ['import', 'prettier'],
   env: {
     browser: true,
-    jest: true,
   },
   rules: {
     'arrow-body-style': 'off',
@@ -40,6 +39,7 @@ module.exports = {
         devDependencies: [
           'scripts/**',
           'rollup.config.js',
+          'playwright.config.js',
           '**/story.{js,jsx}',
           '**/demo.{js,jsx}',
           '**/react/*.{js,jsx}',
@@ -47,6 +47,7 @@ module.exports = {
           '**/src/**/*.react.js',
           '**/demo/**',
           '**/ui.test.js',
+          '**/e2e.js',
           '**/unit.test.{js,jsx}',
           '**/*test.accessor.js',
           '**/*ui.test.js',

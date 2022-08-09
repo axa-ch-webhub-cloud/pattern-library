@@ -57,7 +57,7 @@ class AXAProgressBar extends LitElement {
     };
 
     return html`
-      <article>
+      <article class="a-progress-bar">
         <div class="a-progress-bar__border ${classMap(classesBorder)}">
           <div
             class="a-progress-bar__loader ${classMap(classesLoader)}"

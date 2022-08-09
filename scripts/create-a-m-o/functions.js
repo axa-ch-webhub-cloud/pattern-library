@@ -284,22 +284,18 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
-    `${BASE_FOLDER}/pw.ui.test.js`,
+    `${BASE_FOLDER}/e2e.js`,
     outdent`
-const host = process.env.TEST_HOST_STORYBOOK_URL;
-const tag = 'axa-${fileName}';
+import { expect, test } from '@playwright/test';
+import { fixtureURL } from '../../../utils/e2e-helpers';
 
-describe('${compTitle}', () => {
-  it('should render component', async () => {
-    await page.goto(
-      \`\${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story\`
-    );
-    await page.waitForSelector(tag);
-    const visible = await page.isVisible(tag);
-    expect(visible).toBeTruthy();
+test.describe('${compTitle}', () => {
+  test('should render', async ({ page }) => {
+    await page.goto(fixtureURL('components-${fileName}--${fileName}'));
+  
+    expect(page.locator('axa-${fileName}').isVisible());
   });
 });
-
     `,
     'utf8'
   );
