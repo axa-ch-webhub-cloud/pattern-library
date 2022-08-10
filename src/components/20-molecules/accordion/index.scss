@@ -1,96 +1,90 @@
-.m-accordion {
+:host {
   display: block;
+}
 
-  &__container {
-    border-bottom: solid 1px $color-silver;
-  }
+:host(:first-of-type) {
+  border-top: 1px solid $color-silver;
+  box-sizing: border-box;
+}
+
+.m-accordion {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1px;
+  border-bottom: solid 1px $color-silver;
+  box-sizing: border-box;
 
   &__title {
     display: block;
-    @include text(t1);
-
-    margin: auto 0;
+    @include text(t1, semibold);
 
     &--small {
       @include text(t3, semibold);
     }
   }
 
-  &__title-container {
+  &__icon {
+    margin-right: $spacing-3;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__icon-expand {
+    margin-left: $spacing-3;
+  }
+
+  &__button-flex-wrapper {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 16px 4px;
+  }
+
+  &__button-title-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button {
+    display: block;
+    border: none;
+    text-align: left;
+    background-color: $color-prim-white;
+    padding: $spacing-4 $spacing-1;
+    width: 100%;
     box-sizing: border-box;
-    cursor: pointer;
     color: $color-axa-blue;
-
-    &--closed {
-      margin: auto 0 auto 12px;
-      width: 24px;
-      height: 24px;
-    }
-
-    &-title {
-      display: flex;
-
-      &-icon {
-        margin: auto 12px auto 0;
-        width: 48px;
-        height: 48px;
-
-        &--hidden {
-          display: none;
-        }
-
-        svg {
-          width: 48px;
-          height: 48px;
-        }
-      }
-    }
 
     &:hover {
       background-color: rgba($color-axa-blue, 0.2);
     }
 
-    &:focus {
-      border: 2px solid $color-axa-blue;
-      margin: -2px;
+    &:focus,
+    &:active {
+      background-color: rgba($color-axa-blue, 0.2);
+      box-shadow: 0 0 0 2px $color-axa-blue;
       outline: none;
     }
 
-    &:active {
-      background-color: rgba($color-axa-blue, 0.2);
-      border: 2px solid $color-axa-blue;
-      margin: -2px;
-    }
-
-    &--disabled {
-      cursor: not-allowed;
+    &:disabled {
       color: $color-silver;
-
-      &:hover {
-        background-color: transparent;
-      }
-
-      &:active {
-        border: none;
-        margin: 0;
-      }
+      background-color: $color-prim-white;
+      box-shadow: none;
     }
   }
 
   &__content {
     overflow: hidden;
-    max-height: 0;
-    margin: auto;
-
+    height: 0;
+    transition: height $transition-medium-colapsing $standard-easing;
     color: $color-dark-grey;
-    transition: max-height $transition-medium-colapsing $standard-easing;
 
     &--open {
-      margin: 0 0 16px;
-      transition: max-height $transition-medium-expanding $standard-easing;
+      height: auto;
+      margin-top: $spacing-1;
+      margin-bottom: $spacing-4;
     }
   }
 }
