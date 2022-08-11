@@ -52,7 +52,7 @@ test('should render axa-button top-content-bar', async t => {
   await t.expect($axaElemBtn.getAttribute('variant')).eql('inverted');
 });
 
-test('should render axa-button-link top-content-bar', async t => {
+test('should render axa-button top-content-bar', async t => {
   const setButton = ClientFunction(() => {
     document.querySelector('axa-top-content-bar').ctatext = 'Click';
     document.querySelector('axa-top-content-bar').href = 'http://www.axa.ch';

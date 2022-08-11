@@ -55,12 +55,12 @@ export const CommercialHeroBanner = ({ variant, imageSource }) =>
 
         <small slot="disclaimer">Terms and Conditions apply.</small>
 
-        <axa-button-link
+        <axa-button
           href="https://axa.ch"
           slot="button"
           variant="red"
           size="large"
-          >GET A QUOTE</axa-button-link
+          >GET A QUOTE</axa-button
         >
       </axa-commercial-hero-banner>
     </div>

@@ -36,14 +36,14 @@ class PLCallout extends LitElement {
           <p class="callout__text">${text}</p>
         </div>
         <div class="callout__col">
-          <axa-button-link
+          <axa-button
             style="width: 100%;"
             size="large"
             href="${link}"
             external=""
           >
             ${linkText}
-          </axa-button-link>
+          </axa-button>
         </div>
       </div>
     `;

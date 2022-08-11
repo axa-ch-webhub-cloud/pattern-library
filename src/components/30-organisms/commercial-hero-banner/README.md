@@ -66,14 +66,14 @@ Here is a complete example of how you can make use of it, including the position
     </div>
   </div>
   <small slot="disclaimer">Terms and Conditions apply.</small>
-  <axa-button-link
+  <axa-button
     href="https://axa.ch"
     slot="button"
     variant="red"
     size="large"
   >
     GET A QUOTE
-  </axa-button-link>
+  </axa-button>
 
   <div slot="addon-section">
     <div class="o-commercial-hero-banner-demo__badge-wrapper">
