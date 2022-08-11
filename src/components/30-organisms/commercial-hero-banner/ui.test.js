@@ -203,9 +203,7 @@ test('should set correct width for button', async t => {
     () => document.querySelector('axa-button').shadowRoot
   );
 
-  const $axaButtonShadowElement = await $axaButtonShadow.find(
-    '.a-button-link'
-  );
+  const $axaButtonShadowElement = await $axaButtonShadow.find('.a-button');
 
   const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
     const element = selector();
