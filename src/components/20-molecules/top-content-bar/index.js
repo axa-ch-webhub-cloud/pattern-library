@@ -50,11 +50,7 @@ class AXATopContentBar extends InlineStyles {
     super();
     applyDefaults(this);
 
-    defineVersioned(
-      [AXAButton, AXAButtonLink, AXAContainer, AXAIcon],
-      __VERSION_INFO__,
-      this
-    );
+    defineVersioned([AXAButton, AXAContainer, AXAIcon], __VERSION_INFO__, this);
   }
 
   onClose() {
