@@ -76,7 +76,7 @@ class AXAModal extends InlineStyles {
               `
             : ''}
           <div class="${classMap(contentClasses)}">
-            ${noheader
+            ${noheader && !forced
               ? html`
                   <button
                     class="o-modal__upper-close-container-button"
