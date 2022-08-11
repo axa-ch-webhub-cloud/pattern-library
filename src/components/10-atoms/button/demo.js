@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
 import '../input-text/index';
+import './index';
 
 export default {
   title: 'Examples/Button',
@@ -14,16 +14,13 @@ export default {
   },
 };
 
-export const IconVisible = () =>
-  '<axa-button icon="arrow-right">Next step</axa-button>';
-
 export const Clickable = () => {
   const btn = document.createElement('axa-button');
   let counter = 0;
-  btn.innerHTML = `You clicked me: ${counter}, btw my event name is click`;
+  btn.innerHTML = `counter: ${counter}`;
   btn.addEventListener('click', () => {
     counter += 1;
-    btn.innerHTML = `You clicked me: ${counter} times, btw my event name is click`;
+    btn.innerHTML = `counter: ${counter}`;
   });
 
   return btn;
@@ -32,6 +29,7 @@ export const Clickable = () => {
 export const Form = () => {
   const handleSubmit = ev => {
     ev.preventDefault();
+
     document.getElementById('form-data-details').open = true;
     const $inputDemoForm = document.getElementById('input-demo-form');
     const formData = new FormData($inputDemoForm);
@@ -73,7 +71,9 @@ export const Form = () => {
         >
         </axa-input-text>
         <div style="margin-top: 1rem">
-          <axa-button id="submit" type="submit">submit</axa-button>
+          <axa-button id="submit" type="submit"
+            >submit</axa-button
+          >
         </div>
         <details
           id="form-data-details"
@@ -101,19 +101,3 @@ export const Form = () => {
     </form>
   `;
 };
-
-export const CssWidth = () =>
-  '<axa-button variant="red" style="width: 100%">This red button has "width: 100%"</axa-button>' +
-  '<axa-text>You can simply set width by setting css width.</axa-text>';
-
-export const SideBySide = () => html`
-  <div style="display: flex">
-    <axa-button variant="red" style="width: 20%">
-      This button has "width: 20%"
-    </axa-button>
-    <axa-button style="width: 500px">
-      This button has "width: 500px"
-    </axa-button>
-  </div>
-  <axa-text>Place two buttons side by side with flexbox.</axa-text>
-`;
