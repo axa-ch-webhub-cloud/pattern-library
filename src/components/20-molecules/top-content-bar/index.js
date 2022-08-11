@@ -2,7 +2,6 @@ import { css, html, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import AXAContainer from '@axa-ch/container';
 import AXAButton from '@axa-ch/button';
-import AXAButtonLink from '@axa-ch/button-link';
 import AXAIcon from '@axa-ch/icon';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
@@ -82,7 +81,7 @@ class AXATopContentBar extends InlineStyles {
 
     if (href && ctatext) {
       return versionedHtml(this)`
-        <axa-button-link
+        <axa-button
           class="m-top-content-bar__button-link js-button-link"
           href="${href}"
           @click="${ev => {
@@ -95,7 +94,7 @@ class AXATopContentBar extends InlineStyles {
           size="small"
         >
           ${ctatext}
-        </axa-button-link>
+        </axa-button>
       `;
     }
     if (ctatext) {
