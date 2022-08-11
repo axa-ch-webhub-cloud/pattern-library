@@ -5,7 +5,7 @@ If you need a link with button styling, use [axa-button-link](https://github.com
 
 ## Properties
 
-### Variant
+### variant
 
 | Attribute                           | Details                            |
 | ----------------------------------- | ---------------------------------- |
@@ -18,7 +18,7 @@ If you need a link with button styling, use [axa-button-link](https://github.com
 | `variant="inverted-green-viridian"` | Button inverted green viridian     |
 | `variant="inverted-blue-teal"`      | Button inverted inverted blue teal |
 
-### Type
+### type
 
 | Attribute       | Details                                  |
 | --------------- | ---------------------------------------- |
@@ -26,7 +26,7 @@ If you need a link with button styling, use [axa-button-link](https://github.com
 | `type="submit"` | Submit button submit for forms           |
 | `type="reset"`  | Reset button for forms                   |
 
-### Size
+### size
 
 | Attribute      | Details                    |
 | -------------- | -------------------------- |
@@ -45,6 +45,14 @@ The Boolean attribute `disabled` disables the button natively.
 ### icon
 
 Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+
+### href
+
+The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
+
+### external
+
+The Boolean attribute `external` adds the `target="_blank"` functionality.
 
 ### onClick
 
