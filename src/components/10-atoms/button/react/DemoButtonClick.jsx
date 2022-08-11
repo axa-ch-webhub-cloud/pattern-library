@@ -11,9 +11,7 @@ const DemoButtonClick = () => {
   return (
     <div>
       <p>With the react wrapper - callback props are possible!</p>
-      <AXAButton onClick={handleClick}>
-        counter: {counter}
-      </AXAButton>
+      <AXAButton onClick={handleClick}>counter: {counter}</AXAButton>
     </div>
   );
 };

@@ -71,9 +71,7 @@ export const Form = () => {
         >
         </axa-input-text>
         <div style="margin-top: 1rem">
-          <axa-button id="submit" type="submit"
-            >submit</axa-button
-          >
+          <axa-button id="submit" type="submit">submit</axa-button>
         </div>
         <details
           id="form-data-details"

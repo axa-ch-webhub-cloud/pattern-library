@@ -15,10 +15,9 @@ test.describe('button: form', () => {
 
     await page.locator('#submit').click();
 
-    await expect(page.locator('#form-data span')).toHaveText([
-      `default: ${defaultText}`,
-      `email: ${emailText}`,
-      `password: ${pwText}`,
-    ], { timeout: 1000 });
+    await expect(page.locator('#form-data span')).toHaveText(
+      [`default: ${defaultText}`, `email: ${emailText}`, `password: ${pwText}`],
+      { timeout: 1000 }
+    );
   });
 });
