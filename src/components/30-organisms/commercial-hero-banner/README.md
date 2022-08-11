@@ -22,7 +22,7 @@ The commercial hero banner is a component to set something into the focus of the
   <p slot="content">...</p> // You can put multiple <p> elements with the 'content' slot
   <div slot="content" class="checkmarks">...</div> //  Either p[slot=content] or div[slot=content] can be added, not both
   <small slot="disclaimer">...</small> // Only one disclaimer
-  <axa-button-link slot="button" /> // Can also be 'axa-button', meant as CTA (Call to Action)
+  <axa-button slot="button" /> // meant as CTA (Call to Action)
   <slot name="addon-section"></slot> // Any DOM node, positioning and styling is the responsibility of the user
 </axa-commercial-hero-banner>
 ```
