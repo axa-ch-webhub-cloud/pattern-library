@@ -1,3 +1,7 @@
+## 8.1.0
+
+Add `href` to render button link and `external` 
+
 ## 8.0.1
 
 Fix: Remove IE hacks. #2107
