@@ -23,7 +23,7 @@ export const InputFile = _args =>
       style={
         _args.variant.includes('inverted')
           ? { backgroundColor: '#00008f', padding: '10px' }
-          : ''
+          : {}
       }
     >
       <AXAInputFileReact
