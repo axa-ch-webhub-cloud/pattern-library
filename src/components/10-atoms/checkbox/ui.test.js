@@ -41,7 +41,7 @@ test('should style unchecked checkbox-icon inner box correctly', async t => {
 
   await setProperties();
   await t
-    .wait(50)
+    .wait(100)
     .expect(await getIconBackgroundColor())
     .eql('rgba(0, 0, 0, 0)');
 });
