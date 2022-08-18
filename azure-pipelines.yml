@@ -17,7 +17,11 @@ steps:
 
 - script: |
     npm ci
-  displayName: 'Install (with build included)'
+  displayName: 'Install (with lib build included)'
+
+- script: |
+    npm run build-dist
+  displayName: 'Build Dist'
 
 - script: |
     npm run check-for-uncommitted-files
