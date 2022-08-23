@@ -1,11 +1,10 @@
 # AXA Button
 
-Buttons provide a clickable element, which can be used in forms, or anywhere else where simple, standard call-to-action functionality is needed. They may display text, icons, or both. Buttons can be styled via several properties to change their look-and-feel.
-If you need a link with button styling, use [axa-button-link](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/button-link/README.md) instead.
+Buttons provide a clickable element, which can be used in forms, or anywhere else where simple, standard call-to-action functionality is needed also provide link functionality. They may display text, icons, or both. Buttons can be styled via several properties to change their look-and-feel.
 
 ## Properties
 
-### Variant
+### variant
 
 | Attribute                           | Details                            |
 | ----------------------------------- | ---------------------------------- |
@@ -18,7 +17,7 @@ If you need a link with button styling, use [axa-button-link](https://github.com
 | `variant="inverted-green-viridian"` | Button inverted green viridian     |
 | `variant="inverted-blue-teal"`      | Button inverted inverted blue teal |
 
-### Type
+### type
 
 | Attribute       | Details                                  |
 | --------------- | ---------------------------------------- |
@@ -26,7 +25,7 @@ If you need a link with button styling, use [axa-button-link](https://github.com
 | `type="submit"` | Submit button submit for forms           |
 | `type="reset"`  | Reset button for forms                   |
 
-### Size
+### size
 
 | Attribute      | Details                    |
 | -------------- | -------------------------- |
@@ -45,6 +44,14 @@ The Boolean attribute `disabled` disables the button natively.
 ### icon
 
 Based on the string-valued attribute `icon`, interpreted as icon name, an icon will be rendered. To see the full list of possible icons, see the [axa-icon](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/icon/README.md) README.
+
+### href
+
+The string-valued attribute `href` is used like in a native &lt;a&gt; hyperlink.
+
+### external
+
+The Boolean attribute `external` adds the `target="_blank"` functionality.
 
 ### onClick
 
