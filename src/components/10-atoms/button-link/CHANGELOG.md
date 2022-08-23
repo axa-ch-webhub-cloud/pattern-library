@@ -1,3 +1,6 @@
+## 8.0.0 
+- Button link exists only to remain backward compatible and is a copy of button
+
 ## 7.0.1
 
 - Fix bug preventing height adaptation with long texts and externally restricted width. #2234
