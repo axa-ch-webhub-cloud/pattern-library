@@ -25,6 +25,8 @@ export interface AXAButtonProps
   className?: string;
   slot?: string;
   children?: React.ReactNode;
+  href?: string;
+  external?: boolean;
 }
 
 declare function createAXAButton(

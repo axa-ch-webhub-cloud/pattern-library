@@ -1,4 +1,4 @@
-import { html, css, unsafeCSS } from 'lit';
+import { html, css, unsafeCSS, LitElement } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
 import AXAIcon from '@axa-ch/icon';
@@ -9,12 +9,10 @@ import {
   versionedHtml,
 } from '../../../utils/component-versioning';
 import buttonCSS from './index.scss';
-import childStyles from './child.scss';
-import InlineStyles from '../../../utils/inline-styles';
 
 const ARROW_RIGHT = 'arrow-right';
 
-class AXAButton extends InlineStyles {
+class AXAButton extends LitElement {
   static get tagName() {
     return 'axa-button';
   }
@@ -23,12 +21,6 @@ class AXAButton extends InlineStyles {
     return css`
       ${unsafeCSS(buttonCSS)}
     `;
-  }
-
-  // Parent class InlineStyles needs a static method to retrive styles
-  // name of such method is passed when calling: this.inlineStyles('resetHeadingCss');
-  static get blockMouseEventsCss() {
-    return childStyles;
   }
 
   static get properties() {
@@ -41,6 +33,8 @@ class AXAButton extends InlineStyles {
       size: { type: String },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
+      href: { type: String },
+      external: { type: Boolean },
       onClick: { type: Function, attribute: false },
     };
   }
@@ -95,21 +89,11 @@ class AXAButton extends InlineStyles {
   }
 
   firstUpdated() {
-    this.inlineStyles('blockMouseEventsCss');
-
-    const { style } = this;
-
     // shadow dom submit btn workaround
     // only use fakeButton when shadowDom is natively supported
     if (this.isTypeSubmitOrReset) {
       this.attachFakeButton();
     }
-
-    style.appearance = 'none';
-    style.mozAppearance = 'none';
-    style.webkitAppearance = 'none';
-    style.msAppearance = 'none';
-    style.oAppearance = 'none';
 
     if (typeof this.onclick === 'function') {
       // cache original event so that we can fire it when internal button is pressed
@@ -158,6 +142,8 @@ class AXAButton extends InlineStyles {
       variant = '',
       icon = '',
       size = '',
+      href,
+      external,
     } = this;
 
     const classes = {
@@ -176,6 +162,32 @@ class AXAButton extends InlineStyles {
       'a-button--inverted-blue-teal': variant === 'inverted-blue-teal',
     };
 
+    const renderContent = () => html`<span class="a-button__flex-wrapper">
+      ${this.showIcon
+        ? versionedHtml(
+            this
+          )`<axa-icon class="a-button__icon" icon="${icon}"></axa-icon> `
+        : ''}
+      <slot></slot>
+      ${this.showArrow
+        ? versionedHtml(
+            this
+          )`<axa-icon class="a-button__arrow" icon="arrow-right"></axa-icon>`
+        : html``}
+    </span>`;
+
+    if (this.href) {
+      return html`<a
+        class="${classMap(classes)}"
+        href="${href}"
+        target="${external ? '_blank' : '_top'}"
+        rel="${external ? 'noreferrer noopener' : ''}"
+        aria-disabled="${disabled}"
+        @click="${this.onClick}"
+        >${renderContent()}</a
+      >`;
+    }
+
     return html`
       <button
         type="${type}"
@@ -183,19 +195,7 @@ class AXAButton extends InlineStyles {
         ?disabled="${disabled}"
         @click="${this.handleClick}"
       >
-        <span class="a-button__flex-wrapper">
-          ${this.showIcon
-            ? versionedHtml(this)`
-                <axa-icon class="a-button__icon" icon="${icon}"></axa-icon>
-              `
-            : ''}
-          <slot></slot>
-          ${this.showArrow
-            ? versionedHtml(this)`
-                <axa-icon class="a-button__arrow js-button__arrow" icon="arrow-right"></axa-icon>
-              `
-            : ''}
-        </span>
+        ${renderContent()}
       </button>
     `;
   }
