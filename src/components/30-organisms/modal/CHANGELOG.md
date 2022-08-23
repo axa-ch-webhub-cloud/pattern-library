@@ -1,6 +1,6 @@
 ## 4.0.3
 
-Fix: hide close button, if `forced` is true.
+Fix: hide close button, if `forced` is true. #2324.
 
 ## 4.0.0
 
