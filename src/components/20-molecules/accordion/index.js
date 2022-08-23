@@ -15,7 +15,7 @@ const collapseContent = el => {
   // get the height of the element's inner content, regardless of its actual size
   const contentHeight = el.scrollHeight;
   // temporarily disable all css transitions
-  const elementTransition = el.style.transition;
+  const savedTransition = el.style.transition;
   el.style.transition = '';
 
   // on the next frame (as soon as the previous style change has taken effect),
@@ -23,12 +23,12 @@ const collapseContent = el => {
   // aren't transitioning out of 'auto'
   requestAnimationFrame(() => {
     el.style.height = `${contentHeight}px`;
-    el.style.transition = elementTransition;
+    el.style.transition = savedTransition;
 
     // on the next frame (as soon as the previous style change has taken effect),
     // have the element transition to height: 0
     requestAnimationFrame(() => {
-      el.style.height = '0px';
+      el.style.height = '0';
     });
   });
 };
@@ -45,9 +45,7 @@ const expandContent = el => {
   };
 
   // when the next css transition finishes (which should be the one we just triggered)
-  el.addEventListener('transitionend', expandAnimation);
-  // remove this event listener so it only gets triggered once
-  el.removeEventListener('transitionend', expandAnimation);
+  el.addEventListener('transitionend', expandAnimation, { once: true });
 };
 
 class AXAAccordion extends LitElement {
@@ -65,7 +63,7 @@ class AXAAccordion extends LitElement {
     return {
       refId: { type: String, defaultValue: `accordion-${createRefId()}` },
       small: { type: Boolean },
-      level: { type: String },
+      ariaLevel: { type: String },
       open: { type: Boolean },
       disabled: { type: Boolean },
       icon: { type: String },
@@ -101,7 +99,7 @@ class AXAAccordion extends LitElement {
   }
 
   render() {
-    const { open, title, small, disabled, icon } = this;
+    const { refId, open, title, small, disabled, icon, ariaLevel = '' } = this;
     const titleContainerClasses = {
       'm-accordion__header': true,
       'm-accordion__header--disabled': disabled,
@@ -110,21 +108,25 @@ class AXAAccordion extends LitElement {
       'm-accordion__title': true,
       'm-accordion__title--small': small,
     };
+    const contentClasses = {
+      'm-accordion__content': true,
+      'm-accordion__content--open': open,
+    };
 
     return html`
       <div class="m-accordion">
         <div
           class="${classMap(titleContainerClasses)}"
-          aria-role="${this.level ? 'heading' : ''}"
-          aria-level="${this.level ? this.level : ''}"
+          aria-role="${ariaLevel ? 'heading' : ''}"
+          aria-level="${ariaLevel}"
           @click="${this.toggleAccordion}"
         >
           <button
-            id="${this.refId}"
+            id="${refId}"
             class="m-accordion__button"
-            aria-expanded="${this.open}"
-            aria-controls="${this.refId}-content"
-            ?disabled="${this.disabled}"
+            aria-expanded="${open}"
+            aria-controls="${refId}-content"
+            ?disabled="${disabled}"
           >
             <div class="m-accordion__button-flex-wrapper">
               <div class="m-accordion__button-title-wrapper">
@@ -142,12 +144,10 @@ class AXAAccordion extends LitElement {
           </button>
         </div>
         <div
-          id="${this.refId}-content"
+          id="${refId}-content"
           role="region"
-          aria-labelledby="${this.refId}"
-          class="m-accordion__content ${open
-            ? 'm-accordion__content--open'
-            : ''}"
+          aria-labelledby="${refId}"
+          class="${classMap(contentClasses)}"
         >
           <slot></slot>
         </div>
