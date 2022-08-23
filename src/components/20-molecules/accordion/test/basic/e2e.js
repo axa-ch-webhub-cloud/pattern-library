@@ -25,6 +25,7 @@ test.describe('accordion: basic', () => {
       })
     );
 
+    // https://playwright.dev/docs/selectors#n-th-element-selector
     await expect(page.locator('svg >> nth=0 ')).toBeVisible();
   });
 
