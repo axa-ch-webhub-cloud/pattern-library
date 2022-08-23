@@ -2,6 +2,7 @@ import React from 'react';
 
 export interface AXAAccordionProps {
   className?: string;
+  ariaLevel?: string;
   disabled?: boolean;
   open?: boolean;
   small?: boolean;
