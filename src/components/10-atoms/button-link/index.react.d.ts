@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
+export type ButtonType = 'button' | 'submit' | 'reset';
 export type Size = 'small' | 'large';
 export type Variant =
   | 'secondary'
@@ -13,19 +14,19 @@ export type Variant =
   | 'inverted-blue-teal';
 
 export interface AXAButtonLinkProps
-  extends React.LinkHTMLAttributes<HTMLLinkElement> {
-  href?: string;
-  external?: boolean;
-  size?: Size;
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  type?: ButtonType;
   variant?: Variant;
   icon?: Icon;
-  large?: boolean;
+  size?: Size;
   motionOff?: boolean;
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
-  onClick?: () => void;
   slot?: string;
   children?: React.ReactNode;
+  href?: string;
+  external?: boolean;
 }
 
 declare function createAXAButtonLink(
