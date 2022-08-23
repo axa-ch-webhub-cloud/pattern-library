@@ -1,19 +1,18 @@
 axa-commercial-hero-banner {
   color: $color-dark-grey;
 
-  axa-button,
-  axa-button-link {
+  axa-button {
     display: table;
     margin-top: 28px;
   }
-
 
   h1 {
     @include headline(h2, secondary);
     overflow-wrap: break-word;
   }
 
-  p, .checkmarks {
+  p,
+  .checkmarks {
     @include text(t4);
     @media (min-width: $breakpoint-xs) {
       @include text(t3);

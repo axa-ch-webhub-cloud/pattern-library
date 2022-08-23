@@ -1,5 +1,4 @@
 import React from 'react';
-import { invertedBgs } from '../../../../utils/button-story-helpers';
 import { args, argTypes } from '../story.args';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
@@ -21,7 +20,11 @@ export default {
 export const InputFile = _args =>
   createReactContainer(
     <div
-      style={{ backgroundColor: invertedBgs[_args.variant], padding: '10px' }}
+      style={
+        _args.variant.includes('inverted')
+          ? { backgroundColor: '#00008f', padding: '10px' }
+          : {}
+      }
     >
       <AXAInputFileReact
         {..._args}

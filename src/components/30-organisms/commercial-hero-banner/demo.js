@@ -108,12 +108,8 @@ export const CommercialHeroBanner = ({ variant, imageSource }) =>
         afford
       </p>
       <small slot="disclaimer">Terms and Conditions apply.</small>
-      <axa-button-link
-        href="https://axa.ch"
-        slot="button"
-        variant="red"
-        size="large"
-        >GET A QUOTE</axa-button-link
+      <axa-button href="https://axa.ch" slot="button" variant="red" size="large"
+        >GET A QUOTE</axa-button
       >
       <div slot="addon-section">
         <div class="o-commercial-hero-banner-demo__badge-wrapper">
