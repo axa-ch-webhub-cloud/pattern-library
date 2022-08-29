@@ -1,6 +1,5 @@
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';
@@ -8,29 +7,24 @@ import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
 import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 
-storiesOf('Examples/Dropdown/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Dropdown/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Focussable', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoFocussableDropdownReact />, div);
-    return div;
-  })
-  .add('Many-options', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoManyOptionsDropdownReact />, div);
-    return div;
-  })
-  .add('React Component', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDropdownReact />, div);
-    return div;
-  })
-  .add('Versioned React Component', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoDropdownVersionedReact />, div);
-    return div;
-  });
+    controls: { disable: true },
+  },
+};
+
+export const DropdownFocusable = () =>
+  createReactContainer(<DemoFocussableDropdownReact />);
+
+export const DropdownManyOptions = () =>
+  createReactContainer(<DemoManyOptionsDropdownReact />);
+
+export const DropdownReactComponent = () =>
+  createReactContainer(<DemoDropdownReact />);
+
+export const DropdownVersionedReactComponent = () =>
+  createReactContainer(<DemoDropdownVersionedReact />);

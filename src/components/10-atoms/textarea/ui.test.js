@@ -3,7 +3,7 @@ import { ClientFunction, Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Textarea - basic functionality').page(
-  `${host}/iframe.html?id=components-textarea--textarea`
+  `${host}/iframe.html?id=components-textarea--textarea&viewMode=story`
 );
 
 const TAG = 'axa-textarea';

@@ -29,7 +29,7 @@ You can add any Pattern Library component via the community CDN jsdelivr. This i
 
 ## Build Pattern Library components in your own application
 
-Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` in ES5 JavaScript and `/lib/index.*` in ES6. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
+Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` and `/lib/index.*` in ES2019. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
 
 The de-facto standard in the frontend community is to render `/lib` exports as ESM, i.e. **ES5** + **import/export**. Due to the nature of web components and lit-element, however, we are forced to export in ES6. For more details, see the [custom element specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-autonomous-example).
 
@@ -64,7 +64,8 @@ Different versions of our web components can coexist on the same web page! Here 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 | Component                                                                          | npmjs.com                                                                                                                                                  |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [AXA Accordion](./src/components/20-molecules/accordion)                           | [![npm version](https://img.shields.io/npm/v/@axa-ch/accordion.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/accordion)                           |
 | [AXA Button](./src/components/10-atoms/button)                                     | [![npm version](https://img.shields.io/npm/v/@axa-ch/button.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button)                                 |
 | [AXA Button Link](./src/components/10-atoms/button-link)                           | [![npm version](https://img.shields.io/npm/v/@axa-ch/button-link.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/button-link)                       |
 | [AXA Carousel](./src/components/10-atoms/carousel)                                 | [![npm version](https://img.shields.io/npm/v/@axa-ch/carousel.svg?style=flat)](https://www.npmjs.com/package/@axa-ch/carousel)                             |
@@ -115,6 +116,38 @@ We are dedicated to building a welcoming, diverse, and safe community. We expect
 ## Version Control
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
+
+## How do I get my (unit) tests to work when using Pattern Library components?
+
+### The problem
+Unit-test frameworks like Jest run under the `node` environment, which is quite different from a browser. The most commonly used abstraction to mimic a minimal browser within `node` is `jsdom`. However, `jsdom` lacks crucial features such as `Mutation Observer`, `Custom Elements` and other browser APIs commonly needed by web components.
+
+### Solutions
+So what are your options?
+
+- Insisting on `jest`, one option would be to use a better DOM emulation. Exchanging `jsdom` with `happydom`, we now have enough emulated browser features to test web components. The details are described [here](https://github.com/capricorn86/happy-dom/tree/master/packages/jest-environment).
+- Instead of using `jest`, employ end-to-end (e2e) testing tools that control a real browser, e.g. `Playwright`, `Cypress` or `Testcafe`. Arguably this is a better match for UI-heavy apps anyway, because e2e tests are closer to a real user experience.
+- Use a lightweight mocking strategy. The idea is to mock pattern library components by a simple, traditional-HTML replacement such as a &lt;div&gt; or a &lt;button&gt;. Here is a code sketch using Jest that employs this strategy:
+    ```
+    All Pattern-Library React components are imported from this index.js.
+    
+    import createAXAButton from '@axa-ch/button/lib/index.react';
+    import createAXADropdown from '@axa-ch/dropdown/lib/index.react';
+
+    export const AXAButton = createAXAButton(createElement);
+    export const AXADropdown = createAXADropdown(createElement);
+  
+    AXAButton.displayName = 'AXAButton';
+    AXADropdown.displayName = 'AXADropdown';
+    ```
+    ```
+    __mocks__/index.js
+  
+    export const AXAButton = (props) => {
+    return <button {...props}>{props.children}</button>;
+    };
+    ...
+    ```
 
 ### Testing with Selenium, Testcafe and other UI testing tools
 

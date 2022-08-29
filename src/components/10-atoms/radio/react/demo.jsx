@@ -1,18 +1,18 @@
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoControlledRadioButtonReact from './DemoRadioButtonReact';
 
-storiesOf('Examples/Radio/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Radio/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Controlled-component React-ified', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoControlledRadioButtonReact />, div);
-    return div;
-  });
+    controls: { disable: true },
+  },
+};
+
+export const RadioButtonControlled = () =>
+  createReactContainer(<DemoControlledRadioButtonReact />);

@@ -1,61 +1,43 @@
-import { boolean, select, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
+import { createReactContainer } from '../../../../utils/create-react-container';
+import { args, argTypes } from '../story.args';
+import AXATextReact from '../../text/react/AXATextReact';
 import AXACheckboxReact from './AXACheckboxReact';
-import AXATextReact from './AXATextReact';
 
-storiesOf('Examples/Checkbox/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Checkbox/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .addDecorator(withKnobs)
-  .add('Story - uncontrolled', () => {
-    const label = text('label', 'I agree to conditions of data protection.');
-    const name = text('name', 'my-checkbox');
-    const variant = select('variant', [
-      'square',
-      'checkmark',
-      'checkmark-inverted',
-    ]);
-    boolean('checked (no effect, uncontrolled mode!)', false);
-    const disabled = boolean('disabled', false);
-    const errortext = boolean('error', false);
-    const required = boolean('required', false);
-    const styled = boolean('styled', false);
+  },
+  args,
+  argTypes,
+};
 
-    const div = document.createElement('div');
+export const CheckboxUncontrolled = _args => {
+  const container = document.createElement('div');
+  if (_args.variant && _args.variant.includes('inverted')) {
+    container.style.backgroundColor = '#027180';
+    container.style.padding = '10px';
+  }
 
-    if (variant && variant.includes('inverted')) {
-      div.style.backgroundColor = '#027180';
-      div.style.padding = '10px';
-    }
-
-    ReactDOM.render(
-      <>
-        <AXACheckboxReact
-          name={name}
-          label={label}
-          disabled={disabled}
-          variant={variant}
-          required={required}
-          styled={styled}
-          onChange={e =>
-            (document.getElementById(
-              'checkbox-output'
-            ).innerHTML = `checkbox ${name} state changed to: ${e.target.checked}`)
-          }
-          error={errortext ? 'Please accept our terms and conditions.' : ''}
-        />
-        <AXATextReact id="checkbox-output">
-          checkbox {name} state changed to:
-        </AXATextReact>
-      </>,
-      div
-    );
-    return div;
-  });
+  return createReactContainer(
+    <div>
+      <AXACheckboxReact
+        {..._args}
+        onChange={e =>
+          (document.getElementById(
+            'checkbox-output'
+          ).innerHTML = `checkbox ${_args.name} state changed to: ${e.target.checked}`)
+        }
+      />
+      <AXATextReact id="checkbox-output">
+        checkbox {_args.name} state changed to:
+      </AXATextReact>
+    </div>,
+    container
+  );
+};

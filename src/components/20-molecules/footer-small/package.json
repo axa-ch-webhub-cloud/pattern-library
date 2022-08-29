@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/footer-small",
-  "version": "6.0.0",
+  "version": "7.0.3",
   "description": "The footer-small component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/20-molecules/footer-small/README.md",
@@ -8,6 +8,7 @@
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
+    "build-dist": "rollup --silent --config ../../../../rollup.config.dist.js",
     "postpublish": "../../../../scripts/build/postpublish.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js",
     "genPackagelock": "npm i --package-lock-only"
@@ -27,7 +28,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/container": "4.0.0",
+    "@axa-ch/container": "5.0.3",
     "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }

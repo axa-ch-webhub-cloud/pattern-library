@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AXAFieldset from '../../fieldset/react/AXAFieldsetReact';
 import AXARadioButton from './AXARadioButtonReact';
 
-const DemoRadiobuttonsControlled = () => {
+const DemoRadioButtonsControlled = () => {
   const [button, setButton] = useState(true);
   const [frozen, setFrozen] = useState(false);
   const [error, setError] = useState('');
@@ -122,4 +122,4 @@ const DemoRadiobuttonsControlled = () => {
   );
 };
 
-export default DemoRadiobuttonsControlled;
+export default DemoRadioButtonsControlled;

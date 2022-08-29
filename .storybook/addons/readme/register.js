@@ -1,7 +1,7 @@
 import { addons, types } from '@storybook/addons';
 import { useParameter } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
-import 'github-markdown-css/github-markdown.css';
+import 'github-markdown-css/github-markdown-light.css';
 import marked from 'marked';
 import React from 'react';
 

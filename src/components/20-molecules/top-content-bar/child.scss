@@ -14,7 +14,7 @@ axa-top-content-bar {
   }
 }
 
-@include breakpoint($mediaquery-md-up) {
+@media (min-width: $breakpoint-md) {
   axa-top-content-bar > axa-link {
     padding: 0;
     margin-left: 5px;

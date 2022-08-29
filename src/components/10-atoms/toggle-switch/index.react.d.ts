@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface AXAToggleSwitchProps {
+export interface AXAToggleSwitchProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   active?: boolean;
   disabled?: boolean;
   error?: string;

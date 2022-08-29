@@ -16,7 +16,7 @@
     flex-direction: column;
     padding: 0 15px;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       justify-content: flex-end;
       flex-direction: row;
     }
@@ -41,7 +41,7 @@
   }
 
   &__container--lx {
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       width: 70%;
     }
   }
@@ -50,7 +50,7 @@
     margin-top: 16px;
     text-align: center;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       width: calc(30% - 30px);
 
       margin-top: 0;

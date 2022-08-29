@@ -13,16 +13,18 @@ export type Variant =
   | 'inverted-green-viridian'
   | 'inverted-blue-teal';
 
-export interface AXAButtonProps {
+export interface AXAButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   variant?: Variant;
   icon?: Icon;
   size?: Size;
   motionOff?: boolean;
   disabled?: boolean;
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   slot?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAButton(

@@ -8,8 +8,10 @@
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
+    "build-dist": "rollup --silent --config ../../../../rollup.config.dist.js",
     "postpublish": "../../../../scripts/build/postpublish.js",
-    "watch": "rollup --watch --silent --config ../../../../rollup.config.js"
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.js",
+    "genPackagelock": "npm i --package-lock-only"
   },
   "files": ["lib", "dist"],
   "publishConfig": {
@@ -24,7 +26,6 @@
   },
   "dependencies": {
     "@skatejs/val": "^0.4.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.0"
+    "lit": "^2.2.1"
   }
 }

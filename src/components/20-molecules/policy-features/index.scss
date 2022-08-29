@@ -3,7 +3,7 @@
   background: $color-dark-indigo;
   color: $color-prim-white;
 
-  @include breakpoint($mediaquery-sm-up) {
+  @media (min-width: $breakpoint-sm) {
     padding: 48px 90px;
   }
 

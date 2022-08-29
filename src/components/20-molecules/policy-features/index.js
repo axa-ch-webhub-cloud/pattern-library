@@ -1,13 +1,10 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import AXAPolicyFeaturesItem from './policy-features-item/index';
-
-export const STYLE_WHITELIST = ['axa-blue', 'wild-sand', 'white'];
 
 class AXAPolicyFeatures extends LitElement {
   static get tagName() {

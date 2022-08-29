@@ -1,11 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import AXADropdown from '@axa-ch/dropdown';
 import AXAInputText from '@axa-ch/input-text';
 
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import { countries, dialCodes } from './country-items';
 import fireCustomEvent from '../../../utils/custom-event';
 

@@ -40,12 +40,12 @@ axa-table > table {
     text-align: left;
 
       &:first-child {
-        @include breakpoint($mediaquery-sm-up) {
+        @media (min-width: $breakpoint-sm) {
         @include firstChild_TD_MQ;
       }
     }
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       @include TD_MQ;
     }
   }
@@ -56,7 +56,7 @@ axa-table > table {
 
     display: none;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       @include TH_MQ;
     }
   }
@@ -72,7 +72,7 @@ axa-table > table {
       border-bottom: 1px solid $color-mercury;
     }
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       @include TR_MQ;
     }
   }
@@ -85,7 +85,7 @@ axa-table > table {
         border: solid 1px $color-axa-blue;
 
         td {
-          @include breakpoint($mediaquery-sm-up) {
+          @media (min-width: $breakpoint-sm) {
             @include HOVER_TD_MQ;
           }
         }
@@ -97,7 +97,7 @@ axa-table > table {
     tr {
       display: none;
 
-      @include breakpoint($mediaquery-sm-up) {
+      @media (min-width: $breakpoint-sm) {
         @include TR_MQ;
       }
     }

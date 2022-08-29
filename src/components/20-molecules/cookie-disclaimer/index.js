@@ -1,6 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { LitElement, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import AXAButton from '@axa-ch/button';
 import AXAContainer from '@axa-ch/container';
 
@@ -8,7 +7,7 @@ import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 const _global = window || global;

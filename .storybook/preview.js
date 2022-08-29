@@ -1,6 +1,3 @@
-import '../src/components/05-utils/polyfill/index';
-import { addParameters } from '@storybook/html';
-
 const customViewports = {
   xs: {
     name: 'Extra Small (xs)',
@@ -39,7 +36,7 @@ const customViewports = {
   },
 };
 
-addParameters({
+export const parameters = {
   options: {
     showPanel: true,
     storySort: {
@@ -59,4 +56,11 @@ addParameters({
   viewport: {
     viewports: customViewports,
   },
-});
+  backgrounds: {
+    values: [
+      { name: 'red', value: '#f00' },
+      { name: 'blue', value: '#00f' },
+      { name: 'black', value: '#000' },
+    ],
+  },
+};

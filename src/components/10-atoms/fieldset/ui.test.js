@@ -35,7 +35,7 @@ test('should render an error message', async t => {
 });
 
 fixture('Fieldset - horizontal').page(
-  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=true`
+  `${host}/iframe.html?args=horizontal:horizontal&id=components-fieldset--fieldset&viewMode=story`
 );
 
 test('should render horizontally', async t => {
@@ -54,7 +54,7 @@ test('should render horizontally', async t => {
 });
 
 fixture('Fieldset - enableResponsiveStretch').page(
-  `${host}/iframe.html?id=components-fieldset--fieldset&knob-error=&knob-horizontal=stretch`
+  `${host}/iframe.html?args=horizontal:stretch&id=components-fieldset--fieldset&viewMode=story`
 );
 
 test('should responsive stretch', async t => {
@@ -67,8 +67,8 @@ test('should responsive stretch', async t => {
     ];
   });
 
-  const expected = JSON.stringify(['513px', '0px']); // 545px width of the radio correspond to 100% in a 575px window
+  const expected = JSON.stringify(['514px', '0px']); // 546px width of the radio correspond to 100% in a 576px window
   await t.expect(JSON.stringify(await getError())).eql(expected);
 }).before(async t => {
-  await t.resizeWindow(575, 575);
+  await t.resizeWindow(576, 576);
 });

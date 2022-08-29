@@ -7,18 +7,8 @@ const ARROW_ICON_TAG = '.js-button__arrow';
 const BUTTON_CLASS = '.a-button';
 
 fixture('Button - basic functionality').page(
-  `${host}/iframe.html?id=examples-button-pure-html--clickable`
+  `${host}/iframe.html?id=examples-button--clickable&viewMode=story`
 );
-
-test('should render button', async t => {
-  const $axaButton = await Selector(BUTTON_TAG);
-  await t.expect($axaButton.exists).ok();
-  const $axaButtonShadow = await Selector(
-    () => document.querySelector('axa-button').shadowRoot
-  );
-  const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
-  await t.expect($axaButtonShadowEl.exists).ok();
-});
 
 test('should style button default css (test axa blue bg color)', async t => {
   const $axaButtonShadow = await Selector(
@@ -65,7 +55,7 @@ test('should inherit width to internal button', async t => {
 });
 
 fixture('Button - set properties').page(
-  `${host}/iframe.html?id=components-button--button`
+  `${host}/iframe.html?id=components-button--button&viewMode=story`
 );
 
 test('should set button element disabled', async t => {
@@ -95,7 +85,7 @@ test('should set button element type', async t => {
 });
 
 fixture('Button - render icon').page(
-  `${host}/iframe.html?id=examples-button-pure-html--icon-visible`
+  `${host}/iframe.html?id=examples-button--icon-visible&viewMode=story`
 );
 
 test('should render icon', async t => {
@@ -104,39 +94,4 @@ test('should render icon', async t => {
   );
   const $axaIcon = await $axaButtonShadow.find(ARROW_ICON_TAG);
   await t.expect($axaIcon.exists).ok();
-});
-
-fixture('Button - react smoke test').page(
-  `${host}/iframe.html?id=examples-button-react--story`
-);
-
-test('should render react button', async t => {
-  const $axaButton = await Selector(BUTTON_TAG);
-  await t.expect($axaButton.exists).ok();
-  const $axaButtonShadow = await Selector(
-    () => document.querySelector('axa-button').shadowRoot
-  );
-  const $axaButtonShadowEl = await $axaButtonShadow.find(BUTTON_CLASS);
-  await t.expect($axaButtonShadowEl.exists).ok();
-});
-
-test('should set className', async t => {
-  const $axaButton = await Selector(BUTTON_TAG);
-  await t.expect($axaButton.exists).ok();
-
-  await t.expect(await $axaButton.getAttribute('class')).eql('myCssClass');
-});
-
-fixture('Button - Works in a form').page(
-  `${host}/iframe.html?id=examples-button-pure-html--in-a-form`
-);
-
-test('should submit only once', async t => {
-  const $submitButton = await Selector('.js-submit-prevent');
-  await t.click($submitButton());
-  await t.wait(100);
-  const count = ClientFunction(
-    () => document.querySelector('.js-submit-prevent').dataset.count
-  );
-  await t.expect(await count()).eql('1');
 });

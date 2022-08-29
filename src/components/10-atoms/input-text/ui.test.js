@@ -5,7 +5,7 @@ const TAG = 'axa-input-text';
 const CLASS = '.a-input-text__input';
 
 fixture('Input text - basic functionality').page(
-  `${host}/iframe.html?id=components-input-text--input-text`
+  `${host}/iframe.html?id=components-input-text--input-text&viewMode=story`
 );
 
 test('should render input-text', async t => {
@@ -55,17 +55,8 @@ test('input element should have correct html attributes', async t => {
   await t.expect($axaInputElement.getAttribute('pattern')).eql('.*'); // const PATTERN_DEFAULT @ index.js
 });
 
-fixture('Input text - Form').page(
-  `${host}/iframe.html?id=examples-input-text-pure-html--in-a-form`
-);
-
-test('should render label', async t => {
-  const $axaLabel = await Selector('.a-input-text__label');
-  await t.expect($axaLabel.exists).ok();
-});
-
 fixture('Input text - Max Length').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=5&knob-counterMax=Character%20limit%20reached!&knob-checkmark=true`
+  `${host}/iframe.html?args=checkMark:true;maxLength:5&id=components-input-text--input-text&viewMode=story`
 );
 
 test('should correctly show character count with counter within text', async t => {
@@ -94,14 +85,14 @@ test('should correctly show character count with counter within text', async t =
     .eql('Patte');
 
   await t.expect($checkMark.exists).notOk();
-  await t.expect($counterInfo.textContent).contains('Character limit reached!');
+  await t.expect($counterInfo.textContent).contains('Over character limit!');
   await t
     .expect($counterInfo.getStyleProperty('color'))
     .eql('rgb(201, 20, 50)');
 });
 
 fixture('Input text - no maxlength').page(
-  `${host}/iframe.html?id=examples-input-text-pure-html--no-maxlength-set`
+  `${host}/iframe.html?id=examples-input-text-pure-html--no-maxlength-set&viewMode=story`
 );
 
 test('should not show counter text if maxlength not set', async t => {
@@ -113,7 +104,7 @@ test('should not show counter text if maxlength not set', async t => {
 });
 
 fixture('Input text - no counter').page(
-  `${host}/iframe.html?id=examples-input-text-pure-html--no-counter-set`
+  `${host}/iframe.html?args=&id=examples-input-text-pure-html--no-counter-set&viewMode=story`
 );
 
 test('should not show counter text if counter (text) not set', async t => {
@@ -128,31 +119,20 @@ fixture('Input text - maxLength works with autocomplete').page(
   `${host}/iframe.html?id=examples-input-text-react--story-simulate-autocomplete`
 );
 
-test('should cut text when autocomplete sets value over maxLength', async t => {
-  // in the story, the autocomplete function is only simulated after a timeout, therefore wait here
-  await t.wait(2000);
-  const inputValue = await ClientFunction(
-    () => document.querySelector('#fix-id-86452623').value
-  );
-  await t.wait(1000);
-  // story adds 123456789 but here it should be cut to the limit
-  await t.expect(await inputValue()).eql('1234');
-});
-
-fixture('Input text - Set attributes "pattern" and "numeric"').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=&knob-type=text&knob-pattern=[0-9]*&knob-inputmode=numeric&knob-refid=&knob-value=&knob-maxlength=50&knob-counter=Still%20##counter##%20characters%20left&knob-counterMax=Over%20character%20limit!`
+fixture('Input text - Set attribute and "numeric"').page(
+  `${host}/iframe.html?args=inputmode:numeric&id=components-input-text--input-text&viewMode=story`
 );
+
 test('input element should have correct html attributes "pattern" and "numeric"', async t => {
   const $axaInputElement = await Selector(() => document.querySelector(TAG), {
     dependencies: { TAG },
   }).find(CLASS);
 
   await t.expect($axaInputElement.getAttribute('inputmode')).eql('numeric');
-  await t.expect($axaInputElement.getAttribute('pattern')).eql('[0-9]*');
 });
 
 fixture('Input text - autofocus').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-error=&knob-info=&knob-type=text&knob-maxlength=50&knob-autofocus=true&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=`
+  `${host}/iframe.html?args=autofocus:true&id=components-input-text--input-text&viewMode=story`
 );
 
 test('should have focus after initial rendering', async t => {
@@ -167,7 +147,7 @@ test('should have focus after initial rendering', async t => {
 });
 
 fixture('Input text - defaultValue for react').page(
-  `${host}/iframe.html?id=examples-input-text-react--story&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-defaultValue=qwertz&knob-type=text&knob-pattern=&knob-inputmode=`
+  `${host}/iframe.html?args=defaultValue:qwertz&id=examples-input-text-react--input-text&viewMode=story`
 );
 
 test('should display correct default value', async t => {
@@ -180,7 +160,7 @@ test('should display correct default value', async t => {
 });
 
 fixture('Input text - currency').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label*=&knob-name*=&knob-refid=&knob-placeholder=&knob-value=&knob-currency=chf&knob-error=&knob-info=&knob-checkmark=&knob-disabled=&knob-required=&knob-invalid=&knob-type=text&knob-maxlength=50&knob-counter=Still ##counter## characters left&knob-counterMax=Over character limit!&knob-pattern=&knob-inputmode=&knob-autofocus=`
+  `${host}/iframe.html?args=currency:chf&id=examples-input-text-react--input-text&viewMode=story`
 );
 
 test('should format value', async t => {
@@ -195,7 +175,7 @@ test('should format value', async t => {
 });
 
 fixture('Input text - currency on controlled component').page(
-  `${host}/iframe.html?id=examples-input-text-react--controlled-uncontrolled`
+  `${host}/iframe.html?id=examples-input-text-react--input-text-controlled-uncontrolled&viewMode=story`
 );
 
 test('should format value of controlled component', async t => {
@@ -210,7 +190,7 @@ test('should format value of controlled component', async t => {
 });
 
 fixture('Input text - currency formatting on first render react').page(
-  `${host}/iframe.html?id=examples-input-text-react--story&knob-label*=&knob-name*=&knob-refId=&knob-placeholder=&knob-error=&knob-info=&knob-currency=chf&knob-defaultValue=&knob-value=45&knob-type=text&knob-pattern=&knob-inputmode=&viewMode=story`
+  `${host}/iframe.html?args=value:45;currency:chf;defaultValue:&id=examples-input-text-react--input-text&viewMode=story`
 );
 
 test('should format value on first render', async t => {
@@ -222,7 +202,7 @@ test('should format value on first render', async t => {
 });
 
 fixture('Input text - currency validation and property invalid').page(
-  `${host}/iframe.html?id=components-input-text--input-text&knob-label%2A=&knob-name%2A=&knob-refid=&knob-placeholder=&knob-value=2&knob-currency=chf&knob-error=fehler&knob-info=&knob-type=text&knob-maxlength=50&knob-counter=Still%20%23%23counter%23%23%20characters%20left&knob-counterMax=Over%20character%20limit%21&knob-pattern=&knob-inputmode=&knob-invalid=true&viewMode=story`
+  `${host}/iframe.html?args=value:2;currency:chf;error:fehler;invalid:true;defaultValue:&id=examples-input-text-react--input-text&viewMode=story`
 );
 
 test('should display error when invalid is set', async t => {
@@ -243,7 +223,7 @@ test('should display error when invalid is set', async t => {
 });
 
 fixture('Input-Text - React onKeyUp').page(
-  `${host}/iframe.html?id=examples-input-text-react--using-onkeyup-event&viewMode=story`
+  `${host}/iframe.html?args=&id=examples-input-text-react--input-text-on-key-up-event&viewMode=story`
 );
 
 test('should fire onKeyUp callback on user input', async t => {

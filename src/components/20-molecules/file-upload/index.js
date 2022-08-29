@@ -1,8 +1,6 @@
-/* eslint-disable camelcase, no-continue */
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
-/* eslint-disable import/no-extraneous-dependencies */
-import { classMap } from 'lit/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { classMap } from 'lit/directives/class-map.js';
 import AXAInputFile from '@axa-ch/input-file';
 import {
   AddSvg,
@@ -20,7 +18,7 @@ import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import compressImages from './utils/imageCompressor';
 import createRefId from '../../../utils/create-ref-id';
@@ -73,6 +71,7 @@ const findAndManipulate = (
     // N.B. this is the only case that's *independent* of file-found status
     if (_append && _append.has(where)) appends.push(where);
     // file not found?
+    // eslint-disable-next-line no-continue
     if (foundAt === undefined) continue; // no, skip this array
     // yes, file found - process cases:
     // 1. just record the facts

@@ -12,7 +12,7 @@
     color: $color-prim-white;
     @include text(t4);
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       flex-direction: row;
       justify-content: space-between;
     }
@@ -54,7 +54,7 @@
 
     padding-top: 10px;
 
-    @include breakpoint($mediaquery-sm-up) {
+    @media (min-width: $breakpoint-sm) {
       width: auto;
       padding-top: 0px;
     }

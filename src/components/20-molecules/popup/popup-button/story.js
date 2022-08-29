@@ -1,12 +1,10 @@
-import { boolean, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import changelog from '../CHANGELOG.md';
 import readme from './README.md';
 import './index';
 
 export default {
   title: 'Components/Popup Button',
-  decorators: [withKnobs],
   parameters: {
     readme,
     usage: {
@@ -14,16 +12,16 @@ export default {
     },
     changelog,
   },
+  args: {
+    open: false,
+  },
+  argTypes: {
+    open: {
+      control: 'boolean',
+    },
+  },
 };
 
-export const PopupButton = () => {
-  const open = boolean('open', false);
-
-  const wrapper = document.createElement('div');
-  const template = html`
-    <axa-popup-button ?open="${open}"></axa-popup-button>
-  `;
-
-  render(template, wrapper);
-  return wrapper;
-};
+export const PopupButton = ({ open }) => html`
+  <axa-popup-button ?open="${open}"></axa-popup-button>
+`;

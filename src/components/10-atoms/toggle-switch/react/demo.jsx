@@ -1,42 +1,26 @@
-import { boolean } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 import ControlledWithOnChange from './ControlledWithOnChange';
 import ControlledWithConstantActiveProperty from './ControlledWithConstantActiveProperty';
 
-storiesOf('Examples/Toggle Switch/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Toggle Switch/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add('Controlled without onChange', () => {
-    const div = document.createElement('div');
-    const active = boolean('active', false);
+    controls: { disable: true },
+  },
+};
 
-    ReactDOM.render(<AXAToggleSwitchReact active={active} />, div);
-
-    return div;
-  })
-  .add('Controlled with onChange', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<ControlledWithOnChange />, div);
-
-    return div;
-  })
-  .add('Controlled with dummy onChange listener', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<ControlledWithConstantActiveProperty />, div);
-
-    return div;
-  })
-  .add('Uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<AXAToggleSwitchReact />, div);
-
-    return div;
-  });
+export const ToggleSwitchControlledWithoutOnChange = () =>
+  createReactContainer(<AXAToggleSwitchReact active={false} />);
+export const ToggleSwitchControlledWithOnChange = () =>
+  createReactContainer(<ControlledWithOnChange />);
+export const ToggleSwitchControlledWithOnChangeListener = () =>
+  createReactContainer(<ControlledWithConstantActiveProperty />);
+export const ToggleSwitchUncontrolled = () =>
+  createReactContainer(<AXAToggleSwitchReact />);

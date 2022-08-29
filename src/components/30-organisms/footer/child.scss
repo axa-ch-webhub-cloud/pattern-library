@@ -20,7 +20,7 @@ axa-footer {
     text-transform: uppercase;
     line-height: 1.5;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       @include text(t3, bold);
       line-height: 1.5;
     }
@@ -28,7 +28,7 @@ axa-footer {
     &[slot="social-title"] {
       display: none;
 
-      @include breakpoint($mediaquery-md-up) {
+      @media (min-width: $breakpoint-md) {
         display: block;
       }
     }
@@ -41,7 +41,7 @@ axa-footer {
 
     padding: 20px 30px;
 
-    @include breakpoint($mediaquery-xs-up) {
+    @media (min-width: $breakpoint-xs) {
       padding: 0px;
       display: inline;
     }

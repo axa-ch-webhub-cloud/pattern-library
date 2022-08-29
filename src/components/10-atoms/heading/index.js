@@ -1,9 +1,8 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-/* eslint-disable import/no-extraneous-dependencies */
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 const TOP_BOTTOM_MARGINS_BY_RANK = {

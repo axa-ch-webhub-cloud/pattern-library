@@ -101,7 +101,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     ## Usage
 
-    **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
+    **Important:** Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
 
     \`\`\`bash
     npm install @axa-ch/${fileName}
@@ -194,29 +194,69 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
+    `${BASE_FOLDER}/story.args.js`,
+    outdent`
+    export const args = {
+      slot: 'default value',
+      // boolean: false,
+      // number: 5,
+      // radio: 'text',
+      // radioMapping: 'default',
+      // icon: 'none',
+    };
+    
+    // const variants = {
+    //  default: '',
+    //  red: 'red',
+    //  secondary: 'secondary',
+    // };
+    
+    export const argTypes = {
+      slot: { control: 'text' },
+      // boolean: { control: 'boolean' },
+      // number: { control: 'number' },
+      // radio: {
+      //   control: 'radio',
+      //   options: ['text', 'email', 'password'],
+      // },
+      // radioMapping: {
+      //   control: 'radio',
+      //   options: Object.keys(variants),
+      //   mapping: variants,
+      //   labels: variants,
+      // },
+      // select: {
+      //   control: 'select',
+      //   options: Object.keys(iconList),
+      //   mapping: iconList,
+      //   labels: iconList,
+      // },
+    };
+    `,
+    'utf8'
+  );
+
+  fs.writeFileSync(
     `${BASE_FOLDER}/story.js`,
     outdent`
-    import { text, withKnobs } from '@storybook/addon-knobs';
-    import { html, render } from 'lit';
+    import { html } from 'lit';
+    import { args, argTypes } from './story.args';
+    import changelog from './CHANGELOG.md';
+    import readme from './README.md';
     import './index';
 
     export default {
       title: 'Components',
-      decorators: [withKnobs],
+      parameters: {
+        readme,
+        usage: {},
+        changelog,
+      },
+      args,
+      argTypes,
     };
     
-    export const ${compTitle} = () => {
-      const textknob = text('This is a knob', 'Value of text knob');
-      
-      const wrapper = document.createElement('div');
-      const template = html\`
-        <axa-${fileName}>\${textknob}</axa-${fileName}>
-      \`;
-      
-      render(template, wrapper);
-      return wrapper;
-    }
-    `,
+    export const ${compTitle} = ({ slot }) => html\`<axa-${fileName}>\${slot}</axa-${fileName}>\`;`,
     'utf8'
   );
 
@@ -244,40 +284,18 @@ const createFiles = (store, a, m, o, done) => () => {
   );
 
   fs.writeFileSync(
-    `${BASE_FOLDER}/pw.ui.test.js`,
+    `${BASE_FOLDER}/e2e.js`,
     outdent`
-const host = process.env.TEST_HOST_STORYBOOK_URL;
-const tag = 'axa-${fileName}';
+import { expect, test } from '@playwright/test';
+import { fixtureURL } from '../../../utils/e2e-helpers';
 
-describe('${compTitle}', () => {
-  it('should render component', async () => {
-    await page.goto(
-      \`\${host}/iframe.html?id=components-${fileName}--${fileName}&viewMode=story\`
-    );
-    await page.waitForSelector(tag);
-    const visible = await page.isVisible(tag);
-    expect(visible).toBeTruthy();
+test.describe('${compTitle}', () => {
+  test('should render', async ({ page }) => {
+    await page.goto(fixtureURL('components-${fileName}--${fileName}'));
+  
+    expect(page.locator('axa-${fileName}').isVisible());
   });
 });
-
-    `,
-    'utf8'
-  );
-
-  fs.writeFileSync(
-    `${BASE_FOLDER}/unit.test.js`,
-    outdent`
-    import ${className} from './index';
-    
-    describe('${compTitle}', () => {
-      test('firstUpdated() should not call another method', () => {
-        ${className}.prototype.methodThatShouldNotBeCalled = jest.fn();
-    
-        ${className}.prototype.firstUpdated();
-    
-        expect(${className}.prototype.methodThatShouldNotBeCalled).not.toHaveBeenCalled();
-      });
-    });
     `,
     'utf8'
   );
@@ -286,8 +304,6 @@ describe('${compTitle}', () => {
     `${BASE_FOLDER}/index.js`,
     outdent`
     import { LitElement, html, css, unsafeCSS } from 'lit';
-
-    /* eslint-disable import/no-extraneous-dependencies */
 
     //    If you need other axa-XXX components inside your new component,
     //    import them here like this:
@@ -298,7 +314,7 @@ describe('${compTitle}', () => {
       defineVersioned,
       /* versionedHtml, */
     } from '../../../utils/component-versioning';
-    import { applyDefaults } from '../../../utils/with-react';
+    import applyDefaults from '../../../utils/apply-defaults';
     import styles from './index.scss';
 
     class ${className} extends LitElement {

@@ -83,6 +83,10 @@ Like `value`, it sets the value of the underlying native HTML &lt;input&gt; &mda
 
 The Boolean attribute `disabled` disables the underlying native HTML &lt;input&gt; text.
 
+### readonly
+
+The Boolean `readonly` attribute, when present, makes the underlying native HTML &lt;input&gt; text not mutable, meaning the user can not edit the control.
+
 ### error
 
 The string-valued `error` provides error text as HTML.

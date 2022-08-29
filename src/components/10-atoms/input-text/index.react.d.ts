@@ -1,6 +1,7 @@
 import React from 'react';
 
-export interface AXAInputTextProps {
+export interface AXAInputTextProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   refId?: string;
   name: string;
   label?: string;
@@ -23,6 +24,7 @@ export interface AXAInputTextProps {
   pattern?: string;
   inputmode?: string;
   autofocus?: boolean;
+  readonly?: boolean;
   onFocus?: (e?: FocusEvent) => void;
   onBlur?: (e?: FocusEvent) => void;
   onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;

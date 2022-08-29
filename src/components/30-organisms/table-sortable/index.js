@@ -1,14 +1,13 @@
 /* eslint-disable no-restricted-globals */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import AXATable from '@axa-ch/table';
 import { css, html, LitElement, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
 import fireCustomEvent from '../../../utils/custom-event';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import tableCss from './index.scss';
 
 const ASC = 'ascending';
@@ -34,6 +33,10 @@ class AXATableSortable extends LitElement {
       tfoot: [[]],
     };
     applyDefaults(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.sortByIndex = this.sortByIndex.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+
     this.firstRender = true;
     this.numCollator = new Intl.Collator(undefined, {
       numeric: true,
@@ -71,10 +74,8 @@ class AXATableSortable extends LitElement {
     if (a === b) {
       return true;
     }
-    if (a === 0 || b === 0) {
-      return true;
-    }
-    return false;
+
+    return a === 0 || b === 0;
   }
 
   areLengthValuesConsistent(bodyLength = 0, headLength = 0, footLength = 0) {
@@ -120,6 +121,30 @@ class AXATableSortable extends LitElement {
     return this.areLengthValuesConsistent(tbodyL, theadL, tfootL);
   }
 
+  sortByIndex(index, config) {
+    const sortingAria = this.getSortingAria(config);
+
+    if (sortingAria !== 'none') {
+      const sortAs = sortingAria === ASC ? DESC : ASC;
+      // A tmp model is used because the model is reactive and rerender should be avoided.
+      const tmpModel = { ...this.model };
+      const { tbody, tfoot } = this.model;
+
+      tmpModel.tbody = this.sort(tbody, index, sortAs, config.key);
+
+      if (tfoot && tfoot[0]) {
+        tmpModel.tfoot = this.sort(tfoot, index, sortAs, config.key);
+      } else {
+        tmpModel.tfoot = [[]];
+      }
+
+      tmpModel.thead[index].sort = mapAsc[sortAs];
+
+      this.lastIndex = index;
+      this.model = tmpModel;
+    }
+  }
+
   getSortingAria(config) {
     if (!config.sort) {
       return 'none';
@@ -130,32 +155,7 @@ class AXATableSortable extends LitElement {
     return ASC;
   }
 
-  sortByIndex(index, actualSortAs) {
-    const sortAs = actualSortAs === ASC ? DESC : ASC;
-    const tmpModel = { ...this.model };
-    const { tbody, tfoot } = this.model;
-
-    tmpModel.tbody = this.sort(tbody, index, sortAs);
-
-    if (tfoot && tfoot[0]) {
-      tmpModel.tfoot = this.sort(tfoot, index, sortAs);
-    } else {
-      tmpModel.tfoot = [[]];
-    }
-
-    tmpModel.thead[index].sort = mapAsc[sortAs];
-
-    this.lastIndex = index;
-    this.model = tmpModel;
-  }
-
-  // V8 engine uses QuickSort algorythm for Array.prototype.sort
-  // with elements less then 10. for more then 10, it uses the InsertionSort
-  // algorythm. As result, for arrays containing 10 or fewer elements,
-  // time complexity of .sort is O(n^2), and space complexity is O(1).
-  // For longer arrays time complexity is Θ(n log(n)) (average case),
-  // and space complexity is O(log(n))
-  sort(arr, index, sortAs) {
+  sort(arr, index, sortAs, key) {
     // Declaration of dateColumnsCustomSort had to be moved from the constructor, because
     // the value of this.dateSortColumnIndex wasn't available
     const dateColumnsCustomSort = this.dateSortColumnIndex
@@ -168,8 +168,12 @@ class AXATableSortable extends LitElement {
     return arr.sort((rowLx, rowRx) => {
       const cleanCell = (cell = '') => cell.replace(/<[^>]*>/g, '').trim();
 
-      const cellRx = cleanCell(rowRx[index].html) || rowRx[index].text;
-      const cellLx = cleanCell(rowLx[index].html) || rowLx[index].text;
+      const cellRx = key
+        ? rowRx[index][key]
+        : cleanCell(rowRx[index].html) || rowRx[index].text;
+      const cellLx = key
+        ? rowLx[index][key]
+        : cleanCell(rowLx[index].html) || rowLx[index].text;
 
       const convertComparatorToSortingType = compNumber => {
         return sortAs === ASC ? compNumber : -compNumber;
@@ -223,7 +227,7 @@ class AXATableSortable extends LitElement {
     return super.shouldUpdate(...args);
   }
 
-  handleOnClick = (ev, index, type) => {
+  handleOnClick(ev, index, type) {
     ev.preventDefault();
     ev.stopPropagation();
     const { currentTarget } = ev;
@@ -236,17 +240,17 @@ class AXATableSortable extends LitElement {
     };
     this.onClick(details);
     fireCustomEvent('click', details, this, { bubbles: false });
-  };
+  }
 
   // if is focused, let the row be pressed via keyboard
-  onKeyPress = (...args) => {
+  onKeyPress(...args) {
     const {
       0: { charCode, code },
     } = args;
     if (KEY_CODES.indexOf(charCode) > -1 || KEY_NAMES.indexOf(code) > -1) {
       this.handleOnClick(...args);
     }
-  };
+  }
 
   /* eslint-disable indent */
   render() {
@@ -269,12 +273,7 @@ class AXATableSortable extends LitElement {
                       class="${this.lastIndex === index
                         ? 'o-table-sortable__th--selected'
                         : ''}"
-                      @click="${() => {
-                        const sortingAria = this.getSortingAria(config);
-                        if (sortingAria !== 'none') {
-                          this.sortByIndex(index, sortingAria);
-                        }
-                      }}"
+                      @click="${() => this.sortByIndex(index, config)}"
                       aria-sort="${this.getSortingAria(config)}"
                     >
                       <div class="o-table-sortable__th__flexcontainer">

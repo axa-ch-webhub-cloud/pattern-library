@@ -12,6 +12,7 @@ export interface AXATableSortableProps {
   maxheight?: number;
   dateSortColumnIndex?: string;
   showallinline?: boolean;
+  children?: React.ReactNode;
   onClick?: (e?: any) => void;
 }
 

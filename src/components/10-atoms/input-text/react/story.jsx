@@ -1,117 +1,38 @@
-import { boolean, radios, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import { createReactContainer } from '../../../../utils/create-react-container';
+import { args, argTypes } from '../story.args';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAInputText from './AXAInputText';
 
-const typeOptions = {
-  text: 'text',
-  email: 'email',
-  password: 'password',
+export default {
+  title: 'Examples/Input Text/React',
+  parameters: {
+    readme,
+    usage: { disable: true },
+    changelog,
+  },
+  args,
+  argTypes: { ...argTypes, defaultValue: { control: 'text' } },
 };
 
-const storyInputText = storiesOf('Examples/Input Text/React', module);
-storyInputText.addDecorator(withKnobs);
-storyInputText.addParameters({
-  readme,
-  usage: { disable: true },
-  changelog,
-});
+const InputTextControlled = props => {
+  const [value, setValue] = useState(props.value);
 
-storyInputText.add('Story', () => {
-  const label = text('label*', '');
-  const name = text('name*', '');
-  const refId = text('refId', '');
-  const placeholder = text('placeholder', '');
-  const error = text('error', '');
-  const info = text('info', '');
-  const currency = text('currency', '');
-  const defaultValue = text('defaultValue', '');
-  const value = text('value', '');
-  const checkMark = boolean('checkMark', false);
-  const disabled = boolean('disabled', false);
-  const required = boolean('required', false);
-  const invalid = boolean('invalid', false);
-  const types = radios('type', typeOptions, 'text');
-  const pattern = text('pattern', '');
-  const inputmode = text('inputmode', '');
-  const autofocus = boolean('autofocus', false);
-
-  const InputText = () => {
-    const [valueState, setValueState] = useState(value);
-
-    return (
-      <AXAInputText
-        refId={refId}
-        name={name}
-        label={label}
-        placeholder={placeholder}
-        checkMark={checkMark}
-        disabled={disabled}
-        required={required}
-        invalid={invalid}
-        defaultValue={defaultValue}
-        value={valueState}
-        type={types}
-        error={error}
-        info={info}
-        pattern={pattern}
-        inputmode={inputmode}
-        autofocus={autofocus}
-        currency={currency}
-        onChange={evt => setValueState(evt.target.value)}
-      />
-    );
-  };
-
-  const wrapper = document.createElement('div');
-  ReactDOM.render(<InputText />, wrapper);
-
-  return wrapper;
-});
-
-storyInputText.add('Story - Simulate autocomplete', () => {
-  const label = text('label*', '');
-  const placeholder = text('placeholder', '');
-  const error = text('error', '');
-  const info = text('info', '');
-  const checkMark = boolean('checkmark', false);
-  const disabled = boolean('disabled', false);
-  const required = boolean('required', false);
-  const invalid = boolean('invalid', false);
-  const counter = text('counter', 'Still ##counter## characters left');
-  const counterMax = text('counterMax', 'Over character limit!');
-  const autofocus = boolean('autofocus', false);
-
-  const wrapper = document.createElement('div');
-  // there are two input fields because with only one is not possible to
-  // activate the Safari's autocomplete feature.
-  ReactDOM.render(
-    <form>
-      <AXAInputText refid="fix-id-fake" name="Name" />
-      <AXAInputText
-        refid="fix-id-86452623"
-        name="Adresse"
-        label={label}
-        placeholder={placeholder}
-        checkMark={checkMark}
-        disabled={disabled}
-        required={required}
-        invalid={invalid}
-        type="text"
-        counter={counter}
-        counterMax={counterMax}
-        maxlength="5"
-        error={error}
-        info={info}
-        autofocus={autofocus}
-      />
-    </form>,
-    wrapper
+  return (
+    <AXAInputText
+      {...props}
+      value={value}
+      onChange={evt => setValue(evt.target.value)}
+    />
   );
+};
 
+export const InputText = _args =>
+  createReactContainer(<InputTextControlled {..._args} />);
+
+/* TODO rewrite this
+export const SimulateAutocomplete = _args => {
   // simulate autocomplete
   setTimeout(() => {
     const input = document.querySelector('#fix-id-86452623');
@@ -125,5 +46,19 @@ storyInputText.add('Story - Simulate autocomplete', () => {
     }
   }, 1);
 
-  return wrapper;
-});
+  // there are two input fields because with only one is not possible to
+  // activate Safari's autocomplete feature.
+  return  createReactContainer(
+    <form>
+      <AXAInputText refid="fix-id-fake" name="Name" />
+      <AXAInputText
+        {..._args}
+        refid="fix-id-86452623"
+        name="Adresse"
+        type="text"
+        maxlength="5"
+      />
+    </form>
+  );
+};
+ */

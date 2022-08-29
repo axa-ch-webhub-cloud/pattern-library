@@ -1,8 +1,8 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import popupContentCSS from './index.scss';
 
-import { applyDefaults } from '../../../../utils/with-react';
+import applyDefaults from '../../../../utils/apply-defaults';
 
 class AXAPopupContent extends LitElement {
   static get tagName() {

@@ -1,6 +1,5 @@
 import { css, html, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
-/* eslint-disable import/no-extraneous-dependencies */
+import { classMap } from 'lit/directives/class-map.js';
 import AXAContainer from '@axa-ch/container';
 import AXAButton from '@axa-ch/button';
 import AXAButtonLink from '@axa-ch/button-link';
@@ -12,7 +11,7 @@ import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import fireCustomEvent from '../../../utils/custom-event';
 

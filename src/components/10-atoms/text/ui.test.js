@@ -3,7 +3,7 @@ import { Selector, ClientFunction } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Text - basic functionality')
-  .page(`${host}/iframe.html?id=components-text--text`)
+  .page(`${host}/iframe.html?args=&id=components-text--text&viewMode=story`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -36,7 +36,7 @@ test('should have correct font definitions for text size 1', async t => {
 });
 
 fixture('Text - Size 2')
-  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-2`)
+  .page(`${host}/iframe.html?args=variant:size-2&id=components-text--text`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -62,7 +62,7 @@ test('should have correct font definitions for text size 2', async t => {
 });
 
 fixture('Text - Size 3')
-  .page(`${host}/iframe.html?id=components-text--text&knob-variant=size-3`)
+  .page(`${host}/iframe.html?args=variant:size-3&id=components-text--text`)
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -89,7 +89,7 @@ test('should have correct font definitions for text size 3', async t => {
 
 fixture('Text - Size 2 with custom tag')
   .page(
-    `${host}/iframe.html?id=components-text--text&knob-variant=size-2&knob-add%20<p>%20Tag=true`
+    `${host}/iframe.html?args=variant:size-2;wrapSlotInSpan:true&id=components-text--text&viewMode=story`
   )
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
@@ -116,7 +116,9 @@ test('should have correct font definitions for text size 2 with custom span tag'
 });
 
 fixture('Text - Bold')
-  .page(`${host}/iframe.html?id=components-text--text&knob-variant=bold`)
+  .page(
+    `${host}/iframe.html?args=variant:bold&id=components-text--text&viewMode=story`
+  )
   .beforeEach(async t => {
     await t.resizeWindow(380, 680);
   });
@@ -132,7 +134,7 @@ test('should have correct font weight for text bold', async t => {
 });
 
 fixture('Text - Semibold').page(
-  `${host}/iframe.html?id=components-text--text&knob-variant=semibold`
+  `${host}/iframe.html?args=variant:semibold&id=components-text--text&viewMode=story`
 );
 
 test('should have correct font weight for text semibold', async t => {
@@ -146,9 +148,7 @@ test('should have correct font weight for text semibold', async t => {
 });
 
 fixture('Text - Variant')
-  .page(
-    `${host}/iframe.html?id=components-text--text&knob-variant=size-1%20bold`
-  )
+  .page(`${host}/iframe.html?args=&id=components-text--text&viewMode=story`)
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);
   });
@@ -197,7 +197,7 @@ test('should update pure text dynamically and wrap in <p>', async t => {
 
 fixture('Text - React')
   .page(
-    `${host}/iframe.html?id=examples-text-react--dynamic-children-under-react`
+    `${host}/iframe.html?args=&id=examples-text-react--text-dynamic-children&viewMode=story`
   )
   .beforeEach(async t => {
     await t.resizeWindow(800, 600);
@@ -257,65 +257,4 @@ test('should update dynamically for pure and HTML texts', async t => {
   await t.expect($axaElem.innerHTML).contains(isPure ? '<p>' : '<span>');
   await t.expect($axaElem.innerHTML).notContains(isPure ? '<span>' : '<p>');
   await t.expect($axaElem.textContent).eql(expectation);
-});
-
-fixture('Text - React, versioned')
-  .page(
-    `${host}/iframe.html?id=examples-text-react--custom-versioned-axa-text-under-react`
-  )
-  .beforeEach(async t => {
-    await t.resizeWindow(800, 600);
-  });
-
-test('should update dynamically and change variant for versioned axa-text', async t => {
-  const $axaElemChild = await Selector(() =>
-    document.querySelector('axa-text-mypod[variant] > *')
-  );
-
-  const $axaElem = Selector(() =>
-    document.querySelector('axa-text-mypod')
-  ).addCustomDOMProperties({
-    innerHTML: el => el.innerHTML,
-  });
-
-  // existing text is wrapped properly and as expected
-  await t.expect($axaElem.innerHTML).contains('<p>');
-  await t
-    .expect($axaElem.textContent)
-    .eql('This is example <axa-text-mypod> no. 1');
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-weight'))
-    .eql('700'); // initially bold
-
-  // change test parameter 'variant'
-  await t.click('.js-variant-bold');
-
-  await t.wait(50);
-
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-weight'))
-    .eql('400'); // no longer bold
-
-  // change test parameter 'text'
-  await t.click('.js-update');
-
-  await t.wait(50);
-
-  // existing text is wrapped properly and as expected
-  await t.expect($axaElem.innerHTML).contains('<p>');
-  await t
-    .expect($axaElem.textContent)
-    .eql('This is example <axa-text-mypod> no. 2'); // new text
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-weight'))
-    .eql('400'); // not bold
-
-  // change test parameter 'variant'
-  await t.click('.js-variant-bold');
-
-  await t.wait(50);
-
-  await t
-    .expect(await $axaElemChild.getStyleProperty('font-weight'))
-    .eql('700'); // again bold
 });

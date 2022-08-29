@@ -1,12 +1,10 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { html, render } from 'lit';
-import './index';
+import { html } from 'lit';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
+import './index';
 
 export default {
   title: 'Components/Progress Bar',
-  decorators: [withKnobs],
   parameters: {
     readme,
     usage: {
@@ -14,25 +12,43 @@ export default {
     },
     changelog,
   },
+  args: {
+    small: false,
+    noBorderRadius: false,
+    value: '32',
+    max: '',
+    text: '',
+  },
+  argsTypes: {
+    small: {
+      control: 'boolean',
+    },
+    noBorderRadius: {
+      control: 'boolean',
+    },
+    value: {
+      control: 'text',
+    },
+    max: {
+      control: 'text',
+    },
+    text: {
+      control: 'text',
+    },
+  },
 };
-export const ProgressBar = () => {
-  const small = boolean('small', false);
-  const noBorderRadius = boolean('noBorderRadius', false);
-  const value = text('value', '32');
-  const max = text('max', '');
-  const progressText = text('text', '');
-
-  const wrapper = document.createElement('div');
-  const template = html`
-    <axa-progress-bar
-      ?small=${small}
-      ?noborderradius=${noBorderRadius}
-      value=${value}
-      max=${max}
-      text=${progressText}
-    ></axa-progress-bar>
-  `;
-
-  render(template, wrapper);
-  return wrapper;
-};
+export const ProgressBar = ({
+  small,
+  noBorderRadius,
+  value,
+  max,
+  text,
+}) => html`
+  <axa-progress-bar
+    ?small=${small}
+    ?noborderradius=${noBorderRadius}
+    value=${value}
+    max=${max}
+    text=${text}
+  ></axa-progress-bar>
+`;

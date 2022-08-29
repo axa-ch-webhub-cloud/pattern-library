@@ -1,10 +1,10 @@
 import { Selector } from 'testcafe';
-import FooterAccessor from './ui.accessor';
+import FooterAccessor from './ui.test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Footer - Basic Functionality')
-  .page(`${host}/iframe.html?id=components-footer--footer`)
+  .page(`${host}/iframe.html?id=components-footer--footer&viewMode=story`)
   .beforeEach(async t => {
     await t.maximizeWindow();
   });
@@ -154,7 +154,7 @@ test('should correctly render social media title in desktop view', async t => {
 });
 
 fixture('Footer - React Smoketest').page(
-  `${host}/iframe.html?id=examples-footer-react--callbacks`
+  `${host}/iframe.html?id=examples-footer-react--callbacks&viewMode=story`
 );
 
 test('should render footer with working react callbacks', async t => {
@@ -199,7 +199,7 @@ test('should render footer with working react callbacks', async t => {
 });
 
 fixture('Footer - Demo Smoketest').page(
-  `${host}/iframe.html?id=examples-footer-pure-html--callbacks`
+  `${host}/iframe.html?id=examples-footer-pure-html--callbacks&viewMode=story`
 );
 
 test('should render footer with working native callbacks', async t => {
@@ -234,7 +234,7 @@ test('should render footer with working native callbacks', async t => {
 });
 
 fixture('Footer - without content').page(
-  `${host}/iframe.html?id=examples-footer-pure-html--without-content`
+  `${host}/iframe.html?id=examples-footer-pure-html--without-content&viewMode=story`
 );
 
 test('should not render empty accordions on mobile', async t => {

@@ -6,6 +6,7 @@ export interface AXAListProps {
   variant?: Variant;
   icon?: string;
   className?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXAList(

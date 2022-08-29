@@ -1,19 +1,18 @@
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputPhone from './InputPhoneDemo';
+import { createReactContainer } from '../../../../utils/create-react-container';
 
-storiesOf('Examples/Input Phone/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Input Phone/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  /* Default */
-  .add('Controlled/uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputPhone />, div);
-    return div;
-  });
+    controls: { disable: true },
+  },
+};
+
+export const InputPhoneControlledUncontrolled = () =>
+  createReactContainer(<DemoInputPhone />);

@@ -1,31 +1,26 @@
-import { storiesOf } from '@storybook/html';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputText from './DemoInputText';
 import DemoInputTextonKeyDown from './DemoInputTextonKeyDown';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
-storiesOf('Examples/Input Text/React', module)
-  .addParameters({
+export default {
+  title: 'Examples/Input Text/React',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  /* Default */
-  .add('Controlled/uncontrolled', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputText />, div);
-    return div;
-  })
-  .add('Using onKeyDown event', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputTextonKeyDown />, div);
-    return div;
-  })
-  .add('Using onKeyUp event', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<DemoInputTextonKeyUp />, div);
-    return div;
-  });
+    controls: { disable: true },
+  },
+};
+
+export const InputTextControlledUncontrolled = () =>
+  createReactContainer(<DemoInputText />);
+
+export const InputTextOnKeyDownEvent = () =>
+  createReactContainer(<DemoInputTextonKeyDown />);
+
+export const InputTextOnKeyUpEvent = () =>
+  createReactContainer(<DemoInputTextonKeyUp />);

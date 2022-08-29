@@ -8,7 +8,6 @@ src/static
 *.png
 *.rtf
 .gitignore
-.DS_Store
 *.sh
 *.md
 *.yml
@@ -17,8 +16,9 @@ src/static
 
 # Ignore auto generated files
 node_modules
-package-lock.json
 storybook-static
+playwright-report
+test-results
 lib
 dist
 src/components/00-materials/icons/*

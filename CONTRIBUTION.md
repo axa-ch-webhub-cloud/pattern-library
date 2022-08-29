@@ -2,7 +2,7 @@
 
 ## What you need to contribute
 
-- [Node](https://nodejs.org/en/) (v16.14.2), which is the same version that runs on the pipeline.
+- [Node](https://nodejs.org/en/) (v. 16.15.1), which is the same version that runs on the pipeline.
 - [Prettier](https://prettier.io/) - A code styling tool. You don't explicitly need it, but without fitting the ruleset, you will not be able to merge.
 
 ## Install and run the AXA Pattern Library
@@ -41,40 +41,27 @@ We reuse the Pattern Lib v1 JavaScript linting settings.
 
 # Testing
 
-- [Jest](https://jestjs.io/) for unit testing
+- [Vitest](https://vitest.dev/) for unit testing
 - [Playwright](https://playwright.dev/) for UI tests
 - Deprecated: ~~TestCafe](https://devexpress.github.io/testcafe/) for UI tests~~
+
 ## UI Testing
 
 - A Component should have at least a smoke test
-- Test file name: `pw.ui.test.js`
+- Test file name: `e2e.js`
 
 ```js
-// React smoke test
-fixture('Button').page(`${host}/iframe.html?id=your-component-page`);
-test('should render a button as reactified component', async t => {
-  const button = await Selector(() =>
-    document.querySelector(`axa-button[data-test-id="button"]`)
-  );
-  await t.expect(button.exists).ok();
-});
+test.describe('button', () => {
+  test('should render', async ({ page }) => {
+    await page.goto(fixtureURL('your-component-page'));
+    
+    expect(page.locator('text="Login"').isVisible());
+  })
+})
 ```
 
-### How-to write and run tests
-
-- `npm run test-jest` Jest will launch in the watch mode. Every time you save a file, it will re-run the tests.
-- Tests should be written with the `it()` function, i.e `it('should render correctly')`.
-- You may optionally want to describe and group them in `describe()` blocks.
-- Optional: Coverage: Run `npm test -- --coverage`
-- Optional: Disable jsDOM via `npm run test-jest --env=node`
-
-```js
-import sum from './sum';
-it('should sum numbers', () => {
-  expect(sum(1, 2)).toEqual(3);
-  expect(sum(2, 2)).toEqual(4);
-});
-```
+## Unit Testing
+- Test file name: `unit.test.js`
 
 ## Create a new component
 

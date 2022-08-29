@@ -1,9 +1,14 @@
-// breakpoints
-$breakpoint-xs: 576px;
-$breakpoint-sm: 768px;
-$breakpoint-md: 992px;
-$breakpoint-xl: 1200px;
-$breakpoint-xxl: 1440px;
+// breakpoint - based on default 16px
+// 576px
+$breakpoint-xs: 36em;
+// 768px
+$breakpoint-sm: 48em;
+// 992px
+$breakpoint-md: 62em;
+// 1200px
+$breakpoint-xl: 75em;
+// 1440px
+$breakpoint-xxl: 90em;
 
 // spacing
 $spacing-1: 4px;

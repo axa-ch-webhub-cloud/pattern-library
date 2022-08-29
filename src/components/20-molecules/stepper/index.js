@@ -1,9 +1,8 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { CheckSvg } from '@axa-ch/materials/icons/material-design';
 import { css, html, LitElement, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 const checkIcon = unsafeHTML(CheckSvg);

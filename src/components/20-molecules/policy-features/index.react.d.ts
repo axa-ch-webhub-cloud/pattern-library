@@ -6,9 +6,10 @@ export interface AXAPolicyFeaturesProps {
   title: string;
   variant?: Variant;
   className?: string;
+  children?: React.ReactNode;
 }
 
-export function createAXAPolicyFeatures(
+export declare function createAXAPolicyFeatures(
   createElement: typeof React.createElement,
   version?: string
 ): React.ComponentType<AXAPolicyFeaturesProps>;
@@ -24,3 +25,5 @@ export declare function createAXAPolicyFeaturesItem(
   createElement: typeof React.createElement,
   version?: string
 ): React.ComponentType<AXAPolicyFeaturesItemProps>;
+
+export default createAXAPolicyFeatures;

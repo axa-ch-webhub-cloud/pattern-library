@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-restricted-globals */
-/* eslint-disable import/no-extraneous-dependencies */
+
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
-import { classMap } from 'lit/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
@@ -13,7 +13,7 @@ import fireCustomEvent from '../../../utils/custom-event';
 import createRefId from '../../../utils/create-ref-id';
 import typecheck from '../../../utils/typecheck';
 import findIndex from '../../../utils/find-index';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 
 // module constants
 const ARROW_ICON = unsafeHTML(Expand_moreSvg);

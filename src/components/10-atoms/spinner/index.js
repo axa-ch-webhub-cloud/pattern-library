@@ -1,7 +1,7 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import { defineVersioned } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 class AXASpinner extends LitElement {

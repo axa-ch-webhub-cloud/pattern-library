@@ -1,5 +1,3 @@
-/* eslint-disable jest/no-identical-title */
-
 import { Selector } from 'testcafe';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
@@ -9,21 +7,11 @@ const primRedFlamingo = 'rgb(240, 118, 98)';
 const primWhite = 'rgb(255, 255, 255)';
 const linkText = 'This is a simple link';
 
-fixture('Link').page(`${host}/iframe.html?id=components-link--link`);
+fixture('Link').page(
+  `${host}/iframe.html?id=components-link--link&viewMode=story`
+);
 
 test('should display correctly', async t => {
-  const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://www.axa.ch/en/information/data-protection.html');
-
-  const linkElement = Selector(
-    () => document.querySelector('axa-link').shadowRoot
-  ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://www.axa.ch/en/information/data-protection.html');
-
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
@@ -44,22 +32,12 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - External').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-external=true`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;external:true&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.hasAttribute('external')).ok();
-
-  const linkElement = Selector(
-    () => document.querySelector('axa-link').shadowRoot
-  ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -77,25 +55,17 @@ test('should display correctly', async t => {
         .shadowRoot.querySelector('slot')
         .assignedNodes()[0]
   );
-  await t.expect(linkTextElement.textContent).eql('This is a simple link');
+  await t.expect(linkTextElement.textContent).eql(linkText);
 });
 
 fixture('Link - Simple Link - Icon').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon&knob-icon=download`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;variant:icon;icon:download&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
-  const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -120,22 +90,13 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Static Arrow Right').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;variant:arrowright&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
-  const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
@@ -159,22 +120,13 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Static Arrow Left').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;variant:arrowleft&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
-  const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
@@ -198,23 +150,16 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Animated Arrow Right').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowright-animated`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;variant:arrowright-animated&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('variant')).contains('animated');
 
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
-
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
@@ -238,22 +183,16 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Animated Arrow Left').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=arrowleft-animated`
+  `${host}/iframe.html?args=slot:This%20is%20a%20simple%20link;variant:arrowleft-animated&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('variant')).contains('animated');
 
   const linkElement = Selector(
     () => document.querySelector('axa-link').shadowRoot
   ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -278,22 +217,12 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - Red Color').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-red`
+  `${host}/iframe.html?args=variant:icon-red&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('variant')).eql('icon-red');
-
-  const linkElement = Selector(
-    () => document.querySelector('axa-link').shadowRoot
-  ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -306,22 +235,12 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Simple Link - White Color').page(
-  `${host}/iframe.html?id=components-link--link&knob-link=https://axa.ch/en/private-customers.html&knob-Link%20text=This%20is%20a%20simple%20link&knob-variant=icon-white`
+  `${host}/iframe.html?args=variant:icon-white&id=components-link--link&viewMode=story`
 );
 
 test('should display correctly', async t => {
   const axaLink = Selector('axa-link');
-  await t
-    .expect(axaLink.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
   await t.expect(axaLink.getAttribute('variant')).eql('icon-white');
-
-  const linkElement = Selector(
-    () => document.querySelector('axa-link').shadowRoot
-  ).find('a');
-  await t
-    .expect(linkElement.getAttribute('href'))
-    .eql('https://axa.ch/en/private-customers.html');
 
   const link = Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
@@ -334,36 +253,17 @@ test('should display correctly', async t => {
 });
 
 fixture('Link - Reactified, dynamic icons').page(
-  `${host}/iframe.html?id=examples-link-react--variable-icons`
+  `${host}/iframe.html?id=examples-link-react--link-variable-icons&viewMode=story`
 );
 
-test('should correctly update icon and text', async t => {
+test('should correctly update text', async t => {
   const axaLink = await Selector(() => document.querySelector('axa-link'));
   const axaLinkEmbedded = await Selector(() =>
     document.querySelector('axa-link').shadowRoot.querySelector('a')
   );
 
-  const downIconSignature = 'M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'; // expand_more.svg
-  const upIconSignature = 'M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z'; // expand_less.svg
-
-  const iconSVGPathElement = Selector(() =>
-    document
-      .querySelector('axa-link')
-      .shadowRoot.querySelector('.js-icon')
-      .shadowRoot.querySelector('path')
-  );
-
-  await t
-    .expect(await iconSVGPathElement.getAttribute('d'))
-    .eql(downIconSignature);
-
   await t.expect(axaLink.textContent).eql('Mehr Filter');
 
   await t.click(axaLinkEmbedded);
-
-  await t
-    .expect(await iconSVGPathElement.getAttribute('d'))
-    .eql(upIconSignature);
-
   await t.expect(axaLink.textContent).eql('Weniger Filter');
 });

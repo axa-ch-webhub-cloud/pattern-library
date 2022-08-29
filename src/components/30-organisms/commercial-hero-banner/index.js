@@ -1,12 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { css, unsafeCSS } from 'lit';
-import { classMap } from 'lit/directives/class-map';
+import { classMap } from 'lit/directives/class-map.js';
 import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import childStyles from './child.scss';
 import InlineStyles from '../../../utils/inline-styles';

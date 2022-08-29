@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch/testimonials",
-  "version": "4.0.0",
+  "version": "5.0.3",
   "description": "The testimonials component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/testimonials#readme",
@@ -8,6 +8,7 @@
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
+    "build-dist": "rollup --silent --config ../../../../rollup.config.dist.js",
     "postpublish": "../../../../scripts/build/postpublish.js",
     "watch": "rollup --watch --silent --config ../../../../rollup.config.js",
     "genPackagelock": "npm i --package-lock-only"
@@ -27,8 +28,8 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/carousel": "4.0.0",
-    "@axa-ch/container": "4.0.0",
+    "@axa-ch/carousel": "5.0.3",
+    "@axa-ch/container": "5.0.3",
     "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }

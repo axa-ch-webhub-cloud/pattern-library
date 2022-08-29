@@ -1,21 +1,19 @@
-import { boolean, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
-import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
-storiesOf('Examples/Textarea/Pure HTML', module)
-  .addDecorator(withKnobs)
-  .addParameters({
+export default {
+  title: 'Examples/Textarea/Pure HTML',
+  parameters: {
     readme,
     usage: { disable: true },
     changelog,
-  })
-  .add(
-    'Character counter',
-    () =>
-      `<div>
+    controls: { disable: true },
+  },
+};
+
+export const CharacterCounter = () =>
+  `<div>
         <axa-textarea
           style="display: block; margin-bottom: 20px;"
           label="Character counter with string pattern"
@@ -34,48 +32,23 @@ storiesOf('Examples/Textarea/Pure HTML', module)
           label="Character counter, digits only"
           maxlength="3"
         ></axa-textarea>
-      </div>`
-  )
-  .add(
-    'Children (default Value)',
-    () => `<axa-textarea>prefilled value</axa-textarea>`
-  )
-  .add('MaxLength added later', () => {
-    const label = text('label*', '');
-    const name = text('name*', '');
-    const refId = text('refId', '');
-    const placeholder = text('placeholder', '');
-    const error = text('error', '');
-    const checkMark = boolean('checkmark', false);
-    const disabled = boolean('disabled', false);
-    const required = boolean('required', false);
-    const invalid = boolean('invalid', false);
+      </div>`;
 
-    const wrapper = document.createElement('div');
-    const template = html`
-      <axa-textarea
-        refid="${refId}"
-        name="${name}"
-        label="${label}"
-        placeholder="${placeholder}"
-        error="${error}"
-        ?checkmark="${checkMark}"
-        ?disabled="${disabled}"
-        ?required="${required}"
-        ?invalid="${invalid}"
-      ></axa-textarea>
-    `;
+export const ChildrenDefaultValue = () =>
+  `<axa-textarea>prefilled value</axa-textarea>`;
 
-    setTimeout(() => {
-      document
-        .querySelector('axa-textarea')
-        .setAttribute('counter', 'Still ##counter## left');
-      document.querySelector('axa-textarea').setAttribute('maxLength', 100);
-      document
-        .querySelector('axa-textarea')
-        .setAttribute('countermax', 'Max maxLength reached');
-    }, 2000);
+/* TODO rewrite this
+export const DynamicMaxLength = () => {
+  setTimeout(() => {
+    document
+      .querySelector('axa-textarea')
+      .setAttribute('counter', 'Still ##counter## left');
+    document.querySelector('axa-textarea').setAttribute('maxLength', 100);
+    document
+      .querySelector('axa-textarea')
+      .setAttribute('countermax', 'Max maxLength reached');
+  }, 2000);
 
-    render(template, wrapper);
-    return wrapper;
-  });
+  return html`<axa-textarea>123</axa-textarea>`;
+};
+ */

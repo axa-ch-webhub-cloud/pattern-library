@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=1`)
+  .page(`${host}/iframe.html?id=components-heading--heading&viewMode=story`)
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -92,7 +92,9 @@ test('should render h1 primary correctly on mobile', async t => {
 });
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=2`)
+  .page(
+    `${host}/iframe.html?args=rank:2&id=components-heading--heading&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -159,7 +161,9 @@ test('should render h2 primary correctly on mobile', async t => {
 });
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=3`)
+  .page(
+    `${host}/iframe.html?args=rank:3&id=components-heading--heading&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -225,7 +229,9 @@ test('should render h3 primary correctly on mobile', async t => {
 });
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=4`)
+  .page(
+    `${host}/iframe.html?args=rank:4&id=components-heading--heading&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -291,7 +297,9 @@ test('should render h4 primary correctly on mobile', async t => {
 });
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=5`)
+  .page(
+    `${host}/iframe.html?args=rank:5&id=components-heading--heading&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -357,7 +365,9 @@ test('should render h5 primary correctly on mobile', async t => {
 });
 
 fixture('Heading - Correct CSS attributes')
-  .page(`${host}/iframe.html?id=components-heading--heading&knob-Rank=6`)
+  .page(
+    `${host}/iframe.html?args=rank:6&id=components-heading--heading&viewMode=story`
+  )
   .afterEach(async t => {
     await t.maximizeWindow();
   });
@@ -424,7 +434,7 @@ test('should render h6 primary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=1&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -492,7 +502,7 @@ test('should render h1 secondary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=2&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true;rank:2&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -560,7 +570,7 @@ test('should render h2 secondary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=3&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true;rank:3&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -628,7 +638,7 @@ test('should render h3 secondary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=4&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true;rank:4&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -696,7 +706,7 @@ test('should render h4 secondary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=5&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true;rank:5&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();
@@ -764,7 +774,7 @@ test('should render h5 secondary correctly on mobile', async t => {
 
 fixture('Heading - Correct CSS attributes')
   .page(
-    `${host}/iframe.html?id=components-heading--heading&knob-Rank=6&knob-Secondary%20(variant)=true`
+    `${host}/iframe.html?args=secondary:true;rank:6&id=components-heading--heading&viewMode=story`
   )
   .afterEach(async t => {
     await t.maximizeWindow();

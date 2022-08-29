@@ -1,7 +1,16 @@
-## 5.1.0
+## 5.2.0
 
 - New callback `onKeyDown` which is called if the user presses a key in the input-text field.
   Can for example be used to recognize when the ENTER key has been pressed.
+
+## 6.1.0
+
+Add readonly flag. #2263
+
+## 6.0.0
+
+- Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
+- Add html attributes types
 
 ## 5.0.0
 

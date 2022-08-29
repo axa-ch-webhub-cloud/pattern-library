@@ -5,6 +5,7 @@ export interface AXACarouselProps {
   autorotatetime?: number;
   keysenabled?: boolean;
   className?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXACarousel(

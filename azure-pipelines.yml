@@ -12,24 +12,32 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '16.14.2'
+    versionSpec: '16.15.1'
   displayName: 'Install Node.js'
 
 - script: |
     npm ci
-  displayName: 'Install (with build included)'
+  displayName: 'Install (with lib build included)'
+
+- script: |
+    npm run build-dist
+  displayName: 'Build Dist'
 
 - script: |
     npm run check-for-uncommitted-files
   displayName: 'Check if there are no uncommitted files'
 
 - script: |
-    npm test
-  displayName: 'Test'
+    npm run lint
+  displayName: 'Lint and prettier check'
 
 - script: |
     npm run build-storybook
   displayName: 'Build static storybook'
+
+- script: |
+    npm run test:ci
+  displayName: 'Run unit and e2e tests'
 
 - script: |
     git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh

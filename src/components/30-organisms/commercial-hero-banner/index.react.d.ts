@@ -6,6 +6,7 @@ export interface AXACommercialHeroBannerProps {
   imageSource: string;
   variant?: Variant;
   className?: string;
+  children?: React.ReactNode;
 }
 
 declare function createAXACommercialHeroBanner(

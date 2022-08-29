@@ -1,15 +1,14 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
 import { html } from 'lit';
-import { classMap } from 'lit/directives/class-map';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
+import { classMap } from 'lit/directives/class-map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
 import createRefId from '../../../utils/create-ref-id';
 import NoShadowDOM from '../../../utils/no-shadow';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 
 const PATTERN_DEFAULT = '.*';
@@ -58,6 +57,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
         converter: value => value || PATTERN_DEFAULT,
       },
       autofocus: { type: Boolean },
+      readonly: { type: Boolean },
       onChange: { type: Function, attribute: false },
       onFocus: { type: Function, attribute: false },
       onBlur: { type: Function, attribute: false },
@@ -73,7 +73,9 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   constructor() {
     super();
     applyDefaults(this);
-
+    this.handleFocus = this.handleFocus.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     // internal properties
     this.nativeInput = { value: '' };
     this.modelValue = '';
@@ -120,7 +122,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       !(this.invalid || this.invalidFormat) &&
       this.areCharsLeft &&
       this.counter &&
-      !this.disabled
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -130,7 +133,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       this.counterMax &&
       !this.showError &&
       !this.areCharsLeft &&
-      !this.disabled
+      !this.disabled &&
+      !this.readonly
     );
   }
 
@@ -201,20 +205,20 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.nativeInput.classList.remove('focus');
   }
 
-  handleFocus = ev => {
+  handleFocus(ev) {
     this.nativeInput.classList.add('focus');
     this.onFocus(ev);
-  };
+  }
 
-  handleBlur = ev => {
+  handleBlur(ev) {
     this.nativeInput.value = this._formatCurrency(this.value);
     this.modelCounter = this.getCounterText; // update the chars left counter after formatting the input
 
     this.nativeInput.classList.remove('focus');
     this.onBlur(ev);
-  };
+  }
 
-  handleInput = ev => {
+  handleInput(ev) {
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
     this.onChange(ev, this.invalidFormat);
@@ -245,7 +249,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     if (this.maxLength) {
       this.modelCounter = this.getCounterText;
     }
-  };
+  }
 
   _isSafari() {
     return (
@@ -324,6 +328,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       isReact,
       maxLength = '',
       invalid,
+      readonly,
       invalidFormat,
       checkMark,
       isControlled,
@@ -343,6 +348,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
 
     const inputClasses = {
       'a-input-text__input': true,
+      'a-input-text__input--readonly': readonly,
       'a-input-text__input--error':
         ((invalid || invalidFormat) && !disabled) || this.showCounterMax,
       'a-input-text__input--check':
@@ -380,6 +386,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   pattern="${pattern}"
                   inputmode="${inputmode}"
                   ?disabled="${disabled}"
+                  ?readonly="${readonly}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
@@ -401,6 +408,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   pattern="${pattern}"
                   inputmode="${inputmode}"
                   ?disabled="${disabled}"
+                  ?readonly="${readonly}"
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"

@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import AXADropdownReact from './AXADropdownReact';
-import AXATextReact from './AXATextReact';
+import AXATextReact from '../../../10-atoms/text/react/AXATextReact';
 
 const DemoUncontrolledDropdown = ({
   item1,

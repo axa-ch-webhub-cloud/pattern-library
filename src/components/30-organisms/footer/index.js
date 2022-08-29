@@ -1,16 +1,14 @@
-/* eslint-disable camelcase */
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, css, unsafeCSS } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html';
-import { repeat } from 'lit/directives/repeat';
-import { classMap } from 'lit/directives/class-map';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { repeat } from 'lit/directives/repeat.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
 import AXAContainer from '@axa-ch/container';
 import {
   defineVersioned,
   versionedHtml,
 } from '../../../utils/component-versioning';
-import { applyDefaults } from '../../../utils/with-react';
+import applyDefaults from '../../../utils/apply-defaults';
 import styles from './index.scss';
 import childStyles from './child.scss';
 
@@ -59,6 +57,8 @@ class AXAFooter extends InlineStyles {
     super();
     applyDefaults(this);
     this._accordionActiveIndex = -1;
+    this._handleAccordionClick = this._handleAccordionClick.bind(this);
+    this._handleLinkClick = this._handleLinkClick.bind(this);
 
     defineVersioned([AXAContainer], __VERSION_INFO__, this);
   }
@@ -326,7 +326,7 @@ class AXAFooter extends InlineStyles {
     `;
   }
 
-  _handleAccordionClick = (index, ev) => {
+  _handleAccordionClick(index, ev) {
     // toggle opening of correct accordion
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
@@ -353,9 +353,9 @@ class AXAFooter extends InlineStyles {
     } else {
       _setMaxHeightToZero(panel);
     }
-  };
+  }
 
-  _handleLinkClick = ev => {
+  _handleLinkClick(ev) {
     if (this.clickevents) {
       ev.preventDefault();
 
@@ -372,7 +372,7 @@ class AXAFooter extends InlineStyles {
         );
       }
     }
-  };
+  }
 
   disconnectedCallback() {
     super.disconnectedCallback();

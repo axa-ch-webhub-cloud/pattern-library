@@ -1,3 +1,12 @@
+## 5.1.0
+
+Add `key` to model attribute to allow custom sorting. #2235
+
+## 5.0.0
+
+- Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
+- Fix react 18 type children issue. #2295
+
 ## 4.0.0
 
 Migrate to lit. #2207

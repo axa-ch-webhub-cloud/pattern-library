@@ -1,43 +1,23 @@
-/* eslint-disable import/no-extraneous-dependencies */
-// if your need more boolean, select, radios
-import { radios, text, withKnobs } from '@storybook/addon-knobs';
-import { storiesOf } from '@storybook/html';
-import { html, render } from 'lit';
-import withNoBorder from '../../../../.storybook/addons/no-border';
+import { html } from 'lit';
+import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
-const storyAXACommercialHeroBanner = storiesOf(
-  'Examples/Commercial Hero Banner/Pure HTML',
-  module
-);
+export default {
+  title: 'Examples/Commercial Hero Banner/Pure HTML',
+  parameters: {
+    readme,
+    usage: { disable: true },
+    changelog,
+    layout: 'fullscreen',
+  },
+  args,
+  argTypes,
+};
 
-storyAXACommercialHeroBanner.addDecorator(withNoBorder);
-storyAXACommercialHeroBanner.addDecorator(withKnobs);
-storyAXACommercialHeroBanner.addParameters({
-  readme,
-  usage: { disable: true },
-  changelog,
-});
-
-storyAXACommercialHeroBanner.add('With Badges', () => {
-  const variant = radios(
-    'Variant',
-    {
-      light: 'light',
-      dark: 'dark',
-    },
-    'light'
-  );
-
-  const imageSource = text(
-    'Image Source',
-    'https://d5cplpsrt2s33.cloudfront.net/m/24c1b33e4e8ceda1/WIDE_1440_560_X2-hero_kv_neu_kv_breit_web.jpg'
-  );
-
-  const wrapper = document.createElement('div');
-  const template = html`
+export const CommercialHeroBanner = ({ variant, imageSource }) =>
+  html`
     <style>
       .o-commercial-hero-banner-demo__badge-wrapper {
         position: absolute;
@@ -146,7 +126,3 @@ storyAXACommercialHeroBanner.add('With Badges', () => {
       </div>
     </axa-commercial-hero-banner>
   `;
-
-  render(template, wrapper);
-  return wrapper;
-});

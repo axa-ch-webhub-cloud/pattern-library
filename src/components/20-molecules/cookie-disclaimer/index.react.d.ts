@@ -7,6 +7,7 @@ export interface AXACookieDisclaimerProps {
   title?: string;
   buttonname?: string;
   className?: string;
+  children?: React.ReactNode;
   onClick?: () => void;
 }
 

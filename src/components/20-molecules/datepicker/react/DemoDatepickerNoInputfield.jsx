@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AXADatepickerReact from './AXADatepickerReact';
-import AXATextReact from './AXATextReact';
+import AXATextReact from '../../../10-atoms/text/react/AXATextReact';
 
 const DemoDatepickerNoInputfield = () => {
   const [showDatepicker, setShowDatepicker] = useState(true);
