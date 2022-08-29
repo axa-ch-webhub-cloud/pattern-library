@@ -1,4 +1,4 @@
-## 5.2.0
+## 6.2.0
 
 - New callback `onKeyDown` which is called if the user presses a key in the input-text field.
   Can for example be used to recognize when the ENTER key has been pressed.
