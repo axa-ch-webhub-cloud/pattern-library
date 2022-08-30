@@ -20,6 +20,10 @@ Boolean attribute `small` controls a smaller version of the accordion (default: 
 
 String-valued `title` sets the title of the accordion.
 
+### ariaLevel
+
+The `ariaLevel` attribute which defines the hierarchical level of an element within a structure.
+
 ### icon
 
 String-valued `icon` sets the additional icon of the accordion according to a valid `<svg>...</svg>` value. Leave unset if no icon is required.
