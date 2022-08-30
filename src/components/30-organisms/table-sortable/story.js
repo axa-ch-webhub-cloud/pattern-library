@@ -3,6 +3,7 @@ import { args, argTypes, model } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../../10-atoms/text';
 
 export default {
   title: 'Components/Table Sortable',

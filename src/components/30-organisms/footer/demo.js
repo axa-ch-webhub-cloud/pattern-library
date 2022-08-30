@@ -1,6 +1,7 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../../10-atoms/text';
 
 export default {
   title: 'Examples/Footer/Pure HTML',

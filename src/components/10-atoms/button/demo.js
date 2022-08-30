@@ -2,6 +2,7 @@ import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../text';
 import '../input-text/index';
 
 export default {

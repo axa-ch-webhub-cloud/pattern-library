@@ -3,6 +3,7 @@ import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../../10-atoms/button-link';
 
 export default {
   title: 'Examples/Commercial Hero Banner/Pure HTML',

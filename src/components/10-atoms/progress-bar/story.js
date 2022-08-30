@@ -37,6 +37,7 @@ export default {
     },
   },
 };
+
 export const ProgressBar = ({
   small,
   noBorderRadius,

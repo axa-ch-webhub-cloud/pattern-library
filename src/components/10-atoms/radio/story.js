@@ -4,6 +4,8 @@ import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../text';
+import '../fieldset';
 
 export default {
   title: 'Components/Radio',

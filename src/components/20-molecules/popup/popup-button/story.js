@@ -2,6 +2,7 @@ import { html } from 'lit';
 import changelog from '../CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../index';
 
 export default {
   title: 'Components/Popup Button',

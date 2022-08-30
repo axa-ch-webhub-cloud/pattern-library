@@ -1,6 +1,7 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../text';
 
 export default {
   title: 'Examples/Input text/Pure HTML',
