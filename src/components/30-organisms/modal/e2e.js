@@ -5,7 +5,7 @@ test.describe('modal', () => {
   test('should open modal', async ({ page }) => {
     await page.goto(fixtureURL('components-modal--modal', { open: true }));
 
-    expect(await page.isVisible('.o-modal__content')).toBe(true);
+    await expect(await page.locator('.o-modal__content')).toBeVisible();
   });
 
   test('should close modal', async ({ page }) => {
@@ -31,7 +31,7 @@ test.describe('modal', () => {
 
     await page.keyboard.press('Escape');
 
-    await expect(await page.locator('.o-modal__content')).toBeHidden();
+    await expect(page.locator('.o-modal__content')).toBeHidden();
   });
 
   test('should render children', async ({ page }) => {
@@ -53,7 +53,7 @@ test.describe('modal', () => {
 
     await page.keyboard.press('Escape');
 
-    expect(await page.isVisible('.o-modal__content')).toBe(true);
+    await expect(page.locator('.o-modal__content')).toBeVisible();
   });
 
   test('should not close by pressing outside the modal', async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe('modal', () => {
 
     await page.click('#root-inner');
 
-    expect(await page.isVisible('.o-modal__content')).toBe(true);
+    await expect(page.locator('.o-modal__content')).toBeVisible();
   });
 
   test('should not display top-bar with close icon', async ({ page }) => {
@@ -71,9 +71,9 @@ test.describe('modal', () => {
       fixtureURL('components-modal--modal', { open: true, forced: true })
     );
 
-    expect(await page.isVisible('.o-modal__upper-close-container-button')).toBe(
-      false
-    );
+    await expect(
+      page.locator('.o-modal__upper-close-container-button')
+    ).toBeHidden();
   });
 
   test('should be small', async ({ page }) => {
@@ -121,11 +121,9 @@ test('should display content with close icon', async ({ page }) => {
     fixtureURL('components-modal--modal', { open: true, noHeader: true })
   );
 
-  expect(
-    await page.isVisible(
-      '.o-modal__content .o-modal__upper-close-container-button'
-    )
-  ).toBe(true);
+  await expect(
+    page.locator('.o-modal__content .o-modal__upper-close-container-button')
+  ).toBeVisible();
 });
 
 test('should remove padding for the root content element', async ({ page }) => {
