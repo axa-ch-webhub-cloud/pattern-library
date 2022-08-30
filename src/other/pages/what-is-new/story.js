@@ -35,7 +35,6 @@ export default {
     readme: { disable: true },
     usage: { disable: true },
     changelog: { disable: true },
-    a11y: { disable: true },
     options: { showPanel: false },
     layout: 'fullscreen',
   },
@@ -47,7 +46,7 @@ export const WhatsNew = () => {
 
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = () => {
-    if (this.readyState === 4 && this.status === 200) {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
       const responseJson = JSON.parse(xhttp.responseText);
       document.querySelector('#what-is-new__github-response').innerHTML =
         getFormattedGitCommitMessage(responseJson);
@@ -67,6 +66,7 @@ export const WhatsNew = () => {
     <style>
       ${styles}
     </style>
+    <div class="accessory-story-wrapper">
     <div class="accessory-story-content">
       <axa-heading rank="1" variant="secondary">What's new</axa-heading>
       <axa-text variant="size-2">
@@ -87,6 +87,7 @@ export const WhatsNew = () => {
       <axa-text variant="size-2"><span id="what-is-new__github-response"></span></axa-text>
     </div>
     <pl-contact-footer></pl-contact-footer>
+    </div>
   `;
 
   render(template, wrapper);

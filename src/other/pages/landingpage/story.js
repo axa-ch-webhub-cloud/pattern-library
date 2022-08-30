@@ -11,7 +11,6 @@ export default {
     readme: { disable: true },
     usage: { disable: true },
     changelog: { disable: true },
-    a11y: { disable: true },
     options: { showPanel: false },
     layout: 'fullscreen',
   },
@@ -69,7 +68,7 @@ export const ToPatternLibrary = () => {
       </axa-commercial-hero-banner>
       <img
         class="landingpage__commercial-hero-banner-image"
-        src="axa-design-system-illustration.png"
+        src="assets/axa-design-system-illustration.png"
         alt="Design system illustration"
       /><img/>
     </div>
