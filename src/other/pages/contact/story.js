@@ -34,7 +34,11 @@ export const Contact = () => html`
     >
     <div class="contact-support-visuals">
       <div class="contact-col-wrapper">
-        <img src="assets/support-questions.jpg" alt="support question" height="215" />
+        <img
+          src="assets/support-questions.jpg"
+          alt="support question"
+          height="215"
+        />
       </div>
       <div class="contact-col-wrapper">
         <p class="contact-support-visuals__kicker">Day-to-day questions</p>
@@ -47,7 +51,11 @@ export const Contact = () => html`
     </div>
     <div class="contact-support-visuals">
       <div class="contact-col-wrapper">
-        <img src="assets/support-advice.jpg" alt="support advice" height="215" />
+        <img
+          src="assets/support-advice.jpg"
+          alt="support advice"
+          height="215"
+        />
       </div>
       <div class="contact-col-wrapper">
         <p class="contact-support-visuals__kicker">
@@ -69,7 +77,11 @@ export const Contact = () => html`
     </axa-text>
     <div class="contact-grid">
       <div>
-        <img src="assets/github-black-and-white.png" width="40" alt="Github Icon" />
+        <img
+          src="assets/github-black-and-white.png"
+          width="40"
+          alt="Github Icon"
+        />
         <axa-heading rank="6">GitHub</axa-heading>
         <axa-text variant="size-2">
           Bug reports, small change requests, "wishes":
@@ -88,7 +100,11 @@ export const Contact = () => html`
         >
       </div>
       <div>
-        <img src="assets/slack-black-and-white.png" width="40" alt="Slack Icon" />
+        <img
+          src="assets/slack-black-and-white.png"
+          width="40"
+          alt="Slack Icon"
+        />
         <axa-heading rank="6">Slack for Developers</axa-heading>
         <axa-text variant="size-2">
           Questions, requests for help, requests for product presentations, etc:

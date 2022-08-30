@@ -73,7 +73,7 @@ module.exports = {
       new webpack.DefinePlugin({
         __VERSION_INFO__: stringifiedVersionInfo,
         __COLORS_SCSS_AS_STRING__: '`' + colorsScssFile.toString() + '`',
-      }),
+      })
     );
     config.module.rules.push({
       test: /\.scss$/,
