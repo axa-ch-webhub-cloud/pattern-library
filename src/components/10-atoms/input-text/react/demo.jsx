@@ -3,6 +3,7 @@ import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoInputText from './DemoInputText';
+import DemoInputTextonKeyDown from './DemoInputTextonKeyDown';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
 
 export default {
@@ -17,6 +18,9 @@ export default {
 
 export const InputTextControlledUncontrolled = () =>
   createReactContainer(<DemoInputText />);
+
+export const InputTextOnKeyDownEvent = () =>
+  createReactContainer(<DemoInputTextonKeyDown />);
 
 export const InputTextOnKeyUpEvent = () =>
   createReactContainer(<DemoInputTextonKeyUp />);
