@@ -20,7 +20,7 @@ const collapseContent = el => {
 
   // on the next frame (as soon as the previous style change has taken effect),
   // explicitly set the element's height to its current pixel height, so we
-  // aren't transitioning out of 'auto'
+  // aren't transitioning out of 'height: auto'.
   requestAnimationFrame(() => {
     el.style.height = `${contentHeight}px`;
     el.style.transition = savedTransition;
@@ -41,10 +41,10 @@ const expandContent = el => {
 
   const expandAnimation = () => {
     // remove "height" from the element's inline styles, so it can return to its initial value
-    el.style.height = null;
+    delete el.style.height
   };
 
-  // when the next css transition finishes (which should be the one we just triggered)
+  // when the next CSS transition finishes (which should be the one we just triggered)
   el.addEventListener('transitionend', expandAnimation, { once: true });
 };
 

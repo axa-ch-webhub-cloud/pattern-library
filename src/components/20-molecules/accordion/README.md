@@ -22,7 +22,7 @@ String-valued `title` sets the title of the accordion.
 
 ### ariaLevel
 
-The `ariaLevel` attribute defines the hierarchical level of an element within a structure.
+The `ariaLevel` attribute which defines the hierarchical level of an element within a structure.
 
 ### icon
 
