@@ -1,6 +1,6 @@
 # AXA Button
 
-Buttons provide a clickable element, which can be used in forms, or anywhere else where simple, standard call-to-action functionality is needed also provide link functionality. They may display text, icons, or both. Buttons can be styled via several properties to change their look-and-feel.
+Buttons provide a clickable element, which can be used in forms, or anywhere else where simple, standard call-to-action functionality is needed. They can also provide styled link functionality. They may display text, icons, or both. Buttons can be styled via several properties to change their look-and-feel.
 
 ## Properties
 
