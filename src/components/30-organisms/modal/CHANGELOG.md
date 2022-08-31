@@ -1,3 +1,7 @@
+## 4.0.3
+
+Fix: hide close button, if `forced` is true. #2324.
+
 ## 4.0.0
 
 - Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
