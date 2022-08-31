@@ -1,9 +1,8 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { invertedBgs } from '../../../../utils/button-story-helpers';
 import { createReactContainer } from '../../../../utils/create-react-container';
-import { args, argTypes } from '../story.args';
+import { args, argTypes, invertedBgs } from '../story.args';
 import AXAButton from './AXAButton';
 
 export default {

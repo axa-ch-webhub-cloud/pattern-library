@@ -10,8 +10,8 @@ export default html`
       benefit
     </h2>
     <h1 slot="title">Discount of up to CHF 200</h1>
-    <axa-button-link href="#" slot="button" variant="red" size="large"
-      >Calculate the premium now</axa-button-link
+    <axa-button href="#" slot="button" variant="red" size="large"
+      >Calculate the premium now</axa-button
     >
   </axa-commercial-hero-banner>
 `;

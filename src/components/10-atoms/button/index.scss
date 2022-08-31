@@ -1,21 +1,32 @@
+@mixin inverted-color($color) {
+  &:hover,
+  &:active,
+  &:focus {
+    color: $color;
+  }
+}
+
 :host {
   display: inline-block;
-  vertical-align: bottom; // Just for IE
+  appearance: none;
 }
 
 .a-button {
   @include text(t4);
+  display: inline-block;
+  vertical-align: middle;
+  appearance: none;
   position: relative;
   box-sizing: border-box;
   padding: 0 30px;
   margin: 0;
   min-height: 40px;
   width: 100%;
-  vertical-align: bottom; // Just for IE
   hyphens: auto;
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-transform: uppercase;
+  text-decoration: none;
   color: $color-prim-white;
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
@@ -31,7 +42,8 @@
     outline: 0;
   }
 
-  &:disabled {
+  &:disabled,
+  &[aria-disabled='true'] {
     color: $color-light-grey;
     background-color: $color-mercury;
     border-color: $color-mercury;
@@ -43,6 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 36px;
   }
 
   &__icon {
@@ -54,151 +67,143 @@
     display: flex;
     margin-left: 10px;
   }
-}
 
-.a-button--large {
-  min-height: 50px;
-  @include text(t3);
-}
-
-.a-button--small {
-  min-height: 30px;
-  @include text(t4);
-}
-
-.a-button--motion {
-  $button__motion-duration: 0.3s;
-  $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
-  z-index: 0;
-  overflow: hidden;
-
-  transition: color $button__motion-duration $button__motion-easing 0s;
-
-  &::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    z-index: -1;
-
-    display: block;
-
-    // fix iOS double tap for :hover
-    // zero width is considered hidden
-    width: 0.001px;
-    height: 100vw;
-    content: '';
-
-    transform: translateX(-50%) translateY(-50%) rotate(45deg);
-    transition: width $button__motion-duration $button__motion-easing 0s;
-
-    background-color: $color-deep-sapphire;
+  &--large {
+    min-height: 50px;
+    @include text(t3);
   }
 
-  &:hover,
-  &:focus {
-    background-color: $color-axa-blue;
-    color: $color-prim-white;
+  &--small {
+    min-height: 30px;
+    @include text(t4);
+  }
+
+  &--motion {
+    $button__motion-duration: 0.3s;
+    $button__motion-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+    z-index: 0;
+    overflow: hidden;
+
+    transition: color $button__motion-duration $button__motion-easing 0s;
 
     &::after {
-      width: 110%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      z-index: -1;
+
+      display: block;
+
+      // fix iOS double tap for :hover
+      // zero width is considered hidden
+      width: 0.001px;
+      height: 100vw;
+      content: '';
+
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      transition: width $button__motion-duration $button__motion-easing 0s;
+
       background-color: $color-deep-sapphire;
-    }
-  }
-}
-
-.a-button--red {
-  background-color: $color-burnt-sienna;
-  border-color: $color-burnt-sienna;
-  border-bottom-color: $color-flamingo;
-
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $color-flamingo;
-    border-color: $color-flamingo;
-  }
-
-  &.a-button--motion {
-    &::after {
-      background-color: $color-flamingo;
     }
 
     &:hover,
     &:focus {
-      background-color: $color-burnt-sienna;
+      background-color: $color-axa-blue;
       color: $color-prim-white;
 
       &::after {
-        background-color: $color-flamingo;
+        width: 110%;
+        background-color: $color-deep-sapphire;
       }
     }
   }
-}
 
-.a-button--secondary {
-  background-color: transparent;
-  border-bottom-color: $color-axa-blue;
-  color: $color-axa-blue;
+  &--red {
+    background-color: $color-burnt-sienna;
+    border-color: $color-burnt-sienna;
+    border-bottom-color: $color-flamingo;
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color-prim-white;
-  }
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-flamingo;
+      border-color: $color-flamingo;
+    }
 
-  &.a-button--motion {
-    background-color: transparent;
-  }
-}
+    &.a-button--motion {
+      &::after {
+        background-color: $color-flamingo;
+      }
 
-.a-button--inverted {
-  background-color: transparent;
-  border-color: $color-prim-white;
-  color: $color-prim-white;
+      &:hover,
+      &:focus {
+        background-color: $color-burnt-sienna;
+        color: $color-prim-white;
 
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $color-prim-white;
-    border-color: $color-prim-white;
-    color: $color-deep-sapphire;
-  }
-
-  &.a-button--motion {
-    background-color: transparent;
-
-    &::after {
-      background-color: $color-prim-white;
+        &::after {
+          background-color: $color-flamingo;
+        }
+      }
     }
   }
-}
 
-@mixin inverted-color($color) {
-  &:hover,
-  &:active,
-  &:focus {
-    color: $color;
+  &--secondary {
+    background-color: transparent;
+    border-bottom-color: $color-axa-blue;
+    color: $color-axa-blue;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: $color-prim-white;
+    }
+
+    &.a-button--motion {
+      background-color: transparent;
+    }
   }
-}
 
-.a-button--inverted-blue-ocean {
-  @include inverted-color($color-ocean-blue);
-}
+  &--inverted {
+    background-color: transparent;
+    border-color: $color-prim-white;
+    color: $color-prim-white;
 
-.a-button--inverted-red-tosca {
-  @include inverted-color($color-tosca);
-}
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-prim-white;
+      border-color: $color-prim-white;
+      color: $color-deep-sapphire;
+    }
 
-.a-button--inverted-purple-logan {
-  @include inverted-color($color-logan);
-}
+    &.a-button--motion {
+      background-color: transparent;
 
-.a-button--inverted-green-viridian {
-  @include inverted-color($color-viridian-green);
-}
+      &::after {
+        background-color: $color-prim-white;
+      }
+    }
+  }
 
-.a-button--inverted-blue-teal {
-  @include inverted-color($color-teal);
+  &--inverted-blue-ocean {
+    @include inverted-color($color-ocean-blue);
+  }
+
+  &--inverted-red-tosca {
+    @include inverted-color($color-tosca);
+  }
+
+  &--inverted-purple-logan {
+    @include inverted-color($color-logan);
+  }
+
+  &--inverted-green-viridian {
+    @include inverted-color($color-viridian-green);
+  }
+
+  &--inverted-blue-teal {
+    @include inverted-color($color-teal);
+  }
 }

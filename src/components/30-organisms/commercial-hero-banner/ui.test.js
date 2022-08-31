@@ -197,22 +197,20 @@ async function _getDisclaimerNode(t) {
 
 test('should set correct width for button', async t => {
   const expectedWidth = '157px';
-  const $axaButtonLink = await Selector('axa-button-link');
+  const $axaButton = await Selector('axa-button');
 
-  const $axaButtonLinkShadow = await Selector(
-    () => document.querySelector('axa-button-link').shadowRoot
+  const $axaButtonShadow = await Selector(
+    () => document.querySelector('axa-button').shadowRoot
   );
 
-  const $axaButtonShadowElement = await $axaButtonLinkShadow.find(
-    '.a-button-link'
-  );
+  const $axaButtonShadowElement = await $axaButtonShadow.find('.a-button');
 
   const setStyleWidthAttribute = ClientFunction((selector, styleValue) => {
     const element = selector();
     element.style.width = styleValue;
   });
 
-  await setStyleWidthAttribute($axaButtonLink, expectedWidth);
+  await setStyleWidthAttribute($axaButton, expectedWidth);
   await t
     .expect($axaButtonShadowElement.getStyleProperty('width'))
     .eql(expectedWidth);

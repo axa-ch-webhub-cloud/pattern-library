@@ -3,7 +3,7 @@ import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
-import '../../10-atoms/button-link';
+import '../../10-atoms/button';
 import '../../10-atoms/icon';
 
 export default {
@@ -57,12 +57,12 @@ export const CommercialHeroBanner = ({ variant, imageSource }) =>
 
         <small slot="disclaimer">Terms and Conditions apply.</small>
 
-        <axa-button-link
+        <axa-button
           href="https://axa.ch"
           slot="button"
           variant="red"
           size="large"
-          >GET A QUOTE</axa-button-link
+          >GET A QUOTE</axa-button
         >
       </axa-commercial-hero-banner>
     </div>

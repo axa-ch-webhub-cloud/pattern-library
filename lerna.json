@@ -2,7 +2,6 @@
   "packages": [
     "src/components/00-materials",
     "src/components/10-atoms/button",
-    "src/components/10-atoms/button-link",
     "src/components/10-atoms/carousel",
     "src/components/10-atoms/checkbox",
     "src/components/10-atoms/fieldset",

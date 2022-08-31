@@ -1,6 +1,5 @@
 import { html } from 'lit';
-import { invertedBgs } from '../../../utils/button-story-helpers';
-import { args, argTypes } from './story.args';
+import { args, argTypes, invertedBgs } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
@@ -27,6 +26,8 @@ export const Button = ({
   icon,
   disabled,
   motionOff,
+  href,
+  external,
 }) => html`
   <div
     style="${variant.includes('inverted')
@@ -40,6 +41,8 @@ export const Button = ({
       icon="${icon}"
       ?disabled="${disabled}"
       ?motionoff="${motionOff}"
+      href="${href}"
+      ?external="${external}"
       >${slot}
     </axa-button>
   </div>
