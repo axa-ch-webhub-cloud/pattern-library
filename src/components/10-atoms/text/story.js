@@ -2,8 +2,8 @@ import { html } from 'lit';
 import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
 import { renderLitContainer } from '../../../utils/render-lit-container';
+import './index';
 
 export default {
   title: 'Components/Text',

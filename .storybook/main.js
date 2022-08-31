@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
 
 const base = path.resolve(process.cwd(), 'src');
 
@@ -50,7 +49,6 @@ module.exports = {
     './addons/readme/register',
     './addons/usage/register',
     './addons/changelog/register',
-    '@storybook/addon-a11y',
     '@storybook/addon-viewport',
     '@storybook/addon-backgrounds',
   ],
@@ -71,15 +69,12 @@ module.exports = {
     config.resolve.alias = Object.assign({}, config.resolve.alias, {
       '~/materials': path.join(base, 'components', 'materials'),
     });
-
     config.plugins.push(
       new webpack.DefinePlugin({
         __VERSION_INFO__: stringifiedVersionInfo,
         __COLORS_SCSS_AS_STRING__: '`' + colorsScssFile.toString() + '`',
-      }),
-      new CopyPlugin({ patterns: [{ from: 'src/other/pages/utils/assets' }] })
+      })
     );
-
     config.module.rules.push({
       test: /\.scss$/,
       use: [

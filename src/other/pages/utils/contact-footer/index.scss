@@ -1,35 +1,41 @@
 html, body, #root {
-    height: 100%;
+  height: 100%;
+}
+
+body {
+  margin-bottom: 140px !important;
 }
 
 .contact-footer {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    padding: 20px 40px 20px 1rem;
-    background-color: $color-dark-grey;
-    color: $color-prim-white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 
-    @media (min-width: $breakpoint-md) {
-        min-width: 420px;
-        padding-left: 4rem;
-    }
+  box-sizing: border-box;
+  padding: 20px 40px 20px 1rem;
+  background-color: $color-dark-grey;
+  color: $color-prim-white;
 
-    &__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-left: 1rem;
+  @media (min-width: $breakpoint-md) {
+    min-width: 420px;
+    padding-left: 4rem;
+  }
 
-        @media (min-width: $breakpoint-xs) {
-            padding-left: 3rem;
-        }
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+
+    @media (min-width: $breakpoint-xs) {
+      padding-left: 3rem;
     }
-    
-    &__subtitle {
-        text-transform: uppercase;
-        overflow-wrap: break-word;
-        @include text(t4);
-    }
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    @include text(t4);
+  }
 }

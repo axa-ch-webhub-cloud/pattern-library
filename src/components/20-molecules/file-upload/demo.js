@@ -2,6 +2,8 @@ import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../../10-atoms/button';
+import '../../10-atoms/text';
 
 export default {
   title: 'Examples/File Upload/Pure HTML',

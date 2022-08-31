@@ -1,6 +1,6 @@
 import changelog from './CHANGELOG.md';
-import './index';
 import readme from './README.md';
+import './index';
 
 export default {
   title: 'Examples/Button Link/Pure HTML',

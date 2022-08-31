@@ -3,6 +3,7 @@ import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import { args, argTypes } from './story.args';
 import './index';
+import '../checkbox';
 
 export default {
   title: 'Components/Fieldset',

@@ -12,7 +12,6 @@ export default {
     readme: { disable: true },
     usage: { disable: true },
     changelog: { disable: true },
-    a11y: { disable: true },
     options: { showPanel: false },
     layout: 'fullscreen',
   },
@@ -56,7 +55,7 @@ export const ModularDesign = () => html`
       </axa-text>
     </div>
     <pl-callout
-      icon="molecules.svg"
+      icon="assets/molecules.svg"
       header="Atomic Design by Brad Frost"
       text="A methodology for creating design systems. Go deeper and discover Frost's approach!"
       link="https://bradfrost.com/blog/post/atomic-web-design/"
@@ -75,7 +74,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="materials.svg"
+          src="assets/materials.svg"
           alt="Materials"
         />
         <div class="structure-approach__vertical-content-col">
@@ -91,7 +90,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="atoms.svg"
+          src="assets/atoms.svg"
           alt="Atoms"
         />
         <div class="structure-approach__vertical-content-col">
@@ -107,7 +106,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="molecules.svg"
+          src="assets/molecules.svg"
           alt="Molecules"
         />
         <div class="structure-approach__vertical-content-col">
@@ -122,7 +121,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="organisms.svg"
+          src="assets/organisms.svg"
           alt="Organisms"
         />
         <div class="structure-approach__vertical-content-col">
@@ -146,7 +145,7 @@ export const ModularDesign = () => html`
       </axa-text>
     </div>
     <pl-callout
-      icon="organisms.svg"
+      icon="assets/organisms.svg"
       header="Create and categorize new elements"
       text="If you need to create new elements and ask yourself how to categorize them, try out this tool!"
       link="https://dan503.github.io/Atomic-Categorizer/"

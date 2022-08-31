@@ -1,6 +1,8 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
+import '../../10-atoms/link';
+import '../../10-atoms/button';
 
 export default {
   title: 'Examples/Cookie Disclaimer/Pure HTML',
