@@ -42,7 +42,7 @@ export const Button = ({
       ?disabled="${disabled}"
       ?motionoff="${motionOff}"
       href="${href}"
-      external="${external}"
+      ?external="${external}"
       >${slot}
     </axa-button>
   </div>

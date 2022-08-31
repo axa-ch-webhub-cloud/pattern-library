@@ -65,4 +65,6 @@ export const argTypes = {
     control: 'radio',
     options: ['button', 'submit', 'reset'],
   },
+  href: { control: 'text' },
+  external: { control: 'boolean' },
 };
