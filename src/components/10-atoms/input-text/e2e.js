@@ -13,4 +13,18 @@ test.describe('input-text', () => {
         .evaluate(el => window.getComputedStyle(el).backgroundColor)
     ).toBe('rgb(250, 250, 250)');
   });
+
+  test.only('should fire onKeyDown callback on user input', async ({
+    page,
+  }) => {
+    await page.goto(
+      fixtureURL('examples-input-text-react--input-text-on-key-down-event')
+    );
+
+    const key = 'x';
+
+    await page.locator('.a-input-text__input').type(key);
+
+    await expect(page.locator(`text=${key}`)).toHaveText(key);
+  });
 });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXAInputText from './AXAInputText';
 
-const DemoInputTextonKeyUp = () => {
+const DemoInputTextonKeyDown = () => {
   const [value, setValue] = useState('');
 
   return (
@@ -11,12 +11,12 @@ const DemoInputTextonKeyUp = () => {
         <span id="inputtext-react-testoutput">{value}</span>
       </p>
       <AXAInputText
-        name="onkeyup"
+        name="onkeydown"
         id="inputtext-react-inputfield-on-key-pressed"
-        onKeyUp={e => setValue(e.key)}
+        onKeyDown={e => setValue(e.key)}
       />
     </div>
   );
 };
 
-export default DemoInputTextonKeyUp;
+export default DemoInputTextonKeyDown;
