@@ -14,17 +14,17 @@ test.describe('input-text', () => {
     ).toBe('rgb(250, 250, 250)');
   });
 
-  test('should fire onKeyDown callback on user input', async ({ page }) => {
+  test.only('should fire onKeyDown callback on user input', async ({
+    page,
+  }) => {
     await page.goto(
       fixtureURL('examples-input-text-react--input-text-on-key-down-event')
     );
 
-    const text = 'x';
+    const key = 'x';
 
-    await page.locator('.a-input-text__input').type(text);
+    await page.locator('.a-input-text__input').type(key);
 
-    expect(
-      await page.locator('#inputtext-react-testoutput').textContent()
-    ).toEqual(text);
+    await expect(page.locator(`text=${key}`)).toHaveText(key);
   });
 });
