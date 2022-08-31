@@ -3,7 +3,7 @@ import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import './index';
-import '../../10-atoms/button-link';
+import '../../10-atoms/button';
 import '../../10-atoms/icon';
 
 export default {
