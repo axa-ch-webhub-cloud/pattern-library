@@ -412,6 +412,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
                   @input="${this.handleInput}"
                   @focus="${this.handleFocus}"
                   @blur="${this.handleBlur}"
+                  @keydown="${this.onKeyDown}"
                   @keyup="${this.onKeyUp}"
                 />
               `
