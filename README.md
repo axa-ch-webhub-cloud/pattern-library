@@ -3,7 +3,7 @@
 [![Build Status](https://ach-azureforge-iss.visualstudio.com/Patterns-Library/_apis/build/status/CI_patterns-library?branchName=develop)](https://ach-azureforge-iss.visualstudio.com/Patterns-Library/_build/latest?definitionId=115&branchName=develop)
 ![Deployment Status](https://ach-azureforge-iss.vsrm.visualstudio.com/_apis/public/Release/badge/4ad0f0a6-2ec1-465f-99a1-4c3726de6d35/1/3)
 
-## [>> Pattern Library Demo](https://patterns.axa.ch)
+## [>> Pattern Library Demo](https://axa-ch-webhub-cloud.github.io/plib-feature/develop)
 
 [Check out our Contribution File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)
 

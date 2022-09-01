@@ -1,6 +1,5 @@
 import { addons } from '@storybook/addons';
 import { create } from '@storybook/theming/create';
-import logo from '../src/static/svg/logo-axa.svg';
 
 // Storybook saves certain UI settings to the local- and/or sessionStorage.
 const UI_STORE = '@storybook/ui/store';
@@ -33,6 +32,6 @@ addons.setConfig({
     brandTitle: 'AXA Living Styleguide',
     brandUrl:
       'https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop',
-    brandImage: logo,
+    brandImage: 'svg/logo-axa.svg',
   }),
 });
