@@ -71,6 +71,10 @@
   &--large {
     min-height: 50px;
     @include text(t3);
+
+    .a-button__flex-wrapper {
+      min-height: 46px
+    }
   }
 
   &--small {
