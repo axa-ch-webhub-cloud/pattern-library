@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { fixtureURL } from '../../../utils/e2e-helpers';
 
 test.describe('input-text', () => {
@@ -14,9 +15,7 @@ test.describe('input-text', () => {
     ).toBe('rgb(250, 250, 250)');
   });
 
-  test.only('should fire onKeyDown callback on user input', async ({
-    page,
-  }) => {
+  test('should fire onKeyDown callback on user input', async ({ page }) => {
     await page.goto(
       fixtureURL('examples-input-text-react--input-text-on-key-down-event')
     );
