@@ -14,7 +14,7 @@ test.describe('input-text', () => {
     ).toBe('rgb(250, 250, 250)');
   });
 
-  test.only('should fire onKeyDown callback on user input', async ({
+  test('should fire onKeyDown callback on user input', async ({
     page,
   }) => {
     await page.goto(
