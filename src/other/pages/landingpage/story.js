@@ -27,7 +27,7 @@ export const ToPatternLibrary = () => {
       ${styles}
     </style>
     <div class="accessory-story-wrapper accessory-story-content">
-      <axa-heading rank="1" variant="secondary"
+      <axa-heading rank="1" secondary
       >AXA Design System 🚀
       </axa-heading
       >

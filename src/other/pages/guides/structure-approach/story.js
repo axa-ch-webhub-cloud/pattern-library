@@ -22,15 +22,13 @@ export const ModularDesign = () => html`
     ${styles}
   </style>
   <div class="accessory-story-wrapper accessory-story-content">
-    <axa-heading rank="1" variant="secondary">Modular Design</axa-heading>
+    <axa-heading rank="1" secondary>Modular Design</axa-heading>
     <axa-text variant="size-2"
       >AXA's Design System is expressed through Web Components that loosely
       follow the Atomic Design approach.</axa-text
     >
 
-    <axa-heading rank="2" variant="secondary"
-      >What is atomic design?</axa-heading
-    >
+    <axa-heading rank="2" secondary>What is atomic design?</axa-heading>
     <axa-text variant="size-2">
       Atomic Design is a systematic approach that can accelerate the process of
       creating modular designs. It was first proposed by Brad Frost in 2013.
@@ -61,9 +59,7 @@ export const ModularDesign = () => html`
       link="https://bradfrost.com/blog/post/atomic-web-design/"
       linkText="Learn more"
     ></pl-callout>
-    <axa-heading rank="2" variant="secondary"
-      >How to categorize an element?</axa-heading
-    >
+    <axa-heading rank="2" secondary>How to categorize an element?</axa-heading>
     <axa-text variant="size-2">
       So, Atomic Design helps you to decompose your UI into components which are
       standardized and organized in a hierarchical fashion. An important next
