@@ -14,9 +14,7 @@ test.describe('input-text', () => {
     ).toBe('rgb(250, 250, 250)');
   });
 
-  test('should fire onKeyDown callback on user input', async ({
-    page,
-  }) => {
+  test('should fire onKeyDown callback on user input', async ({ page }) => {
     await page.goto(
       fixtureURL('examples-input-text-react--input-text-on-key-down-event')
     );
