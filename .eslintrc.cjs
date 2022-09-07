@@ -56,6 +56,12 @@ module.exports = {
         packageDir: [__dirname, ...lernaJSON.packages],
       },
     ],
+    'no-restricted-syntax': [
+      'error',
+      'ForInStatement',
+      'LabeledStatement',
+      'WithStatement',
+    ],
     'object-curly-newline': ['error', { multiline: true, consistent: true }],
     'react/function-component-definition': 'off',
     'react/jsx-props-no-spreading': 'off',
