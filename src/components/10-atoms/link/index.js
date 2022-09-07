@@ -84,13 +84,11 @@ class AXALink extends LitElement {
         class="a-link ${classMap(classes)}"
         href="${this.href}"
         @click="${ev => {
-          ev.preventDefault();
           if (typeof this.onClick === 'function') {
             this.onClick(ev);
-          } else {
-            window.open(this.href, this.external ? '_blank' : '_top');
           }
         }}"
+        target=${this.external ? '_blank' : '_top'}
         rel="${this.external ? 'noreferrer noopener' : ''}"
       >
         ${this.variant.includes('arrowleft')
