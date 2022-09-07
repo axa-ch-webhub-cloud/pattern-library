@@ -4,10 +4,10 @@ The title component provides a way to conveniently use headings and titles, that
 
 ## Properties
 
-| Attribute             | Details                                                                                                                        |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `variant="secondary"` | Secondary variant will use publico as font. Default: "primary"                                                                 |
-| `rank="1"`            | Rank holds a number from one to six, which represents the underlying html heading tag. `rank="1"` will lead to a `h1` element. |
+| Attribute    | Details                                                                                                                       |
+|--------------| ----------------------------------------------------------------------------------------------------------------------------- |
+| `secondary"` | Secondary will use publico as font. Default: "primary"                                                                 |
+| `rank="1"`   | Rank holds a number from one to six, which represents the underlying html heading tag. `rank="1"` will lead to a `h1` element. |
 
 ## Custom Margins
 
