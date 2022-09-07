@@ -15,7 +15,8 @@ const t = (scope, text) => {
 const DemoLink = () => {
   const [expanded, setExpanded] = useState(false);
 
-  const toggleExpand = () => {
+  const toggleExpand = ev => {
+    ev.preventDefault();
     setExpanded(!expanded);
   };
 
