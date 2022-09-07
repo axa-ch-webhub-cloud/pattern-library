@@ -74,7 +74,7 @@ export const Colors = () => {
       ${styles}
     </style>
     <div class="accessory-story-wrapper accessory-story-content">
-      <axa-heading rank="1" variant="secondary">Colors</axa-heading>
+      <axa-heading rank="1" secondary>Colors</axa-heading>
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
