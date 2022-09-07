@@ -3,6 +3,36 @@
   display: block;
 }
 
+:host([rank='1']) {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+:host([rank='2']) {
+  margin-top: 18px;
+  margin-bottom: 18px;
+}
+
+:host([rank='3']) {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+:host([rank='4']) {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+:host([rank='5']) {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+:host([rank='6']) {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .a-heading {
   // reset browser styles
   margin: 0;
