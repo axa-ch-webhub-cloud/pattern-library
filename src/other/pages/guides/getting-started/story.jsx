@@ -24,7 +24,7 @@ export const GettingStarted = () =>
     <div className="accessory-story-wrapper">
       <style>{styles}</style>
       <div className="accessory-story-content">
-        <AXAHeading rank="1" variant="secondary">
+        <AXAHeading rank="1" secondary>
           Getting started
         </AXAHeading>
         <AXAText variant="size-2">
@@ -36,7 +36,7 @@ export const GettingStarted = () =>
         </AXAText>
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
-          <AXAHeading rank="2" variant="secondary">
+          <AXAHeading rank="2" secondary>
             Developer
           </AXAHeading>
         </header>
@@ -149,7 +149,7 @@ export default AXAButtonReact;`}
         />
         <header className="getting-started__header">
           <p className="getting-started__subtitle">A perfect start for a</p>
-          <AXAHeading rank="2" variant="secondary">
+          <AXAHeading rank="2" secondary>
             Designer
           </AXAHeading>
         </header>

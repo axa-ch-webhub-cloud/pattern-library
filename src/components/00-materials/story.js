@@ -270,7 +270,7 @@ export const IconsAndImages = () => {
       ${styles}
     </style>
     <div class="accessory-story-content">
-      <axa-heading rank="1" variant="secondary">Icons and Images</axa-heading>
+      <axa-heading rank="1" secondary>Icons and Images</axa-heading>
       <div class="materials__controls">
         <input
           class="materials__input-field"

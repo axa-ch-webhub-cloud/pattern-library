@@ -20,14 +20,14 @@ export const Contact = () => html`
     ${styles}
   </style>
   <div class="accessory-story-wrapper accessory-story-content">
-    <axa-heading rank="1" variant="secondary">Help & Contact</axa-heading>
+    <axa-heading rank="1" secondary>Help & Contact</axa-heading>
     <axa-text variant="size-1">
       The AXA core team provides support for users in adopting AXA's Design
       System. Reach out to us with the details of your project and we will do
       our best to provide you with tailored advice on how to reach your
       objectives.
     </axa-text>
-    <axa-heading rank="2" variant="secondary">Support</axa-heading>
+    <axa-heading rank="2" secondary>Support</axa-heading>
     <axa-text variant="size-2"
       >Part of our mission is to guide AXA product teams during their digital
       journey with respect to our areas of competency.</axa-text
@@ -70,7 +70,7 @@ export const Contact = () => html`
         </p>
       </div>
     </div>
-    <axa-heading rank="2" variant="secondary">Contact Us</axa-heading>
+    <axa-heading rank="2" secondary>Contact Us</axa-heading>
     <axa-text variant="size-1">
       For any questions or feedback — don’t hesitate to be in touch via the
       channel that suits you best.

@@ -30,8 +30,8 @@ export default {
 };
 
 export const Heading = ({ rank, secondary }) => html`
-  <axa-heading rank="${rank}" variant="${secondary ? 'secondary' : ''}"
-    >H${rank} Primary Heading
-  </axa-heading>
+  <axa-heading rank="${rank}" ?secondary="${secondary}"
+    >H${rank} Primary Heading</axa-heading
+  >
   <p>${loremIpsum}</p>
 `;
