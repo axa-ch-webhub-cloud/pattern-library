@@ -9,7 +9,9 @@ axa-radio {
     border-color: $color-axa-blue;
   }
 
-  *, *::after, *::before {
+  *,
+  *::after,
+  *::before {
     box-sizing: border-box;
   }
 
@@ -55,7 +57,9 @@ axa-radio {
     &:disabled + .a-radio__icon {
       cursor: default;
       border-color: $color-silver;
+    }
 
+    &:disabled:checked + .a-radio__icon {
       &::after {
         border-color: $color-silver;
         background-color: $color-silver;
@@ -82,7 +86,7 @@ axa-radio {
       height: 8px;
       display: block;
       border: 1px solid transparent;
-      content: "";
+      content: '';
       border-radius: 50%;
       box-sizing: border-box;
     }
@@ -93,10 +97,10 @@ axa-radio {
   }
 
   .a-radio__content {
-      display: block;
-      margin: 0;
-      line-height: 1.37;
-      color: $color-dark-grey;
+    display: block;
+    margin: 0;
+    line-height: 1.37;
+    color: $color-dark-grey;
   }
 
   &[button] {
@@ -117,14 +121,14 @@ axa-radio {
     }
 
     .a-radio__content {
-        display: table;
-        background-color: $color-wild-sand;
-        padding: 0;
-        text-align: center;
-        text-transform: uppercase;
-        line-height: 18px;
-        letter-spacing: 0.56px;
-        color: inherit;
+      display: table;
+      background-color: $color-wild-sand;
+      padding: 0;
+      text-align: center;
+      text-transform: uppercase;
+      line-height: 18px;
+      letter-spacing: 0.56px;
+      color: inherit;
     }
 
     .a-radio__input {
@@ -140,34 +144,34 @@ axa-radio {
         background-color: transparent;
         border-color: $color-axa-blue;
         color: $color-axa-blue;
-    }
-  }
-
-  &[disabled] {
-    .a-radio__wrapper {
-      background-color: $color-alabaster;
-      border-color: $color-mercury;
-      color: $color-silver;
-      cursor: default;
-
-      &:hover {
-        border-color: $color-mercury;
       }
     }
 
-    .a-radio__content {
-      color: inherit;
-      background-color: inherit;
+    &[disabled] {
+      .a-radio__wrapper {
+        background-color: $color-alabaster;
+        border-color: $color-mercury;
+        color: $color-silver;
+        cursor: default;
+
+        &:hover {
+          border-color: $color-mercury;
+        }
+      }
+
+      .a-radio__content {
+        color: inherit;
+        background-color: inherit;
+      }
     }
-  }
 
     &[icon] {
       height: auto;
 
       .a-radio__wrapper {
-          padding: 10px 41px 0 41px;
-          flex-direction: column;
-          justify-content: center;
+        padding: 10px 41px 0 41px;
+        flex-direction: column;
+        justify-content: center;
 
         svg {
           width: 48px;
