@@ -199,7 +199,7 @@ class AXAFileUpload extends LitElement {
   }
 
   filterAndAddFiles(files) {
-    if (this.allowedFileTypes !== '') {
+    if (this.allowedFileTypes) {
       // filter out files with wrong MIME type
       const validFileTypesFiles = [...files].filter(
         file => file.type && this.allowedFileTypes.indexOf(file.type) > -1
@@ -532,7 +532,7 @@ class AXAFileUpload extends LitElement {
       const fileName = preventFileCompression
         ? allOriginalFiles[index].name
         : file.name;
-      const isNonImageFile = file.type.indexOf('application') > -1;
+      const isNonImageFile = IMAGE_FILE_TYPES.indexOf(file.type) === -1;
       const imageUrl = urlCreator.createObjectURL(file);
       return html`
         <figure class="m-file-upload__img-figure js-file-upload__img-figure">
