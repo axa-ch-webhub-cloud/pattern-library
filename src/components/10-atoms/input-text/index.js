@@ -138,10 +138,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     );
   }
 
-  get showMessages() {
-    return this.showError || this.showCounter || this.showCounterMax;
-  }
-
   get getCounterText() {
     const userCharsLeft = this.charsLeft - 1;
 
@@ -251,15 +247,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     }
   }
 
-  _isSafari() {
-    return (
-      navigator &&
-      navigator.vendor &&
-      navigator.vendor.includes &&
-      navigator.vendor.includes('Apple Computer')
-    );
-  }
-
   _setNativeInput() {
     this.nativeInput = this.querySelector('input');
   }
@@ -366,57 +353,26 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       }
       <div class="a-input-text__input-wrapper">
         <div class="a-input-text__input-elements">
-        ${
-          // On Safari, the caret (cursor) jumps to the end of the value, which
-          // is fixed with this approach.
-          // Downside: After a user manipulated the value manually, it cannot
-          // be updated anymore by javascript (safari only).
-          this._isSafari()
-            ? html`
-                <input
-                  id="${refId}"
-                  type="${type}"
-                  class="${classMap(inputClasses)}"
-                  autocomplete="off"
-                  name="${name}"
-                  value="${formattedValue}"
-                  placeholder="${placeholder}"
-                  aria-required="${required}"
-                  maxlength="${maxLength}"
-                  pattern="${pattern}"
-                  inputmode="${inputmode}"
-                  ?disabled="${disabled}"
-                  ?readonly="${readonly}"
-                  @input="${this.handleInput}"
-                  @focus="${this.handleFocus}"
-                  @blur="${this.handleBlur}"
-                  @keydown="${this.onKeyDown}"
-                  @keyup="${this.onKeyUp}"
-                />
-              `
-            : html`
-                <input
-                  id="${refId}"
-                  type="${type}"
-                  class="${classMap(inputClasses)}"
-                  autocomplete="off"
-                  name="${name}"
-                  .value="${formattedValue}"
-                  placeholder="${placeholder}"
-                  aria-required="${required}"
-                  maxlength="${maxLength}"
-                  pattern="${pattern}"
-                  inputmode="${inputmode}"
-                  ?disabled="${disabled}"
-                  ?readonly="${readonly}"
-                  @input="${this.handleInput}"
-                  @focus="${this.handleFocus}"
-                  @blur="${this.handleBlur}"
-                  @keydown="${this.onKeyDown}"
-                  @keyup="${this.onKeyUp}"
-                />
-              `
-        }
+        ${html`<input
+          id="${refId}"
+          type="${type}"
+          class="${classMap(inputClasses)}"
+          autocomplete="off"
+          name="${name}"
+          .value="${formattedValue}"
+          placeholder="${placeholder}"
+          aria-required="${required}"
+          maxlength="${maxLength}"
+          pattern="${pattern}"
+          inputmode="${inputmode}"
+          ?disabled="${disabled}"
+          ?readonly="${readonly}"
+          @input="${this.handleInput}"
+          @focus="${this.handleFocus}"
+          @blur="${this.handleBlur}"
+          @keydown="${this.onKeyDown}"
+          @keyup="${this.onKeyUp}"
+        />`}
           ${
             this.showCheckMark
               ? html` <span class="a-input-text__check"></span> `
