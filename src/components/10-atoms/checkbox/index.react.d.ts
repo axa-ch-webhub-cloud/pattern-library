@@ -14,8 +14,8 @@ export interface AXACheckboxProps {
   className?: string;
   styled?: boolean;
   onChange?: (event: Event) => void;
-  onFocus?: (event?: FocusEvent) => void;
-  onBlur?: (event?: FocusEvent) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
 }
 
 declare function createAXACheckbox(
