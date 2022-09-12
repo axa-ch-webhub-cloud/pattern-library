@@ -1,7 +1,6 @@
 import React from 'react';
 
-export interface AXATextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface AXATextareaProps {
   refId?: string;
   name: string;
   label?: string;
@@ -20,9 +19,9 @@ export interface AXATextareaProps
   maxLength?: number;
   className?: string;
   children?: React.ReactNode;
-  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
+  onChange?: (event: InputEvent) => void;
 }
 
 declare function createAXATextarea(
