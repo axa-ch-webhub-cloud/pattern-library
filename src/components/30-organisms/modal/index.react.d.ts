@@ -7,7 +7,7 @@ export interface AXAModalProps {
   small?: boolean;
   noheader?: boolean;
   children?: React.ReactNode;
-  onClose?: (e: CustomEvent) => void;
+  onClose?: (event: CustomEvent<null>) => void;
 }
 
 declare function createAXAModal(
