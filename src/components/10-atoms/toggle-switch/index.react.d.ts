@@ -1,12 +1,13 @@
 import React from 'react';
 
-export interface AXAToggleSwitchProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export type AXAToggleSwitchChange = { target: { checked: boolean } };
+
+export interface AXAToggleSwitchProps {
   active?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
-  onChange?: (e: UIEvent) => void;
+  onChange?: (event: AXAToggleSwitchChange) => void;
 }
 
 declare function createAXAToggleSwitch(
