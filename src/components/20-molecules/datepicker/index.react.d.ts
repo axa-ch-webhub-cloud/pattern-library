@@ -11,11 +11,11 @@ export interface AXADatepickerProps {
   inputfield?: boolean;
   value?: string;
   defaultValue?: string;
-  onChange?: (e: AXADatepickerChangeEvent) => any;
-  onDateChange?: (date: Date) => any;
-  onFocus?: (e?: any) => void;
-  onBlur?: (e?: any) => void;
-  onInputfieldKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChange?: (event: AXADatepickerChangeEvent) => void;
+  onDateChange?: (date: Date) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
+  onInputfieldKeyUp?: (event: KeyboardEvent) => void;
   locale?: string;
   date?: Date;
   year?: number;
