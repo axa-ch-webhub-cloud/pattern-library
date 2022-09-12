@@ -6,7 +6,7 @@ export interface AXAPopupProps {
   variant?: Variant;
   slot?: string;
   children?: string;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent) => void;
 }
 
 declare function createAXAPopup(
