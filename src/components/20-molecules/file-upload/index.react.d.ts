@@ -17,9 +17,9 @@ export interface AXAFileUploadProps {
   wrongFileTypeStatusText?: string;
   allowedFileTypes?: string;
   children?: React.ReactNode;
-  onFileDrop?: () => void;
+  onFileDrop?: (event: DragEvent) => void;
   onFileRemove?: () => void;
-  onChange?: () => void;
+  onChange?: ({ detail }: { detail: Blob[] }) => void;
   reset?: () => void;
   invalidate?: (
     file: object,
