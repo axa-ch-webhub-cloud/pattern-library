@@ -1,6 +1,6 @@
 ## 8.0.0
 
-Remove `event.preventDefault`
+Remove `event.preventDefault` and revert to native <a link behaviour.
 
 ## 7.0.0
 
