@@ -24,9 +24,9 @@ export interface AXADropdownProps {
   invalid?: boolean;
   error?: string;
   native?: boolean;
-  onChange?: (e: AXADropdownChangeEvent) => void;
-  onFocus?: (e?: any) => void;
-  onBlur?: (e?: any) => void;
+  onChange?: (event: AXADropdownChangeEvent) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
   defaultTitle?: string;
   value?: string;
   checkMark?: boolean;
