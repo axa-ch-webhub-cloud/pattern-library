@@ -3,8 +3,7 @@ import { Icon } from '@axa-ch/icon/lib/index.d';
 
 export type Variant = 'secondary' | 'red' | 'inverted';
 
-export interface AXAInputFileProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface AXAInputFileProps {
   text: String;
   variant?: Variant;
   icon?: Icon;
@@ -17,8 +16,7 @@ export interface AXAInputFileProps
   capture?: boolean;
   className?: string;
   slot?: string;
-
-  onChange?: () => void;
+  onChange?: (event: Event) => void;
 }
 
 declare function createAXAInputFile(
