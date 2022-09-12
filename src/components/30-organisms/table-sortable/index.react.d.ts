@@ -1,5 +1,12 @@
 import React from 'react';
 
+export interface AXATableSortableDetail {
+  type: 'tbody' | 'tfoot';
+  index: number;
+  textArray: string;
+  domElement: HTMLElement;
+}
+
 export type Model = {
   thead?: Array<any>;
   tbody?: Array<any>;
@@ -13,7 +20,7 @@ export interface AXATableSortableProps {
   dateSortColumnIndex?: string;
   showallinline?: boolean;
   children?: React.ReactNode;
-  onClick?: (e?: any) => void;
+  onClick?: (event: AXATableSortableDetail) => void;
 }
 
 declare function createAXATableSortable(
