@@ -1,10 +1,10 @@
 import React from 'react';
 
 export interface AXAFooterProps {
-  onItemClick?: Function;
   clickevents?: Boolean;
   className?: string;
   children?: React.ReactNode;
+  onItemClick?: (currentTarget: HTMLElement) => void;
 }
 
 declare function createAXAFooter(
