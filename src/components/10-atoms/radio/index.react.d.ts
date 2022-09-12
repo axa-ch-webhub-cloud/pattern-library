@@ -11,8 +11,7 @@ export type AXARadioChangeEvent = {
   target: Item;
 };
 
-export interface AXARadioProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface AXARadioProps {
   id?: string;
   refId?: string;
   className?: string;
@@ -26,9 +25,9 @@ export interface AXARadioProps
   noAutoWidth?: boolean;
   icon?: string;
   error?: string;
-  onChange?: (e: AXARadioChangeEvent) => void;
-  onFocus?: (e?: FocusEvent) => {};
-  onBlur?: (e?: FocusEvent) => {};
+  onChange?: (event: AXARadioChangeEvent) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
 }
 
 declare function createAXARadio(
