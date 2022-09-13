@@ -1,3 +1,7 @@
+## 5.0.6
+
+Improve radio types, event param names always `event` #2344
+
 ## 5.0.5
 
 Fix disabled implies checked

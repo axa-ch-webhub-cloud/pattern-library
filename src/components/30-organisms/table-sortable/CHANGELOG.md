@@ -1,3 +1,7 @@
+## 5.1.3
+
+Improve table-sortable types, event param names always `event` #2344
+
 ## 5.1.0
 
 Add `key` to model attribute to allow custom sorting. #2235

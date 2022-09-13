@@ -1,3 +1,7 @@
+## 7.0.6
+
+Improve file-upload types, event param names always `event` #2344
+
 ## 7.0.5
 
 Fix `isNonImageFile` check #2328 #2278  

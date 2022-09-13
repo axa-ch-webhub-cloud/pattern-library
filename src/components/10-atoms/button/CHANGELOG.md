@@ -1,3 +1,7 @@
+## 8.1.2
+
+Improve button types, event param names always `event` #2344
+
 ## 8.1.0
 
 Add `href` to render button link and `external`
