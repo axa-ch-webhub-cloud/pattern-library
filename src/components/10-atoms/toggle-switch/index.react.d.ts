@@ -1,13 +1,11 @@
 import React from 'react';
 
-export type AXAToggleSwitchChange = { target: { checked: boolean } };
-
 export interface AXAToggleSwitchProps {
   active?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
-  onChange?: (event: AXAToggleSwitchChange) => void;
+  onToggle?: (checked: boolean) => void;
 }
 
 declare function createAXAToggleSwitch(

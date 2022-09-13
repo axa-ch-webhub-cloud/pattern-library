@@ -13,20 +13,20 @@ export default {
     changelog,
   },
   args: {
-    active: false,
+    checked: false,
     disabled: false,
   },
   argTypes: {
-    active: { control: 'boolean' },
+    checked: { control: 'boolean' },
     disabled: { control: 'boolean' },
     error: { control: 'text' },
   },
 };
 
-export const ToggleSwitch = ({ error, active, disabled }) => html`
+export const ToggleSwitch = ({ error, checked, disabled }) => html`
   <axa-toggle-switch
     error=${error}
-    ?active=${active}
+    ?checked=${checked}
     ?disabled=${disabled}
   ></axa-toggle-switch>
 `;
