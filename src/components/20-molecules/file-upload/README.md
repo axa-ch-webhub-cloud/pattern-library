@@ -137,7 +137,7 @@ Checks if the file upload reports a "invalid" state (read-only). You can conside
 
 ### onChange
 
-The attribute `onChange` function executes as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `e.detail`.
+The attribute `onChange` function executes as soon as the user removes or adds new files. Adding new files includes files from drag & drop or the `<axa-input-file>`. Custom data (files) gets passed and can be accessed over `files`.
 
 ### invalidate
 
