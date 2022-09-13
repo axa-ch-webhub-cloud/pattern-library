@@ -8,7 +8,7 @@ export interface AXACookieDisclaimerProps {
   buttonname?: string;
   className?: string;
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent) => void;
 }
 
 declare function createAXACookieDisclaimer(

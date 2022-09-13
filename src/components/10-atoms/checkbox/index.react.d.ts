@@ -1,7 +1,6 @@
 import React from 'react';
 
-export interface AXACheckboxProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface AXACheckboxProps {
   refId?: string;
   value?: string;
   name?: string;
@@ -14,9 +13,9 @@ export interface AXACheckboxProps
   error?: string;
   className?: string;
   styled?: boolean;
-  onChange?: (e: UIEvent) => void;
-  onFocus?: (e?: FocusEvent) => void;
-  onBlur?: (e?: FocusEvent) => void;
+  onChange?: (event: Event) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
 }
 
 declare function createAXACheckbox(

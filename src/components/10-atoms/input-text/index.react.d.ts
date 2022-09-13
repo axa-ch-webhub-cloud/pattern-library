@@ -1,7 +1,6 @@
 import React from 'react';
 
-export interface AXAInputTextProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface AXAInputTextProps {
   refId?: string;
   name: string;
   label?: string;
@@ -25,11 +24,11 @@ export interface AXAInputTextProps
   inputmode?: string;
   autofocus?: boolean;
   readonly?: boolean;
-  onFocus?: (e?: FocusEvent) => void;
-  onBlur?: (e?: FocusEvent) => void;
-  onChange?: (e: { target: HTMLInputElement }, invalidFormat: Boolean) => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  onFocus?: (event: FocusEvent) => void;
+  onBlur?: (event: FocusEvent) => void;
+  onChange?: (event: InputEvent, invalidFormat: Boolean) => void;
+  onKeyDown?: (event: KeyboardEvent) => void;
+  onKeyUp?: (event: KeyboardEvent) => void;
 }
 
 declare function createAXAInputText(

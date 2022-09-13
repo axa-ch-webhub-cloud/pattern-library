@@ -1,3 +1,7 @@
+## 8.0.1
+
+Improve link types, event param names always `event` #2344
+
 ## 8.0.0
 
 Remove `event.preventDefault` and revert to native &lt;a&gt; link behaviour.

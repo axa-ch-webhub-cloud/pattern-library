@@ -1,3 +1,7 @@
+## 5.1.3
+
+Improve textarea types, event param names always `event` #2344
+
 ## 5.1.0
 
 Add readonly flag. #2264

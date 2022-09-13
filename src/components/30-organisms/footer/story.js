@@ -16,11 +16,12 @@ export default {
 };
 
 export const Footer = ({
+  clickevents,
   firstColumnTitle,
   secondColumnTitle,
   socialTitle,
 }) => html`
-  <axa-footer>
+  <axa-footer ?clickevents="${clickevents}">
     <h2 slot="column-title">${firstColumnTitle}</h2>
     <a
       slot="column-item"

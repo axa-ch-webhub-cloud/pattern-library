@@ -1,3 +1,7 @@
+## 6.2.1
+
+Improve input-text types, event param names always `event` #2344
+
 ## 6.2.0
 
 - New callback `onKeyDown` which is called if the user presses a key in the input-text field.

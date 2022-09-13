@@ -31,7 +31,7 @@ export type SharedProps = {
   external?: boolean;
   className?: string;
   slot?: string;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: MouseEvent) => void;
   children?: React.ReactNode;
 };
 

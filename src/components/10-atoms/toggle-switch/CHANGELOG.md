@@ -1,3 +1,7 @@
+## 4.0.6
+
+Improve toggle-switch types, event param names always `event` #2344
+
 ## 4.0.0
 
 - Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.

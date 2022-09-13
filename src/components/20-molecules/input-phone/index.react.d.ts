@@ -10,7 +10,7 @@ export interface AXAInputPhoneProps {
   countryflags?: boolean;
   value?: string;
   defaultValue?: string;
-  onChange?: (string) => void;
+  onChange?: (value: string) => void;
   placeholder?: string;
   className?: string;
 }

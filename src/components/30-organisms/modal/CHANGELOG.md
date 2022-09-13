@@ -1,3 +1,7 @@
+## 4.0.6
+
+Improve modal types, event param names always `event` #2344
+
 ## 4.0.3
 
 Fix: hide close button, if `forced` is true. #2324.
