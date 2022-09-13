@@ -1,6 +1,6 @@
 ## 6.2.1
 
-- Fix safari hack and remove obsolete code (showMessage getter). #2345
+- Fix Safari hack and remove obsolete code (showMessage getter). #2345
 - Improve input-text types, event param names always `event` #2344
 
 ## 6.2.0
