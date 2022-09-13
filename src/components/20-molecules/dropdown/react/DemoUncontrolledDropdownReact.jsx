@@ -36,10 +36,10 @@ const DemoUncontrolledDropdown = ({
         required={required}
         checkMark={checkMark}
         disabled={disabled}
-        onChange={value =>
+        onChange={item =>
           (document.getElementById(
             'checkbox-output'
-          ).innerHTML = `Value: ${JSON.stringify(value)}`)
+          ).innerHTML = `Value: ${JSON.stringify(item)}`)
         }
       />
       <br />

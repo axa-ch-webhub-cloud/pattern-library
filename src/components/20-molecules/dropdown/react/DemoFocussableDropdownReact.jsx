@@ -22,8 +22,8 @@ const DemoFocussableDropdown = () => {
         data-test-id="focussable-dropdown-react"
         defaultTitle="Please Select"
         items={items}
-        onChange={value => {
-          output.innerHTML += `${value.target.name},`;
+        onChange={item => {
+          output.innerHTML += `${item.name},`;
         }}
         onFocus={() => {
           output.innerHTML += 'focus,';
