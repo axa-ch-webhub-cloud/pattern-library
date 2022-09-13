@@ -1,17 +1,11 @@
 import React from 'react';
 
-export type AXADatepickerChangeEvent = {
-  target: {
-    value: string;
-  };
-};
-
 export interface AXADatepickerProps {
   dataTestId?: string;
   inputfield?: boolean;
   value?: string;
   defaultValue?: string;
-  onChange?: (event: AXADatepickerChangeEvent) => void;
+  onChange?: (event: InputEvent) => void;
   onDateChange?: (date: Date) => void;
   onFocus?: (event: FocusEvent) => void;
   onBlur?: (event: FocusEvent) => void;
