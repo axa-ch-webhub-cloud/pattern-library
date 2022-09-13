@@ -1,3 +1,7 @@
+## 5.1.4
+
+Rename callback prop `onClick` param type `event` to `item #2341
+
 ## 5.1.3
 
 Improve table-sortable types, event param names always `event` #2344
