@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../../utils/e2e-helpers';
 
-test.describe('toggle-switch', () => {
+test.describe('toggle-switch react: basic', () => {
   test('should fire correct change event in controlled mode', async ({
     page,
   }) => {
@@ -38,5 +38,17 @@ test.describe('toggle-switch', () => {
     expect(await page.textContent('.a-toggle-switch__error-message')).toBe(
       'Error Message'
     );
+  });
+
+  test('should change state when checked', async ({ page }) => {
+    await page.goto(
+      fixtureURL(
+        'examples-toggle-switch-react--toggle-switch-controlled-with-on-change'
+      )
+    );
+
+    await page.locator('.a-toggle-switch').click();
+
+    expect(await page.locator('.a-toggle-switch__input').isChecked()).toBeTruthy();
   });
 });
