@@ -49,6 +49,8 @@ test.describe('toggle-switch react: basic', () => {
 
     await page.locator('.a-toggle-switch').click();
 
-    expect(await page.locator('.a-toggle-switch__input').isChecked()).toBeTruthy();
+    expect(
+      await page.locator('.a-toggle-switch__input').isChecked()
+    ).toBeTruthy();
   });
 });
