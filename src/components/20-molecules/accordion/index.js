@@ -26,7 +26,7 @@ const collapseContent = el => {
     el.style.transition = savedTransition;
 
     // on the next frame (as soon as the previous style change has taken effect),
-    // have the element transition to height: 0px
+    // have the element transition to height: 0
     requestAnimationFrame(() => {
       el.style.height = 0;
     });
@@ -41,7 +41,6 @@ const expandContent = el => {
 
   const expandAnimation = () => {
     // remove "height" from the element's inline styles, so it can return to its initial value
-    console.log('test')
     el.style.height = null;
   };
 
@@ -91,14 +90,12 @@ class AXAAccordion extends LitElement {
     if (this.open) {
       collapseContent(accordionContent);
     } else {
-      console.log('test')
       expandContent(accordionContent);
     }
 
-    this.onStateChange(!this.open);
-    fireCustomEvent('axa-state-change', !this.open, this);
     this.open = !this.open;
-
+    this.onStateChange(this.open);
+    fireCustomEvent('axa-state-change', this.open, this);
   }
 
   render() {
