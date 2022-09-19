@@ -1,9 +1,9 @@
 ## 5.0.0
 
 Breaking change:
-- Change `active` attribute to `checked`
+- Change `active` attribute name to `checked`
 - Change Custom Event name from `change` to `axa-toggle-switch-toggle`
-- Change callback prop `onChange` to `onToggle` and simplify param, see the ["onToggle" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/toggle-switch#ontoggle).
+- Change callback property name `onChange` to `onToggle` and simplify its parameter, see the ["onToggle" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/10-atoms/toggle-switch#ontoggle) for details.
 
 ## 4.0.6
 
