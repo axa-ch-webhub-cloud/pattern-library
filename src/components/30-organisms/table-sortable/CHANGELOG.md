@@ -1,6 +1,6 @@
 ## 5.1.4
 
-Rename callback prop `onClick` param type `event` to `item #2341
+Rename callback prop `onClick`'s parameter type `event` to `item` #2341
 
 ## 5.1.3
 
