@@ -20,9 +20,9 @@ The string attribute `error` sets an error text. Leave `error` empty, if you do 
 
 ### onToggle
 
-The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks.
+The function-valued attribute `onToggle` can be used as a callback prop for React and other frameworks.
 
-The callback prop have the following structure:
+The callback prop value has the following Typescript signature:
 
 ```js
     onToggle?: (checked: boolean) => void;
@@ -30,5 +30,4 @@ The callback prop have the following structure:
 
 ## Events
 
-A `change` event and custom event is fired on the component itself. The events bubble and are cancellable. The Custom Event `axa-toggle-switch-toggle` `detail` property contains `{`
-checked: boolean `}`, where the meaning of active is as defined above for the same-named property.
+Both a `change` event _and_ a Custom Event are fired on the component itself. The events bubble and are cancellable. The Custom Event `axa-toggle-switch-toggle`'s `detail` property contains `{checked: boolean}`, where the meaning of `checked` is as defined above for the same-named property.
