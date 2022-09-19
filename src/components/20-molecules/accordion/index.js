@@ -41,7 +41,7 @@ const expandContent = el => {
 
   const expandAnimation = () => {
     // remove "height" from the element's inline styles, so it can return to its initial value
-    el.style.height = null;
+    el.style.removeProperty('height');
   };
 
   // when the next CSS transition finishes (which should be the one we just triggered)
