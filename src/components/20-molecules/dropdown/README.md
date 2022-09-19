@@ -76,7 +76,7 @@ Display the `value` instead of the `name` (from the `items` array) as selected v
 ### onChange
 
 The function-valued attribute `onChange` can be used as a callback prop for React and other frameworks. The callback is invoked whenever
-the selected dropdown option changes. The parameter `item` have the following structure `{ value: string, name: string, label: string, index: number }` structure.
+the selected dropdown option changes. Its sole parameter `item` has the Typescript signature `{ value: string, name: string, label: string, index: number }`.
 
 | target | Details                                             |
 | ------ | --------------------------------------------------- |
