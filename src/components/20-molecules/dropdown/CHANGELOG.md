@@ -1,6 +1,6 @@
 ## 12.0.0
 
-Breaking change: Simplify callback prop `onChange` param, see the ["onChange" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/dropdown#onchange). #2341
+Breaking change: Simplify callback prop `onChange`'s parameter value, see the ["onChange" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/dropdown#onchange) for details. #2341
 
 ## 11.0.6
 
