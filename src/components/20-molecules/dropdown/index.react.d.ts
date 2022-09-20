@@ -7,12 +7,11 @@ export type Item = {
   disabled?: boolean;
 };
 
-export type AXADropdownChangeEvent = {
-  target: {
-    value: string;
-    index: number;
-    name: string;
-  };
+export type AXADropdownItem = {
+  value: string;
+  name: string;
+  label: string;
+  index: number;
 };
 
 export interface AXADropdownProps {
@@ -24,7 +23,7 @@ export interface AXADropdownProps {
   invalid?: boolean;
   error?: string;
   native?: boolean;
-  onChange?: (event: AXADropdownChangeEvent) => void;
+  onChange?: (item: AXADropdownItem) => void;
   onFocus?: (event: FocusEvent) => void;
   onBlur?: (event: FocusEvent) => void;
   defaultTitle?: string;

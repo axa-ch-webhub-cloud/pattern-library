@@ -348,16 +348,16 @@ class AXADropdown extends NoShadowDOM {
     }
 
     this.selectedIndex = integerIndex;
-    const [{ name: optionLabel }] = this.findByValue(value);
-    // allow idiomatic event.target.value in onChange callback!
+    const [{ name: label }] = this.findByValue(value);
+
     const details = {
       value,
       name,
-      optionLabel,
+      label,
       index: integerIndex,
     };
-    const syntheticEvent = { target: details };
-    onChange(syntheticEvent);
+
+    onChange(details);
     if (!this.isControlled) {
       // declare the following value update to be uncontrolled
       this.state.firstTime = false;

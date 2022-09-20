@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface AXATableSortableDetail {
+export interface AXATableSortableItem {
   type: 'tbody' | 'tfoot';
   index: number;
   textArray: string;
@@ -20,7 +20,7 @@ export interface AXATableSortableProps {
   dateSortColumnIndex?: string;
   showallinline?: boolean;
   children?: React.ReactNode;
-  onClick?: (event: AXATableSortableDetail) => void;
+  onClick?: (item: AXATableSortableItem) => void;
 }
 
 declare function createAXATableSortable(

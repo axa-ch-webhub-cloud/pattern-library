@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 
 const ControlledWithOnChange = () => {
-  const [active, setActive] = useState(false);
+  const [checked, setChecked] = useState(false);
 
-  const change = () => {
-    setActive(!active);
+  const handleToggle = () => {
+    setChecked(!checked);
   };
 
-  return <AXAToggleSwitchReact active={active} onChange={change} />;
+  return <AXAToggleSwitchReact checked={checked} onToggle={handleToggle} />;
 };
 
 export default ControlledWithOnChange;

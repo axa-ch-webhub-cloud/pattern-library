@@ -18,10 +18,10 @@ class AXAToggleSwitch extends LitElement {
 
   static get properties() {
     return {
-      active: { type: Boolean, reflect: true },
+      checked: { type: Boolean, reflect: true },
       disabled: { type: Boolean },
       error: { type: String },
-      onChange: { type: Function },
+      onToggle: { type: Function },
       isReact: { type: Boolean },
     };
   }
@@ -32,7 +32,7 @@ class AXAToggleSwitch extends LitElement {
     this.state = {
       firstUpdate: true,
       isControlled: false,
-      active: false,
+      checked: false,
     };
 
     applyDefaults(this);
@@ -41,13 +41,13 @@ class AXAToggleSwitch extends LitElement {
   handleSpacebar(e) {
     // Key: Space
     if (e.keyCode === 32) {
-      this.active = !this.active;
+      this.checked = !this.checked;
     }
   }
 
-  set active(value) {
+  set checked(value) {
     const {
-      active,
+      checked,
       isReact,
       state: { firstUpdate },
     } = this;
@@ -56,19 +56,19 @@ class AXAToggleSwitch extends LitElement {
       this.state.isControlled = true;
     }
 
-    this.state.active = value;
-    this.requestUpdate('active', active);
+    this.state.checked = value;
+    this.requestUpdate('checked', checked);
   }
 
-  get active() {
-    return this.state.active;
+  get checked() {
+    return this.state.checked;
   }
 
   render() {
-    const { active, disabled, error, handleChange } = this;
+    const { checked, disabled, error, handleChange } = this;
 
     const classes = {
-      'a-toggle-switch__error-message-active': error !== '',
+      'a-toggle-switch__error-message-checked': error !== '',
     };
 
     const inputElement = html`
@@ -76,7 +76,7 @@ class AXAToggleSwitch extends LitElement {
         class="a-toggle-switch__input"
         type="checkbox"
         tabindex="-1"
-        ?checked="${active}"
+        ?checked="${checked}"
         ?disabled="${disabled}"
         @change=${handleChange}
       />
@@ -98,13 +98,17 @@ class AXAToggleSwitch extends LitElement {
   }
 
   handleChange(event) {
-    const { checked } = event.target;
     if (!this.state.isControlled) {
-      this.active = checked;
-      const { active } = this;
-      fireCustomEvent('change', { active }, this);
+      this.checked = event.target.checked;
+      fireCustomEvent(
+        'axa-toggle-switch-toggle',
+        { checked: this.checked },
+        this
+      );
     }
-    this.onChange({ target: { checked: this.active } });
+    if (typeof this.onToggle === 'function') {
+      this.onToggle(this.checked);
+    }
   }
 }
 

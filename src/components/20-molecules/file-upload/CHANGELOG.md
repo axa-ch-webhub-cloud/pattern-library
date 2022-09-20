@@ -1,3 +1,7 @@
+## 8.0.0
+
+Breaking change: Simplify callback prop `onChange`'s parameter value, see the ["onChange" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/file-upload#onchange) for details. #2341
+
 ## 7.0.6
 
 Improve file-upload types, event param names always `event` #2344

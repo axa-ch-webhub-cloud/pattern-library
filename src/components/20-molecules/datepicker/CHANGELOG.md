@@ -1,3 +1,7 @@
+## 17.1.0
+
+Use new major dropdown version 12.0.0
+
 ## 17.0.6
 
 Improve datepicker types, event param names always `event` #2344

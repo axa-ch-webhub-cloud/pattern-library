@@ -4,27 +4,27 @@ import AXAToggleSwitchReact from './AXAToggleSwitchReact';
 export default class example extends React.Component {
   constructor() {
     super();
-    this.change = this.change.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
 
     this.state = {
-      active: true,
+      checked: true,
       receivedEvent: '-',
     };
   }
 
-  change(ev) {
+  handleToggle(checked) {
     // We expect 'ev.target.checked' to always contain the same value, as the active flag.
     this.setState({
-      active: ev.target.checked,
-      receivedEvent: String(ev.target.checked),
+      checked,
+      receivedEvent: String(checked),
     });
   }
 
   render() {
-    const { receivedEvent, active } = this.state;
+    const { receivedEvent, checked } = this.state;
     return (
       <div>
-        <AXAToggleSwitchReact active={active} onChange={this.change} />
+        <AXAToggleSwitchReact checked={checked} onToggle={this.handleToggle} />
         <p>
           Received onChange event:
           <span className="axa-toggle-switch-demo__event-info">

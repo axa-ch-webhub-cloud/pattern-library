@@ -64,7 +64,7 @@ $toggle-switch-circle-size: $toggle-switch-height - 2 * $toggle-switch-spacing;
   &__error-message {
     display: none;
     
-    &-active {
+    &-checked {
       display: block;
       @include text(t4);
       color: $color-shy-tomato;

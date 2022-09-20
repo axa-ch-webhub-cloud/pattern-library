@@ -17,7 +17,7 @@ export default {
 };
 
 export const ToggleSwitchControlledWithoutOnChange = () =>
-  createReactContainer(<AXAToggleSwitchReact active={false} />);
+  createReactContainer(<AXAToggleSwitchReact checked={false} />);
 export const ToggleSwitchControlledWithOnChange = () =>
   createReactContainer(<ControlledWithOnChange />);
 export const ToggleSwitchControlledWithOnChangeListener = () =>

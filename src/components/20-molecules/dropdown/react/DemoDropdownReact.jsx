@@ -18,10 +18,10 @@ const DemoDropdown = () => {
   const findName = val =>
     (items[findIndex(items, item => item.value === val)] || { name: '' }).name;
 
-  const handleChange = event => {
-    setValue(frozen ? value : event.target.value);
+  const handleChange = item => {
+    setValue(frozen ? value : item.value);
     const oldName = findName(value);
-    const newName = event.target.name;
+    const newName = item.name;
     setError(
       frozen
         ? `invariant '${oldName}' despite user change to '${newName}'!`

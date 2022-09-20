@@ -211,10 +211,10 @@ const DemoManyOptionsReact = () => {
         maxHeight
         items={items}
         // eslint-disable-next-line no-console
-        onChange={value =>
+        onChange={item =>
           (document.getElementById(
             'checkbox-output'
-          ).innerHTML = `Value: ${JSON.stringify(value)}`)
+          ).innerHTML = `Value: ${JSON.stringify(item)}`)
         }
       />
       <br />
