@@ -28,7 +28,7 @@ const collapseContent = el => {
     // on the next frame (as soon as the previous style change has taken effect),
     // have the element transition to height: 0
     requestAnimationFrame(() => {
-      el.style.height = '0';
+      el.style.height = 0;
     });
   });
 };
@@ -41,7 +41,7 @@ const expandContent = el => {
 
   const expandAnimation = () => {
     // remove "height" from the element's inline styles, so it can return to its initial value
-    delete el.style.height;
+    el.style.removeProperty('height');
   };
 
   // when the next CSS transition finishes (which should be the one we just triggered)
