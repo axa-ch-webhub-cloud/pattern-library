@@ -41,16 +41,16 @@ jobs:
       - name: 'Gh-Pages - Push Featurebranch'
         run: git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
-          GITHUB_USER: ${{ secrets.GITHUB_USER }}
-          PR_SOURCE_BRANCH_NAME: $(System.PullRequest.SourceBranch)
-          SOURCE_BRANCH_NAME: $(Build.SourceBranchName)
+          GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
+          GITHUB_EMAIL: ${{ GITHUB_EMAIL }}
+          GITHUB_USER: ${{ GITHUB_USER }}
+          PR_SOURCE_BRANCH_NAME: ${{ System.PullRequest.SourceBranch }}
+          SOURCE_BRANCH_NAME: ${{ Build.SourceBranchName }}
 
       - name: 'Gh-Pages - Notify Users about successful deployment'
         shell: bash
         run: ./scripts/branch-deployment-notifier.sh
         env:
-          SLACK_TOKEN: $(SLACK_TOKEN)
-          PR_SOURCE_BRANCH_NAME: $(System.PullRequest.SourceBranch)
-          SOURCE_BRANCH_NAME: $(Build.SourceBranchName)
+          SLACK_TOKEN: ${{ SLACK_TOKEN }}
+          PR_SOURCE_BRANCH_NAME: ${{ System.PullRequest.SourceBranch }}
+          SOURCE_BRANCH_NAME: ${{ Build.SourceBranchName }}
