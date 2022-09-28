@@ -1,0 +1,56 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+          cache: 'npm'
+      - name: 'Install (with lib build included)'
+        run: npm ci
+
+      - name: 'Build Dist'
+        run: npm run build-dist
+
+      - name: 'Check if there are no uncommitted files'
+        run: npm run check-for-uncommitted-files
+
+      - name: 'Lint and prettier check'
+        run: npm run lint
+
+      - name: 'Build static storybook'
+        run: npm run build-storybook
+
+      - name: 'Run unit and e2e tests'
+        run: npm run test:ci
+
+      - name: 'Gh-Pages - Push Featurebranch'
+        run: git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_EMAIL: ${{ secrets.GITHUB_EMAIL }}
+          GITHUB_USER: ${{ secrets.GITHUB_USER }}
+          PR_SOURCE_BRANCH_NAME: $(System.PullRequest.SourceBranch)
+          SOURCE_BRANCH_NAME: $(Build.SourceBranchName)
+
+      - name: 'Gh-Pages - Notify Users about successful deployment'
+        shell: bash
+        run: ./scripts/branch-deployment-notifier.sh
+        env:
+          SLACK_TOKEN: $(SLACK_TOKEN)
+          PR_SOURCE_BRANCH_NAME: $(System.PullRequest.SourceBranch)
+          SOURCE_BRANCH_NAME: $(Build.SourceBranchName)
