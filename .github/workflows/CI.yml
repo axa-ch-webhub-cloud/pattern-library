@@ -41,7 +41,7 @@ jobs:
       - name: 'Gh-Pages - Push Featurebranch'
         run: git config --global user.email "$GITHUB_EMAIL" && git config --global user.name "$GITHUB_USER" && bash ./scripts/branch-deployment.sh
         env:
-          GITHUB_TOKEN: ${{ GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_EMAIL: ${{ GITHUB_EMAIL }}
           GITHUB_USER: ${{ GITHUB_USER }}
           PR_SOURCE_BRANCH_NAME: ${{ System.PullRequest.SourceBranch }}
