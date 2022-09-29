@@ -126,8 +126,10 @@ Please be mindful of using currency formatting in combination with `maxLength`. 
 ### onChange
 
 The function-valued property `onChange` can be used as a callback prop for React and other frameworks.
+If you are a Typescript user, you must say that the InputEvent target is an input element. `(event.target as HTMLInputElement).value`
 
 Its first argument is the original `change` event from the element's underlying native &lt;input&gt; field.
+
 The second argument is a Boolean flag `invalidFormat` which is true if, and only if, the user's input cannot be formatted as a currency.
 
 ### onFocus
