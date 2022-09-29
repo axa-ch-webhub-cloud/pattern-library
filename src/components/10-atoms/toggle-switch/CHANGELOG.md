@@ -1,3 +1,7 @@
+## 5.0.1
+
+- Fixed the attribute type name `active` to `checked`.
+
 ## 5.0.0
 
 Breaking change:

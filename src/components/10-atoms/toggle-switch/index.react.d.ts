@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface AXAToggleSwitchProps {
-  active?: boolean;
+  checked?: boolean;
   disabled?: boolean;
   error?: string;
   className?: string;
