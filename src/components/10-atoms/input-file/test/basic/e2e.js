@@ -15,7 +15,7 @@ test.describe('input-file: basic', () => {
       })
     );
 
-    await expect(page.locator('text=test')).toHaveText('test');
+    await expect(page.locator('text="test"')).toBeVisible();
   });
 
   test('should set input file accept', async ({ page }) => {

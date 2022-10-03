@@ -7,8 +7,8 @@ test.describe('button react: dynamic', () => {
       fixtureURL('examples-accordion-react--demo-accordion-on-state-change')
     );
 
-    await page.click('text=Test Accordion on state change');
+    await page.locator('text="Test Accordion on state change"').click();
 
-    expect(await page.textContent('text=true')).toBe('true');
+    await expect(page.locator('text="true"')).toBeVisible();
   });
 });
