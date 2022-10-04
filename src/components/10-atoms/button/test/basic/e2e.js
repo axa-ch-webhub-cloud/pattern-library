@@ -36,5 +36,3 @@ test('should be clickable (set different text after click)', async ({
 
   await expect(page.locator('text="counter: 1"')).toBeVisible();
 });
-
-
