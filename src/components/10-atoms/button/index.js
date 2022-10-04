@@ -31,6 +31,7 @@ class AXAButton extends LitElement {
       variant: { type: String },
       icon: { type: String },
       size: { type: String },
+      block: { type: Boolean, reflect: true },
       motionOff: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       href: { type: String },

@@ -33,6 +33,11 @@ Buttons provide a clickable element, which can be used in forms, or anywhere els
 | `size="small"` | button small size          |
 | `size="large"` | button large size          |
 
+
+### block
+
+By default, buttons are inline blocks, but setting this attribute `block` will change the button to a full-width block element.
+
 ### motionOff
 
 The Boolean attribute `motionoff` deactivates hover animation.

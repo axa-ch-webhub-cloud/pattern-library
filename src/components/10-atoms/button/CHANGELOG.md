@@ -1,3 +1,7 @@
+## 8.2.0
+
+Button configurable as full widht block element `block` #2354
+
 ## 8.1.2
 
 Improve button types, event param names always `event` #2344

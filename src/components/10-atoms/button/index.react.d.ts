@@ -16,6 +16,7 @@ export type Variant =
 export interface AXAButtonProps {
   type?: ButtonType;
   variant?: Variant;
+  block?: boolean;
   icon?: Icon;
   size?: Size;
   motionOff?: boolean;
