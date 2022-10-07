@@ -5,6 +5,8 @@ export const args = {
   readonly: false,
   required: false,
   invalid: false,
+  counter: 'Still ##counter## characters left',
+  counterMax: 'Over character limit!',
 };
 
 export const argTypes = {
