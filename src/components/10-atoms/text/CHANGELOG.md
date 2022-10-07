@@ -1,3 +1,17 @@
+## 7.0.0
+
+Breaking change:
+- When tags are placed inside slot(children). You should use the attribute `tagless` so that the wrapping paragraph is not rendered.
+- Now the text host element has margin bottom as specified in the style guide. To edit margins, custom CSS prop `--margin` can be used, or directly rewritten to `axa-text` margin.
+- Remove variant `semibold` and `bold`, because not represent style guide
+Features:
+- Add back shadow DOM, fix paragraph issue for screenreaders on host element with role paragraph
+- Add `tagless` attribute to not render a wrapping paragraph
+- Add `bold` attribute for font-weight
+- Add `italic` attribute for font-style
+Fix:
+- Fix axa-text implementation violates lit contract #2288
+
 ## 6.0.0
 
 - Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.

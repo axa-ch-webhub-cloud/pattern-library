@@ -1,25 +1,50 @@
-axa-text > * {
-  @include text(t1);
+:host {
+  display: block;
+  margin: var(--margin, 0 0 24px 0);
 
-  margin: 0;
+  & > p {
+    margin: 0;
+  }
 }
 
-axa-text[variant="size-2"] > * {
+:host([variant='size-2']) {
+  margin: var(--margin, 0 0 22px 0);
+}
+
+:host([variant='size-3']) {
+  margin: var(--margin, 0 0 20px 0);
+}
+
+:host([variant='size-4']) {
+  margin: var(--margin, 0 0 18px 0);
+}
+
+:host,
+:host > * {
+  @include text(t1);
+}
+
+:host([variant='size-2']),
+:host([variant='size-2']) > * {
   @include text(t2);
 }
 
-axa-text[variant="size-3"] > * {
+:host([variant='size-3']),
+:host([variant='size-3']) > * {
   @include text(t3);
 }
 
-axa-text[variant="size-4"] > * {
+:host([variant='size-4']),
+:host([variant='size-4']) > * {
   @include text(t4);
 }
 
-axa-text[variant="semibold"] > * {
-  @include text(t1, semibold);
+:host([bold]),
+:host([bold]) > * {
+  font-weight: bold;
 }
 
-axa-text[variant="bold"] > * {
-  @include text(t1, bold);
+:host([italic]),
+:host([italic]) > * {
+  font-style: italic;
 }

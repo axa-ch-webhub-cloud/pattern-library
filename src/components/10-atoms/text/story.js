@@ -2,7 +2,6 @@ import { html } from 'lit';
 import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import { renderLitContainer } from '../../../utils/render-lit-container';
 import './index';
 
 export default {
@@ -18,9 +17,12 @@ export default {
   argTypes,
 };
 
-export const Text = ({ variant, wrapSlotInSpan, slot }) =>
-  renderLitContainer(html`
-    <axa-text variant="${variant}">
-      ${wrapSlotInSpan ? html`<span>${slot}</span>` : html`${slot}`}
-    </axa-text>
-  `);
+export const Text = ({ variant, slot, tagless, italic, bold }) => html`
+  <axa-text
+    variant="${variant}"
+    ?tagless="${tagless}"
+    ?italic="${italic}"
+    ?bold="${bold}"
+    >${slot}</axa-text
+  >
+`;

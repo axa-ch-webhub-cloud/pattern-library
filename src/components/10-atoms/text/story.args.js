@@ -1,6 +1,8 @@
 export const args = {
   variant: 'default',
-  wrapSlotInSpan: false,
+  tagless: false,
+  italic: false,
+  bold: false,
   slot: `Is your car your pride and joy, or just a means of getting from A to
     B ? Whichever applies to you, it will certainly have the best
     insurance with us. Calculate your premium online – You keep your
@@ -12,8 +14,6 @@ const variants = {
   'size-2': 'size-2',
   'size-3': 'size-3',
   'size-4': 'size-4',
-  semibold: 'semibold',
-  bold: 'bold',
 };
 
 export const argTypes = {
@@ -23,6 +23,8 @@ export const argTypes = {
     mapping: variants,
     labels: variants,
   },
-  wrapSlotInSpan: { control: 'boolean' },
+  tagless: { control: 'boolean' },
+  italic: { control: 'boolean' },
+  bold: { control: 'boolean' },
   slot: { control: 'text' },
 };
