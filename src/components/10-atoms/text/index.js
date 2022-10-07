@@ -37,9 +37,7 @@ class AXAText extends LitElement {
   }
 
   render() {
-    return this.tagless
-      ? html`<slot></slot>`
-      : html`<p><slot></slot></p>`;
+    return this.tagless ? html`<slot></slot>` : html`<p><slot></slot></p>`;
   }
 }
 
