@@ -28,6 +28,7 @@ export const Button = ({
   motionOff,
   href,
   external,
+  block,
 }) => html`
   <div
     style="${variant.includes('inverted')
@@ -41,6 +42,7 @@ export const Button = ({
       icon="${icon}"
       ?disabled="${disabled}"
       ?motionoff="${motionOff}"
+      ?block="${block}"
       href="${href}"
       ?external="${external}"
       >${slot}

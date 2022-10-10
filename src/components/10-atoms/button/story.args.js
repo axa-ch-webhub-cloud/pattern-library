@@ -32,6 +32,7 @@ export const args = {
   variant: 'default',
   size: 'default',
   icon: 'none',
+  block: false,
   disabled: false,
   motionOff: false,
   type: 'button',
@@ -47,6 +48,7 @@ export const argTypes = {
     mapping: variants,
     labels: variants,
   },
+  block: { control: 'boolean' },
   size: {
     control: 'radio',
     options: Object.keys(sizes),

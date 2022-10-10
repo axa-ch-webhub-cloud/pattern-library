@@ -11,6 +11,15 @@
   appearance: none;
 }
 
+:host([block]) {
+  display: block;
+}
+
+:host([block]) .a-button {
+  display: block;
+  width: 100%;
+}
+
 .a-button {
   @include text(t4);
   display: inline-block;
@@ -31,6 +40,7 @@
   background-color: $color-axa-blue;
   border: solid 2px $color-axa-blue;
   border-bottom-color: $color-deep-sapphire;
+  text-align: center;
 
   &:hover,
   &:active,
@@ -73,7 +83,7 @@
     @include text(t3);
 
     .a-button__flex-wrapper {
-      min-height: 46px
+      min-height: 46px;
     }
   }
 
