@@ -27,11 +27,11 @@ export const ToPatternLibrary = () => {
       ${styles}
     </style>
     <div class="accessory-story-wrapper accessory-story-content">
-      <axa-heading rank="1" secondary
+      <axa-heading size="1" secondary
       >AXA Design System 🚀
       </axa-heading
       >
-      <axa-text variant="size-2">
+      <axa-text size="2">
         Welcome to the Design System of AXA Switzerland. Our Pattern Library
         provides components and tools to help product teams work more
         efficiently, and to make AXA web applications more visually cohesive.

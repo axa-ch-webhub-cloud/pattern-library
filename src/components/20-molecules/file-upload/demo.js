@@ -114,6 +114,6 @@ export const Invalid = () => {
     </axa-button>
 
     <br />
-    <axa-text variant="size-2"></axa-text>
+    <axa-text size="2"></axa-text>
   `;
 };
