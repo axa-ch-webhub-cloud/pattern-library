@@ -1,5 +1,5 @@
 export const args = {
-  variant: 'default',
+  size: '1',
   tagless: false,
   italic: false,
   bold: false,
@@ -9,19 +9,10 @@ export const args = {
     advisor even when you purchase from us online.`,
 };
 
-const variants = {
-  default: '',
-  'size-2': 'size-2',
-  'size-3': 'size-3',
-  'size-4': 'size-4',
-};
-
 export const argTypes = {
-  variant: {
+  size: {
     control: 'radio',
-    options: Object.keys(variants),
-    mapping: variants,
-    labels: variants,
+    options: ['1', '2', '3', '4'],
   },
   tagless: { control: 'boolean' },
   italic: { control: 'boolean' },

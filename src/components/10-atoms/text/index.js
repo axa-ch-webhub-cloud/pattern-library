@@ -16,8 +16,8 @@ class AXAText extends LitElement {
 
   static get properties() {
     return {
-      variant: { type: String, reflect: true },
-      tagless: { type: Boolean },
+      size: { type: Number, reflect: true, defaultValue: 1 },
+      tagless: { type: Boolean, reflect: true },
       bold: { type: Boolean, reflect: true },
       italic: { type: Boolean, reflect: true },
     };

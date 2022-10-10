@@ -17,9 +17,9 @@ export default {
   argTypes,
 };
 
-export const Text = ({ variant, slot, tagless, italic, bold }) => html`
+export const Text = ({ size, slot, tagless, italic, bold }) => html`
   <axa-text
-    variant="${variant}"
+    size="${size}"
     ?tagless="${tagless}"
     ?italic="${italic}"
     ?bold="${bold}"

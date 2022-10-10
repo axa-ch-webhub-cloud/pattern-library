@@ -8,12 +8,10 @@ import {
   getTextStyles,
 } from './e2e.helpers';
 
-test.describe('text: variant:desktop', () => {
+test.describe('text: size:desktop', () => {
   for (const size of Object.keys(textsDesktop)) {
     test(`should render T${size}`, async ({ page }) => {
-      await page.goto(
-        fixtureURL('components-text--text', { variant: `size-${size}` })
-      );
+      await page.goto(fixtureURL('components-text--text', { size }));
 
       expect(
         await page
@@ -35,7 +33,7 @@ test.describe('text: variant:desktop', () => {
   }
 });
 
-test.describe('text: variant:mobile', () => {
+test.describe('text: size:mobile', () => {
   for (const size of Object.keys(textsMobile)) {
     test(`should render T${size}`, async ({ page }) => {
       await page.setViewportSize({
@@ -43,9 +41,7 @@ test.describe('text: variant:mobile', () => {
         height: 767,
       });
 
-      await page.goto(
-        fixtureURL('components-text--text', { variant: `size-${size}` })
-      );
+      await page.goto(fixtureURL('components-text--text', { size }));
 
       const textStyles = await page
         .locator('axa-text > p')

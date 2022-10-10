@@ -1,9 +1,9 @@
 import React from 'react';
 
-export type Variant = 'size-2' | 'size-3' | 'size-4';
+export type AXATextSizes = 1 | 2 | 3 | 4;
 
 export interface AXATextProps {
-  variant?: Variant;
+  size?: AXATextSizes;
   tagless?: boolean;
   bold?: boolean;
   italic?: boolean;

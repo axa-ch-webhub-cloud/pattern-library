@@ -1,9 +1,11 @@
 ## 7.0.0
 
 Breaking change:
+- Remove variant `semibold`, because this option is not available in the styleguide
+- Remove variant `bold` use new boolean flag `bold`, because bold for all text sizes possible
+- Change attribute `variant` to `size`
 - When tags are placed inside slot(children). You should use the attribute `tagless` so that the wrapping paragraph is not rendered.
-- Now the text host element has margin bottom as specified in the style guide. To edit margins, custom CSS prop `--margin` can be used, or directly rewritten to `axa-text` margin.
-- Remove variant `semibold` and `bold`, because not represent style guide
+- Now the text host element has margin bottom as specified in the styleguide. To edit margins, Custom CSS prop `--margin` can be used, or directly rewritten to `axa-text` margin.
 Features:
 - Add back shadow DOM, fix paragraph issue for screenreaders on host element with role paragraph
 - Add `tagless` attribute to not render a wrapping paragraph

@@ -1,41 +1,44 @@
 :host {
   display: block;
-  margin: var(--margin, 0 0 24px 0);
 
   & > p {
     margin: 0;
   }
 }
 
-:host([variant='size-2']) {
-  margin: var(--margin, 0 0 22px 0);
+:host([size='1']) {
+  margin: var(--text-margin, 0 0 24px 0);
 }
 
-:host([variant='size-3']) {
-  margin: var(--margin, 0 0 20px 0);
+:host([size='2']) {
+  margin: var(--text-margin, 0 0 22px 0);
 }
 
-:host([variant='size-4']) {
-  margin: var(--margin, 0 0 18px 0);
+:host([size='3']) {
+  margin: var(--text-margin, 0 0 20px 0);
 }
 
-:host,
-:host > * {
+:host([size='4']) {
+  margin: var(--text-margin, 0 0 18px 0);
+}
+
+:host([size='1']),
+:host([size='1']) > * {
   @include text(t1);
 }
 
-:host([variant='size-2']),
-:host([variant='size-2']) > * {
+:host([size='2']),
+:host([size='2']) > * {
   @include text(t2);
 }
 
-:host([variant='size-3']),
-:host([variant='size-3']) > * {
+:host([size='3']),
+:host([size='3']) > * {
   @include text(t3);
 }
 
-:host([variant='size-4']),
-:host([variant='size-4']) > * {
+:host([size='4']),
+:host([size='4']) > * {
   @include text(t4);
 }
 

@@ -16,9 +16,5 @@ export default {
   argTypes,
 };
 
-export const Text = ({ variant, wrapSlotInSpan, slot }) =>
-  createReactContainer(
-    <AXAText variant={variant}>
-      {wrapSlotInSpan ? <span>{slot}</span> : slot}
-    </AXAText>
-  );
+export const Text = _args =>
+  createReactContainer(<AXAText {..._args}>{_args.slot}</AXAText>);
