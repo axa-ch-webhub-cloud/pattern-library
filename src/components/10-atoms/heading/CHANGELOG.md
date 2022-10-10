@@ -1,3 +1,9 @@
+## 7.0.0
+
+- Breaking Change: `rank` to `size`
+- feat: Add Custom CSS property `--heading-margin`
+- fix: missing type `secondary`
+
 ## 6.0.0
 
 Change attribute `variant` string to `secondary` boolean. #2336

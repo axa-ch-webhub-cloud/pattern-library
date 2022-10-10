@@ -18,8 +18,8 @@ class AXAHeading extends LitElement {
 
   static get properties() {
     return {
-      secondary: { type: Boolean },
-      rank: { type: Number },
+      secondary: { type: Boolean, reflect: true },
+      size: { type: Number, reflect: true, defaultValue: 1 },
     };
   }
 
@@ -29,10 +29,7 @@ class AXAHeading extends LitElement {
   }
 
   render() {
-    const { secondary, rank } = this;
-    const secondaryClass = secondary ? 'a-heading--secondary' : '';
-
-    const template = `<h${rank} class="a-heading ${secondaryClass}"><slot></slot></h${rank}>`;
+    const template = `<h${this.size} class="a-heading"><slot></slot></h${this.size}>`;
 
     return html`${unsafeHTML(template)}`;
   }

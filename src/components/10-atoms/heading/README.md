@@ -4,19 +4,32 @@ The title component provides a way to conveniently use headings and titles, that
 
 ## Properties
 
-| Attribute    | Details                                                                                                                       |
-|--------------| ----------------------------------------------------------------------------------------------------------------------------- |
-| `secondary"` | Secondary will use publico as font. Default: "primary"                                                                 |
-| `rank="1"`   | Rank holds a number from one to six, which represents the underlying html heading tag. `rank="1"` will lead to a `h1` element. |
+## size
+
+Size holds a number from one to six, which represents the underlying html heading tag.
+
+| Attribute  | Details                      |
+|------------|------------------------------|
+| `size="1"` | will lead to a `h1` element. |
+| `size="2"` | will lead to a `h2` element. |
+| `size="3"` | will lead to a `h3` element. |
+| `size="4"` | will lead to a `h4` element. |
+| `size="5"` | will lead to a `h5` element. |
+| `size="6"` | will lead to a `h6` element. |
+
+## secondary
+
+The Boolean attribute `secondary` will use `Publico Headline` as font. Default use `Source Sans Pro`
 
 ## Custom Margins
 
-The custom element tag has the style property `display: block` applied to it, which means, that you can overwrite the predefined margins. Please only do this if this is abolutely necessary, since the default margins are aligned with the styleguide.
+You can overwrite the predefined margins on the custom element tag or use custom css property `--heading-margin`, see the examples.
+Please only do this if this is abolutely necessary, since the default margins are aligned with the styleguide.
 
 Example:
 
 ```html
-<axa-heading rank="1">I'm a h1 title</axa-heading>
+<axa-heading size="1">I'm a h1 title</axa-heading>
 
 <style>
   axa-heading {
@@ -24,6 +37,10 @@ Example:
     margin-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  axa-heading {
+    --heading-margin: 0;
   }
 </style>
 ```
