@@ -27,9 +27,3 @@ export const InfoPopup = () => {
               <axa-input-text label="Cool 3" info="${info}"></axa-input-text>
             </div>`;
 };
-
-export const NoMaxlengthSet = () =>
-  `<axa-input-text counter="chars left"></axa-input-text>`;
-
-export const NoCounterSet = () =>
-  `<axa-input-text maxlength="50"></axa-input-text>`;

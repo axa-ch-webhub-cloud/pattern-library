@@ -33,7 +33,7 @@ const DemoAccordionStateChange = () => {
         onStateChange={handleOnStateChange}
       >
         {content}
-        <AXAAccordion title="Test Accordion on state change">
+        <AXAAccordion title="Test Accordion on state change 2">
           {content}
         </AXAAccordion>
       </AXAAccordion>

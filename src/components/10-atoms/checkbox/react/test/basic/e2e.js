@@ -18,6 +18,6 @@ test.describe('checkbox react: basic', () => {
     await frozenControl.click();
 
     await checkbox.click();
-    expect(await page.textContent('text=true')).toBe('checked: true');
+    await expect(page.locator('text="checked: true"')).toBeVisible();
   });
 });

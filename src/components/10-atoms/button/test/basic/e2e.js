@@ -32,7 +32,7 @@ test('should be clickable (set different text after click)', async ({
 }) => {
   await page.goto(fixtureURL('examples-button--clickable'));
 
-  await page.click('.a-button');
+  await page.locator('text="counter: 0"').click();
 
-  expect(await page.textContent('text=counter')).toBe('counter: 1');
+  await expect(page.locator('text="counter: 1"')).toBeVisible();
 });
