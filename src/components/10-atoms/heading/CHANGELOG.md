@@ -2,7 +2,7 @@
 
 - Breaking Change: `rank` to `size`
 - feat: Add Custom CSS property `--heading-margin`
-- fix: missing type `secondary`
+- fix: Add missing type `secondary`
 
 ## 6.0.0
 
