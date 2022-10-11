@@ -1,5 +1,5 @@
 .a-spinner {
-  &-container {
+  &__container {
     display: flex;
     align-items: center;
   }
@@ -7,8 +7,8 @@
   &__dot {
     animation: opacityFade 1.5s linear infinite;
     display: inline-block;
-    top: 0%;
-    bottom: 0%;
+    top: 0;
+    bottom: 0;
     margin: 8px;
     height: 16px;
     width: 16px;
@@ -22,13 +22,13 @@
       background-color: $color-prim-white;
     }
 
-    &-1 {
+    &--1 {
       animation-delay: 0s;
     }
-    &-2 {
+    &--2 {
       animation-delay: 0.5s;
     }
-    &-3 {
+    &--3 {
       animation-delay: 1s;
     }
   }
@@ -45,8 +45,8 @@
   }
 
   &--small {
-    top: 0%;
-    bottom: 0%;
+    top: 0;
+    bottom: 0;
     margin: 4px;
     height: 8px;
     width: 8px;

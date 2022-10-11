@@ -28,24 +28,23 @@ class AXASpinner extends LitElement {
   }
 
   render() {
-    const { small = false, color = '' } = this;
     const classes = {
-      'a-spinner--small': small,
-      'a-spinner__dot--inverted-dark-grey': color === 'inverted-dark-grey',
-      'a-spinner__dot--inverted-white': color === 'inverted-white',
+      'a-spinner--small': this.small,
+      'a-spinner__dot--inverted-dark-grey': this.color === 'inverted-dark-grey',
+      'a-spinner__dot--inverted-white': this.color === 'inverted-white',
     };
 
     return html`
       <article class="a-spinner">
-        <div class="a-spinner-container">
+        <div class="a-spinner__container">
           <span
-            class="a-spinner__dot a-spinner__dot-1 ${classMap(classes)}"
+            class="a-spinner__dot a-spinner__dot--1 ${classMap(classes)}"
           ></span>
           <span
-            class="a-spinner__dot a-spinner__dot-2 ${classMap(classes)}"
+            class="a-spinner__dot a-spinner__dot--2 ${classMap(classes)}"
           ></span>
           <span
-            class="a-spinner__dot a-spinner__dot-3 ${classMap(classes)}"
+            class="a-spinner__dot a-spinner__dot--3 ${classMap(classes)}"
           ></span>
         </div>
       </article>
