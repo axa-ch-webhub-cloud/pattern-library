@@ -42,10 +42,15 @@
     }
   },
   "ignoreChanges": [
-    "**/*.test.js",
     "**/node_modules/**",
     "**/package-lock.json",
+    "**/test/**",
+    "**/react/**",
+    "**/*.test.js",
+    "**/e2e.js",
+    "**/demo.js",
     "**/story.js",
+    "**/story.args.js",
     "**/README.md",
     "**/CHANGELOG.js"
   ],
