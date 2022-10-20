@@ -15,7 +15,7 @@
     "watch-components": "lerna run watch",
     "setup-npm-links": "node scripts/setup-npm-link.js",
     "postinstall": "lerna bootstrap --hoist && cross-env NODE_ENV=production npm run build-lib && lerna run --parallel genPackagelock && playwright install --with-deps chromium",
-    "release": "npm whoami && lerna clean --yes && git clean -dfxq -e .idea -e .vscode && npm ci && cross-env NODE_ENV=production npm run build-dist && lerna version --exact && lerna publish from-package && git clean -dfxq -e .idea -e .vscode && npm install && git add -A && git commit -m \"release: update package locks\" && git push",
+    "release": "npm whoami && lerna clean --yes && git clean -dfxq -e .idea -e .vscode && npm ci && cross-env NODE_ENV=production npm run build-dist && lerna version --include-merged-tags --exact && lerna publish from-package && git clean -dfxq -e .idea -e .vscode && npm install && git add -A && git commit -m \"release: update package locks\" && git push",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006 --no-version-updates",
     "build-storybook": "build-storybook",
