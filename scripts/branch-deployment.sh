@@ -6,8 +6,8 @@
 # External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
 
 # Check that the needed evnironment variables are present
-if [[ -z "$SOURCE_BRANCH_NAME" && (( -z "$PR_SOURCE_BRANCH_NAME" || $PR_SOURCE_BRANCH_NAME == *"$"* )) ]]; then
-  echo "Env variable 'SOURCE_BRANCH_NAME' or 'PR_SOURCE_BRANCH_NAME' was not correctly provided. Only one env variable is necessary."
+if [[ -z "$GITHUB_REF_NAME"]]; then
+  echo "Env variable 'GITHUB_REF_NAME' was not correctly provided."
   exit 1
 elif [[ -z "$GITHUB_TOKEN" ]]; then
   echo "Env variable 'GITHUB_TOKEN' was not provided."
@@ -17,23 +17,14 @@ fi
 echo "Using Github Email: $GITHUB_EMAIL"
 echo "Using Github User:  $GITHUB_USER"
 
-# If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could not be resolved, which means,
-# that the build does not originate form a pull request. In that case, we go after the branch name.
-# This is an issue with azure, that the source_branch contains whatever reference, but the actual
-# source branch that we would be interested in.
-[[ -n "$PR_SOURCE_BRANCH_NAME" && $PR_SOURCE_BRANCH_NAME != *"$"* ]] && BRANCH_NAME="$PR_SOURCE_BRANCH_NAME" || BRANCH_NAME="$SOURCE_BRANCH_NAME"
-echo "PR-Source-Branch-Name:              $PR_SOURCE_BRANCH_NAME"
-echo "Source-Branch-Name:                 $SOURCE_BRANCH_NAME"
-echo "Branch name that will be deployed:  $BRANCH_NAME"
-
 rm -rf ./dist
 
 mkdir ./dist
 git clone https://$GITHUB_TOKEN@github.com/axa-ch-webhub-cloud/plib-feature.git --depth 1 ./dist
 
-rm -rf ./dist/$BRANCH_NAME/
-mkdir -p ./dist/$BRANCH_NAME
-mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
+rm -rf ./dist/$GITHUB_REF_NAME/
+mkdir -p ./dist/$GITHUB_REF_NAME
+mv -v ./storybook-static/* ./dist/$GITHUB_REF_NAME/
 
 # Done! From here, everything would be ready to be committed and pushed. But
 # outdated branches need to be cleaned up too, so...
@@ -44,7 +35,7 @@ ALL_BRANCHES=$(git --no-pager branch -a -r)
 cd ./dist
 
 # Find all folders for 2 levels down, ignore .git folder and cut './' at the beginning of each folder
-[[ $BRANCH_NAME == "develop" || $BRANCH_NAME == "master" ]] && MAX_DEPTH=1 || MAX_DEPTH=2
+[[ $GITHUB_REF_NAME == "develop" || $GITHUB_REF_NAME == "master" ]] && MAX_DEPTH=1 || MAX_DEPTH=2
 ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -type d | cut -d '/' -f2-)
 
 ###################################################################################################
@@ -74,9 +65,9 @@ done)
 # date. Ready to publish!
 
 git add .
-git commit -m "Deploy Branch: $BRANCH_NAME"
+git commit -m "Deploy Branch: $GITHUB_REF_NAME"
 git push -f
 
 # Move everything back to not mess with the other tasks.
 cd ..
-mv -v ./dist/$BRANCH_NAME/* ./storybook-static/
+mv -v ./dist/$GITHUB_REF_NAME/* ./storybook-static/
