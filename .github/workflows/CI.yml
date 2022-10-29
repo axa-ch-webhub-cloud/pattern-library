@@ -45,4 +45,3 @@ jobs:
           GITHUB_EMAIL: ${{ secrets.TECHNICAL_USER_EMAIL }}
           GITHUB_USER: ${{ secrets.TECHNICAL_USER_USER }}
           PR_SOURCE_BRANCH_NAME: ${{ env.GITHUB_REF_NAME }}
-          SOURCE_BRANCH_NAME: ${{ Build.SourceBranchName }}
