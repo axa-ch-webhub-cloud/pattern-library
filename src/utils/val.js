@@ -66,13 +66,6 @@ const applyRef = (e, ref) => {
   }
 };
 
-// Ensures attrs, events and props are all set as the consumer intended.
-const ensureProps = objs => {
-  const { attrs, events, props, ref, ...pass } = objs || {};
-  const newRef = ensureRef(attrs, events, props, ref);
-  return { ...pass, ref: newRef };
-};
-
 // Ensures a ref is supplied that set each member appropriately and that
 // the original ref is called.
 const ensureRef = (attrs, events, props, ref) => {
@@ -84,6 +77,13 @@ const ensureRef = (attrs, events, props, ref) => {
     }
     applyRef(e, ref);
   };
+};
+
+// Ensures attrs, events and props are all set as the consumer intended.
+const ensureProps = objs => {
+  const { attrs, events, props, ref, ...pass } = objs || {};
+  const newRef = ensureRef(attrs, events, props, ref);
+  return { ...pass, ref: newRef };
 };
 
 // Returns the custom element local name if it exists or the original
@@ -98,12 +98,11 @@ const ensureLocalName = lname => {
 //
 // It requires support for:
 // - `ref`
+// prettier-ignore
 const val =
   createElement =>
-  (lname, props, ...chren) => {
-    lname = ensureLocalName(lname);
-    props = ensureProps(props);
-    return createElement(lname, props, ...chren);
-  };
+    (lname, props, ...chren) => {
+      return createElement(ensureLocalName(lname), ensureProps(props), ...chren);
+    };
 
 export default val;
