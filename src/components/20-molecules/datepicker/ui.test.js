@@ -882,22 +882,6 @@ fixture('Datepicker React - Story').page(
   `${host}/iframe.html?args=month:NaN;day:0&id=examples-datepicker-react--datepicker&viewMode=story`
 );
 
-test('Should not preselect by default', async t => {
-  const nothingPreselected = ClientFunction(() => {
-    const days = Array.prototype.slice.call(
-      document.querySelectorAll(
-        '#datepicker-react .js-datepicker__calender-body__cell'
-      )
-    );
-
-    return (
-      days.filter(cell => cell.className.indexOf('selected') > -1).length === 0
-    );
-  });
-
-  await t.expect(await nothingPreselected()).eql(true);
-});
-
 test('Should blend in/out user selection upon navigation', async t => {
   const nothingPreselected = ClientFunction(() => {
     const days = Array.prototype.slice.call(
