@@ -2,7 +2,7 @@
 
 A convenience component to apply possible AXA text styles to a piece of text.
 
-It accepts simple text strings that get rendered in a paragraph tag or if you want to render text nodes wrapped in custom tags. You should use the attribute `tagless` so that the wrapping paragraph is not rendered.
+It accepts simple text strings as children or top-level HTML tags like `<p>` or `<span>`. Nested HTML tags are not supported. The default behaviour of wrapping simple text in a p(aragraph) text can be suppressed via the Boolean attribute nowrap.
 
 ## Properties
 
@@ -15,17 +15,17 @@ It accepts simple text strings that get rendered in a paragraph tag or if you wa
 | `size="3"` | Medium Text Size      |
 | `size="4"` | Small Text Size       |
 
-### tagless
+### nowrap
 
-This Boolean attribute `tagless` will lead to not render the wrapping paragraph
+This Boolean attribute `nowrap` will lead to not render the wrapping p(aragraph) tag
 
 ### bold
 
-This Boolean attribute add the font-weight `bold`
+This Boolean attribute adds the font-weight `bold`
 
 ### italic
 
-This Boolean attribute add the font-style `italic`
+This Boolean attribute adds the font-style `italic`
 
 ## Custom Margins
 

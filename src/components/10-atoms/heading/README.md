@@ -19,12 +19,11 @@ Size holds a number from one to six, which represents the underlying html headin
 
 ## secondary
 
-The Boolean attribute `secondary` will use `Publico Headline` as font. Default use `Source Sans Pro`
+The Boolean attribute `secondary` when present, will cause the font use `Publico Headline` (Default font: `Source Sans Pro`
 
 ## Custom Margins
 
-You can overwrite the predefined margins on the custom element tag or use custom css property `--heading-margin`, see the examples.
-Please only do this if this is abolutely necessary, since the default margins are aligned with the styleguide.
+You can overwrite the predefined margins on the custom element tag or use the Custom CSS Property `--heading-margin`, see the examples.
 
 Example:
 

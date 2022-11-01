@@ -1,8 +1,8 @@
 ## 7.0.0
 
-- Breaking Change: `rank` to `size`
+- Breaking Change: Rename attribute `rank` to `size`
 - feat: Add Custom CSS property `--heading-margin`
-- fix: Add missing type `secondary`
+- fix: Add missing attribute type `secondary`
 
 ## 6.0.0
 
