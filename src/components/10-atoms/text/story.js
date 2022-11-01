@@ -17,10 +17,10 @@ export default {
   argTypes,
 };
 
-export const Text = ({ size, slot, tagless, italic, bold }) => html`
+export const Text = ({ size, slot, nowrap, italic, bold }) => html`
   <axa-text
     size="${size}"
-    ?tagless="${tagless}"
+    ?nowrap="${nowrap}"
     ?italic="${italic}"
     ?bold="${bold}"
     >${slot}</axa-text

@@ -4,7 +4,7 @@ export type AXATextSizes = 1 | 2 | 3 | 4;
 
 export interface AXATextProps {
   size?: AXATextSizes;
-  tagless?: boolean;
+  nowrap?: boolean;
   bold?: boolean;
   italic?: boolean;
   children?: React.ReactNode;

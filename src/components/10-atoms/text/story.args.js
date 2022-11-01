@@ -1,6 +1,6 @@
 export const args = {
   size: '1',
-  tagless: false,
+  nowrap: false,
   italic: false,
   bold: false,
   slot: `Is your car your pride and joy, or just a means of getting from A to
@@ -14,7 +14,7 @@ export const argTypes = {
     control: 'radio',
     options: ['1', '2', '3', '4'],
   },
-  tagless: { control: 'boolean' },
+  nowrap: { control: 'boolean' },
   italic: { control: 'boolean' },
   bold: { control: 'boolean' },
   slot: { control: 'text' },

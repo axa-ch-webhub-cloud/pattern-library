@@ -17,7 +17,7 @@ class AXAText extends LitElement {
   static get properties() {
     return {
       size: { type: Number, reflect: true, defaultValue: 1 },
-      tagless: { type: Boolean, reflect: true },
+      nowrap: { type: Boolean, reflect: true },
       bold: { type: Boolean, reflect: true },
       italic: { type: Boolean, reflect: true },
     };
@@ -31,13 +31,13 @@ class AXAText extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
-    if (!this.tagless) {
+    if (!this.nowrap) {
       this.setAttribute('aria-role', 'paragraph');
     }
   }
 
   render() {
-    return this.tagless ? html`<slot></slot>` : html`<p><slot></slot></p>`;
+    return this.nowrap ? html`<slot></slot>` : html`<p><slot></slot></p>`;
   }
 }
 
