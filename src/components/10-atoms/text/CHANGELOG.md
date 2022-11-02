@@ -2,11 +2,11 @@
 
 Breaking change:
 - Remove variant `semibold`, because this option is not available in the styleguide
-- Remove variant `bold`; instead use new boolean flag `bold`, because bold is possible for all text sizes
+- Remove variant `bold`; instead use a new boolean flag `bold`, because bold is possible for all text sizes
 - Rename attribute `variant` to `size`
 - When tags are placed inside the slot( children), one should use the attribute `nowrap` so that the wrapping paragraph is not rendered.
 Features:
-- Add back shadow DOM, fix paragraph issue for screenreaders on host element with role paragraph
+- Add back shadow DOM; fix paragraph issue for screenreaders (which had previously caused the removal of shadow DOM) differently on host element by using the appropriate ARIA role `paragraph`
 - Add `nowrap` attribute to not render a wrapping paragraph
 - Add `bold` attribute for font-weight
 - Add `italic` attribute for font-style
