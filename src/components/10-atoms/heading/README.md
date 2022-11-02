@@ -19,7 +19,7 @@ Size holds a number from one to six, which represents the underlying html headin
 
 ## secondary
 
-The Boolean attribute `secondary` when present, will cause the font use `Publico Headline` (Default font: `Source Sans Pro`
+The Boolean attribute `secondary` when present, will cause the font `Publico Headline` to be used (default font: `Source Sans Pro`).
 
 ## Custom Margins
 
