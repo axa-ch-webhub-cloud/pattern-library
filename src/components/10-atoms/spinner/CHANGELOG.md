@@ -1,6 +1,6 @@
 ## 3.0.9
 
-Add missing color type
+Add missing color type in documentation.
 
 ## 3.0.0
 
