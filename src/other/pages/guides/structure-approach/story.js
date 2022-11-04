@@ -22,14 +22,14 @@ export const ModularDesign = () => html`
     ${styles}
   </style>
   <div class="accessory-story-wrapper accessory-story-content">
-    <axa-heading rank="1" secondary>Modular Design</axa-heading>
-    <axa-text variant="size-2"
+    <axa-heading size="1" secondary>Modular Design</axa-heading>
+    <axa-text size="2"
       >AXA's Design System is expressed through Web Components that loosely
       follow the Atomic Design approach.</axa-text
     >
 
-    <axa-heading rank="2" secondary>What is atomic design?</axa-heading>
-    <axa-text variant="size-2">
+    <axa-heading size="2" secondary>What is atomic design?</axa-heading>
+    <axa-text size="2">
       Atomic Design is a systematic approach that can accelerate the process of
       creating modular designs. It was first proposed by Brad Frost in 2013.
     </axa-text>
@@ -43,7 +43,7 @@ export const ModularDesign = () => html`
       <cite class="structure-approach__cite">— Brad Frost</cite>
     </blockquote>
     <div class="structure-approach__last-text">
-      <axa-text variant="size-2">
+      <axa-text size="2">
         In plain English, having a design systems means that we will no longer
         design or develop entire web pages in one go. Rather, we start with some
         smallest components, for example buttons or input fields. Using
@@ -59,8 +59,8 @@ export const ModularDesign = () => html`
       link="https://bradfrost.com/blog/post/atomic-web-design/"
       linkText="Learn more"
     ></pl-callout>
-    <axa-heading rank="2" secondary>How to categorize an element?</axa-heading>
-    <axa-text variant="size-2">
+    <axa-heading size="2" secondary>How to categorize an element?</axa-heading>
+    <axa-text size="2">
       So, Atomic Design helps you to decompose your UI into components which are
       standardized and organized in a hierarchical fashion. An important next
       question then is: “What category does a given component belong to?” Here's
@@ -132,7 +132,7 @@ export const ModularDesign = () => html`
       </div>
     </div>
     <div class="structure-approach__last-text">
-      <axa-text variant="size-2">
+      <axa-text size="2">
         Each design system can have its own categorization depending on context
         and purpose. The objective of AXA's Design System is to be of use to all
         AXA entities, notwithstanding their different needs and constraints. The

@@ -27,7 +27,7 @@ export const TableSortable = ({
     model="${JSON.stringify(model)}"
   ></axa-table-sortable>
   <br />
-  <axa-text variant="size-3">
+  <axa-text size="3">
     Note: The datesortcolumnindex="3,4" is set. It can't be controlled by the
     Controls.
   </axa-text>

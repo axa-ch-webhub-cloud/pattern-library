@@ -42,14 +42,14 @@ const hideLoadMoreButton = () => {
 
 const mapToIconItem = (icon, ...cssClasses) => {
   return `<div class="image-container ${cssClasses}">${icon.svgstring}
-      <axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>
+      <axa-text class="materials__asset-name" size="3">${icon.path}</axa-text>
     </div>`;
 };
 
 const mapToIconItemNode = (icon, ...cssClasses) => {
   const asset = document.createElement('div');
   asset.classList.add(...cssClasses);
-  asset.innerHTML = `${icon.svgstring}<axa-text class="materials__asset-name" variant="size-3">${icon.path}</axa-text>`;
+  asset.innerHTML = `${icon.svgstring}<axa-text class="materials__asset-name" size="3">${icon.path}</axa-text>`;
   return asset;
 };
 
@@ -270,7 +270,7 @@ export const IconsAndImages = () => {
       ${styles}
     </style>
     <div class="accessory-story-content">
-      <axa-heading rank="1" secondary>Icons and Images</axa-heading>
+      <axa-heading size="1" secondary>Icons and Images</axa-heading>
       <div class="materials__controls">
         <input
           class="materials__input-field"
@@ -278,7 +278,7 @@ export const IconsAndImages = () => {
           placeholder="Find icon / image"
           oninput="onCallbackInput(arguments[0])"
         />
-        <axa-text variant="size-2" class="note-text">
+        <axa-text size="2" class="note-text">
           Note: The green borders reveal the dimensions of the SVGs.
         </axa-text>
       </div>

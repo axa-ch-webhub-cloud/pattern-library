@@ -1,3 +1,19 @@
+## 7.0.0
+
+Breaking change:
+- Remove variant `semibold`, because this option is not available in the styleguide
+- Remove variant `bold`; instead use a new boolean flag `bold`, because bold is possible for all text sizes
+- Rename attribute `variant` to `size`
+- When tags are placed inside the slot( children), one should use the attribute `nowrap` so that the wrapping paragraph is not rendered.
+Features:
+- Add back shadow DOM; fix paragraph issue for screenreaders (which had previously caused the removal of shadow DOM) differently on host element by using the appropriate ARIA role `paragraph`
+- Add `nowrap` attribute to not render a wrapping paragraph
+- Add `bold` attribute for font-weight
+- Add `italic` attribute for font-style
+Fixes:
+- axa-text implementation violates lit contract #2288
+- Make axa-text conformant to styleguide w.r.t. margin-bottom. To override margins, Custom CSS Property `--text-margin` can be used, or one can impose margins directly on axa-text.
+
 ## 6.0.0
 
 - Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.

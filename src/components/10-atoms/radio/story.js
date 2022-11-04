@@ -33,13 +33,11 @@ export const Radio = ({
   noAutoWidth,
 }) =>
   html`
-    <axa-text variant="size-3">
+    <axa-text size="3">
       Knobs with a * only affect the first radio button
     </axa-text>
     <br />
-    <axa-text variant="size-2">
-      What type of vehicle do you want to insure?
-    </axa-text>
+    <axa-text size="2"> What type of vehicle do you want to insure? </axa-text>
     <br />
     <axa-fieldset ?horizontal=${button}>
       <axa-radio

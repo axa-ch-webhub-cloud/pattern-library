@@ -8,10 +8,10 @@ import {
   getHeadingStyles,
 } from './e2e.helpers';
 
-test.describe('heading: rank:desktop', () => {
-  for (const rank of Object.keys(headlinesDesktop)) {
-    test(`should render H${rank}`, async ({ page }) => {
-      await page.goto(fixtureURL('components-heading--heading', { rank }));
+test.describe('heading: size:desktop', () => {
+  for (const size of Object.keys(headlinesDesktop)) {
+    test(`should render H${size}`, async ({ page }) => {
+      await page.goto(fixtureURL('components-heading--heading', { size }));
 
       const hostStyles = await page.locator('axa-heading').evaluate(el => {
         const styles = window.getComputedStyle(el);
@@ -20,8 +20,8 @@ test.describe('heading: rank:desktop', () => {
       });
 
       expect(hostStyles).toEqual([
-        marginTopAndBottom[rank],
-        marginTopAndBottom[rank],
+        marginTopAndBottom[size],
+        marginTopAndBottom[size],
       ]);
 
       const headingStyles = await page
@@ -29,7 +29,7 @@ test.describe('heading: rank:desktop', () => {
         .evaluate(getHeadingStyles);
 
       expect(headingStyles).toEqual([
-        ...Object.values(headlinesDesktop[rank]),
+        ...Object.values(headlinesDesktop[size]),
         fontFamilyPrimary,
         '700',
         'normal',
@@ -38,15 +38,15 @@ test.describe('heading: rank:desktop', () => {
   }
 });
 
-test.describe('heading: rank:mobile', () => {
-  for (const rank of Object.keys(headlinesMobile)) {
-    test(`should render H${rank}`, async ({ page }) => {
+test.describe('heading: size:mobile', () => {
+  for (const size of Object.keys(headlinesMobile)) {
+    test(`should render H${size}`, async ({ page }) => {
       await page.setViewportSize({
         width: 767,
         height: 767,
       });
 
-      await page.goto(fixtureURL('components-heading--heading', { rank }));
+      await page.goto(fixtureURL('components-heading--heading', { size }));
 
       const hostStyles = await page.locator('axa-heading').evaluate(el => {
         const styles = window.getComputedStyle(el);
@@ -55,8 +55,8 @@ test.describe('heading: rank:mobile', () => {
       });
 
       expect(hostStyles).toEqual([
-        marginTopAndBottom[rank],
-        marginTopAndBottom[rank],
+        marginTopAndBottom[size],
+        marginTopAndBottom[size],
       ]);
 
       const headingStyles = await page
@@ -64,7 +64,7 @@ test.describe('heading: rank:mobile', () => {
         .evaluate(getHeadingStyles);
 
       expect(headingStyles).toEqual([
-        ...Object.values(headlinesMobile[rank]),
+        ...Object.values(headlinesMobile[size]),
         fontFamilyPrimary,
         '700',
         'normal',

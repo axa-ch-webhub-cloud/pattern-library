@@ -38,18 +38,18 @@ export const Modal = ({ open, forced, small, noHeader }) => html`
     ?small="${small}"
     ?noheader="${noHeader}"
   >
-    <axa-heading rank="2">Liability insurance</axa-heading>
+    <axa-heading size="2">Liability insurance</axa-heading>
     <axa-text>
       The liability insurance protects the company against the financial
       consequences of personal injury and property damage caused by thecompany
       to others.
     </axa-text>
-    <axa-heading rank="3">Damage example</axa-heading>
+    <axa-heading size="3">Damage example</axa-heading>
     <axa-text>
       An aerosol can sold by the insured company explodes on the customer's
       customer and injures him.
     </axa-text>
-    <axa-heading rank="3">For who is this insurance suitable?</axa-heading>
+    <axa-heading size="3">For who is this insurance suitable?</axa-heading>
     <axa-text>
       For all companies, as claims for damages can often threaten the existence
       of a company. can be threatening to the company's existence.

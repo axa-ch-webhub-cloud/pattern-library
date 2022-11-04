@@ -20,15 +20,15 @@ export const Contact = () => html`
     ${styles}
   </style>
   <div class="accessory-story-wrapper accessory-story-content">
-    <axa-heading rank="1" secondary>Help & Contact</axa-heading>
-    <axa-text variant="size-1">
+    <axa-heading size="1" secondary>Help & Contact</axa-heading>
+    <axa-text size="1">
       The AXA core team provides support for users in adopting AXA's Design
       System. Reach out to us with the details of your project and we will do
       our best to provide you with tailored advice on how to reach your
       objectives.
     </axa-text>
-    <axa-heading rank="2" secondary>Support</axa-heading>
-    <axa-text variant="size-2"
+    <axa-heading size="2" secondary>Support</axa-heading>
+    <axa-text size="2"
       >Part of our mission is to guide AXA product teams during their digital
       journey with respect to our areas of competency.</axa-text
     >
@@ -70,8 +70,8 @@ export const Contact = () => html`
         </p>
       </div>
     </div>
-    <axa-heading rank="2" secondary>Contact Us</axa-heading>
-    <axa-text variant="size-1">
+    <axa-heading size="2" secondary>Contact Us</axa-heading>
+    <axa-text size="1">
       For any questions or feedback — don’t hesitate to be in touch via the
       channel that suits you best.
     </axa-text>
@@ -82,8 +82,8 @@ export const Contact = () => html`
           width="40"
           alt="Github Icon"
         />
-        <axa-heading rank="6">GitHub</axa-heading>
-        <axa-text variant="size-2">
+        <axa-heading size="6">GitHub</axa-heading>
+        <axa-text size="2">
           Bug reports, small change requests, "wishes":
         </axa-text>
         <axa-link
@@ -92,21 +92,13 @@ export const Contact = () => html`
         >
       </div>
       <div>
-        <img src="assets/email.svg" width="40" alt="Email Icon" />
-        <axa-heading rank="6">Feature request</axa-heading>
-        <axa-text variant="size-2"> You need a feature? </axa-text>
-        <axa-link href="mailto:martin.stuedle@axa-winterthur.ch"
-          >Message our product owner</axa-link
-        >
-      </div>
-      <div>
         <img
           src="assets/slack-black-and-white.png"
           width="40"
           alt="Slack Icon"
         />
-        <axa-heading rank="6">Slack for Developers</axa-heading>
-        <axa-text variant="size-2">
+        <axa-heading size="6">Slack for Developers</axa-heading>
+        <axa-text size="2">
           Questions, requests for help, requests for product presentations, etc:
         </axa-text>
         <axa-link href="https://axa-ch.slack.com/messages/patterns-lib-devs/"
@@ -115,8 +107,8 @@ export const Contact = () => html`
       </div>
       <div>
         <img src="assets/email.svg" width="40" alt="Email Icon" />
-        <axa-heading rank="6">Ask a Designer</axa-heading>
-        <axa-text variant="size-2">
+        <axa-heading size="6">Ask a Designer</axa-heading>
+        <axa-text size="2">
           Questions and requests for help regarding design issues:
         </axa-text>
         <axa-link href="mailto:webstyleguide@axa.ch"

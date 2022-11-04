@@ -11,27 +11,27 @@ export default {
     readme,
     usage: {
       innerHTML: 'H1 Heading',
-      propsPureHTML: 'rank="1"',
-      propsReact: 'rank="1"',
+      propsPureHTML: 'size="1"',
+      propsReact: 'size="1"',
     },
     changelog,
   },
   args: {
     secondary: false,
-    rank: '1',
+    size: '1',
   },
   argTypes: {
     secondary: { control: 'boolean' },
-    rank: {
+    size: {
       control: 'radio',
       options: ['1', '2', '3', '4', '5', '6'],
     },
   },
 };
 
-export const Heading = ({ rank, secondary }) => html`
-  <axa-heading rank="${rank}" ?secondary="${secondary}"
-    >H${rank} Primary Heading</axa-heading
+export const Heading = ({ size, secondary }) => html`
+  <axa-heading size="${size}" ?secondary="${secondary}"
+    >H${size} Primary Heading</axa-heading
   >
   <p>${loremIpsum}</p>
 `;
