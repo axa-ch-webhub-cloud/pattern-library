@@ -95,7 +95,7 @@ const contentItemsMapper =
 
 const defaultTitleIfNeeded = (title, anotherSelection) =>
   title
-    ? [{ name: title, _disable: true, selected: !anotherSelection, value: '' }]
+    ? [{ name: title, _disabled: true, selected: !anotherSelection, value: '' }]
     : [];
 
 // CE
