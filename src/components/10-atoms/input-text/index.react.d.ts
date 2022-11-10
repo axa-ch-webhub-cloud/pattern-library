@@ -18,6 +18,7 @@ export interface AXAInputTextProps {
   maxLength?: number;
   counter?: string;
   counterMax?: string;
+  autocomplete?: boolean;
   isReact?: boolean;
   className?: string;
   pattern?: string;

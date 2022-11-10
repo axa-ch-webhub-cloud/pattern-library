@@ -34,6 +34,7 @@ export const InputText = ({
   currency,
   checkMark,
   disabled,
+  autocomplete,
   required,
   invalid,
   autofocus,
@@ -55,6 +56,7 @@ export const InputText = ({
     inputmode="${inputmode}"
     currency="${currency}"
     ?checkmark="${checkMark}"
+    ?autocomplete="${autocomplete}"
     ?disabled="${disabled}"
     ?required="${required}"
     ?invalid="${invalid}"

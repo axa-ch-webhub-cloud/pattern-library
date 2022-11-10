@@ -13,18 +13,6 @@ test.describe('input-text: basic', () => {
     );
   });
 
-  test('should be readonly', async ({ page }) => {
-    await page.goto(
-      fixtureURL('components-input-text--input-text', { readonly: true })
-    );
-
-    expect(
-      await page
-        .locator('.a-input-text__input')
-        .evaluate(el => window.getComputedStyle(el).backgroundColor)
-    ).toBe('rgb(250, 250, 250)');
-  });
-
   test('should show error message and have the right color', async ({
     page,
   }) => {

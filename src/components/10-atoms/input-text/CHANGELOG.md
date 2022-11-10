@@ -1,3 +1,7 @@
+## 6.3.0
+
+Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off" 
+
 ## 6.2.1
 
 - Fix Safari hack and remove obsolete code (showMessage getter). #2345
