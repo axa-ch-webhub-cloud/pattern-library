@@ -13,6 +13,7 @@ export interface AXATextareaProps {
   required?: boolean;
   disabled?: boolean;
   readonly?: boolean;
+  autocomplete?: boolean;
   isReact?: boolean;
   counter?: string;
   counterError?: string;
