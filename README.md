@@ -1,5 +1,5 @@
 # Pattern Library
-![CI Status](https://github.com/axa-ch-webhub-cloud/pattern-library/actions/workflows/workflows/CI.yml/badge.svg?branch=develop)
+![CI/CD Status](https://github.com/axa-ch-webhub-cloud/pattern-library/actions/workflows/CI.yml/badge.svg?branch=develop)
 
 ## [>> Pattern Library Demo](https://axa-ch-webhub-cloud.github.io/plib-feature/develop)
 
