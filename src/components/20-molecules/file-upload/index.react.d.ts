@@ -1,5 +1,10 @@
 import React from 'react';
 
+export interface AXAFile extends File {
+  id: string;
+  errorMessage?: string;
+}
+
 export interface AXAFileUploadProps {
   inputFileText?: string;
   maxSizeOfSingleFileKB?: number;
@@ -19,13 +24,14 @@ export interface AXAFileUploadProps {
   children?: React.ReactNode;
   onFileDrop?: (event: DragEvent) => void;
   onFileRemove?: () => void;
-  onChange?: (files: Blob[]) => void;
+  onChange?: (files: AXAFile[]) => void;
   reset?: () => void;
   invalidate?: (
     file: object,
     clear?: boolean,
     globalErrorMessage?: string
   ) => void;
+  onInvalid: (invalid: boolean, errorMessage?: string) => void;
 }
 
 declare function createAXAFileUpload(

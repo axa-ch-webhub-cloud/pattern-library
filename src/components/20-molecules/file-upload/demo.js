@@ -18,7 +18,6 @@ export default {
 export const GetFilesFromOnchange = () => {
   const changeHandler = e => {
     const files = e.detail;
-
     if (files.length > 0) {
       const listWrapper = html`
         <div class="js-file-upload__list-wrapper">

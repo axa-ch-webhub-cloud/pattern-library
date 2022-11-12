@@ -138,6 +138,7 @@ class AXAFileUpload extends LitElement {
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
+      onInvalid: { type: Function, attribute: false },
       onChange: { type: Function, attribute: false },
     };
   }
@@ -220,6 +221,10 @@ class AXAFileUpload extends LitElement {
     } else if (files.length > 0 && this.allowedFileTypes === '') {
       this.addFiles([...files], true);
     } else {
+      if (this.invalid) {
+        this.onInvalid(false);
+      }
+
       this.invalid = false;
       this.requestUpdate();
     }
@@ -384,9 +389,19 @@ class AXAFileUpload extends LitElement {
     const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
     if (sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes) {
       this.globalErrorMessage = filesTooBigStatusText;
+
+      if (!this.invalid) {
+        this.onInvalid(true, this.globalErrorMessage);
+      }
+
       this.invalid = true;
     } else {
       this.globalErrorMessage = '';
+
+      if (this.invalid) {
+        this.onInvalid(false, this.globalErrorMessage);
+      }
+
       this.invalid = false;
     }
   }
@@ -494,6 +509,11 @@ class AXAFileUpload extends LitElement {
       faultyFiles.length + files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
+
+      if (!this.invalid) {
+        this.onInvalid(true, this.globalErrorMessage);
+      }
+
       this.invalid = true;
     }
 
@@ -523,6 +543,15 @@ class AXAFileUpload extends LitElement {
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
         if (faultyCompressedFiles[i].id === file.id) {
           isfaultyFile = file;
+          const errorMessage =
+            isfaultyFile && isfaultyFile.errorMessage
+              ? isfaultyFile.errorMessage
+              : fileTooBigStatusText;
+
+          if (!this.invalid) {
+            this.onInvalid(true, errorMessage);
+          }
+
           this.invalid = true;
           break;
         }
@@ -629,6 +658,11 @@ class AXAFileUpload extends LitElement {
             removeFrom: faulties,
             appendTo: valids,
           });
+
+          if (this.invalid) {
+            this.onInvalid(false);
+          }
+
           // clear invalidity status
           this.invalid = false;
           this.globalErrorMessage = '';
@@ -640,13 +674,21 @@ class AXAFileUpload extends LitElement {
           removeFrom: valids,
           appendTo: faulties,
         });
-        // set invalidity status
-        this.invalid = true;
-        this.globalErrorMessage =
+
+        const errorMessage =
           typeof globalErrorMessage === 'string'
             ? globalErrorMessage
             : file.errorMessage;
+
+        if (!this.invalid) {
+          this.onInvalid(true, errorMessage);
+        }
+
+        // set invalidity status
+        this.invalid = true;
+        this.globalErrorMessage = errorMessage;
       }
+
       // force rerender
       this.requestUpdate();
     }

@@ -5,7 +5,6 @@ A component used for uploading files in forms.
 ## Requirements
 
 - Design requirements on [zeplin](https://zpl.io/2ZrKE7G).
-- The only filetypes allowed are `image/jpg, image/jpeg, application/pdf, image/png`.
 - To upload a file, you either drag an drop your file, or click the input-file component.
 - The file-upload has two states. The start view and the file overview. The start view contains a text which asks the user to drag and drop a file, an icon consisting of four subjects and the input-file-component with an icon. The file overview shows all files ready to upload. Each file has a caption and when hovering over it displays the bin-icon to delete the file. Is the file to big or is of the wrong type, a red icon will be displayed and the caption will be replaced through the red error message. Nevertheless, when hovering over, it shows the bin-icon.
 - To remove a file, the user has to hover over a file and click it.
@@ -138,6 +137,10 @@ Checks if the file upload reports a "invalid" state (read-only). You can conside
 ### onChange
 
 The function-valued `onChange` callback property is executed as soon as the user removes or adds new files. Adding new files encompasses files added via drag & drop as well as files added via the embedded `<axa-input-file>` dialogue. As its sole parameter a `files` array of Blob objects is passed to the callback, having the Typescript signature `files: Blob[]`.
+
+### onInvalid
+
+The callback property `onInvalid` has the parameter boolean invalid and optional a errorMessage. The callback will be triggered whenever the invalid status changes.
 
 ### invalidate
 
