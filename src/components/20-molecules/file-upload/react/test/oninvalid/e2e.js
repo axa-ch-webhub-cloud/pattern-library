@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { fixtureURL } from '../../../../../../utils/e2e-helpers';
 
 test.describe('file-upload: onInvalid', () => {
-  test.only(`should add file trigger onInvalid and show error message`, async ({
+  test(`should add file trigger onInvalid and show error message`, async ({
     page,
   }) => {
     await page.goto(fixtureURL('examples-file-upload-react--file-upload'));
