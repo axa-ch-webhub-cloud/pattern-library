@@ -35,7 +35,7 @@ export const Contact = () => html`
     <div class="contact-support-visuals">
       <div class="contact-col-wrapper">
         <img
-          src="assets/support-questions.jpg"
+          src="images/support-questions.jpg"
           alt="support question"
           height="215"
         />
@@ -52,7 +52,7 @@ export const Contact = () => html`
     <div class="contact-support-visuals">
       <div class="contact-col-wrapper">
         <img
-          src="assets/support-advice.jpg"
+          src="images/support-advice.jpg"
           alt="support advice"
           height="215"
         />
@@ -78,7 +78,7 @@ export const Contact = () => html`
     <div class="contact-grid">
       <div>
         <img
-          src="assets/github-black-and-white.png"
+          src="icons/github-black-and-white.png"
           width="40"
           alt="Github Icon"
         />
@@ -93,7 +93,7 @@ export const Contact = () => html`
       </div>
       <div>
         <img
-          src="assets/slack-black-and-white.png"
+          src="icons/slack-black-and-white.png"
           width="40"
           alt="Slack Icon"
         />
@@ -106,7 +106,7 @@ export const Contact = () => html`
         >
       </div>
       <div>
-        <img src="assets/email.svg" width="40" alt="Email Icon" />
+        <img src="icons/email.svg" width="40" alt="Email Icon" />
         <axa-heading size="6">Ask a Designer</axa-heading>
         <axa-text size="2">
           Questions and requests for help regarding design issues:

@@ -120,28 +120,28 @@ export default AXAButtonReact;`}
         <AXAHeading size="3">Read more about the Pattern Library</AXAHeading>
         <PLCallout
           className="getting-started__callout-first"
-          icon="assets/github-mark.png"
+          icon="icons/github-mark.png"
           header="README"
           text="You have a question or just want to see what it's all about? The README is the best way to start."
           link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/README.md"
           linkText="READ MORE"
         />
         <PLCallout
-          icon="assets/github-mark.png"
+          icon="icons/github-mark.png"
           header="Contribute"
           text="You want to contribute? Nice! Here you'll find out how."
           link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md"
           linkText="READ MORE"
         />
         <PLCallout
-          icon="assets/github-mark.png"
+          icon="icons/github-mark.png"
           header="Architecture"
           text="Read more about the big picture and how we got here. This includes framework choices and much more."
           link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/ARCHITECTURE.md"
           linkText="READ MORE"
         />
         <PLCallout
-          icon="assets/github-mark.png"
+          icon="icons/github-mark.png"
           header="Code of Conduct"
           text="We as the Pattern Library Team commited ourselves to a set of rules, responsibilities and prudent practices."
           link="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CODE_OF_CONDUCT.md"
@@ -161,7 +161,7 @@ export default AXAButtonReact;`}
           </AXAText>
         </div>
         <PLCallout
-          icon="assets/figma.png"
+          icon="icons/figma.png"
           header="AXA Design System UI Kit"
           text="To see how to use AXA's Design System and be in sync with the Pattern Library, take a look at the AXA UI Kit!"
           link="https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit?node-id=0%3A8208"

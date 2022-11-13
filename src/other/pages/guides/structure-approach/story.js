@@ -53,7 +53,7 @@ export const ModularDesign = () => html`
       </axa-text>
     </div>
     <pl-callout
-      icon="assets/molecules.svg"
+      icon="icons/molecules.svg"
       header="Atomic Design by Brad Frost"
       text="A methodology for creating design systems. Go deeper and discover Frost's approach!"
       link="https://bradfrost.com/blog/post/atomic-web-design/"
@@ -70,7 +70,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="assets/materials.svg"
+          src="icons/materials.svg"
           alt="Materials"
         />
         <div class="structure-approach__vertical-content-col">
@@ -86,7 +86,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="assets/atoms.svg"
+          src="icons/atoms.svg"
           alt="Atoms"
         />
         <div class="structure-approach__vertical-content-col">
@@ -102,7 +102,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="assets/molecules.svg"
+          src="icons/molecules.svg"
           alt="Molecules"
         />
         <div class="structure-approach__vertical-content-col">
@@ -117,7 +117,7 @@ export const ModularDesign = () => html`
       <div class="structure-approach__vertical-content-item">
         <img
           class="structure-approach__vertical-content-image"
-          src="assets/organisms.svg"
+          src="icons/organisms.svg"
           alt="Organisms"
         />
         <div class="structure-approach__vertical-content-col">
@@ -141,7 +141,7 @@ export const ModularDesign = () => html`
       </axa-text>
     </div>
     <pl-callout
-      icon="assets/organisms.svg"
+      icon="icons/organisms.svg"
       header="Create and categorize new elements"
       text="If you need to create new elements and ask yourself how to categorize them, try out this tool!"
       link="https://dan503.github.io/Atomic-Categorizer/"

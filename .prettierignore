@@ -1,7 +1,7 @@
 # We decided in the team to not format scss files
 *.scss
 
-src/static
+src/assets
 *.svg
 *.jpg
 *.pdf
