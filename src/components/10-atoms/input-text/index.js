@@ -83,7 +83,6 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     this.isControlled = false;
     this.isPlaceholderInCounter = false;
     this.invalidFormat = false;
-    this.cursor = null;
 
     const enrichedVersionInfo = __VERSION_INFO__; // This object is different at webpack and rollup build!
     const commonPopupVersion =
@@ -217,7 +216,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   handleInput(ev) {
-    this.cursor = ev.target.selectionStart;
+    const { selectionStart } = ev.target;
 
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
@@ -228,7 +227,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       this.nativeInput.value = this.modelValue;
 
       requestAnimationFrame(() => {
-        this.nativeInput.setSelectionRange(this.cursor, this.cursor);
+        this.nativeInput.setSelectionRange(selectionStart, selectionStart);
       });
     }
 
