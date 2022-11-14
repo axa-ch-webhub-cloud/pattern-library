@@ -216,7 +216,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   handleInput(ev) {
-    const { selectionStart } = ev.target;
+    const { selectionStart = null } = ev.target;
 
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
