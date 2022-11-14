@@ -53,8 +53,8 @@ export const FileUpload = _args =>
         onChange={() => {
           logEvent('onChange');
         }}
-        onInvalid={() => {
-          logEvent('onInvalid');
+        onValidityChange={() => {
+          logEvent('onValidityChange');
         }}
       >
         {_args.slot}

@@ -1,6 +1,6 @@
 ## 8.1.0
 
-- feat: Add callback prop onInvalid #2370
+- feat: Add callback prop onValidityChange #2370
 - fixes: Provide the correct typings for the onChange param `files`
 
 ## 8.0.0

@@ -138,7 +138,7 @@ class AXAFileUpload extends LitElement {
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
-      onInvalid: { type: Function, attribute: false },
+      onValidityChange: { type: Function, attribute: false },
       onChange: { type: Function, attribute: false },
     };
   }
@@ -166,9 +166,29 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
 
+    this.state = {
+      invalid: false,
+    };
+
     this.reset = this.reset.bind(this);
 
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
+  }
+
+  set invalid(invalid) {
+    // When applyDefaults() is called inside the constructor, onValidityChange does not exist yet.
+    if (!this.onValidityChange) return;
+
+    const oldValue = this.state.invalid;
+    if (oldValue !== invalid) {
+      this.onValidityChange(
+        invalid,
+        this.globalErrorMessage ? this.globalErrorMessage : undefined
+      );
+    }
+
+    this.state.invalid = invalid;
+    this.requestUpdate('invalid', oldValue);
   }
 
   handleAddMoreInputClick() {
@@ -221,10 +241,6 @@ class AXAFileUpload extends LitElement {
     } else if (files.length > 0 && this.allowedFileTypes === '') {
       this.addFiles([...files], true);
     } else {
-      if (this.invalid) {
-        this.onInvalid(false);
-      }
-
       this.invalid = false;
       this.requestUpdate();
     }
@@ -389,19 +405,9 @@ class AXAFileUpload extends LitElement {
     const maxSizeOfAllFilesInBytes = getBytesFromKilobyte(maxSizeOfAllFilesKB);
     if (sizeOfAllFilesInBytes + fileSize > maxSizeOfAllFilesInBytes) {
       this.globalErrorMessage = filesTooBigStatusText;
-
-      if (!this.invalid) {
-        this.onInvalid(true, this.globalErrorMessage);
-      }
-
       this.invalid = true;
     } else {
       this.globalErrorMessage = '';
-
-      if (this.invalid) {
-        this.onInvalid(false);
-      }
-
       this.invalid = false;
     }
   }
@@ -509,11 +515,6 @@ class AXAFileUpload extends LitElement {
       faultyFiles.length + files.length >= maxNumberOfFiles
     ) {
       this.globalErrorMessage = tooManyFilesStatusText;
-
-      if (!this.invalid) {
-        this.onInvalid(true, this.globalErrorMessage);
-      }
-
       this.invalid = true;
     }
 
@@ -543,15 +544,10 @@ class AXAFileUpload extends LitElement {
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
         if (faultyCompressedFiles[i].id === file.id) {
           isfaultyFile = file;
-          const errorMessage =
+          this.globalErrorMessage =
             isfaultyFile && isfaultyFile.errorMessage
               ? isfaultyFile.errorMessage
               : fileTooBigStatusText;
-
-          if (!this.invalid) {
-            this.onInvalid(true, errorMessage);
-          }
-
           this.invalid = true;
           break;
         }
@@ -659,13 +655,9 @@ class AXAFileUpload extends LitElement {
             appendTo: valids,
           });
 
-          if (this.invalid) {
-            this.onInvalid(false);
-          }
-
           // clear invalidity status
-          this.invalid = false;
           this.globalErrorMessage = '';
+          this.invalid = false;
         }
       } else {
         // we found the file among the valid ones.
@@ -675,18 +667,11 @@ class AXAFileUpload extends LitElement {
           appendTo: faulties,
         });
 
-        const errorMessage =
+        this.globalErrorMessage =
           typeof globalErrorMessage === 'string'
             ? globalErrorMessage
             : file.errorMessage;
-
-        if (!this.invalid) {
-          this.onInvalid(true, errorMessage);
-        }
-
-        // set invalidity status
         this.invalid = true;
-        this.globalErrorMessage = errorMessage;
       }
 
       // force rerender

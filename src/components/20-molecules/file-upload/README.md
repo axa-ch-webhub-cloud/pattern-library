@@ -138,9 +138,9 @@ Checks if the file upload reports a "invalid" state (read-only). You can conside
 
 The function-valued `onChange` callback property is executed as soon as the user removes or adds new files. Adding new files encompasses files added via drag & drop as well as files added via the embedded `<axa-input-file>` dialogue. As its sole parameter a `files` array of Blob objects is passed to the callback, having the Typescript signature `files: Blob[]`.
 
-### onInvalid
+### onValidityChange
 
-The callback property `onInvalid` has the parameter boolean invalid and optional a errorMessage. The callback will be triggered whenever the invalid status changes.
+The callback property `onValidityChange` has the parameter boolean invalid and optional a errorMessage. The callback will be triggered whenever the invalid status changes.
 
 ### invalidate
 
