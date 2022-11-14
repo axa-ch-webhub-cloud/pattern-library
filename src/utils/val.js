@@ -1,7 +1,9 @@
-// Modified from https://github.com/skatejs/val (no license)
+// Modified from https://github.com/skatejs/val version 0.4.0, one version before the current 0.5.0 (no license).
+// Said external dependency appears unmaintained, so we incorporate it here - just converted to ES6, with some names
+// improved for clarity and stripped of stuff we don't need!
 
 const { customElements } = window;
-const cacheCtorLocalNames = new Map();
+const cacheConstructorLocalNames = new Map();
 const cacheElementEventHandlers = new WeakMap();
 
 // Override customElements.define() to cache constructor local names. This is
@@ -9,9 +11,9 @@ const cacheElementEventHandlers = new WeakMap();
 // custom element constructors as node names.
 if (customElements) {
   const { define } = customElements;
-  customElements.define = (name, Ctor) => {
-    cacheCtorLocalNames.set(Ctor, name);
-    return define.call(customElements, name, Ctor);
+  customElements.define = (name, Constructor) => {
+    cacheConstructorLocalNames.set(Constructor, name);
+    return define.call(customElements, name, Constructor);
   };
 }
 
@@ -67,15 +69,16 @@ const applyRef = (e, ref) => {
 };
 
 // Ensures attrs, events and props are all set as the consumer intended.
-const ensureProps = objs => {
-  const { attrs, events, props, ref, ...pass } = objs || {};
-  const newRef = ensureRef(attrs, events, props, ref);
-  return { ...pass, ref: newRef };
+const ensureAttrs = objs => {
+  const { attrs, events, ref, key, dangerouslySetInnerHTML, ...props } =
+    objs || {};
+  const newRef = ensureRef({ attrs, events, props, ref });
+  return { ref: newRef, key, dangerouslySetInnerHTML };
 };
 
 // Ensures a ref is supplied that set each member appropriately and that
 // the original ref is called.
-const ensureRef = (attrs, events, props, ref) => {
+const ensureRef = ({ attrs, events, props, ref }) => {
   return e => {
     if (e) {
       applyAttrs(e, attrs);
@@ -88,9 +91,9 @@ const ensureRef = (attrs, events, props, ref) => {
 
 // Returns the custom element local name if it exists or the original
 // value.
-const ensureLocalName = lname => {
-  const temp = cacheCtorLocalNames.get(lname);
-  return temp || lname;
+const ensureLocalName = localName => {
+  const temp = cacheConstructorLocalNames.get(localName);
+  return temp || localName;
 };
 
 // Provides a function that takes the original createElement that is being
@@ -100,10 +103,10 @@ const ensureLocalName = lname => {
 // - `ref`
 const val =
   createElement =>
-  (lname, props, ...chren) => {
-    lname = ensureLocalName(lname);
-    props = ensureProps(props);
-    return createElement(lname, props, ...chren);
+  (localName, attrs, ...children) => {
+    localName = ensureLocalName(localName);
+    props = ensureAttrs(attrs);
+    return createElement(localName, attrs, ...children);
   };
 
 export default val;
