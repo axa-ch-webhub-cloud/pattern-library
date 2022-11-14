@@ -1,3 +1,7 @@
+## 5.2.0
+
+Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off"
+
 ## 5.1.3
 
 Improve textarea types, event param names always `event` #2344

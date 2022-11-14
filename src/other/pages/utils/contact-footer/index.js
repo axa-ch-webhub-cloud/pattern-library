@@ -25,7 +25,7 @@ class PLContactFooter extends NoShadowDOM {
         <div class="contact-footer__inner">
           <div>
             <p class="contact-footer__subtitle">Help & Contact</p>
-            <axa-heading rank="4" secondary>Any question?<axa-heading>
+            <axa-heading size="4" secondary>Any question?<axa-heading>
           </div>
           <axa-button size="large" href="${INTERNAL_LINK}" variant="inverted">
             Get in touch

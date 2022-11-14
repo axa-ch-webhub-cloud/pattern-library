@@ -97,7 +97,7 @@ test.describe('modal', () => {
 
     expect(
       await page
-        .locator('axa-heading[rank="2"]')
+        .locator('axa-heading[size="2"]')
         .evaluate(el => window.getComputedStyle(el).margin)
     ).toBe('0px 0px 18px');
     expect(

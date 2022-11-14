@@ -68,13 +68,13 @@ export const WhatsNew = () => {
     </style>
     <div class="accessory-story-wrapper">
     <div class="accessory-story-content">
-      <axa-heading rank="1" secondary>What's new</axa-heading>
-      <axa-text variant="size-2">
+      <axa-heading size="1" secondary>What's new</axa-heading>
+      <axa-text size="2">
         Here you will find the latest updates on AXA Design System
         development.
       </axa-text>
-      <axa-heading rank="2" secondary>Update log</axa-heading>
-      <axa-heading rank="5">Component versioning is now live!</axa-heading>
+      <axa-heading size="2" secondary>Update log</axa-heading>
+      <axa-heading size="5">Component versioning is now live!</axa-heading>
       <p class="what-is-new__text-with-link">
         We are happy to announce that we now support component versioning!
         Our solution automatically injects package.json version information into component code at build time. Additionally, by making components version-aware at runtime, we can dynamically name custom element to include version information.
@@ -82,9 +82,9 @@ export const WhatsNew = () => {
         <axa-link href="https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/COMPONENT_VERSIONING.md">Introduction</axa-link>.
       </p>
       
-      <axa-heading rank="2" secondary>Last releases</axa-heading>
-      <axa-heading rank="6" class="what-is-new__response-date"><span id="what-is-new__github-response-date"></axa-heading>
-      <axa-text variant="size-2"><span id="what-is-new__github-response"></span></axa-text>
+      <axa-heading size="2" secondary>Last releases</axa-heading>
+      <axa-heading size="6" class="what-is-new__response-date"><span id="what-is-new__github-response-date"></axa-heading>
+      <axa-text size="2"><span id="what-is-new__github-response"></span></axa-text>
     </div>
     <pl-contact-footer></pl-contact-footer>
     </div>

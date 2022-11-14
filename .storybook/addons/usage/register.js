@@ -1,8 +1,9 @@
+import React from 'react';
 import { addons, types } from '@storybook/addons';
 import { useParameter, useStorybookState } from '@storybook/api';
 import { AddonPanel } from '@storybook/components';
 import 'github-markdown-css/github-markdown-light.css';
-import React from 'react';
+import './usage.css';
 
 const ADDON_ID = 'axa-ch/usage';
 const PANEL_ID = `${ADDON_ID}/panel`;

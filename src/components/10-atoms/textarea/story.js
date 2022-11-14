@@ -31,6 +31,7 @@ export const Textarea = ({
   readonly,
   required,
   invalid,
+  autocomplete,
 }) => html`
   <axa-textarea
     refid="${refId}"
@@ -46,5 +47,6 @@ export const Textarea = ({
     ?readonly="${readonly}"
     ?required="${required}"
     ?invalid="${invalid}"
+    ?autocomplete="${autocomplete}"
   ></axa-textarea>
 `;

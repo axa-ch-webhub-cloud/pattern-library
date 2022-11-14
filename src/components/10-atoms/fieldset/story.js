@@ -21,7 +21,7 @@ export default {
 };
 
 export const Fieldset = ({ horizontal, error }) => html`
-  <axa-text variant="size-3">
+  <axa-text size="3">
     Resize your browser to a tablet or mobile width to see the effect of
     'horizontal="stretch"'</axa-text
   >

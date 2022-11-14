@@ -48,6 +48,10 @@ The Boolean attribute `disabled` disables the underlying native HTML &lt;textare
 
 The Boolean `readonly` attribute, when present, makes the underlying native HTML &lt;textarea&gt; text not mutable, meaning the user can not edit the control.
 
+### autocomplete
+
+The boolean attribute `autocomplete` put the HTML autocomplete attribute to "on". The default ist "off"
+
 ### error
 
 The string-valued `error` provides error text as HTML, to be shown when `invalid` is true.

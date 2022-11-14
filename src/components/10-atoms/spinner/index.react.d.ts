@@ -3,7 +3,7 @@ import React from 'react';
 export interface AXASpinnerProps {
   className?: string;
   small?: boolean;
-  color?: string;
+  color?: 'inverted-dark-grey' | 'inverted-white';
 }
 
 declare function createAXASpinner(

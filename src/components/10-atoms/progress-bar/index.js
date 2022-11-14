@@ -69,9 +69,7 @@ class AXAProgressBar extends LitElement {
             ? 'a-progress-bar__label--hidden'
             : 'a-progress-bar__label'}"
         >
-          <axa-text variant="${this.small ? 'size-3' : 'size-2'}"
-            >${this.text}</axa-text
-          >
+          <axa-text size="${this.small ? '3' : '2'}">${this.text}</axa-text>
         </div>
       </article>
     `;

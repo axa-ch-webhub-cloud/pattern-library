@@ -74,11 +74,11 @@ export const Colors = () => {
       ${styles}
     </style>
     <div class="accessory-story-wrapper accessory-story-content">
-      <axa-heading rank="1" secondary>Colors</axa-heading>
+      <axa-heading size="1" secondary>Colors</axa-heading>
       ${getColorGroups(colors).map(group => {
         return html`
           <div id="colorGroup">
-            <axa-heading rank="3">${group.name}</axa-heading>
+            <axa-heading size="3">${group.name}</axa-heading>
             <div class="colorgroupwrapper">
               ${getColors(group.value).map(color => {
                 return html`
@@ -92,7 +92,7 @@ export const Colors = () => {
                         color.name /* TODO: change to axa-text if bug is fixed */
                       }
                     </axa-text>
-                    <axa-text variant="size-2"
+                    <axa-text size="2"
                       >${
                         color.code /* TODO: change to axa-text if bug is fixed */
                       }</axa-text

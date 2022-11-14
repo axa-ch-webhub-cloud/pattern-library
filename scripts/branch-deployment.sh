@@ -3,11 +3,11 @@
 # This script waits for pipeline builds and deploys them to the "github pages" of plib-feature repository that can be found here: 
 # As soon as a branch gets deleted, the script will also remove that specific branch from the deployed github pages.
 #
-# External environment variables: $GITHUB_TOKEN, $PR_SOURCE_BRANCH_NAME, $SOURCE_BRANCH_NAME
+# External environment variables: $BRANCH_NAME, $GITHUB_TOKEN
 
-# Check that the needed evnironment variables are present
-if [[ -z "$SOURCE_BRANCH_NAME" && (( -z "$PR_SOURCE_BRANCH_NAME" || $PR_SOURCE_BRANCH_NAME == *"$"* )) ]]; then
-  echo "Env variable 'SOURCE_BRANCH_NAME' or 'PR_SOURCE_BRANCH_NAME' was not correctly provided. Only one env variable is necessary."
+# Check that the needed environment variables are present
+if [[ -z "$BRANCH_NAME" ]]; then
+  echo "Env variable 'BRANCH_NAME' was not correctly provided."
   exit 1
 elif [[ -z "$GITHUB_TOKEN" ]]; then
   echo "Env variable 'GITHUB_TOKEN' was not provided."
@@ -16,15 +16,6 @@ fi
 
 echo "Using Github Email: $GITHUB_EMAIL"
 echo "Using Github User:  $GITHUB_USER"
-
-# If the PR_SOURCE_BRANCH_NAME contains a $ char, the variable could not be resolved, which means,
-# that the build does not originate form a pull request. In that case, we go after the branch name.
-# This is an issue with azure, that the source_branch contains whatever reference, but the actual
-# source branch that we would be interested in.
-[[ -n "$PR_SOURCE_BRANCH_NAME" && $PR_SOURCE_BRANCH_NAME != *"$"* ]] && BRANCH_NAME="$PR_SOURCE_BRANCH_NAME" || BRANCH_NAME="$SOURCE_BRANCH_NAME"
-echo "PR-Source-Branch-Name:              $PR_SOURCE_BRANCH_NAME"
-echo "Source-Branch-Name:                 $SOURCE_BRANCH_NAME"
-echo "Branch name that will be deployed:  $BRANCH_NAME"
 
 rm -rf ./dist
 
