@@ -60,7 +60,7 @@ module.exports = {
   features: {
     babelModeV7: true,
   },
-  staticDirs: [path.resolve(__dirname, '../src/static')],
+  staticDirs: [path.resolve(__dirname, '../src/assets')],
   framework: '@storybook/web-components',
   core: {
     builder: '@storybook/builder-webpack5',

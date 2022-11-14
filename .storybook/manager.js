@@ -32,6 +32,6 @@ addons.setConfig({
     brandTitle: 'AXA Living Styleguide',
     brandUrl:
       'https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop',
-    brandImage: 'svg/logo-axa.svg',
+    brandImage: 'icons/logo-axa.svg',
   }),
 });
