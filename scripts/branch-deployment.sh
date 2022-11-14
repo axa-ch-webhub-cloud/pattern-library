@@ -24,7 +24,7 @@ git clone https://$GITHUB_TOKEN@github.com/axa-ch-webhub-cloud/plib-feature.git 
 
 rm -rf ./dist/$BRANCH_NAME/
 mkdir -p ./dist/$BRANCH_NAME
-cp -v ./storybook-static/* ./dist/$BRANCH_NAME/
+cp -R -v ./storybook-static/* ./dist/$BRANCH_NAME/
 
 # Done! From here, everything would be ready to be committed and pushed. But
 # outdated branches need to be cleaned up too, so...
