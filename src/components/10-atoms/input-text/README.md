@@ -121,6 +121,10 @@ Currency formatting is only active when attribute `type` is set to `text`. The f
 
 Please be mindful of using currency formatting in combination with `maxLength`. The result of formatting could exceed the limits of `maxLength`!
 
+### autocomplete
+
+The boolean attribute `autocomplete` put the HTML autocomplete attribute to "on". The default ist "off"
+
 ## Callbacks
 
 ### onChange

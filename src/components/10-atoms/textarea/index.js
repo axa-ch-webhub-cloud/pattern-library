@@ -29,6 +29,7 @@ class AXATextarea extends NoShadowDOM {
       checkMark: { type: Boolean },
       required: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
+      autocomplete: { type: Boolean },
       readonly: { type: Boolean },
 
       counter: { type: String },
@@ -219,6 +220,7 @@ class AXATextarea extends NoShadowDOM {
       modelCounter = '',
       counterMax = '',
       maxLength = '',
+      autocomplete,
       placeholder,
       disabled,
       readonly,
@@ -262,7 +264,7 @@ class AXATextarea extends NoShadowDOM {
           id="${refId}"
           maxlength="${maxLength}"
           class="${classMap(textareaClasses)}"
-          autocomplete="off"
+          autocomplete="${autocomplete ? 'on' : 'off'}"
           .value="${value}"
           name="${name}"
           placeholder="${placeholder}"

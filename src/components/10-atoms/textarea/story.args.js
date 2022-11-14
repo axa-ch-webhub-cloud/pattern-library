@@ -5,6 +5,7 @@ export const args = {
   readonly: false,
   required: false,
   invalid: false,
+  autocomplete: false,
   counter: 'Still ##counter## characters left',
   counterMax: 'Over character limit!',
 };
@@ -20,6 +21,7 @@ export const argTypes = {
   readonly: { control: 'boolean' },
   required: { control: 'boolean' },
   invalid: { control: 'boolean' },
+  autocomplete: { control: 'boolean' },
   counter: { control: 'text' },
   counterMax: { control: 'text' },
   maxLength: { control: 'text' },

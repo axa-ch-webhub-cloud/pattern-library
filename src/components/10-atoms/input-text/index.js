@@ -34,6 +34,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       checkMark: { type: Boolean },
       disabled: { type: Boolean, reflect: true },
       isReact: { type: Boolean },
+      autocomplete: { type: Boolean },
       modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
@@ -320,6 +321,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       checkMark,
       isControlled,
       refId,
+      autocomplete,
       inputmode = '',
       pattern = PATTERN_DEFAULT, // if we do not set a default value here the result on DOM is pattern="undefined", that causes problems on validating a form
       _open,
@@ -357,7 +359,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           id="${refId}"
           type="${type}"
           class="${classMap(inputClasses)}"
-          autocomplete="off"
+          autocomplete="${autocomplete ? 'on' : 'off'}"
           name="${name}"
           .value="${formattedValue}"
           placeholder="${placeholder}"
