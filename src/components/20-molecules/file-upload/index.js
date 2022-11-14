@@ -399,7 +399,7 @@ class AXAFileUpload extends LitElement {
       this.globalErrorMessage = '';
 
       if (this.invalid) {
-        this.onInvalid(false, this.globalErrorMessage);
+        this.onInvalid(false);
       }
 
       this.invalid = false;
