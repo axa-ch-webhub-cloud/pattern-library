@@ -1,6 +1,7 @@
 ## 6.3.0
 
-Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off" 
+Feat: Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off" #2364
+Fixes: react 18 cursor jump #2373
 
 ## 6.2.1
 

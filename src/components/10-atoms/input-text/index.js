@@ -216,6 +216,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
   }
 
   handleInput(ev) {
+    const { selectionStart = null } = ev.target;
+
     // sets this.invalidFormat
     this._formatCurrency(ev.target.value);
     this.onChange(ev, this.invalidFormat);
@@ -223,6 +225,10 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
     if (this.isControlled) {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
+
+      requestAnimationFrame(() => {
+        this.nativeInput.setSelectionRange(selectionStart, selectionStart);
+      });
     }
 
     // means that a automatic prefelling function did fill it. Re-evaluate the component
