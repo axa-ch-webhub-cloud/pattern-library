@@ -1,4 +1,4 @@
-import val from '@skatejs/val';
+import val from './val';
 import { defineVersioned } from './component-versioning';
 
 const pascalCase = hyphenatedName =>

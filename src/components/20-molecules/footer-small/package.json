@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@axa-ch/container": "5.0.8",
-    "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }
 }

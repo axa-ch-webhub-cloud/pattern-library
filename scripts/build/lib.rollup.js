@@ -34,7 +34,7 @@ const lib = {
 const libReact = {
   ...lib,
   input: 'index.react.js',
-  external: [...lib.external, '@skatejs/val'],
+  external: [...lib.external],
   output: {
     file: './lib/index.react.js',
     format: 'es',

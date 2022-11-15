@@ -28,7 +28,6 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@skatejs/val": "^0.4.0",
     "lit": "^2.2.1"
   }
 }
