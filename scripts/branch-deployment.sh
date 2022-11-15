@@ -55,7 +55,7 @@ ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -type d | cu
 '
 for x in $ALL_FOLDERS_DEPTH_1; do
     # If folder is no longer linked to a remote branch, remove it.
-    if [[ $ALL_BRANCHES != *"$x"* ]]; then
+    if [[ $ALL_BRANCHES != *"$x"* ]] && [[ "develop/favicons" != *"$x"* ]] && [[ "develop/fonts" != *"$x"* ]] && [[ "develop/images" != *"$x"* ]] && [[ "develop/icons" != *"$x"* ]]; then
       echo "Removing no longer existing branch: $x"
       rm -rf $x || echo "Could not remove $x"
     fi
