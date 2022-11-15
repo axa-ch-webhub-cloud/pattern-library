@@ -138,6 +138,7 @@ class AXAFileUpload extends LitElement {
       },
       onFileDrop: { type: Function, attribute: false },
       onFileRemove: { type: Function, attribute: false },
+      onValidityChange: { type: Function, attribute: false },
       onChange: { type: Function, attribute: false },
     };
   }
@@ -165,9 +166,29 @@ class AXAFileUpload extends LitElement {
     this.globalErrorMessage = '';
     this.showAddMoreInputFile = '';
 
+    this.state = {
+      invalid: false,
+    };
+
     this.reset = this.reset.bind(this);
 
     defineVersioned([AXAInputFile], __VERSION_INFO__, this);
+  }
+
+  set invalid(invalid) {
+    // When applyDefaults() is called inside the constructor, onValidityChange does not exist yet.
+    if (!this.onValidityChange) return;
+
+    const oldValue = this.state.invalid;
+    if (oldValue !== invalid) {
+      this.onValidityChange(
+        invalid,
+        this.globalErrorMessage ? this.globalErrorMessage : undefined
+      );
+    }
+
+    this.state.invalid = invalid;
+    this.requestUpdate('invalid', oldValue);
   }
 
   handleAddMoreInputClick() {
@@ -523,6 +544,10 @@ class AXAFileUpload extends LitElement {
       for (let i = 0; i < faultyCompressedFiles.length; i++) {
         if (faultyCompressedFiles[i].id === file.id) {
           isfaultyFile = file;
+          this.globalErrorMessage =
+            isfaultyFile && isfaultyFile.errorMessage
+              ? isfaultyFile.errorMessage
+              : fileTooBigStatusText;
           this.invalid = true;
           break;
         }
@@ -629,9 +654,10 @@ class AXAFileUpload extends LitElement {
             removeFrom: faulties,
             appendTo: valids,
           });
+
           // clear invalidity status
-          this.invalid = false;
           this.globalErrorMessage = '';
+          this.invalid = false;
         }
       } else {
         // we found the file among the valid ones.
@@ -640,13 +666,14 @@ class AXAFileUpload extends LitElement {
           removeFrom: valids,
           appendTo: faulties,
         });
-        // set invalidity status
-        this.invalid = true;
+
         this.globalErrorMessage =
           typeof globalErrorMessage === 'string'
             ? globalErrorMessage
             : file.errorMessage;
+        this.invalid = true;
       }
+
       // force rerender
       this.requestUpdate();
     }

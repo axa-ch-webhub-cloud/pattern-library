@@ -53,6 +53,9 @@ export const FileUpload = _args =>
         onChange={() => {
           logEvent('onChange');
         }}
+        onValidityChange={() => {
+          logEvent('onValidityChange');
+        }}
       >
         {_args.slot}
       </AXAFileUploadReact>

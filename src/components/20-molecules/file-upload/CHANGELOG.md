@@ -1,3 +1,8 @@
+## 8.1.0
+
+- feat: Add callback prop onValidityChange #2370
+- fixes: Provide the correct typings for the onChange param `files`
+
 ## 8.0.0
 
 Breaking change: Simplify callback prop `onChange`'s parameter value, see the ["onChange" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/file-upload#onchange) for details. #2341
