@@ -1,3 +1,7 @@
+## 8.1.1
+
+- fixes type onValidityChange to optional
+
 ## 8.1.0
 
 - feat: Add callback prop onValidityChange #2370

@@ -31,7 +31,7 @@ export interface AXAFileUploadProps {
     clear?: boolean,
     globalErrorMessage?: string
   ) => void;
-  onValidityChange: (invalid: boolean, errorMessage?: string) => void;
+  onValidityChange?: (invalid: boolean, errorMessage?: string) => void;
 }
 
 declare function createAXAFileUpload(

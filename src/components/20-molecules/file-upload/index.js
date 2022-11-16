@@ -180,7 +180,7 @@ class AXAFileUpload extends LitElement {
     if (!this.onValidityChange) return;
 
     const oldValue = this.state.invalid;
-    if (oldValue !== invalid) {
+    if (typeof this.onValidityChange === 'function' && oldValue !== invalid) {
       this.onValidityChange(
         invalid,
         this.globalErrorMessage ? this.globalErrorMessage : undefined
