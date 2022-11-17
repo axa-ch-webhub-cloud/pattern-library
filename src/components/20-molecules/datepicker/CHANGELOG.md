@@ -1,3 +1,7 @@
+## 17.1.1
+
+Add optional type `name`
+
 ## 17.1.0
 
 Use new major dropdown version 12.0.0
