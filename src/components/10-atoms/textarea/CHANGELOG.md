@@ -1,4 +1,4 @@
-## 5.2.1
+## 5.2.7
 
 Improve type of `onChange` event with `AXATextareaChangeEvent`
 

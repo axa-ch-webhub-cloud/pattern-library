@@ -1,4 +1,4 @@
-## 8.2.1
+## 8.2.2
 
 Improve `onClick` type with `AXAMouseEvent`
 
