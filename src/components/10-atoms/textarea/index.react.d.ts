@@ -1,5 +1,9 @@
 import React from 'react';
 
+export interface AXATextareaChangeEvent extends InputEvent {
+  target: EventTarget & HTMLTextAreaElement;
+}
+
 export interface AXATextareaProps {
   refId?: string;
   name: string;
@@ -22,7 +26,7 @@ export interface AXATextareaProps {
   children?: React.ReactNode;
   onFocus?: (event: FocusEvent) => void;
   onBlur?: (event: FocusEvent) => void;
-  onChange?: (event: InputEvent) => void;
+  onChange?: (event: AXATextareaChangeEvent) => void;
 }
 
 declare function createAXATextarea(
