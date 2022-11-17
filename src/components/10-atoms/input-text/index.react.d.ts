@@ -1,5 +1,9 @@
 import React from 'react';
 
+export interface AXAInputTextChangeEvent extends InputEvent {
+  target: EventTarget & HTMLInputElement;
+}
+
 export interface AXAInputTextProps {
   refId?: string;
   name: string;
@@ -27,7 +31,7 @@ export interface AXAInputTextProps {
   readonly?: boolean;
   onFocus?: (event: FocusEvent) => void;
   onBlur?: (event: FocusEvent) => void;
-  onChange?: (event: InputEvent, invalidFormat: Boolean) => void;
+  onChange?: (event: AXAInputTextChangeEvent, invalidFormat: Boolean) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
   onKeyUp?: (event: KeyboardEvent) => void;
 }

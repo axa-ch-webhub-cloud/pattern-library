@@ -1,3 +1,7 @@
+## 6.3.1
+
+Improve type of `onChange` event with `AXAInputTextChangeEvent`
+
 ## 6.3.0
 
 Feat: Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off" #2364
