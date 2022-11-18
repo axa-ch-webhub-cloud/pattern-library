@@ -1,6 +1,10 @@
 import React from 'react';
 import { Icon } from '@axa-ch/icon/lib/index.d';
 
+export interface AXAMouseEvent<T = HTMLElement> extends MouseEvent {
+  target: EventTarget & T;
+}
+
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type Size = 'small' | 'large';
 export type Variant =
@@ -26,7 +30,7 @@ export interface AXAButtonProps {
   children?: React.ReactNode;
   href?: string;
   external?: boolean;
-  onClick?: (event: MouseEvent) => void;
+  onClick?: (event: AXAMouseEvent) => void;
 }
 
 declare function createAXAButton(

@@ -1,3 +1,7 @@
+## 8.2.2
+
+Improve `onClick` type with `AXAMouseEvent`
+
 ## 8.2.0
 
 Button configurable as full widht block element `block` #2354

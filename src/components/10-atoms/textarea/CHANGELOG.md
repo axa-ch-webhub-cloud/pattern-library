@@ -1,3 +1,7 @@
+## 5.2.7
+
+Improve type of `onChange` event with `AXATextareaChangeEvent`
+
 ## 5.2.0
 
 Add boolean attribute `autocomplete` to put the HTML autocomplete attribute to "on". The default is "off"
