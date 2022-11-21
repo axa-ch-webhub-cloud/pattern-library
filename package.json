@@ -32,7 +32,8 @@
     "new": "node scripts/create-a-m-o/index.js",
     "deploy-branch": "npm run build-storybook && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
-    "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --"
+    "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@axa-ch/materials": "latest",
@@ -96,7 +97,8 @@
     "testcafe": "1.19.0",
     "vitest": "^0.16.0",
     "wait-on": "^6.0.1",
-    "webpack": "^5.72.1"
+    "webpack": "^5.72.1",
+    "husky": "^8.0.0"
   },
   "repository": {
     "type": "git",
