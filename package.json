@@ -33,7 +33,7 @@
     "deploy-branch": "npm run build-storybook && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
     "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install"
   },
   "dependencies": {
     "@axa-ch/materials": "latest",
@@ -77,6 +77,8 @@
     "github-markdown-css": "^5.1.0",
     "glob": "^8.0.1",
     "http-server": "^14.1.1",
+    "husky": "^8.0.0",
+    "is-ci": "^3.0.1",
     "lerna": "^6.0.1",
     "marked": "^1.2.4",
     "mkdirp": "^0.5.1",
@@ -97,8 +99,7 @@
     "testcafe": "1.19.0",
     "vitest": "^0.16.0",
     "wait-on": "^6.0.1",
-    "webpack": "^5.72.1",
-    "husky": "^8.0.0"
+    "webpack": "^5.72.1"
   },
   "repository": {
     "type": "git",
