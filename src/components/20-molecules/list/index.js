@@ -68,22 +68,6 @@ class AXAList extends InlineStyles {
         li.style.backgroundImage = `url('data:image/svg+xml;charset=UTF-8,${this.icon}')`;
       });
     }
-
-    /**
-     * Fallback for IE11.
-     * This was the best way to handle IE11 compatibility, as there would not
-     * have been a way without drastically increasing the amount of DOM nodes
-     * and complexity for the user. Approved by our designers.
-     */
-    if (document.documentMode) {
-      if (this.variant === 'ordered') {
-        this.shadowRoot.querySelector('.m-list').style.listStyleType =
-          'decimal';
-        this.shadowRoot.querySelector('.m-list').style.marginLeft = '16px';
-      } else {
-        this.shadowRoot.querySelector('.m-list').style.listStyleType = 'disc';
-      }
-    }
   }
 }
 
