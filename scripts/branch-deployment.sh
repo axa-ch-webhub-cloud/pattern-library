@@ -24,7 +24,7 @@ git clone https://$GITHUB_TOKEN@github.com/axa-ch-webhub-cloud/plib-feature.git 
 
 rm -rf ./dist/$BRANCH_NAME/
 mkdir -p ./dist/$BRANCH_NAME
-mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
+cp -R -v ./storybook-static/* ./dist/$BRANCH_NAME/
 
 # Done! From here, everything would be ready to be committed and pushed. But
 # outdated branches need to be cleaned up too, so...
@@ -32,11 +32,11 @@ mv -v ./storybook-static/* ./dist/$BRANCH_NAME/
 # List only remote branches
 ALL_BRANCHES=$(git --no-pager branch -a -r)
 
-cd ./dist
+cd ./dist || exit
 
-# Find all folders for 2 levels down, ignore .git folder and cut './' at the beginning of each folder
+# Find all folders for 2 levels down, ignore .git folder and develop assets. Then cut './' at the beginning of each folder
 [[ $BRANCH_NAME == "develop" || $BRANCH_NAME == "master" ]] && MAX_DEPTH=1 || MAX_DEPTH=2
-ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -type d | cut -d '/' -f2-)
+ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -not -path "./develop/*" -type d | cut -d '/' -f2-)
 
 ###################################################################################################
 # There is one issue with the loop below: It checks the branch names on the pattern-library-repo. #
@@ -55,7 +55,7 @@ ALL_FOLDERS_DEPTH_1=$(find . -maxdepth $MAX_DEPTH -not -path "./.*" -type d | cu
 '
 for x in $ALL_FOLDERS_DEPTH_1; do
     # If folder is no longer linked to a remote branch, remove it.
-    if [[ $ALL_BRANCHES != *"$x"* ]]; then
+    if [[ $ALL_BRANCHES != *"$x"* ]] && [[ "." != *"$x"* ]]; then
       echo "Removing no longer existing branch: $x"
       rm -rf $x || echo "Could not remove $x"
     fi
@@ -67,7 +67,3 @@ done)
 git add .
 git commit -m "Deploy Branch: $BRANCH_NAME"
 git push -f
-
-# Move everything back to not mess with the other tasks.
-cd ..
-mv -v ./dist/$BRANCH_NAME/* ./storybook-static/
