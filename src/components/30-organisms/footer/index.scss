@@ -43,16 +43,6 @@
     @media (min-width: $breakpoint-xs) {
       display: flex;
       grid-area: links;
-
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 1;
-    }
-
-    @media (min-width: $breakpoint-md) {
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 1;
     }
   }
 
@@ -62,26 +52,8 @@
   }
 
   &__social-media {
-    // IE11 workaround: This breakpoint will make sure, that everything in it
-    // is IE10+ exclusive
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-      @media (min-width: $breakpoint-md) {
-        margin-left: 100px;
-      }
-    }
-
     @media (min-width: $breakpoint-xs) {
       grid-area: social;
-
-      // IE11 workaround
-      -ms-grid-row: 2;
-      -ms-grid-column: 1;
-    }
-
-    @media (min-width: $breakpoint-md) {
-      // IE11 workaround
-      -ms-grid-row: 1;
-      -ms-grid-column: 2;
     }
 
     &-title {
@@ -95,8 +67,6 @@
       margin: 0;
       text-indent: 0;
       list-style-type: none;
-      padding: 0;
-
       display: flex;
       flex-wrap: wrap;
       padding: 15px 20px;
@@ -110,14 +80,12 @@
       }
 
       @media (min-width: $breakpoint-xs) {
-        margin: 0;
         text-indent: 0;
         list-style-type: none;
-        padding: 0;
+        padding: 15px 0 0 0;
 
         display: flex;
         flex-wrap: wrap;
-        padding-top: 15px;
 
         margin-left: -10px;
 
@@ -234,9 +202,8 @@
         padding-top: 10px;
         width: 330px;
 
-        // IE11 workaround (use 'unset'-property for those two elements)
-        background-color: $color-dark-indigo;
-        max-height: 1000px !important;
+        background-color: unset;
+        max-height: unset;
 
         &--short {
           width: 165px;
