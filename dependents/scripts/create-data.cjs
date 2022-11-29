@@ -3,7 +3,7 @@ const PackageDependents = require('package-dependents');
 const { plibNpmModules } = require('../plib-npm-modules');
 
 if (fs.existsSync('./data/dependents.json')) {
-  fs.unlinkSync('./data/dependents.json')
+  fs.unlinkSync('./data/dependents.json');
 }
 
 exludeDependents = [
@@ -25,7 +25,11 @@ const dependents = new Set();
 const promises = plibNpmModules.map(name =>
   PackageDependents(name, 'latest').then(packages => {
     packages.forEach(c => {
-      if (!dependents.has(c.name) && !plibNpmModules.includes(c.name) && !exludeDependents.includes(c.name)) {
+      if (
+        !dependents.has(c.name) &&
+        !plibNpmModules.includes(c.name) &&
+        !exludeDependents.includes(c.name)
+      ) {
         dependents.add(c.name);
       }
     });
