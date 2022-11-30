@@ -1,6 +1,6 @@
 const fs = require('fs');
 const PackageDependents = require('package-dependents');
-const { plibNpmModules } = require('../plib-npm-modules');
+const { plibNpmModules } = require('../plib-npm-modules.cjs');
 
 if (fs.existsSync('./data/dependents.json')) {
   fs.unlinkSync('./data/dependents.json');
@@ -19,6 +19,11 @@ exludeDependents = [
   'test-webpack-module-a',
   'test-webpack-module-b',
   'test-webpack-module-d',
+  '@axa-ch/pod-skeleton-example',
+  '@axa-ch/pod-react-skeleton-example',
+  '@axa-ch/pod-react-auth-skeleton-example',
+  '@axa-ch/pod-adaptive-cards-testings',
+  '@axa-ch/pod-webhub-polyfills',
 ];
 
 const dependents = new Set();

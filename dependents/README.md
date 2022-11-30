@@ -26,6 +26,7 @@
   useWebcomponents: boolean,
   useReact: boolean,
   useNativeIife: boolean,
+  useTypescript: boolean,
   components: {
       x: string
   }

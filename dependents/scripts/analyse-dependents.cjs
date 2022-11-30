@@ -9,6 +9,7 @@ const dependentsData = dependents.map(dependent => {
     useWebcomponents: false,
     useReact: false,
     useNativeIife: false,
+    useTypescript: false,
     components: {},
   };
 
@@ -26,6 +27,12 @@ const dependentsData = dependents.map(dependent => {
           dependentData.usePolyfill = true;
         }
       });
+    }
+    if (
+      (pkg.dependencies && pkg.dependencies.typescript) ||
+      (pkg.devDependencies && pkg.devDependencies.typescript)
+    ) {
+      dependentData.useTypescript = true;
     }
   }
 

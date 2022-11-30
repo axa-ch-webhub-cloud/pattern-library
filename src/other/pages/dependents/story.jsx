@@ -26,20 +26,22 @@ export const Dependents = () =>
       <div className="information-bar">
         <axa-text size={3}>Dependents: {dependents.length}</axa-text>
         <axa-text size={3}>
-          Polyfill usage:{' '}
+          Polyfill:{' '}
           {dependents.reduce((a, v) => (v.usePolyfill ? a + 1 : a), 0)}
         </axa-text>
         <axa-text size={3}>
-          React usage:{' '}
-          {dependents.reduce((a, v) => (v.useReact ? a + 1 : a), 0)}
+          React: {dependents.reduce((a, v) => (v.useReact ? a + 1 : a), 0)}
         </axa-text>
         <axa-text size={3}>
-          Webcomponents usage:{' '}
+          Typescript:{' '}
+          {dependents.reduce((a, v) => (v.useTypescript ? a + 1 : a), 0)}
+        </axa-text>
+        <axa-text size={3}>
+          WebComponents:{' '}
           {dependents.reduce((a, v) => (v.useWebcomponents ? a + 1 : a), 0)}
         </axa-text>
         <axa-text size={3}>
-          native iife usage:{' '}
-          {dependents.reduce((a, v) => (v.useNativeIife ? a + 1 : a), 0)}
+          iife: {dependents.reduce((a, v) => (v.useNativeIife ? a + 1 : a), 0)}
         </axa-text>
       </div>
       <div className="dependents-wrapper">
@@ -48,8 +50,9 @@ export const Dependents = () =>
             <axa-list size={3}>
               {dependent.useReact && <li>React usage</li>}
               {dependent.useWebcomponents && <li>Webcomponents usage</li>}
-              {dependent.useNativeIife && <li>native iife usage</li>}
+              {dependent.useNativeIife && <li>Native iife usage</li>}
               {dependent.usePolyfill && <li>Polyfill usage</li>}
+              {dependent.useTypescript && <li>Typescript usage</li>}
               <li>
                 <axa-text size={3}>
                   Components usage: {Object.keys(dependent.components).length}
