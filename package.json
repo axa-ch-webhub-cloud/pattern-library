@@ -5,7 +5,7 @@
   "module": "lib",
   "engines": {
     "npm": ">=8.0.0",
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production npm run build-lib && npm run build-dist",

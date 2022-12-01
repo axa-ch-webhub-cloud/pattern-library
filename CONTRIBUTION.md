@@ -2,7 +2,7 @@
 
 ## What you need to contribute
 
-- [Node](https://nodejs.org/en/) (v. 16.15.1), which is the same version that runs on the pipeline.
+- [Node](https://nodejs.org/en/) (v. 18.12.1), which is the same version that runs on the pipeline.
 - [Prettier](https://prettier.io/) - A code styling tool. You don't explicitly need it, but without fitting the ruleset, you will not be able to merge.
 
 ## Install and run the AXA Pattern Library
