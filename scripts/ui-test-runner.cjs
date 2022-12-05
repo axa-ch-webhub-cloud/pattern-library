@@ -12,7 +12,7 @@ const sbStaticPath = path.resolve(__dirname, '../storybook-static');
 const { result } = concurrently(
   [
     {
-      command: `http-server ${sbStaticPath} -p 9999`,
+      command: `http-server ${sbStaticPath} -s -p 9999`,
       name: 'SB',
       prefixColor: 'magenta',
     },
