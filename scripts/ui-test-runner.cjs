@@ -12,12 +12,12 @@ const sbStaticPath = path.resolve(__dirname, '../storybook-static');
 const { result } = concurrently(
   [
     {
-      command: `http-server ${sbStaticPath} -s -p 9999`,
+      command: `http-server ${sbStaticPath} -p 9999`,
       name: 'SB',
       prefixColor: 'magenta',
     },
     {
-      command: `${RUN_PLAYWRIGHT} && ${RUN_TESTCAFE}`,
+      command: `wait-on http://127.0.0.1:9999 && ${RUN_PLAYWRIGHT} && ${RUN_TESTCAFE}`,
       name: 'TEST',
       prefixColor: 'blue',
     },
