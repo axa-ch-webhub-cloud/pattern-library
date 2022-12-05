@@ -22,7 +22,7 @@
     "start-storybook-static": "http-server storybook-static -s -p 9999",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore && prettier --check .",
     "test": "vitest run && npm run test-ui",
-    "test:ci": "vitest run && node scripts/ui-test-runner.js",
+    "test:ci": "vitest run && node scripts/ui-test-runner.cjs",
     "test-unit": "vitest",
     "test-playwright": "cross-env SB_URL=http://localhost:6006 playwright test",
     "test-playwright-debug": "cross-env PWDEBUG=1 SB_URL==http://localhost:6006 playwright test --debug",
@@ -61,7 +61,7 @@
     "babel-loader": "^8.0.5",
     "chalk": "^4.1.2",
     "clipboardy": "^2.0.0",
-    "concurrently": "^7.3.0",
+    "concurrently": "^7.6.0",
     "core-js": "^3.22.7",
     "cp": "^0.2.0",
     "cross-env": "^7.0.3",
@@ -98,7 +98,6 @@
     "svgo": "^2.8.0",
     "testcafe": "1.19.0",
     "vitest": "^0.16.0",
-    "wait-on": "^6.0.1",
     "webpack": "^5.72.1"
   },
   "repository": {

@@ -17,7 +17,7 @@ const { result } = concurrently(
       prefixColor: 'magenta',
     },
     {
-      command: `wait-on tcp:9999 && ${RUN_PLAYWRIGHT} && ${RUN_TESTCAFE}`,
+      command: `${RUN_PLAYWRIGHT} && ${RUN_TESTCAFE}`,
       name: 'TEST',
       prefixColor: 'blue',
     },
