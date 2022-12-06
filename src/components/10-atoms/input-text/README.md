@@ -160,6 +160,10 @@ The function-valued attribute `onKeyUp` can be used as a callback prop for React
 
 The callback is invoked once for every _user key up_ on the inputfield.
 
+### onPaste
+
+The paste event is fired when the user has initiated a "paste" action through the browser's user interface.
+
 ## Methods
 
 ### focus()
