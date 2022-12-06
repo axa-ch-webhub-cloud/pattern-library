@@ -1,3 +1,7 @@
+## 6.4.0
+
+Add `onPaste` callback prop #2391
+
 ## 6.3.1
 
 Improve type of `onChange` event with `AXAInputTextChangeEvent`

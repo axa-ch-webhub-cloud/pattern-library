@@ -5,6 +5,7 @@ import readme from '../README.md';
 import DemoInputText from './DemoInputText';
 import DemoInputTextonKeyDown from './DemoInputTextonKeyDown';
 import DemoInputTextonKeyUp from './DemoInputTextonKeyUp';
+import DemoInputTextOnPaste from './DemoInputTextOnPaste';
 
 export default {
   title: 'Examples/Input Text/React',
@@ -24,3 +25,6 @@ export const InputTextOnKeyDownEvent = () =>
 
 export const InputTextOnKeyUpEvent = () =>
   createReactContainer(<DemoInputTextonKeyUp />);
+
+export const DemoInputTextOnPasteEvent = () =>
+  createReactContainer(<DemoInputTextOnPaste />);

@@ -34,6 +34,7 @@ export interface AXAInputTextProps {
   onChange?: (event: AXAInputTextChangeEvent, invalidFormat: Boolean) => void;
   onKeyDown?: (event: KeyboardEvent) => void;
   onKeyUp?: (event: KeyboardEvent) => void;
+  onPaste?: (event: ClipboardEvent) => void;
 }
 
 declare function createAXAInputText(
