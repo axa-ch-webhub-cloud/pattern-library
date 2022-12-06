@@ -64,7 +64,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       onBlur: { type: Function, attribute: false },
       onKeyDown: { type: Function, attribute: false },
       onKeyUp: { type: Function, attribute: false },
-      onPaste: { type: Function, attribute: false }
+      onPaste: { type: Function, attribute: false },
     };
   }
 

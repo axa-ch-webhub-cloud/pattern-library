@@ -11,7 +11,7 @@ const DemoInputTextOnPaste = () => (
       id="inputtext-react-inputfield-on-key-pressed"
       onPaste={ev => {
         /* eslint-disable-next-line no-console */
-        console.log(ev)
+        console.log(ev);
       }}
     />
   </div>
