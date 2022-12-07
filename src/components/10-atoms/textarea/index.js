@@ -180,12 +180,18 @@ class AXATextarea extends NoShadowDOM {
   }
 
   handleInput(ev) {
+    const { selectionStart = null } = ev.target;
+
     this.onChange(ev);
 
     // are we a 'controlled' input in the React sense?
     if (this.isControlled) {
       // yes, set UI from model state
       this.nativeInput.value = this.modelValue;
+
+      requestAnimationFrame(() => {
+        this.nativeInput.setSelectionRange(selectionStart, selectionStart);
+      });
     }
 
     if (this.maxLength) {
