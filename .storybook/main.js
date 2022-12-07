@@ -41,6 +41,7 @@ module.exports = {
     '../src/other/pages/guides/structure-approach/story.js',
     '../src/other/pages/what-is-new/story.js',
     '../src/other/pages/contact/story.js',
+    '../src/other/pages/dependents/story.jsx',
     '../src/components/**/@(story|demo).@(js|jsx)',
     '../src/other/pages/showcases/axa-ch-main/story.js',
   ],

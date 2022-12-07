@@ -1,0 +1,20 @@
+.information-bar {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 0;
+  margin-bottom: $spacing-6;
+  color: $color-prim-white;
+  background-color: $color-ocean-blue;
+  box-shadow: $box-shadow-default;
+
+  > axa-text {
+    margin-left: $spacing-2;
+    --text-margin: 0;
+  }
+}
+
+.dependents-wrapper {
+  margin-left: $spacing-2;
+  max-width: 800px;
+}
