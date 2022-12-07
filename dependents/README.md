@@ -1,13 +1,13 @@
 # Dependents
 
-Analyse and generate data to answer following questions:
+Analyse and generate data to answer the following questions:
 
-- Who use plib webcomponents
-- Who use plib react components
-- Who use plib native iife component
-- Who use plib obsolete polyfill
+- Who uses plib webcomponents
+- Who uses plib react components
+- Who uses plib native iife component
+- Who uses plib obsolete polyfill
 - Which plib components versions are used
-- Who use Typescript
+- Who uses Typescript
 
 ## Scripts
 
