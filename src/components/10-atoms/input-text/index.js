@@ -64,6 +64,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       onBlur: { type: Function, attribute: false },
       onKeyDown: { type: Function, attribute: false },
       onKeyUp: { type: Function, attribute: false },
+      onPaste: { type: Function, attribute: false },
     };
   }
 
@@ -380,6 +381,7 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           @blur="${this.handleBlur}"
           @keydown="${this.onKeyDown}"
           @keyup="${this.onKeyUp}"
+          @paste="${this.onPaste}"
         />`}
           ${
             this.showCheckMark
