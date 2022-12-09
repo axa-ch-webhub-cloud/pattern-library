@@ -30,7 +30,6 @@
     "test-testcafe-headless": "cross-env TEST_HOST_STORYBOOK_URL=http://localhost:6006 testcafe chrome:headless ./**/ui.test.js",
     "test-ui": "npm run test-playwright && npm run test-testcafe-headless",
     "new": "node scripts/create-a-m-o/index.js",
-    "deploy-branch": "npm run build-storybook && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment.sh && cross-env SOURCE_BRANCH_NAME=\"$(git rev-parse --abbrev-ref HEAD)\" bash scripts/branch-deployment-notifier.sh",
     "link-components": "sh scripts/npm-link-components.sh",
     "check-for-uncommitted-files": "git status && git diff-index --quiet HEAD --",
     "prepare": "is-ci || husky install"

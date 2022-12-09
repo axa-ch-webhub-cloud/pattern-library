@@ -80,20 +80,10 @@ export const GettingStarted = () =>
           <body>
             /* Your button component */
             <axa-button>I am a button</axa-button>
-            <script src="node_modules/@axa-ch/button/dist/index.js"></script>
+            <script type="module" src="main.js"></script>
           </body>
         </html>`}
         </ReactSyntaxHighlighter>
-        <div className="getting-started__text getting-started__text--important">
-          <span className="getting-started__text--bold">
-            <span role="img" aria-label="important">
-              ⚠️
-            </span>
-            &nbsp;Important:&nbsp;
-          </span>
-          If this component needs to run in Internet Explorer 11, you need to
-          use our polyfill.
-        </div>
         <div className="getting-started__text">
           <span className="getting-started__text--bold">Using React?</span> Not
           a big deal, we got you covered! You can easily create a React-ified
