@@ -9,7 +9,6 @@
 
 [Check out our Code of Conduct](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CODE_OF_CONDUCT.md)
 
-
 ## Design Guidelines
 [Link to Styleguide](https://www.figma.com/file/6zurYk3bJpzUg0H2THSxGF/AXA-UI-Kit)
 
@@ -17,18 +16,15 @@
 
 Use the following channels for different kinds of requests/reports:
 
-- Bug reports, small change requests, "wishes": https://github.com/axa-ch-webhub-cloud/pattern-library/issues
+- Bug reports, small change requests, "wishes": [Issues](https://github.com/axa-ch-webhub-cloud/pattern-library/issues)
 - Questions, requests for help, requests for product presentations, etc: Slack #patterns-lib-devs
-- Feature requests (Components, etc): Contact axa Webhub Team
+- Feature requests (Components, etc): Contact Webhub Team
 
 ## What we deliver
 
 We release self-contained plug-and-play web components based on the [custom elements specification](https://html.spec.whatwg.org/multipage/custom-elements.html), derived from the [lit-element](https://lit.dev/docs/api/LitElement/) base class (maintained by Google).
 
-
-## Build Pattern Library components in your own application
-
-Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` and `/lib/index.*` in ES2019. If you use the Pattern Library in AXA's DX WebHub context, you don't have to worry about this topic. All others, please read on.
+Pattern Library components are exported to npm with 2 types of build artifacts: `/dist/index.js` and `/lib/index.*` in ES2019.
 
 ## Component versioning
 
