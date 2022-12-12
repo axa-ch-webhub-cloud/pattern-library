@@ -1,6 +1,6 @@
 const copy = require('rollup-plugin-copy');
 const { nodeResolve } = require('@rollup/plugin-node-resolve');
-const { terser } = require('rollup-plugin-terser');
+const terser = require('@rollup/plugin-terser');
 const { commonPlugins } = require('./common.rollup.js');
 
 const lib = {
@@ -22,7 +22,6 @@ const lib = {
     terser({
       ecma: 2019,
       module: true,
-      warnings: true,
     }),
     // Copy types to lib directory
     copy({
@@ -34,7 +33,6 @@ const lib = {
 const libReact = {
   ...lib,
   input: 'index.react.js',
-  external: [...lib.external],
   output: {
     file: './lib/index.react.js',
     format: 'es',

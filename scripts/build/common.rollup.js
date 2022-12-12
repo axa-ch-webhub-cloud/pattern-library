@@ -2,6 +2,7 @@ const path = require('path');
 const replace = require('@rollup/plugin-replace'); // use to setup project enviroment variables
 const scss = require('rollup-plugin-scss');
 
+
 const { resolve: pathResolve } = require('path');
 
 const base = pathResolve(__dirname, '../../src').replace(/\\/g, '/');
