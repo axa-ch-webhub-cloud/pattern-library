@@ -1,4 +1,4 @@
-import { iconList } from '@axa-ch/icon/icon-list';
+import { iconList } from '../icon/icon-list.js';
 
 export const args = {
   text: 'Select a File',

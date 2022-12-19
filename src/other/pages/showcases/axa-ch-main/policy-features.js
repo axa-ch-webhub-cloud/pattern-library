@@ -1,47 +1,49 @@
 import { html } from 'lit';
 
-import carIcon from '@axa-ch/materials/images/car.svg';
-import chairIcon from '@axa-ch/materials/images/rocking-chair.svg';
-import glassIcon from '@axa-ch/materials/images/broken-glass.svg';
-import legalIcon from '@axa-ch/materials/images/legal.svg';
-import handIcon from '@axa-ch/materials/images/hand-leaf.svg';
-import globalIcon from '@axa-ch/materials/images/global.svg';
-import keysIcon from '@axa-ch/materials/images/keys.svg';
-import contractIcon from '@axa-ch/materials/images/contract.svg';
+import {
+  RockingChairSvg,
+  CarSvg,
+  BrokenGlassSvg,
+  LegalSvg,
+  HandLeafSvg,
+  GlobalSvg,
+  KeysSvg,
+  ContractSvg,
+} from '@axa-ch/materials/images';
 
 export default html`
   <axa-policy-features title="Our offers for you" variant="white">
     <axa-policy-features-item
       title="Car insurance"
-      icon=${carIcon}
+      icon=${CarSvg}
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Household contents insurance"
-      icon="${chairIcon}"
+      icon="${RockingChairSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Personal liability insurance: covered for damage to third parties"
-      icon="${glassIcon}"
+      icon="${BrokenGlassSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Legal protection insurance"
-      icon="${legalIcon}"
+      icon="${LegalSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Pillar 3 – private pension provision"
-      icon="${handIcon}"
+      icon="${HandLeafSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Travel insurance"
-      icon="${globalIcon}"
+      icon="${GlobalSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="Rental guarantee"
-      icon="${keysIcon}"
+      icon="${KeysSvg}"
     ></axa-policy-features-item>
     <axa-policy-features-item
       title="All insurance"
-      icon="${contractIcon}"
+      icon="${ContractSvg}"
     ></axa-policy-features-item>
   </axa-policy-features>
 `;

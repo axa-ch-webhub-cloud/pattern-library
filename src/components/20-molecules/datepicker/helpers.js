@@ -1,4 +1,4 @@
-import { range } from './utils/date';
+import { range } from './utils/date.js';
 
 export const shouldMove = elem => {
   const element = elem.getBoundingClientRect();

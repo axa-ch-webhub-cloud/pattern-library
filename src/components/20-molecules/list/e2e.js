@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../utils/e2e-helpers.cjs';
 
 const getListItemComputedStyle = async page =>
   page.locator('text=Lorem ipsum').evaluate(el => window.getComputedStyle(el));

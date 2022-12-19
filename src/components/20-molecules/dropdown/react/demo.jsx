@@ -1,5 +1,5 @@
 import React from 'react';
-import { createReactContainer } from '../../../../utils/create-react-container';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';

@@ -1,6 +1,6 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
+import './index.wc.js';
 
 const selectedLanguageKey = '-';
 

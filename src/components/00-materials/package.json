@@ -5,10 +5,15 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/00-materials/#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
+  "exports": {
+    "./icons": "./icons/index.js",
+    "./icons/material-design": "./icons/material-design/index.js",
+    "./images": "./images/index.js"
+  },
   "scripts": {
     "build-icons": "rm -rf ./icons-raw/.tmp && svgo --quiet --disable=removeViewBox -f icons-raw -r -o icons-raw/.tmp",
     "build-images": "rm -rf ./images-raw/.tmp && svgo --quiet --disable=removeViewBox --config 'svgo-config.json' -f images-raw -r -o images-raw/.tmp",
-    "build": "node scripts/export-svg",
+    "build": "node scripts/export-svg.cjs",
     "genPackagelock": "npm i --package-lock-only"
   },
   "files": [

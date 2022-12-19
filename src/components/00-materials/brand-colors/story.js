@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import '../../10-atoms/heading';
-import '../../10-atoms/text';
+import '../../10-atoms/heading/index.wc.js';
+import '../../10-atoms/text/index.wc.js';
 import styles from '../story.scss';
 
 const colors = __COLORS_SCSS_AS_STRING__;

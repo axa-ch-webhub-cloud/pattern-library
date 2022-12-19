@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../../utils/e2e-helpers.cjs';
 
 test.describe('file-upload: onValidityChange', () => {
   test(`should add file trigger onValidityChange and show error message`, async ({

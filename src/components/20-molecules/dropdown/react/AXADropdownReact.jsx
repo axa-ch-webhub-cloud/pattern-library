@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXADropdownReact from '../index.react';
+import createAXADropdownReact from '../index.react.js';
 
 const AXADropdownReact = createAXADropdownReact(createElement);
 

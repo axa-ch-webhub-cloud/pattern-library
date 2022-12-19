@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { getWeekdays } from './utils/date';
-import { parseAndFormatAllowedYears } from './helpers';
+import { getWeekdays } from './utils/date.js';
+import { parseAndFormatAllowedYears } from './helpers.js';
 
 describe('Datepicker unit tests', () => {
   it('should return correct month names with English abreviations', () => {

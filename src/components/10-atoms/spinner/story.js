@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
-import './index';
+import './index.wc.js';
 
 const colors = {
   default: '',

@@ -1,5 +1,5 @@
-import withReact from '../../../utils/with-react';
-import AXACommercialHeroBanner from './index';
+import withReact from '../../../utils/with-react.js';
+import AXACommercialHeroBanner from './index.wc.js';
 
 export default (createElement, version) =>
   withReact(createElement, AXACommercialHeroBanner, version);

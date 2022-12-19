@@ -10,20 +10,14 @@
   "exports": {
     ".": "./lib/index.js"
   },
-  "directories": {
-    "lib": "lib"
-  },
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "prepublishOnly": "../../../../scripts/build/prepublish.js",
-    "build": "rollup --silent --config ../../../../rollup.config.js --bundleConfigAsCjs",
-    "postpublish": "../../../../scripts/build/postpublish.js",
-    "watch": "rollup --watch --silent --config ../../../../rollup.config.js",
+    "build": "rollup --silent --config ../../../../rollup.config.cjs",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.cjs",
     "genPackagelock": "npm i --package-lock-only"
   },
-  "files": [
-    "lib",
-    "dist"
-  ],
   "publishConfig": {
     "access": "public"
   },

@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../text';
-import '../input-text/index';
+import './index.wc.js';
+import '../text/index.wc.js';
+import '../input-text/index.wc.js';
 
 export default {
   title: 'Examples/Button',

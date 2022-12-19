@@ -1,5 +1,5 @@
 import React from 'react';
-import { createReactContainer } from '../../../utils/create-react-container';
+import { createReactContainer } from '../../../utils/create-react-container.jsx';
 import dependents from '../../../../dependents/data/dependents-analyse.json';
 import '../../../components/10-atoms/text';
 import '../../../components/10-atoms/heading';

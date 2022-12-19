@@ -1,7 +1,7 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../text';
+import './index.wc.js';
+import '../text/index.wc.js';
 
 export default {
   title: 'Examples/Input text/Pure HTML',

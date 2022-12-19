@@ -1,8 +1,8 @@
 import { html } from 'lit';
-import { args, argTypes } from './story.args';
+import { args, argTypes } from './story.args.js';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
-import './index';
+import './index.wc.js';
 
 export default {
   title: 'Components/Accordion',

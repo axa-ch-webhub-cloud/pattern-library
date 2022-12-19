@@ -1,10 +1,10 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps';
-import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren';
-import DemoUpdateLabelChildren from './DemoUpdateLabelChildren';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import DemoCheckboxCallbackProps from './DemoCheckboxCallbackProps.jsx';
+import DemoCheckboxLabelAsChildren from './DemoCheckboxLabelAsChildren.jsx';
+import DemoUpdateLabelChildren from './DemoUpdateLabelChildren.jsx';
 
 export default {
   title: 'Examples/Checkbox/React',

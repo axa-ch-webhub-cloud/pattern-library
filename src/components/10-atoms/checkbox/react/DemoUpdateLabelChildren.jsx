@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AXACheckbox from './AXACheckboxReact';
+import AXACheckbox from './AXACheckboxReact.jsx';
 
 export const App = () => {
   const [rerenders, setRerenders] = useState(1);

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
-import PLCallout from '../../utils/callout/index.react';
-import PLContactFooter from '../../utils/contact-footer/index.react';
-import { createReactContainer } from '../../../../utils/create-react-container';
+import PLCallout from '../../utils/callout/index.react.js';
+import PLContactFooter from '../../utils/contact-footer/index.react.js';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
 import { AXAHeading, AXAText } from './plib-components';
 import styles from './index.scss';
 
@@ -105,7 +105,7 @@ export const GettingStarted = () =>
           style={String.prototype.trimRight ? style : undefined}
         >
           {`import { createElement } from 'react';
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch/button/lib/index.react.js';
 const AXAButtonReact = createAXAButtonReact(createElement);
 export default AXAButtonReact;`}
         </ReactSyntaxHighlighter>

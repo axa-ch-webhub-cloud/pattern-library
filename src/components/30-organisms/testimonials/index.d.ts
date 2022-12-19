@@ -1,0 +1,16 @@
+import React from 'react';
+
+export interface AXATestimonialsProps {
+  title?: string;
+  subtitle?: string;
+  autorotatedisabled?: boolean;
+  autorotatetime?: number;
+  showallinline?: boolean;
+  keysenabled?: boolean;
+  children?: React.ReactNode;
+}
+
+declare function createAXATestimonialsReact(
+  createElement: typeof React.createElement,
+  version?: string
+): React.ComponentType<AXATestimonialsProps>;

@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import { args, argTypes } from './story.args';
-import './index';
+import { args, argTypes } from './story.args.js';
+import './index.wc.js';
 
 export default {
   title: 'Components/Input File',

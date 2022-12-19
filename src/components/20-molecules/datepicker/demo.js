@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../../10-atoms/button';
+import './index.wc.js';
+import '../../10-atoms/button/index.wc.js';
 
 export default {
   title: 'Examples/Datepicker/Pure HTML',

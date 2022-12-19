@@ -184,8 +184,8 @@ const createFiles = (store, a, m, o, done) => () => {
   fs.writeFileSync(
     `${BASE_FOLDER}/index.react.js`,
     outdent`
-    import withReact from '../../../utils/with-react';
-    import ${className} from './index';
+    import withReact from '../../../utils/with-react.js';
+    import ${className} from './index.js';
 
     export default (createElement, version) =>
       withReact(createElement, ${className}, version);
@@ -240,10 +240,10 @@ const createFiles = (store, a, m, o, done) => () => {
     `${BASE_FOLDER}/story.js`,
     outdent`
     import { html } from 'lit';
-    import { args, argTypes } from './story.args';
+    import { args, argTypes } from './story.args.js';
     import changelog from './CHANGELOG.md';
     import readme from './README.md';
-    import './index';
+    import './index.js';
 
     export default {
       title: 'Components',
@@ -287,7 +287,7 @@ const createFiles = (store, a, m, o, done) => () => {
     `${BASE_FOLDER}/e2e.js`,
     outdent`
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../utils/e2e-helpers.cjs';
 
 test.describe('${compTitle}', () => {
   test('should render', async ({ page }) => {
@@ -313,8 +313,8 @@ test.describe('${compTitle}', () => {
     import {
       defineVersioned,
       /* versionedHtml, */
-    } from '../../../utils/component-versioning';
-    import applyDefaults from '../../../utils/apply-defaults';
+    } from '../../../utils/component-versioning.js';
+    import applyDefaults from '../../../utils/apply-defaults.js';
     import styles from './index.scss';
 
     class ${className} extends LitElement {

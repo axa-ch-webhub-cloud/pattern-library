@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../utils/e2e-helpers.cjs';
 
 test.describe('modal', () => {
   test('should open modal', async ({ page }) => {

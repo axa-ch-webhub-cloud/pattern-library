@@ -1,6 +1,6 @@
 import React from 'react';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import { model } from '../story.args';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import { model } from '../story.args.js';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATableSortableReact from './AXATableSortableReact';

@@ -1,3 +1,8 @@
+## 9.0.0
+
+- Remove dist build
+- Named Export
+
 ## 8.2.2
 
 Improve `onClick` type with `AXAMouseEvent`

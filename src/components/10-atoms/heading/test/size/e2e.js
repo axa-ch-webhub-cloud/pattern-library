@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../utils/e2e-helpers.cjs';
 import {
   headlinesDesktop,
   headlinesMobile,
   marginTopAndBottom,
   fontFamilyPrimary,
   getHeadingStyles,
-} from './e2e.helpers';
+} from './e2e.helpers.js';
 
 test.describe('heading: size:desktop', () => {
   for (const size of Object.keys(headlinesDesktop)) {

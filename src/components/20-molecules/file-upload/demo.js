@@ -1,9 +1,9 @@
 import { html, render } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../../10-atoms/button';
-import '../../10-atoms/text';
+import './index.js';
+import '../../10-atoms/button/index.wc.js';
+import '../../10-atoms/text/index.wc.js';
 
 export default {
   title: 'Examples/File Upload/Pure HTML',

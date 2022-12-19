@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-import { fixtureURL } from '../../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../../utils/e2e-helpers.cjs';
 
 test.describe('input-text react: basic', () => {
   test('should fire onKeyDown callback on user input', async ({ page }) => {

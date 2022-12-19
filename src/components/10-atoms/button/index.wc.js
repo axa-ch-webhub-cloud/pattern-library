@@ -1,13 +1,11 @@
 import { html, css, unsafeCSS, LitElement } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-
 import AXAIcon from '@axa-ch/icon';
-
-import applyDefaults from '../../../utils/apply-defaults';
+import applyDefaults from '../../../utils/apply-defaults.js';
 import {
   defineVersioned,
   versionedHtml,
-} from '../../../utils/component-versioning';
+} from '../../../utils/component-versioning.js';
 import buttonCSS from './index.scss';
 
 const ARROW_RIGHT = 'arrow-right';

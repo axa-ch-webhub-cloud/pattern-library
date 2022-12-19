@@ -1,6 +1,6 @@
 import React from 'react';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import { args, argTypes } from '../story.args';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import { args, argTypes } from '../story.args.js';
 import readme from '../README.md';
 import changelog from '../CHANGELOG.md';
 import AXAAccordion from './AXAAcordion';

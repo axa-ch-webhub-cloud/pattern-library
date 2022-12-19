@@ -1,6 +1,6 @@
 import { ClientFunction, Selector } from 'testcafe';
 import { DatePickerAccessor } from './test.accessor';
-import { range, parseLocalisedDateIfValid } from './utils/date';
+import { range, parseLocalisedDateIfValid } from './utils/date.js';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 

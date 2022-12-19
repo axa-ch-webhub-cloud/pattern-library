@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../../utils/e2e-helpers.cjs';
 
 test.describe('button react: dynamic', () => {
   test('should change text on state change', async ({ page }) => {

@@ -1,4 +1,4 @@
-import { iconList } from '../../10-atoms/icon/icon-list';
+import { iconList } from '../../10-atoms/icon/icon-list.js';
 
 export const args = {
   width: '455px',

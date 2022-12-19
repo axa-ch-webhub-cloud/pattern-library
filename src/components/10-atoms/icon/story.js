@@ -1,8 +1,8 @@
 import { html } from 'lit';
-import { iconList } from './icon-list';
+import { iconList } from './icon-list.js';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import AXAIcon from './index';
+import AXAIcon from './index.wc.js';
 
 const loadIconTypes = {
   'Named property': 'prop',

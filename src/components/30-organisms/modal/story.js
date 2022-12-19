@@ -1,10 +1,10 @@
 import { html } from 'lit';
 import readme from './README.md';
 import changelog from './CHANGELOG.md';
-import '../../10-atoms/text';
-import '../../10-atoms/heading';
-import '../../10-atoms/button';
-import './index';
+import '../../10-atoms/text/index.wc.js';
+import '../../10-atoms/heading/index.wc.js';
+import '../../10-atoms/button/index.wc.js';
+import './index.wc.js';
 
 export default {
   title: 'Components/Modal',

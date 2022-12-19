@@ -1,7 +1,7 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
 import DemoDatepickerExternalValidation from './DemoDatepickerExternalValidation';
 import DemoDatepickerNoInputfield from './DemoDatepickerNoInputfield';
 import DemoDatepickerOnDateChange from './DemoDatepickerOnDateChange';

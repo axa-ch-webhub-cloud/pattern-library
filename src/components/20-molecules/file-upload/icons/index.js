@@ -1,1 +1,1 @@
-export * from './icon-set/index';
+export * from './icon-set/index.js';

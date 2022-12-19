@@ -1,11 +1,11 @@
 import { html } from 'lit';
 import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
-import { args, argTypes } from './story.args';
+import { args, argTypes } from './story.args.js';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../text';
-import '../fieldset';
+import './index.wc.js';
+import '../text/index.wc.js';
+import '../fieldset/index.wc.js';
 
 export default {
   title: 'Components/Radio',

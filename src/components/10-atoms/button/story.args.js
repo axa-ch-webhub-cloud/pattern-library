@@ -1,4 +1,4 @@
-import { iconList } from '../icon/icon-list';
+import { iconList } from '../icon/icon-list.js';
 
 const variants = {
   default: '',

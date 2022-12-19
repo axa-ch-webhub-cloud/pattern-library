@@ -36,7 +36,7 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
-    "@axa-ch/materials": "latest",
+    "@axa-ch/materials": "file:src/components/00-materials",
     "blueimp-canvas-to-blob": "^3.29.0",
     "date-fns": "^2.28.0",
     "lit": "^2.2.1"
