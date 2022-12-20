@@ -1,8 +1,8 @@
-## 5.2.8
+## 5.1.8
 
 Fixes: react 18 cursor jump #2373
 
-## 5.2.7
+## 5.1.7
 
 Improve type of `onChange` event with `AXATextareaChangeEvent`
 
