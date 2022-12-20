@@ -1,10 +1,10 @@
 import React from 'react';
 import { createReactContainer } from '../../../utils/create-react-container.jsx';
 import dependents from '../../../../dependents/data/dependents-analyse.json';
-import '../../../components/10-atoms/text';
-import '../../../components/10-atoms/heading';
-import '../../../components/20-molecules/accordion';
-import '../../../components/20-molecules/list';
+import '../../../components/10-atoms/text/index.wc.js';
+import '../../../components/10-atoms/heading/index.wc.js';
+import '../../../components/20-molecules/accordion/index.wc.js';
+import '../../../components/20-molecules/list/index.wc.js';
 import styles from './dependents.scss';
 
 export default {
