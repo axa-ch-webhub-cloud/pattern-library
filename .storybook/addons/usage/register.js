@@ -31,14 +31,6 @@ const MyPanel = () => {
   return (
     <div className="markdown-body" style={{ margin: '15px' }}>
       <h2 id="usage">{componentName}</h2>
-      <p>
-        <strong>Important:</strong> If this component needs to run in Internet
-        Explorer 11,{' '}
-        <a href="https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill">
-          you need to use our polyfill
-        </a>
-        .
-      </p>
       <pre>
         <code className="language-bash">
           npm install @axa-ch/{PURE_HTML_TAG}
