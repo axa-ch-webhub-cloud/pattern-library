@@ -3,7 +3,6 @@ import { createReactContainer } from '../../../../utils/create-react-container';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import DemoDropdownReact from './DemoDropdownReact';
-// import DemoDropdownVersionedReact from './DemoDropdownVersionedReact';
 import DemoFocussableDropdownReact from './DemoFocussableDropdownReact';
 import DemoManyOptionsDropdownReact from './DemoManyOptionsReact';
 
@@ -25,6 +24,3 @@ export const DropdownManyOptions = () =>
 
 export const DropdownReactComponent = () =>
   createReactContainer(<DemoDropdownReact />);
-
-// export const DropdownVersionedReactComponent = () =>
-//   createReactContainer(<DemoDropdownVersionedReact />);
