@@ -1,6 +1,8 @@
 import { html } from 'lit';
 import defineOnce from './define-once';
 
+/* eslint max-classes-per-file: ["error", 3] */
+
 // constants
 const RESERVED_CHARACTER = '{'; // not allowed in HTML tags or their attributes ...
 // and also not part of static template strings due to ${...} syntax!
@@ -60,62 +62,108 @@ const rewrite = (someStrings, aTagName, aVersion) =>
 // API functions
 // ///
 
-// examples:
-//           defineVersioned([AXADatepicker],  __ VERSION_INFO__); // main component
-//           defineVersioned([AXADropdown],  __ VERSION_INFO__, this); // dependent component
-//           defineVersioned([AXACheckbox], 'rsv'); // custom version
-const defineVersioned = (dependencies, versionInfo, parentInstance) => {
-  // set up
-  const customVersion = typeof versionInfo === 'string' && versionInfo;
-  let versionedTagName = '';
-  // process all dependant components that it lists...
-  dependencies.forEach(dependency => {
-    const componentClass =
-      dependency instanceof HTMLElement ? dependency.constructor : dependency;
-    // extract each dependant component's version
-    const { tagName } = componentClass;
-    const externalVersion = !customVersion && versionInfo[tagName];
-    // ordinary, non-POD versioning?
-    if (externalVersion) {
-      // yes, first time versioning/registration of this component, but its class
-      // contains a PL-reserved 'versions' property?
-      if (!window.customElements.get(tagName) && componentClass.versions) {
-        // yes, this class is wrongly implemented - premature exit
-        throw Error(
-          `'versions' is a reserved class property, but was found in ${tagName}'s class`
-        );
-      }
-      // inject version info into component-defining class - this helps for live debugging
-      componentClass.versions = externalVersion;
-      // define its *unversioned*-tag variant first
-      defineOnce(tagName, componentClass);
-    }
-    // extract each dependant component's version,
-    let { versions } = componentClass;
-    // If there is no version found, use the wrapping custom-element's version
-    if (!versions && parentInstance) {
-      // returns an array containing one object, which contains the tagname of the parent as key and its deployed version as value
-      versions = versionInfo[parentInstance.constructor.tagName];
-      // extract the one item in the versions array and get only the version as string
-      // eslint-disable-next-line prefer-destructuring
-      versions[tagName] = Object.values(versions)[0];
-    }
-    // assembling a new, versioned name,
-    const version = customVersion || versions[tagName];
-    versionedTagName = versionedTag(tagName, version);
-    // and redundantly defining
-    //     versionedTagName |-> dependentComponentClass'
-    // in parallel to the existing unversioned definition
-    //     tagName |-> dependentComponentClass
-    //
-    // Note: the class expression formally creates a *new* dependentComponentClass' with identical behaviour,
-    // which is needed to get around a bi-uniqueness constraint imposed by the
-    // custom-elements registry, cf. https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define
-    // under section Exceptions:NotSupportedError)
-    defineOnce(versionedTagName, class extends componentClass {});
-  });
+// There are 3 supported modes for invoking defineVersioned:
+//           1. defineVersioned([AXADatepicker],  __VERSION_INFO__); // define main component, unversioned+versioned
+//           - here the dependencies array is always of length 1, and the outermost version-info key is
+//           - identical to the component-class tag name. This mode is used at the end of any component's index.js.
+//
+//           2. defineVersioned([AXADropdown],  __VERSION_INFO__, this); // dependent component(s), versioned
+//           - here the dependencies array may be of length > 1, and the outermost version-info key is identical
+//           - to the tag name of the component instance referenced by this. This mode is used at the end of the constructor
+//           - of a component.
+//
+//           3. defineVersioned([AXACheckbox], 'rsv'); // custom version (here: 'rsv'), versioned.
+//           -  here the dependencies array may be of length > 1, containing component classes only, and every such class
+//           - is defined with their tagname plus -customVersion appended. This mode is used in utils/with-react.js.
 
-  return versionedTagName; // for convenience in single-component custom-versioned definitions
+// Here is a typical example of how __VERSION_INFO__ is instantiated:
+//
+//           {"axa-datepicker":{"axa-datepicker":"17.0.5","axa-dropdown":"11.0.5"}}
+//
+// Note how the version-info object needs to be dereferenced *twice* using the main-component tag name of 'axa-datepicker' to arrive
+// at its NPM version string '17.0.5'. The peculiar way the version-info object is structured is so that both modes 1 and 2 are
+// supported, and that the signatures of all modes are easy to use at the relevant places in the code.
+
+const defineVersionedMainComponent = (
+  customElementClass,
+  versionInfoObject
+) => {
+  // extract tag name from class
+  const { tagName } = customElementClass;
+  // dereference version info *twice* to get NPM version of main component
+  const npmVersion = versionInfoObject[tagName][tagName];
+  // build npm-versioned tag name
+  const npmVersionedTagName = versionedTag(tagName, npmVersion);
+  // define unversioned custom element in global registry
+  defineOnce(tagName, customElementClass);
+  // define versioned custom element in global registry, using a unique new class with same behaviour
+  defineOnce(npmVersionedTagName, class extends customElementClass {});
+};
+
+const defineCustomVersionedComponents = (
+  customElementClasses,
+  versionInfoString
+) => {
+  let customVersionedTagName;
+  customElementClasses.forEach(customElementClass => {
+    // extract tag name from class
+    const { tagName } = customElementClass;
+    // build custom-versioned tag name
+    customVersionedTagName = versionedTag(tagName, versionInfoString);
+    // define versioned custom element in global registry, using a unique new class with same behaviour
+    defineOnce(customVersionedTagName, class extends customElementClass {});
+  });
+  // report the new tag name to the caller for convenience - relevant only in *single-component* custom-versioned definitions (primary use case: withReact)
+  return customVersionedTagName;
+};
+
+const defineVersionedDependentComponents = (
+  customElementClasses,
+  versionInfoObject,
+  instance
+) => {
+  // derive main-component class from instance
+  const mainComponentClass = instance.constructor;
+  // extract tag name from class
+  const { tagName } = mainComponentClass;
+  // dereference version-info object using the tag name to get dependents' version-info bundle
+  const dependentsVersionInfoObject = versionInfoObject[tagName];
+  // do we erroneously already have a 'versions' property in this class?
+  if (!window.customElements.get(tagName) && mainComponentClass.versions) {
+    // yes, this class is wrongly implemented - premature exit
+    throw Error(
+      `'versions' is a reserved class property, but was found in ${tagName}'s class`
+    );
+  }
+  // inject version info into component-defining class - this is needed by extractDependencies(..) above and also helps for live debugging
+  mainComponentClass.versions = dependentsVersionInfoObject;
+  // process all classes, interpreted as dependents...
+  customElementClasses.forEach(customElementClass => {
+    // extract tag name from class
+    const { tagName: dependentTagName } = customElementClass;
+    // dereference version info to get NPM version
+    const npmVersion = dependentsVersionInfoObject[dependentTagName];
+    // build npm-versioned tag name
+    const npmVersionedTagName = versionedTag(dependentTagName, npmVersion);
+    // define versioned custom element in global registry, using a unique new class with same behaviour
+    defineOnce(npmVersionedTagName, class extends customElementClass {});
+  });
+};
+
+const defineVersioned = (customElementClasses, versionInfo, instance) => {
+  // classify modes:
+  // mode 1?
+  if (instance)
+    return defineVersionedDependentComponents(
+      customElementClasses,
+      versionInfo,
+      instance
+    );
+  // mode 2?
+  if (typeof versionInfo === 'string')
+    return defineCustomVersionedComponents(customElementClasses, versionInfo);
+  // mode 3!
+  return defineVersionedMainComponent(customElementClasses[0], versionInfo);
 };
 
 // prettier-ignore

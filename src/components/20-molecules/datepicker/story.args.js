@@ -4,7 +4,7 @@ export const args = {
   year: 2020,
   month: 4,
   day: 22,
-  allowedyears: ['1971-2000', 2012, 2014, '2018-2022'],
+  allowedyears: ['1971-2000', 2012, 2014, '2018-2022', 2023],
   disabled: false,
   autofocus: false,
   checkMark: false,

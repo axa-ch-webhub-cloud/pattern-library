@@ -39,7 +39,7 @@ test('should convert the mixed input values (numbers and ranges) from allowedyea
 
   const expected = range(1971, 2000)
     .concat([2012, 2014])
-    .concat(range(2018, 2022))
+    .concat(range(2018, 2023))
     .reverse()
     .map(year => ({
       selected: year === 2020,
@@ -830,7 +830,7 @@ test('should have no minimum width', async t => {
 });
 
 fixture('Datepicker no next month').page(
-  `${host}/iframe.html?args=year:2022;month:11;day:15&id=components-datepicker--datepicker&viewMode=story`
+  `${host}/iframe.html?args=year:2023;month:11;day:15&id=components-datepicker--datepicker&viewMode=story`
 );
 
 test('Should disable next button.', async t => {
