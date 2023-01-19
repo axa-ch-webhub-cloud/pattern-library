@@ -69,7 +69,7 @@ Example on how to use it as a React-ified component:
 
 ```js
 import React, { Component, createElement } from 'react';
-import createAXATable from '@axa-ch/table/lib/index.react';
+import createAXATable from '@axa-ch/table/lib/index.react.js';
 
 import logo from './logo.svg';
 import './App.css';

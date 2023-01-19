@@ -1,6 +1,6 @@
 import { css, html, unsafeCSS } from 'lit';
-import defineOnce from '../../../../utils/define-once';
-import NoShadowDOM from '../../../../utils/no-shadow';
+import defineOnce from '../../../../utils/define-once.js';
+import NoShadowDOM from '../../../../utils/no-shadow.js';
 import styles from './index.scss';
 
 const INTERNAL_LINK = `${window.location.href.replace(

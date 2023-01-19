@@ -5,18 +5,19 @@
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/container#readme",
   "license": "Copyright 2019 AXA Versicherungen AG",
-  "scripts": {
-    "prepublishOnly": "../../../../scripts/build/prepublish.js",
-    "build": "rollup --silent --config ../../../../rollup.config.js",
-    "build-dist": "rollup --silent --config ../../../../rollup.config.dist.js",
-    "postpublish": "../../../../scripts/build/postpublish.js",
-    "watch": "rollup --watch --silent --config ../../../../rollup.config.js",
-    "genPackagelock": "npm i --package-lock-only"
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
   },
   "files": [
-    "lib",
-    "dist"
+    "lib"
   ],
+  "scripts": {
+    "build": "rollup --silent --config ../../../../rollup.config.cjs",
+    "watch": "rollup --watch --silent --config ../../../../rollup.config.cjs",
+    "genPackagelock": "npm i --package-lock-only"
+  },
   "publishConfig": {
     "access": "public"
   },

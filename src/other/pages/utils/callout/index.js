@@ -1,5 +1,5 @@
 import { css, html, LitElement, unsafeCSS } from 'lit';
-import defineOnce from '../../../../utils/define-once';
+import defineOnce from '../../../../utils/define-once.js';
 import styles from './index.scss';
 
 class PLCallout extends LitElement {

@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXATopContentBar from '../index.react';
+import createAXATopContentBar from '../index.react.js';
 
 const AXATopContentBar = createAXATopContentBar(createElement);
 

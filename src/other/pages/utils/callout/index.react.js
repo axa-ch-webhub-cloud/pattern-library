@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import withReact from '../../../../utils/with-react';
-import PLCallout from './index';
+import withReact from '../../../../utils/with-react.js';
+import PLCallout from './index.js';
 
 export default withReact(createElement, PLCallout);

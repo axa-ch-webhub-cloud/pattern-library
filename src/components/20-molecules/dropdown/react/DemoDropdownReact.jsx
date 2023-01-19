@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AXADropdownReact from './AXADropdownReact';
 import AXACheckboxReact from '../../../10-atoms/checkbox/react/AXACheckboxReact';
-import findIndex from '../../../../utils/find-index';
+import findIndex from '../../../../utils/find-index.js';
 
 const DemoDropdown = () => {
   const items = [

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../utils/e2e-helpers.cjs';
 
 test.describe('toggle-switch: basic', () => {
   test('should set correct background-color to unchecked toggle-switch-slider', async ({

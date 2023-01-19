@@ -1,6 +1,7 @@
 import { createElement } from 'react';
-import { createAXAPolicyFeaturesItem } from '../index.react';
+import { createAXAPolicyFeaturesItemReact } from '../index.react.js';
 
-const AXAPolicyFeaturesItemReact = createAXAPolicyFeaturesItem(createElement);
+const AXAPolicyFeaturesItemReact =
+  createAXAPolicyFeaturesItemReact(createElement);
 
 export default AXAPolicyFeaturesItemReact;

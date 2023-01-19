@@ -1,9 +1,9 @@
 import React from 'react';
 import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
-import { args, argTypes } from '../story.args';
+import { args, argTypes } from '../story.args.js';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
 import AXAPolicyFeaturesItemReact from './AXAPolicyFeaturesItemReact';
 import AXAPolicyFeaturesReact from './AXAPolicyFeaturesReact';
 

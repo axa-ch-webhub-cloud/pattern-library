@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../utils/e2e-helpers.cjs';
 import {
   marginBottom,
   textsDesktop,
   textsMobile,
   fontFamilyPrimary,
   getTextStyles,
-} from './e2e.helpers';
+} from './e2e.helpers.js';
 
 test.describe('text: size:desktop', () => {
   for (const size of Object.keys(textsDesktop)) {

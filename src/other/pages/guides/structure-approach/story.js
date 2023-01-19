@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import '../../../../components/10-atoms/heading';
 import '../../../../components/10-atoms/text';
-import '../../utils/callout';
-import '../../utils/contact-footer';
+import '../../utils/callout/index.js';
+import '../../utils/contact-footer/index';
 import styles from './index.scss';
 
 export default {

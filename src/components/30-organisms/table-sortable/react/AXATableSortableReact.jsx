@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXATableSortable from '../index.react';
+import createAXATableSortable from '../index.react.js';
 
 const AXATableSortableReact = createAXATableSortable(createElement);
 

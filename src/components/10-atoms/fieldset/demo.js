@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../radio';
-import '../text';
+import './index.wc.js';
+import '../radio/index.wc.js';
+import '../text/index.wc.js';
 
 export default {
   title: 'Examples/Fieldset/Pure HTML',

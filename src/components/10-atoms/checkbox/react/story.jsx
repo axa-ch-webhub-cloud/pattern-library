@@ -1,10 +1,10 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import { args, argTypes } from '../story.args';
-import AXATextReact from '../../text/react/AXATextReact';
-import AXACheckboxReact from './AXACheckboxReact';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import { args, argTypes } from '../story.args.js';
+import AXATextReact from '../../text/react/AXATextReact.jsx';
+import AXACheckboxReact from './AXACheckboxReact.jsx';
 
 export default {
   title: 'Examples/Checkbox/React',

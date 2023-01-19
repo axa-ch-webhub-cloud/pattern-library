@@ -1,4 +1,4 @@
-import createRefId from '../../../utils/create-ref-id';
+import createRefId from '../../../utils/create-ref-id.js';
 
 export const args = {
   refId: `checkbox-${createRefId()}`,

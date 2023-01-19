@@ -18,7 +18,6 @@ const { gatherAllVersions } = require(path.resolve(
   __dirname,
   '..',
   'scripts',
-  'build',
   'version_info.js'
 ));
 const stringifiedVersionInfo = gatherAllVersions(path.resolve(__dirname, '..'));

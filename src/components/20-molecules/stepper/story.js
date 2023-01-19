@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
+import './index.wc.js';
 
 export default {
   title: 'Components/Stepper',

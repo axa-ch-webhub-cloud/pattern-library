@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXADatepickerReact from '../index.react';
+import createAXADatepickerReact from '../index.react.js';
 
 const podNameAsVersionSuffix = 'rsv';
 

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../../utils/e2e-helpers.cjs';
 
 test.describe('link react: icon', () => {
   test('should be block element, if icon is present', async ({ page }) => {

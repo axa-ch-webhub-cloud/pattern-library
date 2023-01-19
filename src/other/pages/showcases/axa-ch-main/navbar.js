@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import axaLogo from '@axa-ch/materials/images/axa-logo.svg';
+import { AxaLogoSvg } from '@axa-ch/materials/images';
 
-const logo = unsafeHTML(axaLogo);
+const logo = unsafeHTML(AxaLogoSvg);
 
 const style = html`
   <style>

@@ -1,9 +1,9 @@
 import React from 'react';
 import readme from '../README.md';
 import changelog from '../CHANGELOG.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import DemoButtonClick from './DemoButtonClick';
-import DemoButtonForm from './DemoButtonForm';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import DemoButtonClick from './DemoButtonClick.jsx';
+import DemoButtonForm from './DemoButtonForm.jsx';
 
 export default {
   title: 'Examples/Button/React',

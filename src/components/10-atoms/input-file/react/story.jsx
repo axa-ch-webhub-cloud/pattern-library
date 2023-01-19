@@ -1,10 +1,10 @@
 import React from 'react';
-import { args, argTypes } from '../story.args';
+import { args, argTypes } from '../story.args.js';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXATextReact from '../../text/react/AXATextReact';
 import AXAInputFileReact from './AXAInputFileReact';
-import { createReactContainer } from '../../../../utils/create-react-container';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
 
 export default {
   title: 'Examples/Input File/React',

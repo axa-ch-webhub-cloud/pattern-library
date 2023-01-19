@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXATestimonialsReact from '../index.react';
+import createAXATestimonialsReact from '../index.react.js';
 
 const AXATestimonialsReact = createAXATestimonialsReact(createElement);
 

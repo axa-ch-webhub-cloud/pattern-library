@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Icon =
   | 'add'
   | 'arrow-left'
@@ -17,3 +19,13 @@ export type Icon =
   | String;
 
 export type Size = 'small' | 'medium' | 'large' | 'original';
+
+export interface AXAIconProps {
+  icon?: Icon;
+  size?: Size;
+}
+
+declare function createAXAIconReact(
+  createElement: typeof React.createElement,
+  version?: string
+): React.ComponentType<AXAIconProps>;

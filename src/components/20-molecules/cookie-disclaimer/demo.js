@@ -1,8 +1,8 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
-import '../../10-atoms/link';
-import '../../10-atoms/button';
+import './index.js';
+import '../../10-atoms/link/index.wc.js';
+import '../../10-atoms/button/index.wc.js';
 
 export default {
   title: 'Examples/Cookie Disclaimer/Pure HTML',

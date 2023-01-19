@@ -1,9 +1,9 @@
 import React from 'react';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import { args, argTypes, invertedBgs } from '../story.args';
-import AXAButton from './AXAButton';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import { args, argTypes, invertedBgs } from '../story.args.js';
+import AXAButton from './AXAButton.jsx';
 
 export default {
   title: 'Examples/Button/React',

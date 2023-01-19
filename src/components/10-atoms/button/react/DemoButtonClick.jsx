@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AXAButton from './AXAButton';
+import AXAButton from './AXAButton.jsx';
 
 const DemoButtonClick = () => {
   const [counter, setCounter] = useState(0);

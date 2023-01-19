@@ -1,6 +1,6 @@
 import { html } from 'lit';
-import '../../../components/10-atoms/heading';
-import '../../../components/10-atoms/text';
+import '../../../components/10-atoms/heading/index.wc.js';
+import '../../../components/10-atoms/text/index.wc.js';
 import styles from './index.scss';
 
 export default {

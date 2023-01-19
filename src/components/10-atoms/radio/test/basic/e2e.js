@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { fixtureURL } from '../../../../../utils/e2e-helpers';
+import { fixtureURL } from '../../../../../utils/e2e-helpers.cjs';
 
 test.describe('radio: basic', () => {
   test('should only select one radio in a given group', async ({ page }) => {

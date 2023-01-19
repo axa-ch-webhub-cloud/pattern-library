@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import createAXALinkReact from '../index.react';
+import createAXALinkReact from '../index.react.js';
 
 const AXALinkReact = createAXALinkReact(createElement);
 

@@ -1,9 +1,9 @@
 import { html } from 'lit';
 import { repeat } from 'lit/directives/repeat.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import '../10-atoms/heading/index';
-import '../10-atoms/text/index';
-import '../10-atoms/button/index';
+import '../10-atoms/heading/index.js';
+import '../10-atoms/text/index.js';
+import '../10-atoms/button/index.js';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
 import styles from './story.scss';

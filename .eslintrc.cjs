@@ -39,7 +39,6 @@ module.exports = {
         devDependencies: [
           'scripts/**',
           'rollup.config.js',
-          'rollup.config.dist.js',
           'playwright.config.js',
           '**/story.{js,jsx}',
           '**/demo.{js,jsx}',

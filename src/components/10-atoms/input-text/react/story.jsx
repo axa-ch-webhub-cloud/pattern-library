@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { createReactContainer } from '../../../../utils/create-react-container';
-import { args, argTypes } from '../story.args';
+import { createReactContainer } from '../../../../utils/create-react-container.jsx';
+import { args, argTypes } from '../story.args.js';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';
 import AXAInputText from './AXAInputText';
