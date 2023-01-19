@@ -107,7 +107,7 @@ The attribute `onFileRemove` function executes, as soon as the user removed a fi
 
 ### allowedFileTypes
 
-In the allowedFileTypes attribute, you can declare the allowed file types that a user can upload (ex: only pdf's are allowed). If the attribute is empty, every file type is allowed. The allowed File types should be in the MIME Standard. The allowed file types should be separated by a "," for example text/plain, image/jpeg, image/png.
+In the `allowedFileTypes` attribute, you can declare the allowed file types that a user can upload (ex: only pdf's are allowed). If the attribute is empty, every file type is allowed. The allowed File types should be in the MIME Standard. The allowed file types should be separated by a `,` for example `text/plain, image/jpeg, image/png`.
 
 ### invalid
 
