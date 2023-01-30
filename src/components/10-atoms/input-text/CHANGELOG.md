@@ -1,3 +1,7 @@
+## 6.5.0
+
+Add HTML `min` and `max`props
+
 ## 6.4.0
 
 Add `onPaste` callback prop #2391
