@@ -38,6 +38,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       modelCounter: { type: String },
       counter: { type: String },
       counterMax: { type: String },
+      min: { type: String },
+      max: { type: String },
       maxLength: {
         /**
          * Only create a Number when there is an actual value passed. If an
@@ -322,6 +324,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
       disabled,
       isReact,
       maxLength = '',
+      min,
+      max,
       invalid,
       readonly,
       invalidFormat,
@@ -372,6 +376,8 @@ class AXAInputText extends AXAPopupMixin(NoShadowDOM) {
           placeholder="${placeholder}"
           aria-required="${required}"
           maxlength="${maxLength}"
+          ?min="${min}"
+          ?max="${max}"
           pattern="${pattern}"
           inputmode="${inputmode}"
           ?disabled="${disabled}"
