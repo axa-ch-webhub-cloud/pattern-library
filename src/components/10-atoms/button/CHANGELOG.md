@@ -1,3 +1,7 @@
+## 8.2.3
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 8.2.2
 
 Improve `onClick` type with `AXAMouseEvent`

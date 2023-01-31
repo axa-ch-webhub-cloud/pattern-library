@@ -1,3 +1,7 @@
+## 7.0.7
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 7.0.6 
 
 Improve checkbox types, event param names always `event` #2344

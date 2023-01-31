@@ -1,3 +1,7 @@
+## 2.0.7
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 2.0.6
 
 Improve input-phone types, event param names always `event` #2344

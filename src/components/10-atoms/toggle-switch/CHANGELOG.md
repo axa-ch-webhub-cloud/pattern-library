@@ -1,3 +1,7 @@
+## 5.0.2
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 5.0.1
 
 - Fixed the attribute type name `active` to `checked`.

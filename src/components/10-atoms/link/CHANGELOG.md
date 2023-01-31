@@ -1,3 +1,7 @@
+## 8.0.2
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 8.0.1
 
 Improve link types, event param names always `event` #2344

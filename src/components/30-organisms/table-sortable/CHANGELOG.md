@@ -1,3 +1,7 @@
+## 5.1.5
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 5.1.4
 
 Rename callback prop `onClick`'s parameter type `event` to `item` #2341

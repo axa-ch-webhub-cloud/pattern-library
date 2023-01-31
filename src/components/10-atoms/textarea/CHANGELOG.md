@@ -1,3 +1,7 @@
+## 5.1.9
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 5.1.8
 
 Fixes: react 18 cursor jump #2373

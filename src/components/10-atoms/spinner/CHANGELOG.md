@@ -1,3 +1,7 @@
+## 3.0.10
+
+Re-release due to component-versioning code improvements/bugfixes
+
 ## 3.0.9
 
 Add missing color type in documentation.
