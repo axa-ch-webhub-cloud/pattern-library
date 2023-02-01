@@ -111,7 +111,7 @@ class AXAModal extends InlineStyles {
     this.inlineStyles('resetHeadingCss');
 
     // add eventListener to close modal when pressing outside the modal
-    document.body.addEventListener('click', ev => {
+    document.body.addEventListener('mousedown', ev => {
       this.mouseCloseHandler(ev);
     });
     // add eventListener to close modal when pressing esc
