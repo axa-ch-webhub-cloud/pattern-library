@@ -95,7 +95,7 @@
     "sass": "^1.52.3",
     "sass-loader": "^13.0.0",
     "svgo": "^2.8.0",
-    "testcafe": "1.19.0",
+    "testcafe": "2.3.0",
     "vitest": "^0.16.0",
     "wait-on": "^6.0.1",
     "webpack": "^5.72.1"
