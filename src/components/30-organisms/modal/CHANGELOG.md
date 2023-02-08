@@ -1,3 +1,7 @@
+## 4.0.10
+
+Change mouse close handler event listener.
+
 ## 4.0.6
 
 Improve modal types, event param names always `event` #2344
