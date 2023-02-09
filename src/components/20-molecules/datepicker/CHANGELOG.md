@@ -1,3 +1,7 @@
+## 17.1.5
+
+Migrate some flaky tests to playwright #2409
+
 ## 17.1.3
 
 Add optional type `name`
