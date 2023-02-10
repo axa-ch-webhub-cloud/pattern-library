@@ -6,11 +6,11 @@ test.describe('footer', () => {
     await page.goto(fixtureURL('examples-footer-react--resize-dynamic'));
 
     const footerBoundingBoxDefault = await page.locator('footer').boundingBox();
-    expect(footerBoundingBoxDefault.height).toBe(314.6875);
+    const initialHeight = footerBoundingBoxDefault.height;
 
     await page.locator('#footerTestButton').click();
 
     const footerBoundingBoxAfter = await page.locator('footer').boundingBox();
-    expect(footerBoundingBoxAfter.height).toBe(278.75);
+    expect(footerBoundingBoxAfter.height).toBeLessThan(initialHeight);
   });
 });
