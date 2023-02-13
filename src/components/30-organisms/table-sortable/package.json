@@ -30,7 +30,5 @@
   "dependencies": {
     "@axa-ch/table": "5.0.10",
     "lit": "^2.2.1"
-  },
-  "gitHead": "a7fa025882096101821fbd414f6b4c04e65e4131",
-  "main": "lib/index.js"
+  }
 }
