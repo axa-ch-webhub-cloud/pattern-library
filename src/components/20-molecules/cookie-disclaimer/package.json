@@ -31,5 +31,7 @@
     "@axa-ch/button": "8.2.4",
     "@axa-ch/container": "5.0.10",
     "lit": "^2.2.1"
-  }
+  },
+  "gitHead": "a7fa025882096101821fbd414f6b4c04e65e4131",
+  "main": "lib/index.js"
 }
