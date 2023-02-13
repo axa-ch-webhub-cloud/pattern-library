@@ -1,3 +1,7 @@
+## 5.0.10
+
+Re-release after fixing component-versioning bug.
+
 ## 5.0.6
 
 Improve radio types, event param names always `event` #2344

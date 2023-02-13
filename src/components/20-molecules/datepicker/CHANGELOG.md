@@ -1,3 +1,7 @@
+## 17.1.5
+
+Re-release after fixing component-versioning bug.
+
 ## 17.1.3
 
 Add optional type `name`

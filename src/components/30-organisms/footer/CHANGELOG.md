@@ -1,3 +1,7 @@
+## 6.0.11
+
+Re-release after fixing component-versioning bug.
+
 ## 6.0.6
 
 Improve footer types, event param names always `event` #2344
