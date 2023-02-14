@@ -1,3 +1,7 @@
+## 6.1.4
+
+Re-release after fixing component-versioning bug.
+
 ## 6.0.6
 
 Improve cookie-disclaimer types, event param names always `event` #2344

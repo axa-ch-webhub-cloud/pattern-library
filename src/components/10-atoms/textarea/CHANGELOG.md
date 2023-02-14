@@ -1,3 +1,7 @@
+## 5.1.9
+
+Re-release after fixing component-versioning bug.
+
 ## 5.1.8
 
 Fixes: react 18 cursor jump #2373

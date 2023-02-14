@@ -1,3 +1,7 @@
+## 12.0.3
+
+Re-release after fixing component-versioning bug.
+
 ## 12.0.0
 
 Breaking change: Simplify callback prop `onChange`'s parameter value, see the ["onChange" section in the readme](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/dropdown#onchange) for details. #2341
