@@ -1,3 +1,7 @@
+## 8.1.2
+
+Re-release after fixing component-versioning bug.
+
 ## 8.1.1
 
 - fixes type onValidityChange to optional
