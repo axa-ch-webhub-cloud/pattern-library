@@ -1,6 +1,6 @@
 ## 4.0.10
 
-Change mouse close handler event listener.
+Change mouse close handler event listener. #2414
 
 ## 4.0.6
 
