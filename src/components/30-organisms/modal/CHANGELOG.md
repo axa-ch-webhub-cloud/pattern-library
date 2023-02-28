@@ -1,3 +1,7 @@
+## 4.0.11
+
+Change mouse close handler event listener. #2414
+
 ## 4.0.10
 
 Re-release after fixing component-versioning bug.
