@@ -1,3 +1,7 @@
+## 6.4.1
+
+Re-release after fixing component-versioning bug.
+
 ## 6.4.0
 
 Add `onPaste` callback prop #2391

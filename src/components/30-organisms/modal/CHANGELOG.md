@@ -1,3 +1,11 @@
+## 4.0.11
+
+Change mouse close handler event listener. #2414
+
+## 4.0.10
+
+Re-release after fixing component-versioning bug.
+
 ## 4.0.6
 
 Improve modal types, event param names always `event` #2344

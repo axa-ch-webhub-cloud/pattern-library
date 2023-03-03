@@ -1,3 +1,7 @@
+## 1.2.6
+
+Re-release after fixing component-versioning bug.
+
 ## 1.2.0
 
 - Add the `ariaLevel` attribute which defines the hierarchical level of an element within a structure.

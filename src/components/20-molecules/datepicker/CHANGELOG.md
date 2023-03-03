@@ -1,6 +1,10 @@
-## 17.1.5
+## 17.1.6
 
 Migrate some flaky tests to playwright #2409
+
+## 17.1.5
+
+Re-release after fixing component-versioning bug.
 
 ## 17.1.3
 

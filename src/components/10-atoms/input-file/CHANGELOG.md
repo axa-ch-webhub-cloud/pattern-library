@@ -1,3 +1,7 @@
+## 7.0.10
+
+Re-release after fixing component-versioning bug.
+
 ## 7.0.6
 
 Improve input-file types, event param names always `event` #2344

@@ -1,3 +1,7 @@
+## 7.0.2
+
+Re-release after fixing component-versioning bug.
+
 ## 7.0.0
 
 - Breaking Change: Rename attribute `rank` to `size`
