@@ -1,3 +1,7 @@
+## 17.1.6
+
+Fix bug with embedded dropdown, which allowed selecting Choose month/year. #2416
+
 ## 17.1.5
 
 Re-release after fixing component-versioning bug.
