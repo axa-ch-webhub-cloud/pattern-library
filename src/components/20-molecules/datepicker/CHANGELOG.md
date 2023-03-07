@@ -1,4 +1,4 @@
-## 17.1.6
+## 17.1.7
 
 Migrate some flaky tests to playwright #2409
 
