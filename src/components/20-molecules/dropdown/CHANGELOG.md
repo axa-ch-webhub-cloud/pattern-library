@@ -1,3 +1,7 @@
+## 12.0.4
+
+Fix bug that made defaulttitle option to be selectable on native. #2416
+
 ## 12.0.3
 
 Re-release after fixing component-versioning bug.

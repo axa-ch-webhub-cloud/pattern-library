@@ -1,3 +1,7 @@
+## 2.0.13
+
+Fix bug with embedded dropdown. #2416
+
 ## 2.0.12
 
 Re-release after fixing component-versioning bug.
