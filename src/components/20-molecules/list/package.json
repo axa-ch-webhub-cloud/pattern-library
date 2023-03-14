@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/list",
+  "name": "@axa-ch-webhub-cloud/list",
   "version": "3.0.12",
   "description": "The list component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -17,11 +17,11 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
