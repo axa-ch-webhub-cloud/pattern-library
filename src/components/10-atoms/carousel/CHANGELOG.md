@@ -1,6 +1,6 @@
 ## 5.1.0
 
-Update scope, registry and repository URL
+Update package scope, registry and repository URL. #2423
 
 ## 5.0.10
 
