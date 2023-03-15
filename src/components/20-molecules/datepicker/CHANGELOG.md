@@ -1,3 +1,7 @@
+## 17.2.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 17.1.6
 
 Fix bug with embedded dropdown, which allowed selecting Choose month/year. #2416

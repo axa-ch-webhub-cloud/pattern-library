@@ -1,3 +1,7 @@
+## 4.1.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 4.0.11
 
 Change mouse close handler event listener. #2414
