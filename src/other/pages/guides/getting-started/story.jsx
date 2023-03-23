@@ -61,7 +61,7 @@ export const GettingStarted = () =>
           language="shell"
           style={String.prototype.trimRight ? style : undefined}
         >
-          $ npm install @axa-ch/button
+          $ npm install @axa-ch-webhub-cloud/button
         </ReactSyntaxHighlighter>
         <AXAText>
           Importing the button-defining script and using a button is then as
@@ -97,7 +97,7 @@ export const GettingStarted = () =>
           style={String.prototype.trimRight ? style : undefined}
         >
           {`import { createElement } from 'react';
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch-webhub-cloud/button/lib/index.react';
 const AXAButtonReact = createAXAButtonReact(createElement);
 export default AXAButtonReact;`}
         </ReactSyntaxHighlighter>

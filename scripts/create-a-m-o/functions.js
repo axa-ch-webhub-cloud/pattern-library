@@ -69,7 +69,7 @@ const createFiles = (store, a, m, o, done) => () => {
     fs.mkdirSync(`${BASE_FOLDER}`);
   }
 
-  templateJson.name = `@axa-ch/${fileName}`;
+  templateJson.name = `@axa-ch-webhub-cloud/${fileName}`;
   templateJson.version = '0.0.0-beta.0';
   templateJson.homepage = `https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/${folderMap[type]}/${fileName}#readme`;
   templateJson.description = `The ${fileName} component for the AXA Pattern Library`;
@@ -104,11 +104,11 @@ const createFiles = (store, a, m, o, done) => () => {
     **Important:** Support for IE11 has been discontinued. Therefore, we no longer transpile the code with Babel, the codebase is based on ES2019.
 
     \`\`\`bash
-    npm install @axa-ch/${fileName}
+    npm install @axa-ch-webhub-cloud/${fileName}
     \`\`\`
 
     \`\`\`js
-    import '@axa-ch/${fileName}';
+    import '@axa-ch-webhub-cloud/${fileName}';
     ...
     <axa-${fileName}></axa-${fileName}>
     \`\`\`
@@ -119,7 +119,7 @@ const createFiles = (store, a, m, o, done) => () => {
 
     \`\`\`js
     import { createElement } from 'react';
-    import create${className}React from '@axa-ch/${fileName}/lib/index.react';
+    import create${className}React from '@axa-ch-webhub-cloud/${fileName}/lib/index.react';
 
     const ${className}React = create${className}React(createElement);
 
@@ -146,7 +146,7 @@ const createFiles = (store, a, m, o, done) => () => {
       </head>
       <body>
         <axa-${fileName}></axa-${fileName}>
-        <script src="node_modules/@axa-ch/${fileName}/dist/index.js"></script>
+        <script src="node_modules/@axa-ch-webhub-cloud/${fileName}/dist/index.js"></script>
       </body>
     </html>
     \`\`\`
@@ -308,7 +308,7 @@ test.describe('${compTitle}', () => {
     //    If you need other axa-XXX components inside your new component,
     //    import them here like this:
     //
-    //    import myDependentComponent1 from '@axa-ch/XXX;
+    //    import myDependentComponent1 from '@axa-ch-webhub-cloud/XXX;
 
     import {
       defineVersioned,
