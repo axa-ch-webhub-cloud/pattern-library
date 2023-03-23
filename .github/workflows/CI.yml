@@ -45,6 +45,13 @@ jobs:
       - name: 'Build Dist'
         run: npm run build-dist
 
+      - name: 'Revert Set up .npmrc'
+        shell: bash
+        env:
+          PAT: ${{ secrets.TECHNICAL_USER_TOKEN }}
+        run: |
+          sed -i.back "s|${PAT}|MY_PAT_SECRET|g" ./.npmrc
+
       - name: 'Check if there are no uncommitted files'
         run: npm run check-for-uncommitted-files
 
