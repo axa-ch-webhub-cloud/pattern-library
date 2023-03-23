@@ -92,7 +92,7 @@ body {
 ### Variables
 
 ```scss
-@import '@axa-ch/materials/styles/variables.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/variables.scss';
 
 body {
   margin: $spacing-1;
