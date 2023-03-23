@@ -33,12 +33,12 @@ const MyPanel = () => {
       <h2 id="usage">{componentName}</h2>
       <pre>
         <code className="language-bash">
-          npm install @axa-ch/{PURE_HTML_TAG}
+          npm install @axa-ch-webhub-cloud/{PURE_HTML_TAG}
         </code>
       </pre>
       <pre>
         <code className="language-js">
-          import '@axa-ch/{PURE_HTML_TAG}';
+          import '@axa-ch-webhub-cloud/{PURE_HTML_TAG}';
           <br />
           ...
           <br />
@@ -60,7 +60,7 @@ const MyPanel = () => {
             <code className="language-js">
               import {'{ createElement }'} from 'react';
               <br />
-              import createAXA{REACT_TAG}React from '@axa-ch/
+              import createAXA{REACT_TAG}React from '@axa-ch-webhub-cloud/
               {PURE_HTML_TAG}
               /lib/index.react';
               <br />
@@ -115,7 +115,7 @@ const MyPanel = () => {
           &lt;/axa-
           {PURE_HTML_TAG}&gt;
           <br />
-          {'    '}&lt;script src="node_modules/@axa-ch/
+          {'    '}&lt;script src="node_modules/@axa-ch-webhub-cloud/
           {PURE_HTML_TAG}
           /dist/index.js"&gt;&lt;/script&gt;
           <br />
@@ -145,7 +145,7 @@ const MyPanel = () => {
         <code className="language-js">
           import {'{ createElement }'} from 'react';
           <br />
-          import createAXA{REACT_TAG}React from '@axa-ch/
+          import createAXA{REACT_TAG}React from '@axa-ch-webhub-cloud/
           {PURE_HTML_TAG}
           /lib/index.react';
           <br />
@@ -167,13 +167,13 @@ const MyPanel = () => {
         <code className="language-js">
           import {'{ createElement }'} from 'react';
           <br />
-          import createAXA{REACT_TAG}React from '@axa-ch/
+          import createAXA{REACT_TAG}React from '@axa-ch-webhub-cloud/
           {PURE_HTML_TAG}
           /lib/index.react';
           <br />
           <br />
           const numericalVersion = '4.1.2'; // must match with SPA dependency
-          @axa-ch/button's version
+          @axa-ch-webhub-cloud/button's version
           <br />
           <br />
           export const AXA{REACT_TAG}React = createAXA
@@ -188,7 +188,7 @@ const MyPanel = () => {
         <code className="language-js">
           import {'{ createElement }'} from 'react';
           <br />
-          import createAXA{REACT_TAG}React from '@axa-ch/
+          import createAXA{REACT_TAG}React from '@axa-ch-webhub-cloud/
           {PURE_HTML_TAG}
           /lib/index.react';
           <br />

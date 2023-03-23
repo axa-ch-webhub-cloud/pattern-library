@@ -8,11 +8,11 @@ Known restrictions: for now, &lt;axa-input-phone&gt; cannot be submitted in a &l
 ## Usage
 
 ```bash
-npm install @axa-ch/input-phone
+npm install @axa-ch-webhub-cloud/input-phone
 ```
 
 ```js
-import '@axa-ch/input-phone';
+import '@axa-ch-webhub-cloud/input-phone';
 ...
 <axa-input-phone></axa-input-phone>
 ```
@@ -23,7 +23,7 @@ Create a React-ified input-phone with the createElement function from your React
 
 ```js
 import { createElement } from 'react';
-import createAXAInputPhoneReact from '@axa-ch/input-phone/lib/index.react';
+import createAXAInputPhoneReact from '@axa-ch-webhub-cloud/input-phone/lib/index.react';
 
 const AXAInputPhoneReact = createAXAInputPhoneReact(createElement);
 
@@ -51,7 +51,7 @@ Import the input-phone-defining script and use &lt;axa-input-phone&gt; like this
   </head>
   <body>
     <axa-input-phone></axa-input-phone>
-    <script src="node_modules/@axa-ch/input-phone/dist/index.js"></script>
+    <script src="node_modules/@axa-ch-webhub-cloud/input-phone/dist/index.js"></script>
   </body>
 </html>
 ```

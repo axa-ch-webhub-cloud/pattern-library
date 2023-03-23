@@ -22,7 +22,7 @@ Add a callback method that should run as soon as a disclaimer link gets clicked.
 
 ```js
 import React, { createElement, useState } from 'react';
-import createAXAFooterSmallReact from '@axa-ch/footer-small/lib/index.react';
+import createAXAFooterSmallReact from '@axa-ch-webhub-cloud/footer-small/lib/index.react';
 
 const AXAFooterSmallReact = createAXAFooterSmallReact(createElement);
 
@@ -131,7 +131,7 @@ If you want a footer with static links, that will automatically route to whereve
       <span slot="copyright">&copy; 2019 AXA Insurance Ltd.</span>
     </axa-footer-small>
 
-    <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
+    <script src="node_modules/@axa-ch-webhub-cloud/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```
@@ -227,7 +227,7 @@ This approach will not redirect the user automatically, if he/she clicks on a li
       document.querySelector('body').appendChild(wrapper);
     </script>
 
-    <script src="node_modules/@axa-ch/footer-small/dist/index.js"></script>
+    <script src="node_modules/@axa-ch-webhub-cloud/footer-small/dist/index.js"></script>
   </body>
 </html>
 ```

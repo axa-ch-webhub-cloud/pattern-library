@@ -12,7 +12,7 @@ const justVersionInfo = info => info.replace(/[^A-Za-z0-9\-.]/g, ''); // deliber
 const pick = (object, ignore = {}) => {
   const result = {};
   const components = Object.keys(object).filter(
-    key => key.indexOf('@axa-ch/') === 0 && !ignore[key]
+    key => key.indexOf('@axa-ch-webhub-cloud/') === 0 && !ignore[key]
   );
   components.forEach(name => {
     result[clean(name)] = justVersionInfo(object[name]);
@@ -31,7 +31,7 @@ const ignoreNonComponents = (packages, ignores) =>
       if (!lastPathComponent) {
         return true;
       }
-      const dependencyStylePackage = `@axa-ch/${lastPathComponent}`;
+      const dependencyStylePackage = `@axa-ch-webhub-cloud/${lastPathComponent}`;
       ignores[dependencyStylePackage] = true;
     }
     return !ignore;
