@@ -22,6 +22,23 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
+      - name: 'Show .npmrc'
+        shell: bash
+        run: | 
+          cat ./.npmrc 
+
+      - name: 'Set up .npmrc'
+        shell: bash
+        env:
+          PAT: ${{ secrets.TECHNICAL_USER_TOKEN }}
+        run: |
+          sed -i.back "s|MY_PAT_SECRET|${PAT}|g" ./.npmrc
+
+      - name: 'Show .npmrc'
+        shell: bash
+        run: |
+          cat ./.npmrc 
+
       - name: 'Install (with lib build included)'
         run: npm ci
 
