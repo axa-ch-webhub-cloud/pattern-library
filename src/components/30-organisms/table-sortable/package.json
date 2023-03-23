@@ -28,7 +28,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/table": "5.0.11",
+    "@axa-ch-webhub-cloud/table": "5.0.11",
     "lit": "^2.2.1"
   }
 }

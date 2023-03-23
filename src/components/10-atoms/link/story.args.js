@@ -1,4 +1,4 @@
-import { iconList } from '@axa-ch/icon/icon-list';
+import { iconList } from '@axa-ch-webhub-cloud/icon/icon-list';
 
 export const args = {
   href: 'https%3A%2F%2Fwww.axa.ch%2Fen%2Finformation%2Fdata-protection.html',

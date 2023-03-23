@@ -31,7 +31,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/icon": "8.0.11",
+    "@axa-ch-webhub-cloud/icon": "8.0.11",
     "lit": "^2.2.1"
   }
 }

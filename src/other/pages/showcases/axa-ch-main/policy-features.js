@@ -1,13 +1,13 @@
 import { html } from 'lit';
 
-import carIcon from '@axa-ch/materials/images/car.svg';
-import chairIcon from '@axa-ch/materials/images/rocking-chair.svg';
-import glassIcon from '@axa-ch/materials/images/broken-glass.svg';
-import legalIcon from '@axa-ch/materials/images/legal.svg';
-import handIcon from '@axa-ch/materials/images/hand-leaf.svg';
-import globalIcon from '@axa-ch/materials/images/global.svg';
-import keysIcon from '@axa-ch/materials/images/keys.svg';
-import contractIcon from '@axa-ch/materials/images/contract.svg';
+import carIcon from '@axa-ch-webhub-cloud/materials/images/car.svg';
+import chairIcon from '@axa-ch-webhub-cloud/materials/images/rocking-chair.svg';
+import glassIcon from '@axa-ch-webhub-cloud/materials/images/broken-glass.svg';
+import legalIcon from '@axa-ch-webhub-cloud/materials/images/legal.svg';
+import handIcon from '@axa-ch-webhub-cloud/materials/images/hand-leaf.svg';
+import globalIcon from '@axa-ch-webhub-cloud/materials/images/global.svg';
+import keysIcon from '@axa-ch-webhub-cloud/materials/images/keys.svg';
+import contractIcon from '@axa-ch-webhub-cloud/materials/images/contract.svg';
 
 export default html`
   <axa-policy-features title="Our offers for you" variant="white">

@@ -1,7 +1,7 @@
 import { html, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import closeIcon from '@axa-ch/materials/icons/material-design/close.svg';
+import closeIcon from '@axa-ch-webhub-cloud/materials/icons/material-design/close.svg';
 
 import { defineVersioned } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';

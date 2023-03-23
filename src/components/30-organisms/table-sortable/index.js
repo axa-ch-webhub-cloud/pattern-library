@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import AXATable from '@axa-ch/table';
+import AXATable from '@axa-ch-webhub-cloud/table';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {

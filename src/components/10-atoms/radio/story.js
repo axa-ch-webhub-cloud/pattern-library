@@ -1,5 +1,9 @@
 import { html } from 'lit';
-import { CarSvg, PlaneSvg, SailBoatSvg } from '@axa-ch/materials/images';
+import {
+  CarSvg,
+  PlaneSvg,
+  SailBoatSvg,
+} from '@axa-ch-webhub-cloud/materials/images';
 import { args, argTypes } from './story.args';
 import changelog from './CHANGELOG.md';
 import readme from './README.md';

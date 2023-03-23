@@ -28,8 +28,8 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/input-file": "7.0.11",
-    "@axa-ch/materials": "16.0.8",
+    "@axa-ch-webhub-cloud/input-file": "7.0.11",
+    "@axa-ch-webhub-cloud/materials": "16.0.8",
     "blueimp-canvas-to-blob": "^3.29.0",
     "lit": "^2.2.1"
   }

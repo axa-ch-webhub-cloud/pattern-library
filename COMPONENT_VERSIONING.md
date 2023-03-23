@@ -42,7 +42,7 @@ SPA authors developing under React are familiar with the **old way of including 
 ```js
 import { createElement } from 'react';
 
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch-webhub-cloud/button/lib/index.react';
 
 export const AXAButton = createAXAButtonReact(createElement);
 
@@ -53,7 +53,7 @@ Here is the recommended **new way of including _user-versioned_ components**:
 ```js
 import { createElement } from 'react';
 
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch-webhub-cloud/button/lib/index.react';
 
 const podNameAsVersionSuffix = 'YOUR UNIQUE SPA SHORT-NAME HERE'; // e.g. 'rsv'
 
@@ -68,9 +68,9 @@ possible and up to the user. For example, a ***numerical versioning scheme*** wo
 ```js
 import { createElement } from 'react';
 
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch-webhub-cloud/button/lib/index.react';
 
-const numericalVersion = '4.1.2'; // must match with SPA dependency @axa-ch/button's version
+const numericalVersion = '4.1.2'; // must match with SPA dependency @axa-ch-webhub-cloud/button's version
 
 export const AXAButton = createAXAButtonReact(createElement, numericalVersion);
 
@@ -86,7 +86,7 @@ const automaticVersion = tagName => window.customElements.get(tagName).versions[
 For **native** use of versioned components, applications may choose how to consume a component:
 ```html
 <!-- for sake of illustration, assume the following script provides version 4.1.2 of axa-button -->
-<script src="node_modules/@axa-ch/button/dist/index.js"></script>
+<script src="node_modules/@axa-ch-webhub-cloud/button/dist/index.js"></script>
 <!-- always up-to-date, but risky: don't specify a version -->
 <axa-button>OK</axa-button>
 <!-- safe, but requires manual editing whenever version changes: fix a particular npm version -->
