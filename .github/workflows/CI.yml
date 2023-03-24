@@ -23,7 +23,7 @@ jobs:
           node-version: '16.x'
           cache: 'npm'
       - name: 'Authenticate with private Github package'
-        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.TECHNICAL_USER_TOKEN}} > ./../../.npmrc
+        run: echo "//npm.pkg.github.com/:_authToken=${{secrets.TECHNICAL_USER_TOKEN}}" > ./../../.npmrc
 
       - name: 'Install (with lib build included)'
         run: npm ci
