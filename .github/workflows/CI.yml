@@ -20,7 +20,6 @@ jobs:
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          always-auth: true
           node-version: '16.x'
           cache: 'npm'
 
