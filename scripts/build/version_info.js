@@ -5,7 +5,7 @@ const fs = require('fs');
 const { cwd } = process;
 
 // helpers
-const clean = name => name.replace(/^@axa-ch\//, 'axa-');
+const clean = name => name.replace(/^@axa-ch-webhub-cloud\//, 'axa-');
 
 const justVersionInfo = info => info.replace(/[^A-Za-z0-9\-.]/g, ''); // deliberate consequence: ignore caret
 
