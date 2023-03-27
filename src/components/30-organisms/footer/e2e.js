@@ -16,6 +16,7 @@ test.describe('footer', () => {
     await page.locator('#footerTestButton').click();
 
     // Measure the new height of the footer element and check if it is at least 20 pixels smaller than the initial height
+    // We use these 20 pixels, because the faded out content should have at least this height
     const footerBoundingBoxAfter = await page.locator('footer').boundingBox();
     expect(footerBoundingBoxAfter.height).toBeLessThan(initialHeight - 20);
   });

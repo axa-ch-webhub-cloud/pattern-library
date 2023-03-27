@@ -98,6 +98,7 @@ test.describe('datepicker', () => {
 
       // The date object is separated by a newline character in the event log
       // Therefore, we need to check for the presence of this character to ensure that we are matching the correct date
+      // In this case we expect the object at the start of the log
       expect(await page.locator('.event-log').inputValue()).toContain(
         `{"name":"date","value":"16.2.2020"}\n\n`
       );
@@ -109,6 +110,7 @@ test.describe('datepicker', () => {
 
       // The date object is separated by a newline character in the event log
       // Therefore, we need to check for the presence of this character to ensure that we are matching the correct date
+      // In this case we expect the object not at the start of the log
       expect(await page.locator('.event-log').inputValue()).toContain(
         `\n\n{"name":"date","value":"29.2.1976"}\n\n`
       );
