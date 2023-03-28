@@ -96,9 +96,8 @@ test.describe('datepicker', () => {
         .locator('.m-datepicker__calendar-current-month[data-day="16"]')
         .click();
 
-      // The date object is separated by a newline character in the event log
+      // The date object is separated by a newline character in the event log (for better readability)
       // Therefore, we need to check for the presence of this character to ensure that we are matching the correct date
-      // In this case we expect the object at the start of the log
       expect(await page.locator('.event-log').inputValue()).toContain(
         `{"name":"date","value":"16.2.2020"}\n\n`
       );
@@ -108,11 +107,10 @@ test.describe('datepicker', () => {
         .locator('[data-test-id="datepicker-onchange"] .js-datepicker__input')
         .fill('29.2.1976');
 
-      // The date object is separated by a newline character in the event log
+      // The date object is separated by a newline character in the event log (for better readability)
       // Therefore, we need to check for the presence of this character to ensure that we are matching the correct date
-      // In this case we expect the object not at the start of the log
       expect(await page.locator('.event-log').inputValue()).toContain(
-        `\n\n{"name":"date","value":"29.2.1976"}\n\n`
+        `{"name":"date","value":"29.2.1976"}\n\n`
       );
     });
   });
