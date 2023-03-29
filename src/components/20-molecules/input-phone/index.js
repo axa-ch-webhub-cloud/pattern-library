@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
-import AXADropdown from '@axa-ch/dropdown';
-import AXAInputText from '@axa-ch/input-text';
+import AXADropdown from '@axa-ch-webhub-cloud/dropdown';
+import AXAInputText from '@axa-ch-webhub-cloud/input-text';
 
 import styles from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';

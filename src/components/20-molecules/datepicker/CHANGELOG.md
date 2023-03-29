@@ -1,5 +1,6 @@
-## 17.1.7
+## 17.2.0
 
+Update package scope, registry and repository URL. #2423
 Migrate some flaky tests to playwright #2409
 
 ## 17.1.6

@@ -1,7 +1,10 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-import { InfoSvg, CancelSvg } from '@axa-ch/materials/icons/material-design';
+import {
+  InfoSvg,
+  CancelSvg,
+} from '@axa-ch-webhub-cloud/materials/icons/material-design';
 import popupButtonCSS from './index.scss';
 
 import applyDefaults from '../../../../utils/apply-defaults';

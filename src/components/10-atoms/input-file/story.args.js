@@ -1,4 +1,4 @@
-import { iconList } from '@axa-ch/icon/icon-list';
+import { iconList } from '@axa-ch-webhub-cloud/icon/icon-list';
 
 export const args = {
   text: 'Select a File',

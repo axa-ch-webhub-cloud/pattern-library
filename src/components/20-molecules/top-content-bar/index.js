@@ -1,8 +1,8 @@
 import { css, html, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import AXAContainer from '@axa-ch/container';
-import AXAButton from '@axa-ch/button';
-import AXAIcon from '@axa-ch/icon';
+import AXAContainer from '@axa-ch-webhub-cloud/container';
+import AXAButton from '@axa-ch-webhub-cloud/button';
+import AXAIcon from '@axa-ch-webhub-cloud/icon';
 import InlineStyles from '../../../utils/inline-styles';
 import childStyles from './child.scss';
 

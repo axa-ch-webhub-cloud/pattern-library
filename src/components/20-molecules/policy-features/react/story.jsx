@@ -1,5 +1,9 @@
 import React from 'react';
-import { CarSvg, TickSvg, UmbrellaSvg } from '@axa-ch/materials/images';
+import {
+  CarSvg,
+  TickSvg,
+  UmbrellaSvg,
+} from '@axa-ch-webhub-cloud/materials/images';
 import { args, argTypes } from '../story.args';
 import changelog from '../CHANGELOG.md';
 import readme from '../README.md';

@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/pattern-library",
+  "name": "@axa-ch-webhub-cloud/pattern-library",
   "version": "2.0.0",
   "description": "[Check out our Contribution File](https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/CONTRIBUTION.md#rules-and-lintings)",
   "module": "lib",
@@ -35,7 +35,7 @@
     "prepare": "is-ci || husky install"
   },
   "dependencies": {
-    "@axa-ch/materials": "latest",
+    "@axa-ch-webhub-cloud/materials": "latest",
     "blueimp-canvas-to-blob": "^3.29.0",
     "date-fns": "^2.28.0",
     "lit": "^2.2.1"
@@ -102,12 +102,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "author": "Pattern Warriors",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
-  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library#readme"
+  "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }

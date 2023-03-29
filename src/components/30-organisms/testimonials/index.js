@@ -1,7 +1,7 @@
 import { html, css, unsafeCSS } from 'lit';
 
-import AXAContainer from '@axa-ch/container';
-import AXACarousel from '@axa-ch/carousel';
+import AXAContainer from '@axa-ch-webhub-cloud/container';
+import AXACarousel from '@axa-ch-webhub-cloud/carousel';
 import {
   defineVersioned,
   versionedHtml,

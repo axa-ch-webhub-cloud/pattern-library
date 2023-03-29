@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/checkbox",
+  "name": "@axa-ch-webhub-cloud/checkbox",
   "version": "7.0.12",
   "description": "The checkbox component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -18,11 +18,11 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"

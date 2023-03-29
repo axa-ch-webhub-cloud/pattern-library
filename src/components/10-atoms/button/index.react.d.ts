@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon } from '@axa-ch/icon/lib/index.d';
+import { Icon } from '@axa-ch-webhub-cloud/icon/lib/index.d';
 
 export interface AXAMouseEvent<T = HTMLElement> extends MouseEvent {
   target: EventTarget & T;

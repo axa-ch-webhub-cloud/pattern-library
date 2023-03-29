@@ -1,3 +1,7 @@
+## 16.1.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 16.0.0
 - Remove `layout.scss` with breakpoint mixin and `10-helpers.scss` file
 - Remove `reset-button-completely.scss`

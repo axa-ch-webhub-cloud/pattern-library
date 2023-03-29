@@ -1,13 +1,13 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import AXAInputFile from '@axa-ch/input-file';
+import AXAInputFile from '@axa-ch-webhub-cloud/input-file';
 import {
   AddSvg,
   Delete_foreverSvg,
   ClearSvg,
   Attach_fileSvg,
-} from '@axa-ch/materials/icons/material-design';
+} from '@axa-ch-webhub-cloud/materials/icons/material-design';
 
 import fireCustomEvent from '../../../utils/custom-event';
 
