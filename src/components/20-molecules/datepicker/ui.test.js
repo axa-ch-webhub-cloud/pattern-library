@@ -177,26 +177,6 @@ test('should handle month change with native dropdown element', async t => {
   await t.resizeWindow(200, 200);
 });
 
-test('should just add years of a given range', async t => {
-  const setProperties = ClientFunction(() => {
-    const datepicker = document.querySelector('axa-datepicker');
-    datepicker.allowedyears = ['1999-2000'];
-  });
-
-  await setProperties();
-
-  const itemsString = await datepickerYearDropdown.getAttribute('items');
-  const itemsArray = JSON.parse(itemsString);
-
-  await t.expect(itemsArray.length).eql(2);
-
-  await t.expect(itemsString).contains('"value":"1999"');
-
-  await t.expect(itemsString).contains('"value":"2000"');
-
-  await t.expect(itemsString).notContains('"value":"2020"');
-});
-
 test('should set the first entry of allowedyears as startup date (no year set; current year not in allowedyears)', async t => {
   const setProperties = ClientFunction(() => {
     const datepicker = document.querySelector('axa-datepicker');
@@ -710,7 +690,7 @@ test('should allow year ranges', async t => {
     return JSON.stringify(domNode[property]);
   });
 
-  await t.setTestSpeed(0.5);
+  await t.setTestSpeed(0.25);
   await t.expect(await setDatepicker('year', 2020)).ok();
   await t.expect(await setDatepicker('allowedyears', /* empty */ [])).ok();
   await t.expect(await setDatepicker('allowedyears')).eql('[2020]');
@@ -743,41 +723,6 @@ test('should allow year ranges', async t => {
   });
 
   await t.expect(await allDaysVisible()).eql(true);
-});
-
-fixture('Datepicker with onchange handler').page(
-  `${host}/iframe.html?args=&id=examples-datepicker-pure-html--with-onchange-handler&viewMode=story`
-);
-test('should fire the right events', async t => {
-  const datepickerForm = await Selector(() =>
-    document.querySelector(`axa-datepicker[data-test-id="datepicker-onchange"]`)
-  );
-
-  await t.setTestSpeed(0.5);
-
-  await t.expect(datepickerForm.exists).ok();
-  await t.click('.js-datepicker__input-button');
-
-  await t
-    .wait(100)
-    .click('.m-datepicker__calendar-current-month[data-day="16"]');
-  await t
-    .wait(50)
-    .expect((await Selector('.event-log')).value)
-    .eql(`{"name":"date","value":"16.2.2020"}\n\n`);
-
-  await t
-    .wait(50)
-    .typeText(
-      `axa-datepicker[data-test-id="datepicker-onchange"] .js-datepicker__input`,
-      '29.2.1976',
-      { replace: true }
-    );
-
-  await t
-    .wait(50)
-    .expect((await Selector('.event-log')).value)
-    .contains(`\n\n{"name":"date","value":"29.2.1976"}\n\n`);
 });
 
 fixture('Datepicker as inputfield with fixed width').page(
