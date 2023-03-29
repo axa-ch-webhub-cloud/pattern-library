@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/commercial-hero-banner",
-  "version": "6.0.11",
+  "version": "6.1.0",
   "description": "The commercial-hero-banner component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/commercial-hero-banner#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/container": "5.0.11",
+    "@axa-ch-webhub-cloud/container": "5.1.0",
     "lit": "^2.2.1"
   }
 }
