@@ -20,9 +20,15 @@ import {
   Warning_amberSvg,
   CloudySvg,
   CloseSvg,
-} from '@axa-ch/materials/icons/material-design';
-import { ArrowRightSvg, ArrowLeftSvg } from '@axa-ch/materials/icons';
-import { AxaLogoSvg, AxaLogoOpenSvg } from '@axa-ch/materials/images';
+} from '@axa-ch-webhub-cloud/materials/icons/material-design';
+import {
+  ArrowRightSvg,
+  ArrowLeftSvg,
+} from '@axa-ch-webhub-cloud/materials/icons';
+import {
+  AxaLogoSvg,
+  AxaLogoOpenSvg,
+} from '@axa-ch-webhub-cloud/materials/images';
 import iconCSS from './index.scss';
 import { defineVersioned } from '../../../utils/component-versioning';
 import applyDefaults from '../../../utils/apply-defaults';

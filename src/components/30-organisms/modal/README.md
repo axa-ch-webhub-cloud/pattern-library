@@ -8,11 +8,11 @@ A modal component for custom child elements.
 - `margin-bottom` will automatically be set to `0` for the _last_ child element in `forced` mode.
 
 ```bash
-npm install @axa-ch/modal
+npm install @axa-ch-webhub-cloud/modal
 ```
 
 ```js
-import '@axa-ch/modal';
+import '@axa-ch-webhub-cloud/modal';
 
 // ...
 

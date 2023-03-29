@@ -7,12 +7,12 @@ Materials provides common used icons and images in the SVG format. In addition m
 **Important:** If this component needs to run in Internet Explorer 11, [you need to use our polyfill](https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/05-utils/polyfill).
 
 ```bash
-npm install @axa-ch/materials
+npm install @axa-ch-webhub-cloud/materials
 ```
 
 ```js
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
+import { Arrow_forwardSvg } from '@axa-ch-webhub-cloud/materials/icons/material-design';
 
 <span>${unsafeHTML(Arrow_forwardSvg)}</span>;
 ```
@@ -20,7 +20,7 @@ import { Arrow_forwardSvg } from '@axa-ch/materials/icons/material-design';
 ### React
 
 ```js
-import ArrowForwardSvg from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
+import ArrowForwardSvg from '@axa-ch-webhub-cloud/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```
@@ -28,7 +28,7 @@ import ArrowForwardSvg from '@axa-ch/materials/icons-raw/material-design/arrow-f
 ### React with Typescript
 
 ```js
-import { ReactComponent as ArrowForwardSvg } from '@axa-ch/materials/icons-raw/material-design/arrow-forward.svg';
+import { ReactComponent as ArrowForwardSvg } from '@axa-ch-webhub-cloud/materials/icons-raw/material-design/arrow-forward.svg';
 
 <ArrowForwardSvg />;
 ```
@@ -53,7 +53,7 @@ npm install @svgr/webpack --save-dev
 ### Colors
 
 ```scss
-@import '@axa-ch/materials/styles/00-colors.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/00-colors.scss';
 
 body {
   background-color: $color-axa-blue;
@@ -63,13 +63,13 @@ body {
 ### animations
 
 ```scss
-@import '@axa-ch/materials/styles/20-animations.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/20-animations.scss';
 ```
 
 ### Breakpoints
 
 ```scss
-@import '@axa-ch/materials/styles/variables.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/variables.scss';
 
 body {
   // Rules for devices bigger than portrait mobile
@@ -82,7 +82,7 @@ body {
 ### Typography
 
 ```scss
-@import '@axa-ch/materials/styles/typography.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/typography.scss';
 
 body {
   font-family: $font-family-primary;
@@ -92,7 +92,7 @@ body {
 ### Variables
 
 ```scss
-@import '@axa-ch/materials/styles/variables.scss';
+@import '@axa-ch-webhub-cloud/materials/styles/variables.scss';
 
 body {
   margin: $spacing-1;

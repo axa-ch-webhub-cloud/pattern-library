@@ -3,11 +3,11 @@
 Adds a loading spinner that can be used while something is loading.
 
 ```bash
-npm install @axa-ch/spinner
+npm install @axa-ch-webhub-cloud/spinner
 ```
 
 ```js
-import '@axa-ch/spinner';
+import '@axa-ch-webhub-cloud/spinner';
 ...
 <axa-spinner></axa-spinner>
 ```

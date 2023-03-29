@@ -1,4 +1,8 @@
-import { AXAPopupButton, AXAPopupContent, AXAPopupMixin } from '@axa-ch/popup';
+import {
+  AXAPopupButton,
+  AXAPopupContent,
+  AXAPopupMixin,
+} from '@axa-ch-webhub-cloud/popup';
 import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';

@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/input-text",
+  "name": "@axa-ch-webhub-cloud/input-text",
   "version": "6.4.2",
   "description": "The input-text component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -21,17 +21,17 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/popup": "5.0.11",
+    "@axa-ch-webhub-cloud/popup": "5.0.11",
     "lit": "^2.2.1"
   }
 }

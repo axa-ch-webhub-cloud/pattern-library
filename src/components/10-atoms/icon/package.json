@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/icon",
+  "name": "@axa-ch-webhub-cloud/icon",
   "version": "8.0.11",
   "description": "The icon component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -21,17 +21,17 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/materials": "16.0.8",
+    "@axa-ch-webhub-cloud/materials": "16.0.8",
     "lit": "^2.2.1"
   }
 }

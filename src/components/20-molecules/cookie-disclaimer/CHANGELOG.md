@@ -1,3 +1,7 @@
+## 6.2.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 6.1.4
 
 Re-release after fixing component-versioning bug.

@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/progress-bar",
+  "name": "@axa-ch-webhub-cloud/progress-bar",
   "version": "3.1.3",
   "description": "The progress-bar component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -17,11 +17,11 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"

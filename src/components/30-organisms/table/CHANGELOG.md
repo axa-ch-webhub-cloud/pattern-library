@@ -1,3 +1,7 @@
+## 5.1.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 5.0.10
 
 Re-release after fixing component-versioning bug.

@@ -1,5 +1,5 @@
 {
-  "name": "@axa-ch/cookie-disclaimer",
+  "name": "@axa-ch-webhub-cloud/cookie-disclaimer",
   "version": "6.1.5",
   "description": "The cookie-disclaimer component for the AXA Pattern Library",
   "author": "Pattern Warriors",
@@ -18,18 +18,18 @@
     "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/axa-ch-webhub-cloud/pattern-library.git"
+    "url": "https://github.com/axa-ch-webhub-cloud/pattern-library.git"
   },
   "bugs": {
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch/button": "8.2.5",
-    "@axa-ch/container": "5.0.11",
+    "@axa-ch-webhub-cloud/button": "8.2.5",
+    "@axa-ch-webhub-cloud/container": "5.0.11",
     "lit": "^2.2.1"
   }
 }

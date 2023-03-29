@@ -1,3 +1,7 @@
+## 12.1.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 12.0.4
 
 Fix bug that made defaulttitle option to be selectable on native. #2416

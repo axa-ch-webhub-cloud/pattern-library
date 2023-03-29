@@ -1,3 +1,7 @@
+## 3.2.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 3.1.2
 
 Re-release after fixing component-versioning bug.

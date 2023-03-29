@@ -1,3 +1,7 @@
+## 2.1.0
+
+Update package scope, registry and repository URL. #2423
+
 ## 2.0.13
 
 Fix bug with embedded dropdown. #2416

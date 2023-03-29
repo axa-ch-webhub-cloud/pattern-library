@@ -22,6 +22,12 @@ jobs:
         with:
           node-version: '16.x'
           cache: 'npm'
+
+      - name: 'NPM Authentication'
+        run: npm config set //npm.pkg.github.com/:_authToken="$GITHUB_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TECHNICAL_USER_TOKEN }}
+
       - name: 'Install (with lib build included)'
         run: npm ci
 

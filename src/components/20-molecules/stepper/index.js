@@ -1,4 +1,4 @@
-import { CheckSvg } from '@axa-ch/materials/icons/material-design';
+import { CheckSvg } from '@axa-ch-webhub-cloud/materials/icons/material-design';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { defineVersioned } from '../../../utils/component-versioning';

@@ -3,11 +3,11 @@
 # This script will 'npm link' all components that we have in the pattern      #
 # library. Run it with 'sh ./scrips/npm-link-all.sh'.                         #
 # After running the script, use any component that you want to test anywhere  #
-# on your system like this: 'npm link @axa-ch/footer' (or whichever           #
+# on your system like this: 'npm link @axa-ch-webhub-cloud/footer' (or whichever           #
 # component you want to test).                                                #
 # This will make the build folder of every component available anywhere on    #
 # your file system and will link it directly in the node_modules folder of    #
-# wherever you are testing it.                                                 # 
+# wherever you are testing it.                                                 #
 ###############################################################################
 
 # All pattern library components' relative path will be stored in this array.
