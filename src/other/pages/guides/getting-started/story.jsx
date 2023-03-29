@@ -52,14 +52,16 @@ export const GettingStarted = () =>
           AXA&rsquo;s Design System is made up of multiple web components and
           tools, which you can import one by one. All you need to do is install
           the corresponding <em>npm</em> package under the &nbsp;
-          <code className="getting-started__dependency">@axa-ch/</code>&nbsp;
-          namespace. Here is an example featuring a button:
+          <code className="getting-started__dependency">
+            @axa-ch-webhub-cloud/
+          </code>
+          &nbsp; namespace. Here is an example featuring a button:
         </p>
         <ReactSyntaxHighlighter
           language="shell"
           style={String.prototype.trimRight ? style : undefined}
         >
-          $ npm install @axa-ch/button
+          $ npm install @axa-ch-webhub-cloud/button
         </ReactSyntaxHighlighter>
         <AXAText>
           Importing the button-defining script and using a button is then as
@@ -95,7 +97,7 @@ export const GettingStarted = () =>
           style={String.prototype.trimRight ? style : undefined}
         >
           {`import { createElement } from 'react';
-import createAXAButtonReact from '@axa-ch/button/lib/index.react';
+import createAXAButtonReact from '@axa-ch-webhub-cloud/button/lib/index.react';
 const AXAButtonReact = createAXAButtonReact(createElement);
 export default AXAButtonReact;`}
         </ReactSyntaxHighlighter>

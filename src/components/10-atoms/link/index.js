@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import AXAIcon from '@axa-ch/icon';
+import AXAIcon from '@axa-ch-webhub-cloud/icon';
 import {
   defineVersioned,
   versionedHtml,

@@ -1,6 +1,6 @@
 import { css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import AXAContainer from '@axa-ch/container';
+import AXAContainer from '@axa-ch-webhub-cloud/container';
 import {
   defineVersioned,
   versionedHtml,

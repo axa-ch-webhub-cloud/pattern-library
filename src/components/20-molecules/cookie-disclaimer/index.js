@@ -1,7 +1,7 @@
 import { LitElement, css, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import AXAButton from '@axa-ch/button';
-import AXAContainer from '@axa-ch/container';
+import AXAButton from '@axa-ch-webhub-cloud/button';
+import AXAContainer from '@axa-ch-webhub-cloud/container';
 
 import {
   defineVersioned,

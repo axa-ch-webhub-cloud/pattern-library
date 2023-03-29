@@ -9,8 +9,8 @@ You can version both, the `axa-policy-features` and the `axa-policy-features-ite
 To do so, use it like this:
 
 ```js
-import createAXAPolicyFeatures from '@axa-ch/policy-features/lib/index.react';
-import { createAXAPolicyFeaturesItem } from '@axa-ch/policy-features/lib/index.react';
+import createAXAPolicyFeatures from '@axa-ch-webhub-cloud/policy-features/lib/index.react';
+import { createAXAPolicyFeaturesItem } from '@axa-ch-webhub-cloud/policy-features/lib/index.react';
 
 createAXAPolicyFeatures(null, 'myteam'); // Enables tag `axa-policy-features-myteam`
 createAXAPolicyFeaturesItem(null, 'myteam'); // Enables tag `axa-policy-features-item-myteam`
@@ -49,7 +49,7 @@ The attribute `title` (optional) specifies the title of your feature.
 
 ### icon
 
-You can set a URL to a svg, for example `https://url-to-svg-icon.svg`. Instead of that you can set a svg as a string (if you import a icon or image from `@axa-ch/materials`).
+You can set a URL to a svg, for example `https://url-to-svg-icon.svg`. Instead of that you can set a svg as a string (if you import a icon or image from `@axa-ch-webhub-cloud/materials`).
 
 The size of the svg will be set to:
 

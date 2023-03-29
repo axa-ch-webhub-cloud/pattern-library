@@ -1,7 +1,7 @@
 import { html, css, unsafeCSS, LitElement } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
-import AXAIcon from '@axa-ch/icon';
+import AXAIcon from '@axa-ch-webhub-cloud/icon';
 
 import applyDefaults from '../../../utils/apply-defaults';
 import {

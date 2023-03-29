@@ -285,7 +285,7 @@ export default HelloWorld;
       </a>
     </axa-footer>
 
-    <script src="node_modules/@axa-ch/footer/dist/index.js"></script>
+    <script src="node_modules/@axa-ch-webhub-cloud/footer/dist/index.js"></script>
   </body>
 </html>
 ```

@@ -60,7 +60,7 @@ Example on how to use it in a HTML standalone page:
         </tbody>
       </table>
     </axa-table>
-    <script src="node_modules/@axa-ch/table/dist/index.js"></script>
+    <script src="node_modules/@axa-ch-webhub-cloud/table/dist/index.js"></script>
   </body>
 </html>
 ```
@@ -69,7 +69,7 @@ Example on how to use it as a React-ified component:
 
 ```js
 import React, { Component, createElement } from 'react';
-import createAXATable from '@axa-ch/table/lib/index.react';
+import createAXATable from '@axa-ch-webhub-cloud/table/lib/index.react';
 
 import logo from './logo.svg';
 import './App.css';

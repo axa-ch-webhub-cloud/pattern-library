@@ -4,7 +4,7 @@
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { Expand_moreSvg } from '@axa-ch/materials/icons/material-design';
+import { Expand_moreSvg } from '@axa-ch-webhub-cloud/materials/icons/material-design';
 import debounce from '../../../utils/debounce';
 import styles from './index.scss';
 import NoShadowDOM from '../../../utils/no-shadow';
