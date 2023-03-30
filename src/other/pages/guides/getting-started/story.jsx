@@ -49,6 +49,16 @@ export const GettingStarted = () =>
         </AXAText>
         <AXAHeading size="3">Install and use components</AXAHeading>
         <p className="getting-started__dependency-wrapper">
+          To get access to the Github Packages Registry, you need to add the
+          following line to your .npmrc file.
+        </p>
+        <ReactSyntaxHighlighter
+          language="shell"
+          style={String.prototype.trimRight ? style : undefined}
+        >
+          @axa-ch-webhub-cloud:registry=https://npm.pkg.github.com/
+        </ReactSyntaxHighlighter>
+        <p className="getting-started__dependency-wrapper">
           AXA&rsquo;s Design System is made up of multiple web components and
           tools, which you can import one by one. All you need to do is install
           the corresponding <em>npm</em> package under the &nbsp;
