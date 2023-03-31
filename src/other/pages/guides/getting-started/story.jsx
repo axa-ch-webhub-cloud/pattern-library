@@ -4,7 +4,7 @@ import style from 'react-syntax-highlighter/dist/esm/styles/hljs/github-gist';
 import PLCallout from '../../utils/callout/index.react';
 import PLContactFooter from '../../utils/contact-footer/index.react';
 import { createReactContainer } from '../../../../utils/create-react-container';
-import { AXAHeading, AXAText } from './plib-components';
+import { AXAHeading, AXAText, AXALink } from './plib-components';
 import styles from './index.scss';
 
 export default {
@@ -47,17 +47,21 @@ export const GettingStarted = () =>
           AXA components library empowers you to use consistent markup, styling
           and behavior in both prototype and production work.
         </AXAText>
-        <AXAHeading size="3">Install and use components</AXAHeading>
+        <AXAHeading size="3">Setup for Github Registry</AXAHeading>
         <p className="getting-started__dependency-wrapper">
-          To get access to the Github Packages Registry, you need to add the
-          following line to your .npmrc file.
+          Since we publish our components to Github Packages, you need a little
+          setup for your environment to get access to the registry. Please
+          follow the instructions on the Github documentation
+          <AXALink
+            href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry"
+            external
+          >
+            Working with the npm registry
+          </AXALink>
+          . The <em>@NAMESPACE</em> you have to use is{' '}
+          <em>@axa-ch-webhub-cloud</em>.
         </p>
-        <ReactSyntaxHighlighter
-          language="shell"
-          style={String.prototype.trimRight ? style : undefined}
-        >
-          @axa-ch-webhub-cloud:registry=https://npm.pkg.github.com/
-        </ReactSyntaxHighlighter>
+        <AXAHeading size="3">Install and use components</AXAHeading>
         <p className="getting-started__dependency-wrapper">
           AXA&rsquo;s Design System is made up of multiple web components and
           tools, which you can import one by one. All you need to do is install
