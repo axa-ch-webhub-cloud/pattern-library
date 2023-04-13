@@ -1,8 +1,10 @@
+$color-ocean-blue-dark: #3A5E95;
+
 .o-footer {
   text-align: initial;
 
   color: $color-prim-white;
-  background-color: $color-dark-indigo;
+  background-color: $color-ocean-blue;
 
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 
@@ -19,11 +21,14 @@
   }
 
   &__content {
+    @media (max-width: $breakpoint-xs) {
+    }
+
     @media (min-width: $breakpoint-xs) {
       display: grid;
       grid-template-areas:
-        'links'
-        'social';
+        'social'
+        'links';
 
       // IE11 workaround
       display: -ms-grid;
@@ -31,7 +36,10 @@
     }
 
     @media (min-width: $breakpoint-md) {
-      grid-template-areas: 'links social';
+      display: grid;
+      grid-template-areas:
+        'social'
+        'links';
 
       // IE11 workaround
       display: -ms-grid;
@@ -111,20 +119,20 @@
     display: flex;
     justify-content: space-between;
     color: $color-prim-white;
-    background-color: $color-dark-indigo;
-    padding: 20px 30px 20px 30px;
+    background-color: $color-ocean-blue;
+    padding: 20px 30px;
     width: 100%;
     text-align: left;
 
     border: none;
     outline: 0;
 
-    border-bottom: 1px solid $color-azure;
+    border-bottom: 1px solid rgba($color-prim-white, 0.25);
     text-transform: uppercase;
 
     svg {
-      width: 10px;
-      height: 10px;
+      width: 18px;
+      height: 11px;
       color: $color-light-grey;
     }
 
@@ -170,13 +178,13 @@
       transition: max-height 0.2s ease-out;
 
       overflow: hidden;
-      background-color: $color-azure;
+      background-color: $color-ocean-blue-dark;
 
       &-list-item {
         @include text(t4);
 
         padding: 0;
-        border-bottom: 1px solid $color-dark-indigo;
+        border-bottom: 1px solid rgba($color-prim-white, 0.25);
 
         color: $color-prim-white;
 
