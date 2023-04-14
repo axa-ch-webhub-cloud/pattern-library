@@ -1,12 +1,10 @@
-$color-ocean-blue-dark: #3A5E95;
-
 .o-footer {
   text-align: initial;
 
   color: $color-prim-white;
   background-color: $color-ocean-blue;
 
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba($color-prim-white, 0.25);
 
   @media (min-width: $breakpoint-xs) {
     padding: 40px 0;
@@ -90,7 +88,7 @@ $color-ocean-blue-dark: #3A5E95;
       @media (min-width: $breakpoint-xs) {
         text-indent: 0;
         list-style-type: none;
-        padding: 15px 0 0 0;
+        padding-top: 15px;
 
         display: flex;
         flex-wrap: wrap;

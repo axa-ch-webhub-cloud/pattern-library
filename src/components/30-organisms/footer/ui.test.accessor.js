@@ -18,7 +18,7 @@ class FooterAccessor {
   async assertBackgroundColor(t, element) {
     await t
       .expect(element.getStyleProperty('background-color'))
-      .eql('rgb(59, 63, 216)');
+      .eql('rgb(73, 118, 186)');
   }
 }
 
