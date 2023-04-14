@@ -19,14 +19,11 @@
   }
 
   &__content {
-    @media (max-width: $breakpoint-xs) {
-    }
-
     @media (min-width: $breakpoint-xs) {
       display: grid;
       grid-template-areas:
-        'social'
-        'links';
+        'links'
+        'social';
 
       // IE11 workaround
       display: -ms-grid;
@@ -34,10 +31,7 @@
     }
 
     @media (min-width: $breakpoint-md) {
-      display: grid;
-      grid-template-areas:
-        'social'
-        'links';
+      grid-template-areas:'links social';
 
       // IE11 workaround
       display: -ms-grid;
@@ -117,7 +111,7 @@
     display: flex;
     justify-content: space-between;
     color: $color-prim-white;
-    background-color: $color-ocean-blue;
+    background-color: $color-ocean-blue-dark;
     padding: 20px 30px;
     width: 100%;
     text-align: left;
@@ -125,12 +119,12 @@
     border: none;
     outline: 0;
 
-    border-bottom: 1px solid rgba($color-prim-white, 0.25);
+    border-bottom: 1px solid $color-ocean-blue;
     text-transform: uppercase;
 
     svg {
-      width: 18px;
-      height: 11px;
+      width: 10px;
+      height: 10px;
       color: $color-light-grey;
     }
 
@@ -176,13 +170,13 @@
       transition: max-height 0.2s ease-out;
 
       overflow: hidden;
-      background-color: $color-ocean-blue-dark;
+      background-color: $color-ocean-blue;
 
       &-list-item {
         @include text(t4);
 
         padding: 0;
-        border-bottom: 1px solid rgba($color-prim-white, 0.25);
+        border-bottom: 1px solid $color-ocean-blue-dark;
 
         color: $color-prim-white;
 

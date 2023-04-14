@@ -1,6 +1,6 @@
 .m-footer-small {
   background: $color-ocean-blue;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba($color-prim-white, 0.25);
 
   &__container {
     display: flex;
