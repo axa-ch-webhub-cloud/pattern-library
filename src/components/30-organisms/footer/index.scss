@@ -1,3 +1,5 @@
+$color-ocean-blue-dark: #3A5E95;
+
 .o-footer {
   text-align: initial;
 
@@ -19,8 +21,8 @@
   }
 
   &__content {
-    display: flex;
-    flex-direction: column-reverse;
+    @media (max-width: $breakpoint-xs) {
+    }
 
     @media (min-width: $breakpoint-xs) {
       display: grid;
@@ -35,7 +37,9 @@
 
     @media (min-width: $breakpoint-md) {
       display: grid;
-      grid-template-areas:'links social';
+      grid-template-areas:
+        'social'
+        'links';
 
       // IE11 workaround
       display: -ms-grid;
@@ -56,11 +60,8 @@
   }
 
   &__social-media {
-    border-bottom: 1px solid rgba($color-prim-white, 0.25);
-
     @media (min-width: $breakpoint-xs) {
       grid-area: social;
-      border: none;
     }
 
     &-title {
@@ -89,7 +90,7 @@
       @media (min-width: $breakpoint-xs) {
         text-indent: 0;
         list-style-type: none;
-        padding: 15px 0;
+        padding: 15px 0 0 0;
 
         display: flex;
         flex-wrap: wrap;
@@ -197,7 +198,6 @@
           width: 165px;
           margin-top: 8px;
           padding: 5px 0;
-          border: none;
 
           line-height: 1.21;
         }
