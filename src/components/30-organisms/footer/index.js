@@ -20,6 +20,34 @@ const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
+const _changeStateOfCaret = (caret, isActive) => {
+  caret.classList[isActive ? 'add' : 'remove'](
+    'o-footer__accordion-button-caret--open'
+  );
+};
+
+const _collapseAllPanels = ev => {
+  const panels =
+    ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__main-content-panel'
+    );
+
+  [].forEach.call(panels, panel => {
+    _setMaxHeightToZero(panel);
+  });
+};
+
+const _closeAllCarets = ev => {
+  const carets =
+    ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__accordion-button-caret'
+    );
+
+  [].forEach.call(carets, caret => {
+    _changeStateOfCaret(caret, false);
+  });
+};
+
 const _renderFooterLinks = (columnIndex, itemIndex) => {
   return html`
     <li class="o-footer__main-content-panel-list-item js-footer_list-item">
@@ -208,23 +236,18 @@ class AXAFooter extends InlineStyles {
   render() {
     const accordionContent = {
       'o-footer__main-content-panel': true,
-      'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
       'js-footer__main-content-panel': true,
     };
 
     const shortAccordionContent = {
       'o-footer__main-content-panel': true,
       'o-footer__main-content-panel--short': true,
-      'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
       'js-footer__main-content-panel': true,
     };
 
-    const accordionCaretState = index => {
-      return {
-        'o-footer__accordion-button-caret': true,
-        'o-footer__accordion-button-caret--open':
-          this._accordionActiveIndex === index,
-      };
+    const accordionCaretState = {
+      'o-footer__accordion-button-caret': true,
+      'js-footer__accordion-button-caret': true,
     };
 
     const showCaret = unsafeHTML(Expand_moreSvg);
@@ -251,7 +274,7 @@ class AXAFooter extends InlineStyles {
                             name="column-0-title"
                             class="o-footer__title"
                           ></slot>
-                          <span class="${classMap(accordionCaretState(0))}">
+                          <span class="${classMap(accordionCaretState)}">
                             ${showCaret}
                           </span>
                         </button>
@@ -282,7 +305,7 @@ class AXAFooter extends InlineStyles {
                             name="column-1-title"
                             class="o-footer__title"
                           ></slot>
-                          <span class="${classMap(accordionCaretState(1))}">
+                          <span class="${classMap(accordionCaretState)}">
                             ${showCaret}
                           </span>
                         </button>
@@ -331,34 +354,33 @@ class AXAFooter extends InlineStyles {
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
 
-    const panels =
-      ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
-        '.js-footer__main-content-panel'
-      );
-
-    [].forEach.call(panels, panel => {
-      _setMaxHeightToZero(panel);
-    });
+    _collapseAllPanels(ev);
+    _closeAllCarets(ev);
 
     const panel = ev.currentTarget.parentNode.querySelector(
       '.js-footer__main-content-panel'
     );
-    const buttonCaret = ev.currentTarget.parentNode.querySelector(
-      '.o-footer__accordion-button-caret'
+
+    const caret = ev.currentTarget.parentNode.querySelector(
+      '.js-footer__accordion-button-caret'
     );
 
-    if (this._accordionActiveIndex > -1) {
+    const isActive = this._accordionActiveIndex > -1;
+
+    if (isActive) {
       const {
         parentNode: { offsetHeight },
         children,
       } = panel;
+
       // set maxHeight to exactly the height of all elements combined
       panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
-      buttonCaret.classList.add('o-footer__accordion-button-caret--open');
     } else {
       _setMaxHeightToZero(panel);
-      buttonCaret.classList.remove('o-footer__accordion-button-caret--open');
     }
+
+    // sets the class for the caret
+    _changeStateOfCaret(caret, isActive);
   }
 
   _handleLinkClick(ev) {
