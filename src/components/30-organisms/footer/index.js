@@ -361,13 +361,7 @@ class AXAFooter extends InlineStyles {
       '.js-footer__main-content-panel'
     );
 
-    const caret = ev.currentTarget.parentNode.querySelector(
-      '.js-footer__accordion-button-caret'
-    );
-
-    const isActive = this._accordionActiveIndex > -1;
-
-    if (isActive) {
+    if (this._accordionActiveIndex > -1) {
       const {
         parentNode: { offsetHeight },
         children,
@@ -375,12 +369,16 @@ class AXAFooter extends InlineStyles {
 
       // set maxHeight to exactly the height of all elements combined
       panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
+
+      const caret = ev.currentTarget.parentNode.querySelector(
+        '.js-footer__accordion-button-caret'
+      );
+
+      // sets the class for the caret
+      _changeStateOfCaret(caret, true);
     } else {
       _setMaxHeightToZero(panel);
     }
-
-    // sets the class for the caret
-    _changeStateOfCaret(caret, isActive);
   }
 
   _handleLinkClick(ev) {
