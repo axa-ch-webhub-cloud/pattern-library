@@ -4,7 +4,7 @@ import { fixtureURL } from '../../../utils/e2e-helpers';
 // Define the test suite
 test.describe('footer', () => {
   // Define the test function
-  test.skip('should change height dynamically', async ({ page }) => {
+  test('should change height dynamically', async ({ page }) => {
     // Visit the website URL
     await page.goto(fixtureURL('examples-footer-react--resize-dynamic'));
 
@@ -21,7 +21,7 @@ test.describe('footer', () => {
     expect(footerBoundingBoxAfter.height).toBeLessThan(initialHeight - 20);
   });
 
-  test.skip('should render footer with correct background color', async ({
+  test('should render footer with correct background color', async ({
     page,
   }) => {
     await page.goto(fixtureURL('components-footer--footer'));
@@ -32,14 +32,14 @@ test.describe('footer', () => {
     ).toBe('rgb(73, 118, 186)');
   });
 
-  test.skip('should render all social icons', async ({ page }) => {
+  test('should render all social icons', async ({ page }) => {
     await page.goto(fixtureURL('components-footer--footer'));
     await expect(
       await page.locator('li.o-footer__social-media-item').count()
     ).toBe(6);
   });
 
-  test.skip('should render instagram icon', async ({ page }) => {
+  test('should render instagram icon', async ({ page }) => {
     await page.goto(fixtureURL('components-footer--footer'));
     const instagramSocialLink = page.locator('axa-footer > a:nth-child(13)');
 
@@ -73,12 +73,11 @@ test.describe('footer', () => {
     await page.goto(fixtureURL('components-footer--footer'));
     page.setViewportSize({ width: 576, height: 400 });
 
-    const accordion = page.locator(
-      '.o-footer__accordion-button-caret >> nth=0'
-    );
+    const accordion = page.locator('.o-footer__accordion-button-caret').nth(0);
 
-    // TODO not working
-    // expect(await accordion).toBeHidden()
+    expect(
+      await accordion.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('none');
     page.setViewportSize({ width: 575, height: 400 });
     expect(await accordion).toBeVisible();
   });
@@ -87,16 +86,78 @@ test.describe('footer', () => {
     await page.goto(fixtureURL('components-footer--footer'));
     page.setViewportSize({ width: 575, height: 400 });
 
-    const accordionFirstButton = page.locator(
-      '.o-footer__accordion-button >> nth=0'
-    );
-    const accordionSecondButton = page.locator(
-      '.o-footer__accordion-button >> nth=1'
-    );
+    const accordionFirstButton = page
+      .locator('.o-footer__accordion-button')
+      .nth(0);
+    const accordionSecondButton = page
+      .locator('.o-footer__accordion-button')
+      .nth(1);
 
     expect(await accordionFirstButton).toBeVisible();
     expect(await accordionSecondButton).toBeVisible();
 
-    // TODO continue to migrate...
+    const accordionFirstContent = page
+      .locator('.js-footer__main-content-panel')
+      .nth(0);
+    const accordionSecondContent = page
+      .locator('.js-footer__main-content-panel')
+      .nth(1);
+
+    expect(
+      await accordionFirstContent.evaluate(
+        el => window.getComputedStyle(el).maxHeight
+      )
+    ).toBe('0px');
+    expect(
+      await accordionSecondContent.evaluate(
+        el => window.getComputedStyle(el).maxHeight
+      )
+    ).toBe('0px');
+
+    await page.click('.o-footer__accordion-button>>nth=0');
+
+    expect(
+      await accordionSecondContent.evaluate(
+        el => window.getComputedStyle(el).maxHeight
+      )
+    ).toBe('0px');
+    expect(
+      await accordionFirstContent.evaluate(
+        el => window.getComputedStyle(el).maxHeight
+      )
+    ).not.toBe('0px');
+  });
+
+  test('should correctly render social media title in desktop view', async ({
+    page,
+  }) => {
+    await page.goto(fixtureURL('components-footer--footer'));
+
+    const socialMediaTitle = page.locator('axa-footer > h2:nth-child(11)');
+
+    expect(await page.textContent('axa-footer > h2:nth-child(11)')).toBe(
+      'stay in touch'
+    );
+
+    page.setViewportSize({ width: 575, height: 400 });
+    expect(
+      await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('none');
+    page.setViewportSize({ width: 767, height: 400 });
+    expect(
+      await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('none');
+    page.setViewportSize({ width: 991, height: 400 });
+    expect(
+      await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('none');
+    page.setViewportSize({ width: 992, height: 400 });
+    expect(
+      await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('block');
+    page.setViewportSize({ width: 1200, height: 400 });
+    expect(
+      await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
+    ).toBe('block');
   });
 });
