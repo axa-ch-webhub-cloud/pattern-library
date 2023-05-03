@@ -1,10 +1,10 @@
 {
   "name": "@axa-ch-webhub-cloud/footer",
-  "version": "6.2.0",
+  "version": "6.1.0",
   "description": "The footer component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/footer#readme",
-  "license": "Copyright 2023 AXA Versicherungen AG",
+  "license": "Copyright 2019 AXA Versicherungen AG",
   "scripts": {
     "prepublishOnly": "../../../../scripts/build/prepublish.js",
     "build": "rollup --silent --config ../../../../rollup.config.js",
