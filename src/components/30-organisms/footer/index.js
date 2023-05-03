@@ -20,6 +20,9 @@ const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
+// hence there is no re-render to set the caret-open-class
+// it has to be done by manually adding the class to the
+// element via javascript
 const _changeStateOfCaret = (caret, isActive) => {
   caret.classList[isActive ? 'add' : 'remove'](
     'o-footer__accordion-button-caret--open'

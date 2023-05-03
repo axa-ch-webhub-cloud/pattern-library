@@ -125,7 +125,8 @@
     svg {
       width: 10px;
       height: 10px;
-      color: $color-light-grey;
+      transform: scale(2);
+      color: $color-prim-white;
     }
 
     &-caret {

@@ -128,6 +128,25 @@ test.describe('footer', () => {
     ).not.toBe('0px');
   });
 
+  test('should render caret correctly on open', async ({ page }) => {
+    await page.goto(fixtureURL('components-footer--footer'));
+    await page.setViewportSize({ width: 575, height: 400 });
+
+    const accordionButtonCaret = page
+      .locator('.js-footer__accordion-button-caret')
+      .nth(0);
+
+    expect(await accordionButtonCaret).not.toHaveClass(
+      /o-footer__accordion-button-caret--open/
+    );
+
+    await page.click('.o-footer__accordion-button>>nth=0');
+
+    expect(await accordionButtonCaret).toHaveClass(
+      /o-footer__accordion-button-caret--open/
+    );
+  });
+
   test('should correctly render social media title in desktop view', async ({
     page,
   }) => {
