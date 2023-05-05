@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { fixtureURL } from '../../../utils/e2e-helpers';
 
+const MOBILE_WIDTH_BREAKPOINT = { width: 575, height: 400 };
+
 // Define the test suite
 test.describe('footer', () => {
   // Define the test function
@@ -54,6 +56,7 @@ test.describe('footer', () => {
         el => window.getComputedStyle(el).height
       )
     ).toBe('25px');
+
     expect(await instagramSocialLink.count()).toBe(1);
 
     const instagramSocialSvg = instagramSocialLink.locator('svg');
@@ -71,20 +74,28 @@ test.describe('footer', () => {
 
   test('should render accordion only in mobile mode', async ({ page }) => {
     await page.goto(fixtureURL('components-footer--footer'));
+    // Set viewport 1px above maximum mobile width breakpoint
     page.setViewportSize({ width: 576, height: 400 });
 
-    const accordion = page.locator('.o-footer__accordion-button-caret').nth(0);
+    const accordionFirstButton = page
+      .locator('.o-footer__accordion-button-caret')
+      .nth(0);
 
+    // Measure that accordeon is not visible on desktop breakpoint
     expect(
-      await accordion.evaluate(el => window.getComputedStyle(el).display)
+      await accordionFirstButton.evaluate(
+        el => window.getComputedStyle(el).display
+      )
     ).toBe('none');
-    page.setViewportSize({ width: 575, height: 400 });
-    expect(await accordion).toBeVisible();
+
+    page.setViewportSize(MOBILE_WIDTH_BREAKPOINT);
+    // Measure that accordeon is visible on mobile breakpoint
+    expect(await accordionFirstButton).toBeVisible();
   });
 
   test('should correctly open accordion on click', async ({ page }) => {
     await page.goto(fixtureURL('components-footer--footer'));
-    page.setViewportSize({ width: 575, height: 400 });
+    page.setViewportSize(MOBILE_WIDTH_BREAKPOINT);
 
     const accordionFirstButton = page
       .locator('.o-footer__accordion-button')
@@ -130,7 +141,7 @@ test.describe('footer', () => {
 
   test('should render caret correctly on open', async ({ page }) => {
     await page.goto(fixtureURL('components-footer--footer'));
-    await page.setViewportSize({ width: 575, height: 400 });
+    await page.setViewportSize(MOBILE_WIDTH_BREAKPOINT);
 
     const accordionButtonCaret = page
       .locator('.js-footer__accordion-button-caret')
@@ -158,7 +169,7 @@ test.describe('footer', () => {
       'stay in touch'
     );
 
-    page.setViewportSize({ width: 575, height: 400 });
+    page.setViewportSize(MOBILE_WIDTH_BREAKPOINT);
     expect(
       await socialMediaTitle.evaluate(el => window.getComputedStyle(el).display)
     ).toBe('none');

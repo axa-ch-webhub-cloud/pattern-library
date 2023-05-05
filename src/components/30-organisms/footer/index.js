@@ -20,9 +20,15 @@ const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
-// hence there is no re-render to set the caret-open-class
-// it has to be done by manually adding the class to the
-// element via javascript
+/**
+ * The caret is a little UI icon visually indicating accordion open/closed state.
+ *
+ * Caret state change bypasses render() and directly manipulates dom-element classes on purpose here,
+ * because the height measurement of open accordion items conflicted with a model-based always-rerender
+ * approach in the past.
+ * TODO: Explore how to get rid of height measurement or make it compatible with always-rerender,
+ * then refactor and remove this code in the future.
+ */
 const _changeStateOfCaret = (caret, isActive) => {
   caret.classList[isActive ? 'add' : 'remove'](
     'o-footer__accordion-button-caret--open'
@@ -377,7 +383,7 @@ class AXAFooter extends InlineStyles {
         '.js-footer__accordion-button-caret'
       );
 
-      // sets the class for the caret
+      // sets the class for the caret open state
       _changeStateOfCaret(caret, true);
     } else {
       _setMaxHeightToZero(panel);
