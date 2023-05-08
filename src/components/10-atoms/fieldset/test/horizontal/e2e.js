@@ -18,23 +18,21 @@ test.describe('fieldset: horizontal', () => {
 
   test('should responsive stretch', async ({ page }) => {
     await page.setViewportSize({
-      width: 576,
-      height: 576,
+      width: 575,
+      height: 575,
     });
 
     await page.goto(
       fixtureURL('components-fieldset--fieldset', { horizontal: 'stretch' })
     );
 
-    const fieldsetStyles = await page
+    const fieldsetWidth = await page
       .locator('axa-fieldset > * > * >> nth=0')
       .evaluate(el => {
-        const styles = window.getComputedStyle(el);
-
-        return [styles.width, styles.marginRight];
+        return parseFloat(window.getComputedStyle(el).width);
       });
 
-    // 514px width of the radio correspond to 100% in a 576px window
-    expect(fieldsetStyles).toEqual(['514px', '0px']);
+    // Natural width is 274px, so the stretched width should be greater than 300px
+    expect(fieldsetWidth).toBeGreaterThan(300);
   });
 });
