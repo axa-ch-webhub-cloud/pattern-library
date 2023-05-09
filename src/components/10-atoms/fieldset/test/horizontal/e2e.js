@@ -18,8 +18,8 @@ test.describe('fieldset: horizontal', () => {
 
   test('should responsive stretch', async ({ page }) => {
     await page.setViewportSize({
-      width: 575,
-      height: 575,
+      width: 576,
+      height: 576,
     });
 
     await page.goto(
