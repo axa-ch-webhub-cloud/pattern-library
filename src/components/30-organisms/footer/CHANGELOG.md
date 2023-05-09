@@ -1,3 +1,7 @@
+## 6.2.0
+
+Changed the color of the footer. #2435
+
 ## 6.1.0
 
 Update package scope, registry and repository URL. #2423

@@ -20,6 +20,43 @@ const _setMaxHeightToZero = panel => {
   panel.style.maxHeight = '0px';
 };
 
+/**
+ * The caret is a little UI icon visually indicating accordion open/closed state.
+ *
+ * Caret state change bypasses render() and directly manipulates dom-element classes on purpose here,
+ * because the height measurement of open accordion items conflicted with a model-based always-rerender
+ * approach in the past.
+ * TODO: Explore how to get rid of height measurement or make it compatible with always-rerender,
+ * then refactor and remove this code in the future.
+ */
+const _changeStateOfCaret = (caret, isActive) => {
+  caret.classList[isActive ? 'add' : 'remove'](
+    'o-footer__accordion-button-caret--open'
+  );
+};
+
+const _collapseAllPanels = ev => {
+  const panels =
+    ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__main-content-panel'
+    );
+
+  [].forEach.call(panels, panel => {
+    _setMaxHeightToZero(panel);
+  });
+};
+
+const _closeAllCarets = ev => {
+  const carets =
+    ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
+      '.js-footer__accordion-button-caret'
+    );
+
+  [].forEach.call(carets, caret => {
+    _changeStateOfCaret(caret, false);
+  });
+};
+
 const _renderFooterLinks = (columnIndex, itemIndex) => {
   return html`
     <li class="o-footer__main-content-panel-list-item js-footer_list-item">
@@ -208,23 +245,18 @@ class AXAFooter extends InlineStyles {
   render() {
     const accordionContent = {
       'o-footer__main-content-panel': true,
-      'o-footer__main-content-panel--open': this._accordionActiveIndex === 0,
       'js-footer__main-content-panel': true,
     };
 
     const shortAccordionContent = {
       'o-footer__main-content-panel': true,
       'o-footer__main-content-panel--short': true,
-      'o-footer__main-content-panel--open': this._accordionActiveIndex === 1,
       'js-footer__main-content-panel': true,
     };
 
-    const accordionCaretState = index => {
-      return {
-        'o-footer__accordion-button-caret': true,
-        'o-footer__accordion-button-caret--open':
-          this._accordionActiveIndex === index,
-      };
+    const accordionCaretState = {
+      'o-footer__accordion-button-caret': true,
+      'js-footer__accordion-button-caret': true,
     };
 
     const showCaret = unsafeHTML(Expand_moreSvg);
@@ -251,7 +283,7 @@ class AXAFooter extends InlineStyles {
                             name="column-0-title"
                             class="o-footer__title"
                           ></slot>
-                          <span class="${classMap(accordionCaretState(0))}">
+                          <span class="${classMap(accordionCaretState)}">
                             ${showCaret}
                           </span>
                         </button>
@@ -282,7 +314,7 @@ class AXAFooter extends InlineStyles {
                             name="column-1-title"
                             class="o-footer__title"
                           ></slot>
-                          <span class="${classMap(accordionCaretState(1))}">
+                          <span class="${classMap(accordionCaretState)}">
                             ${showCaret}
                           </span>
                         </button>
@@ -331,25 +363,28 @@ class AXAFooter extends InlineStyles {
     this._accordionActiveIndex =
       index === this._accordionActiveIndex ? -1 : index;
 
-    const panels =
-      ev.currentTarget.parentNode.parentNode.parentNode.querySelectorAll(
-        '.js-footer__main-content-panel'
-      );
-
-    [].forEach.call(panels, panel => {
-      _setMaxHeightToZero(panel);
-    });
+    _collapseAllPanels(ev);
+    _closeAllCarets(ev);
 
     const panel = ev.currentTarget.parentNode.querySelector(
       '.js-footer__main-content-panel'
     );
+
     if (this._accordionActiveIndex > -1) {
       const {
         parentNode: { offsetHeight },
         children,
       } = panel;
+
       // set maxHeight to exactly the height of all elements combined
       panel.style.maxHeight = `${Math.ceil(offsetHeight * children.length)}px`;
+
+      const caret = ev.currentTarget.parentNode.querySelector(
+        '.js-footer__accordion-button-caret'
+      );
+
+      // sets the class for the caret open state
+      _changeStateOfCaret(caret, true);
     } else {
       _setMaxHeightToZero(panel);
     }

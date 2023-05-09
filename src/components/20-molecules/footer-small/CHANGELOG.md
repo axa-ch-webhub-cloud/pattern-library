@@ -1,3 +1,7 @@
+## 7.2.0
+
+Changed the color of the footer-small. #2435
+
 ## 7.1.0
 
 Update package scope, registry and repository URL. #2423
