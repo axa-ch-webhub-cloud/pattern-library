@@ -30,13 +30,13 @@ axa-fieldset {
   }
 
   &[horizontal="stretch"]{
-    @media (min-width: $breakpoint-xs) {
+    @media (max-width: $breakpoint-xs) {
       > *,
       > * > * {
         margin-right: 0;
         width: 100%;
       }
-      
+
     }
   }
 

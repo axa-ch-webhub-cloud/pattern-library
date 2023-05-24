@@ -1,3 +1,7 @@
+## 6.1.1
+
+Fix xs breakpoint for stretch behavior. #2436
+
 ## 6.1.0
 
 Update package scope, registry and repository URL. #2423
