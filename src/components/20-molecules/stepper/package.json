@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/stepper",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "description": "The stepper component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/stepper#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/materials": "16.1.0",
+    "@axa-ch-webhub-cloud/materials": "16.2.1",
     "lit": "^2.2.1"
   }
 }
