@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/link",
-  "version": "8.1.2",
+  "version": "8.1.3",
   "description": "The link component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/10-atoms/link/README.md",
@@ -31,7 +31,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/icon": "8.1.2",
+    "@axa-ch-webhub-cloud/icon": "8.1.3",
     "lit": "^2.2.1"
   }
 }

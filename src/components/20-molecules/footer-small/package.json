@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/footer-small",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "description": "The footer-small component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/blob/develop/src/components/20-molecules/footer-small/README.md",
@@ -28,7 +28,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/container": "5.1.0",
+    "@axa-ch-webhub-cloud/container": "5.1.2",
     "lit": "^2.2.1"
   }
 }

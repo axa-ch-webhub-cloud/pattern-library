@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/accordion",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "The accordion component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/20-molecules/accordion#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/materials": "16.2.1",
+    "@axa-ch-webhub-cloud/materials": "16.2.2",
     "lit": "^2.2.1"
   }
 }
