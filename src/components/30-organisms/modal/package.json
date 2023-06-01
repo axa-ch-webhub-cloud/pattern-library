@@ -1,6 +1,6 @@
 {
   "name": "@axa-ch-webhub-cloud/modal",
-  "version": "4.1.0",
+  "version": "4.1.3",
   "description": "The modal component for the AXA Pattern Library",
   "author": "Pattern Warriors",
   "homepage": "https://github.com/axa-ch-webhub-cloud/pattern-library/tree/develop/src/components/30-organisms/modal#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/axa-ch-webhub-cloud/pattern-library/issues"
   },
   "dependencies": {
-    "@axa-ch-webhub-cloud/materials": "16.1.0",
+    "@axa-ch-webhub-cloud/materials": "16.2.2",
     "lit": "^2.2.1"
   }
 }
