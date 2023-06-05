@@ -1,7 +1,5 @@
 ## 7.2.1
 
-## 7.2.1
-
 Fix Footer Breakpoints (mobile) #2439
 
 ## 7.2.0
