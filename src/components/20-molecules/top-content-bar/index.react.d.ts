@@ -13,6 +13,7 @@ export interface AXATopContentBarProps {
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
+  onClose?: () => void;
 }
 
 declare function createAXATopContentBar(
