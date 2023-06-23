@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type Variant = 'warning';
+export type Variant = 'default' | 'warning' | 'success' | 'attention';
 
 export interface AXATopContentBarProps {
   variant?: Variant;
@@ -13,6 +13,7 @@ export interface AXATopContentBarProps {
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
+  onClose?: () => void;
 }
 
 declare function createAXATopContentBar(

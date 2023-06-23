@@ -9,9 +9,11 @@ There is also the possibility to add child elements.
 
 ### Variant
 
-| Attribute           | Details                                        |
-| ------------------- | ---------------------------------------------- |
-| `variant="warning"` | Show a red top content bar as a warning banner |
+| Attribute             | Details                                        |
+| -------------------   | ---------------------------------------------- |
+| `variant="warning"`   | Show a red top content bar as a warning banner |
+| `variant="success"`   | Show a green top content bar as a success banner |
+| `variant="attention"` | Show a yellow top content bar as a attention banner |
 
 ### ctatext
 

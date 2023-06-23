@@ -1,3 +1,7 @@
+## 6.2.1
+- Add missing values for variant type definition.
+- Add missing type definition for onClose.
+
 ## 6.2.0
 
 Update package scope, registry and repository URL. #2423
