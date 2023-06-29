@@ -76,8 +76,17 @@ This repository is a monorepo managed by Lerna. This means that all components a
 
 ## Commits
 
-We are using [Conventional Commits](https://www.conventionalcommits.org/) to automatically versioning and creating changelog's.
+We are using [Conventional Commits](https://www.conventionalcommits.org/) to automatically version the components and update their changelog's.
 Feel free to use a [tool of your choice](https://www.conventionalcommits.org/en/about/#tooling-for-conventional-commits) to generate these commits.
+
+Example for a commit message
+```
+feat(button): add new color blue
+
+Closes #ticket-1234
+```
+
+For more examples, especially with BREAKING CHANGES, have a look at the [Conventional Commits Examples](https://www.conventionalcommits.org/en/v1.0.0/#examples).
 
 ## Pattern Library via community CDN
 
