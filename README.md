@@ -76,7 +76,7 @@ This repository is a monorepo managed by Lerna. This means that all components a
 
 ## Commits
 
-We are using [Conventional Commits](https://www.conventionalcommits.org/) to automatically version the components and update their changelog's.
+We are using [Conventional Commits](https://www.conventionalcommits.org/) to automatically version the components and update their changelogs.
 Feel free to use a [tool of your choice](https://www.conventionalcommits.org/en/about/#tooling-for-conventional-commits) to generate these commits.
 
 Example for a commit message
