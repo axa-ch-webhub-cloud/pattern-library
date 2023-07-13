@@ -74,6 +74,20 @@ We are dedicated to building a welcoming, diverse, and safe community. We expect
 
 This repository is a monorepo managed by Lerna. This means that all components are centrally managed here, even though we publish them to NPM as separate packages.
 
+## Commits
+
+We are using [Conventional Commits](https://www.conventionalcommits.org/) to automatically version the components and update their changelogs.
+Feel free to use a [tool of your choice](https://www.conventionalcommits.org/en/about/#tooling-for-conventional-commits) to generate these commits.
+
+Example for a commit message
+```
+feat(button): add new color blue
+
+Closes #ticket-1234
+```
+
+For more examples, especially with BREAKING CHANGES, have a look at the [Conventional Commits Examples](https://www.conventionalcommits.org/en/v1.0.0/#examples).
+
 ## Pattern Library via community CDN
 
 You can add any Pattern Library component via the community CDN jsdelivr. This is useful for Prototyping or experimenting or if you don't want to bother with a frontend stack. This works only native (no react support). Here an example on how to add the JS for `<axa-button></axa-button>`: `<script src="https://cdn.jsdelivr.net/npm/@axa-ch/button@latest/dist/index.js"></script>`
