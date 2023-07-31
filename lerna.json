@@ -38,7 +38,7 @@
   ],
   "command": {
     "version": {
-      "allowBranch": "release"
+      "allowBranch": "test-release"
     }
   },
   "ignoreChanges": [
