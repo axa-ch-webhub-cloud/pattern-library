@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.2.4](https://github.com/axa-ch-webhub-cloud/pattern-library/compare/@axa-ch-webhub-cloud/cookie-disclaimer@6.2.3...@axa-ch-webhub-cloud/cookie-disclaimer@6.2.4) (2023-07-31)
+
+**Note:** Version bump only for package @axa-ch-webhub-cloud/cookie-disclaimer
+
 ## 6.2.0
 
 Update package scope, registry and repository URL. #2423

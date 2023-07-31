@@ -1,3 +1,12 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.2.3](https://github.com/axa-ch-webhub-cloud/pattern-library/compare/@axa-ch-webhub-cloud/footer@6.2.2...@axa-ch-webhub-cloud/footer@6.2.3) (2023-07-31)
+
+**Note:** Version bump only for package @axa-ch-webhub-cloud/footer
+
 ## 6.2.0
 
 Changed the color of the footer. #2435
