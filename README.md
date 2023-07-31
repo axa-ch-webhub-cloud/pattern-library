@@ -86,6 +86,15 @@ feat(button): add new color blue
 Closes #ticket-1234
 ```
 
+Example for a Changelog entry
+```
+# [16.3.0](https://github.com/axa-ch-webhub-cloud/pattern-library/compare/@axa-ch-webhub-cloud/materials@16.2.2...@axa-ch-webhub-cloud/materials@16.3.0) (2023-07-31)
+
+### Features
+
+- **materials:** update color ([b832830](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/b83283048acb5594812d019e2523bb014d3fc509)), closes [#123456](https://github.com/axa-ch-webhub-cloud/pattern-library/issues/123456)
+```
+
 For more examples, especially with BREAKING CHANGES, have a look at the [Conventional Commits Examples](https://www.conventionalcommits.org/en/v1.0.0/#examples).
 
 ## Pattern Library via community CDN
