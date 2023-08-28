@@ -1,9 +1,11 @@
 import { Selector } from 'testcafe';
-import FooterAccessor from './ui.test.accessor';
+import FooterAccessor, { FooterAccessorClass } from './ui.test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
 const TAG = 'axa-footer';
+const VERSIONED_TAG = `${TAG}-aem`;
 const CLASS = '.o-footer';
+const versionedFooterAccessor = new FooterAccessorClass(VERSIONED_TAG);
 
 fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=examples-footer-react--callbacks&viewMode=story`
@@ -55,17 +57,17 @@ fixture('Footer - Demo Smoketest').page(
 );
 
 test('should render footer with working native callbacks', async t => {
-  const $axaElem = await Selector(TAG);
+  const $axaElem = await Selector(VERSIONED_TAG);
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector('axa-footer').shadowRoot
+    () => document.querySelector(VERSIONED_TAG).shadowRoot
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
 
-  await FooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
+  await versionedFooterAccessor.assertBackgroundColor(t, $axaElemShadowEl);
 
-  const $contactLink = FooterAccessor.getSlotNode('column-0-item-0');
+  const $contactLink = versionedFooterAccessor.getSlotNode('column-0-item-0');
 
   await t.expect($contactLink.textContent).eql('Contact');
   await t.expect($contactLink.visible).ok();
@@ -75,7 +77,7 @@ test('should render footer with working native callbacks', async t => {
 
   await t.click($contactLink);
 
-  const $facebookButton = FooterAccessor.getSlotNode('social-item-0');
+  const $facebookButton = versionedFooterAccessor.getSlotNode('social-item-0');
 
   await t.expect($facebookButton.visible).ok();
   await t.click($facebookButton);
@@ -92,12 +94,12 @@ fixture('Footer - without content').page(
 test('should not render empty accordions on mobile', async t => {
   const $footerTitleColumn0 = Selector(() =>
     document
-      .querySelector('axa-footer')
+      .querySelector(TAG)
       .shadowRoot.querySelector(`slot[name='column-0-title']`)
   );
   const $footerTitleColumn1 = Selector(() =>
     document
-      .querySelector('axa-footer')
+      .querySelector(TAG)
       .shadowRoot.querySelector(`slot[name='column-1-title']`)
   );
 

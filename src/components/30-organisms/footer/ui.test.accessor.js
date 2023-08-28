@@ -1,11 +1,11 @@
 import { Selector } from 'testcafe';
 
-class FooterAccessor {
-  constructor() {
+export class FooterAccessorClass {
+  constructor(name = 'axa-footer') {
     this._getSlotNode = Selector(
       slotName =>
         document
-          .querySelector('axa-footer')
+          .querySelector(name)
           .shadowRoot.querySelector(`slot[name='${slotName}']`)
           .assignedNodes()[0]
     );
@@ -22,4 +22,4 @@ class FooterAccessor {
   }
 }
 
-export default new FooterAccessor();
+export default new FooterAccessorClass();
