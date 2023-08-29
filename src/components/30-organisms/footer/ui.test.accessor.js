@@ -7,7 +7,8 @@ export class FooterAccessorClass {
         document
           .querySelector(name)
           .shadowRoot.querySelector(`slot[name='${slotName}']`)
-          .assignedNodes()[0]
+          .assignedNodes()[0],
+      { dependencies: { name } }
     );
   }
 
