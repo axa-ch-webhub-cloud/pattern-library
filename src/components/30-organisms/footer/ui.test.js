@@ -2,10 +2,8 @@ import { Selector } from 'testcafe';
 import FooterAccessor, { FooterAccessorClass } from './ui.test.accessor';
 
 const host = process.env.TEST_HOST_STORYBOOK_URL;
-const TAG = 'axa-footer';
-const VERSIONED_TAG = `${TAG}-aem`;
 const CLASS = '.o-footer';
-const versionedFooterAccessor = new FooterAccessorClass(VERSIONED_TAG);
+const versionedFooterAccessor = new FooterAccessorClass('axa-footer-aem');
 
 fixture('Footer - React Smoketest').page(
   `${host}/iframe.html?id=examples-footer-react--callbacks&viewMode=story`
@@ -13,7 +11,7 @@ fixture('Footer - React Smoketest').page(
 
 test('should render footer with working react callbacks', async t => {
   await t.setTestSpeed(0.5);
-  const $axaElem = await Selector(TAG);
+  const $axaElem = await Selector('axa-footer');
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
     () => document.querySelector('axa-footer').shadowRoot
@@ -57,10 +55,10 @@ fixture('Footer - Demo Smoketest').page(
 );
 
 test('should render footer with working native callbacks', async t => {
-  const $axaElem = await Selector(VERSIONED_TAG);
+  const $axaElem = await Selector('axa-footer-aem');
   await t.expect($axaElem.exists).ok();
   const $axaElemShadow = await Selector(
-    () => document.querySelector(VERSIONED_TAG).shadowRoot
+    () => document.querySelector('axa-footer-aem').shadowRoot
   );
   const $axaElemShadowEl = await $axaElemShadow.find(CLASS);
   await t.expect($axaElemShadowEl.exists).ok();
@@ -94,12 +92,12 @@ fixture('Footer - without content').page(
 test('should not render empty accordions on mobile', async t => {
   const $footerTitleColumn0 = Selector(() =>
     document
-      .querySelector(TAG)
+      .querySelector('axa-footer')
       .shadowRoot.querySelector(`slot[name='column-0-title']`)
   );
   const $footerTitleColumn1 = Selector(() =>
     document
-      .querySelector(TAG)
+      .querySelector('axa-footer')
       .shadowRoot.querySelector(`slot[name='column-1-title']`)
   );
 
