@@ -1,3 +1,7 @@
+## 6.2.3
+
+Fix broken footer when versioned (e.g. as axa-footer-aem). #2452
+
 ## 6.2.0
 
 Changed the color of the footer. #2435
