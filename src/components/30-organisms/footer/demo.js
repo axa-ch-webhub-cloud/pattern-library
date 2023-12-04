@@ -1,7 +1,9 @@
 import changelog from './CHANGELOG.md';
 import readme from './README.md';
-import './index';
+import createVersionedFooter from './index.react';
 import '../../10-atoms/text';
+
+createVersionedFooter(null, 'aem');
 
 export default {
   title: 'Examples/Footer/Pure HTML',
@@ -17,9 +19,9 @@ export default {
 export const Callbacks = () => {
   const wrapper = document.createElement('div');
   const footerMarkup = `
-    <axa-footer clickevents>
+    <axa-footer-aem clickevents>
       <h2 slot="column-title">axa & you</h2>
-      <a slot="column-item" href="#https://axa.ch/en/private-customers.html">Contact</a>
+      <div class="nested-child"><a slot="column-item" href="#https://axa.ch/en/private-customers.html">Contact</a></div>
       <a slot="column-item" href="https://axa.ch/en/private-customers/claims/everything-about-claiming/file-claim.html" target="_blank">Report a claim</a>
       <a slot="column-item" href="https://axa.ch/en/information/broker-services.html" target="_blank">Broker</a>
       <a slot="column-item" href="https://axa.ch/en/about-axa/jobs-career/job-vacancies/job-vacancies.html" target="_blank">Job vacancies</a>
@@ -46,7 +48,7 @@ export const Callbacks = () => {
       <a slot="social-item" href="https://www.linkedin.com/company/axa/" target="_blank">
       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"><path d="M6.519 4.183A2.146 2.146 0 0 1 4.354 6.3a2.147 2.147 0 0 1-2.121-2.16A2.147 2.147 0 0 1 4.376 2a2.14 2.14 0 0 1 1.527.641c.403.41.625.966.616 1.542zm0 3.9H2.216V22h4.32L6.519 8.083zm6.878 0h-4.27V22h4.287v-7.3c0-4.05 5.2-4.383 5.2 0V22h4.303v-8.817c0-6.833-7.692-6.666-9.503-3.216l-.017-1.884z" fill="#FFFFFF"/></svg>
       </a>
-    </axa-footer>`;
+    </axa-footer-aem>`;
 
   wrapper.innerHTML = footerMarkup;
 

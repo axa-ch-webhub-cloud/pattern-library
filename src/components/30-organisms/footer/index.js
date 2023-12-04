@@ -120,26 +120,27 @@ class AXAFooter extends InlineStyles {
   }
 
   /**
-   * A slot element needs to be a direct child of a web component. Since AEM
-   * (and potentially other systems) wrap those children, they are no longer
-   * direct children of a component. We work around this problem by
-   * copying the slot-attribute to the direct children of the component.
+   * A slot element needs to be a direct child of a web component. In case AEM
+   * (and potentially other systems) would wrap those children (individually, say under a <div>),
+   * they would no longer be direct children of a component. We work around this problem by
+   * copying such nested slot attribute values upwards to the direct children of the component.
    *
-   * @param {*} nestedChild A direct child of the component, which has a slot
-   * element nested somewhere lower, which would properly belong to the top component.
+   * @param {*} nestedChild A possibly nested child of the component, which - if truly nested - would properly belong to a direct child.
    */
   _setSlotNameFromNestedChildToDirectChildNodeOfComponent(nestedChild) {
-    let currentNode = nestedChild;
-    const domTree = [currentNode];
-    while (
-      AXAFooter.tagName.toUpperCase() !== currentNode.tagName.toUpperCase()
-    ) {
-      currentNode = currentNode.parentNode;
-      domTree.push(currentNode);
+    let directChild = nestedChild;
+    for (
+      let parent;
+      // eslint-disable-next-line no-cond-assign
+      (parent = directChild.parentNode) && parent !== this; // is this still a *nested* child, whose parent node is not yet host element 'this'?
+      directChild = parent // yes, so move 1 step up towards the direct child
+    );
+    // we established a nested-child situation and identified its corresponding, but distinct direct child?
+    if (directChild && directChild !== nestedChild) {
+      // yes, so copy the nested slot attribute value to the direct-child slot
+      directChild.setAttribute('slot', nestedChild.getAttribute('slot'));
     }
-    const slotElement = domTree[domTree.length - 2];
-    slotElement.setAttribute('slot', nestedChild.getAttribute('slot'));
-    return slotElement;
+    return directChild;
   }
 
   /**
