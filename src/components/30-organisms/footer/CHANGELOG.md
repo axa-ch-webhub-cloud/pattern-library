@@ -1,3 +1,18 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.2.3](https://github.com/axa-ch-webhub-cloud/pattern-library/compare/@axa-ch-webhub-cloud/footer@6.2.2...@axa-ch-webhub-cloud/footer@6.2.3) (2023-12-04)
+
+### Bug Fixes
+
+- add demo + adapt tests for versioned axa-footer ([b296ed1](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/b296ed160c995679025ae05aeb8eca71d3870681))
+- correct some TestCafe code for (versioned) axa-footer ([09083f9](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/09083f9d6ed86723dab3a29fbec6200668b838f8))
+- fix broken axa-footer when versioned ([8b3a534](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/8b3a534553df0bec008dce275a925ed2e0bd47c6))
+- get TestCafe Selector dependencies right for (versioned) axa-footer ([e4359b0](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/e4359b0a38fc8182f04ef8b0dbcc83fb2116b175))
+- update changelog for axa-footer ([a1378c6](https://github.com/axa-ch-webhub-cloud/pattern-library/commit/a1378c63e048bac644b2fe98779310366954864b))
+
 ## 6.2.3
 
 Fix broken footer when versioned (e.g. as axa-footer-aem). #2452

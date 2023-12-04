@@ -1,4 +1,14 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [6.2.4](https://github.com/axa-ch-webhub-cloud/pattern-library/compare/@axa-ch-webhub-cloud/top-content-bar@6.2.3...@axa-ch-webhub-cloud/top-content-bar@6.2.4) (2023-12-04)
+
+**Note:** Version bump only for package @axa-ch-webhub-cloud/top-content-bar
+
 ## 6.2.1
+
 - Add missing values for variant type definition.
 - Add missing type definition for onClose.
 
